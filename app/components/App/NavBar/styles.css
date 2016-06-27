@@ -20,11 +20,11 @@
         -webkit-box-align: center;
         -webkit-box-pack: center;
         -webkit-box-orient: vertical;
-        font-size: 0.64rem;
         color: #7b8f9d;
+        font-size: 0.64rem;
         padding-top: 0.4rem; }
         .nav ul li a strong {
-          font-weight: 100; }
+          font-weight: normal; }
         .nav ul li a span {
           display: block;
           height: 1.17333rem;
@@ -32,7 +32,7 @@
           opacity: 1;
           margin-bottom: 0.21333rem;
           background-repeat: no-repeat;
-          background-image: url("http://spriteimg.ihangju.com/output/icons_h5.png");
+          background-image: url("https://o82zr1kfu.qnssl.com/@/image/57708837e4b0f076efd939b3.png");
           background-size: cover; }
           .nav ul li a span.found {
             background-position: 0 0; }
