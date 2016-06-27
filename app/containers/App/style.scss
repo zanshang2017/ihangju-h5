@@ -1,0 +1,30 @@
+@charset "UTF-8";
+@import "../../common/_global";
+@import "../../common/_util";
+
+@mixin pageBase {
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+:global {
+    .page {
+        @include pageBase;
+        padding: 0 0 $navHeight;
+    }
+
+    .pageNoNav {
+        @include pageBase;
+        padding: 0;
+    }
+
+    .pageInner {
+        position: absolute;
+    }
+}
+
+
+

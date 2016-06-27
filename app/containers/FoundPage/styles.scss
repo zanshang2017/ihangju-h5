@@ -1,0 +1,13 @@
+@charset "UTF-8";
+@import "../../common/__global.scss";
+@import "../../common/__util.scss";
+
+.foundPage {
+    width:100%;
+    height:rem(340);
+
+    img {
+        height:rem(340)
+    }
+
+}

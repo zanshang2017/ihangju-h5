@@ -1,0 +1,126 @@
+@charset "UTF-8";
+@import "../../../common/_global";
+@import "../../../common/_util";
+
+.nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: $navHeight;
+    z-index: $zIndexL1;
+    font-size: 14px;
+    background: #fff;
+    border-top:1px solid $navBorderColor;
+
+    ul {
+        display: -webkit-box;
+
+        li {
+            -webkit-box-flex: 1;
+            padding:0 rem(20);
+
+            a {
+                position: relative;
+                display: -webkit-box;
+                -webkit-box-align: center;
+                -webkit-box-pack: center;
+                -webkit-box-orient: vertical;
+                font-size: rem(24);
+                color: $titleColor;
+                padding-top:rem(15);
+
+                strong {
+                    font-weight: 100;
+                }
+
+                span {
+                    display: block;
+                    height: rem(44);
+                    width: rem(44);
+                    opacity: 1;
+                    margin-bottom: rem(8);
+                    background-repeat: no-repeat;
+                    background-image: url("http://spriteimg.ihangju.com/output/icons_h5.png");
+                    background-size:cover;
+
+                    &.found {
+                        background-position: 0 0;
+                    }
+
+                    &.follow {
+                        background-position: rem(-88) 0px;
+                    }
+
+                    &.my {
+                        background-position: rem(-176) 0px;
+                    }
+
+                    &.write {
+                        background-position: rem(-264) 0px;
+                    }
+
+
+
+                }
+
+
+
+            }
+        }
+
+    }
+
+}
+
+
+//
+//.icon-common_tab_find_n@2x {
+//                             background-image: url(sprite.png);
+//                             background-position: 0px 0px;
+//                             width: 44px;
+//                             height: 44px;
+//                         }
+//.icon-common_tab_find_s@2x {
+//                             background-image: url(sprite.png);
+//                             background-position: -44px 0px;
+//                             width: 44px;
+//                             height: 44px;
+//                         }
+//.icon-common_tab_follow_n@2x {
+//                               background-image: url(sprite.png);
+//                               background-position: -88px 0px;
+//                               width: 44px;
+//                               height: 44px;
+//                           }
+//.icon-common_tab_follow_s@2x {
+//                               background-image: url(sprite.png);
+//                               background-position: -132px 0px;
+//                               width: 44px;
+//                               height: 44px;
+//                           }
+//.icon-common_tab_user_n@2x {
+//                             background-image: url(sprite.png);
+//                             background-position: -176px 0px;
+//                             width: 44px;
+//                             height: 44px;
+//                         }
+//.icon-common_tab_user_s@2x {
+//                             background-image: url(sprite.png);
+//                             background-position: -220px 0px;
+//                             width: 44px;
+//                             height: 44px;
+//                         }
+//.icon-common_tab_write_n@2x {
+//                              background-image: url(sprite.png);
+//                              background-position: -264px 0px;
+//                              width: 44px;
+//                              height: 44px;
+//                          }
+//.icon-common_tab_write_s@2x {
+//                              background-image: url(sprite.png);
+//                              background-position: -308px 0px;
+//                              width: 44px;
+//                              height: 44px;
+//                          }

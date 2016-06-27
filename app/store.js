@@ -1,5 +1,5 @@
 /**
- * Create the store with asynchronously loaded reducers
+ * 创建redux.store，异步支持
  */
 
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -11,17 +11,20 @@ import createReducer from './reducers';
 const sagaMiddleware = createSagaMiddleware();
 const devtools = window.devToolsExtension || (() => noop => noop);
 
-export default function configureStore(initialState = {}, history) {
-  // Create the store with two middlewares
-  // 1. sagaMiddleware: Makes redux-sagas work
-  // 2. routerMiddleware: Syncs the location/URL path to the state
+export default function configureStore(initialState = {}, history = null) {
+
+  if (!history) {
+    throw new Error('need history!');
+  }
+
+  //redux config
   const middlewares = [
-    sagaMiddleware,
-    routerMiddleware(history),
+    sagaMiddleware, // redux-sagas
+    routerMiddleware(history), //用于路由同步state
   ];
 
   const enhancers = [
-    applyMiddleware(...middlewares),
+    applyMiddleware(...middlewares), //
     devtools(),
   ];
 
@@ -43,7 +46,7 @@ export default function configureStore(initialState = {}, history) {
     });
   }
 
-  // Initialize it with no other reducers
+  // 异步reducer
   store.asyncReducers = {};
   return store;
 }

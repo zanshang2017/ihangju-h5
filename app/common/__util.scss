@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+@function perc($px, $width:375) {
+    @return percentage($px/$width);
+}
+
+@function rem($values) {
+    $list: ();
+    @each $value in $values {
+        $list: #{$value/37.5}rem;
+    }
+    @return $list; /* 10 */
+}
+
+@mixin flexBox() {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+

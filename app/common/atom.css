@@ -1,0 +1,146 @@
+@charset "UTF-8";
+:global {
+  /*文字排版*/
+  /*定位*/
+  /*长度高度*/
+  /*边距*/ }
+  :global .clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  :global .clearfix {
+    display: inline-block; }
+  :global * html .clearfix {
+    height: 1%; }
+  :global .clearfix {
+    display: block; }
+  :global .vm {
+    vertical-align: middle; }
+  :global .pr {
+    position: relative; }
+  :global .pa {
+    position: absolute; }
+  :global .abs-right {
+    position: absolute;
+    right: 0; }
+  :global .zoom {
+    zoom: 1; }
+  :global .hidden {
+    visibility: hidden; }
+  :global .none {
+    display: none; }
+  :global .f12 {
+    font-size: 12px; }
+  :global .f13 {
+    font-size: 13px; }
+  :global .f14 {
+    font-size: 14px; }
+  :global .f16 {
+    font-size: 16px; }
+  :global .f20 {
+    font-size: 20px; }
+  :global .fb {
+    font-weight: bold; }
+  :global .fn {
+    font-weight: normal; }
+  :global .t2 {
+    text-indent: 2em; }
+  :global .lh150 {
+    line-height: 150%; }
+  :global .lh180 {
+    line-height: 180%; }
+  :global .unl {
+    text-decoration: underline; }
+  :global .no_unl {
+    text-decoration: none; }
+  :global .tl {
+    text-align: left; }
+  :global .tc {
+    text-align: center; }
+  :global .tr {
+    text-align: right; }
+  :global .bc {
+    margin-left: auto;
+    margin-right: auto; }
+  :global .fl {
+    float: left;
+    display: inline; }
+  :global .fr {
+    float: right;
+    display: inline; }
+  :global .cb {
+    clear: both; }
+  :global .cl {
+    clear: left; }
+  :global .cr {
+    clear: right; }
+  :global .w10 {
+    width: 10px; }
+  :global .w20 {
+    width: 20px; }
+  :global .w30 {
+    width: 30px; }
+  :global .w40 {
+    width: 40px; }
+  :global .w50 {
+    width: 50px; }
+  :global .w {
+    width: 100%; }
+  :global .h {
+    height: 100%; }
+  :global .m10 {
+    margin: 10px; }
+  :global .m15 {
+    margin: 15px; }
+  :global .mt5 {
+    margin-top: 5px; }
+  :global .mt10 {
+    margin-top: 10px; }
+  :global .mb10 {
+    margin-bottom: 10px; }
+  :global .mb15 {
+    margin-bottom: 15px; }
+  :global .ml5 {
+    margin-left: 5px; }
+  :global .ml10 {
+    margin-left: 10px; }
+  :global .ml15 {
+    margin-left: 15px; }
+  :global .mr5 {
+    margin-right: 5px; }
+  :global .mr10 {
+    margin-right: 10px; }
+  :global .mr15 {
+    margin-right: 15px; }
+  :global .p10 {
+    padding: 10px; }
+  :global .p15 {
+    padding: 15px; }
+  :global .p20 {
+    padding: 20px; }
+  :global .pt5 {
+    padding-top: 5px; }
+  :global .pt10 {
+    padding-top: 10px; }
+  :global .pt15 {
+    padding-top: 15px; }
+  :global .pb5 {
+    padding-bottom: 5px; }
+  :global .pb10 {
+    padding-bottom: 10px; }
+  :global .pb15 {
+    padding-bottom: 15px; }
+  :global .pl5 {
+    padding-left: 5px; }
+  :global .pl10 {
+    padding-left: 10px; }
+  :global .pl15 {
+    padding-left: 15px; }
+  :global .pr5 {
+    padding-right: 5px; }
+  :global .pr10 {
+    padding-right: 10px; }
+
+/*# sourceMappingURL=atom.css.map */

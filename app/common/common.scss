@@ -1,0 +1,189 @@
+@charset "UTF-8";
+@import "./__util.scss";
+@import "./__global.scss";
+@import "./atom.scss";
+
+
+// <<< 全局样式
+:global {
+
+    .flip-right2left .flip-enter,
+    .flip-right2left-reverse .flip-leave.flip-leave-active {
+        transform: translate3d(100%, 0, 0);
+        transition: all .35s ease;
+    }
+
+    .flip-right2left .flip-enter.flip-enter-active,
+    .flip-right2left-reverse .flip-leave {
+        transform: translate3d(0, 0, 0);
+    }
+
+    .flip-right2left .flip-leave,
+    .flip-right2left-reverse .flip-enter.flip-enter-active {
+        transform: translate3d(0, 0, 0);
+        transition: all .35s ease;
+    }
+
+    .flip-right2left .flip-leave.flip-leave-active,
+    .flip-right2left-reverse .flip-enter {
+        transform: translate3d(-100%, 0, 0);
+    }
+
+    .flip-right2left .flip-enter,
+    .flip-right2left-reverse .flip-enter {
+        z-index: $zIndexL3;
+    }
+
+    .flip-right2left .flip-leave,
+    .flip-right2left-reverse .flip-leave {
+        z-index: $zIndexL4;
+    }
+
+
+    /*边框*/
+    .r1bt, .r1bb, .r1bl, .r1br, .r1b {
+        position: relative;
+    }
+
+    .r1bt:before, .r1bb:after {
+        pointer-events: none;
+        position: absolute;
+        content: "";
+        height: 1px;
+        background: rgba(32, 35, 37, 0.15);
+        left: 0;
+        right: 0;
+    }
+
+    .r1bt:before {
+        top: 0;
+    }
+
+    .r1bb:after {
+        bottom: 0;
+    }
+
+    .r1bl:before, .r1br:after {
+        pointer-events: none;
+        position: absolute;
+        content: "";
+        width: 1px;
+        background: rgba(32, 35, 37, 0.15);
+        top: 0;
+        bottom: 0;
+    }
+
+    .r1bl:before {
+        left: 0;
+    }
+
+    .r1br:after {
+        right: 0;
+    }
+
+    /*四边*/
+    .r1b:after {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        border: 1px solid rgba(32, 35, 37, 0.15);
+        pointer-events: none;
+    }
+
+    @media (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+        .r1bt:before, .r1bb:after {
+            -webkit-transform: scaleY(.5);
+            transform: scaleY(.5);
+        }
+        .r1bl:before, .r1br:after {
+            -webkit-transform: scaleX(.5);
+            transform: scaleX(.5);
+        }
+        .r1b:after {
+            width: 200%;
+            height: 200%;
+            -webkit-transform: scale(.5);
+            transform: scale(.5);
+        }
+        .r1bt:before, .r1bl:before, .r1b:after {
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+        }
+        .r1bb:after, .r1br:after {
+            -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+        }
+    }
+
+    @media (-webkit-device-pixel-ratio: 1.5) {
+        .r1bt:before, .r1bb:after {
+            -webkit-transform: scaleY(.6666);
+            transform: scaleY(.6666);
+        }
+        .r1bl:before, .r1br:after {
+            -webkit-transform: scaleX(.6666);
+            transform: scaleX(.6666);
+        }
+        .r1b:after {
+            width: 150%;
+            height: 150%;
+            -webkit-transform: scale(.6666);
+            transform: scale(.6666);
+        }
+    }
+
+    @media (-webkit-device-pixel-ratio: 3) {
+        .r1bt:before, .r1bb:after {
+            -webkit-transform: scaleY(.3333);
+            transform: scaleY(.3333);
+        }
+        .r1bl:before, .r1br:after {
+            -webkit-transform: scaleX(.3333);
+            transform: scaleX(.3333);
+        }
+        .r1b:after {
+            width: 300%;
+            height: 300%;
+            -webkit-transform: scale(.3333);
+            transform: scale(.3333);
+        }
+    }
+
+    @-webkit-keyframes scaleUp {
+        from {
+            opacity: 1;
+            -webkit-transform: scale(1.1);
+        }
+    }
+
+    @-webkit-keyframes zoomIn {
+        0% {
+            opacity: 0;
+            -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+        }
+
+        50% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes zoomIn {
+        0% {
+            opacity: 0;
+            -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+        }
+
+        50% {
+            opacity: 1;
+        }
+    }
+
+}
+//全局样式 >>>

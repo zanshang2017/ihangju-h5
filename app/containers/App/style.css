@@ -1,0 +1,18 @@
+:global .page {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 0 0 2.82667rem; }
+:global .pageNoNav {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 0; }
+:global .pageInner {
+  position: absolute; }
+
+/*# sourceMappingURL=style.css.map */

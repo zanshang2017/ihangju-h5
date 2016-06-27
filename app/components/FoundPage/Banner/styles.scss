@@ -1,0 +1,15 @@
+@charset "UTF-8";
+@import "../../../common/_global.scss";
+@import "../../../common/_util.scss";
+
+.banner {
+    background-color: $bg;
+    width: 100%;
+    height: rem(340);
+    overflow: hidden;
+
+    img {
+        height: rem(340);
+    }
+}
+

@@ -19,7 +19,7 @@ module.exports = (options) => ({
       query: options.babelQuery,
     }, {
       // Transform our own .css files with PostCSS and CSS-modules
-      test: /\.css$/,
+      test: /\.s?css$/,
       exclude: /node_modules/,
       loader: options.cssLoaders,
     }, {
@@ -28,7 +28,7 @@ module.exports = (options) => ({
       // Since we require these CSS files in our JS or CSS files,
       // they will be a part of our compilation either way.
       // So, no need for ExtractTextPlugin here.
-      test: /\.css$/,
+        test: /\.css$/,
       include: /node_modules/,
       loaders: ['style-loader', 'css-loader'],
     }, {

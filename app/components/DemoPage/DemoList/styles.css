@@ -1,0 +1,10 @@
+ul.myUL {
+  font-size: 14px;
+  width: 100%;
+  background-color: lightgreen; }
+  ul.myUL li {
+    padding: 5px;
+    border-bottom: 1px solid lightyellow;
+    background-color: lightblue; }
+
+/*# sourceMappingURL=styles.css.map */

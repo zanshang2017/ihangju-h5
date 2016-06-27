@@ -1,0 +1,42 @@
+@charset "UTF-8";
+@import './_util';
+
+//全局变量，一般用来设置通用单位，只用来被其它scss引用！
+//为了更高效的开发维护，尽量使用通用单位！
+
+//文字样式
+$titleColor: #7b8f9d;
+$weakTitleColor: #9dadb9;
+$weakerTitleColor: #a09e98;
+
+$textColor: #383b3d;
+$weakTextColor: #bcbab5;
+
+$linkColor: #39bcc8;
+$weakLinkColor: #7d786a;
+
+
+//面板色
+$bg: #fff;
+$alphaBg: rgba(244, 245, 245, .5);
+$tabBg: #f3f5f4;
+
+
+//层级
+$zIndexL1: 999999;
+$zIndexL2: 99999;
+$zIndexL3: 9999;
+$zIndexL4: 999;
+$zIndexL5: 99;
+$zIndexL6: 9;
+$zIndexL7: -1;
+
+//导航
+$navHeight: rem(106);
+$navBorderColor: #f3f5f4;
+
+//其它
+$borderColor: #ccc;
+
+
+

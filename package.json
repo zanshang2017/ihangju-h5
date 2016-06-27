@@ -6,7 +6,7 @@
     "type": "git",
     "url": "git@192.168.1.33:chenhao/ihangju-h5.git"
   },
-  "author": "chenhao",
+  "author": "Howard",
   "license": "MIT",
   "scripts": {
     "prebuild": "npm run test && npm run build:clean",
@@ -19,7 +19,7 @@
     "pagespeed": "node ./internals/scripts/pagespeed.js",
     "presetup": "npm i chalk",
     "setup": "node ./internals/scripts/setup.js",
-    "clean": "shjs ./internals/scripts/clean.js",
+    "//": "clean\": \"shjs ./internals/scripts/clean.js",
     "generate": "plop --plopfile internals/generators/index.js",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "npm run lint:eslint && npm run lint:jscs",
@@ -48,7 +48,9 @@
     ],
     "env": {
       "production": {
-        "only": ["app"],
+        "only": [
+          "app"
+        ],
         "plugins": [
           "transform-react-remove-prop-types",
           "transform-react-constant-elements",
@@ -79,14 +81,26 @@
     },
     "rules": {
       "import/no-unresolved": 2,
-      "comma-dangle": [2, "always-multiline"],
-      "indent": [2, 2, { "SwitchCase": 1 }],
+      "comma-dangle": [
+        2,
+        "always-multiline"
+      ],
+      "indent": [
+        2,
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
       "no-console": 1,
       "max-len": 0,
       "prefer-template": 2,
       "no-use-before-define": 0,
       "newline-per-chained-call": 0,
-      "arrow-body-style": [2, "as-needed"],
+      "arrow-body-style": [
+        2,
+        "as-needed"
+      ],
       "jsx-a11y/href-no-hash": 2,
       "jsx-a11y/label-has-for": 2,
       "jsx-a11y/mouse-events-have-key-events": 2,
@@ -123,9 +137,14 @@
       "color-hex-case": "upper",
       "string-quotes": "single",
       "font-family-name-quotes": "always-where-recommended",
-      "selector-pseudo-class-no-unknown": [true, {
-        "ignorePseudoClasses": ["global"]
-      }],
+      "selector-pseudo-class-no-unknown": [
+        true,
+        {
+          "ignorePseudoClasses": [
+            "global"
+          ]
+        }
+      ],
       "indentation": 2
     }
   },
@@ -204,6 +223,7 @@
     "lint-staged": "^0.2.1",
     "mocha": "^2.4.5",
     "ngrok": "2.1.8",
+    "node-sass": "^3.7.0",
     "null-loader": "^0.1.1",
     "offline-plugin": "^3.2.0",
     "plop": "^1.5.0",
@@ -211,8 +231,10 @@
     "postcss-focus": "^1.0.0",
     "postcss-loader": "^0.9.1",
     "postcss-reporter": "^1.3.3",
+    "postcss-scss": "^0.1.8",
     "psi": "^2.0.3",
     "rimraf": "^2.5.2",
+    "sass-loader": "^3.2.1",
     "shelljs": "^0.7.0",
     "sinon": "^2.0.0-pre",
     "style-loader": "^0.13.1",
