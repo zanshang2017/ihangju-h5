@@ -149,11 +149,13 @@
     }
   },
   "dependencies": {
+    "antd": "^1.6.2",
     "babel-polyfill": "^6.7.4",
     "chalk": "^1.1.3",
     "compression": "^1.6.1",
     "express": "^4.13.4",
     "fontfaceobserver": "^1.7.1",
+    "hammerjs": "^2.0.8",
     "history": "^2.1.0",
     "immutable": "^3.8.1",
     "react": "^15.0.1",

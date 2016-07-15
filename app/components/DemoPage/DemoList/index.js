@@ -17,6 +17,7 @@ function DemoList(props) {
 
     return (
         <ul className={styles.myUL}>
+            <li className={styles.sticky}>固顶</li>
             {listContent}
         </ul>
     );

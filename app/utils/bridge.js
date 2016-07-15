@@ -211,7 +211,7 @@ function buildProxy(uri) {
     return proxy;
 }
 
-// 提供全局Global桥
+// 提供Global桥
 //Bridge.Global = new Bridge();
 //global.Bridge = Bridge;
 var bridge = new Bridge();

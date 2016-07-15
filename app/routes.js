@@ -29,7 +29,7 @@ export default function createRoutes(store) {
 
     return [
         {
-            path: '/',
+            path: '/login',
             name: 'loginPage',
             getComponent(nextState, cb) {
                 const importModules = Promise.all([
@@ -79,15 +79,38 @@ export default function createRoutes(store) {
             name: 'foundPage',
             getComponent(nextState, cb) {
                 const importModules = Promise.all([
-                    System.import('containers/FollowPage/reducer'),
-                    System.import('containers/FollowPage/sagas'),
+                    System.import('containers/FoundPage/reducer'),
+                    System.import('containers/FoundPage/sagas'),
                     System.import('containers/FoundPage')
                 ]);
 
                 const renderRoute = loadModule(cb);
 
                 importModules.then(([reducer, sagas, component]) => {
-                    injectReducer('followPage', reducer.default);
+                    injectReducer('foundPage', reducer.default);
+                    injectSagas(sagas.default);
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            }
+        }, {
+            path: '/tag/:id',
+            name: 'tagDetailPage',
+            getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                    System.import('containers/tagDetailPage/reducer'),
+                    System.import('containers/tagDetailPage/sagas'),
+                    System.import('containers/tagDetailPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    injectReducer('tagDetailPage', reducer.default);
                     injectSagas(sagas.default);
                     renderRoute(component);
                 });
@@ -104,7 +127,7 @@ export default function createRoutes(store) {
 
                 const importModules = Promise.all([
                     System.import('containers/MyPage/reducer'),
-                    System.import('containers/FollowPage/sagas'),
+                    System.import('containers/MyPage/sagas'),
                     System.import('containers/MyPage')
                 ]);
 

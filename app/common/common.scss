@@ -3,40 +3,209 @@
 @import "./__global.scss";
 @import "./atom.scss";
 
-
 // <<< 全局样式
 :global {
+
+    // 全局
+    body {
+        font-family: 'STHeiti', 'Microsoft YaHei', Helvetica, Arial, sans-serif;
+    }
+
+    //下拉刷新
+    //
+    //.ptr-element {
+    //    position: absolute;
+    //    top: 0;
+    //    left: 0;
+    //    width: 100%;
+    //    color: #aaa;
+    //    z-index: 10;
+    //    text-align: center;
+    //    line-height: 50px;
+    //    height: 50px;
+    //}
+    //
+    //.ptr-element .genericon {
+    //    opacity: .6;
+    //    font-size: 34px;
+    //    width: auto;
+    //    height: auto;
+    //    transition: all .25s ease;
+    //    -webkit-transform: rotate(90deg);
+    //    transform: rotate(90deg);
+    //    margin-top: 5px;
+    //}
+    //.ptr-refresh .ptr-element .genericon {
+    //    -webkit-transform: rotate(270deg);
+    //    transform: rotate(270deg);
+    //}
+    //.ptr-loading .ptr-element .genericon,
+    //.ptr-reset .ptr-element .genericon {
+    //    display: none;
+    //}
+    //
+    //.loading {
+    //    display: inline-block;
+    //    text-align: center;
+    //    opacity: .4;
+    //    margin: 12px 0 0 5px;
+    //    display: none;
+    //}
+    //.ptr-loading .loading {
+    //    display: block;
+    //}
+    //
+    //.loading span {
+    //    display: inline-block;
+    //    vertical-align: middle;
+    //    width: 10px;
+    //    height: 10px;
+    //    margin-right: 3px;
+    //    -webkit-transform: scale(0.3);
+    //    transform: scale(0.3);
+    //    border-radius: 50%;
+    //    -webkit-animation: ptr-loading 0.4s infinite alternate;
+    //    animation: ptr-loading 0.4s infinite alternate;
+    //}
+    //
+    //.loading-ptr-1 {
+    //    -webkit-animation-delay: 0s;
+    //    animation-delay: 0s !important;
+    //}
+    //
+    //.loading-ptr-2 {
+    //    -webkit-animation-delay: 0.2s;
+    //    animation-delay: 0.2s !important;
+    //}
+    //
+    //.loading-ptr-3 {
+    //    -webkit-animation-delay: 0.4s;
+    //    animation-delay: 0.4s !important;
+    //}
+    //
+    //@-webkit-keyframes ptr-loading {
+    //    0% {
+    //        -webkit-transform: translateY(0) scale(0.3);
+    //        transform: translateY(0) scale(0.3);
+    //        opacity: 0;
+    //    }
+    //
+    //    100% {
+    //        -webkit-transform: scale(1);
+    //        transform: scale(1);
+    //        background-color: #333;
+    //        opacity: 1;
+    //    }
+    //}
+    //
+    //@keyframes ptr-loading {
+    //    0% {
+    //        -webkit-transform: translateY(0) scale(0.3);
+    //        transform: translateY(0) scale(0.3);
+    //        opacity: 0;
+    //    }
+    //
+    //    100% {
+    //        -webkit-transform: scale(1);
+    //        transform: scale(1);
+    //        background-color: #333;
+    //        opacity: 1;
+    //    }
+    //}
+    //
+    //.ptr-loading .refresh-view, .ptr-reset .refresh-view,
+    //.ptr-loading .ptr-element, .ptr-reset .ptr-element {
+    //    transition: all .25s ease;
+    //}
+    //
+    //.ptr-reset .refresh-view {
+    //    -webkit-transform: translate3d( 0, 0, 0 );
+    //    transform: translate3d( 0, 0, 0 );
+    //}
+    //
+    //.ptr-loading .refresh-view {
+    //    -webkit-transform: translate3d( 0, 30px, 0 );
+    //    transform: translate3d( 0, 30px, 0 );
+    //}
+    //
+    //
+    ///* react-pull-to-refresh CSS */
+    //
+    //.ptr-container {
+    //    //background-color: #fff;
+    //    //min-height: 100%;
+    //    //z-index: 20;
+    //    backface-visibility: hidden;
+    //    -webkit-backface-visibility: hidden;
+    //    perspective: 1000;
+    //    -webkit-perspective: 1000;
+    //
+    //    //padding: 20px 20px;
+    //    //text-align: center;
+    //    //font-family: Helvetica, Arial, sans-serif;
+    //    //font-size: 24px;
+    //    //font-weight: 200;
+    //    //color: #555;
+    //    //box-sizing: border-box;
+    //}
+    //
+    //.ptr-container h3 {
+    //    margin: 0.4rem;
+    //}
+    //
+    //body:not(.ptr-loading) .ptr-container .ptr-element {
+    //    transform: translate3d(0, -50px, 0);
+    //}
+
+
+
+
+    //页面切换
 
     .flip-right2left .flip-enter,
     .flip-right2left-reverse .flip-leave.flip-leave-active {
         transform: translate3d(100%, 0, 0);
-        transition: all .35s ease;
+        transition: all .25s ease;
+        position: absolute; //不要去掉，避免切换中界面错位
+        -webkit-transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
     }
 
     .flip-right2left .flip-enter.flip-enter-active,
     .flip-right2left-reverse .flip-leave {
         transform: translate3d(0, 0, 0);
+        -webkit-transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
     }
 
     .flip-right2left .flip-leave,
     .flip-right2left-reverse .flip-enter.flip-enter-active {
         transform: translate3d(0, 0, 0);
-        transition: all .35s ease;
+        transition: all .25s ease;
+        position: absolute;
+        -webkit-transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
     }
 
     .flip-right2left .flip-leave.flip-leave-active,
     .flip-right2left-reverse .flip-enter {
         transform: translate3d(-100%, 0, 0);
+        -webkit-transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
     }
 
     .flip-right2left .flip-enter,
     .flip-right2left-reverse .flip-enter {
         z-index: $zIndexL3;
+        -webkit-transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
     }
 
     .flip-right2left .flip-leave,
     .flip-right2left-reverse .flip-leave {
         z-index: $zIndexL4;
+        -webkit-transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
     }
 
 

@@ -11,7 +11,8 @@
 
 import {
     SHOW_NAV,
-    HIDE_NAV
+    HIDE_NAV,
+    LOGIN_SUCCESS,
 } from './constants';
 
 export function showNav() {
@@ -23,6 +24,15 @@ export function showNav() {
 export function hideNav() {
     return {
         type: HIDE_NAV
+    }
+}
+
+export function loginSuccess(userToken) {
+    return {
+        type: LOGIN_SUCCESS,
+        payload: {
+            userToken: userToken
+        }
     }
 }
 

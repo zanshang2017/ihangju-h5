@@ -69,6 +69,9 @@ module.exports = (options) => ({
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
+    //[ todo 格式有问题！
+    //    "antd", { style: "css" }
+    //],
   ]),
   postcss: () => options.postcssPlugins,
   resolve: {

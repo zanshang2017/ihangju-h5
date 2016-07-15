@@ -1,5 +1,5 @@
-
 import 'whatwg-fetch';  // https://github.github.io/fetch/
+import { Env } from './env.js';
 
 /**
  * 请求url，返回promise.
@@ -8,12 +8,14 @@ import 'whatwg-fetch';  // https://github.github.io/fetch/
  * @return {object}
  */
 export default function request(url, options) {
-    //console.debug('request');
-  return fetch(url, options)
-    .then(checkStatus)
-    .then(parseJSON)
-    .then((data) => ({ data }))
-    .catch((err) => ({ err }));
+
+    Env.debug && console.debug('options', options);
+
+    return fetch(url, options)
+        .then(checkStatus)
+        .then(parseJSON)
+        .then((data) => ({data}))
+        .catch((err) => ({err}));
 }
 
 /**
@@ -22,7 +24,7 @@ export default function request(url, options) {
  * @return {object}
  */
 function parseJSON(response) {
-  return response.json();
+    return response.json();
 }
 
 /**
@@ -30,11 +32,11 @@ function parseJSON(response) {
  * @return {object|undefined} 返回包装后的数据
  */
 function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  }
+    if (response.status >= 200 && response.status < 300) {
+        return response;
+    }
 
-  const error = new Error(response.statusText);
-  error.response = response;
-  throw error;
+    const error = new Error(response.statusText);
+    error.response = response;
+    throw error;
 }

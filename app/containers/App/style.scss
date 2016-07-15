@@ -7,10 +7,15 @@
     width: 100%;
     min-height: 100%;
     box-sizing: border-box;
-    overflow: hidden;
+    //overflow: hidden;
 }
 
 :global {
+    body {
+        width: 100%;
+        overflow: visible; //for position:sticky
+    }
+
     .page {
         @include pageBase;
         padding: 0 0 $navHeight;
@@ -22,7 +27,48 @@
     }
 
     .pageInner {
-        position: absolute;
+        width: 100%;
+    }
+
+    .logPanel {
+        //display:none; // hide log
+
+        position:fixed;
+        top: 0;
+        font-size: 30px;
+        width: 100%;
+        height: rem(600);
+        background: rgba(255, 255, 255, .5);
+        border-bottom: 1px solid #ccc;
+        z-index: $zIndexL1;
+
+        .content {
+            width: 100%;
+            height: rem(600);
+            overflow-y: scroll;
+        }
+
+        .btn {
+            font-size: 14px;
+            position:absolute;
+            right: 0;
+            top: 0;
+            color: #fff;
+            text-align:center;
+            line-height:rem(60);
+            background: lightcoral;
+            width: rem(150);
+            height: rem(60);
+        }
+
+        &.unfold {
+            height:rem(60);
+            overflow:hidden;
+
+            .content {
+                height:rem(60);
+            }
+        }
     }
 }
 

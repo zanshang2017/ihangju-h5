@@ -1,0 +1,58 @@
+@charset "UTF-8";
+@import "../../../common/_global.scss";
+@import "../../../common/_util.scss";
+
+:global {
+    .foundPageMainContent {
+
+        .ant-tabs {
+            overflow: visible; //for position:sticky
+        }
+
+        .ant-tabs-nav-container {
+            background-color: $tabBg;
+            font-size: rem(32);
+            color: $titleColor;
+        }
+
+        .ant-tabs-nav {
+            height: rem(128);
+            padding: 0 0 0 rem(52);
+
+            .ant-tabs-bar {
+                border: none;
+                margin-bottom: 0;
+                margin-right: rem(50);
+                position: -webkit-sticky;
+                position: sticky;
+                top: 0;
+                left: 0;
+                z-index: 9980;
+            }
+
+            .ant-tabs-tab-inner {
+                padding: rem(35) 0 0 rem(4);
+                letter-spacing: rem(4);
+            }
+
+            .ant-tabs-tab-active {
+                .ant-tabs-tab-inner {
+                    color: $linkColor !important;
+                }
+            }
+
+            .ant-tabs-tab-inner {
+                &:hover {
+                    color: $titleColor;
+                }
+            }
+        }
+
+        .ant-tabs-ink-bar {
+            bottom: rem(33);
+            background-color: $linkColor !important;
+        }
+
+    }
+}
+

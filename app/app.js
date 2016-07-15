@@ -2,7 +2,14 @@
  * app.js
  * 入口文件
  */
+
 import 'babel-polyfill';
+
+import 'antd/dist/antd.css';
+import 'sanitize.css/lib/sanitize.css';
+import 'common/common.scss';
+
+import { Env } from './utils/env.js';
 
 import 'file?name=[name].[ext]!./.htaccess';      // eslint-disable-line import/no-unresolved
 
@@ -15,8 +22,7 @@ import useScroll from 'react-router-scroll';
 import configureStore from './store';
 import { fromJS } from 'immutable';
 
-import 'sanitize.css/lib/sanitize.css';
-import 'common/common.scss';
+//console.log('Env', Env);
 
 const initialState = {};
 

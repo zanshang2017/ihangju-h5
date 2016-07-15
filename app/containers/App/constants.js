@@ -8,5 +8,6 @@
 export const DEFAULT_ACTION = 'app/App/DEFAULT_ACTION';
 export const SHOW_NAV = 'app/App/SHOW_NAV';
 export const HIDE_NAV = 'app/App/HIDE_NAV';
+export const LOGIN_SUCCESS = 'app/App/LOGIN_SUCCESS';
 
 

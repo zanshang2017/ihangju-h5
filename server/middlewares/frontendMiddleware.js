@@ -16,7 +16,6 @@ const addDevMiddlewares = (app, options) => {
 
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
-
   // Since webpackDevMiddleware uses memory-fs internally to store build
   // artifacts, we use it instead
   const fs = middleware.fileSystem;
@@ -43,9 +42,7 @@ const addProdMiddlewares = (app, options) => {
  */
 module.exports = (options) => {
   const isProd = process.env.NODE_ENV === 'production';
-
   const app = express();
-
   if (isProd) {
     addProdMiddlewares(app, options);
   } else {

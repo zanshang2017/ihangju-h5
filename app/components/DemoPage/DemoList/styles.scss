@@ -3,6 +3,14 @@ ul.myUL {
     width:100%;
     background-color: lightgreen;
 
+    .sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 9980;
+    }
+
     li {
         padding:5px;
         border-bottom:1px solid lightyellow;

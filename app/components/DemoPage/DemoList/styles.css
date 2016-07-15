@@ -2,6 +2,12 @@ ul.myUL {
   font-size: 14px;
   width: 100%;
   background-color: lightgreen; }
+  ul.myUL .sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 9980; }
   ul.myUL li {
     padding: 5px;
     border-bottom: 1px solid lightyellow;

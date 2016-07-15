@@ -1,9 +1,9 @@
 import expect from 'expect';
-import followPageReducer from '../reducer';
+import foundPageReducer from '../reducer';
 import { fromJS } from 'immutable';
 
-describe('followPageReducer', () => {
+describe('foundPageReducer', () => {
   it('returns the initial state', () => {
-    expect(followPageReducer(undefined, {})).toEqual(fromJS({}));
+    expect(foundPageReducer(undefined, {})).toEqual(fromJS({}));
   });
 });

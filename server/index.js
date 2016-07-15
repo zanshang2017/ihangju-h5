@@ -17,6 +17,9 @@ const webpackConfig = isDev
   ? require('../internals/webpack/webpack.dev.babel')
   : require('../internals/webpack/webpack.prod.babel');
 
+
+console.log('isDev:', isDev);
+
 app.use(frontend(webpackConfig));
 
 const port = process.env.PORT || 3000;

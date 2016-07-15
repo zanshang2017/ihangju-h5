@@ -1,4 +1,4 @@
-.nav {
+.tabBar {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -9,12 +9,12 @@
   font-size: 14px;
   background: #fff;
   border-top: 1px solid #f3f5f4; }
-  .nav ul {
+  .tabBar ul {
     display: -webkit-box; }
-    .nav ul li {
+    .tabBar ul li {
       -webkit-box-flex: 1;
       padding: 0 0.53333rem; }
-      .nav ul li a {
+      .tabBar ul li a {
         position: relative;
         display: -webkit-box;
         -webkit-box-align: center;
@@ -23,9 +23,9 @@
         color: #7b8f9d;
         font-size: 0.64rem;
         padding-top: 0.4rem; }
-        .nav ul li a strong {
+        .tabBar ul li a strong {
           font-weight: normal; }
-        .nav ul li a span {
+        .tabBar ul li a span {
           display: block;
           height: 1.17333rem;
           width: 1.17333rem;
@@ -34,13 +34,13 @@
           background-repeat: no-repeat;
           background-image: url("https://o82zr1kfu.qnssl.com/@/image/57708837e4b0f076efd939b3.png");
           background-size: cover; }
-          .nav ul li a span.found {
+          .tabBar ul li a span.found {
             background-position: 0 0; }
-          .nav ul li a span.follow {
+          .tabBar ul li a span.follow {
             background-position: -2.34667rem 0px; }
-          .nav ul li a span.my {
+          .tabBar ul li a span.my {
             background-position: -4.69333rem 0px; }
-          .nav ul li a span.write {
+          .tabBar ul li a span.write {
             background-position: -7.04rem 0px; }
 
 /*# sourceMappingURL=styles.css.map */

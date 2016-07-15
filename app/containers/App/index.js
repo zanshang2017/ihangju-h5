@@ -14,12 +14,14 @@ import {
     FLIP_BACK
 } from '../../utils/routeEffect.js';
 
+import { Env } from '../../utils/env.js';
+
 import {
     selectShowNav
 } from './selectors.js';
 
 import '../../routes';
-import NavBar from 'components/App/NavBar';
+import TabBar from 'components/App/TabBar';
 
 import styles from './style.scss';
 
@@ -32,6 +34,12 @@ export default class App extends React.Component {
 
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        if(Env.debug){
+            openLog();
+        }
     }
 
     render() {
@@ -57,11 +65,35 @@ export default class App extends React.Component {
                         })}
                     </ReactCSSTransitionGroup>
                 </div>
-
-                <NavBar showNav={this.props.showNav}/>
+                <div id="logPanel" className="logPanel hide unfold" >
+                    <a href="javascript:void(0);" className="btn" id="toggle">打开/关闭</a>
+                    <div className="content"></div>
+                </div>
+                <TabBar showNav={this.props.showNav}/>
             </div>
         );
     }
+}
+
+
+function openLog(){
+    //log
+    var nLog = document.querySelector('#logPanel');
+    var nCont = nLog.querySelector('.content');
+    var nBtn = document.querySelector('#toggle');
+
+    nLog.classList.remove('hide');
+    nBtn.addEventListener('touchstart', function(){
+        if(nLog.classList.contains('unfold')){
+            nLog.classList.remove('unfold');
+        } else {
+            nLog.classList.add('unfold');
+        }
+    });
+
+    //setInterval(function(){
+    //    nCont.innerHTML = Math.random() + '';
+    //}, 300);
 }
 
 

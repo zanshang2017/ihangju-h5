@@ -7,29 +7,84 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import selectFollowPage from './selectors';
+import { createSelector } from 'reselect';
 
-import Banner from 'components/FoundPage/Banner/index.js'
-import Tabs from 'components/FoundPage/Tabs/index.js'
+import {
+    selectFoundPage,
+    selectBanners,
+    selectTags
+} from './selectors';
+
+import {
+    loadDiscoveriesData,
+} from './actions';
 
 import styles from './styles.scss';
 
-export class FollowPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
-    render() {
+import Banner from 'components/FoundPage/Banner';
+import MainContent from 'components/FoundPage/MainContent';
 
+let hasInitLoaded = false;
+
+export class FoundPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+    constructor(props) {
+        super(props);
+        this.recommendationPage = 0;
+    }
+
+    componentWillMount() {
+        if (!hasInitLoaded) {
+            //首次加载数据，二次进入无须重复加载，用户可以手动刷新。
+            this.loadDiscoveries();
+            hasInitLoaded = true;
+        }
+    }
+
+    loadDiscoveries() {
+        console.log('loadDis');
+        this.props.dispatch(loadDiscoveriesData());
+    }
+
+    loadRecommendation(page) {
+        this.props.dispatch(loadRecommendationData(page));
+    }
+
+    //loadNextRecommendation() {
+    //    loadRecommendation(++this.recommendationPage);
+    //}
+    //
+    //refreshRecommendation() {
+    //    loadRecommendation(this.recommendationPage = 0);
+    //}
+
+    render() {
         return (
             <div className="pageInner">
-                <Banner />
-                <Tabs />
-                <Link to={'/'}>login</Link>
-                <br/>
-                <Link to="/follow">follow</Link><br/>
-
-                <Link to="/found">found</Link>
+                <Banner items={this.props.banners}></Banner>
+                <MainContent {...this.props} />
             </div>
         );
     }
 }
 
-//export default connect(mapStateToProps, mapDispatchToProps)(FollowPage);
-export default FollowPage;
+
+const mapStateToProps = createSelector(
+    selectBanners(),
+    selectTags(),
+    (banners, tags) => {
+        return {
+            banners,
+            tags
+        }
+    }
+);
+
+function mapDispatchToProps(dispatch) {
+    return {
+        dispatch,
+        refresh: () => dispatch(loadDiscoveriesData())
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FoundPage);

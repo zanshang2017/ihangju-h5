@@ -5,11 +5,48 @@
 .banner {
     background-color: $bg;
     width: 100%;
-    height: rem(340);
+    height: rem(300);
     overflow: hidden;
 
     img {
-        height: rem(340);
+        width: rem(750);
+        height: rem(300);
+    }
+
+}
+
+//覆盖antd样式
+:global {
+    .ant-carousel {
+        .slick-dots {
+            li {
+                height: rem(45);
+                width: rem(45);
+                margin: 0;
+
+                button {
+                    height: rem(45);
+                    width: rem(45);
+                    padding: 0;
+                }
+
+                button:before {
+                    font-size:rem(60);
+                    color: #ccc;
+                    opacity: .4;
+                    position: static;
+                }
+
+                &.slick-active button:before {
+                    color: #fff;
+                    opacity: 0.95;
+                }
+            }
+        }
+
+        .slick-slider {
+            padding-bottom: 0 !important;
+        }
     }
 }
 

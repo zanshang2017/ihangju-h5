@@ -1,18 +1,48 @@
+:global body {
+  width: 100%;
+  overflow: visible; }
 :global .page {
   position: absolute;
   width: 100%;
   min-height: 100%;
   box-sizing: border-box;
-  overflow: hidden;
   padding: 0 0 2.82667rem; }
 :global .pageNoNav {
   position: absolute;
   width: 100%;
   min-height: 100%;
   box-sizing: border-box;
-  overflow: hidden;
   padding: 0; }
 :global .pageInner {
-  position: absolute; }
+  width: 100%; }
+:global .logPanel {
+  position: fixed;
+  top: 0;
+  font-size: 30px;
+  width: 100%;
+  height: 16rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid #ccc;
+  z-index: 999999; }
+  :global .logPanel .content {
+    width: 100%;
+    height: 16rem;
+    overflow-y: scroll; }
+  :global .logPanel .btn {
+    font-size: 14px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #fff;
+    text-align: center;
+    line-height: 1.6rem;
+    background: lightcoral;
+    width: 4rem;
+    height: 1.6rem; }
+  :global .logPanel.unfold {
+    height: 1.6rem;
+    overflow: hidden; }
+    :global .logPanel.unfold .content {
+      height: 1.6rem; }
 
 /*# sourceMappingURL=style.css.map */
