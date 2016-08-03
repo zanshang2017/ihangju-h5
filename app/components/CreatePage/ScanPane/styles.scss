@@ -1,0 +1,35 @@
+@charset "UTF-8";
+@import "../../../common/_global";
+@import "../../../common/_util";
+@import "../../../common/common.css";
+
+.wrap {
+
+    padding-top: rem(30);
+
+    .scanBtn {
+        width: rem(667);
+        height:rem(556);
+        margin: 0 auto;
+        background: url(https://o82zr1kfu.qnssl.com/@/image/579ab8abe4b02e1710abacc5.png) center center no-repeat;
+        background-size: cover;
+    }
+
+    .guide {
+        text-align:center;
+        color: $titleColor;
+        font-size: rem(36);
+        line-height: 1.7em;
+        padding-top: rem(60);
+
+        span {
+            display:block;
+        }
+
+        strong {
+            display:block;
+            color: $linkColor;
+        }
+    }
+
+}

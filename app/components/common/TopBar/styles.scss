@@ -1,0 +1,44 @@
+@charset "UTF-8";
+@import "../../../common/_global";
+@import "../../../common/_util";
+@import "../../../common/common.css";
+
+.bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: $topBarHeight;
+    line-height: $topBarHeight;
+    font-size: rem(30);
+    background: $topBarBg;
+}
+
+.back {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: rem(126);
+    height: $topBarHeight;
+    background: $topBarBackBtn;
+    color: $titleColor;
+    text-align: center;
+
+    i {
+        font-size: rem(40);
+    }
+}
+
+.title {
+    color: $textColor;
+    font-size: rem(30);
+    text-align: center;
+}
+
+.btns {
+    position: absolute;
+    right: rem(50);
+    top: 0;
+    color: $titleColor;
+}

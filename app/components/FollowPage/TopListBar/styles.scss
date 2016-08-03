@@ -1,0 +1,46 @@
+@charset "UTF-8";
+@import "../../../common/_global";
+@import "../../../common/_util";
+@import "../../../common/common.css";
+
+
+.wrap {
+
+}
+
+.bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: $zIndexL4;
+    box-sizing: border-box;
+    width: 100%;
+    height: $topBarHeight;
+    line-height: $topBarHeight;
+    font-size: rem(32);
+    background: $topBarBg;
+}
+
+.title {
+    color: $textColor;
+    font-size: rem(32);
+    text-align: center;
+
+    i {
+        position: relative;
+        top: rem(1);
+        font-size: rem(32);
+        color: $linkColor;
+        padding-left: rem(12);
+    }
+}
+
+.listWrap {
+    position: fixed;
+    top: $topBarHeight;
+    z-index: $zIndexL4;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}

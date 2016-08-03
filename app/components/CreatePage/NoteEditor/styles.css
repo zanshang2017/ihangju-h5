@@ -1,0 +1,20 @@
+@import url(../../../common/common.css);
+.noteEditor .savedTime {
+  font-size: 0.64rem;
+  color: #a09e98;
+  text-align: center;
+  padding: 0.26667rem; }
+.noteEditor .content {
+  width: 100%;
+  padding: 0.53333rem;
+  line-height: 1.6rem;
+  font-size: 0.96rem;
+  color: #7b8f9d; }
+.noteEditor .deleteNote {
+  position: fixed;
+  left: 1.06667rem;
+  bottom: 1.06667rem; }
+  .noteEditor .deleteNote i {
+    font-size: 1.33333rem; }
+
+/*# sourceMappingURL=styles.css.map */

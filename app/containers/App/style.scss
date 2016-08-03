@@ -7,6 +7,7 @@
     width: 100%;
     min-height: 100%;
     box-sizing: border-box;
+    background: $bg;
     //overflow: hidden;
 }
 
@@ -28,6 +29,10 @@
 
     .pageInner {
         width: 100%;
+    }
+
+    .hasTopBar {
+        margin-top: $topBarHeight;
     }
 
     .logPanel {

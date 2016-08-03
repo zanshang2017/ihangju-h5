@@ -1,0 +1,19 @@
+@charset "UTF-8";
+@import "../../../common/_global";
+@import "../../../common/_util";
+@import "../../../common/common.css";
+
+.wrap {
+
+    padding-top: rem(30);
+
+    .noteBtn {
+        width: rem(667);
+        height:rem(556);
+        margin: 0 auto;
+        background: url(https://o82zr1kfu.qnssl.com/@/image/579b2850e4b02e1710abca75.png) center center no-repeat;
+        background-size: cover;
+    }
+
+
+}

@@ -1,0 +1,32 @@
+@charset "UTF-8";
+@import "../../../common/_global";
+@import "../../../common/_util";
+@import "../../../common/common.css";
+
+.wrap {
+    box-sizing: border-box;
+    width: 100%;
+    padding: rem(32);
+    background: $topBarBg;
+    font-size: rem(32);
+    color: $titleColor;
+
+    ul {
+        box-sizing: border-box;
+        width: 100%;
+        padding-bottom: rem(20);
+
+        li {
+            padding: rem(20) 0;
+            line-height: 1.5em;
+        }
+    }
+
+    .type {
+        color: $weakerTitleColor;
+        font-size: rem(28);
+        padding: rem(20) 0 0;
+        line-height: 1.5em;
+    }
+}
+

@@ -9,7 +9,7 @@ import { Env } from './env.js';
  */
 export default function request(url, options) {
 
-    Env.debug && console.debug('options', options);
+    Env.debug && console.log('options', options);
 
     return fetch(url, options)
         .then(checkStatus)

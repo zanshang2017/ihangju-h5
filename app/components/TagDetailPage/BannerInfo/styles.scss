@@ -1,0 +1,56 @@
+@charset "UTF-8";
+@import "../../../common/_global.scss";
+@import "../../../common/_util.scss";
+
+.bannerInfo {
+    position:relative;
+    background-color: $bg;
+    width: 100%;
+    height: rem(366);
+    overflow: hidden;
+    text-align:center;
+    color: #fff;
+
+    .title {
+        font-size: rem(44);
+        font-weight:700;
+        margin-top: rem(100);
+    }
+
+    .follow {
+        font-size:rem(24);
+        margin-top: rem(20);
+    }
+
+    .followBtn {
+        width: rem(206);
+        height: rem(72);
+        line-height: rem(72);
+        border-radius: 50px;
+        font-size: rem(28);
+        color: $textColor;
+        margin: rem(26) auto 0;
+        background: rgba(255, 255, 255, .75);
+    }
+
+    .followed {
+        color: $weakLinkColor;
+
+        i {
+            font-size: rem(28);
+            padding-right: rem(6);
+        }
+    }
+
+    img {
+        position:absolute;
+        top:0;
+        left:0;
+        width: rem(750);
+        height: rem(366);
+        z-index: $zIndexL7;
+    }
+
+}
+
+

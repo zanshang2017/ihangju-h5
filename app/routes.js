@@ -75,6 +75,29 @@ export default function createRoutes(store) {
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
             }
         }, {
+            path: '/create',
+            name: 'createPage',
+            getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                    System.import('containers/CreatePage/reducer'),
+                    System.import('containers/CreatePage/sagas'),
+                    System.import('containers/CreatePage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    injectReducer('createPage', reducer.default);
+                    injectSagas(sagas.default);
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            }
+        }, {
             path: '/found',
             name: 'foundPage',
             getComponent(nextState, cb) {

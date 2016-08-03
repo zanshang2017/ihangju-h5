@@ -3,40 +3,74 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux';
-import { THIRDPARTY_LOGIN_URL } from '../../apis.js';
+import {connect} from 'react-redux';
+import {
+    THIRDPARTY_LOGIN_URL
+} from '../../apis.js';
+import {Env} from '../../utils/env.js';
+import {getUrlParam} from '../../utils/util.js';
+import {router} from 'react-router';
+
 import styles from './styles.scss';
 
-import request from 'utils/request';
+import {
+    loadUserInfo
+} from '../App/actions.js'
 
 /* eslint-disable react/prefer-stateless-function */
 export default class LoginPage extends React.Component {
 
+    constructor() {
+        super();
+        this.loginHandler = null;
+    }
+
     componentDidMount() {
-        var ifrm = this.refs.thirdPartyLoginIfrm;
-        ifrm.addEventListener('load', function(e){
-            console.log('reload', ifrm.src, e);
-        });
+        window.addEventListener('message', this.loginHandlerFactory());
+    }
 
-        //三方登录接口 POST
-        //http://192.168.1.33:7777/authentication
-        //username=13811818349&password=123123
+    componentWillUnmount() {
+        window.removeEventListener('message', this.loginHandlerFactory());
+    }
 
-        //跨域
-        //request('http://192.168.1.33:7777/authentication', {
-        //    method: "POST",
-        //    body: 'username=13811818349&password=123123'
-        //});
+    routeHandler(url) {
+        this.context.router.push(url);
+    }
 
+    loginHandlerFactory() {
+        var that = this;
+
+        if (!this.loginHandler) {
+            this.loginHandler = (function (e) {
+                var data = JSON.parse(e.data),
+                    action = data.action;
+
+                var redirect = getUrlParam('redirect') || '/found#fliproute';
+
+                if ((Env.dev && e.origin.indexOf('http://192.168.1.33:8888') > -1) ||
+                    (Env.prod && e.origin.indexOf('http://api.ihangju.com') > -1)) {
+
+                    if (action === 'loginedTicket' && data.t) {
+                        //t写入到了 api.ihangju.com和oauth.zan-shang.com
+                        var ifrm = this.refs.thirdPartyLoginIfrm;
+                        ifrm.style.display = 'none';
+                        that.props.dispatch(loadUserInfo());
+                        this.routeHandler(redirect);
+                    }
+                }
+            }).bind(this);
+        }
+
+        return this.loginHandler;
     }
 
     render() {
-
         return (
             <div className="pageInner">
                 <div>
                     {
-                        <iframe className={styles.loginPage} src={THIRDPARTY_LOGIN_URL} ref="thirdPartyLoginIfrm"/>
+                        <iframe className={styles.loginPage} src={THIRDPARTY_LOGIN_URL}
+                                ref="thirdPartyLoginIfrm"/>
                     }
                 </div>
             </div>
@@ -44,6 +78,11 @@ export default class LoginPage extends React.Component {
     }
 }
 
+LoginPage.contextTypes = {
+    router: function contextType() {
+        return React.PropTypes.func.isRequired;
+    }
+};
 
 function mapDispatchToProps(dispatch) {
     return {

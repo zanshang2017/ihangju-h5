@@ -20,6 +20,10 @@ import { applyRouterMiddleware, Router, browserHistory} from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import useScroll from 'react-router-scroll';
 import configureStore from './store';
+import {
+    getUserInfo
+} from 'containers/App/sagas.js';
+
 import { fromJS } from 'immutable';
 
 //console.log('Env', Env);
@@ -27,6 +31,8 @@ import { fromJS } from 'immutable';
 const initialState = {};
 
 const store = configureStore(initialState, browserHistory);
+
+store.runSaga(getUserInfo);
 
 // 同步路由和store状态
 import { selectLocationState } from 'containers/App/selectors';
@@ -37,6 +43,7 @@ const history = syncHistoryWithStore(browserHistory, store, {
 });
 
 import App from 'containers/App';
+
 import createRoutes from './routes';
 
 const rootRoute = {

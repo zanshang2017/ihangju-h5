@@ -6,9 +6,9 @@ import { createSelector } from 'reselect';
 
 const selectGlobal = () => (state) => state.get('global');
 
-const selectUserToken = () => createSelector(
+const selectUserInfo = () => createSelector(
     selectGlobal(),
-    (globalState) => globalState.get('userToken')
+    (globalState) => globalState.get('userInfo')
 );
 
 const selectShowNav = () => createSelector(
@@ -44,7 +44,7 @@ const selectLocationState = () => {
 
 export {
     selectGlobal,
-    selectUserToken,
+    selectUserInfo,
     selectShowNav,
     selectLoading,
     selectError,

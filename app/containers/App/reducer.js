@@ -11,14 +11,17 @@ import { fromJS } from 'immutable';
 import {
     SHOW_NAV,
     HIDE_NAV,
-    LOGIN_SUCCESS,
+
+    LOAD_USER_INFO,
+    LOAD_USER_INFO_SUCCESS,
+
 } from './constants.js'
 
 // global的初始state
 const initialState = fromJS({
     loading: false, //加载信息
     error: false, //全局错误
-    userToken: false, //保存通过三方登录获取的用户token
+    userInfo: false, //三方登录后通过user/me获取的用户信息
     showNav: true //显示导航
 });
 
@@ -30,8 +33,11 @@ function globalReducer(state = initialState, action = {}) {
         case HIDE_NAV:
             return state.set('showNav', false);
 
-        case LOGIN_SUCCESS:
-            return state.set('userToken', action.payload.userToken || false);
+        case LOAD_USER_INFO:
+            return state;
+
+        case LOAD_USER_INFO_SUCCESS:
+            return state.set('userInfo', fromJS(action.payload.data));
 
         default:
             return state;

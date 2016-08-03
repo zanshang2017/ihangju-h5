@@ -13,6 +13,11 @@ import {
     SHOW_NAV,
     HIDE_NAV,
     LOGIN_SUCCESS,
+
+    LOAD_USER_INFO,
+    LOAD_USER_INFO_SUCCESS,
+    LOAD_USER_INFO_ERROR,
+
 } from './constants';
 
 export function showNav() {
@@ -35,4 +40,31 @@ export function loginSuccess(userToken) {
         }
     }
 }
+
+export function loadUserInfo() {
+    let data = {
+        type: LOAD_USER_INFO
+    };
+
+    return data;
+}
+
+export function loadUserInfoSuccess(data) {
+    return {
+        type: LOAD_USER_INFO_SUCCESS,
+        payload: {
+            data: data
+        }
+    };
+}
+
+export function loadUserInfoError(error) {
+    return {
+        type: LOAD_USER_INFO_ERROR,
+        payload: {
+            error: error
+        }
+    };
+}
+
 

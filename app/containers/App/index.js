@@ -37,6 +37,7 @@ export default class App extends React.Component {
     }
 
     componentDidMount() {
+
         if(Env.debug){
             openLog();
         }
@@ -94,8 +95,9 @@ function openLog(){
     //setInterval(function(){
     //    nCont.innerHTML = Math.random() + '';
     //}, 300);
-}
 
+    return nCont;
+}
 
 const mapStateToProps = createSelector(
     selectShowNav(),

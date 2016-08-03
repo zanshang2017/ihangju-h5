@@ -1,0 +1,38 @@
+.bannerInfo {
+  position: relative;
+  background-color: #fff;
+  width: 100%;
+  height: 9.76rem;
+  overflow: hidden;
+  text-align: center;
+  color: #fff; }
+  .bannerInfo .title {
+    font-size: 1.17333rem;
+    font-weight: 700;
+    margin-top: 2.66667rem; }
+  .bannerInfo .follow {
+    font-size: 0.64rem;
+    margin-top: 0.53333rem; }
+  .bannerInfo .followBtn {
+    width: 5.49333rem;
+    height: 1.92rem;
+    line-height: 1.92rem;
+    border-radius: 50px;
+    font-size: 0.74667rem;
+    color: #383b3d;
+    margin: 0.69333rem auto 0;
+    background: rgba(255, 255, 255, 0.75); }
+  .bannerInfo .followed {
+    color: #7d786a; }
+    .bannerInfo .followed i {
+      font-size: 0.74667rem;
+      padding-right: 0.16rem; }
+  .bannerInfo img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20rem;
+    height: 9.76rem;
+    z-index: -1; }
+
+/*# sourceMappingURL=styles.css.map */

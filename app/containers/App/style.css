@@ -6,15 +6,19 @@
   width: 100%;
   min-height: 100%;
   box-sizing: border-box;
+  background: #fff;
   padding: 0 0 2.82667rem; }
 :global .pageNoNav {
   position: absolute;
   width: 100%;
   min-height: 100%;
   box-sizing: border-box;
+  background: #fff;
   padding: 0; }
 :global .pageInner {
   width: 100%; }
+:global .hasTopBar {
+  margin-top: 2.34667rem; }
 :global .logPanel {
   position: fixed;
   top: 0;

@@ -1,0 +1,31 @@
+@charset "UTF-8";
+@import "../../../common/_global";
+@import "../../../common/_util";
+@import "../../../common/common.css";
+
+.noteEditor {
+    .savedTime {
+        font-size:rem(24);
+        color: $weakerTitleColor;
+        text-align:center;
+        padding: rem(10);
+    }
+
+    .content {
+        width: 100%;
+        padding: rem(20);
+        line-height: rem(60);
+        font-size: rem(36);
+        color: $titleColor;
+    }
+
+    .deleteNote {
+        position:fixed;
+        left: rem(40);
+        bottom: rem(40);
+        i {
+            font-size: rem(50);
+        }
+    }
+
+}

@@ -1,0 +1,17 @@
+@charset "UTF-8";
+@import "../../../common/_global.scss";
+@import "../../../common/_util.scss";
+
+.tagDesc {
+    position:relative;
+    background-color: $bg;
+    width: 100%;
+    padding: rem(33) rem(45) rem(63);
+    overflow: hidden;
+    text-align:center;
+    color: $titleColor;
+    font-size: rem(28);
+    line-height: rem(40);
+}
+
+

@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 @import "./_global";
 @import "./_util";
 
@@ -52,6 +53,10 @@
     }
     .none {
         display: none;
+    }
+
+    .blockGap {
+        margin-bottom: rem(20);
     }
 
     /*文字排版*/

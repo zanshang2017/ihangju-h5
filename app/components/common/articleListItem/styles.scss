@@ -11,6 +11,20 @@
     margin-bottom: rem(22);
     text-align: center;
 
+    span.source {
+        font-size: rem(28);
+        color: $weakerTitleColor;
+        display: inline-block;
+        margin-bottom: rem(18);
+
+        strong {
+            font-style: italic;
+            font-weight: normal;
+            color: $linkColor;
+        }
+
+    }
+
     h3 {
         max-height: rem(112);
         font-size: rem(44);
@@ -21,13 +35,6 @@
         @include flexBox();
         -webkit-align-items: flex-start;
         align-items: flex-start;
-    }
-
-    span.author {
-        font-size: rem(28);
-        color: $weakTextColor;
-        display: inline-block;
-        margin-top: rem(18);
     }
 
     p {
@@ -43,6 +50,16 @@
     div.info {
         margin-top: rem(45);
         color: $weakTextColor;
+        font-size: rem(28);
+
+        span {
+            margin-right: rem(20);
+
+            i {
+                color: $titleColor;
+            }
+        }
+
     }
 
     div.itemType {

@@ -1,0 +1,44 @@
+@charset "UTF-8";
+@import "../../../common/_global";
+@import "../../../common/_util";
+@import "../../../common/common.css";
+
+.noteItem {
+    position: relative;
+    display: block;
+    width: rem(667);
+    height: rem(107);
+    margin: 0 auto;
+    overflow: hidden;
+    line-height: rem(107);
+    border-bottom: 1px solid $deepBg;
+
+    .content {
+        font-size: rem(28);
+        color: $titleColor;
+        float:left;
+        width: 70%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .right {
+        position: absolute;
+        right: 0;
+        width: rem(180);
+        text-align:right;
+
+        .time {
+            color: $weakerTitleColor;
+            font-size: rem(26);
+        }
+
+        i {
+            color: $weakerTitleColor;
+        }
+    }
+
+
+
+}

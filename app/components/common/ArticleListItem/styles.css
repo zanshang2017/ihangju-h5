@@ -1,0 +1,68 @@
+.articleListItem {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.81333rem 1.12rem;
+  background: #fff;
+  margin-bottom: 0.58667rem;
+  text-align: center; }
+  .articleListItem span.source {
+    font-size: 0.74667rem;
+    color: #a09e98;
+    display: inline-block;
+    margin-bottom: 0.48rem; }
+    .articleListItem span.source strong {
+      font-style: italic;
+      font-weight: normal;
+      color: #39bcc8; }
+  .articleListItem h3 {
+    max-height: 2.98667rem;
+    font-size: 1.17333rem;
+    line-height: 1.49333rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #7b8f9d;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: flex-start;
+    align-items: flex-start; }
+  .articleListItem p {
+    font-size: 0.85333rem;
+    color: #383b3d;
+    margin-top: 0.88rem;
+    line-height: 1.6em;
+    max-height: 3.68rem;
+    text-align: left;
+    overflow: hidden; }
+  .articleListItem div.info {
+    margin-top: 1.2rem;
+    color: #bcbab5;
+    font-size: 0.74667rem; }
+    .articleListItem div.info span {
+      margin-right: 0.53333rem; }
+      .articleListItem div.info span i {
+        color: #7b8f9d; }
+  .articleListItem div.itemType {
+    position: absolute;
+    top: 0.69333rem;
+    right: 0;
+    width: 3.57333rem;
+    height: 1.01333rem;
+    line-height: 1.01333rem;
+    color: #bcbab5;
+    background: #f3f5f4; }
+
+/*# sourceMappingURL=styles.css.map */

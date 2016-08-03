@@ -28,15 +28,16 @@ class MainContent extends React.Component {
         nTabs = document.querySelector('#J_FoundPageMainContentWrap .ant-tabs-bar');
         nTabsHeight = nTabs.getBoundingClientRect().height;
         window.addEventListener('scroll', scrollHandler);
-
     }
 
     componentWillUnmount() {
         window.removeEventListener('scroll', scrollHandler);
     }
 
-    render() {
+    componentWillUpdate() {
+    }
 
+    render() {
         var props = this.props;
 
         return (
@@ -49,7 +50,6 @@ class MainContent extends React.Component {
             </div>
         );
     }
-
 }
 
 MainContent.propTypes = {

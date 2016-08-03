@@ -1,0 +1,22 @@
+@import url(../../../common/common.css);
+.wrap {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.85333rem;
+  background: #f7f7f7;
+  font-size: 0.85333rem;
+  color: #7b8f9d; }
+  .wrap ul {
+    box-sizing: border-box;
+    width: 100%;
+    padding-bottom: 0.53333rem; }
+    .wrap ul li {
+      padding: 0.53333rem 0;
+      line-height: 1.5em; }
+  .wrap .type {
+    color: #a09e98;
+    font-size: 0.74667rem;
+    padding: 0.53333rem 0 0;
+    line-height: 1.5em; }
+
+/*# sourceMappingURL=styles.css.map */
