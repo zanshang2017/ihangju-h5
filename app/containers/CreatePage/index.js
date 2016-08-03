@@ -83,6 +83,11 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
     render() {
         var userInfo = this.props.userInfo;
         var userId = '';
+        var note = null;
+
+        if(this.props.currentNote){
+            note = this.props.currentNote.toJS();
+        }
 
         if (!userInfo) {
             this.routeHandler('/login?redirect=' + encodeURIComponent('/') + 'create');
@@ -105,7 +110,7 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
                     </div>
 
                     <div ref="J_EditorWrap" className={`hide`}>
-                        <NoteEditor ref="J_Editor" saveNote={this.saveNote.bind(this)}/>
+                        <NoteEditor ref="J_Editor" note={note} saveNote={this.saveNote.bind(this)}/>
                     </div>
 
                 </div>

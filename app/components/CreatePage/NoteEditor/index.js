@@ -27,11 +27,11 @@ export default class NoteEditor extends React.Component {
     }
 
     render() {
-        let content = '',
+        var content = '',
             modifyTime = '';
 
         if (this.props.note) {
-            this.note = this.props.note.toJS();
+            this.note = this.props.note;
             content = this.note.content || '';
             modifyTime = convertDate(this.note.modifyTime) || '';
         }
@@ -47,7 +47,7 @@ export default class NoteEditor extends React.Component {
                 </TopBar>
                 <div className="hasTopBar">
                     <div className={styles.savedTime}>{modifyTime}</div>
-                    <textarea ref="J_Content" className={styles.content} defaultValue="{content}" />
+                    <textarea ref="J_Content" className={styles.content} />
                     <div className={styles.deleteNote}><i className="iconfont icon-delete"></i></div>
                 </div>
             </div>
