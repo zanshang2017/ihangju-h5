@@ -20,4 +20,8 @@ export const SAVE_NOTE = 'app/CreatePage/SAVE_NOTE';
 export const SAVE_NOTE_SUCCESS = 'app/CreatePage/SAVE_NOTE_SUCCESS';
 export const SAVE_NOTE_ERROR = 'app/CreatePage/SAVE_NOTE_ERROR';
 
+export const UPDATE_NOTE_EDIT_CONTENT = 'app/CreatePage/UPDATE_NOTE_EDIT_CONTENT'; //更新note编辑区域的内容,便于处理受限组件textarea
+
+
+
 

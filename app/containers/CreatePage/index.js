@@ -13,6 +13,7 @@ import {
     selectCreatePage,
     selectNotes,
     selectCurrentNote,
+    selectNoteContent,
 } from './selectors';
 
 import {
@@ -85,7 +86,7 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
         var userId = '';
         var note = null;
 
-        if(this.props.currentNote){
+        if (this.props.currentNote) {
             note = this.props.currentNote.toJS();
         }
 
@@ -94,6 +95,8 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
         } else {
             userId = userInfo.toJS().id;
         }
+
+        console.log('noteContent:' + this.props.noteContent);
 
         return (
             <div className="pageInner">
@@ -110,7 +113,8 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
                     </div>
 
                     <div ref="J_EditorWrap" className={`hide`}>
-                        <NoteEditor ref="J_Editor" note={note} saveNote={this.saveNote.bind(this)}/>
+                        <NoteEditor ref="J_Editor" note={note} noteContent={this.props.noteContent || ''}
+                                    saveNote={this.saveNote.bind(this)}/>
                     </div>
 
                 </div>
@@ -124,16 +128,17 @@ CreatePage.contextTypes = {
         return React.PropTypes.func.isRequired;
     }
 };
-
 const mapStateToProps = createSelector(
     selectNotes(),
     selectUserInfo(),
     selectCurrentNote(),
-    (notes, userInfo, currentNote) => {
+    selectNoteContent(),
+    (notes, userInfo, currentNote, noteContent) => {
         return {
             notes,
             userInfo,
-            currentNote
+            currentNote,
+            noteContent
         }
     }
 );

@@ -1,0 +1,30 @@
+@import url(../../../common/common.css);
+.noteItem {
+  position: relative;
+  display: block;
+  width: 17.78667rem;
+  height: 2.85333rem;
+  margin: 0 auto;
+  overflow: hidden;
+  line-height: 2.85333rem;
+  border-bottom: 1px solid #f5f5f5; }
+  .noteItem .content {
+    font-size: 0.74667rem;
+    color: #7b8f9d;
+    float: left;
+    width: 70%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
+  .noteItem .right {
+    position: absolute;
+    right: 0;
+    width: 4.8rem;
+    text-align: right; }
+    .noteItem .right .time {
+      color: #a09e98;
+      font-size: 0.69333rem; }
+    .noteItem .right i {
+      color: #a09e98; }
+
+/*# sourceMappingURL=styles.css.map */

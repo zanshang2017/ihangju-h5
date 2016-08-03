@@ -17,10 +17,15 @@ const selectCurrentNote = () => createSelector(
     (createPageState) => createPageState.get('currentNote')
 );
 
+const selectNoteContent = () => createSelector(
+    selectCreatePageDomain(),
+    (createPageState) => createPageState.get('noteContent')
+);
 
 export default selectCreatePage;
 
 export {
     selectNotes,
     selectCurrentNote,
+    selectNoteContent,
 };

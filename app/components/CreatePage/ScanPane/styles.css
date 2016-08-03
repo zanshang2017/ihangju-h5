@@ -1,0 +1,22 @@
+@import url(../../../common/common.css);
+.wrap {
+  padding-top: 0.8rem; }
+  .wrap .scanBtn {
+    width: 17.78667rem;
+    height: 14.82667rem;
+    margin: 0 auto;
+    background: url(https://o82zr1kfu.qnssl.com/@/image/579ab8abe4b02e1710abacc5.png) center center no-repeat;
+    background-size: cover; }
+  .wrap .guide {
+    text-align: center;
+    color: #7b8f9d;
+    font-size: 0.96rem;
+    line-height: 1.7em;
+    padding-top: 1.6rem; }
+    .wrap .guide span {
+      display: block; }
+    .wrap .guide strong {
+      display: block;
+      color: #39bcc8; }
+
+/*# sourceMappingURL=styles.css.map */

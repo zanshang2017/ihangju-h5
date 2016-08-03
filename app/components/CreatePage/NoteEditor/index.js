@@ -5,6 +5,10 @@ import {router} from 'react-router';
 import TopBar from 'components/common/TopBar';
 
 import {
+    updateEditNoteContent
+} from '../../../containers/CreatePage/actions'
+
+import {
     convertDate
 } from '../../../utils/util.js';
 
@@ -26,17 +30,18 @@ export default class NoteEditor extends React.Component {
         this.props.saveNote(this.note.id || -1, nContent.value);
     }
 
+    changeHandler(e) {
+        updateEditNoteContent(e.target.value);
+    }
+
     render() {
-        var content = '',
+        var textContent = '',
             modifyTime = '';
 
         if (this.props.note) {
             this.note = this.props.note;
-            content = this.note.content || '';
             modifyTime = convertDate(this.note.modifyTime) || '';
         }
-
-        console.log(content);
 
         return (
             <div className={styles.noteEditor}>
@@ -47,7 +52,7 @@ export default class NoteEditor extends React.Component {
                 </TopBar>
                 <div className="hasTopBar">
                     <div className={styles.savedTime}>{modifyTime}</div>
-                    <textarea ref="J_Content" className={styles.content} />
+                    <textarea ref="J_Content" className={styles.content} value={this.props.noteContent} onChange={this.changeHandler} />
                     <div className={styles.deleteNote}><i className="iconfont icon-delete"></i></div>
                 </div>
             </div>

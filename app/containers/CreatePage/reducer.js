@@ -22,16 +22,19 @@ import {
     SAVE_NOTE_SUCCESS,
     SAVE_NOTE_ERROR,
 
+    UPDATE_NOTE_EDIT_CONTENT,
+
 } from './constants';
 
 const initialState = fromJS({
     notes: false,
     showTab: 1, //显示的tab内容编号
-    currentNote: false, //当前编辑的note
+    currentNote: false, //当前编辑note的基本信息
+    noteContent: '', //当前编辑note的内容
 });
 
 function createPageReducer(state = initialState, action = null) {
-
+// debugger;
     let data = null;
 
     switch (action.type) {
@@ -87,10 +90,15 @@ function createPageReducer(state = initialState, action = null) {
             //      "content":"让么么哒么么哒"
             //    }
             if (data.code === 'ok' && data.result && data.result) {
-                return state.set('currentNote', fromJS(data.result));
+                var ret = state.set('currentNote', fromJS(data.result)).set('noteContent', data.result.content || '');
+                return ret;
             }
 
             return state;
+
+        case UPDATE_NOTE_EDIT_CONTENT:
+            debugger;
+            return state.set('noteContent', action.payload.content || '');
 
         default:
             return state;

@@ -9,7 +9,8 @@ import {
     loadNotesDataSuccess,
     loadNotesDataError,
     loadNoteSuccess,
-    loadNoteError
+    loadNoteError,
+    updateEditNoteContent,
 } from 'containers/CreatePage/actions';
 
 import {

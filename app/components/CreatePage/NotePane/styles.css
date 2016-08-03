@@ -1,0 +1,11 @@
+@import url(../../../common/common.css);
+.wrap {
+  padding-top: 0.8rem; }
+  .wrap .noteBtn {
+    width: 17.78667rem;
+    height: 14.82667rem;
+    margin: 0 auto;
+    background: url(https://o82zr1kfu.qnssl.com/@/image/579b2850e4b02e1710abca75.png) center center no-repeat;
+    background-size: cover; }
+
+/*# sourceMappingURL=styles.css.map */

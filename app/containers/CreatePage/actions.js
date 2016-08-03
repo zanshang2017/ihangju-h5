@@ -21,6 +21,8 @@ import {
     SAVE_NOTE_SUCCESS,
     SAVE_NOTE_ERROR,
 
+    UPDATE_NOTE_EDIT_CONTENT,
+
 } from './constants';
 
 export function defaultAction() {
@@ -89,6 +91,15 @@ export function loadNoteError(error) {
         type: LOAD_NOTE_ERROR,
         payload: {
             error: error
+        }
+    };
+}
+
+export function updateEditNoteContent(content) {
+    return {
+        type: UPDATE_NOTE_EDIT_CONTENT,
+        payload: {
+            content: content
         }
     };
 }
