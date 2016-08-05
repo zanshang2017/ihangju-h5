@@ -45,4 +45,6 @@ NoteItem.contextTypes = {
     router: function contextType() {
         return React.PropTypes.func.isRequired;
     }
+
 };
+

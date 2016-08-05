@@ -17,6 +17,8 @@ import {
 
     CHANGE_CURRENT_FOLLOW,
 
+    SET_MY_FOLLOW_DATA_STATUS,
+
 } from './constants';
 
 export function defaultAction() {
@@ -104,4 +106,23 @@ export function changeCurrentFollow(data) {
         }
     };
 }
+
+export function setMyFollowDataStatus(data) {
+    var payload = {};
+
+    if (typeof data.page === 'number') {
+        payload.page = data.page;
+    }
+
+    if (typeof data.isLast === 'number') {
+        payload.isLast = data.isLast;
+    }
+
+    return {
+        type: SET_MY_FOLLOW_DATA_STATUS,
+        payload: payload
+    };
+}
+
+
 

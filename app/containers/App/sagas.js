@@ -40,7 +40,7 @@ export function* getUserInfo() {
         if (ret.err === undefined || ret.err === null) {
             yield put(loadUserInfoSuccess(ret.data.result));
         } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
+            console.log(ret.err.response); // eslint-disable-line no-console
             yield put(loadUserInfoError(ret.err));
         }
 

@@ -1,4 +1,4 @@
-import { take, takeLatest, call, put, select } from 'redux-saga/effects';
+import {take, takeLatest, call, put, select} from 'redux-saga/effects';
 import {
     LOAD_MY_FOLLOW_DATA,
     LOAD_MY_FOLLOW_LIST_DATA,
@@ -8,7 +8,8 @@ import {
     loadMyFollowDataSuccess,
     loadMyFollowDataError,
     loadMyFollowListDataSuccess,
-    loadMyFollowListDataError
+    loadMyFollowListDataError,
+    setMyFollowDataStatus,
 } from 'containers/FollowPage/actions';
 
 import {
@@ -57,7 +58,13 @@ export function* getMyFollowData() {
         });
 
         if (lists.err === undefined || lists.err === null) {
-            yield put(loadMyFollowDataSuccess(lists.data, page));
+            // debugger;
+            if (lists.data.result && lists.data.result.length > 0) {
+                yield put(loadMyFollowDataSuccess(lists.data, page));
+            } else {
+                yield put(setMyFollowDataStatus({isLast: true}));
+            }
+
         } else {
             console.log(lists.err.response); // eslint-disable-line no-console
             yield put(loadMyFollowDataError(lists.err));

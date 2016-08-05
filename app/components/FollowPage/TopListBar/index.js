@@ -54,11 +54,6 @@ export default class TopListBar extends React.Component {
     }
 
     render() {
-
-        if (this.props.currentFollow) {
-            this.props.loadMyFollow(0, this.props.currentFollow);
-        }
-
         let title = this.props.currentFollow ? this.props.currentFollow.name : '全部关注';
         let followList = '';
 

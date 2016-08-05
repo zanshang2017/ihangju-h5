@@ -4,6 +4,8 @@ import styles from './styles.css';
 
 import ArticleList from 'components/common/ArticleList';
 
+import _ from 'underscore';
+
 class MainContent extends React.Component {
 
     constructor(props) {
@@ -20,10 +22,11 @@ class MainContent extends React.Component {
         if (nWrap.classList.contains('hasTopBar')) {
             contentH -= document.getElementById("J_followPageTopListBar").getBoundingClientRect().height;
         }
-        nWrap.style.height = contentH + 'px';
+        // nWrap.style.height = contentH + 'px';
+        nWrap.style.height = 570 + 'px';
 
         //滑动底部加载下一页
-        that.scrollHanderBinded = that.scrollHandler.bind(that);
+        that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 1000);
         nWrap.addEventListener('scroll', that.scrollHanderBinded);
     }
 
@@ -32,35 +35,46 @@ class MainContent extends React.Component {
         var nWrap = that.refs.J_FollowPageMainContentWrap;
 
         //前一次加载结束后,重新侦听滑动
-        if (!this.props.myFollowLoading) {
-            that.scrollHanderBinded = that.scrollHandler.bind(that);
-            nWrap.addEventListener('scroll', that.scrollHanderBinded);
-        }
+        // if (!this.props.myFollowLoading) {
+        //     that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 1000);
+        //     nWrap.addEventListener('scroll', that.scrollHanderBinded);
+        // }
+    }
+
+    reset() {
+
+        // this.currentPage = 0;
+        // this.isLastPage = false;
     }
 
     componentWillUnmount() {
     }
 
     scrollHandler(e) {
+
+        console.log('this.myFollowLoading:' , this.props.myFollowLoading,
+            'this.page:', this.page,
+            'this.isLast:', this.isLast);
+
         var winH = document.body.clientHeight;
         var nWrap = this.refs.J_FollowPageMainContentWrap;
         var nWrapH = nWrap.getBoundingClientRect().height;
         // console.log(nWrap.scrollTop, nWrapH, nWrap.scrollHeight);
-        if (nWrap.scrollTop + nWrapH >= nWrap.scrollHeight - 50) {
 
-            //todo 加载下一页
-            this.props.loadMyFollow(2, this.props.currentFollow);
+        if (nWrap.scrollTop + nWrapH >= nWrap.scrollHeight - 1 && !this.isLast && !this.props.myFollowLoading) {
+            this.props.loadMyFollow(this.page + 1, this.props.currentFollow);
 
             //移除侦听
-            if (this.scrollHanderBinded) {
-                nWrap.removeEventListener('scroll', this.scrollHanderBinded);
-                this.scrollHanderBinded = null;
-            }
-
+            // if (this.scrollHanderBinded) {
+            //     nWrap.removeEventListener('scroll', this.scrollHanderBinded);
+            //     this.scrollHanderBinded = null;
+            // }
         }
     }
 
     render() {
+        this.page = this.props.selectMyFollowDataStatus.get('page');
+        this.isLast = this.props.selectMyFollowDataStatus.get('isLast');
 
         var articles = this.props.myFollowData ? this.props.myFollowData.toJS() : [];
 

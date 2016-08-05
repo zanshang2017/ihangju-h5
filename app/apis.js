@@ -139,6 +139,13 @@ const NOTE_LIST_API = `//${api_domain}/user/notes`;
  *
  *      注意:若url中不带noteID,则为新增一条记录;否则为修改相应记录
  *
+ *
+ * PUT:新增
+ *     请求同POST.
+ *
+ * DELETE: 删除
+ *
+ *
  * GET响应:
  *  {
         "result": {
@@ -153,6 +160,11 @@ const NOTE_LIST_API = `//${api_domain}/user/notes`;
  *  {
 	    "code": "ok"
     }
+
+
+   PUT响应: 同POST.
+
+   DELETE响应:同POST.
  *
  *
  */

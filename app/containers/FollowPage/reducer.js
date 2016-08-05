@@ -21,6 +21,8 @@ import {
 
     CHANGE_CURRENT_FOLLOW,
 
+    SET_MY_FOLLOW_DATA_STATUS,
+
 } from './constants';
 
 const initialState = fromJS({
@@ -31,7 +33,12 @@ const initialState = fromJS({
     }),
     currentFollow: false, //当前选择的列表类型， null表示未选择，默认加载全部关注
     myFollowLoading: false, //关注文章列表加载中
-    myFollowListLoading: false //关注分类列表加载中
+    myFollowListLoading: false, //关注分类列表加载中
+
+    myFollowDataStatus: {
+        page: 0,
+        isLast: false
+    }
 });
 
 function followPageReducer(state = initialState, action = null) {
@@ -71,9 +78,12 @@ function followPageReducer(state = initialState, action = null) {
             //        "likeNumber": 0
             //    }
             //]
+
             if (data.code === 'ok' && data.result && data.result.length > 0) {
-                if(page > 0){
-                    return state.set('myFollowLoading', false).mergeDeepIn(['myFollowData'], data.result || []);
+                if (page > 0) {
+                    // let _state = state.set('myFollowLoading', false).mergeDeepIn(['myFollowData'], data.result || []);
+                    let _merged = state.set('myFollowLoading', false).get('myFollowData').concat(fromJS(data.result))
+                    return state.set('myFollowData', _merged);
                 } else {
                     return state.set('myFollowLoading', false).set('myFollowData', fromJS(data.result));
                 }
@@ -123,6 +133,19 @@ function followPageReducer(state = initialState, action = null) {
         case CHANGE_CURRENT_FOLLOW:
             var data = action.payload;
             return state.set('currentFollow', data || {});
+
+        case SET_MY_FOLLOW_DATA_STATUS:
+            var data = action.payload;
+
+            if (data.page) {
+                state = state.setIn(['myFollowDataStatus', 'page'], data.page);
+            }
+
+            if (typeof data.isLast !== 'undefined' && typeof data.isLast === 'boolean') {
+                state = state.setIn(['myFollowDataStatus', 'isLast'], data.isLast);
+            }
+
+            return state;
 
         default:
             return state;

@@ -27,6 +27,8 @@ export default [
 
 export function* getDiscoveriesData() {
 
+    console.log('*** saga getDiscoveriesData');
+
     while (yield take(LOAD_DISCOVERIES_DATA)) {
         console.log('getDiscoveriesData');
 

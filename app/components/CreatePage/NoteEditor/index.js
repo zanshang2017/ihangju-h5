@@ -5,7 +5,7 @@ import {router} from 'react-router';
 import TopBar from 'components/common/TopBar';
 
 import {
-    updateEditNoteContent
+    updateEditNoteContent,
 } from '../../../containers/CreatePage/actions'
 
 import {
@@ -27,20 +27,27 @@ export default class NoteEditor extends React.Component {
 
     save() {
         var nContent = this.refs.J_Content;
-        this.props.saveNote(this.note.id || -1, nContent.value);
+        var id = this.note ? this.note.id : null;
+        this.props.saveNote(id, nContent.value);
+    }
+
+    delete() {
+        var id = this.note ? this.note.id : null;
+        this.props.deleteNote(id);
     }
 
     changeHandler(e) {
-        updateEditNoteContent(e.target.value);
+        this.props.dispatch(updateEditNoteContent(e.target.value));
     }
 
     render() {
-        var textContent = '',
-            modifyTime = '';
+        var modifyTime = '';
 
         if (this.props.note) {
             this.note = this.props.note;
             modifyTime = convertDate(this.note.modifyTime) || '';
+        } else {
+            this.note = null;
         }
 
         return (
@@ -52,8 +59,9 @@ export default class NoteEditor extends React.Component {
                 </TopBar>
                 <div className="hasTopBar">
                     <div className={styles.savedTime}>{modifyTime}</div>
-                    <textarea ref="J_Content" className={styles.content} value={this.props.noteContent} onChange={this.changeHandler} />
-                    <div className={styles.deleteNote}><i className="iconfont icon-delete"></i></div>
+                    <textarea ref="J_Content" className={styles.content} value={this.props.noteContent}
+                              onChange={this.changeHandler.bind(this)}/>
+                    <div className={styles.deleteNote} onClick={this.delete.bind(this)}><i className="iconfont icon-delete"></i></div>
                 </div>
             </div>
         );

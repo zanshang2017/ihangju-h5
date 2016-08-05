@@ -21,7 +21,11 @@ export const SAVE_NOTE_SUCCESS = 'app/CreatePage/SAVE_NOTE_SUCCESS';
 export const SAVE_NOTE_ERROR = 'app/CreatePage/SAVE_NOTE_ERROR';
 
 export const UPDATE_NOTE_EDIT_CONTENT = 'app/CreatePage/UPDATE_NOTE_EDIT_CONTENT'; //更新note编辑区域的内容,便于处理受限组件textarea
+export const CLEAR_CURRENT_NOTE = 'app/CreatePage/CLEAR_CURRENT_NOTE'; //清空当前note
 
+export const DELETE_NOTE = 'app/CreatePage/DELETE_NOTE'; //删除note
+export const DELETE_NOTE_SUCCESS = 'app/CreatePage/DELETE_NOTE_SUCCESS';
+export const DELETE_NOTE_ERROR = 'app/CreatePage/DELETE_NOTE_ERROR';
 
 
 

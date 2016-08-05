@@ -55,7 +55,13 @@ export default class LoginPage extends React.Component {
                         var ifrm = this.refs.thirdPartyLoginIfrm;
                         ifrm.style.display = 'none';
                         that.props.dispatch(loadUserInfo());
-                        this.routeHandler(redirect);
+
+                        //需要延时处理,等待用户数据加载完毕
+                        //todo 后续改为等待sagas处理完毕
+                        setTimeout(function () {
+                            this.routeHandler(redirect);
+                        }.bind(this), 1000);
+
                     }
                 }
             }).bind(this);

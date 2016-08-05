@@ -2,7 +2,7 @@
  * 路由配置
  */
 
-import { getHooks } from 'utils/hooks';
+import {getHooks} from 'utils/hooks';
 
 import {
     routeEffector,
@@ -24,8 +24,18 @@ const loadModule = (cb) => (componentModule) => {
     cb(null, componentModule.default);
 };
 
+var initedStatus = {
+    loginPage: false,
+    followPage: false,
+    createPage: false,
+    foundPage: false,
+    tagDetailPage: false,
+    myPage: false,
+    demoPage: false,
+};
+
 export default function createRoutes(store) {
-    const { injectReducer, injectSagas } = getHooks(store);
+    const {injectReducer, injectSagas} = getHooks(store);
 
     return [
         {
@@ -64,8 +74,12 @@ export default function createRoutes(store) {
                 const renderRoute = loadModule(cb);
 
                 importModules.then(([reducer, sagas, component]) => {
-                    injectReducer('followPage', reducer.default);
-                    injectSagas(sagas.default);
+                    if (!initedStatus.followPage) {
+                        injectReducer('followPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.followPage = true;
+                    }
+
                     renderRoute(component);
                 });
 
@@ -87,8 +101,11 @@ export default function createRoutes(store) {
                 const renderRoute = loadModule(cb);
 
                 importModules.then(([reducer, sagas, component]) => {
-                    injectReducer('createPage', reducer.default);
-                    injectSagas(sagas.default);
+                    if (!initedStatus.createPage) {
+                        injectReducer('createPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.createPage = true;
+                    }
                     renderRoute(component);
                 });
 
@@ -110,8 +127,12 @@ export default function createRoutes(store) {
                 const renderRoute = loadModule(cb);
 
                 importModules.then(([reducer, sagas, component]) => {
-                    injectReducer('foundPage', reducer.default);
-                    injectSagas(sagas.default);
+                    if (!initedStatus.foundPage) {
+                        injectReducer('foundPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.foundPage = true;
+                    }
+
                     renderRoute(component);
                 });
 
@@ -133,8 +154,12 @@ export default function createRoutes(store) {
                 const renderRoute = loadModule(cb);
 
                 importModules.then(([reducer, sagas, component]) => {
-                    injectReducer('tagDetailPage', reducer.default);
-                    injectSagas(sagas.default);
+                    if (!initedStatus.tagDetailPage) {
+                        injectReducer('tagDetailPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.tagDetailPage = true;
+                    }
+
                     renderRoute(component);
                 });
 
@@ -157,8 +182,12 @@ export default function createRoutes(store) {
                 const renderRoute = loadModule(cb);
 
                 importModules.then(([reducer, sagas, component]) => {
-                    injectReducer('myPage', reducer.default);
-                    injectSagas(sagas.default);
+                    if (!initedStatus.myPage) {
+                        injectReducer('myPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.myPage = true;
+                    }
+
                     renderRoute(component);
                 });
 
@@ -180,8 +209,12 @@ export default function createRoutes(store) {
                 const renderRoute = loadModule(cb);
 
                 importModules.then(([reducer, sagas, component]) => {
-                    injectReducer('demoPage', reducer.default);
-                    injectSagas(sagas.default);
+                    if (!initedStatus.demoPage) {
+                        injectReducer('demoPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.demoPage = true;
+                    }
+
                     renderRoute(component);
                 });
 
@@ -191,7 +224,7 @@ export default function createRoutes(store) {
                 //store.dispatch(hideNav());
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
             },
-            onLeave: function(){
+            onLeave: function () {
                 //store.dispatch(showNav());
             }
         }, {

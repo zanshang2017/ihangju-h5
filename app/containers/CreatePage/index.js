@@ -21,9 +21,11 @@ import {
 } from '../App/selectors'
 
 import {
+    clearCurrentNote,
     loadNotesData,
     loadNote,
-    saveNote
+    saveNote,
+    deleteNote,
 } from './actions';
 
 import {
@@ -50,18 +52,21 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
     constructor(props) {
         super(props);
         this.nMainContent = null;
-        this.nEditor = null;
+        this.J_EditorWrap = null;
     }
 
     componentDidMount() {
+        console.log('#### did createpage');
         this.nMainContent = this.refs.J_MainContentWrap;
         this.J_EditorWrap = this.refs.J_EditorWrap;
     }
 
-    openNote(id) {
+    openNoteHandler(id) {
         this.props.dispatch(hideNav());
         this.nMainContent.classList.add('hide');
         this.J_EditorWrap.classList.remove('hide');
+
+        this.props.dispatch(clearCurrentNote());
 
         //修改
         if (id) {
@@ -69,12 +74,20 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
         }
     }
 
-    saveNote(id, content) {
+    saveNoteHandler(id, content) {
         this.props.dispatch(showNav());
         this.J_EditorWrap.classList.add('hide');
         this.nMainContent.classList.remove('hide');
 
-        this.props.dispatch(saveNote(id, content));
+        this.props.dispatch(saveNote(id || null, content));
+    }
+
+    deleteNoteHandler(id){
+        this.props.dispatch(showNav());
+        this.J_EditorWrap.classList.add('hide');
+        this.nMainContent.classList.remove('hide');
+
+        this.props.dispatch(deleteNote(id || null));
     }
 
     routeHandler(url) {
@@ -88,15 +101,16 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
 
         if (this.props.currentNote) {
             note = this.props.currentNote.toJS();
+        } else {
+            note = null;
         }
 
         if (!userInfo) {
             this.routeHandler('/login?redirect=' + encodeURIComponent('/') + 'create');
+            // this.routeHandler('/login');
         } else {
             userId = userInfo.toJS().id;
         }
-
-        console.log('noteContent:' + this.props.noteContent);
 
         return (
             <div className="pageInner">
@@ -107,14 +121,16 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
                                 <ScanPane userId={userId}/>
                             </TabPane>
                             <TabPane tab="灵感记录" key="2">
-                                <NotePane {...this.props} openNote={this.openNote.bind(this)}/>
+                                <NotePane {...this.props} openNote={this.openNoteHandler.bind(this)}/>
                             </TabPane>
                         </Tabs>
                     </div>
 
                     <div ref="J_EditorWrap" className={`hide`}>
-                        <NoteEditor ref="J_Editor" note={note} noteContent={this.props.noteContent || ''}
-                                    saveNote={this.saveNote.bind(this)}/>
+                        <NoteEditor ref="J_Editor" note={note}
+                                    saveNote={this.saveNoteHandler.bind(this)}
+                                    deleteNote={this.deleteNoteHandler.bind(this)}
+                                    {...this.props} />
                     </div>
 
                 </div>
@@ -128,6 +144,7 @@ CreatePage.contextTypes = {
         return React.PropTypes.func.isRequired;
     }
 };
+
 const mapStateToProps = createSelector(
     selectNotes(),
     selectUserInfo(),

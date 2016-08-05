@@ -11,16 +11,12 @@ export default class NoteList extends React.Component {
     }
 
     componentDidMount() {
-        if (!this.props.notes) {
-            this.props.loadNoteList();
-        }
-
-        this.openNote = this.props.openNote;
+        console.log('noteList Did');
+        this.fetchNoteList();
     }
 
-    openNote() {
-        alert(1);
-        this.props.openNote();
+    fetchNoteList() {
+        this.props.loadNoteList();
     }
 
     render() {
@@ -31,9 +27,8 @@ export default class NoteList extends React.Component {
             return (
                 <div ref="J_NoteListWrap" className={styles.noteList}>
                     {
-
                         notes.map(function (item, key) {
-                            return <NoteItem data-key={key} key={key} item={item} openNote={that.openNote} />;
+                            return <NoteItem data-key={key} key={key} item={item} openNote={that.props.openNote}/>;
                         })
                     }
                 </div>

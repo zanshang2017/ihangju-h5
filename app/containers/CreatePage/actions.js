@@ -22,6 +22,11 @@ import {
     SAVE_NOTE_ERROR,
 
     UPDATE_NOTE_EDIT_CONTENT,
+    CLEAR_CURRENT_NOTE,
+
+    DELETE_NOTE,
+    DELETE_NOTE_SUCCESS,
+    DELETE_NOTE_ERROR,
 
 } from './constants';
 
@@ -110,6 +115,51 @@ export function saveNote(id, content) {
         payload: {
             id: id,
             content: content
+        }
+    };
+}
+
+export function saveNoteSuccess() {
+    return {
+        type: SAVE_NOTE_SUCCESS,
+    };
+}
+
+export function saveNoteError(error) {
+    return {
+        type: SAVE_NOTE_ERROR,
+        payload: {
+            error: error
+        }
+    };
+}
+
+export function clearCurrentNote() {
+    return {
+        type: CLEAR_CURRENT_NOTE
+    };
+}
+
+export function deleteNote(id) {
+    return {
+        type: DELETE_NOTE,
+        payload: {
+            id: id
+        }
+    };
+}
+
+export function deleteNoteSuccess() {
+    return {
+        type: DELETE_NOTE_SUCCESS,
+    };
+}
+
+export function deleteNoteError(error) {
+    return {
+        type: DELETE_NOTE_ERROR,
+        payload: {
+            error: error
         }
     };
 }

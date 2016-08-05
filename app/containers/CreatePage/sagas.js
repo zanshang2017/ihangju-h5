@@ -1,16 +1,22 @@
-import {take, takeLatest, call, put, select} from 'redux-saga/effects';
+import {take, takeEvery, takeLatest, call, put, select} from 'redux-saga/effects';
 import {
     LOAD_NOTES_DATA,
     LOAD_NOTE,
     SAVE_NOTE,
+    DELETE_NOTE,
 } from 'containers/CreatePage/constants';
 
 import {
+    loadNotesData,
     loadNotesDataSuccess,
     loadNotesDataError,
     loadNoteSuccess,
     loadNoteError,
+    saveNoteSuccess,
+    saveNoteError,
     updateEditNoteContent,
+    deleteNoteSuccess,
+    deleteNoteError,
 } from 'containers/CreatePage/actions';
 
 import {
@@ -23,7 +29,8 @@ import request from 'utils/request';
 export default [
     getNotesData,
     getNote,
-    postNote,
+    uploadNote,
+    deleteNote,
 ];
 
 export function* getNotesData() {
@@ -31,7 +38,6 @@ export function* getNotesData() {
     let action = null;
 
     while (action = yield take(LOAD_NOTES_DATA)) {
-        console.log('getNotesData');
 
         let page = action.payload.page;
         let size = action.payload.size;
@@ -76,32 +82,36 @@ export function* getNote() {
         });
 
         if (ret.err === undefined || ret.err === null) {
-            // alert('note加载success!');
             yield put(loadNoteSuccess(ret.data));
         } else {
-            // alert('note加载error');
             yield put(loadNoteError(ret.err));
         }
 
     }
 }
 
-export function* postNote() {
+export function* uploadNote() {
 
     let action = null;
 
     while (action = yield take(SAVE_NOTE)) {
-        console.log('postNote', action.payload.id, action.payload.content);
+        console.log('uploadNote', action.payload.id, action.payload.content);
 
-        let id = action.payload.id;
+        let id = action.payload.id || null;
         let data = {
-            content: action.payload.content
+            content: action.payload.content || ''
         };
+        let url = NOTE_API;
+        let method = "POST";
 
-        let url = NOTE_API + `/${id}`;
+        if (id) {
+            url += `/${id}`;
+        } else {
+            method = "PUT";
+        }
 
         const ret = yield call(request, url, {
-            method: "POST",
+            method: method,
             body: 'content=' + action.payload.content,
             headers: {
                 'Accept': 'application/json',
@@ -112,15 +122,49 @@ export function* postNote() {
         });
 
         if (ret.err === undefined || ret.err === null) {
-            alert('note保存success!');
-            // yield put(loadNotesDataSuccess(ret.data));
+            yield put(saveNoteSuccess(ret.data));
+            yield put(loadNotesData());
         } else {
-            alert('note保存error');
-            // yield put(loadNotesDataError(lists.err));
+            yield put(saveNoteError(ret.err));
         }
 
     }
 }
+
+export function* deleteNote() {
+
+    let action = null;
+
+    while (action = yield take(DELETE_NOTE)) {
+        console.log('deleteNote', action.payload.id, action.payload.content);
+
+        let id = action.payload.id || null;
+        let url = NOTE_API;
+
+        if (id) {
+            url += `/${id}`;
+        }
+
+        const ret = yield call(request, url, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'content-type': 'application/x-www-form-urlencoded',
+                'X-API-Version': 'v1.1'
+            },
+            credentials: 'include'
+        });
+
+        if (ret.err === undefined || ret.err === null) {
+            yield put(deleteNoteSuccess(ret.data));
+            yield put(loadNotesData());
+        } else {
+            yield put(deleteNoteError(ret.err));
+        }
+
+    }
+}
+
 
 
 

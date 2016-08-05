@@ -4,7 +4,7 @@
  *
  */
 
-import { fromJS } from 'immutable';
+import {fromJS} from 'immutable';
 import {
     DEFAULT_ACTION,
 
@@ -22,7 +22,12 @@ import {
     SAVE_NOTE_SUCCESS,
     SAVE_NOTE_ERROR,
 
+    DELETE_NOTE,
+    DELETE_NOTE_SUCCESS,
+    DELETE_NOTE_ERROR,
+
     UPDATE_NOTE_EDIT_CONTENT,
+    CLEAR_CURRENT_NOTE,
 
 } from './constants';
 
@@ -34,7 +39,6 @@ const initialState = fromJS({
 });
 
 function createPageReducer(state = initialState, action = null) {
-// debugger;
     let data = null;
 
     switch (action.type) {
@@ -62,7 +66,7 @@ function createPageReducer(state = initialState, action = null) {
             //    }, ....
 
             if (data.code === 'ok' && data.result && data.result) {
-                if(page && page > 0){
+                if (page && page > 0) {
                     return state.mergeDeepIn(['notes'], data.result || []);
                 } else {
                     return state.set('notes', fromJS(data.result));
@@ -96,9 +100,35 @@ function createPageReducer(state = initialState, action = null) {
 
             return state;
 
+        case LOAD_NOTE_ERROR:
+            return state;
+
+
+        case SAVE_NOTE:
+            return state;
+
+        case SAVE_NOTE_SUCCESS:
+            return state;
+
+        case SAVE_NOTE_ERROR:
+            return state;
+
+
+        case DELETE_NOTE:
+            return state;
+
+        case DELETE_NOTE_SUCCESS:
+            return state;
+
+        case DELETE_NOTE_ERROR:
+            return state;
+
+
         case UPDATE_NOTE_EDIT_CONTENT:
-            debugger;
             return state.set('noteContent', action.payload.content || '');
+
+        case CLEAR_CURRENT_NOTE:
+            return state.set('currentNote', false).set('noteContent', '');
 
         default:
             return state;
