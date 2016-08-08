@@ -3,30 +3,42 @@
 @import "../../../common/_util";
 @import "../../../common/common.css";
 
-.wrap {
-    box-sizing: border-box;
-    width: 100%;
-    padding: rem(32);
-    background: $topBarBg;
-    font-size: rem(32);
-    color: $titleColor;
 
-    ul {
+.listWrap {
+    position: fixed;
+    top: $topBarHeight;
+    z-index: $zIndexL4;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+
+    .list {
         box-sizing: border-box;
         width: 100%;
-        padding-bottom: rem(20);
+        padding: rem(32);
+        background: $topBarBg;
+        font-size: rem(32);
+        color: $titleColor;
 
-        li {
-            padding: rem(20) 0;
+        ul {
+            box-sizing: border-box;
+            width: 100%;
+            padding-bottom: rem(20);
+
+            li {
+                padding: rem(20) 0;
+                line-height: 1.5em;
+            }
+        }
+
+        .type {
+            color: $weakerTitleColor;
+            font-size: rem(28);
+            padding: rem(20) 0 0;
             line-height: 1.5em;
         }
     }
 
-    .type {
-        color: $weakerTitleColor;
-        font-size: rem(28);
-        padding: rem(20) 0 0;
-        line-height: 1.5em;
-    }
 }
 

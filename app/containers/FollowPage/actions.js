@@ -18,6 +18,7 @@ import {
     CHANGE_CURRENT_FOLLOW,
 
     SET_MY_FOLLOW_DATA_STATUS,
+    SET_MY_FOLLOW_LIST_DATA_STATUS,
 
 } from './constants';
 
@@ -114,7 +115,7 @@ export function setMyFollowDataStatus(data) {
         payload.page = data.page;
     }
 
-    if (typeof data.isLast === 'number') {
+    if (typeof data.isLast === 'boolean') {
         payload.isLast = data.isLast;
     }
 
@@ -123,6 +124,24 @@ export function setMyFollowDataStatus(data) {
         payload: payload
     };
 }
+
+export function setMyFollowListDataStatus(data) {
+    var payload = {};
+
+    if (typeof data.page === 'number') {
+        payload.page = data.page;
+    }
+
+    if (typeof data.isLast === 'boolean') {
+        payload.isLast = data.isLast;
+    }
+
+    return {
+        type: SET_MY_FOLLOW_LIST_DATA_STATUS,
+        payload: payload
+    };
+}
+
 
 
 

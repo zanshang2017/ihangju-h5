@@ -39,12 +39,15 @@ export default class NoteItem extends React.Component {
     }
 }
 
-NoteItem.propTypes = {};
+NoteItem.propTypes = {
+    openNote: React.PropTypes.func,
+    item: React.PropTypes.oneOfType([
+        React.PropTypes.array,
+        React.PropTypes.object
+    ]),
+};
 
 NoteItem.contextTypes = {
-    router: function contextType() {
-        return React.PropTypes.func.isRequired;
-    }
-
+    router: React.PropTypes.object.isRequired
 };
 

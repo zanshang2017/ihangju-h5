@@ -1,22 +1,30 @@
 @import url(../../../common/common.css);
-.wrap {
-  box-sizing: border-box;
+.listWrap {
+  position: fixed;
+  top: 2.34667rem;
+  z-index: 999;
   width: 100%;
-  padding: 0.85333rem;
-  background: #f7f7f7;
-  font-size: 0.85333rem;
-  color: #7b8f9d; }
-  .wrap ul {
+  box-sizing: border-box;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; }
+  .listWrap .list {
     box-sizing: border-box;
     width: 100%;
-    padding-bottom: 0.53333rem; }
-    .wrap ul li {
-      padding: 0.53333rem 0;
+    padding: 0.85333rem;
+    background: #f7f7f7;
+    font-size: 0.85333rem;
+    color: #7b8f9d; }
+    .listWrap .list ul {
+      box-sizing: border-box;
+      width: 100%;
+      padding-bottom: 0.53333rem; }
+      .listWrap .list ul li {
+        padding: 0.53333rem 0;
+        line-height: 1.5em; }
+    .listWrap .list .type {
+      color: #a09e98;
+      font-size: 0.74667rem;
+      padding: 0.53333rem 0 0;
       line-height: 1.5em; }
-  .wrap .type {
-    color: #a09e98;
-    font-size: 0.74667rem;
-    padding: 0.53333rem 0 0;
-    line-height: 1.5em; }
 
 /*# sourceMappingURL=styles.css.map */

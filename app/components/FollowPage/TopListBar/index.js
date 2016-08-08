@@ -8,13 +8,12 @@ export default class TopListBar extends React.Component {
 
     constructor(props) {
         super(props);
-        this.myFollowListPage = 0;
     }
 
     componentDidMount() {
     }
 
-    toggleMyFollowListHandler(e) {
+    toggleMyFollowListHandler() {
         let nArrow = this.refs.nTopListBarTitleArrow;
         let nArrowClass = nArrow.classList;
 
@@ -22,35 +21,26 @@ export default class TopListBar extends React.Component {
         nArrowClass.toggle('icon-up');
 
         if (nArrowClass.contains('icon-down')) {
-            this.hideFollowList();
+            this.refs.J_FollowList.hideFollowList();
         } else {
-            this.showFollowList();
+            this.refs.J_FollowList.showFollowList();
         }
-
-        e.preventDefault();
     }
 
-    showFollowList() {
-        let nFollowListWrap = this.refs.nFollowListWrap;
-        if (!nFollowListWrap.style.height) {
-            nFollowListWrap.style.height = document.documentElement.clientHeight - this.refs.nTopListBar.clientHeight - document.getElementById('nav').clientHeight + 'px';
-        }
-        nFollowListWrap.classList.remove('hide');
-        this.myFollowListPage = 0;
-        this.props.loadMyFollowList(this.myFollowListPage);
-    }
-
-    hideFollowList() {
-        let nFollowListWrap = this.refs.nFollowListWrap;
-        nFollowListWrap.classList.add('hide');
-    }
-
-    loadNextFollowList() {
-        this.props.loadMyFollowList(++this.myFollowListPage);
-    }
-
-    changeCurrentFollow(data) {
+    changeCurrentFollowHandler(data) {
+        this.toggleMyFollowListHandler();
         this.props.changeCurrentFollow(data);
+
+        let nArrow = this.refs.nTopListBarTitleArrow;
+        let nArrowClass = nArrow.classList;
+
+        if(!nArrowClass.contains('icon-down')){
+            nArrowClass.add('icon-down');
+        }
+
+        if(nArrowClass.contains('icon-up')){
+            nArrowClass.remove('icon-up');
+        }
     }
 
     render() {
@@ -58,10 +48,9 @@ export default class TopListBar extends React.Component {
         let followList = '';
 
         if (this.props.myFollowListData) {
-            followList = <FollowList items={this.props.myFollowListData}
-                                     loadNextFollowListHandler={this.loadNextFollowList.bind(this)}
-                                     changeCurrentFollow={this.changeCurrentFollow.bind(this)}
-                                     hideFollowList={this.hideFollowList.bind(this)}/>
+            followList = <FollowList ref="J_FollowList" items={this.props.myFollowListData}
+                                     changeCurrentFollowHandler={this.changeCurrentFollowHandler.bind(this)}
+                                     {...this.props} />
         } else {
             //todo loading
         }
@@ -73,9 +62,7 @@ export default class TopListBar extends React.Component {
                         ref="nTopListBarTitleArrow" className="icon-down iconfont"></i></div>
                 </div>
 
-                <div ref="nFollowListWrap" className={`${styles.listWrap} hide`}>
-                    {followList}
-                </div>
+                {followList}
             </div>
         );
     }

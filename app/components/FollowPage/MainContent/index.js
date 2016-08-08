@@ -26,28 +26,25 @@ class MainContent extends React.Component {
         nWrap.style.height = 570 + 'px';
 
         //滑动底部加载下一页
-        that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 1000);
+        that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 300, {leading: false});
         nWrap.addEventListener('scroll', that.scrollHanderBinded);
     }
 
     componentDidUpdate() {
-        var that = this;
-        var nWrap = that.refs.J_FollowPageMainContentWrap;
-
-        //前一次加载结束后,重新侦听滑动
-        // if (!this.props.myFollowLoading) {
-        //     that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 1000);
-        //     nWrap.addEventListener('scroll', that.scrollHanderBinded);
-        // }
-    }
-
-    reset() {
-
-        // this.currentPage = 0;
-        // this.isLastPage = false;
+        //goTop
+        if(this.page == 0) {
+            var nWrap = this.refs.J_FollowPageMainContentWrap;
+            nWrap.scrollTop = 0;
+        }
     }
 
     componentWillUnmount() {
+        var nWrap = this.refs.J_FollowPageMainContentWrap;
+        //移除侦听
+        if (this.scrollHanderBinded) {
+            nWrap.removeEventListener('scroll', this.scrollHanderBinded);
+            this.scrollHanderBinded = null;
+        }
     }
 
     scrollHandler(e) {
@@ -63,12 +60,6 @@ class MainContent extends React.Component {
 
         if (nWrap.scrollTop + nWrapH >= nWrap.scrollHeight - 1 && !this.isLast && !this.props.myFollowLoading) {
             this.props.loadMyFollow(this.page + 1, this.props.currentFollow);
-
-            //移除侦听
-            // if (this.scrollHanderBinded) {
-            //     nWrap.removeEventListener('scroll', this.scrollHanderBinded);
-            //     this.scrollHanderBinded = null;
-            // }
         }
     }
 

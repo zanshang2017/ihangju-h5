@@ -57,6 +57,11 @@ export default class ScanPane extends React.Component {
     }
 }
 
-ScanPane.propTypes = {};
+ScanPane.propTypes = {
+    userId: React.PropTypes.oneOfType([
+        React.PropTypes.number,
+        React.PropTypes.string,
+    ])
+};
 
 

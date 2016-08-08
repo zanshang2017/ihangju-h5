@@ -22,6 +22,7 @@ import {
     CHANGE_CURRENT_FOLLOW,
 
     SET_MY_FOLLOW_DATA_STATUS,
+    SET_MY_FOLLOW_LIST_DATA_STATUS,
 
 } from './constants';
 
@@ -38,7 +39,13 @@ const initialState = fromJS({
     myFollowDataStatus: {
         page: 0,
         isLast: false
+    },
+
+    myFollowListDataStatus: {
+        page: 0,
+        isLast: false
     }
+
 });
 
 function followPageReducer(state = initialState, action = null) {
@@ -121,8 +128,38 @@ function followPageReducer(state = initialState, action = null) {
             //    }]
             //}
 
-            if (data.code === 'ok' && data.result && (data.result.followTags || data.result.followUsers)) {
-                return state.set('myFollowListLoading', false).mergeDeepIn(['myFollowListData'], data.result || []);
+            // if (data.code === 'ok' && data.result && (data.result.followTags || data.result.followUsers)) {
+            //     return state.set('myFollowListLoading', false).mergeDeepIn(['myFollowListData'], data.result || []);
+            // }
+
+            var _followUsers = data.result.followUsers || null;
+            var _followTags = data.result.followTags || null;
+// debugger;
+
+            if (page > 0) {
+                state = state.set('myFollowListLoading', false);
+
+                if(Array.isArray(_followUsers)) {
+                    state = state.setIn(['myFollowListData', 'followUsers'], state.getIn(['myFollowListData', 'followUsers']).concat(fromJS(_followUsers)));
+                }
+
+                if(Array.isArray(_followTags)) {
+                    state = state.setIn(['myFollowListData', 'followTags'], state.getIn(['myFollowListData', 'followTags']).concat(fromJS(_followTags)));
+                }
+
+                return state;
+            } else {
+                state = state.set('myFollowListLoading', false);
+
+                if(Array.isArray(_followUsers)) {
+                    state = state.setIn(['myFollowListData', 'followUsers'], fromJS(_followUsers));
+                }
+
+                if(Array.isArray(_followTags)) {
+                    state = state.setIn(['myFollowListData', 'followTags'], fromJS(_followTags));
+                }
+
+                return state;
             }
 
             return state;
@@ -137,12 +174,25 @@ function followPageReducer(state = initialState, action = null) {
         case SET_MY_FOLLOW_DATA_STATUS:
             var data = action.payload;
 
-            if (data.page) {
+            if (typeof data.page === 'number' && data.page >= 0) {
                 state = state.setIn(['myFollowDataStatus', 'page'], data.page);
             }
 
             if (typeof data.isLast !== 'undefined' && typeof data.isLast === 'boolean') {
                 state = state.setIn(['myFollowDataStatus', 'isLast'], data.isLast);
+            }
+
+            return state;
+
+        case SET_MY_FOLLOW_LIST_DATA_STATUS:
+            var data = action.payload;
+
+            if (typeof data.page === 'number' && data.page >= 0) {
+                state = state.setIn(['myFollowListDataStatus', 'page'], data.page);
+            }
+
+            if (typeof data.isLast !== 'undefined' && typeof data.isLast === 'boolean') {
+                state = state.setIn(['myFollowListDataStatus', 'isLast'], data.isLast);
             }
 
             return state;

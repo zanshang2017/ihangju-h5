@@ -17,6 +17,7 @@ import {
     selectMyFollowLoading,
     selectMyFollowListLoading,
     selectMyFollowDataStatus,
+    selectMyFollowListDataStatus,
 } from './selectors';
 
 import styles from './styles.scss';
@@ -26,6 +27,7 @@ import {
     loadMyFollowListData,
     changeCurrentFollow,
     setMyFollowDataStatus,
+    setMyFollowListDataStatus,
 } from './actions';
 
 import TopListBar from 'components/FollowPage/TopListBar';
@@ -42,7 +44,6 @@ export class FollowPage extends React.Component { // eslint-disable-line react/p
     }
 
     loadMyFollow(page, currentFollow) {
-
         var currentFollow = currentFollow || null;
 
         if (!page) {
@@ -83,7 +84,8 @@ const mapStateToProps = createSelector(
     selectMyFollowLoading(),
     selectMyFollowListLoading(),
     selectMyFollowDataStatus(),
-    (myFollowData, myFollowListData, currentFollow, myFollowLoading, myFollowListLoading, selectMyFollowDataStatus) => {
+    selectMyFollowListDataStatus(),
+    (myFollowData, myFollowListData, currentFollow, myFollowLoading, myFollowListLoading, selectMyFollowDataStatus, selectMyFollowListDataStatus) => {
         return {
             myFollowData,
             myFollowListData,
@@ -91,6 +93,7 @@ const mapStateToProps = createSelector(
             myFollowLoading,
             myFollowListLoading,
             selectMyFollowDataStatus,
+            selectMyFollowListDataStatus,
         }
     }
 );
@@ -98,6 +101,17 @@ const mapStateToProps = createSelector(
 function mapDispatchToProps(dispatch) {
     return {
         loadMyFollowList: (page) => {
+            if (!page) {
+                dispatch(setMyFollowListDataStatus({
+                    page: 0,
+                    isLast: false
+                }));
+            } else {
+                dispatch(setMyFollowListDataStatus({
+                    page: page
+                }));
+            }
+
             dispatch(loadMyFollowListData(page || 0));
         },
         changeCurrentFollow: (data) => {
@@ -106,10 +120,18 @@ function mapDispatchToProps(dispatch) {
                 page: 0,
                 isLast: false
             }));
+            dispatch(setMyFollowListDataStatus({
+                page: 0,
+                isLast: false
+            }));
             dispatch(loadMyFollowData(0, 10, data.id, data.type));
         },
         dispatch
     };
 }
+
+FollowPage.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(FollowPage);

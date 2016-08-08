@@ -37,6 +37,11 @@ const selectMyFollowDataStatus = () => createSelector(
     (pageState) => pageState.get('myFollowDataStatus')
 );
 
+const selectMyFollowListDataStatus = () => createSelector(
+    selectFollowPageDomain(),
+    (pageState) => pageState.get('myFollowListDataStatus')
+);
+
 export default selectFollowPage;
 
 export {
@@ -47,4 +52,5 @@ export {
     selectMyFollowLoading,
     selectMyFollowListLoading,
     selectMyFollowDataStatus,
+    selectMyFollowListDataStatus,
 };

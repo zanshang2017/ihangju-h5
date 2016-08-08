@@ -68,5 +68,10 @@ export default class NoteEditor extends React.Component {
     }
 }
 
-NoteEditor.propTypes = {};
+NoteEditor.propTypes = {
+    saveNote: React.PropTypes.func,
+    deleteNote: React.PropTypes.func,
+    note: React.PropTypes.object,
+    noteContent: React.PropTypes.string,
+};
 

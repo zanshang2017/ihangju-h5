@@ -27,6 +27,8 @@ export default class NotePane extends React.Component {
     }
 }
 
-NotePane.propTypes = {};
+NotePane.propTypes = {
+    openNote: React.PropTypes.func,
+};
 
 

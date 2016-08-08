@@ -1,15 +1,44 @@
 import styles from './styles.scss';
 import React from 'react';
 
+import _ from 'underscore';
+
 /* eslint-disable react/prefer-stateless-function */
 export default class FollowList extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.scrollHanderBinded = null;
+        this.myFollowListPage = 0;
+    }
 
     componentDidMount() {
         var that = this;
 
-        // setTimeout(function () {
-        //     that.props.loadNextFollowListHandler();
-        // }, 3000);
+        //滑动底部加载下一页
+        that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 300, {leading: false});
+        this.refs.nFollowListWrap.addEventListener('scroll', that.scrollHanderBinded);
+    }
+
+    scrollHandler(e) {
+
+        // console.log('scroll')
+
+        // console.log('this.myFollowListLoading:' , this.props.myFollowListLoading,
+        //     'this.page:', this.page,
+        //     'this.isLast:', this.isLast);
+
+        var nWrap = this.refs.nFollowListWrap;
+        var nList = this.refs.nFollowList;
+
+        var nWrapH = nWrap.getBoundingClientRect().height;
+        var nListH = nList.getBoundingClientRect().height;
+        // console.log(nWrap.scrollTop, nWrapH, nWrap.scrollHeight);
+
+        if (nWrap.scrollTop + nWrapH >= nList.scrollHeight - 1 && !this.isLast && !this.props.myFollowListLoading) {
+            console.log('load: MyfollowList', this.page);
+            this.props.loadMyFollowList(this.page + 1);
+        }
     }
 
     changeCurrentHandler(e) {
@@ -21,16 +50,34 @@ export default class FollowList extends React.Component {
                 type: target.getAttribute('type') || null
             };
 
-            this.props.hideFollowList();
-
-            this.props.changeCurrentFollow(obj);
+            this.hideFollowList();
+            this.props.changeCurrentFollowHandler(obj);
 
             e.stopPropagation();
             e.preventDefault();
         }
     }
 
+    showFollowList() {
+        let nFollowListWrap = this.refs.nFollowListWrap;
+        if (!nFollowListWrap.style.height) {
+            nFollowListWrap.style.height = document.documentElement.clientHeight - document.getElementById("J_followPageTopListBar").getBoundingClientRect().height - document.getElementById('nav').clientHeight + 'px';
+        }
+        nFollowListWrap.classList.remove('hide');
+
+        this.myFollowListPage = 0;
+        this.props.loadMyFollowList(this.myFollowListPage);
+    }
+
+    hideFollowList() {
+        let nFollowListWrap = this.refs.nFollowListWrap;
+        nFollowListWrap.classList.add('hide');
+    }
+
     render() {
+        this.page = this.props.selectMyFollowListDataStatus.get('page');
+        this.isLast = this.props.selectMyFollowListDataStatus.get('isLast');
+
         let followTags = this.props.items['followTags'] || [];
         let followUsers = this.props.items['followUsers'] || [];
 
@@ -46,29 +93,33 @@ export default class FollowList extends React.Component {
         }
 
         return (
-            <div ref="nFollowListWrap" className={`${styles.wrap}`} onClick={this.changeCurrentHandler.bind(this)}>
-                <ul>
-                    <li key="-1" id="-1">全部关注</li>
-                </ul>
+            <div ref="nFollowListWrap" className={`${styles.listWrap} hide`}>
+                <div ref="nFollowList" className={`${styles.list}`}
+                     onClick={this.changeCurrentHandler.bind(this)}
+                     onScroll={this.scrollHanderBinded}>
+                    <ul>
+                        <li key="-1" id="-1">全部关注</li>
+                    </ul>
 
-                {tagTitle}
-                <ul>
-                    {
-                        followTags.map(function (item) {
-                            return <li key={item.id} id={item.id} type="tag">{item.name}</li>
-                        })
-                    }
-                </ul>
+                    {tagTitle}
+                    <ul>
+                        {
+                            followTags.map(function (item) {
+                                return <li key={item.id} id={item.id} type="tag">{item.name}</li>
+                            })
+                        }
+                    </ul>
 
-                {userTitle}
-                <ul>
-                    {
-                        followUsers.map(function (item) {
-                            return <li key={item.id} id={item.id} type="user">{item.name}</li>
-                        })
-                    }
-                </ul>
+                    {userTitle}
+                    <ul>
+                        {
+                            followUsers.map(function (item) {
+                                return <li key={item.id} id={item.id} type="user">{item.name}</li>
+                            })
+                        }
+                    </ul>
 
+                </div>
             </div>
         );
     }

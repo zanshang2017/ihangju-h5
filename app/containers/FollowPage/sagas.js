@@ -10,6 +10,7 @@ import {
     loadMyFollowListDataSuccess,
     loadMyFollowListDataError,
     setMyFollowDataStatus,
+    setMyFollowListDataStatus,
 } from 'containers/FollowPage/actions';
 
 import {
@@ -58,13 +59,11 @@ export function* getMyFollowData() {
         });
 
         if (lists.err === undefined || lists.err === null) {
-            // debugger;
             if (lists.data.result && lists.data.result.length > 0) {
                 yield put(loadMyFollowDataSuccess(lists.data, page));
             } else {
                 yield put(setMyFollowDataStatus({isLast: true}));
             }
-
         } else {
             console.log(lists.err.response); // eslint-disable-line no-console
             yield put(loadMyFollowDataError(lists.err));
@@ -97,7 +96,13 @@ export function* getMyFollowListData() {
         });
 
         if (lists.err === undefined || lists.err === null) {
-            yield put(loadMyFollowListDataSuccess(lists.data, page));
+            if (lists.data.result
+                && (lists.data.result.followUsers.length > 0
+                || lists.data.result.followTags.length > 0)) {
+                yield put(loadMyFollowListDataSuccess(lists.data, page));
+            } else {
+                yield put(setMyFollowListDataStatus({isLast: true}));
+            }
         } else {
             console.log(lists.err.response); // eslint-disable-line no-console
             yield put(loadMyFollowListDataError(lists.err));

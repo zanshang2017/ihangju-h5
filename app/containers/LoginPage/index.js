@@ -85,9 +85,7 @@ export default class LoginPage extends React.Component {
 }
 
 LoginPage.contextTypes = {
-    router: function contextType() {
-        return React.PropTypes.func.isRequired;
-    }
+    router: React.PropTypes.object.isRequired
 };
 
 function mapDispatchToProps(dispatch) {

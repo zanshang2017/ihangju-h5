@@ -140,9 +140,7 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
 }
 
 CreatePage.contextTypes = {
-    router: function contextType() {
-        return React.PropTypes.func.isRequired;
-    }
+    router: React.PropTypes.object.isRequired
 };
 
 const mapStateToProps = createSelector(

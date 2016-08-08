@@ -40,4 +40,12 @@ export default class NoteList extends React.Component {
     }
 }
 
-NoteList.propTypes = {};
+NoteList.propTypes = {
+    loadNoteList: React.PropTypes.func,
+    openNote: React.PropTypes.func,
+    notes: React.PropTypes.oneOfType([
+        React.PropTypes.array,
+        React.PropTypes.object,
+        React.PropTypes.bool,
+    ])
+};

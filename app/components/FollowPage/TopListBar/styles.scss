@@ -35,12 +35,3 @@
     }
 }
 
-.listWrap {
-    position: fixed;
-    top: $topBarHeight;
-    z-index: $zIndexL4;
-    width: 100%;
-    box-sizing: border-box;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-}

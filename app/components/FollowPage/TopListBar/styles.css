@@ -22,13 +22,4 @@
     color: #39bcc8;
     padding-left: 0.32rem; }
 
-.listWrap {
-  position: fixed;
-  top: 2.34667rem;
-  z-index: 999;
-  width: 100%;
-  box-sizing: border-box;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch; }
-
 /*# sourceMappingURL=styles.css.map */

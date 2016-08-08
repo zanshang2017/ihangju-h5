@@ -26,13 +26,13 @@ export var NO_EFFECT = {
     timeout: -1
 };
 
-//从右向左
+//左 <- 右
 export var FLIP_FORWARD = {
     className: 'flip-right2left',
     timeout: FLIP_TIMEOUT
 };
 
-//从左向右
+//左 -> 右
 export var FLIP_BACK = {
     className: 'flip-right2left' + reverseSign,
     timeout: FLIP_TIMEOUT
@@ -74,7 +74,7 @@ export var routeEffector = {
      *          - #flipRoute 切入效果，切入方向由是否由back键触发决定
      *          - #noEffectRoute 无效果
      */
-        autoSet() {
+    autoSet() {
         let hash = location.hash.toLowerCase();
 
         switch (hash) {
