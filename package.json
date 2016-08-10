@@ -42,7 +42,7 @@
   "pre-commit": "lint:staged",
   "babel": {
     "presets": [
-      "es2015-webpack",
+      ["es2015", {"modules": false}],
       "react",
       "stage-0"
     ],

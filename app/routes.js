@@ -32,6 +32,7 @@ var initedStatus = {
     tagDetailPage: false,
     myPage: false,
     demoPage: false,
+    detailpage : false,
 };
 
 export default function createRoutes(store) {
@@ -239,6 +240,18 @@ export default function createRoutes(store) {
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
             }
         }, {
+            path: '/detail',
+            name: 'detail',
+            getComponent(nextState, cb) {
+                System.import('containers/DetailPage')
+                    .then(loadModule(cb))
+                    .catch(errorLoading);
+            },
+            onEnter: function () {
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            }
+        }
+        , {
             path: '*',
             name: 'notfound',
             getComponent(nextState, cb) {
