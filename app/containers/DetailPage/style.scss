@@ -1,0 +1,27 @@
+@charset "UTF-8";
+@import "../../common/__global.scss";
+@import "../../common/__util.scss";
+div{
+	.catalog{
+		position: relative;
+		top:rem(22);
+		display: block;
+		width: rem(44);
+		height: rem(44);
+		background: url("https://o82zr1kfu.qnssl.com/@/image/57708837e4b0f076efd939b3.png") no-repeat;
+		background-size:cover;
+		float:left;
+		margin-right:rem(44);
+	}
+	.share{
+		position: relative;
+		top:rem(22);
+		display: block;
+		width: rem(44);
+		height: rem(44);
+		background: url("https://o82zr1kfu.qnssl.com/@/image/57708837e4b0f076efd939b3.png") no-repeat;
+		background-size:cover;
+		float:left;
+		background-position: rem(-88) 0px;
+	}
+}
