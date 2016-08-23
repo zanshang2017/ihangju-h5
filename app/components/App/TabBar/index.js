@@ -21,7 +21,7 @@ function TabBar(props) {
 
                 {/*<li><Link to={'/demo#fliproute'}><span className="follow"></span><strong>Demo</strong></Link></li>*/}
                 <li><Link to={'/bridgeTest'}><span className="follow"></span><strong>Bridge</strong></Link></li>
-                <li><Link to={'/detail'}><span className="follow"></span><strong>Detail</strong></Link></li>
+                <li><Link to={'/projectDetail/57a941f4e4b0ab2d4f0d14cd#fliproute'}><span className="follow"></span><strong>Detail</strong></Link></li>
                 {/*<li><a href="javascript:window.history.back();"><span className="follow"></span><strong>返回</strong></a></li>*/}
             </ul>
         </nav>

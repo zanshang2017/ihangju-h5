@@ -27,7 +27,6 @@ export default [
 ];
 
 export function* getMyFollowData() {
-
     let action = null;
 
     while (action = yield take(LOAD_MY_FOLLOW_DATA)) {

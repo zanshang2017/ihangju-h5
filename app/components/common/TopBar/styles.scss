@@ -13,6 +13,7 @@
     line-height: $topBarHeight;
     font-size: rem(30);
     background: $topBarBg;
+    z-index: $zIndexL3;
 }
 
 .back {

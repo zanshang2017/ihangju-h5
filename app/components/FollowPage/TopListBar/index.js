@@ -21,6 +21,7 @@ export default class TopListBar extends React.Component {
         nArrowClass.toggle('icon-up');
 
         if (nArrowClass.contains('icon-down')) {
+         
             this.refs.J_FollowList.hideFollowList();
         } else {
             this.refs.J_FollowList.showFollowList();
@@ -28,6 +29,7 @@ export default class TopListBar extends React.Component {
     }
 
     changeCurrentFollowHandler(data) {
+        debugger;
         this.toggleMyFollowListHandler();
         this.props.changeCurrentFollow(data);
 

@@ -1,0 +1,11 @@
+@charset 'UTF-8';
+@import '../../../common/__util.scss';
+@import '../../../common/__global.scss';
+
+.prodectIntro{
+	margin: rem(34) rem(48) rem(96);
+	font-size: rem(34);
+	color: $textColor;
+	line-height: rem(62);
+	white-space: pre-wrap;
+}

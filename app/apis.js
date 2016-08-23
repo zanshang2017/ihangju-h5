@@ -170,7 +170,13 @@ const NOTE_LIST_API = `//${api_domain}/user/notes`;
  */
 const NOTE_API = `//${api_domain}/note`;
 
-
+/*
+* 作品详情
+* 参数：
+*  id: projectId
+* http://192.168.1.33:8888/project/57a941f4e4b0ab2d4f0d14cd
+*/
+const PROJECTDETAIL_API = `//${api_domain}/project`
 export {
     IMG_CDN_PATH,
     THIRDPARTY_LOGIN_URL,
@@ -184,6 +190,8 @@ export {
     MY_FOLLOW_LIST_API,
 
     NOTE_LIST_API,
-    NOTE_API
+    NOTE_API,
+
+    PROJECTDETAIL_API
 };
 

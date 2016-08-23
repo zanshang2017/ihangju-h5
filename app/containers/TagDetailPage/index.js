@@ -22,6 +22,7 @@ export class TagDetailPage extends React.Component { // eslint-disable-line reac
     }
 
     componentDidMount() {
+        console.log(this.props.routeParams);
         if (this.props.routeParams) {
             var id = this.props.routeParams.id;
         }
