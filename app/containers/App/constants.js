@@ -10,11 +10,12 @@ export const SHOW_NAV = 'app/App/SHOW_NAV';
 export const HIDE_NAV = 'app/App/HIDE_NAV';
 export const LOGIN_SUCCESS = 'app/App/LOGIN_SUCCESS';
 
+export const SET_CUR_PAGE = 'app/App/SET_CUR_PAGE';
+export const SET_USER_INFO = 'app/App/SET_USER_INFO';
+
 export const LOAD_USER_INFO = 'app/LoginPage/LOAD_USER_INFO';
 export const LOAD_USER_INFO_SUCCESS = 'app/LoginPage/LOAD_USER_INFO_SUCCESS';
 export const LOAD_USER_INFO_ERROR = 'app/LoginPage/LOAD_USER_INFO_ERROR';
-
-export const SET_CUR_PAGE = 'app/LoginPage/SET_CUR_PAGE';
 
 export const PAGE_NAME = {
     FOLLOW_PAGE: 'followPage',

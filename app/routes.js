@@ -159,33 +159,6 @@ export default function createRoutes(store) {
                 store.dispatch(setCurPage(''));
             }
         }, {
-            path: '/tag/:id',
-            name: 'tagDetailPage',
-            getComponent(nextState, cb) {
-                const importModules = Promise.all([
-                    System.import('containers/TagDetailPage/reducer'),
-                    System.import('containers/TagDetailPage/sagas'),
-                    System.import('containers/TagDetailPage')
-                ]);
-
-                const renderRoute = loadModule(cb);
-
-                importModules.then(([reducer, sagas, component]) => {
-                    if (!initedStatus.tagDetailPage) {
-                        injectReducer('tagDetailPage', reducer.default);
-                        injectSagas(sagas.default);
-                        initedStatus.tagDetailPage = true;
-                    }
-
-                    renderRoute(component);
-                });
-
-                importModules.catch(errorLoading);
-            },
-            onEnter: function () {
-                routeEffector.autoSet(); //进入页面时设置路由切换效果
-            }
-        }, {
             path: '/my',
             name: 'myPage',
             getComponent(nextState, cb) {
@@ -213,6 +186,37 @@ export default function createRoutes(store) {
             onEnter: function () {
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
                 store.dispatch(setCurPage(PAGE_NAME.MY_PAGE));
+            },
+            onLeave: function () {
+                store.dispatch(setCurPage(''));
+            }
+        }, {
+            path: '/tag/:id',
+            name: 'tagDetailPage',
+            getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                    System.import('containers/TagDetailPage/reducer'),
+                    System.import('containers/TagDetailPage/sagas'),
+                    System.import('containers/TagDetailPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.tagDetailPage) {
+                        injectReducer('tagDetailPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.tagDetailPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+                store.dispatch(setCurPage(PAGE_NAME.FOUND_PAGE));
             },
             onLeave: function () {
                 store.dispatch(setCurPage(''));

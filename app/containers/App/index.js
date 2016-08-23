@@ -17,6 +17,10 @@ import {
 import {Env} from '../../utils/env.js';
 
 import {
+    setUserInfo
+} from './actions.js';
+
+import {
     selectGlobal,
     selectUserInfo,
     selectShowNav,
@@ -28,6 +32,10 @@ import {
 
 import '../../routes';
 import TabBar from 'components/App/TabBar';
+
+import {
+    locStorage
+} from 'utils/util';
 
 import styles from './style.scss';
 
@@ -43,14 +51,27 @@ export default class App extends React.Component {
     }
 
     componentWillMount() {
-        //todo 从本地缓存读取用户信息,如果没有,则请求后端获取。获取不到则说明没有登录
+        //获取保存的用户信息
+        var userInfo = null;
+
+        try {
+            userInfo = JSON.parse(locStorage.get('userInfo'));
+        } catch (e) {
+            alert(e);
+        }
+
+        alert(userInfo);
+
+        if (userInfo && userInfo.id) {
+            this.props.dispatch(setUserInfo(userInfo));
+        }
     }
 
     componentDidMount() {
 
-        if (Env.debug) {
-            openLog();
-        }
+        // if (Env.debug) {
+        openLog();
+        // }
 
         console.warn('App DidMount');
 
@@ -107,7 +128,7 @@ export default class App extends React.Component {
                     <a href="javascript:void(0);" className="btn" id="toggle">打开/关闭</a>
                     <div className="content"></div>
                 </div>
-                <TabBar showNav={this.props.showNav} curPage={this.props.curPage || ''} />
+                <TabBar showNav={this.props.showNav} curPage={this.props.curPage || ''}/>
             </div>
         );
     }
@@ -129,9 +150,11 @@ function openLog() {
         }
     });
 
-    //setInterval(function(){
-    //    nCont.innerHTML = Math.random() + '';
-    //}, 300);
+    setInterval(function () {
+        nCont.innerHTML = history.length + '\n' + history.state.key;
+
+        // nCont.innerHTML = Math.random() + '';
+    }, 2);
 
     return nCont;
 }

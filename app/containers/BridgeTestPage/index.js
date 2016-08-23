@@ -77,14 +77,14 @@ export default class BridgeTest extends React.Component {
         });
     }
 
-    //camera() {
-    //    bridge.sys.camera(function (data) {
-    //        //console.log(data.code, data.resp.substr(0, 100));
-    //        alert(data.resp.substr(0, 100));
-    //    });
-    //
-    //    //bridge.sys.camera();
-    //}
+    camera() {
+       bridge.sys.camera(function (data) {
+           //console.log(data.code, data.resp.substr(0, 100));
+           alert(data.resp.substr(0, 100));
+       });
+
+       //bridge.sys.camera();
+    }
 
     quit() {
         bridge.sys.quit(function (data) {

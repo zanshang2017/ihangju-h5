@@ -12,6 +12,7 @@ import {
     SHOW_NAV,
     HIDE_NAV,
     SET_CUR_PAGE,
+    SET_USER_INFO,
 
     LOAD_USER_INFO,
     LOAD_USER_INFO_SUCCESS,
@@ -37,6 +38,9 @@ function globalReducer(state = initialState, action = {}) {
 
         case SET_CUR_PAGE:
             return state.set('curPage', action.payload.pageName);
+
+        case SET_USER_INFO:
+            return state.set('userInfo', fromJS(action.payload.data));
 
         case LOAD_USER_INFO:
             return state;

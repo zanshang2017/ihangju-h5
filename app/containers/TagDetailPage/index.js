@@ -58,12 +58,12 @@ export class TagDetailPage extends React.Component { // eslint-disable-line reac
     }
 
     doEdit() {
-        console.log('do编辑');
+        // console.log('do编辑');
         this.props.dispatch(setEditing(true));
     }
 
     saveEdit() {
-        console.log('save编辑');
+        // console.log('save编辑');
         let desc = this.refs.J_TagDesc.getDesc();
         let image = this.props.detail.get('tag_image');
 
@@ -75,12 +75,12 @@ export class TagDetailPage extends React.Component { // eslint-disable-line reac
     }
 
     subTagHandler() {
-        console.log('关注');
+        // console.log('关注');
         this.props.dispatch(subTag(this.tagID));
     }
 
     cancelSubTagHandler() {
-        console.log('取消关注');
+        // console.log('取消关注');
         this.props.dispatch(cancelSubTag(this.tagID));
     }
 
@@ -90,7 +90,7 @@ export class TagDetailPage extends React.Component { // eslint-disable-line reac
     }
 
     loadRecommendationHandler(page = 0, size = 10) {
-        console.log('加载推荐标签', page, size);
+        // console.log('加载推荐标签', page, size);
 
         if (page == 0) {
             this.props.dispatch(setRecommendationListStatus({
@@ -107,7 +107,7 @@ export class TagDetailPage extends React.Component { // eslint-disable-line reac
     }
 
     loadAllHandler(page = 0, size = 10) {
-        console.log('加载全部标签', page, size);
+        // console.log('加载全部标签', page, size);
 
         if (page == 0) {
             this.props.dispatch(setProjectListStatus({
@@ -141,7 +141,7 @@ export class TagDetailPage extends React.Component { // eslint-disable-line reac
     }
 
     componentDidMount() {
-        console.warn('TagDetailPage DidMount', this.isAdmin, this.tagID);
+        // console.warn('TagDetailPage DidMount', this.isAdmin, this.tagID);
         this.props.dispatch(loadTagList(this.tagID));
     }
 
@@ -171,7 +171,7 @@ export class TagDetailPage extends React.Component { // eslint-disable-line reac
                     });
                 }
 
-                console.log('this.isAdmin:', this.isAdmin);
+                // console.log('this.isAdmin:', this.isAdmin);
 
                 if (this.isAdmin) {
                     this.loadRecommendationHandler();
@@ -189,14 +189,18 @@ export class TagDetailPage extends React.Component { // eslint-disable-line reac
                     this.topBarBtnHTML = <div onClick={this.doEdit.bind(this)}>编辑</div>
                 }
             } else {
-                //todo 非admin时的关注状态
+                if(this.detail.isFollow) {
+                    this.topBarBtnHTML = <div onClick={this.cancelSubTagHandler.bind(this)}>已关注</div>;
+                } else {
+                    this.topBarBtnHTML = <div onClick={this.subTagHandler.bind(this)}>关注</div>;
+                }
             }
 
         }
     }
 
     componentWillUnmount() {
-        console.warn('TagDetailPage willUnmount');
+        // console.warn('TagDetailPage willUnmount');
 
         this.topBarBtnHTML = '';
         this.detail = null;

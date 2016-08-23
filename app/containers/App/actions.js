@@ -19,6 +19,7 @@ import {
     LOAD_USER_INFO_ERROR,
 
     SET_CUR_PAGE,
+    SET_USER_INFO,
 
 } from './constants';
 
@@ -41,6 +42,17 @@ export function setCurPage(pageName) {
             pageName: pageName
         }
     }
+}
+
+export function setUserInfo(userInfo) {
+    let data = {
+        type: SET_USER_INFO,
+        payload: {
+            data: userInfo
+        }
+    };
+
+    return data;
 }
 
 export function loginSuccess(userToken) {
