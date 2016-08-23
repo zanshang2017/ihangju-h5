@@ -5,7 +5,21 @@
   padding: 1.81333rem 1.12rem;
   background: #fff;
   margin-bottom: 0.58667rem;
-  text-align: center; }
+  text-align: left; }
+  .articleListItem span.source {
+    font-size: 0.74667rem;
+    color: #a09e98;
+    display: inline-block;
+    margin-bottom: 0.48rem; }
+    .articleListItem span.source strong {
+      font-style: italic;
+      font-weight: normal;
+      color: #39bcc8; }
+  .articleListItem span.recommendationBtn {
+    font-size: 0.74667rem;
+    color: #39bcc8;
+    display: inline-block;
+    float: right; }
   .articleListItem h3 {
     max-height: 2.98667rem;
     font-size: 1.17333rem;
@@ -30,11 +44,6 @@
     justify-content: center;
     -webkit-align-items: flex-start;
     align-items: flex-start; }
-  .articleListItem span.author {
-    font-size: 0.74667rem;
-    color: #bcbab5;
-    display: inline-block;
-    margin-top: 0.48rem; }
   .articleListItem p {
     font-size: 0.85333rem;
     color: #383b3d;
@@ -45,7 +54,12 @@
     overflow: hidden; }
   .articleListItem div.info {
     margin-top: 1.2rem;
-    color: #bcbab5; }
+    color: #bcbab5;
+    font-size: 0.74667rem; }
+    .articleListItem div.info span {
+      margin-right: 0.53333rem; }
+      .articleListItem div.info span i {
+        color: #7b8f9d; }
   .articleListItem div.itemType {
     position: absolute;
     top: 0.69333rem;

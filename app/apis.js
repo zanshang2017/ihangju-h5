@@ -171,6 +171,100 @@ const NOTE_LIST_API = `//${api_domain}/user/notes`;
 const NOTE_API = `//${api_domain}/note`;
 
 
+/**
+ *
+ *  标签详情接口
+ *
+ *  路径: /tagID 获取标签的项目列表+带项目基本信息, 默认分页 page:0, size:10
+ *  路径: /tagID/recommdation/project 获取标签的推荐列表,带分页。
+ *
+ *  GET方法:获取标签信息,
+ *  响应:
+ *  {
+	"result": {
+	    "tag_name": "非虚构",
+		"extistAdminstrator": false,
+		"isFollow": true,
+		//对应标签下的项目
+		"projects": [{
+			"commentNumber": 1,
+			"image": "/image/56dd50f1e4b060f2db4e30ba.png?imageMogr2/thumbnail/!100p/crop/!288x380a0a0",
+			"modifyTime": 1470561050777,
+			"appreciateNumber": 0,
+			"authorName": "潘沫洁",
+			"description": "东汉末年，宦官与外戚势力的争斗，后宫争宠，妇人干政，三国雄起，历经四百年的大汉王朝，已无力挽狂澜之势，最终走向了灭亡。",
+			"browseNumber": 209,
+			"id": "579ed8c5e4b02e1710ac3a36",
+			"projectName": "汉锵锵 河汤汤",
+			"authorId": "579eca8ae4b02e1710ac37e0",
+			"likeNumber": 0,
+			"isRecommdationProject": false
+		},
+		... ],
+		"top": null,
+		//推荐的项目
+		"recommendation_projects": [
+		{
+			"commentNumber": 3,
+			"image": "/image/56dd50f1e4b060f2db4e30ba.png?imageMogr2/thumbnail/!100p/crop/!288x380a0a0",
+			"modifyTime": 1469371539724,
+			"appreciateNumber": 0,
+			"authorName": "贾周章",
+			"description": "",
+			"browseNumber": 633,
+			"id": "5794d326e4b0c19aad69d61d",
+			"projectName": "我与书店的故事",
+			"authorId": "57244839e4b0d50d21e993a9",
+			"likeNumber": 4
+		},
+		...	],
+		"attention_number": 968,
+		"tag_description": null,
+		"tagAdminstrators": [{
+			"name": "小行行",
+			"description": "行距小管家",
+			"id": "56ef9c3ae4b0bf20e0cb7ed2",
+			"avatar": "/image/5743b85fe4b00243fbd23456.jpg"
+		}],
+		"tag_managerment": false,
+		"tag_image": "/image/57909fd2e4b0e9e23ee080a8.jpg"
+	},
+	"code": "ok"
+}
+ *
+ *
+ * POST方法: 修改标签信息
+ *   数据: description=%BD%E5%A5%BD&image=/image/579af60ce4b02e1710abb71e.jpg
+ *
+ * PUT方法: 设置推荐作品
+ *  数据: projectids=xxxxxxxx
+ *
+ * DELETE方法:
+ *  url参数: ?projectids=57a2e568e4b081dc933f7334
+ *
+ */
+const TAG_API = `//${api_domain}/tags`;
+
+/**
+ *  标签订阅接口
+ *
+ *  路径: /tagID 订阅或取消订阅的id
+ *
+ *  restful:
+ *      PUT: 订阅
+ *      DELETE: 取消订阅
+ *
+ */
+const SUB_TAG_API = `//${api_domain}/subscription/tag`
+
+
+
+
+
+
+
+
+
 export {
     IMG_CDN_PATH,
     THIRDPARTY_LOGIN_URL,
@@ -184,6 +278,10 @@ export {
     MY_FOLLOW_LIST_API,
 
     NOTE_LIST_API,
-    NOTE_API
+    NOTE_API,
+
+    TAG_API,
+    SUB_TAG_API,
+
 };
 

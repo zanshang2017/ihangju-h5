@@ -28,6 +28,7 @@ export class DemoPage extends React.Component { // eslint-disable-line react/pre
 
     componentDidMount() {
         this.props.dispatch(loadList());
+        console.warn('DemoPage DidMount');
     }
 
     render() {

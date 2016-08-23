@@ -41,6 +41,7 @@ export class FollowPage extends React.Component { // eslint-disable-line react/p
     componentDidMount() {
         //首次加载数据，二次进入无须重复加载，用户可以手动刷新
         this.loadMyFollow();
+        console.warn('FollowPage DidMount');
     }
 
     loadMyFollow(page, currentFollow) {

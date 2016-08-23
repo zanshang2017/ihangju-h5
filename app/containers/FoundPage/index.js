@@ -5,9 +5,9 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import { createSelector } from 'reselect';
+import {connect} from 'react-redux';
+import {Link} from 'react-router';
+import {createSelector} from 'reselect';
 
 import {
     selectFoundPage,
@@ -24,31 +24,28 @@ import styles from './styles.scss';
 import Banner from 'components/FoundPage/Banner';
 import MainContent from 'components/FoundPage/MainContent';
 
-let hasInitLoaded = false;
-
 export class FoundPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
         super(props);
-        this.recommendationPage = 0;
     }
 
     componentWillMount() {
-        if (!hasInitLoaded) {
-            //首次加载数据，二次进入无须重复加载，用户可以手动刷新。
-            this.loadDiscoveries();
-            hasInitLoaded = true;
-        }
+        this.loadDiscoveries();
+    }
+
+    componentDidMount() {
+        console.warn('FoundPage DidMount');
     }
 
     loadDiscoveries() {
-        console.log('loadDis');
+        console.log('loadDiscoveries');
         this.props.dispatch(loadDiscoveriesData());
     }
 
-    loadRecommendation(page) {
-        this.props.dispatch(loadRecommendationData(page));
-    }
+    // loadRecommendation(page) {
+    //     this.props.dispatch(loadRecommendationData(page));
+    // }
 
     //loadNextRecommendation() {
     //    loadRecommendation(++this.recommendationPage);

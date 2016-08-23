@@ -6,7 +6,6 @@ import { convertDate } from '../../../utils/util.js';
 
 function ArticleListItem(props) {
     let item = props.item;
-
     let source = [];
 
     item.sources.forEach(function(v, k){
@@ -14,7 +13,6 @@ function ArticleListItem(props) {
     });
 
     let modifyTime = convertDate(item.modifyTime);
-
 
     //    {
     //        "commentNumber": 1,

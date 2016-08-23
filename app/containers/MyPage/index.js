@@ -5,12 +5,17 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import {connect} from 'react-redux';
+import {createSelector} from 'reselect';
 import selectMyPage from './selectors';
 import styles from './styles.css';
 
 export class MyPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+    componentDidMount() {
+        console.warn('MyPage DidMount');
+    }
+
     render() {
         return (
             <div className="pageInner">

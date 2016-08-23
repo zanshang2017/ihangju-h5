@@ -27,6 +27,7 @@ export default class LoginPage extends React.Component {
 
     componentDidMount() {
         window.addEventListener('message', this.loginHandlerFactory());
+        console.warn('LoginPage DidMount');
     }
 
     componentWillUnmount() {

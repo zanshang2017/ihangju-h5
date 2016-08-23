@@ -18,6 +18,8 @@ import {
     LOAD_USER_INFO_SUCCESS,
     LOAD_USER_INFO_ERROR,
 
+    SET_CUR_PAGE,
+
 } from './constants';
 
 export function showNav() {
@@ -29,6 +31,15 @@ export function showNav() {
 export function hideNav() {
     return {
         type: HIDE_NAV
+    }
+}
+
+export function setCurPage(pageName) {
+    return {
+        type: SET_CUR_PAGE,
+        payload: {
+            pageName: pageName
+        }
     }
 }
 

@@ -3,7 +3,7 @@
 @import "../../../common/_util";
 
 .tabBar {
-    opacity: .7; // todo  delete
+    //opacity: .7; // todo  delete
     position: fixed;
     bottom: 0;
     left: 0;
@@ -13,14 +13,14 @@
     z-index: $zIndexL1;
     font-size: 14px;
     background: #fff;
-    border-top:1px solid $navBorderColor;
+    border-top: 1px solid $navBorderColor;
 
     ul {
         display: -webkit-box;
 
         li {
             -webkit-box-flex: 1;
-            padding:0 rem(20);
+            padding: 0 rem(20);
 
             a {
                 position: relative;
@@ -30,7 +30,7 @@
                 -webkit-box-orient: vertical;
                 color: $titleColor;
                 font-size: rem(24);
-                padding-top:rem(15);
+                padding-top: rem(12);
 
                 strong {
                     font-weight: normal;
@@ -41,10 +41,10 @@
                     height: rem(44);
                     width: rem(44);
                     opacity: 1;
-                    margin-bottom: rem(8);
+                    margin-bottom: rem(6);
                     background-repeat: no-repeat;
                     background-image: url("https://o82zr1kfu.qnssl.com/@/image/57708837e4b0f076efd939b3.png");
-                    background-size:cover;
+                    background-size: cover;
 
                     &.found {
                         background-position: 0 0;
@@ -61,18 +61,50 @@
                     &.write {
                         background-position: rem(-264) 0px;
                     }
-
                 }
-
-
-
             }
         }
+    }
 
+    &.followPage {
+        .follow {
+            background-position: rem(-132) 0px;
+            +strong {
+                color: $linkColor;
+            }
+        }
+    }
+
+
+    &.foundPage {
+        .found {
+            background-position: rem(-44) 0;
+            +strong {
+                color: $linkColor;
+            }
+        }
+    }
+
+
+    &.createPage {
+        .write {
+            background-position: rem(-308) 0px;
+            +strong {
+                color: $linkColor;
+            }
+        }
+    }
+
+    &.myPage {
+        .my {
+            background-position: rem(-220) 0px;
+            +strong {
+                color: $linkColor;
+            }
+        }
     }
 
 }
-
 
 //
 //.icon-common_tab_find_n@2x {

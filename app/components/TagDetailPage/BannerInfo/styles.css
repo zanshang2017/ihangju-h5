@@ -34,5 +34,10 @@
     width: 20rem;
     height: 9.76rem;
     z-index: -1; }
+  .bannerInfo .editBannerImage {
+    font-size: 0.74667rem;
+    position: absolute;
+    right: 0.74667rem;
+    bottom: 0.74667rem; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -1,5 +1,4 @@
 .tabBar {
-  opacity: .7;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -23,7 +22,7 @@
         -webkit-box-orient: vertical;
         color: #7b8f9d;
         font-size: 0.64rem;
-        padding-top: 0.4rem; }
+        padding-top: 0.32rem; }
         .tabBar ul li a strong {
           font-weight: normal; }
         .tabBar ul li a span {
@@ -31,7 +30,7 @@
           height: 1.17333rem;
           width: 1.17333rem;
           opacity: 1;
-          margin-bottom: 0.21333rem;
+          margin-bottom: 0.16rem;
           background-repeat: no-repeat;
           background-image: url("https://o82zr1kfu.qnssl.com/@/image/57708837e4b0f076efd939b3.png");
           background-size: cover; }
@@ -43,5 +42,21 @@
             background-position: -4.69333rem 0px; }
           .tabBar ul li a span.write {
             background-position: -7.04rem 0px; }
+  .tabBar.followPage .follow {
+    background-position: -3.52rem 0px; }
+    .tabBar.followPage .follow + strong {
+      color: #39bcc8; }
+  .tabBar.foundPage .found {
+    background-position: -1.17333rem 0; }
+    .tabBar.foundPage .found + strong {
+      color: #39bcc8; }
+  .tabBar.createPage .write {
+    background-position: -8.21333rem 0px; }
+    .tabBar.createPage .write + strong {
+      color: #39bcc8; }
+  .tabBar.myPage .my {
+    background-position: -5.86667rem 0px; }
+    .tabBar.myPage .my + strong {
+      color: #39bcc8; }
 
 /*# sourceMappingURL=styles.css.map */

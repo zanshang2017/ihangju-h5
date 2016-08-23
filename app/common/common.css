@@ -4,6 +4,8 @@
   /*定位*/
   /*长度高度*/
   /*边距*/ }
+  :global a {
+    display: inline-block; }
   :global .clearfix:after {
     content: ".";
     display: block;
@@ -41,6 +43,8 @@
     display: none; }
   :global .blockGap {
     margin-bottom: 0.53333rem; }
+  :global .hover {
+    background: #f3f5f4 !important; }
   :global .f12 {
     font-size: 0.32rem; }
   :global .f13 {

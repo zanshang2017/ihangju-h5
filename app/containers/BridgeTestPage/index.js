@@ -124,25 +124,32 @@ export default class BridgeTest extends React.Component {
                 <p>
                     <button onTouchStart={this.qrReader}>二维码</button>
                 </p>
+                <p><br/></p>
                 <p>
                     <button onClick={this.camera}>照相机</button>
                 </p>
+                <p><br/></p>
                 <p>
                     <button id="cameraBtn">拍照</button>
-                    <input type="file" capture id="cameraFile" style={fileStyle} />
+                    <input type="file" accept="image/*" capture="camera" id="cameraFile" style={fileStyle} />
                 </p>
+                <p><br/></p>
                 <p>
                     <button onClick={this.quit}>退出</button>
                 </p>
+                <p><br/></p>
                 <p>
                     <button onClick={this.weibo}>微博</button>
                 </p>
+                <p><br/></p>
                 <p>
                     <button onClick={this.wechat}>微信</button>
                 </p>
+                <p><br/></p>
                 <p>
                     <button onClick={this.wechatTimeline}>朋友圈</button>
                 </p>
+                <p><br/></p>
                 <img src="about:blank" alt="" id="showImg" width="100%" />
             </div>
         );

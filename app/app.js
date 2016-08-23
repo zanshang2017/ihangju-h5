@@ -5,9 +5,9 @@
 
 import 'babel-polyfill';
 
-import 'antd/dist/antd.css';
-import 'sanitize.css/lib/sanitize.css';
 import 'common/common.scss';
+import 'sanitize.css/lib/sanitize.css';
+import 'antd/dist/antd.css';
 
 import { Env } from './utils/env.js';
 
@@ -29,6 +29,8 @@ import { fromJS } from 'immutable';
 //console.log('Env', Env);
 
 const initialState = {};
+
+// React.initializeTouchEvents && React.initializeTouchEvents(true);
 
 const store = configureStore(initialState, browserHistory);
 

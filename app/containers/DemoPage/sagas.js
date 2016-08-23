@@ -9,6 +9,7 @@ import 'babel-polyfill';
 /* eslint-disable no-constant-condition */
 
 import { take, call, put, select } from 'redux-saga/effects';
+import { takeEvery } from 'redux-saga';
 import { LOADLIST } from 'containers/DemoPage/constants';
 import { loadListSuccess, loadListError } from 'containers/DemoPage/actions';
 
@@ -23,6 +24,7 @@ export function* getGithubData() {
     //利用generator实现异步
 
     yield take(LOADLIST); //关注的action
+    // yield* takeEvery(LOADLIST); //关注的action
     const requestURL = 'https://api.github.com/users/jeresig/repos?type=all&sort=updated';
 
     //发起请求
