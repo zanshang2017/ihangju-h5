@@ -60,7 +60,7 @@ export default class App extends React.Component {
             alert(e);
         }
 
-        alert(userInfo);
+        // alert(userInfo);
 
         if (userInfo && userInfo.id) {
             this.props.dispatch(setUserInfo(userInfo));
