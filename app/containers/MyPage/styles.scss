@@ -2,8 +2,23 @@
 @import "../../common/__global.scss";
 @import "../../common/__util.scss";
 
-.myPage {
-    width: 100%;
+.listWrap {
+    padding: rem(10) 0;
+    color: $weakerTitleColor !important;
+
+    i {
+        padding-right: rem(26);
+        font-size: rem(36);
+    }
 }
+
+.iconColored {
+    color: $linkColor !important;
+}
+
+.weakText {
+    color: $weakerTitleColor !important;
+}
+
 
 

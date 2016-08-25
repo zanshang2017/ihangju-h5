@@ -60,8 +60,6 @@ export default class App extends React.Component {
             alert(e);
         }
 
-        // alert(userInfo);
-
         if (userInfo && userInfo.id) {
             this.props.dispatch(setUserInfo(userInfo));
         }
@@ -69,9 +67,9 @@ export default class App extends React.Component {
 
     componentDidMount() {
 
-        // if (Env.debug) {
-        openLog();
-        // }
+        if (Env.debug) {
+            openLog();
+        }
 
         console.warn('App DidMount');
 
@@ -124,7 +122,7 @@ export default class App extends React.Component {
                         })}
                     </ReactCSSTransitionGroup>
                 </div>
-                <div id="logPanel" className="logPanel hide unfold">
+                <div id="logPanel" className="logPanel none unfold">
                     <a href="javascript:void(0);" className="btn" id="toggle">打开/关闭</a>
                     <div className="content"></div>
                 </div>

@@ -39,9 +39,7 @@ import NoteEditor from 'components/CreatePage/NoteEditor';
 
 import styles from './styles.scss';
 
-import {
-    Tabs
-} from 'antd';
+import Tabs from 'antd-mobile/lib/tabs';
 
 const TabPane = Tabs.TabPane;
 

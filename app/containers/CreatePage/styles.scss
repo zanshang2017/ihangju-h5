@@ -5,6 +5,38 @@
 :global {
     .createPage {
 
+        .am-tab {
+            overflow: visible; //for position:sticky
+            padding-top: rem(30);
+
+            .am-tab-bar {
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            &.am-tab-line .am-tab-bar:after {
+                border: none;
+            }
+
+            .am-tab-nav {
+                .am-tab-tab {
+                    margin: 0 40px;
+                }
+            }
+
+            .am-tab-tab-inner {
+                color: $linkColor !important;
+            }
+
+            .am-tab-ink-bar {
+                width: rem(140) !important;
+                background-color: $linkColor !important;
+                //border-width: 0 65px;
+                //border-color: #fff;
+            }
+
+        }
+
         .ant-tabs {
             overflow: visible; //for position:sticky
 

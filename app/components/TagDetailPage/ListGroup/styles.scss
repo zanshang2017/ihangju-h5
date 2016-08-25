@@ -5,6 +5,16 @@
 :global {
     .tagDetailPageListGroup {
 
+        .am-tab {
+
+            .am-tab-content {
+                padding: 0 !important;
+            }
+
+        }
+
+
+
         .ant-tabs {
             overflow: visible; //for position:sticky
         }

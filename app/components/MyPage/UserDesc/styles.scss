@@ -1,0 +1,44 @@
+@charset "UTF-8";
+@import "../../../common/_global.scss";
+@import "../../../common/_util.scss";
+
+.descWrap {
+    padding: rem(40) 0;
+    @include flexBox();
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    -ms-flex-pack: center;
+    justify-content: flex-start;
+
+    .image {
+        img {
+            width:rem(120);
+            height:rem(120);
+            border-radius: rem(8);
+        }
+    }
+}
+
+.info {
+    @include flexBox();
+    display: block;
+    width:100%;
+    padding-left: rem(24);
+    height: rem(120);
+}
+
+.username {
+    color: $textColor;
+    font-size: rem(32);
+}
+
+.intro {
+    white-space: normal;
+    color: $weakTitleColor;
+    padding-top: rem(8);
+    font-size: rem(20);
+    line-height: 1.4em;
+    max-height: 2.8em;
+    overflow:hidden;
+}
+

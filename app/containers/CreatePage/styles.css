@@ -1,3 +1,18 @@
+:global .createPage .am-tab {
+  overflow: visible;
+  padding-top: 0.8rem; }
+  :global .createPage .am-tab .am-tab-bar {
+    width: 80%;
+    margin: 0 auto; }
+  :global .createPage .am-tab.am-tab-line .am-tab-bar:after {
+    border: none; }
+  :global .createPage .am-tab .am-tab-nav .am-tab-tab {
+    margin: 0 40px; }
+  :global .createPage .am-tab .am-tab-tab-inner {
+    color: #39bcc8 !important; }
+  :global .createPage .am-tab .am-tab-ink-bar {
+    width: 3.73333rem !important;
+    background-color: #39bcc8 !important; }
 :global .createPage .ant-tabs {
   overflow: visible; }
   :global .createPage .ant-tabs .ant-tabs-bar {

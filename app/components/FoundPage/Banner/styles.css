@@ -7,23 +7,25 @@
     width: 20rem;
     height: 8rem; }
 
-:global .ant-carousel .slick-dots li {
-  height: 1.2rem;
-  width: 1.2rem;
-  margin: 0; }
-  :global .ant-carousel .slick-dots li button {
+:global .am-carousel .slick-dots {
+  bottom: 0; }
+  :global .am-carousel .slick-dots li {
     height: 1.2rem;
     width: 1.2rem;
-    padding: 0; }
-  :global .ant-carousel .slick-dots li button:before {
-    font-size: 1.6rem;
-    color: #ccc;
-    opacity: .4;
-    position: static; }
-  :global .ant-carousel .slick-dots li.slick-active button:before {
-    color: #fff;
-    opacity: 0.95; }
-:global .ant-carousel .slick-slider {
+    margin: 0; }
+    :global .am-carousel .slick-dots li button {
+      height: 1.2rem;
+      width: 1.2rem;
+      padding: 0; }
+    :global .am-carousel .slick-dots li button:before {
+      font-size: 1.6rem;
+      color: #ccc;
+      opacity: .4;
+      position: static; }
+    :global .am-carousel .slick-dots li.slick-active button:before {
+      color: #fff !important;
+      opacity: 0.95; }
+:global .am-carousel .slick-slider {
   padding-bottom: 0 !important; }
 
 /*# sourceMappingURL=styles.css.map */

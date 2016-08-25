@@ -17,8 +17,10 @@
 
 //覆盖antd样式
 :global {
-    .ant-carousel {
+    .am-carousel {
         .slick-dots {
+            bottom: 0;
+
             li {
                 height: rem(45);
                 width: rem(45);
@@ -38,7 +40,7 @@
                 }
 
                 &.slick-active button:before {
-                    color: #fff;
+                    color: #fff !important;
                     opacity: 0.95;
                 }
             }

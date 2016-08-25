@@ -90,6 +90,39 @@ const CONFIRM_EDITOR_API = `//${api_domain}/confirm/editor`;
  */
 const USER_INFO_API = `//${api_domain}/user/me`;
 
+
+/**
+ * 获取用户中心(MyPage)页数据
+ {
+ "result": {
+     "tagmanagements": [{
+         "name": "收获",
+         "id": "5721c865e4b0d50d21e8ea6b",
+         "notify_count": 5
+     }],
+     "managermentTagNumber": 1,
+     "hasidentityauthentication": true,
+     "collectionCount": 16,
+     "identityauthenticationtype": "agency",
+     "userinformation": {
+         "name": "门神4",
+         "description": "《收获》小门审",
+         "id": "571dab71e4b0d50d21e7a9fc",
+         "avatar": "/image/571df9f4e4b00659abde343d.jpg"
+     },
+     "notifications": {
+         "comment_notify_count": 0,
+         "letter_notify_count": 0,
+         "discuss_notify_count": 0
+     },
+     "identityauthenticationstatus": "review"
+ },
+ "code": "ok"
+}
+ */
+const USER_CENTER_API = `//${api_domain}/user/center`;
+
+
 /**
  * 灵感记录列表
  *
@@ -162,9 +195,9 @@ const NOTE_LIST_API = `//${api_domain}/user/notes`;
     }
 
 
-   PUT响应: 同POST.
+ PUT响应: 同POST.
 
-   DELETE响应:同POST.
+ DELETE响应:同POST.
  *
  *
  */
@@ -258,17 +291,11 @@ const TAG_API = `//${api_domain}/tags`;
 const SUB_TAG_API = `//${api_domain}/subscription/tag`
 
 
-
-
-
-
-
-
-
 export {
     IMG_CDN_PATH,
     THIRDPARTY_LOGIN_URL,
     USER_INFO_API,
+    USER_CENTER_API,
     CONFIRM_EDITOR_API,
 
     DISCOVERIES_API,

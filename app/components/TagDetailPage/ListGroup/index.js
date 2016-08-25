@@ -10,9 +10,7 @@ import {
     recommendationProject,
 } from 'containers/TagDetailPage/actions';
 
-import {
-    Tabs
-} from 'antd';
+import Tabs from 'antd-mobile/lib/tabs';
 
 const TabPane = Tabs.TabPane;
 
@@ -24,7 +22,6 @@ let nList = null,
 class ListGroup extends React.Component {
 
     constructor(props) {
-        console.error('ListGroup constructor');
         super(props);
 
         nList = null;
