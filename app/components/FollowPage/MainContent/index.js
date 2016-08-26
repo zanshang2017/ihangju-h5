@@ -32,7 +32,7 @@ class MainContent extends React.Component {
 
     componentDidUpdate() {
         //goTop
-        if(this.page == 0) {
+        if (this.page == 0) {
             var nWrap = this.refs.J_FollowPageMainContentWrap;
             nWrap.scrollTop = 0;
         }
@@ -49,7 +49,7 @@ class MainContent extends React.Component {
 
     scrollHandler(e) {
 
-        console.log('this.myFollowLoading:' , this.props.myFollowLoading,
+        console.log('this.myFollowLoading:', this.props.myFollowLoading,
             'this.page:', this.page,
             'this.isLast:', this.isLast);
 
@@ -64,15 +64,22 @@ class MainContent extends React.Component {
     }
 
     render() {
-        this.page = this.props.selectMyFollowDataStatus.get('page');
-        this.isLast = this.props.selectMyFollowDataStatus.get('isLast');
+        this.page = this.props.selectMyFollowDataStatus.get('page') || 0;
+        this.isLast = this.props.selectMyFollowDataStatus.get('isLast') || false;
 
-        var articles = this.props.myFollowData ? this.props.myFollowData.toJS() : [];
+        let articles = this.props.myFollowData ? this.props.myFollowData.toJS() : [];
+        let list = '';
+
+        if (this.page == 0 && articles.length == 0) {
+            list = <div>暂无文章</div>
+        } else {
+            list = <ArticleList items={articles}/>
+        }
 
         return (
             <div id="J_FollowPageMainContentWrap" ref="J_FollowPageMainContentWrap"
                  className={`${styles.followPageMainContent} hasTopBar`}>
-                <ArticleList items={articles}/>
+                {list}
             </div>
         );
     }

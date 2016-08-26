@@ -56,9 +56,9 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
     }
 
     componentDidMount() {
-        console.log('#### did createpage');
         this.nMainContent = this.refs.J_MainContentWrap;
         this.J_EditorWrap = this.refs.J_EditorWrap;
+        console.warn('CreatePage DidMount');
     }
 
     openNoteHandler(id) {

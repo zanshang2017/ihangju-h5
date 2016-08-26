@@ -9,7 +9,7 @@
     padding: rem(68) rem(42);
     background: #fff;
     margin-bottom: rem(22);
-    text-align: center;
+    text-align: left;
 
     span.source {
         font-size: rem(28);
@@ -22,7 +22,6 @@
             font-weight: normal;
             color: $linkColor;
         }
-
     }
 
     h3 {
@@ -42,7 +41,7 @@
         color: $textColor;
         margin-top: rem(33);
         line-height: 1.6em;
-        max-height:rem(138);
+        max-height:rem(150);
         text-align:left;
         overflow:hidden;
     }

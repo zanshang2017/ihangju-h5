@@ -44,7 +44,7 @@ export default class DetailPage extends React.Component {
   }
 }
 
-const projectDetail = createSelector(
+const mapStateToProps = createSelector(
     selectDetailResult(),
     selectDetailProjectChapter(),
     (projectDetail, projectDetailChapter) => {
@@ -68,4 +68,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(projectDetail, mapDispatchToProps)(DetailPage);
+export default connect(mapStateToProps, mapDispatchToProps)(DetailPage);

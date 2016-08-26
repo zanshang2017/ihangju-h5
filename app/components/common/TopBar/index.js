@@ -2,7 +2,6 @@ import styles from './styles.css';
 import React from 'react';
 import {Link} from 'react-router';
 
-
 /* eslint-disable react/prefer-stateless-function */
 export default class TopBar extends React.Component {
 

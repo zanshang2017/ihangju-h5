@@ -12,6 +12,12 @@
     color: $titleColor;
     font-size: rem(28);
     line-height: rem(40);
+
+    textarea {
+        width: 100%;
+        height: rem(60);
+    }
+
 }
 
 

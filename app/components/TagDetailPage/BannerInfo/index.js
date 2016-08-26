@@ -6,33 +6,73 @@ import {
     IMG_CDN_PATH
 } from '../../../apis.js';
 
-function BannerInfo(props) {
+export class BannerInfo extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
-    //if (!props.items) {
-    //    return <div className={styles.bannerDesc}></div>;
-    //}
+    constructor(props) {
+        super(props);
+    }
 
-    let imageSrc = IMG_CDN_PATH + '/image/578d9219e4b06674859033d4.jpg';
+    showImageSelector() {
+        let _file = this.refs.J_CameraFile;
+        _file.dispatchEvent(new MouseEvent('click'));
+    }
 
-    let wrapStyle = {
-        background: 'url(' + imageSrc + ') left top no-repeat'
-    };
+    render() {
+        let browseHTML = <div className={styles.bannerInfo}></div>;
 
-    let followText = <span className={styles.followed}><i className="iconfont icon-check"></i>已关注</span>; //<span>关注</span>
+        if (this.props.detail) {
+            let detail = this.props.detail;
+            let _image = IMG_CDN_PATH + detail.tag_image;
 
-    let browseHTML = <div className={styles.bannerInfo} style={wrapStyle}>
-                        <div className={styles.title}>收获</div>
-                        <div className={styles.follow}>9999999人 已关注</div>
-                        <div className={styles.followBtn}>{followText}</div>
-                    </div>;
+            let wrapStyle = {
+                background: 'url(' + _image + ') left top no-repeat',
+                backgroundSize: 'cover'
+            };
 
-    return (
-        browseHTML
-    );
+            let followText = '';
+            let editBannerImage = '';
+
+            if (detail.isFollow) {
+                followText =
+                    <div className={styles.followBtn} onClick={this.props.cancelSubTagHandler}><span
+                        className={styles.followed}><i
+                        className="iconfont icon-check"></i>已关注</span></div>;
+            } else {
+                followText =
+                    <div className={styles.followBtn} onClick={this.props.subTagHandler}><span
+                        className={styles.followed}>关注</span></div>;
+            }
+
+            if (this.props.isEditing) {
+                editBannerImage = <div className={styles.editBannerImage} onClick={this.showImageSelector.bind(this)}>
+                    更换图片
+                    <input type="file" ref="J_CameraFile" accept="image/*" capture="camera" id="cameraFile"
+                           className="hide"/>
+                </div>;
+            }
+
+            browseHTML = <div className={styles.bannerInfo} style={wrapStyle}>
+                <div className={styles.title}>{detail.tag_name}</div>
+                <div className={styles.follow}>{detail.attention_number}人 已关注</div>
+                {followText}
+                {editBannerImage}
+            </div>;
+        }
+
+        return (
+            browseHTML
+        )
+
+    }
+
+
 }
 
 BannerInfo.propTypes = {
-    //info: React.PropTypes.object
+    detail: React.PropTypes.object,
+    subTagHandler: React.PropTypes.func,
+    cancelSubTagHandler: React.PropTypes.func,
+    editBannerImageHandler: React.PropTypes.func
 };
 
 export default BannerInfo;

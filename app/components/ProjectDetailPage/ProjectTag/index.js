@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import style from './style.css';
 import {
 	IMG_CDN_PATH
@@ -21,7 +22,7 @@ function ProjectTag(props){
 			<ul>
 				{tagList}
 			</ul>
-			<img className={style.readImg} src={readImgsrc} />
+			<Link to={'/readProjectChapter/57a941f4e4b0ab2d4f0d14cd/57a94289e4b0ab2d4f0d1507'}><img className={style.readImg} src={readImgsrc} /></Link>
 		</div>
 	);
 }

@@ -5,7 +5,7 @@
   padding: 1.81333rem 1.12rem;
   background: #fff;
   margin-bottom: 0.58667rem;
-  text-align: center; }
+  text-align: left; }
   .articleListItem span.source {
     font-size: 0.74667rem;
     color: #a09e98;
@@ -44,7 +44,7 @@
     color: #383b3d;
     margin-top: 0.88rem;
     line-height: 1.6em;
-    max-height: 3.68rem;
+    max-height: 4rem;
     text-align: left;
     overflow: hidden; }
   .articleListItem div.info {

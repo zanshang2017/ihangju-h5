@@ -18,6 +18,9 @@ import {
     LOAD_USER_INFO_SUCCESS,
     LOAD_USER_INFO_ERROR,
 
+    SET_CUR_PAGE,
+    SET_USER_INFO,
+
 } from './constants';
 
 export function showNav() {
@@ -30,6 +33,26 @@ export function hideNav() {
     return {
         type: HIDE_NAV
     }
+}
+
+export function setCurPage(pageName) {
+    return {
+        type: SET_CUR_PAGE,
+        payload: {
+            pageName: pageName
+        }
+    }
+}
+
+export function setUserInfo(userInfo) {
+    let data = {
+        type: SET_USER_INFO,
+        payload: {
+            data: userInfo
+        }
+    };
+
+    return data;
 }
 
 export function loginSuccess(userToken) {

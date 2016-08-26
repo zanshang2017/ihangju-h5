@@ -2,23 +2,32 @@ import React from 'react';
 
 import styles from './styles.css';
 
-function TagDesc(props) {
+export class TagDesc extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
-    //if (!props.items) {
-    //    return <div className={styles.bannerDesc}></div>;
-    //}
+    getDesc() {
+        return this.refs.J_DescTextarea.value;
+    }
 
-    let desc = '《收获》是1957年7月创办的一份。《收获》是1957年7月创办的一份。《收获》是1957年7月创办的一份。《收获》是1957年7月创办的一份。《收获》是1957年7月创办的一份。';
+    render() {
 
-    let browseHTML = <div className={`${styles.tagDesc} blockGap`}>
-                        {desc}
-                    </div>;
+        let _desc = this.props.description || '';
+        let _html = '';
 
-    let editHTML = '';
+        if (this.props.isEditing) {
+            _html = <div className={`${styles.tagDesc} blockGap`}>
+                <textarea ref="J_DescTextarea" defaultValue={_desc}></textarea>
+            </div>;
+        } else {
+            _html = <div className={`${styles.tagDesc} blockGap`}>
+                {_desc}
+            </div>;
+        }
 
-    return (
-        browseHTML
-    );
+        return (
+            _html
+        )
+    }
+
 }
 
 TagDesc.propTypes = {

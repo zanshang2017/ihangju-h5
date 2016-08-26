@@ -16,6 +16,11 @@ const selectShowNav = () => createSelector(
     (globalState) => globalState.get('showNav')
 );
 
+const selectCurPage = () => createSelector(
+    selectGlobal(),
+    (globalState) => globalState.get('curPage')
+);
+
 const selectLoading = () => createSelector(
     selectGlobal(),
     (globalState) => globalState.get('loading')
@@ -46,6 +51,7 @@ export {
     selectGlobal,
     selectUserInfo,
     selectShowNav,
+    selectCurPage,
     selectLoading,
     selectError,
     selectLocationState,

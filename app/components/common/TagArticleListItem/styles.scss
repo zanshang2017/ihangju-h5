@@ -9,7 +9,27 @@
     padding: rem(68) rem(42);
     background: #fff;
     margin-bottom: rem(22);
-    text-align: center;
+    text-align: left;
+
+    span.source {
+        font-size: rem(28);
+        color: $weakerTitleColor;
+        display: inline-block;
+        margin-bottom: rem(18);
+
+        strong {
+            font-style: italic;
+            font-weight: normal;
+            color: $linkColor;
+        }
+    }
+
+    span.recommendationBtn {
+        font-size: rem(28);
+        color: $linkColor;
+        display: inline-block;
+        float: right;
+    }
 
     h3 {
         max-height: rem(112);
@@ -23,19 +43,12 @@
         align-items: flex-start;
     }
 
-    span.author {
-        font-size: rem(28);
-        color: $weakTextColor;
-        display: inline-block;
-        margin-top: rem(18);
-    }
-
     p {
         font-size: rem(32);
         color: $textColor;
         margin-top: rem(33);
         line-height: 1.6em;
-        max-height:rem(138);
+        max-height:rem(150);
         text-align:left;
         overflow:hidden;
     }
@@ -43,6 +56,16 @@
     div.info {
         margin-top: rem(45);
         color: $weakTextColor;
+        font-size: rem(28);
+
+        span {
+            margin-right: rem(20);
+
+            i {
+                color: $titleColor;
+            }
+        }
+
     }
 
     div.itemType {

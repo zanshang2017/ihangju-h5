@@ -58,7 +58,7 @@ export function* getMyFollowData() {
         });
 
         if (lists.err === undefined || lists.err === null) {
-            if (lists.data.result && lists.data.result.length > 0) {
+            if (lists.data.result) {
                 yield put(loadMyFollowDataSuccess(lists.data, page));
             } else {
                 yield put(setMyFollowDataStatus({isLast: true}));

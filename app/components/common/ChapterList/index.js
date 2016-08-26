@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './style.css';
+import { Link } from 'react-router';
 
 class ChapterList extends React.Component{
 	constructor(props) {
@@ -16,11 +17,12 @@ class ChapterList extends React.Component{
 	render() {
 		var _chapterMes = this.props.items.toJS();
 		var _chapterList = '';
+		console.log(_chapterMes)
 		if(!_chapterMes.chapters || _chapterMes.chapters.length < 1){
 			_chapterList = <li>没有章节</li>
 		}else{
 			_chapterList =  _chapterMes.chapters.map(function(item, key){
-				return  <li key={key}><span className={styles.chapterLeft}>{item.title}</span><span className={styles.chapterRight}>已读</span></li>
+				return <Link key={key} to={`/readProjectChapter/${_chapterMes.projectId}/${item.id}`}><li><span className={styles.chapterLeft}>{item.title}</span><span className={styles.chapterRight}>已读</span></li></Link>
 			})
 		}
 		return (

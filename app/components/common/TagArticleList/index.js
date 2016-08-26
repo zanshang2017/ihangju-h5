@@ -2,30 +2,31 @@ import React from 'react';
 
 import styles from './styles.css';
 
-import ArticleListItem from '../ArticleListItem';
+import TagArticleListItem from '../TagArticleListItem';
 
-function ArticleList(props) {
+function TagArticleList(props) {
 
-    var items = props.items || [];
+    var items = (props.items && props.items.toJS) ? props.items.toJS() : [];
+// console.log(items);
 
     return (
         <div className={styles.articleList}>
             {
                 items.map(function (item, key) {
-                    return <ArticleListItem item={item} />
+                    return <TagArticleListItem {...props} item={item} key={item.id} />
                 })
             }
         </div>
     );
 }
 
-ArticleList.propTypes = {
+TagArticleList.propTypes = {
     items: React.PropTypes.oneOfType([
         React.PropTypes.array,
         React.PropTypes.object
     ])
 };
 
-export default ArticleList;
+export default TagArticleList;
 
 

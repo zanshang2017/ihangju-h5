@@ -2,74 +2,80 @@
 @import "../../../common/_global";
 @import "../../../common/_util";
 
-.catelogListItem {
-    position: relative;
-    width: 100%;
-    height: rem(440);
-    box-sizing: border-box;
-    padding: rem(42) rem(42) rem(22) rem(10);
-    background: #fff;
-    margin-bottom: rem(22);
-    text-align: center;
-    @include flexBox();
-    -ms-flex-align: stretch;
-    align-items: stretch;
-    -ms-flex-pack: center;
-    justify-content: flex-start;
 
-    .title {
-        //background:red;
-        width: rem(162);
-        font-size: rem(40);
-        color: $titleColor;
-        padding-bottom: rem(55);
-        @include flexBox();
-        align-items: flex-end;
+.catelogListItemWrap {
+
+    a {
+        width: 100%;
+        display: inline-block;
     }
 
-    .info{
+    .catelogListItem {
+        position: relative;
+        width: 100%;
+        height: rem(440);
+        box-sizing: border-box;
+        padding: rem(42) rem(42) rem(22) rem(10);
+        background: #fff;
+        margin-bottom: rem(22);
+        text-align: center;
         @include flexBox();
-        //background: blue;
-        -webkit-box-flex: 1;
-        flex: 1;
-        -webkit-flex-direction: column;
-        flex-direction: column;
-        align-items: flex-start;
-        -webkit-justify-content: flex-start;
-        justify-content: space-around;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        -ms-flex-pack: center;
+        justify-content: flex-start;
 
-        .infoImg {
-            width: 100%;
-            height: rem(304);
-            overflow: hidden;
+        .title {
+            //background:red;
+            width: rem(162);
+            font-size: rem(40);
+            color: $titleColor;
+            padding-bottom: rem(55);
+            @include flexBox();
+            align-items: flex-end;
+        }
 
-            img {
+        .info {
+            @include flexBox();
+            //background: blue;
+            -webkit-box-flex: 1;
+            flex: 1;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            align-items: flex-start;
+            -webkit-justify-content: flex-start;
+            justify-content: space-around;
+
+            .infoImg {
                 width: 100%;
                 height: rem(304);
-                background: #ccc;
-            }
-        }
+                overflow: hidden;
 
-        .infoDesc {
-            font-size: rem(30);
-
-            div {
-                float:left;
-                padding: 0 rem(20) 0 rem(10);
-                color: $weakTextColor;
-
-                strong {
-                    font-size: rem(36);
-                    padding-right: rem(6);
-                    color: $weakLinkColor;
+                img {
+                    width: 100%;
+                    height: rem(304);
+                    background: #ccc;
                 }
             }
-        }
 
+            .infoDesc {
+                font-size: rem(30);
+
+                div {
+                    float: left;
+                    padding: 0 rem(20) 0 rem(10);
+                    color: $weakTextColor;
+
+                    strong {
+                        font-size: rem(36);
+                        padding-right: rem(6);
+                        color: $weakLinkColor;
+                    }
+                }
+            }
+
+        }
 
     }
 
-
-
 }
-

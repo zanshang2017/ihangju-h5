@@ -36,15 +36,15 @@ const initialState = fromJS({
     myFollowLoading: false, //关注文章列表加载中
     myFollowListLoading: false, //关注分类列表加载中
 
-    myFollowDataStatus: {
+    myFollowDataStatus: fromJS({
         page: 0,
         isLast: false
-    },
+    }),
 
-    myFollowListDataStatus: {
+    myFollowListDataStatus: fromJS({
         page: 0,
         isLast: false
-    }
+    })
 
 });
 
@@ -85,7 +85,7 @@ function followPageReducer(state = initialState, action = null) {
             //    }
             //]
 
-            if (data.code === 'ok' && data.result && data.result.length > 0) {
+            if (data.code === 'ok' && data.result) {
                 if (page > 0) {
                     // let _state = state.set('myFollowLoading', false).mergeDeepIn(['myFollowData'], data.result || []);
                     let _merged = state.set('myFollowLoading', false).get('myFollowData').concat(fromJS(data.result))

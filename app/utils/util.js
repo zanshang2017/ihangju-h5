@@ -62,7 +62,75 @@ function convertDate(t, separator, isOnlyShowDate) {
     return ret;
 }
 
+/**
+ * localStorage
+ * @type {{set, get, keys, removeItem, isSupport}}
+ */
+var locStorage = (function storageFactory() {
+    var supportLocalStorage = (function () {
+        var test = 'test';
+        try {
+            localStorage.setItem(test, test);
+            localStorage.removeItem(test);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    })();
+
+    var supportSessionStorage = (function () {
+        var test = 'test';
+        try {
+            sessionStorage.setItem(test, test);
+            sessionStorage.removeItem(test);
+            return true;
+        } catch (e) {
+            return false;
+        }
+    })();
+
+    return {
+        /**
+         * locStorage util
+         */
+        set: function (key, value) {
+            if (supportLocalStorage) {
+                localStorage.setItem(key, value);
+            } else if (supportSessionStorage) {
+                sessionStorage.setItem(key, value);
+            }
+        },
+        get: function (key) {
+            if (supportLocalStorage) {
+                return localStorage.getItem(key);
+            } else if (supportSessionStorage) {
+                return sessionStorage.getItem(key);
+            }
+        },
+        keys: function () {
+            var arr = [];
+
+            for (var i = 0; i < localStorage.length; i++) {
+                arr.push(localStorage.key(i));
+            }
+
+            return arr;
+        },
+        removeItem: function (key) {
+            if (supportLocalStorage) {
+                return localStorage.removeItem(key);
+            } else if (supportSessionStorage) {
+                return sessionStorage.removeItem(key);
+            }
+        },
+        isSupport: function (key) {
+            return supportLocalStorage || supportSessionStorage;
+        }
+    }
+})();
+
 export {
     getUrlParam,
-    convertDate
+    convertDate,
+    locStorage,
 };

@@ -31,7 +31,6 @@ export function* getProjectDetailData(){
 		console.log('getProjectDetailData');
 		let id = action.payload.id || null;
 		let url = PROJECTDETAIL_API + `/` + id;
-
 		const projectResult = yield call(request, url, {
 			headers: {
                 'Accept': 'application/json',
