@@ -1,5 +1,5 @@
 import 'whatwg-fetch';  // https://github.github.io/fetch/
-import { Env } from './env.js';
+import {Env} from './env.js';
 
 /**
  * 请求url，返回promise.
@@ -32,8 +32,17 @@ function parseJSON(response) {
  * @return {object|undefined} 返回包装后的数据
  */
 function checkStatus(response) {
+
+    // 正常返回
     if (response.status >= 200 && response.status < 300) {
         return response;
+    }
+
+    // 重新登录
+    if (response.status === 403) {
+        //todo 记录当前页面url,登录后跳回
+        window.location.href = '/login';
+        return;
     }
 
     const error = new Error(response.statusText);
