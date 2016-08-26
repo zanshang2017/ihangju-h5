@@ -1,3 +1,5 @@
+:global .tagDetailPageListGroup .am-tab .am-tab-content {
+  padding: 0 !important; }
 :global .tagDetailPageListGroup .ant-tabs {
   overflow: visible; }
 :global .tagDetailPageListGroup .ant-tabs-nav-container {

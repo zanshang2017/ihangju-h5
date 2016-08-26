@@ -6,7 +6,10 @@ import {
     IMG_CDN_PATH
 } from '../../../apis.js';
 
-import { Carousel } from 'antd';
+// import { Carousel } from 'antd';
+
+import Carousel from 'antd-mobile/lib/carousel';
+// import { Carousel } from "antd-mobile";
 
 function Banner(props) {
 

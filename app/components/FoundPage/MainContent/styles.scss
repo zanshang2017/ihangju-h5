@@ -4,52 +4,42 @@
 
 :global {
     .foundPageMainContent {
-
-        .ant-tabs {
+        .am-tab {
             overflow: visible; //for position:sticky
         }
 
-        .ant-tabs-nav-container {
+        .am-tab-bar {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 9980;
+        }
+
+        .am-tab-tab-inner {
+            color: $linkColor !important;
+        }
+
+        .am-tab-nav-container {
             background-color: $tabBg;
             font-size: rem(32);
             color: $titleColor;
-        }
 
-        .ant-tabs-nav {
             height: rem(128);
             padding: 0 0 0 rem(52);
-
-            .ant-tabs-bar {
-                border: none;
-                margin-bottom: 0;
-                margin-right: rem(50);
-                position: -webkit-sticky;
-                position: sticky;
-                top: 0;
-                left: 0;
-                z-index: 9980;
-            }
-
-            .ant-tabs-tab-inner {
-                padding: rem(35) 0 0 rem(4);
-                letter-spacing: rem(4);
-            }
-
-            .ant-tabs-tab-active {
-                .ant-tabs-tab-inner {
-                    color: $linkColor !important;
-                }
-            }
-
-            .ant-tabs-tab-inner {
-                &:hover {
-                    color: $titleColor;
-                }
-            }
         }
 
-        .ant-tabs-ink-bar {
-            bottom: rem(33);
+        .am-tab.am-tab-line .am-tab-bar:after {
+            border: none;
+        }
+
+        .am-tab-nav {
+            display: inline-block;
+            margin-top: rem(16);
+        }
+
+        .am-tab-ink-bar {
+            width: rem(64) !important;
             background-color: $linkColor !important;
         }
 

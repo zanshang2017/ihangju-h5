@@ -4,10 +4,9 @@ import styles from './styles.css';
 
 import CatelogList from 'components/common/CatelogList';
 
-import {
-    Tabs,
-    Affix
-} from 'antd';
+// import Tabs from 'antd/lib/tabs';
+
+import Tabs from 'antd-mobile/lib/tabs';
 
 const TabPane = Tabs.TabPane;
 
@@ -24,8 +23,8 @@ class MainContent extends React.Component {
     componentDidMount() {
 
         //tab固顶
-        nTabs = document.querySelector('#J_FoundPageMainContentWrap .ant-tabs-bar');
-        nList = document.querySelector('#J_FoundPageMainContentWrap .ant-tabs-content');
+        nTabs = document.querySelector('#J_FoundPageMainContentWrap .am-tab-bar');
+        nList = document.querySelector('#J_FoundPageMainContentWrap .am-tab-content');
         nTabsHeight = nTabs.getBoundingClientRect().height;
         window.addEventListener('scroll', scrollHandler);
     }
@@ -44,7 +43,7 @@ class MainContent extends React.Component {
             <div id="J_FoundPageMainContentWrap" className="foundPageMainContent">
                 <Tabs defaultActiveKey="1">
                     <TabPane tab="分类" key="1">
-                        <CatelogList items={this.props.tags || []} refreshHandler={this.props.refresh} />
+                        <CatelogList items={this.props.tags || []} refreshHandler={this.props.refresh}/>
                     </TabPane>
                 </Tabs>
             </div>
@@ -61,20 +60,12 @@ MainContent.propTypes = {
 
 export default MainContent;
 
-
 //处理分类bar的固顶
-const FIXED_CLASS = ' fixedTop';
-
 function scrollHandler(e) {
     if (nList.getBoundingClientRect().top <= nTabsHeight) {
-        if(nTabs.className.indexOf(FIXED_CLASS) < 0){
-            nTabs.className += FIXED_CLASS;
-        }
+        nTabs.classList.add('fixedTop');
     } else {
-        if (nTabs.className.indexOf(FIXED_CLASS) > -1) {
-            var reg = new RegExp(FIXED_CLASS, 'igm');
-            nTabs.className = nTabs.className.replace(reg, '');
-        }
+        nTabs.classList.remove('fixedTop');
     }
 }
 

@@ -37,9 +37,17 @@ export default class TopBar extends React.Component {
             that.getChild(this.props.children);
         }
 
+        var backBtn = '';
+
+        if (this.props['data-has-back'] == 'true') {
+            backBtn = <div onClick={this.handleBack.bind(this)} className={styles.back}><i className="icon-left iconfont"></i>
+                </div>;
+        }
+
+
         return (
             <div className={styles.bar}>
-                <div onClick={this.handleBack.bind(this)} className={styles.back}><i className="icon-left iconfont"></i></div>
+                {backBtn}
                 <div className={styles.title}>{this.title}</div>
                 <div className={styles.btns}>{this.btns}</div>
             </div>
