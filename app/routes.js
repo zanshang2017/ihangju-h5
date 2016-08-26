@@ -191,6 +191,38 @@ export default function createRoutes(store) {
                 store.dispatch(setCurPage(''));
             }
         }, {
+            path: '/person/:id',
+            name: 'personPage',
+            getComponent(nextState, cb) {
+
+                const importModules = Promise.all([
+                    System.import('containers/PersonPage/reducer'),
+                    System.import('containers/PersonPage/sagas'),
+                    System.import('containers/PersonPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.personPage) {
+                        injectReducer('personPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.personPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+                store.dispatch(setCurPage(PAGE_NAME.PERSON_PAGE));
+            },
+            onLeave: function () {
+                store.dispatch(setCurPage(''));
+            }
+        }, {
             path: '/tag/:id',
             name: 'tagDetailPage',
             getComponent(nextState, cb) {

@@ -27,7 +27,13 @@ import List from 'antd-mobile/lib/list';
 
 export class MyPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
-    componentWillMount(){
+    constructor(props) {
+        super(props);
+
+        this.id = '';
+    }
+
+    componentWillMount() {
         this.props.dispatch(loadUserCenterData());
     }
 
@@ -40,7 +46,9 @@ export class MyPage extends React.Component { // eslint-disable-line react/prefe
     }
 
     userDescClickHandler() {
-        console.log('click userDesc');
+        if (this.id) {
+            this.context.router.push('/person/' + this.id);
+        }
     }
 
     clickHandler() {
@@ -50,6 +58,7 @@ export class MyPage extends React.Component { // eslint-disable-line react/prefe
     render() {
         let userInfo = this.props.userInfo.toJS();
         let userCenterInfo = this.props.userCenterInfo || {};
+        this.id = userInfo.id;
 
         let msg_count = (userCenterInfo.comment_notify_count || 0) + (userCenterInfo.discuss_notify_count || 0);
 
@@ -58,7 +67,7 @@ export class MyPage extends React.Component { // eslint-disable-line react/prefe
                 <TopBar data-has-back="false">
                     <div data-title>我的</div>
                 </TopBar>
-                <UserDesc userInfo={userInfo} clickHandler={this.userDescClickHandler} />
+                <UserDesc userInfo={userInfo} clickHandler={this.userDescClickHandler.bind(this)}/>
 
                 <List>
                     <List.Body>
@@ -101,7 +110,9 @@ export class MyPage extends React.Component { // eslint-disable-line react/prefe
 
                             onClick={this.clickHandler.bind(this)}
                         >
-                            <div className={styles.listWrap}><i className={`iconfont icon-tags ${styles.iconColored}`}></i>我管理的标签</div>
+                            <div className={styles.listWrap}><i
+                                className={`iconfont icon-tags ${styles.iconColored}`}></i>我管理的标签
+                            </div>
                         </List.Item>
                     </List.Body>
                 </List>
@@ -121,6 +132,11 @@ export class MyPage extends React.Component { // eslint-disable-line react/prefe
         );
     }
 }
+
+
+MyPage.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 //const mapStateToProps = selectMyPage();
 

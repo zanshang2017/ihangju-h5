@@ -10,7 +10,7 @@ const selectMyPage = () => createSelector(
 
 const selectUserCenterInfo = () => createSelector(
     selectMyPageDomain(),
-    (demoPageState) => demoPageState.get('userCenterInfo')
+    (myPageState) => myPageState.get('userCenterInfo')
 );
 
 export default selectMyPage;

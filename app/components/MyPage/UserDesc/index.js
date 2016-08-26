@@ -11,7 +11,7 @@ import List from 'antd-mobile/lib/list';
 function UserDesc(props) {
 
     var descHTML = '';
-    var imageSrc = "http://dummyimage.com/120x120/000/fff";
+    var imageSrc = '';
     var userInfo = props.userInfo || {};
     var id = userInfo.id;
 

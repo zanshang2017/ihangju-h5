@@ -1,0 +1,86 @@
+@charset "UTF-8";
+@import "../../../common/_global.scss";
+@import "../../../common/_util.scss";
+
+.descWrap {
+    padding: rem(40) 0;
+    @include flexBox();
+    text-align:center;
+
+    -webkit-flex-direction: column;
+    flex-direction: column;
+
+    div.row {
+        margin: rem(10) auto;
+
+
+        img.avatar {
+            width:rem(144);
+            height:rem(144);
+            border-radius: rem(8);
+        }
+
+        .username {
+            font-size: rem(40);
+            color: $textColor;
+        }
+
+        .btns {
+            padding-bottom: rem(12);
+            border-bottom: 1px solid $topBarBg;
+        }
+
+        .btn {
+            font-size: rem(28);
+            color: $weakerTitleColor;
+            background: none;
+
+            strong {
+                color: $textColor;
+                font-size: rem(36);
+                font-weight:normal;
+                padding-right: rem(10);
+            }
+        }
+
+        .divider {
+            color: $topBarBg;
+            padding: 0 rem(20);
+        }
+
+        .description {
+            color: $weakerTitleColor;
+            font-size: rem(28);
+        }
+
+    }
+
+
+}
+
+
+
+
+.info {
+    @include flexBox();
+    display: block;
+    width:100%;
+    padding-left: rem(24);
+    height: rem(120);
+}
+
+.username {
+    color: $textColor;
+    font-size: rem(32);
+}
+
+.intro {
+    white-space: normal;
+    color: $weakTitleColor;
+    padding-top: rem(8);
+    font-size: rem(20);
+    line-height: 1.4em;
+    max-height: 2.8em;
+    overflow:hidden;
+}
+

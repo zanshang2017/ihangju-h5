@@ -20,7 +20,7 @@ if (Env.prod) {
 
 
 //图片CDN
-const IMG_CDN_PATH = 'https://o82zr1kfu.qnssl.com/@/';
+const IMG_CDN_PATH = 'https://o82zr1kfu.qnssl.com/@';
 
 //三方登录页
 const THIRDPARTY_LOGIN_URL = `http://${thirdparty_login_domain}/oauth/authorize?client_id=ihangju&redirect_uri=http://${api_domain}/zanshang/authentication&response_type=code&scope=read&state=33251`;
@@ -288,7 +288,14 @@ const TAG_API = `//${api_domain}/tags`;
  *      DELETE: 取消订阅
  *
  */
-const SUB_TAG_API = `//${api_domain}/subscription/tag`
+const SUB_TAG_API = `//${api_domain}/subscription/tag`;
+
+
+/**
+ * 获取用户首页信息
+ * 子路径: /${userID} 获取指定uid的用户信息
+ */
+const USER_PROFILE_API = `//${api_domain}/profile/`;
 
 
 export {
@@ -309,6 +316,8 @@ export {
 
     TAG_API,
     SUB_TAG_API,
+
+    USER_PROFILE_API,
 
 };
 

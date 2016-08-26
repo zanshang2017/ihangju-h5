@@ -1,0 +1,10 @@
+@charset "UTF-8";
+@import "../../../common/_global.scss";
+@import "../../../common/_util.scss";
+
+.wrap {
+    padding: rem(40) 0;
+    @include flexBox();
+    text-align:center;
+
+}

@@ -22,6 +22,8 @@ export const PAGE_NAME = {
     FOUND_PAGE: 'foundPage',
     CREATE_PAGE: 'createPage',
     MY_PAGE: 'myPage',
+    PERSON_PAGE: 'personPage',
+
 };
 
 
