@@ -307,17 +307,6 @@ const TAG_API = `//${api_domain}/tags`;
 const SUB_TAG_API = `//${api_domain}/subscription/tag`
 
 
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-=======
->>>>>>> dev
 export {
     IMG_CDN_PATH,
     THIRDPARTY_LOGIN_URL,

@@ -41,7 +41,6 @@ export function* getReadChapterData(){
 		});
 
 		if(projectResult.err === undefined || projectResult.err === null){
-			debugger;
 			if(projectResult.data){
 				let projectInfo = JSON.parse(locStorage.get('projectInfo')) || [];
 				let readInfo = {};

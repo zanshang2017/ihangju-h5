@@ -3,7 +3,9 @@ import style from './style.css';
 import {
 	IMG_CDN_PATH
 } from '../../../apis.js'
-
+import {
+    convertDate
+} from '../../../utils/util.js';
 class ProjectComment extends React.Component{
 	constructor(props) {
         super(props);
@@ -14,14 +16,16 @@ class ProjectComment extends React.Component{
 		if(!_result.comments || _result.comments.length < 1){
 			contentList = <li>加载中...</li>
 		} else {
-			contentList = _result.comments.map(function (item, key) {			
+			let createTime = null;
+			contentList = _result.comments.map(function (item, key) {
+				createTime = 	convertDate(item.createTime)		
 				return <li key={key}>
 							<div className={style.top}>
 								<div className={style.name}>
-									<img src={item.commentUser.avatar} />
+									<img src={`${IMG_CDN_PATH}${item.commentUser.avatar}`} />
 									<span>{item.commentUser.nickName}</span>
 								</div>
-								<div className={style.time}>{item.createTime}</div>
+								<div className={style.time}>{createTime}</div>
 							</div>
 							<div className={style.content}>
 								{item.content}
@@ -29,7 +33,6 @@ class ProjectComment extends React.Component{
 						</li>
 			})
 		}
-		let headSrc = IMG_CDN_PATH + '/static/random3.png';
 		return(
 			<div className={style.projectComment}>
 				<div className={style.commentNum}>评论<em>({_result.commentNumber})</em></div>

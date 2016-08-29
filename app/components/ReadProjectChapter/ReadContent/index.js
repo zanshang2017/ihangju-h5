@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './style.css';
-
+import ChapterList from '../../common/ChapterList';
 
 import {
     locStorage
 } from 'utils/util';
+import TopBar from '../../common/TopBar';
 
 var x = null;
 var y = null;
@@ -103,6 +104,14 @@ export default class ReadContent extends React.Component {
     tEnd(event) {
 
     } 
+    showReadTopbar() {
+    	let _redTopdom = this.refs._readTopbar;
+    	 _redTopdom.classList.toggle('hide');
+    }
+    showChapterList() {
+
+        this.refs.J_ChapterList.showChapterList();
+    }
 	render(){
 		var props = this.props;
 		var _chapterContent = props.chapterContent.toJS();
@@ -110,6 +119,7 @@ export default class ReadContent extends React.Component {
 		var _chapterList = '';
 		var chapterIndex = null;
 		var cid = null;
+		var _chapterTitle = '';
 		if(!_chapterContent || _chapterContent.size < 1){
 			_chapterList = "1111111111111";
 		}else if(_chapterContent.chapters && projectInfo){
@@ -126,11 +136,24 @@ export default class ReadContent extends React.Component {
 				}
 			})
 			_chapterList = _chapterContent.chapters[chapterIndex].content;
+			_chapterTitle = _chapterContent.chapters[chapterIndex].title;
 		}
 		return (
 			<div>
-				<div className={styles.chpCon} ref="nFollowListWrap">
-					{_chapterList}
+				<div ref="_readTopbar" className="hide">
+					<TopBar data-has-back="true">
+                    <div data-title>
+                    	<span onClick={this.showChapterList.bind(this)}>{_chapterTitle}</span>
+                    </div>
+                    <div data-btns>
+						<span className={styles.share}></span>
+                    </div>
+                </TopBar>
+				</div>
+            	<ChapterList ref="J_ChapterList" items={this.props.chapterContent}  />
+								
+				<div className={styles.chpCon} onClick={this.showReadTopbar.bind(this)} ref="nFollowListWrap">
+					<div dangerouslySetInnerHTML={{__html: `${_chapterList}`}} /> 
 				</div>
 			</div>
 		)

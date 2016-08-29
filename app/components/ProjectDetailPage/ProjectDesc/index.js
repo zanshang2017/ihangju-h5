@@ -5,6 +5,10 @@ import {
     IMG_CDN_PATH
 } from '../../../apis.js';
 
+import {
+    convertDate
+} from '../../../utils/util.js';
+
 class ProjectDesc extends React.Component{
 	constructor(props) {
         super(props);
@@ -14,6 +18,7 @@ class ProjectDesc extends React.Component{
 		var _result = props.projectDetail.toJS();
     	let imageSrc = IMG_CDN_PATH + _result.projectImage;
 		let headSrc = IMG_CDN_PATH + _result.authorAvatar;
+		let modifyTime =  convertDate(_result.modifyTime);
 		return (
 			<div className={style.projectDetails}>
 				<div className={style.cover}>
@@ -28,7 +33,7 @@ class ProjectDesc extends React.Component{
 				<div className={style.author}>
 					<img src={headSrc} />
 					<span className={style.name}>{_result.authorName}</span>
-					<span className={style.date}>{_result.modifyTime}前更新</span>
+					<span className={style.date}>{modifyTime}更新</span>
 				</div>
 				<div className={style.title}>
 					{_result.projectName}

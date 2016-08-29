@@ -17,12 +17,14 @@ class ChapterList extends React.Component{
 	render() {
 		var _chapterMes = this.props.items.toJS();
 		var _chapterList = '';
-		console.log(_chapterMes)
+		let id = null;
+		id = _chapterMes.projectId || _chapterMes.historyId;
 		if(!_chapterMes.chapters || _chapterMes.chapters.length < 1){
 			_chapterList = <li>没有章节</li>
 		}else{
 			_chapterList =  _chapterMes.chapters.map(function(item, key){
-				return <Link key={key} to={`/readProjectChapter/${_chapterMes.projectId}/${item.id}`}><li><span className={styles.chapterLeft}>{item.title}</span><span className={styles.chapterRight}>已读</span></li></Link>
+				 
+				return <Link key={key} to={`/readProjectChapter/${id}/${item.id}`}><li><span className={styles.chapterLeft}>{item.title}</span><span className={styles.chapterRight}>已读</span></li></Link>
 			})
 		}
 		return (
