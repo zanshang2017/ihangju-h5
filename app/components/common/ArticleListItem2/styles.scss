@@ -1,0 +1,63 @@
+@charset "UTF-8";
+@import "../../../common/_global";
+@import "../../../common/_util";
+
+.articleListItem2 {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding: rem(68) rem(42);
+    background: #fff;
+    margin-bottom: rem(22);
+    text-align: left;
+
+    h3 {
+        max-height: rem(112);
+        font-size: rem(44);
+        line-height: rem(56);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: $titleColor;
+        @include flexBox();
+        -webkit-align-items: flex-start;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    p {
+        font-size: rem(32);
+        color: $textColor;
+        margin-top: rem(33);
+        line-height: 1.6em;
+        max-height: rem(150);
+        text-align: left;
+        overflow: hidden;
+    }
+
+    div.info {
+        margin-top: rem(45);
+        color: $weakTextColor;
+        font-size: rem(28);
+
+        span {
+            margin-right: rem(20);
+
+            i {
+                color: $titleColor;
+            }
+        }
+
+    }
+
+    div.itemType {
+        position: absolute;
+        top: rem(26);
+        right: 0;
+        width: rem(134);
+        height: rem(38);
+        line-height: rem(38);
+        color: $weakTextColor;
+        background: #f3f5f4;
+    }
+}
+

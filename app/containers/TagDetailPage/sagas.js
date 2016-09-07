@@ -248,10 +248,10 @@ export function* tagRecommendationProject() {
 
         if (isRemove) {
             method = 'DELETE';
-            url = TAG_API + `/${tagID}/recommdation/project?projectids=${id}`;
+            url = TAG_API + `/${tagID}/recommendation/project?projectids=${id}`;
         } else {
             method = 'PUT';
-            url = TAG_API + `/${tagID}/recommdation/project`;
+            url = TAG_API + `/${tagID}/recommendation/project`;
             body = 'projectids=' + id;
         }
 

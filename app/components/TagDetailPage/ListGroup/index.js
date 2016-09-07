@@ -39,10 +39,6 @@ class ListGroup extends React.Component {
 
     componentDidMount() {
         var that = this;
-        var nWrap = document.body;
-
-        //设置主内容区高度
-        var contentH = document.body.clientHeight;
 
         //滑动底部加载下一页
         that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 300, {leading: false});

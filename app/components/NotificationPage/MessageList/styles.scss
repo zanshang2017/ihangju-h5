@@ -1,0 +1,11 @@
+@charset "UTF-8";
+@import "../../../common/_global.scss";
+@import "../../../common/_util.scss";
+
+.list {
+    position:relative;
+    width: 100%;
+    box-sizing: border-box;
+    background: $tabBg;
+}
+

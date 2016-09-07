@@ -1,0 +1,61 @@
+@charset "UTF-8";
+@import "../../../common/_global";
+@import "../../../common/_util";
+
+.listItem {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding: rem(20) rem(0) rem(20) rem(42);
+    background: #fff;
+    text-align: left;
+    font-size: rem(28);
+    -webkit-overflow-scrolling: touch;
+    border-bottom: 1px solid $borderColor;
+
+    .item {
+        @include flexBox();
+        padding: rem(20) 0;
+
+        .avatar {
+            img {
+                width: rem(100);
+                height: rem(100);
+            }
+        }
+
+        .info {
+            font-size: rem(28);
+            line-height: 1.5em;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            padding-left: rem(25);
+
+            h4 {
+                color: $titleColor;
+                font-size: rem(34);
+            }
+
+            p {
+                color: $weakerTitleColor;
+                padding-top: rem(10);
+            }
+        }
+    }
+
+    .comment {
+        color: $weakerTitleColor;
+        margin: rem(10) 0;
+        span {
+            color: $textColor;
+        }
+    }
+
+    .projName {
+        color: $weakTitleColor;
+        margin: rem(10) 0;
+    }
+
+
+}
+

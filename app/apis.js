@@ -87,9 +87,16 @@ const CONFIRM_EDITOR_API = `//${api_domain}/confirm/editor`;
 	},
 	"code": "ok"
 }
+ *
+ * restful:
+ *  [GET] 获取用户信息
+ *  [POST] 设置用户信息
+ *      头像: avatar	{String} /image/57c7e146e4b0ddd2e19eff99.jpg
+ *      昵称: nickname {String} 门神4.
+ *      描述: description {String} 《收获》小门审.
+ *      推送: favoritePush | commentPush | letterPush {Boolean}
  */
 const USER_INFO_API = `//${api_domain}/user/me`;
-
 
 /**
  * 获取用户中心(MyPage)页数据
@@ -205,13 +212,14 @@ const NOTE_API = `//${api_domain}/note`;
 
 
 /**
- *
  *  标签详情接口
  *
+ *  restful:
+ *
+ *  [GET] 获取标签信息
  *  路径: /tagID 获取标签的项目列表+带项目基本信息, 默认分页 page:0, size:10
  *  路径: /tagID/recommdation/project 获取标签的推荐列表,带分页。
  *
- *  GET方法:获取标签信息,
  *  响应:
  *  {
 	"result": {
@@ -265,16 +273,9 @@ const NOTE_API = `//${api_domain}/note`;
 	"code": "ok"
 }
  *
- *
- * POST方法: 修改标签信息
- *   数据: description=%BD%E5%A5%BD&image=/image/579af60ce4b02e1710abb71e.jpg
- *
- * PUT方法: 设置推荐作品
- *  数据: projectids=xxxxxxxx
- *
- * DELETE方法:
- *  url参数: ?projectids=57a2e568e4b081dc933f7334
- *
+ * [POST] 请求体数据:description=%BD%E5%A5%BD&image=/image/579af60ce4b02e1710abb71e.jpg 修改标签信息
+ * [PUT] 请求体数据:/recommendation/project/projectids=${id} 设为推荐作品
+ * [DELETE] /recommendation/project?projectids=${id} 取消推荐
  */
 const TAG_API = `//${api_domain}/tags`;
 
@@ -284,8 +285,8 @@ const TAG_API = `//${api_domain}/tags`;
  *  路径: /tagID 订阅或取消订阅的id
  *
  *  restful:
- *      PUT: 订阅
- *      DELETE: 取消订阅
+ *      [PUT]: 订阅
+ *      [DELETE]: 取消订阅
  *
  */
 const SUB_TAG_API = `//${api_domain}/subscription/tag`;
@@ -296,6 +297,80 @@ const SUB_TAG_API = `//${api_domain}/subscription/tag`;
  * 子路径: /${userID} 获取指定uid的用户信息
  */
 const USER_PROFILE_API = `//${api_domain}/profile/`;
+
+/**
+ * 用户相关信息API
+ *
+ * restful:
+ *  [GET] ${userID}/collection 获取收藏夹信息
+ *  [GET] ${userID}/fans 获取粉丝
+ *  [GET] ${userID}/follows 获取关注人
+ *  [GET] ${userID}/management/tag 我管理的标签
+ */
+const USER_API = `//${api_domain}/user/`;
+
+/**
+ * 关注、取消关注用户接口
+ *
+ * restful:
+ *  [PUT] ${userID} 添加对特定user的关注
+ *  [DELETE] ${userID} 取消对特定user的关注
+ */
+const FOLLOW_USER_API = `//${api_domain}/subscription/user/`;
+
+/**
+ * 用户反馈
+ *
+ * restful:
+ *  [PUT] 数据: contact=${email}&content=${message}
+ */
+const FEEDBACK_API = `//${api_domain}/feedback`;
+
+/**
+ * 获取评论列表
+ *
+ * 参数:
+ *      page: {default:0}
+ *      size: {default:10}
+ *
+ * {
+	"result": [{
+		"time": 1470976033735,
+		"projectName": "收藏夹",
+		"type": "comment",
+		"user": {
+			"name": "苏OS x",
+			"id": "56ef8c8ce4b0bf20e0cb7ebc",
+			"avatar": "/image/576cf803e4b0b2aa0cf86e49.jpg"
+		},
+		"projectId": "57956e59e4b019e1f4c15112",
+		"project_is_delete": false,
+		"content": "Adage"
+	 }, ... ]
+   }
+ */
+const COMMENT_LIST_API = `//${api_domain}/notification/comments`;
+
+/**
+ * 获取通知列表
+ *
+ * 参数:
+ *      page: {default:0}
+ *      size: {default:10}
+ *
+ * {
+	"result": [{
+		modifyTime": 1466764399155,
+		"userAvatar": "/static/random6.png",
+		"userName": "我的天",
+		"projectName": "",
+		"type": "favorite_user",
+		"userId": "56f1fb8de4b0bbf134d9cb57",
+		"projectId": ""
+	 }, ... ]
+   }
+ */
+const MESSAGE_LIST_API = `//${api_domain}/notification/messages`;
 
 
 export {
@@ -318,6 +393,14 @@ export {
     SUB_TAG_API,
 
     USER_PROFILE_API,
+
+    USER_API,
+    FOLLOW_USER_API,
+
+    FEEDBACK_API,
+
+    COMMENT_LIST_API,
+    MESSAGE_LIST_API,
 
 };
 

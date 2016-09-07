@@ -1,0 +1,52 @@
+.listItem {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.53333rem 0rem 0.53333rem 1.12rem;
+  background: #fff;
+  text-align: left;
+  font-size: 0.74667rem;
+  -webkit-overflow-scrolling: touch;
+  border-bottom: 1px solid #f4f5f5; }
+  .listItem .item {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    padding: 0.53333rem 0; }
+    .listItem .item .avatar img {
+      width: 2.66667rem;
+      height: 2.66667rem; }
+    .listItem .item .info {
+      font-size: 0.74667rem;
+      line-height: 1.5em;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      padding-left: 0.66667rem; }
+      .listItem .item .info h4 {
+        color: #7b8f9d;
+        font-size: 0.90667rem; }
+      .listItem .item .info p {
+        color: #a09e98;
+        padding-top: 0.26667rem; }
+  .listItem .comment {
+    color: #a09e98;
+    margin: 0.26667rem 0; }
+    .listItem .comment span {
+      color: #383b3d; }
+  .listItem .projName {
+    color: #9dadb9;
+    margin: 0.26667rem 0; }
+
+/*# sourceMappingURL=styles.css.map */

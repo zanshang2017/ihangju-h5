@@ -31,9 +31,9 @@ function UserDesc(props) {
             </div>
             <div className={styles.row}>
                 <div className={styles.btns}>
-                    <button className={styles.btn}><strong>{userInfo.fansNumber || 0}</strong><span>粉丝</span></button>
+                    <button className={styles.btn} onClick={props.fansClickHandler}><strong>{userInfo.fansNumber || 0}</strong><span>粉丝</span></button>
                     <span className={styles.divider}>|</span>
-                    <button className={styles.btn}><strong>{userInfo.attentionNumber || 0}</strong><span>关注</span></button>
+                    <button className={styles.btn} onClick={props.followsClickHandler}><strong>{userInfo.attentionNumber || 0}</strong><span>关注</span></button>
                 </div>
             </div>
             <div className={styles.row}>

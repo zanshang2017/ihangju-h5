@@ -20,7 +20,6 @@ import {
 
 import styles from './styles.css';
 
-
 import TopBar from 'components/common/TopBar';
 import UserDesc from 'components/MyPage/UserDesc';
 import List from 'antd-mobile/lib/list';
@@ -29,7 +28,6 @@ export class MyPage extends React.Component { // eslint-disable-line react/prefe
 
     constructor(props) {
         super(props);
-
         this.id = '';
     }
 
@@ -43,6 +41,7 @@ export class MyPage extends React.Component { // eslint-disable-line react/prefe
 
     settingHandler() {
         console.log('setting');
+        this.context.router.push('/setting/');
     }
 
     userDescClickHandler() {
@@ -51,12 +50,26 @@ export class MyPage extends React.Component { // eslint-disable-line react/prefe
         }
     }
 
-    clickHandler() {
-        console.log('link click');
+    collectionClickHandler() {
+        if (this.id) {
+            this.context.router.push('/collection/' + this.id);
+        }
+    }
+
+    notificationClickHandler() {
+        if (this.id) {
+            this.context.router.push('/notification');
+        }
+    }
+
+    myTagClickHandler() {
+        if (this.id) {
+            this.context.router.push('/mytag/' + this.id);
+        }
     }
 
     render() {
-        let userInfo = this.props.userInfo.toJS();
+        let userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
         let userCenterInfo = this.props.userCenterInfo || {};
         this.id = userInfo.id;
 
@@ -77,7 +90,7 @@ export class MyPage extends React.Component { // eslint-disable-line react/prefe
                                 <span className={styles.weakText}>{userCenterInfo.collectionCount || '0'}</span>
                             }
 
-                            onClick={this.clickHandler.bind(this)}
+                            onClick={this.collectionClickHandler.bind(this)}
                         >
                             <div className={styles.listWrap}><i className="iconfont icon-staro"></i>收藏夹</div>
                         </List.Item>
@@ -86,6 +99,8 @@ export class MyPage extends React.Component { // eslint-disable-line react/prefe
                             extra={
                                 <span className={styles.weakText}>{msg_count}</span>
                             }
+
+                            onClick={this.notificationClickHandler.bind(this)}
                         >
                             <div className={styles.listWrap}><i className="iconfont icon-notification"></i>消息</div>
                         </List.Item>
@@ -108,7 +123,7 @@ export class MyPage extends React.Component { // eslint-disable-line react/prefe
                                 <span className={styles.weakText}>{userCenterInfo.managermentTagNumber || '0'}</span>
                             }
 
-                            onClick={this.clickHandler.bind(this)}
+                            onClick={this.myTagClickHandler.bind(this)}
                         >
                             <div className={styles.listWrap}><i
                                 className={`iconfont icon-tags ${styles.iconColored}`}></i>我管理的标签

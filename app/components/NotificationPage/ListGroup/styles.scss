@@ -1,0 +1,84 @@
+@charset "UTF-8";
+@import "../../../common/_global.scss";
+@import "../../../common/_util.scss";
+
+:global {
+    .tagDetailPageListGroup {
+
+        .am-tab {
+
+            .am-tab-content {
+                padding: 0 !important;
+            }
+
+        }
+
+
+
+        .ant-tabs {
+            overflow: visible; //for position:sticky
+        }
+
+        .ant-tabs-nav-container {
+            background-color: $bg;
+            font-size: rem(32);
+            color: $titleColor;
+
+            .ant-tabs-nav-wrap {
+                width: 100%;
+            }
+
+            .ant-tabs-nav-scroll {
+                width: 100%;
+            }
+        }
+
+        .ant-tabs-nav {
+            width: 100%;
+            height: rem(112);
+
+            @include flexBox();
+
+            .ant-tabs-bar {
+                border: none;
+                margin-bottom: 0;
+                margin-right: rem(50);
+                position: -webkit-sticky;
+                position: sticky;
+                top: 0;
+                left: 0;
+                z-index: 9980;
+            }
+
+            .ant-tabs-tab {
+                -webkit-box-flex: 1;
+                margin: 0 40px;
+            }
+
+            .ant-tabs-tab-inner {
+                padding: rem(35) 0 0 rem(4);
+                letter-spacing: rem(2);
+            }
+
+            .ant-tabs-tab-active {
+                .ant-tabs-tab-inner {
+                    color: $linkColor !important;
+                }
+            }
+
+            .ant-tabs-tab-inner {
+                &:hover {
+                    color: $titleColor;
+                }
+            }
+        }
+
+        .ant-tabs-ink-bar {
+            bottom: rem(4);
+            height: rem(4);
+            background-color: $linkColor !important;
+        }
+
+    }
+}
+

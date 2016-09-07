@@ -9,13 +9,21 @@ export const DEFAULT_ACTION = 'app/App/DEFAULT_ACTION';
 export const SHOW_NAV = 'app/App/SHOW_NAV';
 export const HIDE_NAV = 'app/App/HIDE_NAV';
 export const LOGIN_SUCCESS = 'app/App/LOGIN_SUCCESS';
+export const LOGOUT = 'app/App/LOGOUT';
+export const LOGOUT_SUCCESS = 'app/App/LOGOUT_SUCCESS';
+export const LOGOUT_ERROR = 'app/App/LOGOUT_ERROR';
 
 export const SET_CUR_PAGE = 'app/App/SET_CUR_PAGE';
-export const SET_USER_INFO = 'app/App/SET_USER_INFO';
+export const LOAD_LOCAL_STORAGE_USER_INFO = 'app/App/LOAD_LOCAL_STORAGE_USER_INFO';
 
-export const LOAD_USER_INFO = 'app/LoginPage/LOAD_USER_INFO';
-export const LOAD_USER_INFO_SUCCESS = 'app/LoginPage/LOAD_USER_INFO_SUCCESS';
-export const LOAD_USER_INFO_ERROR = 'app/LoginPage/LOAD_USER_INFO_ERROR';
+export const LOAD_USER_INFO = 'app/App/LOAD_USER_INFO';
+export const LOAD_USER_INFO_SUCCESS = 'app/App/LOAD_USER_INFO_SUCCESS';
+export const LOAD_USER_INFO_ERROR = 'app/App/LOAD_USER_INFO_ERROR';
+
+export const UPDATE_USER_INFO = 'app/App/UPDATE_USER_INFO';
+export const UPDATE_USER_INFO_SUCCESS = 'app/App/UPDATE_USER_INFO_SUCCESS';
+export const UPDATE_USER_INFO_ERROR = 'app/App/UPDATE_USER_INFO_ERROR';
+
 
 export const PAGE_NAME = {
     FOLLOW_PAGE: 'followPage',
@@ -23,7 +31,11 @@ export const PAGE_NAME = {
     CREATE_PAGE: 'createPage',
     MY_PAGE: 'myPage',
     PERSON_PAGE: 'personPage',
-
+    COLLECTION_PAGE: 'collectionPage',
+    FANS_LIST_PAGE: 'fansListPage',
+    FOLLOWS_LIST_PAGE: 'followsListPage',
+    MY_TAG_PAGE: 'myTagPage',
+    SETTING_PAGE: 'settingPage',
 };
 
 

@@ -20,9 +20,8 @@
 }
 
 .info {
-    @include flexBox();
-    display: block;
-    width:100%;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
     padding-left: rem(24);
     height: rem(120);
 }
@@ -36,9 +35,10 @@
     white-space: normal;
     color: $weakTitleColor;
     padding-top: rem(8);
-    font-size: rem(20);
+    font-size: rem(24);
     line-height: 1.4em;
     max-height: 2.8em;
     overflow:hidden;
+
 }
 

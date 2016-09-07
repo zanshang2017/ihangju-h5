@@ -1,0 +1,24 @@
+@charset "UTF-8";
+@import "../../../common/__global.scss";
+@import "../../../common/__util.scss";
+
+.listWrap {
+    padding: rem(10) 0;
+}
+
+.weakText {
+    color: $weakerTitleColor !important;
+}
+
+.avatar {
+    img {
+        width: rem(80);
+        height: rem(80);
+        border-radius: rem(80);
+    }
+}
+
+
+
+
+

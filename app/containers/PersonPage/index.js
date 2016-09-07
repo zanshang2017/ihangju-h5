@@ -19,6 +19,7 @@ import styles from './styles.css';
 
 import TopBar from 'components/common/TopBar';
 import UserDesc from 'components/PersonPage/UserDesc';
+import UserArticle from 'components/PersonPage/UserArticle';
 import List from 'antd-mobile/lib/list';
 
 export class PersonPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -40,20 +41,20 @@ export class PersonPage extends React.Component { // eslint-disable-line react/p
         console.warn('PersonPage DidMount');
     }
 
-    userDescClickHandler() {
-        console.log('click userDesc');
+    componentWillUnmount() {
     }
 
-    clickHandler() {
-        console.log('link click');
+    fansClickHandler() {
+        if (this.personID) {
+            this.context.router.push('/fanslist/' + this.personID);
+        }
     }
 
-    clickToFansHandler() {
-
-    }
-
-    clickToFollowHandler() {
-
+    followsClickHandler() {
+        console.log('click followsClickHandler', this.personID);
+        if (this.personID) {
+            this.context.router.push('/followslist/' + this.personID);
+        }
     }
 
     render() {
@@ -67,7 +68,10 @@ export class PersonPage extends React.Component { // eslint-disable-line react/p
                         {/*<div>关注</div>*/}
                     </div>
                 </TopBar>
-                <UserDesc userInfo={userInfo} clickHandler={this.userDescClickHandler.bind(this)}/>
+                <UserDesc userInfo={userInfo}
+                          fansClickHandler={this.fansClickHandler.bind(this)}
+                          followsClickHandler={this.followsClickHandler.bind(this)}
+                />
                 <UserArticle userInfo={userInfo}></UserArticle>
             </div>
         );

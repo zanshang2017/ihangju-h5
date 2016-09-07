@@ -1,0 +1,35 @@
+@charset "UTF-8";
+@import "../../../common/_global";
+@import "../../../common/_util";
+@import "../../../common/common.css";
+
+
+.listWrap {
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+
+    .item {
+        @include flexBox();
+        padding: rem(50) 0;
+        margin: 0 rem(35);
+        border-bottom: 1px solid $borderColor;
+
+
+        .avatar {
+            img {
+                width: rem(100);
+                height: rem(100);
+            }
+        }
+
+        .info {
+            font-size: rem(28);
+            line-height: 1.5em;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            padding-left: rem(25);
+        }
+    }
+}
+

@@ -1,0 +1,22 @@
+.listWrap {
+  padding: 0.26667rem 0; }
+
+.textWrap {
+  padding: 1.33333rem; }
+  .textWrap p {
+    font-size: 0.69333rem;
+    line-height: 2em;
+    color: #7b8f9d; }
+
+.textFieldWrap {
+  font-size: 0.85333rem;
+  margin-bottom: 0.93333rem; }
+  .textFieldWrap .textField {
+    width: 100%;
+    padding: 0.53333rem;
+    height: 7em; }
+  .textFieldWrap .contactField {
+    width: 100%;
+    padding: 0.53333rem; }
+
+/*# sourceMappingURL=styles.css.map */

@@ -170,7 +170,7 @@ function tagDetailPageReducer(state = initialState, action = {}) {
             }
 
             if (typeof data.loading === 'boolean') {
-                state = state.setIn(['projectListStatus', 'loading'], data.loading);
+                state = state.setIn(['recommendationListStatus', 'loading'], data.loading);
             }
 
             return state;

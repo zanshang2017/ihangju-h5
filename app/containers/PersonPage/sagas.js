@@ -21,27 +21,32 @@ export default [
 
 export function* getUserData() {
 
-    let action = yield take(LOAD_USER_DATA);
-    let id = action.payload.id || '';
+    let action = null;
 
-    if (id) {
-        let url = USER_PROFILE_API + id;
-        const lists = yield call(request, url, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'X-API-Version': 'v1.1'
-            },
-            credentials: 'include'
-        });
+    while (action = yield take(LOAD_USER_DATA)) {
 
-        if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
-            yield put(loadUserDataSuccess(lists.data.result));
+        let id = action.payload.id || '';
+
+        if (id) {
+            let url = USER_PROFILE_API + id;
+            const lists = yield call(request, url, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-API-Version': 'v1.1'
+                },
+                credentials: 'include'
+            });
+
+            if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
+                yield put(loadUserDataSuccess(lists.data.result));
+            } else {
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(loadUserDataError(lists.err));
+            }
         } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(loadUserDataError(lists.err));
+            yield put(loadUserDataError(new Error('缺少用户id')));
         }
-    } else {
-        yield put(loadUserDataError(new Error('缺少用户id')));
+
     }
 }

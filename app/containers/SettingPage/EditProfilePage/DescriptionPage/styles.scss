@@ -1,0 +1,22 @@
+@charset "UTF-8";
+@import "../../../../common/__global.scss";
+@import "../../../../common/__util.scss";
+
+.textWrap {
+    padding: rem(50);
+}
+
+.textFieldWrap {
+    margin-bottom: rem(35);
+
+    .textField {
+        width: 100%;
+        padding: rem(20);
+        height: 7em;
+    }
+}
+
+
+
+
+

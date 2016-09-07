@@ -19,6 +19,8 @@
   width: 100%; }
 :global .hasTopBar {
   margin-top: 2.34667rem; }
+:global .hasTabBar {
+  margin-bottom: 2.82667rem; }
 :global .logPanel {
   position: fixed;
   top: 0;

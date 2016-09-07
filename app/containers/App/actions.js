@@ -13,13 +13,20 @@ import {
     SHOW_NAV,
     HIDE_NAV,
     LOGIN_SUCCESS,
+    LOGOUT,
+    LOGOUT_SUCCESS,
+    LOGOUT_ERROR,
 
     LOAD_USER_INFO,
     LOAD_USER_INFO_SUCCESS,
     LOAD_USER_INFO_ERROR,
 
+    UPDATE_USER_INFO,
+    UPDATE_USER_INFO_SUCCESS,
+    UPDATE_USER_INFO_ERROR,
+
     SET_CUR_PAGE,
-    SET_USER_INFO,
+    LOAD_LOCAL_STORAGE_USER_INFO,
 
 } from './constants';
 
@@ -44,15 +51,10 @@ export function setCurPage(pageName) {
     }
 }
 
-export function setUserInfo(userInfo) {
-    let data = {
-        type: SET_USER_INFO,
-        payload: {
-            data: userInfo
-        }
+export function loadLocalStorageUserInfo() {
+    return {
+        type: LOAD_LOCAL_STORAGE_USER_INFO,
     };
-
-    return data;
 }
 
 export function loginSuccess(userToken) {
@@ -61,6 +63,24 @@ export function loginSuccess(userToken) {
         payload: {
             userToken: userToken
         }
+    }
+}
+
+export function logout() {
+    return {
+        type: LOGOUT
+    }
+}
+
+export function logoutSuccess() {
+    return {
+        type: LOGOUT_SUCCESS
+    }
+}
+
+export function logoutError() {
+    return {
+        type: LOGOUT_ERROR
     }
 }
 
@@ -84,6 +104,34 @@ export function loadUserInfoSuccess(data) {
 export function loadUserInfoError(error) {
     return {
         type: LOAD_USER_INFO_ERROR,
+        payload: {
+            error: error
+        }
+    };
+}
+
+
+export function updateUserInfo(data={}) {
+    return {
+        type: UPDATE_USER_INFO,
+        payload: {
+            data: data
+        }
+    };
+}
+
+export function updateUserInfoSuccess(data=null) {
+    return {
+        type: UPDATE_USER_INFO_SUCCESS,
+        payload: {
+            data: data
+        }
+    };
+}
+
+export function updateUserInfoError(error) {
+    return {
+        type: UPDATE_USER_INFO_ERROR,
         payload: {
             error: error
         }

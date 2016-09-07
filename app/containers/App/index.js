@@ -17,7 +17,7 @@ import {
 import {Env} from '../../utils/env.js';
 
 import {
-    setUserInfo
+    loadLocalStorageUserInfo
 } from './actions.js';
 
 import {
@@ -51,18 +51,7 @@ export default class App extends React.Component {
     }
 
     componentWillMount() {
-        //获取保存的用户信息
-        var userInfo = null;
-
-        try {
-            userInfo = JSON.parse(locStorage.get('userInfo'));
-        } catch (e) {
-            alert(e);
-        }
-
-        if (userInfo && userInfo.id) {
-            this.props.dispatch(setUserInfo(userInfo));
-        }
+        this.props.dispatch(loadLocalStorageUserInfo());
     }
 
     componentDidMount() {
@@ -139,7 +128,8 @@ function openLog() {
     var nCont = nLog.querySelector('.content');
     var nBtn = document.querySelector('#toggle');
 
-    nLog.classList.remove('hide');
+    nLog.classList.remove('none');
+
     nBtn.addEventListener('touchstart', function () {
         if (nLog.classList.contains('unfold')) {
             nLog.classList.remove('unfold');
@@ -148,11 +138,15 @@ function openLog() {
         }
     });
 
-    setInterval(function () {
-        nCont.innerHTML = history.length + '\n' + history.state.key;
+    window.debugLog = function (text) {
+        nCont.innerHTML = text;
+    };
 
-        // nCont.innerHTML = Math.random() + '';
-    }, 2);
+    // setInterval(function () {
+    //     nCont.innerHTML = history.length + '\n' + history.state.key;
+    //
+    //     // nCont.innerHTML = Math.random() + '';
+    // }, 2);
 
     return nCont;
 }

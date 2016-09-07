@@ -35,6 +35,10 @@
         margin-top: $topBarHeight;
     }
 
+    .hasTabBar {
+        margin-bottom: $navHeight;
+    }
+
     .logPanel {
         //display:none; // hide log
 

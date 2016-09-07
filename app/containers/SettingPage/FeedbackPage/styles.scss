@@ -1,0 +1,37 @@
+@charset "UTF-8";
+@import "../../../common/__global.scss";
+@import "../../../common/__util.scss";
+
+.listWrap {
+    padding: rem(10) 0;
+}
+
+.textWrap {
+    padding: rem(50);
+
+    p {
+        font-size: rem(26);
+        line-height: 2em;
+        color: $titleColor;
+    }
+}
+
+.textFieldWrap {
+    font-size: rem(32);
+    margin-bottom: rem(35);
+
+    .textField {
+        width: 100%;
+        padding: rem(20);
+        height: 7em;
+    }
+
+    .contactField {
+        width: 100%;
+        padding: rem(20);
+    }
+}
+
+
+
+

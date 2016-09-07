@@ -87,7 +87,7 @@ Bridge.prototype = {
                     params[i] = buildCallback(params[i]);
                 }
 
-                searchParams += i + '=' + encodeURIComponent(params[i]);
+                searchParams += i + '=' + encodeURIComponent(params[i]) + '&';
             }
         }
 

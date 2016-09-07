@@ -1,0 +1,60 @@
+.articleListItem3 {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.81333rem 1.12rem;
+  background: #fff;
+  margin-bottom: 0.58667rem;
+  text-align: left; }
+  .articleListItem3 .header {
+    line-height: 1.6rem;
+    font-size: 0.74667rem; }
+    .articleListItem3 .header .author {
+      float: left; }
+      .articleListItem3 .header .author img {
+        width: 1.6rem;
+        height: 1.6rem;
+        vertical-align: bottom; }
+      .articleListItem3 .header .author span {
+        padding-left: 0.26667rem;
+        color: #7b8f9d; }
+    .articleListItem3 .header .modifyTime {
+      float: right;
+      color: #a09e98; }
+  .articleListItem3 h3 {
+    padding-top: 0.69333rem;
+    clear: both;
+    max-height: 2.98667rem;
+    font-size: 1.17333rem;
+    line-height: 1.49333rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #7b8f9d;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: flex-start;
+    align-items: flex-start; }
+  .articleListItem3 div.info {
+    margin-top: 1.2rem;
+    color: #bcbab5;
+    font-size: 0.74667rem;
+    text-align: center; }
+    .articleListItem3 div.info span {
+      margin: 0 0.58667rem; }
+      .articleListItem3 div.info span i {
+        color: #7b8f9d; }
+
+/*# sourceMappingURL=styles.css.map */

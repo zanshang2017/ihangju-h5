@@ -29,15 +29,8 @@ const loadModule = (cb) => (componentModule) => {
     cb(null, componentModule.default);
 };
 
-var initedStatus = {
-    loginPage: false,
-    followPage: false,
-    createPage: false,
-    foundPage: false,
-    tagDetailPage: false,
-    myPage: false,
-    demoPage: false,
-};
+//标记页面是否加载过,主要解决sagas、reducer重复加载问题
+var initedStatus = {};
 
 export default function createRoutes(store) {
     const {injectReducer, injectSagas} = getHooks(store);
@@ -223,6 +216,101 @@ export default function createRoutes(store) {
                 store.dispatch(setCurPage(''));
             }
         }, {
+            path: '/fanslist/:id',
+            name: 'fansListPage',
+            getComponent(nextState, cb) {
+
+                const importModules = Promise.all([
+                    System.import('containers/FansListPage/reducer'),
+                    System.import('containers/FansListPage/sagas'),
+                    System.import('containers/FansListPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.fansListPage) {
+                        injectReducer('fansListPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.fansListPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+                store.dispatch(setCurPage(PAGE_NAME.FANS_LIST_PAGE));
+            },
+            onLeave: function () {
+                store.dispatch(setCurPage(''));
+            }
+        }, {
+            path: '/followslist/:id',
+            name: 'followsListPage',
+            getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                    System.import('containers/FollowsListPage/reducer'),
+                    System.import('containers/FollowsListPage/sagas'),
+                    System.import('containers/FollowsListPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.followsListPage) {
+                        injectReducer('followsListPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.followsListPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+                store.dispatch(setCurPage(PAGE_NAME.FOLLOWS_LIST_PAGE));
+            },
+            onLeave: function () {
+                store.dispatch(setCurPage(''));
+            }
+        }, {
+            path: '/collection/:id',
+            name: 'collectionPage',
+            getComponent(nextState, cb) {
+
+                const importModules = Promise.all([
+                    System.import('containers/CollectionPage/reducer'),
+                    System.import('containers/CollectionPage/sagas'),
+                    System.import('containers/CollectionPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.collectionPage) {
+                        injectReducer('collectionPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.collectionPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+                store.dispatch(setCurPage(PAGE_NAME.COLLECTION_PAGE));
+            },
+            onLeave: function () {
+                store.dispatch(setCurPage(''));
+            }
+        }, {
             path: '/tag/:id',
             name: 'tagDetailPage',
             getComponent(nextState, cb) {
@@ -252,6 +340,240 @@ export default function createRoutes(store) {
             },
             onLeave: function () {
                 store.dispatch(setCurPage(''));
+            }
+        }, {
+            path: '/mytag/:id',
+            name: 'myTagPage',
+            getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                    System.import('containers/MyTagPage/reducer'),
+                    System.import('containers/MyTagPage/sagas'),
+                    System.import('containers/MyTagPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.myTagPage) {
+                        injectReducer('myTagPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.myTagPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+                store.dispatch(setCurPage(PAGE_NAME.MY_TAG_PAGE));
+            },
+            onLeave: function () {
+                store.dispatch(setCurPage(''));
+            }
+        }, {
+            path: '/setting',
+            name: 'settingPage',
+            getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                    System.import('containers/App/reducer'),
+                    System.import('containers/App/sagas'),
+                    System.import('containers/SettingPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.settingPage) {
+                        injectReducer('settingPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.settingPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+                store.dispatch(setCurPage(PAGE_NAME.SETTING_PAGE));
+            },
+            onLeave: function () {
+                store.dispatch(setCurPage(''));
+            }
+        }, {
+            path: 'setting/profile',
+            name: 'editProfilePage',
+            getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                    System.import('containers/SettingPage/EditProfilePage/reducer'),
+                    System.import('containers/SettingPage/EditProfilePage/sagas'),
+                    System.import('containers/SettingPage/EditProfilePage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.editProfilePage) {
+                        injectReducer('editProfilePage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.editProfilePage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            },
+            onLeave: function () {
+            }
+        }, {
+            path: 'setting/profile/nickname',
+            name: 'nickNamePage',
+            getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                    System.import('containers/App/reducer'),
+                    System.import('containers/App/sagas'),
+                    System.import('containers/SettingPage/EditProfilePage/NickNamePage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.nickNamePage) {
+                        injectReducer('nickNamePage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.nickNamePage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            },
+            onLeave: function () {
+            }
+        }, {
+            path: 'setting/profile/description',
+            name: 'descriptionPage',
+            getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                    System.import('containers/App/reducer'),
+                    System.import('containers/App/sagas'),
+                    System.import('containers/SettingPage/EditProfilePage/DescriptionPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.descriptionPage) {
+                        injectReducer('descriptionPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.descriptionPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            },
+            onLeave: function () {
+            }
+        }, {
+            path: 'setting/pushconfig',
+            name: 'pushConfigPage',
+            getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                    System.import('containers/App/reducer'),
+                    System.import('containers/App/sagas'),
+                    System.import('containers/SettingPage/PushConfigPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.pushConfigPage) {
+                        injectReducer('pushConfigPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.pushConfigPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            },
+            onLeave: function () {
+            }
+        }, {
+            path: 'setting/feedback',
+            name: 'feedbackPage',
+            getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                    System.import('containers/SettingPage/FeedbackPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([component]) => {
+                    if (!initedStatus.feedbackPage) {
+                        initedStatus.feedbackPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            },
+            onLeave: function () {
+            }
+        }, {
+            path: '/notification',
+            name: 'notificationPage',
+            getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                    System.import('containers/NotificationPage/reducer'),
+                    System.import('containers/NotificationPage/sagas'),
+                    System.import('containers/NotificationPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.notificationPage) {
+                        injectReducer('notificationPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.notificationPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                store.dispatch(hideNav());
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            },
+            onLeave: function () {
+                store.dispatch(showNav());
             }
         }, {
             path: '/demo',
