@@ -576,6 +576,37 @@ export default function createRoutes(store) {
                 store.dispatch(showNav());
             }
         }, {
+            path: '/dialogues',
+            name: 'dialogueListPage',
+            getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                    System.import('containers/DialogueListPage/reducer'),
+                    System.import('containers/DialogueListPage/sagas'),
+                    System.import('containers/DialogueListPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.dialogueListPage) {
+                        injectReducer('dialogueListPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.dialogueListPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                store.dispatch(hideNav());
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            },
+            onLeave: function () {
+                store.dispatch(showNav());
+            }
+        }, {
             path: '/demo',
             name: 'demoPage',
             getComponent(nextState, cb) {

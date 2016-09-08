@@ -304,7 +304,8 @@ const USER_PROFILE_API = `//${api_domain}/profile/`;
  * restful:
  *  [GET] ${userID}/collection 获取收藏夹信息
  *  [GET] ${userID}/fans 获取粉丝
- *  [GET] ${userID}/follows 获取关注人
+ *  [GET] ${userID}/follows 获取关注
+ *  [GET] ${userID}/dialogues 私信列表
  *  [GET] ${userID}/management/tag 我管理的标签
  */
 const USER_API = `//${api_domain}/user/`;

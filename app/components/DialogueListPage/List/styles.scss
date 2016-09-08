@@ -1,0 +1,68 @@
+@charset "UTF-8";
+@import "../../../common/_global";
+@import "../../../common/_util";
+@import "../../../common/common.css";
+
+
+.listWrap {
+    width: 100%;
+    box-sizing: border-box;
+    //overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    .listItem {
+        position: relative;
+        width: 100%;
+        box-sizing: border-box;
+        padding: rem(20) rem(0) rem(20) rem(42);
+        background: #fff;
+        text-align: left;
+        -webkit-overflow-scrolling: touch;
+        border-bottom: 1px solid $borderColor;
+
+        .item {
+            @include flexBox();
+            padding: rem(20) 0;
+            align-items: flex-start;
+
+            .avatar {
+                img {
+                    border-radius: 3px;
+                    width: rem(100);
+                    height: rem(100);
+                }
+            }
+
+            .info {
+                font-size: rem(28);
+                line-height: 1.5em;
+                -webkit-box-flex: 1;
+                -webkit-flex: 1;
+                padding-left: rem(25);
+                overflow:hidden;
+
+                h4 {
+                    color: $titleColor;
+                    font-size: rem(34);
+                }
+
+                p {
+                    font-size: rem(30);
+                    color: $weakerTitleColor;
+                    padding-top: rem(16);
+                    white-space:nowrap;
+                    overflow:hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+
+            .time {
+                font-size:rem(26);
+                color: $weakerTitleColor;
+                margin: 0 rem(20) 0 0;
+            }
+        }
+
+    }
+}
+

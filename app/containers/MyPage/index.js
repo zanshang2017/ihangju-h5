@@ -10,6 +10,7 @@ import {createSelector} from 'reselect';
 import {
     selectUserCenterInfo,
 } from './selectors';
+
 import {
     selectUserInfo,
 } from 'containers/App/selectors';
@@ -62,6 +63,12 @@ export class MyPage extends React.Component { // eslint-disable-line react/prefe
         }
     }
 
+    dialoguesClickHandler() {
+        if (this.id) {
+            this.context.router.push('/dialogues');
+        }
+    }
+
     myTagClickHandler() {
         if (this.id) {
             this.context.router.push('/mytag/' + this.id);
@@ -109,6 +116,7 @@ export class MyPage extends React.Component { // eslint-disable-line react/prefe
                             extra={
                                 <span className={styles.weakText}>{userCenterInfo.letter_notify_count || '0'}</span>
                             }
+                            onClick={this.dialoguesClickHandler.bind(this)}
                         >
                             <div className={styles.listWrap}><i className="iconfont icon-mail"></i>私信</div>
                         </List.Item>
