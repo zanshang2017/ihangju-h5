@@ -21,7 +21,7 @@ module.exports = (options) => ({
       // Transform our own .css files with PostCSS and CSS-modules
       test: /\.s?css$/,
       exclude: /node_modules/,
-      loader: options.cssLoaders,
+      loader: options.sassLoaders,
     }, {
         // Transform our own .css files with PostCSS and CSS-modules
         test: /\.less/,
