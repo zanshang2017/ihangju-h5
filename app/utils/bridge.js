@@ -87,7 +87,7 @@ Bridge.prototype = {
                     params[i] = buildCallback(params[i]);
                 }
 
-                searchParams += i + '=' + encodeURIComponent(params[i]);
+                searchParams += (searchParams.length === 0 ? '':'&') + i + '=' + encodeURIComponent(params[i]);
             }
         }
 
@@ -148,13 +148,14 @@ Bridge.prototype = {
         },
 
         //sbridge://share.Wechat/?url=http%3A%2F%2Fwww.baidu.com&title=Title&desc=Description&callback=cb
-        wechat: function (url, title, desc, fn) {
+        wechat: function (url, title, desc, thumb, fn) {
             var that = this.superthat;
             that.pushBack('sbridge:', 'share.Wechat', {
                 callback: fn || that.noop,
                 url: url || '',
                 title: title || '',
-                desc: desc || ''
+                desc: desc || '',
+                thumb: thumb || ''
             });
         },
 

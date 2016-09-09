@@ -6,10 +6,14 @@ import styles from './style.css';
 import {
 	selectReadChapter,
 	selectProjectInfo,
+	selectShareData,
 } from './selectors';
 import {
 	loadReadChapterData,
 	setProjectInfo,
+	loadCollectionData,
+	loadLikeData,
+	setShareData,
 } from './actions';
 
 import {
@@ -56,10 +60,12 @@ export default class ReadProjectChapter extends React.Component {
 const mapStateToProps = createSelector(
 	selectReadChapter(),
 	selectProjectInfo(),
-	(chapterContent, projectInfo) => {
+	selectShareData(),
+	(chapterContent, projectInfo, shareData) => {
 		return {
 			chapterContent,
-			projectInfo
+			projectInfo,
+			shareData,
 		}
 	}
 );
@@ -70,6 +76,15 @@ function mapDispatchToProps(dispach) {
 		},
 		setProjectInfoStatus: (projectInfo) => {
 			dispach(setProjectInfo(projectInfo))
+		},
+		loadCollection: (url, method) => {
+			dispach(loadCollectionData(url,method))
+		},
+		loadLike: (url, method) => {
+			dispach(loadLikeData(url,method))
+		},
+		setShareStatus: (shareData) => {
+			dispach(setShareData(shareData))
 		},
 		dispach,
 	}

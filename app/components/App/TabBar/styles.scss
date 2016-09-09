@@ -10,7 +10,7 @@
     box-sizing: border-box;
     width: 100%;
     height: $navHeight;
-    z-index: $zIndexL2;
+    z-index: $zIndexL3;
     font-size: 14px;
     background: #fff;
     border-top: 1px solid $navBorderColor;
@@ -21,7 +21,6 @@
         li {
             -webkit-box-flex: 1;
             padding: 0 rem(20);
-
             a {
                 position: relative;
                 display: -webkit-box;

@@ -14,7 +14,10 @@ class ChapterList extends React.Component{
 		let nChapterListWrap = this.refs.nChapterListWrap;
 		nChapterListWrap.classList.remove('hide');
 	}
+	chapterListClick(e) {
+	}
 	render() {
+		var that = this;
 		var _chapterMes = this.props.items.toJS();
 		var _chapterList = '';
 		let id = null;
@@ -23,8 +26,7 @@ class ChapterList extends React.Component{
 			_chapterList = <li>没有章节</li>
 		}else{
 			_chapterList =  _chapterMes.chapters.map(function(item, key){
-				 
-				return <Link key={key} to={`/readProjectChapter/${id}/${item.id}`}><li><span className={styles.chapterLeft}>{item.title}</span><span className={styles.chapterRight}>已读</span></li></Link>
+				return <Link key={key} to={`/readProjectChapter/${id}/${item.id}`}><li onClick={that.chapterListClick.bind(this)}><span className={styles.chapterLeft}>{item.title}</span><span className={styles.chapterRight}>未读</span></li></Link>
 			})
 		}
 		return (

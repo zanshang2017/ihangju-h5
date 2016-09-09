@@ -15,6 +15,7 @@ import {
   LOAD_PROJECTCHAPTER_DATA_SUCCESS,
   LOAD_PROJECTCHAPTER_DATA_ERROR,
 
+  SET_SHARE_DATA,
 } from './constants';
 
 export function defaultAction() {
@@ -81,6 +82,16 @@ export function loadProjectChapterDataError(error){
     type: LOAD_PROJECTCHAPTER_DATA_ERROR,
     payload: {
       error: error
+    }
+  }
+}
+
+export function setShareData(shareData){
+  
+  return {
+    type: SET_SHARE_DATA,
+    payload: {
+      data: shareData
     }
   }
 }

@@ -14,3 +14,6 @@ export const LOAD_PROJECTCHAPTER_DATA = 'app/ProjectDetailPage/LOAD_PROJECTCHAPT
 export const LOAD_PROJECTCHAPTER_DATA_SUCCESS = 'app/ProjectDetailPage/LOAD_PROJECTCHAPTER_DATA_SUCCESS';
 export const LOAD_PROJECTCHAPTER_DATA_ERROR = 'app/ProjectDetailPage/LOAD_PROJECTCHAPTER_DATA_ERROR';
 
+export const SET_SHARE_DATA = 'app/ProjectDetailPage/SET_SHARE_DATA';
+
+

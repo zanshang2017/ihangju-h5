@@ -6,7 +6,8 @@ import { createSelector } from 'reselect';
 import { 
     selectDetail, 
     selectDetailResult,
-    selectDetailProjectChapter 
+    selectDetailProjectChapter,
+    selectShareData, 
 
 } from './selectors';
 import TopBar from 'components/common/TopBar';
@@ -20,6 +21,7 @@ import styles from './style.css';
 import {
     loadProjectDetailData,
     loadProjectChapterData,
+    setShareData,
 } from './actions';
 
 
@@ -47,10 +49,12 @@ export default class DetailPage extends React.Component {
 const mapStateToProps = createSelector(
     selectDetailResult(),
     selectDetailProjectChapter(),
-    (projectDetail, projectDetailChapter) => {
+    selectShareData(),
+    (projectDetail, projectDetailChapter, shareData) => {
         return {
             projectDetail,
-            projectDetailChapter
+            projectDetailChapter,
+            shareData
         }
     }
 );
@@ -63,7 +67,9 @@ function mapDispatchToProps(dispatch) {
         loadChapter: (id) => {
             dispatch(loadProjectChapterData(id || null))
         },
-        
+        setShareStatus: (shareData) => {
+            dispatch(setShareData(shareData))
+        },
         dispatch,
     };
 }

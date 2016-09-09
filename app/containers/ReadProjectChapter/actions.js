@@ -6,6 +6,16 @@ import {
 	LOAD_READCHAPTER_DATA_ERROR,
   
   SET_PROJECT_INFO,
+
+  LOAD_COLLECTION_DATA,
+  LOAD_COLLECTION_DATA_SUCCESS,
+  LOAD_COLLECTION_DATA_ERROR,
+
+  LOAD_LIKE_DATA,
+  LOAD_LIKE_DATA_SUCCESS,
+  LOAD_LIKE_DATA_ERROR,
+
+  SET_SHARE_DATA,
 } from './constants';
 
 export function defaultAction() {
@@ -56,4 +66,77 @@ export function setProjectInfo(projectInfo) {
     }
   }
   return data;
+}
+
+export function loadCollectionData(url,method){
+  let data = {
+    type: LOAD_COLLECTION_DATA,
+    payload: {}
+  };
+  if(url){
+    data.payload.url = url;
+  }
+  if(method){
+    data.payload.method = method;
+  }
+  return data;
+}
+
+export function loadCollectionDataSuccess(data){
+  return {
+    type: LOAD_COLLECTION_DATA_SUCCESS,
+    payload: {
+      data: data
+    }
+  }
+}
+
+export function loadCollectionDataError(error){
+  return {
+    type: LOAD_READCHAPTER_DATA_ERROR,
+    payload: {
+      error: error
+    }
+  }
+}
+
+export function loadLikeData(url, method){
+  let data = {
+    type: LOAD_LIKE_DATA,
+    payload: {}
+  };
+  if(url){
+    data.payload.url = url;
+  }
+  if(method){
+    data.payload.method =  method;
+  }
+  return data;
+}
+
+export function loadLikeDataSuccess(data){
+  return {
+    type: LOAD_LIKE_DATA_SUCCESS,
+    payload: {
+      data: data
+    }
+  }
+}
+
+export function loadLikeDataError(error){
+  return {
+    type: LOAD_LIKE_DATA_ERROR,
+    payload: {
+      error: error
+    }
+  }
+}
+
+export function setShareData(shareData){
+  return {
+    type: SET_SHARE_DATA,
+    payload: {
+      data: shareData
+    }
+  }
 }

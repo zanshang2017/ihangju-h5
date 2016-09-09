@@ -10,9 +10,14 @@ const selectProjectInfo = () => createSelector(
   selectDetailDomain(),
   (readProjectChapterState) => readProjectChapterState.get('projectInfo')
 );
+const selectShareData = () => createSelector(
+  selectDetailDomain(),
+  (readProjectChapterState) => readProjectChapterState.get('shareData')
+);
 export {
 	selectDetailDomain,
 	selectReadChapter,
 	selectProjectInfo,
+	selectShareData,
 }
 

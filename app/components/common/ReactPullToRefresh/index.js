@@ -55,7 +55,7 @@ export default class ReactPullToRefresh extends Component {
             icon,
             loading,
             onRefresh,
-            resistance,
+            resistance,Sh
             ...rest
             } = this.props;
 

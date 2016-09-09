@@ -306,7 +306,15 @@ const TAG_API = `//${api_domain}/tags`;
  */
 const SUB_TAG_API = `//${api_domain}/subscription/tag`
 
-
+/*
+* 收藏接口
+* PUT方法 : 收藏
+* DELETE : 取消收藏
+* 参数 : 57a941f4e4b0ab2d4f0d14cd/project
+*/
+const COLLECTION_API = `//${api_domain}/collection/`
+//http://192.168.1.33:8888/favorite?projectid=57a941f4e4b0ab2d4f0d14cd
+//http://192.168.1.33:8888/favorite  projectid : 57a941f4e4b0ab2d4f0d14cd
 export {
     IMG_CDN_PATH,
     THIRDPARTY_LOGIN_URL,
@@ -329,5 +337,7 @@ export {
     SUB_TAG_API,
 
     READCHAPTER_API,
+
+    COLLECTION_API,
 };
 

@@ -10,11 +10,14 @@ import {
   LOAD_PROJECTCHAPTER_DATA,
   LOAD_PROJECTCHAPTER_DATA_SUCCESS,
   LOAD_PROJECTCHAPTER_DATA_ERROR,
+
+  SET_SHARE_DATA,
 } from './constants';
 
 const initialState = fromJS({
 	'projectDetailChapter' : {},
-	"projectDetail": {}
+	"projectDetail": {},
+  'shareData' : {}
 });
 
 function detailPageReducer(state = initialState, action = {}) {
@@ -40,6 +43,9 @@ function detailPageReducer(state = initialState, action = {}) {
       }
       return state;
     case LOAD_PROJECTCHAPTER_DATA_ERROR:
+      return state;
+    case SET_SHARE_DATA:
+      state = state.setIn(['shareData'], fromJS(action.payload.data));
       return state;
     default:
       return state;
