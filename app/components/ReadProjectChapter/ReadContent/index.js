@@ -35,7 +35,7 @@ export default class ReadContent extends React.Component {
         this.shareData = {
     		url: window.location.href,
     		title : this.chapterTitle,
-    		content: '1',
+    		content: '',
     		imgSrc: IMG_CDN_PATH + 'image/5743b85fe4b00243fbd23456.jpg'
     	}
     	this.props.setShareStatus(this.shareData);
@@ -63,13 +63,15 @@ export default class ReadContent extends React.Component {
 			var touches = event.targetTouches;
 			let _chapterContent = this.props.chapterContent.toJS();
 			let _projectInfo = this.props.projectInfo.toJS();
+			let locStorageProjectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
 			let chapterIndex = null;
-			let projectInfoKey = null;
-			 _projectInfo.map(function(item, key) {		
-				if(item.pid == projectId){
-					projectInfoKey = key;
-				}
-			})
+			// let projectInfoKey = null;
+			//  _projectInfo.map(function(item, key) {		
+			// 	if(item.pid == projectId){
+			// 		projectInfoKey = key;
+			// 	}
+			// })
+
 			var nwrap = this.refs.nFollowListWrap;
 			var nwrapH = nwrap.getBoundingClientRect().height;
 			var bodyH = document.body.clientHeight;
@@ -95,8 +97,9 @@ export default class ReadContent extends React.Component {
 						})
 						 if(chapterIndex){
 						 	chapterId = _chapterContent.chapters[chapterIndex].id;
+							locStorageProjectInfo[projectId].push(chapterId);
 							that.props.setProjectInfoStatus(_projectInfo);
-							locStorage.set('projectInfo', JSON.stringify(_projectInfo));
+							locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
 						 }
 						
 						
@@ -120,8 +123,9 @@ export default class ReadContent extends React.Component {
 						})
 						if(chapterIndex || chapterIndex === 0){
 							chapterId = _chapterContent.chapters[chapterIndex].id;
+							locStorageProjectInfo[projectId].push(chapterId);
 							that.props.setProjectInfoStatus(_projectInfo);
-							locStorage.set('projectInfo', JSON.stringify(_projectInfo)); 
+							locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
 						}
 							
 					}
@@ -179,7 +183,7 @@ export default class ReadContent extends React.Component {
 	render(){
 		var props = this.props;
 		var _chapterContent = props.chapterContent.toJS();
-		var projectInfo =  props.projectInfo.toJS();
+		//var projectInfo =  props.projectInfo.toJS();
 		let authorAvatar = IMG_CDN_PATH + _chapterContent. authorAvatar;
 		let modifyTime = convertDate(_chapterContent.modifyTime)
 		var chapterIndex = null;
@@ -190,16 +194,20 @@ export default class ReadContent extends React.Component {
 					return chapterIndex;
 				}
 			})
-			projectInfo.map(function(item, key) {
-				if(item.pid == projectId){
-					item.cid  = chapterId;
-					locStorage.set('projectInfo', JSON.stringify(projectInfo));
-				}
-			})
-			if(chapterIndex === 0){
-				let _authorMesdom = this.refs._authorMes;
+			// projectInfo.map(function(item, key) {
+			// 	if(item.pid == projectId){
+			// 		item.cid  = chapterId;
+			// 		locStorage.set('projectInfo', JSON.stringify(projectInfo));
+			// 	}
+			// })
+			let _authorMesdom = this.refs._authorMes;
+			if(chapterIndex === 0){	
 				if(_authorMesdom){
 					_authorMesdom.classList.remove('hidden');
+				}
+			}else{
+				if(_authorMesdom){
+					_authorMesdom.classList.add('hidden');
 				}
 			}
 			this.chapterList = _chapterContent.chapters[chapterIndex].content;

@@ -7,7 +7,8 @@
 	position: absolute;
 	width: 100%;
 	min-height: 100%;
-	overflow-y: auto;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 	.authorMes{
 		width: 100%;
 		height: $navHeight;

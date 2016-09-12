@@ -39,7 +39,7 @@ import {
 export function* getReadChapterData(){
 	let action = null;
 	while(action = yield take(LOAD_READCHAPTER_DATA)) {
-		let pid = action.payload.projectId || null;
+		var pid = action.payload.projectId || null;
 		var cid = action.payload.chapterId || null;
 		let url = READCHAPTER_API + `/` + pid + `/chapters`;
 
@@ -54,23 +54,28 @@ export function* getReadChapterData(){
 
 		if(projectResult.err === undefined || projectResult.err === null){
 			if(projectResult.data){
-				let projectInfo = JSON.parse(locStorage.get('projectInfo')) || [];
-				let readInfo = {};
-				var pid = projectResult.data.result.historyId;
-				if(projectInfo.length < 1){
-					readInfo.pid = pid;
-					readInfo.cid = cid;
-				 	projectInfo.push(readInfo);
-				 }else{
-				 	for(var i=0;i<projectInfo.length;i++){
-				 		if(projectInfo[i].pid !== pid){
-				 			readInfo.pid = pid;
-				 			readInfo.cid = cid;
-				 			projectInfo.push(readInfo);
-				 		}else{
-				 			projectInfo[i].cid = cid;
-				 		}
-					}
+				let projectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
+				// let readInfo = {};
+				// if(projectInfo.length < 1){
+				// 	readInfo.pid = pid;
+				// 	readInfo.cid = cid;
+				//  	projectInfo.push(readInfo);
+				//  }else{
+				//  	for(var i=0;i<projectInfo.length;i++){
+				//  		if(projectInfo[i].pid !== pid){
+				//  			readInfo.pid = pid;
+				//  			readInfo.cid = cid;
+				//  			projectInfo.push(readInfo);
+				//  		}else{
+				//  			projectInfo[i].cid = cid;
+				//  		}
+				// 	}
+				// }
+				if(projectInfo[pid]){
+					projectInfo[pid].push(cid);
+				}else{
+					projectInfo[pid]= [];
+					projectInfo[pid].push(cid);
 				}
 				locStorage.set('projectInfo', JSON.stringify(projectInfo));
 			};

@@ -38,7 +38,7 @@ export default class DetailPage extends React.Component {
             <div className="pageInner hasTopBar">
                 <ProjectTopBar {...this.props} />
                 <ProjectDesc {...this.props} />
-                <ProjectTag items={this.props.projectDetail}/>
+                <ProjectTag {...this.props}/>
                 <ProjectIntro items={this.props.projectDetail}/>
                 <ProjectComment items={this.props.projectDetail} />
             </div>
