@@ -65,7 +65,7 @@ export class MyPage extends React.Component { // eslint-disable-line react/prefe
 
     dialoguesClickHandler() {
         if (this.id) {
-            this.context.router.push('/dialogues');
+            this.context.router.push('/dialoguelist');
         }
     }
 

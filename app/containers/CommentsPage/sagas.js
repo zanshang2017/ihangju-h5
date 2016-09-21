@@ -2,26 +2,32 @@ import {take, call, put, select} from 'redux-saga/effects';
 
 import {
     LOAD_COMMENTS_DATA,
-    LOAD_COMMENTS_DATA_ERROR,
-    LOAD_COMMENTS_DATA_SUCCESS,
+    SEND_COMMENTS_DATA,
 } from './constants';
 
 import {
     loadCommentsDataSuccess,
     loadCommentsDataError,
+    sendCommentsDataSuccess,
+    sendCommentsDataError,
 } from './actions'
 
 import {
-    USER_API,
+    COMMENT_API,
+    ANSWER_API,
+    PROJECT_API,
 } from '../../apis.js';
+
+import signals from './signals';
 
 import request from 'utils/request';
 
 export default [
-    getCollectionData,
+    getCommentsData,
+    putCommentData,
 ];
 
-export function* getCollectionData() {
+export function* getCommentsData() {
 
     let action = null;
     while (action = yield take(LOAD_COMMENTS_DATA)) {
@@ -29,7 +35,7 @@ export function* getCollectionData() {
         let id = action.payload.id;
         let page = action.payload.page || 0;
         let size = 10;
-        let url = USER_API + `${id}/collection?page=${page}&size=${size}`;
+        let url = PROJECT_API + `/${id}/comments?page=${page}&size=${size}`;
 
         const lists = yield call(request, url, {
             headers: {
@@ -45,6 +51,51 @@ export function* getCollectionData() {
         } else {
             console.log(lists.err.response); // eslint-disable-line no-console
             yield put(loadCommentsDataError(lists.err));
+        }
+    }
+}
+
+export function* putCommentData() {
+
+    let action = null;
+
+    while (action = yield take(SEND_COMMENTS_DATA)) {
+
+        let replyData = action.payload.replyData;
+
+        let content = replyData.content || '';
+        let type = replyData.type;
+        let parentid = replyData.parentid;
+        let projectid = replyData.projectid;
+
+        let body = '';
+        let url = '';
+
+        if (type) { // 对评论的回复
+            body = `content=${content}&parentid=${parentid}&type=${type}`;
+            url = ANSWER_API;
+        } else { // 评论
+            body = `content=${content}&projectid=${projectid}`;
+            url = COMMENT_API;
+        }
+
+        const lists = yield call(request, url, {
+            method: 'PUT',
+            body: body,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-API-Version': 'v1.1'
+            },
+            credentials: 'include'
+        });
+
+        if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
+            signals.sendCommentSuccess.dispatch();
+            yield put(sendCommentsDataSuccess(lists.data.result, replyData));
+        } else {
+            console.log(lists.err.response); // eslint-disable-line no-console
+            yield put(sendCommentsDataError(lists.err));
         }
     }
 }

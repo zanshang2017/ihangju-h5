@@ -12,31 +12,65 @@
 }
 
 :global {
+    html {
+        height: 100%;
+    }
+
     body {
         width: 100%;
+        height: 100%;
         overflow: visible; //for position:sticky
+    }
+
+    #app {
+        height: 100%;
+    }
+
+    .animWrap {
+        height: 100%;
     }
 
     .page {
         @include pageBase;
         padding: 0 0 $navHeight;
+        height: 100%;
     }
 
     .pageNoNav {
         @include pageBase;
         padding: 0;
+        height: 100%;
+    }
+
+    .transitionWrap {
+        height: 100%;
     }
 
     .pageInner {
         width: 100%;
+
+        //flex
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+
+    .mainContent {
+        -webkit-box-flex: 1;
+        flex: 1;
+        overflow-y:scroll;
+        -webkit-overflow-scrolling: touch;
     }
 
     .hasTopBar {
-        margin-top: $topBarHeight;
+        //margin-top: $topBarHeight;
     }
 
     .hasTabBar {
-        margin-bottom: $navHeight;
+        //margin-bottom: $navHeight;
     }
 
     .logPanel {

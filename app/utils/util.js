@@ -151,8 +151,48 @@ var locStorage = (function storageFactory() {
     }
 })();
 
+function goBottom(nParent, nChild, noAnim) {
+    var parentHeight = nParent.getBoundingClientRect().height;
+    var childHeight = nChild.getBoundingClientRect().height;
+
+    console.log(parentHeight, childHeight);
+
+    var allDistance = childHeight - parentHeight;
+    var leastDist = allDistance;
+    var moveDist = 0;
+    var goDist = 0;
+
+    if (noAnim) {
+        setScrollTop(childHeight - parentHeight);
+        return;
+    }
+
+    function setScrollTop(d) {
+        nParent.scrollTop = d;
+    }
+
+    (function f() {
+        // debugger;
+        moveDist = Math.floor(leastDist / 3);
+        goDist = moveDist + nParent.scrollTop;
+        leastDist = allDistance - goDist;
+
+        if (leastDist <= 1 || moveDist <= 1) {
+            goDist = allDistance;
+            setScrollTop(goDist);
+        } else {
+            setScrollTop(goDist);
+            setTimeout(function () {
+                console.log('goDist', goDist, leastDist);
+                f();
+            }, 10);
+        }
+    })();
+}
+
 export {
     getUrlParam,
     convertDate,
     locStorage,
+    goBottom,
 };

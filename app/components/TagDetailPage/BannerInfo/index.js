@@ -46,7 +46,7 @@ export class BannerInfo extends React.Component { // eslint-disable-line react/p
             if (this.props.isEditing) {
                 editBannerImage = <div className={styles.editBannerImage} onClick={this.showImageSelector.bind(this)}>
                     更换图片
-                    <input type="file" ref="J_CameraFile" accept="image/*" capture="camera" id="cameraFile"
+                    <input type="file" ref="J_CameraFile" accept="image/png,image/jpeg,image/jpg,image/gif" capture="camera" id="cameraFile"
                            className="hide"/>
                 </div>;
             }

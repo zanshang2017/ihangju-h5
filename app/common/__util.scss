@@ -32,3 +32,10 @@
     justify-content: center;
 }
 
+@mixin flexReverse() {
+    -ms-flex-direction: row-reverse;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    flex-direction: row-reverse;
+}
+

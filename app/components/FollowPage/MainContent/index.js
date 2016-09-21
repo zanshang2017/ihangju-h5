@@ -15,50 +15,41 @@ class MainContent extends React.Component {
 
     componentDidMount() {
         var that = this;
-        var nWrap = that.refs.J_FollowPageMainContentWrap;
-
-        //设置主内容区高度
-        var contentH = document.body.clientHeight - document.getElementById('nav').getBoundingClientRect().height;
-        if (nWrap.classList.contains('hasTopBar')) {
-            contentH -= document.getElementById("J_followPageTopListBar").getBoundingClientRect().height;
-        }
-        // nWrap.style.height = contentH + 'px';
-        nWrap.style.height = 570 + 'px';
+        var nWrap = this.refs.J_FollowPageMainContentWrap;
+        that.nScrollOuter = nWrap.parentElement;
 
         //滑动底部加载下一页
         that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 300, {leading: false});
-        nWrap.addEventListener('scroll', that.scrollHanderBinded);
+        that.nScrollOuter.addEventListener('scroll', that.scrollHanderBinded);
     }
 
     componentDidUpdate() {
         //goTop
         if (this.page == 0) {
-            var nWrap = this.refs.J_FollowPageMainContentWrap;
-            nWrap.scrollTop = 0;
+            this.nScrollOuter.scrollTop = 0;
         }
     }
 
     componentWillUnmount() {
-        var nWrap = this.refs.J_FollowPageMainContentWrap;
         //移除侦听
         if (this.scrollHanderBinded) {
-            nWrap.removeEventListener('scroll', this.scrollHanderBinded);
+            this.nScrollOuter.removeEventListener('scroll', this.scrollHanderBinded);
             this.scrollHanderBinded = null;
         }
     }
 
     scrollHandler(e) {
+        // console.log('this.myFollowLoading:', this.props.myFollowLoading,
+        //     'this.page:', this.page,
+        //     'this.isLast:', this.isLast);
 
-        console.log('this.myFollowLoading:', this.props.myFollowLoading,
-            'this.page:', this.page,
-            'this.isLast:', this.isLast);
-
-        var winH = document.body.clientHeight;
         var nWrap = this.refs.J_FollowPageMainContentWrap;
         var nWrapH = nWrap.getBoundingClientRect().height;
-        // console.log(nWrap.scrollTop, nWrapH, nWrap.scrollHeight);
+        var nOuterH = this.nScrollOuter.getBoundingClientRect().height;
 
-        if (nWrap.scrollTop + nWrapH >= nWrap.scrollHeight - 1 && !this.isLast && !this.props.myFollowLoading) {
+        console.log(this.nScrollOuter.scrollTop + nOuterH + '>=' + nWrapH);
+
+        if ((this.nScrollOuter.scrollTop + nOuterH) - nWrapH > 0 && !this.isLast && !this.props.myFollowLoading) {
             this.props.loadMyFollow(this.page + 1, this.props.currentFollow);
         }
     }

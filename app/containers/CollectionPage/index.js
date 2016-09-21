@@ -47,7 +47,6 @@ export class CollectionPage extends React.Component { // eslint-disable-line rea
             console.log('link click', page);
             this.props.dispatch(loadCollectionData(this.id, page));
         }
-
     }
 
     render() {

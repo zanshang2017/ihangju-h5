@@ -1,0 +1,43 @@
+@charset "UTF-8";
+@import "../../../common/_global";
+@import "../../../common/_util";
+@import "../../../common/common.css";
+
+.listWrap {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+    -webkit-overflow-scrolling: touch;
+
+    .listItem {
+        width: 100%;
+        box-sizing: border-box;
+        padding: rem(20) 0;
+        -webkit-overflow-scrolling: touch;
+
+        .basis {
+            position: relative;
+            display: inline-block;
+            padding: rem(15);
+            font-size: rem(28);
+            color: $textColor;
+            background: $deepBg;
+            border-radius: 8px;
+            line-height: 1.2em;
+
+            .arrow {
+                position: absolute;
+                display: block;
+                width: rem(20);
+                height: rem(20);
+                background: $deepBg;
+                top: rem(-10);
+                left: rem(38);
+                -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+        }
+
+    }
+}
+

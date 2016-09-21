@@ -21,9 +21,6 @@ export default class FollowList extends React.Component {
     }
 
     scrollHandler(e) {
-
-        // console.log('scroll')
-
         // console.log('this.myFollowListLoading:' , this.props.myFollowListLoading,
         //     'this.page:', this.page,
         //     'this.isLast:', this.isLast);
@@ -33,10 +30,9 @@ export default class FollowList extends React.Component {
 
         var nWrapH = nWrap.getBoundingClientRect().height;
         var nListH = nList.getBoundingClientRect().height;
-        // console.log(nWrap.scrollTop, nWrapH, nWrap.scrollHeight);
+        // console.log(nWrap.scrollTop + nWrapH + '>' + nListH);
 
-        if (nWrap.scrollTop + nWrapH >= nList.scrollHeight - 1 && !this.isLast && !this.props.myFollowListLoading) {
-            console.log('load: MyfollowList', this.page);
+        if (nWrap.scrollTop + nWrapH >= nListH && !this.isLast && !this.props.myFollowListLoading) {
             this.props.loadMyFollowList(this.page + 1);
         }
     }
@@ -61,7 +57,7 @@ export default class FollowList extends React.Component {
     showFollowList() {
         let nFollowListWrap = this.refs.nFollowListWrap;
         if (!nFollowListWrap.style.height) {
-            nFollowListWrap.style.height = document.documentElement.clientHeight - document.getElementById("J_followPageTopListBar").getBoundingClientRect().height - document.getElementById('nav').clientHeight + 'px';
+            nFollowListWrap.style.height = document.getElementById("J_Container").getBoundingClientRect().height + 'px';
         }
         nFollowListWrap.classList.remove('hide');
 

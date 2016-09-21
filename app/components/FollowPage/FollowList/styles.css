@@ -8,6 +8,7 @@
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch; }
   .listWrap .list {
+    display: inline-block;
     box-sizing: border-box;
     width: 100%;
     padding: 0.85333rem;

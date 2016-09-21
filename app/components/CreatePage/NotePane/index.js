@@ -13,14 +13,14 @@ export default class NotePane extends React.Component {
 
     }
 
-    noteClickHander(e) {
+    noteClickHandler(e) {
         this.props.openNote();
     }
 
     render() {
         return (
             <div className={styles.wrap}>
-                <div className={styles.noteBtn} onClick={this.noteClickHander.bind(this)}></div>
+                <div className={styles.noteBtn} onClick={this.noteClickHandler.bind(this)}></div>
                 <NoteList {...this.props} />
             </div>
         );

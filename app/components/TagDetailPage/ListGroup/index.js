@@ -10,14 +10,19 @@ import {
     recommendationProject,
 } from 'containers/TagDetailPage/actions';
 
-import Tabs from 'antd-mobile/lib/tabs';
+import Tabs from 'antd-mobile/lib/tabs'; //todo 让antd只打包用到的组件
 
 const TabPane = Tabs.TabPane;
+
+const DATA_TYPE = {
+    RECOMMENDATION: '1', //推荐作品
+    ALL: '2', //全部作品
+};
 
 let nList = null,
     nTabs = null,
     nTabsHeight = null,
-    activeKey = 1;
+    activeKey = DATA_TYPE.RECOMMENDATION;
 
 class ListGroup extends React.Component {
 
@@ -27,7 +32,7 @@ class ListGroup extends React.Component {
         nList = null;
         nTabs = null;
         nTabsHeight = null;
-        activeKey = 1;
+        activeKey = DATA_TYPE.RECOMMENDATION;
 
         this.scrollHanderBinded = null;
         this.curPage = 0;
@@ -39,24 +44,26 @@ class ListGroup extends React.Component {
 
     componentDidMount() {
         var that = this;
+        this.outerElement = this.refs.J_TagDetailPageListGroupWrap.parentElement.parentElement;
+        this.innerElement = this.refs.J_TagDetailPageListGroupWrap.parentElement;
 
         //滑动底部加载下一页
         that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 300, {leading: false});
-        window.addEventListener('scroll', that.scrollHanderBinded);
+        that.outerElement && that.outerElement.addEventListener('scroll', that.scrollHanderBinded);
     }
 
     componentWillUpdate(nProps) {
 
         if (!this.props.isAdmin) {
-            activeKey = 2;
+            activeKey = DATA_TYPE.ALL;
         }
 
-        if (activeKey == '1') {
+        if (activeKey == DATA_TYPE.RECOMMENDATION) {
             this.curPage = this.props.recommendationListStatus.get('page') || 0;
             this.isLast = this.props.recommendationListStatus.get('isLast') || false;
         }
 
-        if (!nProps.isAdmin || activeKey == '2') {
+        if (!nProps.isAdmin || activeKey == DATA_TYPE.ALL) {
             this.curPage = this.props.projectListStatus.get('page') || 0;
             this.isLast = this.props.projectListStatus.get('isLast') || false;
         }
@@ -67,21 +74,22 @@ class ListGroup extends React.Component {
 
         //移除侦听
         if (this.scrollHanderBinded) {
-            window.removeEventListener('scroll', this.scrollHanderBinded);
+            this.outerElement.removeEventListener('scroll', this.scrollHanderBinded);
             this.scrollHanderBinded = null;
         }
     }
 
     scrollHandler(e) {
-        var winH = document.body.clientHeight;
-        var nWrap = document.body;
-        var nWrapH = nWrap.getBoundingClientRect().height;
+        let nWrap = this.outerElement;
+        let nWrapH = nWrap.getBoundingClientRect().height;
+        let nInner = this.innerElement;
+        let nInnerH = nInner.getBoundingClientRect().height;
+        let offsetHAbs = Math.abs((nWrap.scrollTop + nWrapH) - nInnerH);
 
-        // console.log(nWrap.scrollTop + nWrapH, nWrap.scrollHeight, this.props.recommendationListStatus.toJS(), this.props.projectListStatus.toJS());
-
-        if (nWrap.scrollTop + nWrapH >= nWrap.scrollHeight) {
+        console.log(offsetHAbs, nWrap.scrollTop + nWrapH, nInnerH, this.props.recommendationListStatus.toJS(), this.props.projectListStatus.toJS());
+        if (offsetHAbs < 1) {
             //加载下一页
-            if (activeKey == '1' && !this.props.recommendationListStatus.get('loading')) {
+            if (activeKey == DATA_TYPE.RECOMMENDATION && !this.props.recommendationListStatus.get('loading')) {
                 let status = this.props.recommendationListStatus.toJS();
                 this.isLast = status ? status.isLast : false;
                 this.curPage = status ? status.page : 0;
@@ -91,7 +99,7 @@ class ListGroup extends React.Component {
                 }
             }
 
-            if (activeKey == '2' && !this.props.projectListStatus.get('loading')) {
+            if (activeKey == DATA_TYPE.ALL && !this.props.projectListStatus.get('loading')) {
                 let status = this.props.projectListStatus.toJS();
 
                 this.isLast = status ? status.isLast : false;
@@ -109,11 +117,11 @@ class ListGroup extends React.Component {
         this.curPage = 0;
 
         switch (activeKey) {
-            case '1':
+            case DATA_TYPE.RECOMMENDATION:
                 this.props.loadRecommendationHandler();
                 break;
 
-            case '2':
+            case DATA_TYPE.ALL:
                 this.props.loadAllHandler();
                 break;
 
@@ -138,11 +146,11 @@ class ListGroup extends React.Component {
 
         if (this.props.isAdmin) {
             mainTag = <Tabs ref="J_Tabs" defaultActiveKey="1" onChange={this.tabChangeHandler.bind(this)}>
-                <TabPane tab="推荐作品" key="1">
+                <TabPane tab="推荐作品" key={DATA_TYPE.RECOMMENDATION}>
                     <TagArticleList items={this.props.recommendationList || []}
                                     recommendationHandler={this.recommendationHandler.bind(this)}/>
                 </TabPane>
-                <TabPane tab="全部作品" key="2">
+                <TabPane tab="全部作品" key={DATA_TYPE.ALL}>
                     <TagArticleList items={this.props.projectList || []}
                                     recommendationHandler={this.recommendationHandler.bind(this)}/>
                 </TabPane>
@@ -153,7 +161,7 @@ class ListGroup extends React.Component {
         }
 
         return (
-            <div id="J_TagDetailPageListGroupWrap" className="tagDetailPageListGroup">
+            <div ref="J_TagDetailPageListGroupWrap" className="tagDetailPageListGroup">
                 {mainTag}
             </div>
         );

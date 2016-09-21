@@ -3,15 +3,7 @@
 @import "../../../common/_util";
 @import "../../../common/common.css";
 
-
-.wrap {
-
-}
-
 .bar {
-    position: fixed;
-    top: 0;
-    left: 0;
     z-index: $zIndexL4;
     box-sizing: border-box;
     width: 100%;

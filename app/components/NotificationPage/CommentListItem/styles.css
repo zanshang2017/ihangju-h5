@@ -42,7 +42,8 @@
         padding-top: 0.26667rem; }
   .listItem .comment {
     color: #a09e98;
-    margin: 0.26667rem 0; }
+    font-size: 0.74667rem;
+    margin: 0 0 0.26667rem 0; }
     .listItem .comment span {
       color: #383b3d; }
   .listItem .projName {

@@ -99,7 +99,7 @@ function tagDetailPageReducer(state = initialState, action = {}) {
                         tag_image: res.tag_image || ''
                     };
 
-                    _state = _state.set('detail', fromJS(detail))
+                    _state = _state.set('detail', fromJS(detail));
 
                     return _state.setIn(['projectListStatus', 'loading'], false);
                 }
@@ -173,6 +173,36 @@ function tagDetailPageReducer(state = initialState, action = {}) {
                 state = state.setIn(['recommendationListStatus', 'loading'], data.loading);
             }
 
+            return state;
+
+        case RECOMMENDATION_PROJECT_SUCCESS:
+            let isRemove = action.payload.isRemove;
+            let id = action.payload.id;
+
+            //更新对应项目id的isRecommdationProject属性
+            let allList = state.get('projectList').toJS();
+
+            allList.map(function(v) {
+                 if(v.id === id) {
+                     v.isRecommdationProject = !isRemove;
+                 }
+            });
+
+            state = state.set('projectList', fromJS(allList));
+
+            let recommList = state.get('recommendationList').toJS();
+
+            recommList.map(function(v) {
+                if(v.id === id) {
+                    v.isRecommdationProject = !isRemove;
+                }
+            });
+
+
+
+            return state.set('recommendationList', fromJS(recommList));
+
+        case RECOMMENDATION_PROJECT_ERROR:
             return state;
 
         case SUB_TAG:

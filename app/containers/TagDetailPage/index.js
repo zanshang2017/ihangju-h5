@@ -151,9 +151,10 @@ export class TagDetailPage extends React.Component { // eslint-disable-line reac
 
         var that = this;
 
+
         if (props.detail) {
             this.detail = props.detail.toJS();
-// debugger;
+
             if (!this.initialized) {
                 this.initialized = true;
                 this.UserID = this.userInfo.id;
@@ -175,9 +176,8 @@ export class TagDetailPage extends React.Component { // eslint-disable-line reac
 
                 if (this.isAdmin) {
                     this.loadRecommendationHandler();
-                } else {
-                    this.loadAllHandler();
                 }
+
             }
 
             this.isEditing = props.isEditing || false;
@@ -189,7 +189,7 @@ export class TagDetailPage extends React.Component { // eslint-disable-line reac
                     this.topBarBtnHTML = <div onClick={this.doEdit.bind(this)}>编辑</div>
                 }
             } else {
-                if(this.detail.isFollow) {
+                if (this.detail.isFollow) {
                     this.topBarBtnHTML = <div onClick={this.cancelSubTagHandler.bind(this)}>已关注</div>;
                 } else {
                     this.topBarBtnHTML = <div onClick={this.subTagHandler.bind(this)}>关注</div>;
@@ -227,19 +227,25 @@ export class TagDetailPage extends React.Component { // eslint-disable-line reac
                 <TagDesc ref="J_TagDesc" {...this.props} description={this.detail ? this.detail.tag_description : ''}/>;
         }
 
+        console.log('this.refs.J_Container', this.refs.J_Container);
+
         return (
             <div className="pageInner hasTopBar">
                 <TopBar data-has-back="true" backHandler={this.backHandler.bind(this)}>
                     <div data-title>{this.detail && this.detail.tag_name || ''}</div>
                     <div data-btns>{this.topBarBtnHTML}</div>
                 </TopBar>
-                {infoHTML}
-                {descHTML}
-                <ListGroup {...this.props}
-                           tagID={this.tagID}
-                           isAdmin={this.isAdmin || false}
-                           loadRecommendationHandler={this.loadRecommendationHandler.bind(this)}
-                           loadAllHandler={this.loadAllHandler.bind(this)}/>
+                <div ref="J_Container" className="mainContent">
+                    <div className="mainContentInner">
+                        {infoHTML}
+                        {descHTML}
+                        <ListGroup {...this.props}
+                                   tagID={this.tagID}
+                                   isAdmin={this.isAdmin || false}
+                                   loadRecommendationHandler={this.loadRecommendationHandler.bind(this)}
+                                   loadAllHandler={this.loadAllHandler.bind(this)}/>
+                    </div>
+                </div>
             </div>
         );
     }

@@ -576,7 +576,7 @@ export default function createRoutes(store) {
                 store.dispatch(showNav());
             }
         }, {
-            path: '/dialogues',
+            path: '/dialoguelist',
             name: 'dialogueListPage',
             getComponent(nextState, cb) {
                 const importModules = Promise.all([
@@ -592,6 +592,68 @@ export default function createRoutes(store) {
                         injectReducer('dialogueListPage', reducer.default);
                         injectSagas(sagas.default);
                         initedStatus.dialogueListPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                store.dispatch(hideNav());
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            },
+            onLeave: function () {
+                store.dispatch(showNav());
+            }
+        }, {
+            path: '/dialogue/:id',
+            name: 'dialoguePage',
+            getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                    System.import('containers/DialoguePage/reducer'),
+                    System.import('containers/DialoguePage/sagas'),
+                    System.import('containers/DialoguePage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.dialoguePage) {
+                        injectReducer('dialoguePage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.dialoguePage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                store.dispatch(hideNav());
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            },
+            onLeave: function () {
+                store.dispatch(showNav());
+            }
+        }, {
+            path: '/comments/:id',
+            name: 'commentsPage',
+            getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                    System.import('containers/CommentsPage/reducer'),
+                    System.import('containers/CommentsPage/sagas'),
+                    System.import('containers/CommentsPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.commentsPage) {
+                        injectReducer('commentsPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.commentsPage = true;
                     }
 
                     renderRoute(component);

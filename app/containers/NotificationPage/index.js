@@ -80,9 +80,13 @@ export class NotificationPage extends React.Component { // eslint-disable-line r
                 maskClosable: true,
             },
             (buttonIndex) => {
-                switch(buttonIndex) {
+                switch (buttonIndex) {
                     case 0:
-                        alert('评论详情');
+                        if (id) {
+                            this.context.router.push('/comments/' + id);
+                        } else {
+                            Toast.info('该作品已删除');
+                        }
                         break;
 
                     case 1:
@@ -91,7 +95,8 @@ export class NotificationPage extends React.Component { // eslint-disable-line r
 
                     default:
                         break;
-                };
+                }
+                ;
             });
     }
 

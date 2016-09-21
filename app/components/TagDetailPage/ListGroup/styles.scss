@@ -5,15 +5,14 @@
 :global {
     .tagDetailPageListGroup {
 
-        .am-tab {
+        display: inline-block;
+        width: 100%;
 
+        .am-tab {
             .am-tab-content {
                 padding: 0 !important;
             }
-
         }
-
-
 
         .ant-tabs {
             overflow: visible; //for position:sticky

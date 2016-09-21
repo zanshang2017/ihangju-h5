@@ -190,11 +190,12 @@ export function recommendationProject(id, tagID, isRemove=false) {
     }
 }
 
-export function recommendationProjectSuccess(id) {
+export function recommendationProjectSuccess(id, isRemove) {
     return {
         type: RECOMMENDATION_PROJECT_SUCCESS,
         payload: {
-            id
+            id: id,
+            isRemove: isRemove,
         }
     }
 }

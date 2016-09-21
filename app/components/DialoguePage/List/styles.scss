@@ -1,0 +1,163 @@
+@charset "UTF-8";
+@import "../../../common/_global";
+@import "../../../common/_util";
+@import "../../../common/common.css";
+
+.listWrap {
+    width: 100%;
+    box-sizing: border-box;
+    //overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    .listItem {
+        position: relative;
+        width: 100%;
+        box-sizing: border-box;
+        padding: rem(20) rem(35);
+        background: #fff;
+        text-align: left;
+        -webkit-overflow-scrolling: touch;
+
+        .time {
+            text-align: center;
+            font-size: rem(26);
+            color: $weakerTitleColor;
+            margin: 0 rem(20) 0 0;
+        }
+
+        .itemMe {
+            @include flexBox();
+            padding: rem(20) 0;
+            align-items: flex-start;
+
+            @include flexReverse();
+
+            .avatar {
+                img {
+                    border-radius: 2px;
+                    width: rem(80);
+                    height: rem(80);
+                }
+            }
+
+            .info {
+                -webkit-box-flex: 1;
+                -webkit-flex: 1;
+                font-size: rem(28);
+                margin: 0 rem(25) 0 rem(40);
+                box-sizing: border-box;
+
+                .innerShare {
+                    float: right;
+                    position: relative;
+                    min-height: rem(80);
+                    padding: rem(17) rem(15) rem(15);
+                    border: 2px solid $reverseBg;
+                    border-radius: 3px;
+
+                    .content {
+                        line-height: 1.5em;
+                        overflow: hidden;
+
+                        h3 {
+                            font-size: rem(36);
+                            padding-bottom: rem(10);
+                            color: $textColor;
+                        }
+
+                        span {
+                            font-size: rem(24);
+                            color: $weakTextColor;
+                        }
+                    }
+                }
+
+                .inner {
+                    float: right;
+                    position: relative;
+                    background: $reverseBg;
+                    min-height: rem(80);
+                    padding: rem(17) rem(15) rem(15);
+                    border-radius: 3px;
+
+                    .content {
+                        font-size: rem(30);
+                        color: #fff;
+                        line-height: 1.5em;
+                        overflow: hidden;
+                    }
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        display: block;
+                        width: rem(20);
+                        height: rem(20);
+                        background: $reverseBg;
+                        top: rem(30);
+                        right: rem(-10);
+                        -webkit-transform: rotate(45deg);
+                        transform: rotate(45deg);
+                    }
+
+                }
+
+            }
+        }
+
+        .itemTa {
+            @include flexBox();
+            padding: rem(20) 0;
+            align-items: flex-start;
+
+            .avatar {
+                img {
+                    border-radius: 2px;
+                    width: rem(80);
+                    height: rem(80);
+                }
+            }
+
+            .info {
+                -webkit-box-flex: 1;
+                -webkit-flex: 1;
+                font-size: rem(28);
+                min-height: rem(80);
+                margin: 0 rem(40) 0 rem(25);
+                box-sizing: border-box;
+
+                .inner {
+                    float: left;
+                    position: relative;
+                    background: $deepBg;
+                    min-height: rem(80);
+                    padding: rem(17) rem(15) rem(15);
+                    border-radius: 3px;
+
+                    .content {
+                        font-size: rem(30);
+                        color: $textColor;
+                        line-height: 1.5em;
+                        overflow: hidden;
+                    }
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        display: block;
+                        width: rem(20);
+                        height: rem(20);
+                        background: $deepBg;
+                        top: rem(30);
+                        left: rem(-10);
+                        -webkit-transform: rotate(45deg);
+                        transform: rotate(45deg);
+                    }
+                }
+
+            }
+        }
+
+    }
+}
+

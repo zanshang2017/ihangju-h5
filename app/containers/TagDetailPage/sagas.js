@@ -268,10 +268,9 @@ export function* tagRecommendationProject() {
             credentials: 'include'
         });
 
-
         if (lists.err === undefined || lists.err === null) {
             if (lists.data.code === 'ok') {
-                yield put(recommendationProjectSuccess(lists.data));
+                yield put(recommendationProjectSuccess(id, isRemove));
             }
         } else {
             console.log(lists.err.response); // eslint-disable-line no-console

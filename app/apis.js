@@ -22,6 +22,17 @@ if (Env.prod) {
 //图片CDN
 const IMG_CDN_PATH = 'https://o82zr1kfu.qnssl.com/@';
 
+/**
+ * 获取图片上传Token
+ *
+ * response:
+ * {
+	"uptoken": "xxxxxxxxxxx"
+   }
+ */
+const IMG_UPLOAD_TOKEN_API = `//${api_domain}/storage/image/uptoken`;
+
+
 //三方登录页
 const THIRDPARTY_LOGIN_URL = `http://${thirdparty_login_domain}/oauth/authorize?client_id=ihangju&redirect_uri=http://${api_domain}/zanshang/authentication&response_type=code&scope=read&state=33251`;
 
@@ -91,7 +102,7 @@ const CONFIRM_EDITOR_API = `//${api_domain}/confirm/editor`;
  * restful:
  *  [GET] 获取用户信息
  *  [POST] 设置用户信息
- *      头像: avatar	{String} /image/57c7e146e4b0ddd2e19eff99.jpg
+ *      头像: avatar    {String} /image/57c7e146e4b0ddd2e19eff99.jpg
  *      昵称: nickname {String} 门神4.
  *      描述: description {String} 《收获》小门审.
  *      推送: favoritePush | commentPush | letterPush {Boolean}
@@ -177,7 +188,7 @@ const NOTE_LIST_API = `//${api_domain}/user/notes`;
  *      请求体:
  *      content=%E5%AF%B9%E4%BD%A0
  *
- *      注意:若url中不带noteID,则为新增一条记录;否则为修改相应记录
+ *      ** 注意:若url中不带noteID,则为新增一条记录;否则为修改相应记录 **
  *
  *
  * PUT:新增
@@ -209,6 +220,15 @@ const NOTE_LIST_API = `//${api_domain}/user/notes`;
  *
  */
 const NOTE_API = `//${api_domain}/note`;
+
+/**
+ * 作品API
+ *
+ * 路径: /${projectID} 获取作品详情
+ * 路径: /${projectID}/comments 获取当前作品的评论
+ *
+ */
+const PROJECT_API = `//${api_domain}/project`
 
 
 /**
@@ -374,8 +394,43 @@ const COMMENT_LIST_API = `//${api_domain}/notification/comments`;
 const MESSAGE_LIST_API = `//${api_domain}/notification/messages`;
 
 
+/**
+ * 发送评论接口
+ *
+ * restful:
+ *  [PUT] 增加评论
+ *
+ *  body: content=${评论内容}&projectid=${项目id}
+ */
+const COMMENT_API = `//${api_domain}/comment`;
+
+/**
+ * 发送评论答复接口
+ *
+ * restful:
+ *  [PUT] 增加评论
+ *
+ *  body: content=${评论内容}&parentid=${项目id}&type=${'answer' || 'to_answer'}
+ */
+const ANSWER_API = `//${api_domain}/answer`;
+
+
+/**
+ * 私信接口
+ *
+ * restful:
+ *  [GET] /${letterGroupId}?size=100000 获取指定私信组的私信 //todo 加分页
+ *  [PUT] /${letterGroupId} 增加私信
+ *        body: content=${私信内容}
+ */
+const DIALOGUE_API = `//${api_domain}/dialogue`;
+
+
+
 export {
     IMG_CDN_PATH,
+    IMG_UPLOAD_TOKEN_API,
+
     THIRDPARTY_LOGIN_URL,
     USER_INFO_API,
     USER_CENTER_API,
@@ -390,6 +445,8 @@ export {
     NOTE_LIST_API,
     NOTE_API,
 
+    PROJECT_API,
+
     TAG_API,
     SUB_TAG_API,
 
@@ -402,6 +459,11 @@ export {
 
     COMMENT_LIST_API,
     MESSAGE_LIST_API,
+
+    COMMENT_API,
+    ANSWER_API,
+
+    DIALOGUE_API,
 
 };
 

@@ -1,4 +1,6 @@
 .followPageMainContent {
-  overflow-y: auto; }
+  overflow-y: auto;
+  display: inline-block;
+  width: 100%; }
 
 /*# sourceMappingURL=styles.css.map */

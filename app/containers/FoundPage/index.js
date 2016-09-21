@@ -58,8 +58,10 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
     render() {
         return (
             <div className="pageInner">
-                <Banner items={this.props.banners}></Banner>
-                <MainContent {...this.props} />
+                <div className="mainContent">
+                    <Banner items={this.props.banners}></Banner>
+                    <MainContent {...this.props} />
+                </div>
             </div>
         );
     }

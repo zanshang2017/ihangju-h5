@@ -23,9 +23,8 @@ export default class List extends React.Component {
     }
 
     clickHandler(e) {
-        let dialogueID = e.currentTarget.dataset['id'];
-        alert(dialogueID);
-        // this.context.router.push(`/person/${authorId}`);
+        let letterGroupId = e.currentTarget.dataset['id'];
+        this.context.router.push(`/dialogue/${letterGroupId}`);
     }
 
     render() {

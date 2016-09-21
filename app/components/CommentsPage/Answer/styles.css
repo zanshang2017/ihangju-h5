@@ -1,0 +1,32 @@
+@import url(../../../common/common.css);
+.listWrap {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  -webkit-overflow-scrolling: touch; }
+  .listWrap .listItem {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.53333rem 0;
+    -webkit-overflow-scrolling: touch; }
+    .listWrap .listItem .basis {
+      position: relative;
+      display: inline-block;
+      padding: 0.4rem;
+      font-size: 0.74667rem;
+      color: #383b3d;
+      background: #f5f5f5;
+      border-radius: 8px;
+      line-height: 1.2em; }
+      .listWrap .listItem .basis .arrow {
+        position: absolute;
+        display: block;
+        width: 0.53333rem;
+        height: 0.53333rem;
+        background: #f5f5f5;
+        top: -0.26667rem;
+        left: 1.01333rem;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg); }
+
+/*# sourceMappingURL=styles.css.map */

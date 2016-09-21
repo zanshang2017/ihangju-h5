@@ -94,17 +94,18 @@ export default class App extends React.Component {
         if (this.props.showNav) {
             pageClass = 'page';
         } else {
-            pageClass = 'page-noNav';
+            pageClass = 'pageNoNav';
         }
 
         return (
-            <div ref="pageTransitionWrap" className={routeEffector.className}>
+            <div ref="pageTransitionWrap" className={`animWrap ${routeEffector.className}`}>
                 <div className={pageClass}>
                     <ReactCSSTransitionGroup
                         component="div"
                         transitionName="flip"
                         transitionEnterTimeout={routeEffector.timeout}
                         transitionLeaveTimeout={routeEffector.timeout}
+                        className="transitionWrap"
                     >
                         {React.cloneElement(this.props.children, {
                             key: this.props.location.pathname

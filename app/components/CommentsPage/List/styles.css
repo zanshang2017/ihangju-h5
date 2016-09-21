@@ -1,0 +1,56 @@
+@import url(../../../common/common.css);
+.listWrap {
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch; }
+  .listWrap .listItem {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.53333rem 0.53333rem 0.53333rem 1.12rem;
+    background: #fff;
+    text-align: left;
+    -webkit-overflow-scrolling: touch;
+    border-bottom: 1px solid #f4f5f5; }
+    .listWrap .listItem .basis {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-align: center;
+      -moz-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -moz-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      padding: 0.53333rem 0;
+      align-items: flex-start; }
+      .listWrap .listItem .basis .avatar img {
+        border-radius: 3px;
+        width: 2.66667rem;
+        height: 2.66667rem; }
+      .listWrap .listItem .basis .info {
+        font-size: 0.74667rem;
+        line-height: 1.5em;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        padding-left: 0.66667rem;
+        overflow: hidden; }
+        .listWrap .listItem .basis .info h4 {
+          color: #7b8f9d;
+          font-size: 0.85333rem; }
+        .listWrap .listItem .basis .info .time {
+          font-size: 0.69333rem;
+          color: #a09e98;
+          margin: 0.4rem 0.53333rem 0 0; }
+    .listWrap .listItem .content {
+      font-size: 0.8rem;
+      color: #383b3d;
+      line-height: 1.2em; }
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,1 @@
+export const DEFAULT_PLACEHOLDER = '评论:';
