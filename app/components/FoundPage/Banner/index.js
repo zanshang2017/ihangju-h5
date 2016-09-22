@@ -24,7 +24,7 @@ function Banner(props) {
                 {
                     props.items.map(function (item, key) {
                         var imageSrc = IMG_CDN_PATH + item.image;
-                        return <div key={key}><img src={imageSrc} /></div>
+                        return <div key={key} data-id={item.target} onClick={props.articleClickHandler}><img src={imageSrc} /></div>
                     })
                 }
             </Carousel>
@@ -36,7 +36,8 @@ Banner.propTypes = {
     items: React.PropTypes.oneOfType([
         React.PropTypes.array,
         React.PropTypes.object
-    ])
+    ]),
+    articleClickHandler: React.PropTypes.func
 };
 
 export default Banner;

@@ -140,6 +140,11 @@ class ListGroup extends React.Component {
         }
     }
 
+    articleClickHandler(e) {
+        let projectId = e.currentTarget.dataset['id'];
+        this.context.router.push(`/projectDetail/${projectId}`);
+    }
+
     render() {
 
         let mainTag = '';
@@ -150,18 +155,21 @@ class ListGroup extends React.Component {
                     <TabPane tab="推荐作品" key={DATA_TYPE.RECOMMENDATION}>
                         <TagArticleList items={this.props.recommendationList || []}
                                         recommendationHandler={this.recommendationHandler.bind(this)}
-                                        isAdmin={this.props.isAdmin}/>
+                                        isAdmin={this.props.isAdmin}
+                                        articleClickHandler={this.articleClickHandler.bind(this)}/>
                     </TabPane>
                     <TabPane tab="全部作品" key={DATA_TYPE.ALL}>
                         <TagArticleList items={this.props.projectList || []}
                                         recommendationHandler={this.recommendationHandler.bind(this)}
-                                        isAdmin={this.props.isAdmin}/>
+                                        isAdmin={this.props.isAdmin}
+                                        articleClickHandler={this.articleClickHandler.bind(this)} />
                     </TabPane>
                 </Tabs>;
         } else {
             mainTag = <TagArticleList items={this.props.projectList || []}
                                       recommendationHandler={this.recommendationHandler.bind(this)}
-                                      isAdmin={this.props.isAdmin}/>;
+                                      isAdmin={this.props.isAdmin}
+                                      articleClickHandler={this.articleClickHandler.bind(this)}/>;
         }
 
         return (
@@ -178,6 +186,11 @@ ListGroup.propTypes = {
         React.PropTypes.object
     ])
 };
+
+ListGroup.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
+
 
 export default ListGroup;
 

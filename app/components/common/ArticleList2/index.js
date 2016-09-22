@@ -12,7 +12,7 @@ function ArticleList2(props) {
         <div className={styles.articleList}>
             {
                 items.map(function (item, key) {
-                    return <ArticleListItem2 item={item} key={item.projectId} />
+                    return <ArticleListItem2 {...props} item={item} key={item.projectId} />
                 })
             }
         </div>

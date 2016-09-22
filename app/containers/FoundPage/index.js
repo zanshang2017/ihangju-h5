@@ -43,30 +43,23 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
         this.props.dispatch(loadDiscoveriesData());
     }
 
-    // loadRecommendation(page) {
-    //     this.props.dispatch(loadRecommendationData(page));
-    // }
-
-    //loadNextRecommendation() {
-    //    loadRecommendation(++this.recommendationPage);
-    //}
-    //
-    //refreshRecommendation() {
-    //    loadRecommendation(this.recommendationPage = 0);
-    //}
+    articleClickHandler(e) {
+        let projectId = e.currentTarget.dataset['id'];
+        this.context.router.push(`/projectDetail/${projectId}`);
+    }
 
     render() {
         return (
             <div className="pageInner">
                 <div className="mainContent">
-                    <Banner items={this.props.banners}></Banner>
+                    <Banner items={this.props.banners}
+                            articleClickHandler={this.articleClickHandler.bind(this)}></Banner>
                     <MainContent {...this.props} />
                 </div>
             </div>
         );
     }
 }
-
 
 const mapStateToProps = createSelector(
     selectBanners(),
@@ -85,5 +78,9 @@ function mapDispatchToProps(dispatch) {
         refresh: () => dispatch(loadDiscoveriesData())
     };
 }
+
+FoundPage.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(FoundPage);

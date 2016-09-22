@@ -21,8 +21,8 @@ export default class List extends React.Component {
     }
 
     shareClickHandler(e) {
-        let id = e.currentTarget.dataset['id'];
-        //todo 去文章阅读页
+        let projectId = e.currentTarget.dataset['id'];
+        this.context.router.push(`/projectDetail/${projectId}`);
     }
 
     avatarClickHandler(e) {

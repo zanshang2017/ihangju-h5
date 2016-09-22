@@ -57,6 +57,11 @@ export class PersonPage extends React.Component { // eslint-disable-line react/p
         }
     }
 
+    articleClickHandler(e) {
+        let projectId = e.currentTarget.dataset['id'];
+        this.context.router.push(`/projectDetail/${projectId}`);
+    }
+
     render() {
         let userInfo = this.props.userInfo || {};
 
@@ -73,7 +78,8 @@ export class PersonPage extends React.Component { // eslint-disable-line react/p
                               fansClickHandler={this.fansClickHandler.bind(this)}
                               followsClickHandler={this.followsClickHandler.bind(this)}
                     />
-                    <UserArticle userInfo={userInfo}></UserArticle>
+                    <UserArticle userInfo={userInfo}
+                                 articleClickHandler={this.articleClickHandler.bind(this)}></UserArticle>
                 </div>
             </div>
         );

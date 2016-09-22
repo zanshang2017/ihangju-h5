@@ -33,7 +33,7 @@ function ArticleListItem(props) {
     //    }
 
     return (
-        <div className={styles.articleListItem}>
+        <div className={styles.articleListItem} data-id={item.id} onClick={props.articleClickHandler}>
             <span className={styles.source}><strong>{source}</strong> 更新了</span>
             <h3>{item.projectName}</h3>
             <p>{item.description}</p>

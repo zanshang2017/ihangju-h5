@@ -23,13 +23,13 @@ function UserArticle(props) {
     var nullContent = <Result imgUrl="https://os.alipayobjects.com/rmsportal/MKXqtwNOLFmYmrY.png" title="内容为空"/>;
 
     if (userInfo.projects && userInfo.projects.length > 0) {
-        projectContent = <ArticleList2 items={userInfo.projects}/>;
+        projectContent = <ArticleList2 {...props} items={userInfo.projects}/>;
     } else {
         projectContent = nullContent;
     }
 
     if (userInfo.contractProjects && userInfo.contractProjects.length > 0) {
-        contractProjectsContent = <ArticleList2 items={userInfo.contractProjects}/>;
+        contractProjectsContent = <ArticleList2 {...props} items={userInfo.contractProjects}/>;
     } else {
         contractProjectsContent = nullContent;
     }

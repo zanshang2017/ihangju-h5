@@ -37,8 +37,8 @@
 :global .mainContent {
   -webkit-box-flex: 1;
   flex: 1;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch; }
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll; }
 :global .logPanel {
   position: fixed;
   top: 0;

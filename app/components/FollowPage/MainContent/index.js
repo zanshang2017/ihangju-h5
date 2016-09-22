@@ -56,6 +56,11 @@ class MainContent extends React.Component {
         }
     }
 
+    articleClickHandler(e) {
+        let projectId = e.currentTarget.dataset['id'];
+        this.context.router.push(`/projectDetail/${projectId}`);
+    }
+
     render() {
         this.page = this.props.selectMyFollowDataStatus.get('page') || 0;
         this.isLast = this.props.selectMyFollowDataStatus.get('isLast') || false;
@@ -70,7 +75,7 @@ class MainContent extends React.Component {
                 title="暂无文章"
             />
         } else {
-            list = <ArticleList items={articles}/>
+            list = <ArticleList items={articles} articleClickHandler={this.articleClickHandler.bind(this)}/>
         }
 
         return (
@@ -81,6 +86,10 @@ class MainContent extends React.Component {
         );
     }
 }
+
+MainContent.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 MainContent.propTypes = {
     items: React.PropTypes.oneOfType([

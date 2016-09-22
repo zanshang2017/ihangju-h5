@@ -58,6 +58,13 @@ export default class CollectionList extends React.Component {
     authorClickHandler(e) {
         let authorId = e.currentTarget.dataset['id'];
         this.context.router.push(`/person/${authorId}`);
+        e.stopPropagation();
+        e.preventDefault();
+    }
+
+    articleClickHandler(e) {
+        let projectId = e.currentTarget.dataset['id'];
+        this.context.router.push(`/projectDetail/${projectId}`);
     }
 
     render() {
@@ -68,7 +75,9 @@ export default class CollectionList extends React.Component {
 
         return (
             <div ref="J_CollectionListWrap" className={`${styles.listWrap}`}>
-                <ArticleList3 items={this.items} authorClickHandler={this.authorClickHandler.bind(this)}></ArticleList3>
+                <ArticleList3 items={this.items}
+                              articleClickHandler={this.articleClickHandler.bind(this)}
+                              authorClickHandler={this.authorClickHandler.bind(this)}></ArticleList3>
             </div>
         );
     }

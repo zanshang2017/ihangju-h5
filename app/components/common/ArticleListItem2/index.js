@@ -31,7 +31,7 @@ function ArticleListItem2(props) {
     // "likeNumber": 9
 
     return (
-        <div className={styles.articleListItem2}>
+        <div className={styles.articleListItem2} data-id={item.projectId} onClick={props.articleClickHandler}>
             <h3>{item.projectName}</h3>
             <p>{item.description}</p>
             <div className={styles.info}>

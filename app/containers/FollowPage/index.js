@@ -73,7 +73,10 @@ export class FollowPage extends React.Component { // eslint-disable-line react/p
             <div className="pageInner">
                 <TopListBar {...this.props} />
                 <div id="J_Container" ref="J_Container" className="mainContent">
-                    <MainContent loadMyFollow={this.loadMyFollow.bind(this)} {...this.props} ref="J_MainContent"/>
+                    <MainContent
+                        ref="J_MainContent"
+                        loadMyFollow={this.loadMyFollow.bind(this)}
+                        {...this.props} />
                 </div>
             </div>
         );

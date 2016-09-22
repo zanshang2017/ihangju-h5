@@ -38,14 +38,18 @@ function TagArticleListItem(props) {
 
     function addRecommendation(e) {
         props.recommendationHandler(e.target.dataset.id);
+        e.stopPropagation();
+        e.preventDefault();
     }
 
     function removeRecommendation(e) {
         props.recommendationHandler(e.target.dataset.id, {isRemove: true});
+        e.stopPropagation();
+        e.preventDefault();
     }
 
     return (
-        <div className={styles.articleListItem}>
+        <div className={styles.articleListItem} data-id={item.id} onClick={props.articleClickHandler}>
             <span className={styles.source}><strong>{item.authorName}</strong> 更新了</span>
             {recommendationBtn}
             <h3>{item.projectName}</h3>

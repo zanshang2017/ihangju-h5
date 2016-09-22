@@ -1,2 +1,91 @@
-@import url(../../../common/common.css);.chpCon{position:absolute;width:100%;min-height:100%;overflow-y:scroll;-webkit-overflow-scrolling:touch}.chpCon .authorMes{width:100%;height:2.82667rem;border-bottom:1px solid #f3f5f4;line-height:2.82667rem}.chpCon .authorMes img{display:inline-block;width:1.86667rem;height:1.86667rem;border-radius:1.86667rem;margin-left:1.17333rem}.chpCon .authorMes .left{position:relative;left:.4rem}.chpCon .authorMes .right{float:right;margin-right:1.17333rem}.chpCon .contentMes{margin-top:1.33333rem;margin-left:2.66667rem;margin-right:1.6rem;padding-bottom:3.2rem}.chpCon .contentTitle{margin-left:2.66667rem;margin-right:1.6rem;font-size:1.12rem;color:#7b8f9d}.chapterTitle{color:#39bcc8}.chapterTitle span{display:inline-block;width:5.33333rem;margin:0 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.chapterTitle i{position:relative;top:-.8rem}.rightStar{position:absolute;right:1.17333rem;top:0}.rightStar i{color:#39bcc8}.bottomBar{position:fixed;bottom:0;width:100%;z-index:99999;background-color:#f7f7f7;height:2.82667rem}.bottomBar ul{float:right;margin-right:1.17333rem;height:100%;display:flex;-webkit-align-items:center;align-items:center}.bottomBar ul li{float:left;margin-left:1.6rem}.bottomBar ul li i{display:inline-block;width:1.17333rem;height:1.17333rem}.bottomBar ul li i.i1{background:url("https://o82zr1kfu.qnssl.com/@/image/57c640a2e4b073472e793137.png") no-repeat;background-size:cover}.bottomBar ul li i.i3{background:url("https://o82zr1kfu.qnssl.com/@/image/57c6408ee4b073472e793135.png") no-repeat;background-size:cover}.bottomBar ul li i img{width:100%}.bottomBar ul li span{display:inline-block;position:relative;top:-.4rem;left:.26667rem}
+@import url(../../../common/common.css);
+.chpCon {
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; }
+  .chpCon .authorMes {
+    width: 100%;
+    height: 2.82667rem;
+    border-bottom: 1px solid #f3f5f4;
+    line-height: 2.82667rem; }
+    .chpCon .authorMes img {
+      display: inline-block;
+      width: 1.86667rem;
+      height: 1.86667rem;
+      border-radius: 1.86667rem;
+      margin-left: 1.17333rem; }
+    .chpCon .authorMes .left {
+      position: relative;
+      left: 0.4rem; }
+    .chpCon .authorMes .right {
+      float: right;
+      margin-right: 1.17333rem; }
+  .chpCon .contentMes {
+    margin-top: 1.33333rem;
+    margin-left: 2.66667rem;
+    margin-right: 1.6rem;
+    padding-bottom: 3.2rem; }
+  .chpCon .contentTitle {
+    margin-left: 2.66667rem;
+    margin-right: 1.6rem;
+    font-size: 1.12rem;
+    color: #7b8f9d; }
+
+.chapterTitle {
+  color: #39bcc8; }
+  .chapterTitle span {
+    display: inline-block;
+    width: 5.33333rem;
+    margin: 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .chapterTitle i {
+    position: relative;
+    top: -0.8rem; }
+
+.rightStar {
+  position: absolute;
+  right: 1.17333rem;
+  top: 0; }
+  .rightStar i {
+    color: #39bcc8; }
+
+.bottomBar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 99999;
+  background-color: #fff;
+  height: 2.82667rem; }
+  .bottomBar ul {
+    float: right;
+    margin-right: 1.17333rem;
+    height: 100%;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center; }
+    .bottomBar ul li {
+      float: left;
+      margin-left: 1.6rem; }
+      .bottomBar ul li i {
+        display: inline-block;
+        width: 1.17333rem;
+        height: 1.17333rem; }
+        .bottomBar ul li i.i1 {
+          background: url("https://o82zr1kfu.qnssl.com/@/image/57c640a2e4b073472e793137.png") no-repeat;
+          background-size: cover; }
+        .bottomBar ul li i.i3 {
+          background: url("https://o82zr1kfu.qnssl.com/@/image/57c6408ee4b073472e793135.png") no-repeat;
+          background-size: cover; }
+        .bottomBar ul li i img {
+          width: 100%; }
+      .bottomBar ul li span {
+        display: inline-block;
+        position: relative;
+        top: -0.4rem;
+        left: 0.26667rem; }
+
 /*# sourceMappingURL=style.css.map */
