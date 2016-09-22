@@ -221,6 +221,22 @@ const NOTE_LIST_API = `//${api_domain}/user/notes`;
  */
 const NOTE_API = `//${api_domain}/note`;
 
+/*
+* 作品详情
+* 参数：
+*  id: projectId
+* http://192.168.1.33:8888/project/57a941f4e4b0ab2d4f0d14cd
+*/
+const PROJECTDETAIL_API = `//${api_domain}/project`
+/*
+* 章节阅读
+* 参数:
+* projectId chapterId
+* http://192.168.1.33:8888/project/57a941f4e4b0ab2d4f0d14cd/chapters
+*/
+
+const READCHAPTER_API = `//${api_domain}/project`
+
 /**
  * 作品API
  *
@@ -426,7 +442,15 @@ const ANSWER_API = `//${api_domain}/answer`;
 const DIALOGUE_API = `//${api_domain}/dialogue`;
 
 
-
+/*
+* 收藏接口
+* PUT方法 : 收藏
+* DELETE : 取消收藏
+* 参数 : 57a941f4e4b0ab2d4f0d14cd/project
+*/
+const COLLECTION_API = `//${api_domain}/collection/`
+//http://192.168.1.33:8888/favorite?projectid=57a941f4e4b0ab2d4f0d14cd
+//http://192.168.1.33:8888/favorite  projectid : 57a941f4e4b0ab2d4f0d14cd
 export {
     IMG_CDN_PATH,
     IMG_UPLOAD_TOKEN_API,
@@ -446,6 +470,8 @@ export {
     NOTE_API,
 
     PROJECT_API,
+    PROJECTDETAIL_API,
+    READCHAPTER_API,
 
     TAG_API,
     SUB_TAG_API,
@@ -464,6 +490,6 @@ export {
     ANSWER_API,
 
     DIALOGUE_API,
-
+    COLLECTION_API,
 };
 

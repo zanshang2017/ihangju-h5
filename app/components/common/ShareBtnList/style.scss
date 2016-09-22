@@ -1,0 +1,120 @@
+@charset 'UTF-8';
+@import '../../../common/__global.scss';
+.shareBg{
+	position: fixed;
+	left: 0;
+	top: 0;
+	background-color: rgba(0,0,0,.5);
+	width: 100%;
+	height: 100%;
+	z-index: $zIndexL1;
+}
+.share{
+	position: fixed;
+	bottom: 0;
+	background: $bg;
+	width: 100%;
+	.signProject{
+		height: rem(170);
+		border-bottom: 1px solid $weakTextColor;
+		overflow: hidden;
+		span{
+			display: block;
+			height: rem(82);
+			margin: rem(44)  rem(42);
+			background-color: $linkColor;
+			text-align: center;
+			line-height: rem(82);
+			font-size: rem(32);
+			color: #fff;
+			border-radius: rem(40);
+		}
+	}
+	.sharebtnList{
+		height: rem(192);
+		border-bottom: 1px solid $weakTextColor;
+		ul{
+			margin:0  rem(42);
+			height: 100%;
+			display: flex;
+			display: -webkit-flex;
+			-webkit-align-items: center;
+          	align-items: center;
+			li{
+				float: left;
+				flex: 1;
+				-webkit-flex: 1;
+				text-align: center;
+			}
+			.shareImg{
+				width: 100%;
+				span{
+					display: block;
+					width: rem(88);
+					height: rem(88);
+					margin: 0 auto;
+					&.wx{
+						background: url("https://o82zr1kfu.qnssl.com/@/image/57c4e51de4b0ddd2e19d9abb.png") no-repeat;
+						background-position: rem(-88);
+						background-size:cover;
+					}
+					&.wxFriend{
+						background: url("https://o82zr1kfu.qnssl.com/@/image/57c4e51de4b0ddd2e19d9abb.png") no-repeat;
+						background-size:cover;
+					}
+					&.wb{
+						background: url("http://o82zr1kfu.qnssl.com/@/image/57c4eaafe4b0ddd2e19d9ce3.png") no-repeat;
+						background-size:cover;
+						background-position: rem(-88);
+					}
+					&.instation{
+						background: url("http://o82zr1kfu.qnssl.com/@/image/57c4eaafe4b0ddd2e19d9ce3.png") no-repeat;
+						background-size:cover;
+					}
+				}
+            }
+		}
+	}
+	.otherBtn{
+		height: rem(192);
+		ul{
+			margin:0  rem(42);
+			height: 100%;
+			display: flex;
+			display: -webkit-flex;
+			-webkit-align-items: center;
+          	align-items: center;
+			li{
+				float: left;
+				flex: 1;
+				-webkit-flex: 1;
+				text-align: center;
+			}
+			.shareImg{
+				width: 100%;
+				span{
+					display: block;
+					width: rem(88);
+					height: rem(88);
+					margin: 0 auto;
+					&.copyLink{
+						background: url("http://o82zr1kfu.qnssl.com/@/image/57c4eecfe4b0ddd2e19d9ec5.png") no-repeat;
+						background-position: rem(-88);
+						background-size:cover;
+					}
+					&.report{
+						background: url("http://o82zr1kfu.qnssl.com/@/image/57c4eecfe4b0ddd2e19d9ec5.png") no-repeat;
+						background-size:cover;
+					}
+				}
+            }
+		}
+	}
+	.cancelBtn{
+		height: rem(60);
+		width: 100%;
+		text-align: center;
+		line-height: rem(60);
+		background-color: $topBarBg;
+	}
+}

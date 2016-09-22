@@ -726,6 +726,54 @@ export default function createRoutes(store) {
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
             }
         }, {
+            path: '/projectDetail/:id',
+            name: 'projectDetail',
+            getComponent(nextState, cb) {
+                const importModules =  Promise.all([
+                    System.import('containers/ProjectDetailPage/reducer'),
+                    System.import('containers/ProjectDetailPage/sagas'),
+                    System.import('containers/ProjectDetailPage/'),
+                ]);
+                const renderRoute = loadModule(cb);
+                importModules.then(([reducer, sagas, component]) => {
+                    if(!initedStatus.detail){
+                        injectReducer('projectDetail', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.demoPage = true;
+                    }
+                    renderRoute(component);
+                });
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                store.dispatch(hideNav());
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            }
+        }, {
+            path: '/readProjectChapter/:projectId/:chapterId',
+            name: 'readProjectChapter',
+            getComponent(nextState, cb) {
+                const importModules =  Promise.all([
+                    System.import('containers/ReadProjectChapter/reducer'),
+                    System.import('containers/ReadProjectChapter/sagas'),
+                    System.import('containers/ReadProjectChapter/'),
+                ]);
+                const renderRoute = loadModule(cb);
+                importModules.then(([reducer, sagas, component]) => {
+                    if(!initedStatus.detail){
+                        injectReducer('readProjectChapter', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.demoPage = true;
+                    }
+                    renderRoute(component);
+                });
+                importModules.catch(errorLoading);  
+            },
+            onEnter: function () {
+                store.dispatch(hideNav());
+                routeEffector.autoSet();
+            }
+         }, {
             path: '*',
             name: 'notfound',
             getComponent(nextState, cb) {

@@ -1,0 +1,32 @@
+@charset 'UTF-8';
+@import '../../../common/__global.scss';
+@import '../../../common/__util.scss';
+
+.projectTag{
+	position: relative;
+	ul{
+		margin: rem(52) rem(200) 0 rem(48);
+		overflow: hidden;
+		li{
+			float: left;
+			min-width: rem(86);
+			height: rem(48);
+			font-size: rem(28);
+			color: $weakTextColor;
+			background-color: $tabBg;
+			text-align: center;
+			line-height: rem(48);
+			margin-right: rem(22); 
+			margin-top: rem(22);
+			padding: 0 rem(10);
+		}
+	}
+	.readImg{
+		position: absolute;
+		float: right;
+		width: rem(140);
+		height: rem(140);
+		right: rem(48);
+		top: rem(-40);
+	}
+}

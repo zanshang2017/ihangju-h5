@@ -190,9 +190,23 @@ function goBottom(nParent, nChild, noAnim) {
     })();
 }
 
+/**
+ * 返回去重后的数组
+ *
+ * @param array 数组
+ */
+function unique(array){
+    var n = [];
+    for(var i = 0;i < array.length; i++){
+        if(n.indexOf(array[i]) == -1) n.push(array[i]);
+    }
+    return n;
+}
+
 export {
     getUrlParam,
     convertDate,
     locStorage,
     goBottom,
+    unique,
 };

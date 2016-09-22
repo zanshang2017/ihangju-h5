@@ -50,7 +50,6 @@ const initialState = fromJS({
 
 function followPageReducer(state = initialState, action = null) {
     console.log(action.type);
-
     switch (action.type) {
         case DEFAULT_ACTION:
             return state;

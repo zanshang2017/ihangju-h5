@@ -38,7 +38,7 @@ class MainContent extends React.Component {
 
     render() {
         var props = this.props;
-
+        console.log(props);
         return (
             <div id="J_FoundPageMainContentWrap" className="foundPageMainContent">
                 <Tabs defaultActiveKey="1">
