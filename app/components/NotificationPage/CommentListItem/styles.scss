@@ -46,7 +46,9 @@
     .comment {
         color: $weakerTitleColor;
         font-size: rem(28);
-        margin: 0 0 rem(10) 0;
+        margin: 0 rem(25) rem(10) 0;
+        word-wrap: break-word;
+
         span {
             color: $textColor;
         }

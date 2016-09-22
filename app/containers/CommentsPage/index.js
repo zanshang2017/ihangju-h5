@@ -32,6 +32,8 @@ import {
     DEFAULT_PLACEHOLDER
 } from 'components/common/InputBar/constants';
 
+import Toast from 'antd-mobile/lib/toast';
+
 export class CommentsPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
@@ -102,6 +104,7 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
 
     clickReportHandler() {
         console.log('举报');
+        Toast.info('举报成功', 1.5);
     }
 
     listClickHandler(e, opt) {
@@ -137,20 +140,22 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
         let loading = comments.loading || false;
 
         return (
-            <div className={`pageInner hasTopBar ${styles.hasInputBar}`}>
+            <div className={`pageInner`}>
                 <TopBar data-has-back="true">
                     <div data-title>评论</div>
                 </TopBar>
-                <List page={page}
-                      isLast={isLast}
-                      loading={loading}
-                      items={items}
-                      nextPageHandler={this.nextPageHandler.bind(this)}
-                      listClickHandler={this.listClickHandler.bind(this)}></List>
-                <FloatTools ref="J_FloatTools"
-                            clickReplyHandler={this.clickReplyHandler.bind(this)}
-                            clickReportHandler={this.clickReportHandler.bind(this)}
-                ></FloatTools>
+                <div className="mainContent">
+                    <List page={page}
+                          isLast={isLast}
+                          loading={loading}
+                          items={items}
+                          nextPageHandler={this.nextPageHandler.bind(this)}
+                          listClickHandler={this.listClickHandler.bind(this)}></List>
+                    <FloatTools ref="J_FloatTools"
+                                clickReplyHandler={this.clickReplyHandler.bind(this)}
+                                clickReportHandler={this.clickReportHandler.bind(this)}
+                    ></FloatTools>
+                </div>
                 <InputBar placeholder={this.props.placeholder} submitHandler={this.submitHandler.bind(this)}></InputBar>
             </div>
         );

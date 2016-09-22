@@ -3,7 +3,6 @@
 @import "../../../common/_util";
 @import "../../../common/common.css";
 
-
 .listWrap {
     width: 100%;
     box-sizing: border-box;
@@ -19,6 +18,8 @@
         text-align: left;
         -webkit-overflow-scrolling: touch;
         border-bottom: 1px solid $borderColor;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         .basis {
             @include flexBox();
@@ -39,7 +40,7 @@
                 -webkit-box-flex: 1;
                 -webkit-flex: 1;
                 padding-left: rem(25);
-                overflow:hidden;
+                overflow: hidden;
 
                 h4 {
                     color: $titleColor;
@@ -47,7 +48,7 @@
                 }
 
                 .time {
-                    font-size:rem(26);
+                    font-size: rem(26);
                     color: $weakerTitleColor;
                     margin: rem(15) rem(20) 0 0;
                 }
@@ -59,9 +60,10 @@
         .content {
             font-size: rem(30);
             color: $textColor;
-            line-height: 1.2em;
+            line-height: 1.4em;
+            word-wrap: break-word;
+            word-break: break-all;
         }
-
 
     }
 }

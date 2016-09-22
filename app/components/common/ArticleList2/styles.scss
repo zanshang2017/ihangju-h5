@@ -9,3 +9,10 @@
     background: $tabBg;
 }
 
+:global {
+    .am-tab-content {
+        padding: 0 0 12px;
+    }
+}
+
+

@@ -2,10 +2,6 @@
 @import "../../common/__global.scss";
 @import "../../common/__util.scss";
 
-.hasInputBar {
-    margin-bottom: rem(88);
-}
-
 .listWrap {
     padding: rem(10) 0;
     color: $weakerTitleColor !important;
@@ -23,6 +19,4 @@
 .weakText {
     color: $weakerTitleColor !important;
 }
-
-
 

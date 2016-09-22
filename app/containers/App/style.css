@@ -69,4 +69,8 @@
     :global .logPanel.unfold .content {
       height: 1.6rem; }
 
+:global .am-top-notice {
+  background-color: #f0fafb;
+  color: #3a3a3a; }
+
 /*# sourceMappingURL=style.css.map */

@@ -2,6 +2,10 @@
 @import "../../common/__global.scss";
 @import "../../common/__util.scss";
 
+.wrap {
+    background: $deepBg;
+}
+
 .listWrap {
     padding: rem(10) 0;
     color: $weakerTitleColor !important;
@@ -19,6 +23,7 @@
 .weakText {
     color: $weakerTitleColor !important;
 }
+
 
 
 

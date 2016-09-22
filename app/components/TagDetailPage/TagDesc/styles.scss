@@ -6,16 +6,15 @@
     position:relative;
     background-color: $bg;
     width: 100%;
-    padding: rem(33) rem(45) rem(63);
+    padding: rem(33) rem(45) rem(40);
     overflow: hidden;
-    text-align:center;
     color: $titleColor;
     font-size: rem(28);
     line-height: rem(40);
 
     textarea {
         width: 100%;
-        height: rem(60);
+        height: rem(150);
     }
 
 }

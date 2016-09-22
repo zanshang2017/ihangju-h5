@@ -58,6 +58,8 @@
                     .content {
                         line-height: 1.5em;
                         overflow: hidden;
+                        word-wrap: break-word;
+                        word-break: break-all;
 
                         h3 {
                             font-size: rem(36);
@@ -85,6 +87,8 @@
                         color: #fff;
                         line-height: 1.5em;
                         overflow: hidden;
+                        word-wrap: break-word;
+                        word-break: break-all;
                     }
 
                     &::after {
@@ -139,6 +143,8 @@
                         color: $textColor;
                         line-height: 1.5em;
                         overflow: hidden;
+                        word-wrap: break-word;
+                        word-break: break-all;
                     }
 
                     &::after {

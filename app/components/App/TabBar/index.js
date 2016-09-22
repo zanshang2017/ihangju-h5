@@ -19,7 +19,7 @@ function TabBar(props) {
                 <li><Link to={'/found'}><span className={`${styles.found}`}></span><strong>发现</strong></Link></li>
                 <li><Link to={'/create'}><span className={styles.write}></span><strong>创作</strong></Link></li>
                 <li><Link to={'/my'}><span className={styles.my}></span><strong>我的</strong></Link></li>
-                <li><Link to={'/bridgeTest'}><span className="follow"></span><strong>Bridge</strong></Link></li>
+                {/*<li><Link to={'/bridgeTest'}><span className="follow"></span><strong>Bridge</strong></Link></li>*/}
                 {/*<li><Link to={'/login'}><span className={styles.write}></span><strong>登录</strong></Link></li>*/}
                 {/*<li><Link to={'/demo#fliproute'}><span className="follow"></span><strong>Demo</strong></Link></li>*/}
             </ul>

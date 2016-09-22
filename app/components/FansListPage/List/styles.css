@@ -1,8 +1,7 @@
 @import url(../../../common/common.css);
 .listWrap {
   width: 100%;
-  box-sizing: border-box;
-  background: #f3f5f4; }
+  box-sizing: border-box; }
   .listWrap .item {
     display: -webkit-box;
     display: -moz-box;

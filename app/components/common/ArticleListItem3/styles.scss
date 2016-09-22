@@ -14,6 +14,7 @@
     .header {
         line-height: rem(60);
         font-size: rem(28);
+        padding-bottom: rem(26);
 
         .author {
             float:left;
@@ -37,11 +38,12 @@
     }
 
     h3 {
-        padding-top: rem(26);
         clear:both;
-        max-height: rem(112);
-        font-size: rem(44);
-        line-height: rem(56);
+        max-height: rem(134);
+        padding-top:rem(26);
+        font-size: rem(40);
+        font-weight: normal;
+        line-height: rem(54);
         overflow: hidden;
         text-overflow: ellipsis;
         color: $titleColor;

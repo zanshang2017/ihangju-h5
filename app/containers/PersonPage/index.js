@@ -68,11 +68,13 @@ export class PersonPage extends React.Component { // eslint-disable-line react/p
                         {/*<div>关注</div>*/}
                     </div>
                 </TopBar>
-                <UserDesc userInfo={userInfo}
-                          fansClickHandler={this.fansClickHandler.bind(this)}
-                          followsClickHandler={this.followsClickHandler.bind(this)}
-                />
-                <UserArticle userInfo={userInfo}></UserArticle>
+                <div className="mainContent">
+                    <UserDesc userInfo={userInfo}
+                              fansClickHandler={this.fansClickHandler.bind(this)}
+                              followsClickHandler={this.followsClickHandler.bind(this)}
+                    />
+                    <UserArticle userInfo={userInfo}></UserArticle>
+                </div>
             </div>
         );
     }

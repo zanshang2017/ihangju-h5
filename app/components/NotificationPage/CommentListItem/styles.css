@@ -43,7 +43,8 @@
   .listItem .comment {
     color: #a09e98;
     font-size: 0.74667rem;
-    margin: 0 0 0.26667rem 0; }
+    margin: 0 0.66667rem 0.26667rem 0;
+    word-wrap: break-word; }
     .listItem .comment span {
       color: #383b3d; }
   .listItem .projName {

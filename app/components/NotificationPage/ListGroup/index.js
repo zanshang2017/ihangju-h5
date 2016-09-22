@@ -39,9 +39,11 @@ class ListGroup extends React.Component {
     componentDidMount() {
         var that = this;
 
+        this.nWrap = this.refs.J_NotificationPageListGroupWrap.parentElement;
+
         //滑动底部加载下一页
         that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 300, {leading: false});
-        window.addEventListener('scroll', that.scrollHanderBinded);
+        that.nWrap.addEventListener('scroll', that.scrollHanderBinded);
     }
 
     componentWillUpdate(nProps) {
@@ -61,18 +63,17 @@ class ListGroup extends React.Component {
 
         //移除侦听
         if (this.scrollHanderBinded) {
-            window.removeEventListener('scroll', this.scrollHanderBinded);
+            this.nWrap.removeEventListener('scroll', this.scrollHanderBinded);
             this.scrollHanderBinded = null;
         }
     }
 
     scrollHandler(e) {
-        var nWrap = document.body;
-        var nWrapH = nWrap.getBoundingClientRect().height;
+        var nWrapH = this.nWrap.getBoundingClientRect().height;
 
-        // console.log(nWrap.scrollTop + nWrapH, nWrap.scrollHeight, this.props.recommendationListStatus.toJS(), this.props.projectListStatus.toJS());
+        console.log(Math.ceil(this.nWrap.scrollTop + nWrapH), this.nWrap.scrollHeight);
 
-        if (nWrap.scrollTop + nWrapH >= nWrap.scrollHeight) {
+        if (Math.ceil(this.nWrap.scrollTop + nWrapH) >= this.nWrap.scrollHeight) {
             //加载下一页
             if (activeKey == '1' && !this.props.commentListStatus.get('loading')) {
                 let status = this.props.commentListStatus.toJS();
@@ -116,7 +117,7 @@ class ListGroup extends React.Component {
 
     render() {
         return (
-            <div id="J_NotificationPageListGroupWrap" className="tagDetailPageListGroup">
+            <div ref="J_NotificationPageListGroupWrap" className="tagDetailPageListGroup">
                 <Tabs ref="J_Tabs" defaultActiveKey="1" onChange={this.tabChangeHandler.bind(this)}>
                     <TabPane tab="评论" key="1">
                         <CommentList {...this.props} items={this.props.commentList || []} />

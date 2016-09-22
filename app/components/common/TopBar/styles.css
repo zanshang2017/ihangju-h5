@@ -6,7 +6,8 @@
   height: 2.34667rem;
   line-height: 2.34667rem;
   font-size: 0.8rem;
-  background: #f7f7f7; }
+  background: #fff;
+  border-bottom: 1px solid #d9d9d9; }
 
 .back {
   position: absolute;
@@ -14,7 +15,6 @@
   top: 0;
   width: 3.36rem;
   height: 2.34667rem;
-  background: #f1f1f1;
   color: #7b8f9d;
   text-align: center; }
   .back i {
@@ -22,7 +22,6 @@
 
 .title {
   color: #383b3d;
-  font-size: 0.90667rem;
   text-align: center; }
 
 .btns {

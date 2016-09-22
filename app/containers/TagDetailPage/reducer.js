@@ -120,8 +120,7 @@ function tagDetailPageReducer(state = initialState, action = {}) {
             data = action.payload.data;
             page = action.payload.page;
 
-            if (data.code === 'ok' && data.result && data.result.length > 0) {
-
+            if (data.code === 'ok' && data.result) {
                 // 接口没有提供的字段,手工补齐
                 data.result.forEach(function (v) {
                     v['isRecommdationProject'] = true;
@@ -129,7 +128,6 @@ function tagDetailPageReducer(state = initialState, action = {}) {
 
                 if (page > 0) {
                     let _merged = state.get('recommendationList').concat(fromJS(data.result));
-
                     return state.set('recommendationList', _merged).setIn(['recommendationListStatus', 'loading'], false);
                 } else {
                     return state.set('recommendationList', fromJS(data.result)).setIn(['recommendationListStatus', 'loading'], false);
@@ -176,6 +174,7 @@ function tagDetailPageReducer(state = initialState, action = {}) {
             return state;
 
         case RECOMMENDATION_PROJECT_SUCCESS:
+
             let isRemove = action.payload.isRemove;
             let id = action.payload.id;
 
@@ -197,8 +196,6 @@ function tagDetailPageReducer(state = initialState, action = {}) {
                     v.isRecommdationProject = !isRemove;
                 }
             });
-
-
 
             return state.set('recommendationList', fromJS(recommList));
 

@@ -15,7 +15,7 @@ export class TagDesc extends React.Component { // eslint-disable-line react/pref
 
         if (this.props.isEditing) {
             _html = <div className={`${styles.tagDesc} blockGap`}>
-                <textarea ref="J_DescTextarea" defaultValue={_desc}></textarea>
+                <textarea ref="J_DescTextarea" defaultValue={_desc} placeholder="请输入标签简介"></textarea>
             </div>;
         } else {
             _html = <div className={`${styles.tagDesc} blockGap`}>

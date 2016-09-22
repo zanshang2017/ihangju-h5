@@ -85,12 +85,12 @@ export class NotificationPage extends React.Component { // eslint-disable-line r
                         if (id) {
                             this.context.router.push('/comments/' + id);
                         } else {
-                            Toast.info('该作品已删除');
+                            Toast.info('该作品已删除', 2);
                         }
                         break;
 
                     case 1:
-                        Toast.info('举报成功');
+                        Toast.info('举报成功', 1.5);
                         break;
 
                     default:
@@ -136,13 +136,15 @@ export class NotificationPage extends React.Component { // eslint-disable-line r
                     <div data-title>消息</div>
                 </TopBar>
 
-                <ListGroup
-                    {...this.props}
-                    loadCommentHandler={this.loadCommentHandler.bind(this)}
-                    loadMessageHandler={this.loadMessageHandler.bind(this)}
-                    commentClickHandler={this.commentClickHandler.bind(this)}
-                    userClickHandler={this.userClickHandler.bind(this)}
-                />
+                <div className="mainContent">
+                    <ListGroup
+                        {...this.props}
+                        loadCommentHandler={this.loadCommentHandler.bind(this)}
+                        loadMessageHandler={this.loadMessageHandler.bind(this)}
+                        commentClickHandler={this.commentClickHandler.bind(this)}
+                        userClickHandler={this.userClickHandler.bind(this)}
+                    />
+                </div>
             </div>
         );
     }

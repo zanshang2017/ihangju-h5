@@ -84,9 +84,11 @@ export class TagDetailPage extends React.Component { // eslint-disable-line reac
         this.props.dispatch(cancelSubTag(this.tagID));
     }
 
-    editBannerImageHandler() {
+    editBannerImageHandler(image64) {
         console.log('编辑bannber图');
-        // this.props.dispatch()
+        this.props.dispatch(setDetail({
+            tag_image: image64
+        }));
     }
 
     loadRecommendationHandler(page = 0, size = 10) {
@@ -241,7 +243,7 @@ export class TagDetailPage extends React.Component { // eslint-disable-line reac
                         {descHTML}
                         <ListGroup {...this.props}
                                    tagID={this.tagID}
-                                   isAdmin={this.isAdmin || false}
+                                   isAdmin={this.isAdmin}
                                    loadRecommendationHandler={this.loadRecommendationHandler.bind(this)}
                                    loadAllHandler={this.loadAllHandler.bind(this)}/>
                     </div>

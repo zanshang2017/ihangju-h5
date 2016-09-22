@@ -5,7 +5,6 @@ import _ from 'underscore';
 
 import ArticleList3 from 'components/common/ArticleList3';
 
-
 /* eslint-disable react/prefer-stateless-function */
 export default class CollectionList extends React.Component {
 
@@ -19,10 +18,11 @@ export default class CollectionList extends React.Component {
 
     componentDidMount() {
         var that = this;
+        that.nWrap = that.refs.J_CollectionListWrap.parentElement;
 
         //滑动底部加载下一页
         that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 300, {leading: false});
-        window.addEventListener('scroll', that.scrollHanderBinded);
+        that.nWrap.addEventListener('scroll', that.scrollHanderBinded);
     }
 
     componentWillUnmount() {
@@ -30,23 +30,22 @@ export default class CollectionList extends React.Component {
 
         //移除侦听
         if (this.scrollHanderBinded) {
-            window.removeEventListener('scroll', this.scrollHanderBinded);
+            this.nWrap.removeEventListener('scroll', this.scrollHanderBinded);
             this.scrollHanderBinded = null;
         }
     }
 
     scrollHandler(e) {
-        var winH = document.body.clientHeight;
-        var nWrap = document.body;
-        var nWrapH = nWrap.getBoundingClientRect().height;
+        var nWrapH = this.nWrap.getBoundingClientRect().height;
 
-        // console.log(nWrap.scrollTop + nWrapH, nWrap.scrollHeight, this.props.recommendationListStatus.toJS(), this.props.projectListStatus.toJS());
+        // var nContentH = this.refs.J_CollectionListWrap.getBoundingClientRect().height;
+        // console.log(Math.ceil(this.nWrap.scrollTop + nWrapH), this.nWrap.scrollHeight);
 
         // if (window.debugLog) {
         //     window.debugLog((nWrap.scrollTop + nWrapH) + '>=' +  nWrap.scrollHeight);
         // }
 
-        if (nWrap.scrollTop + nWrapH >= nWrap.scrollHeight) {
+        if (Math.ceil(this.nWrap.scrollTop + nWrapH) >= this.nWrap.scrollHeight) {
             //加载下一页
             if (!this.loading) {
                 if (!this.loading && !this.isLast) {
@@ -68,7 +67,7 @@ export default class CollectionList extends React.Component {
         this.items = this.props.items ? this.props.items : [];
 
         return (
-            <div ref="nCollectionListWrap" className={`${styles.listWrap}`}>
+            <div ref="J_CollectionListWrap" className={`${styles.listWrap}`}>
                 <ArticleList3 items={this.items} authorClickHandler={this.authorClickHandler.bind(this)}></ArticleList3>
             </div>
         );

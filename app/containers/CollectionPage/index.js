@@ -33,7 +33,7 @@ export class CollectionPage extends React.Component { // eslint-disable-line rea
             this.id = this.props.routeParams.id;
         }
 
-        if(this.id){
+        if (this.id) {
             this.props.dispatch(loadCollectionData(this.id));
         }
     }
@@ -43,7 +43,7 @@ export class CollectionPage extends React.Component { // eslint-disable-line rea
     }
 
     nextPageHandler(page = 0) {
-        if(this.id){
+        if (this.id) {
             console.log('link click', page);
             this.props.dispatch(loadCollectionData(this.id, page));
         }
@@ -61,11 +61,13 @@ export class CollectionPage extends React.Component { // eslint-disable-line rea
                 <TopBar data-has-back="true">
                     <div data-title>收藏夹</div>
                 </TopBar>
-                <CollectionList page={page}
-                                isLast={isLast}
-                                loading={loading}
-                                items={items}
-                                nextPageHandler={this.nextPageHandler.bind(this)}></CollectionList>
+                <div className="mainContent">
+                    <CollectionList page={page}
+                                    isLast={isLast}
+                                    loading={loading}
+                                    items={items}
+                                    nextPageHandler={this.nextPageHandler.bind(this)}></CollectionList>
+                </div>
             </div>
         );
     }

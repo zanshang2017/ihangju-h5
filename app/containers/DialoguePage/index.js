@@ -34,6 +34,8 @@ import TopBar from 'components/common/TopBar';
 import List from 'components/DialoguePage/List';
 import InputBar from 'components/common/InputBar';
 
+import NoticeBar from 'antd-mobile/lib/top-notice';
+
 export class DialoguePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
@@ -135,9 +137,13 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
                 <TopBar data-has-back="true">
                     <div data-title>私信</div>
                 </TopBar>
+
+                <NoticeBar>当前版本无法查看签约详情,请等待新版行距发布!</NoticeBar>
+
                 <div className={`mainContent`}>
                     <List items={items} myUserId={this.dialogueData['sendUser']}></List>
                 </div>
+
                 <InputBar bindingMethod={{context: this.componentMethod, methodName: ['clear']}}
                           submitHandler={this.submitHandler.bind(this)}></InputBar>
             </div>

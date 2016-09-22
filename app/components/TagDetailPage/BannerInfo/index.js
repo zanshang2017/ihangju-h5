@@ -2,6 +2,8 @@ import React from 'react';
 
 import styles from './styles.css';
 
+import ActionSheet from 'antd-mobile/lib/action-sheet';
+
 import {
     IMG_CDN_PATH
 } from '../../../apis.js';
@@ -10,6 +12,74 @@ export class BannerInfo extends React.Component { // eslint-disable-line react/p
 
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        this.initFileReader();
+    }
+
+    initFileReader() {
+        // debugger;
+
+        let that = this;
+        let _file = this.refs.J_CameraFile;
+
+        let rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
+
+        this.oFReader = new FileReader();
+
+        this.oFReader.onload = function (oFREvent) {
+            console.log('onload!');
+            that.props.editBannerImageHandler(oFREvent.target.result);
+            // document.getElementById("uploadPreview").src = oFREvent.target.result;
+        };
+
+        this.oFReader.onloadstart = function (e) {
+            console.log('loadstart.');
+        }
+
+        this.oFReader.onloadprogress = function (e) {
+            console.log('loading...');
+        }
+
+        this.oFReader.onloadend = function (e) {
+            console.log('loadend.');
+        }
+
+        _file.addEventListener('change', function loadImageFile() {
+            if (_file.files.length === 0) {
+                return;
+            }
+            var oFile = _file.files[0];
+            // 图片
+            that.oFReader.readAsDataURL(oFile);
+        });
+    }
+
+    showEditBannerImageSheet() {
+        let that = this;
+        const BUTTONS = ['拍照', '从相册选区', '取消'];
+
+        ActionSheet.showActionSheetWithOptions({
+                options: BUTTONS,
+                cancelButtonIndex: BUTTONS.length - 1,
+                title: '上传图片',
+                message: '请从下面选择您的图片来源',
+                maskClosable: true,
+            },
+            (buttonIndex) => {
+                switch (buttonIndex) {
+                    case 0:
+                        alert('拍照');
+                        break;
+                    case 1:
+                        that.showImageSelector();
+                        break;
+                    default:
+                        break;
+                }
+
+            });
     }
 
     showImageSelector() {
@@ -22,7 +92,13 @@ export class BannerInfo extends React.Component { // eslint-disable-line react/p
 
         if (this.props.detail) {
             let detail = this.props.detail;
-            let _image = IMG_CDN_PATH + detail.tag_image;
+            let _image = '';
+
+            if (detail.tag_image.indexOf('data:image') == 0) {
+                _image = detail.tag_image;
+            } else {
+                _image = IMG_CDN_PATH + detail.tag_image;
+            }
 
             let wrapStyle = {
                 background: 'url(' + _image + ') left top no-repeat',
@@ -44,11 +120,10 @@ export class BannerInfo extends React.Component { // eslint-disable-line react/p
             }
 
             if (this.props.isEditing) {
-                editBannerImage = <div className={styles.editBannerImage} onClick={this.showImageSelector.bind(this)}>
-                    更换图片
-                    <input type="file" ref="J_CameraFile" accept="image/png,image/jpeg,image/jpg,image/gif" capture="camera" id="cameraFile"
-                           className="hide"/>
-                </div>;
+                editBannerImage =
+                    <div className={styles.editBannerImage} onClick={this.showEditBannerImageSheet.bind(this)}>
+                        更换图片
+                    </div>;
             }
 
             browseHTML = <div className={styles.bannerInfo} style={wrapStyle}>
@@ -56,6 +131,9 @@ export class BannerInfo extends React.Component { // eslint-disable-line react/p
                 <div className={styles.follow}>{detail.attention_number}人 已关注</div>
                 {followText}
                 {editBannerImage}
+                <input type="file" ref="J_CameraFile" accept="image/png,image/jpeg,image/jpg,image/gif"
+                       capture="camera" id="cameraFile"
+                       className="hide"/>
             </div>;
         }
 

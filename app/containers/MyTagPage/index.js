@@ -56,21 +56,23 @@ export class MyTagPage extends React.Component { // eslint-disable-line react/pr
                 <TopBar data-has-back="true">
                     <div data-title>我管理的标签</div>
                 </TopBar>
-                <List>
-                    <List.Body>
-                        {
-                            tags.map(function (tag) {
-                                return <List.Item
-                                    arrow="horizontal"
-                                    key={tag.id}
-                                    onClick={that.tagClickHandler.bind(that, tag.id)}
-                                >
-                                    <div className={styles.tag}>{tag.name}</div>
-                                </List.Item>
-                            })
-                        }
-                    </List.Body>
-                </List>
+                <div className="mainContent">
+                    <List>
+                        <List.Body>
+                            {
+                                tags.map(function (tag) {
+                                    return <List.Item
+                                        arrow="horizontal"
+                                        key={tag.id}
+                                        onClick={that.tagClickHandler.bind(that, tag.id)}
+                                    >
+                                        <div className={styles.tag}>{tag.name}</div>
+                                    </List.Item>
+                                })
+                            }
+                        </List.Body>
+                    </List>
+                </div>
             </div>
         );
     }

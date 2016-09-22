@@ -83,73 +83,77 @@ export class MyPage extends React.Component { // eslint-disable-line react/prefe
         let msg_count = (userCenterInfo.comment_notify_count || 0) + (userCenterInfo.discuss_notify_count || 0);
 
         return (
-            <div className="pageInner hasTopBar">
+            <div className="pageInner wrap">
                 <TopBar data-has-back="false">
                     <div data-title>我的</div>
                 </TopBar>
-                <UserDesc userInfo={userInfo} clickHandler={this.userDescClickHandler.bind(this)}/>
 
-                <List>
-                    <List.Body>
-                        <List.Item
-                            arrow="horizontal"
-                            extra={
-                                <span className={styles.weakText}>{userCenterInfo.collectionCount || '0'}</span>
-                            }
+                <div className={`mainContent ${styles.wrap}`}>
+                    <UserDesc userInfo={userInfo} clickHandler={this.userDescClickHandler.bind(this)}/>
 
-                            onClick={this.collectionClickHandler.bind(this)}
-                        >
-                            <div className={styles.listWrap}><i className="iconfont icon-staro"></i>收藏夹</div>
-                        </List.Item>
-                        <List.Item
-                            arrow="horizontal"
-                            extra={
-                                <span className={styles.weakText}>{msg_count}</span>
-                            }
+                    <List>
+                        <List.Body>
+                            <List.Item
+                                arrow="horizontal"
+                                extra={
+                                    <span className={styles.weakText}>{userCenterInfo.collectionCount || '0'}</span>
+                                }
 
-                            onClick={this.notificationClickHandler.bind(this)}
-                        >
-                            <div className={styles.listWrap}><i className="iconfont icon-notification"></i>消息</div>
-                        </List.Item>
-                        <List.Item
-                            arrow="horizontal"
-                            extra={
-                                <span className={styles.weakText}>{userCenterInfo.letter_notify_count || '0'}</span>
-                            }
-                            onClick={this.dialoguesClickHandler.bind(this)}
-                        >
-                            <div className={styles.listWrap}><i className="iconfont icon-mail"></i>私信</div>
-                        </List.Item>
-                    </List.Body>
-                </List>
+                                onClick={this.collectionClickHandler.bind(this)}
+                            >
+                                <div className={styles.listWrap}><i className="iconfont icon-staro"></i>收藏夹</div>
+                            </List.Item>
+                            <List.Item
+                                arrow="horizontal"
+                                extra={
+                                    <span className={styles.weakText}>{msg_count}</span>
+                                }
 
-                <List>
-                    <List.Body>
-                        <List.Item
-                            arrow="horizontal"
-                            extra={
-                                <span className={styles.weakText}>{userCenterInfo.managermentTagNumber || '0'}</span>
-                            }
+                                onClick={this.notificationClickHandler.bind(this)}
+                            >
+                                <div className={styles.listWrap}><i className="iconfont icon-notification"></i>消息</div>
+                            </List.Item>
+                            <List.Item
+                                arrow="horizontal"
+                                extra={
+                                    <span className={styles.weakText}>{userCenterInfo.letter_notify_count || '0'}</span>
+                                }
+                                onClick={this.dialoguesClickHandler.bind(this)}
+                            >
+                                <div className={styles.listWrap}><i className="iconfont icon-mail"></i>私信</div>
+                            </List.Item>
+                        </List.Body>
+                    </List>
 
-                            onClick={this.myTagClickHandler.bind(this)}
-                        >
-                            <div className={styles.listWrap}><i
-                                className={`iconfont icon-tags ${styles.iconColored}`}></i>我管理的标签
-                            </div>
-                        </List.Item>
-                    </List.Body>
-                </List>
+                    <List>
+                        <List.Body>
+                            <List.Item
+                                arrow="horizontal"
+                                extra={
+                                    <span
+                                        className={styles.weakText}>{userCenterInfo.managermentTagNumber || '0'}</span>
+                                }
 
-                <List>
-                    <List.Body>
-                        <List.Item
-                            arrow="horizontal"
-                            onClick={this.settingHandler.bind(this)}
-                        >
-                            <div className={styles.listWrap}><i className={`iconfont icon-setting`}></i>设置</div>
-                        </List.Item>
-                    </List.Body>
-                </List>
+                                onClick={this.myTagClickHandler.bind(this)}
+                            >
+                                <div className={styles.listWrap}><i
+                                    className={`iconfont icon-tags ${styles.iconColored}`}></i>我管理的标签
+                                </div>
+                            </List.Item>
+                        </List.Body>
+                    </List>
+
+                    <List>
+                        <List.Body>
+                            <List.Item
+                                arrow="horizontal"
+                                onClick={this.settingHandler.bind(this)}
+                            >
+                                <div className={styles.listWrap}><i className={`iconfont icon-setting`}></i>设置</div>
+                            </List.Item>
+                        </List.Body>
+                    </List>
+                </div>
 
             </div>
         );

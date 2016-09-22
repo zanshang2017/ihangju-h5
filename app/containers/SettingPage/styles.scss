@@ -2,8 +2,11 @@
 @import "../../common/__global.scss";
 @import "../../common/__util.scss";
 
-.tag {
-    padding: rem(10) 0;
+.wrap {
+    background: $deepBg;
 }
 
+.listWrap {
+    padding: rem(10) 0;
+}
 

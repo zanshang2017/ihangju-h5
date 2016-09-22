@@ -57,15 +57,17 @@ export class FansListPage extends React.Component { // eslint-disable-line react
         let loading = projs.loading || false;
 
         return (
-            <div className="pageInner hasTopBar">
+            <div className="pageInner">
                 <TopBar data-has-back="true">
                     <div data-title>粉丝</div>
                 </TopBar>
-                <FansList page={page}
-                                isLast={isLast}
-                                loading={loading}
-                                items={items}
-                                nextPageHandler={this.nextPageHandler.bind(this)}></FansList>
+                <div className="mainContent">
+                    <FansList page={page}
+                              isLast={isLast}
+                              loading={loading}
+                              items={items}
+                              nextPageHandler={this.nextPageHandler.bind(this)}></FansList>
+                </div>
             </div>
         );
     }

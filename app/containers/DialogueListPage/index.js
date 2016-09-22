@@ -53,7 +53,9 @@ export class DialogueListPage extends React.Component { // eslint-disable-line r
                     <div data-title>私信</div>
                 </TopBar>
 
-                <List loading={loading} items={items} ></List>
+                <div className="mainContent">
+                    <List loading={loading} items={items}></List>
+                </div>
             </div>
         );
     }

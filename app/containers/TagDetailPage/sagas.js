@@ -120,9 +120,14 @@ export function* getTagRecommendationList() {
         });
 
         if (lists.err === undefined || lists.err === null) {
+            // debugger;
             if (lists.data.result && lists.data.result.length > 0) {
                 yield put(loadTagRecommendationListSuccess(lists.data, page));
             } else {
+                //第一页无数据,说明内容为空
+                if (lists.data.result && 0 === page) {
+                    yield put(loadTagRecommendationListSuccess(lists.data, page));
+                }
                 yield put(setRecommendationListStatus({isLast: true}));
             }
         } else {

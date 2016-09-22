@@ -84,6 +84,7 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
             },
             onEnter: function () {
+                store.dispatch(showNav());
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
                 store.dispatch(setCurPage(PAGE_NAME.FOLLOW_PAGE));
             },
@@ -114,6 +115,7 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
             },
             onEnter: function () {
+                store.dispatch(showNav());
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
                 store.dispatch(setCurPage(PAGE_NAME.CREATE_PAGE));
             },
@@ -145,6 +147,7 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
             },
             onEnter: function () {
+                store.dispatch(showNav());
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
                 store.dispatch(setCurPage(PAGE_NAME.FOUND_PAGE));
             },
@@ -177,6 +180,7 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
             },
             onEnter: function () {
+                store.dispatch(showNav());
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
                 store.dispatch(setCurPage(PAGE_NAME.MY_PAGE));
             },
@@ -209,6 +213,7 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
             },
             onEnter: function () {
+                store.dispatch(hideNav());
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
                 store.dispatch(setCurPage(PAGE_NAME.PERSON_PAGE));
             },
@@ -243,6 +248,7 @@ export default function createRoutes(store) {
             onEnter: function () {
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
                 store.dispatch(setCurPage(PAGE_NAME.FANS_LIST_PAGE));
+                store.dispatch(hideNav());
             },
             onLeave: function () {
                 store.dispatch(setCurPage(''));
@@ -272,6 +278,7 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
             },
             onEnter: function () {
+                store.dispatch(hideNav());
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
                 store.dispatch(setCurPage(PAGE_NAME.FOLLOWS_LIST_PAGE));
             },
@@ -282,7 +289,6 @@ export default function createRoutes(store) {
             path: '/collection/:id',
             name: 'collectionPage',
             getComponent(nextState, cb) {
-
                 const importModules = Promise.all([
                     System.import('containers/CollectionPage/reducer'),
                     System.import('containers/CollectionPage/sagas'),
@@ -306,6 +312,7 @@ export default function createRoutes(store) {
             onEnter: function () {
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
                 store.dispatch(setCurPage(PAGE_NAME.COLLECTION_PAGE));
+                store.dispatch(hideNav());
             },
             onLeave: function () {
                 store.dispatch(setCurPage(''));
@@ -335,6 +342,7 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
             },
             onEnter: function () {
+                store.dispatch(hideNav());
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
                 store.dispatch(setCurPage(PAGE_NAME.FOUND_PAGE));
             },
@@ -368,6 +376,7 @@ export default function createRoutes(store) {
             onEnter: function () {
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
                 store.dispatch(setCurPage(PAGE_NAME.MY_TAG_PAGE));
+                store.dispatch(hideNav());
             },
             onLeave: function () {
                 store.dispatch(setCurPage(''));
@@ -399,6 +408,7 @@ export default function createRoutes(store) {
             onEnter: function () {
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
                 store.dispatch(setCurPage(PAGE_NAME.SETTING_PAGE));
+                store.dispatch(hideNav());
             },
             onLeave: function () {
                 store.dispatch(setCurPage(''));
@@ -428,6 +438,7 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
             },
             onEnter: function () {
+                store.dispatch(hideNav());
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
             },
             onLeave: function () {
@@ -457,6 +468,7 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
             },
             onEnter: function () {
+                store.dispatch(hideNav());
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
             },
             onLeave: function () {
@@ -486,6 +498,7 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
             },
             onEnter: function () {
+                store.dispatch(hideNav());
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
             },
             onLeave: function () {
@@ -515,6 +528,7 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
             },
             onEnter: function () {
+                store.dispatch(hideNav());
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
             },
             onLeave: function () {
@@ -540,6 +554,7 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
             },
             onEnter: function () {
+                store.dispatch(hideNav());
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
             },
             onLeave: function () {

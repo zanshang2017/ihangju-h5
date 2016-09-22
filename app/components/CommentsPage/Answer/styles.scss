@@ -12,7 +12,7 @@
     .listItem {
         width: 100%;
         box-sizing: border-box;
-        padding: rem(20) 0;
+        padding: rem(15) 0;
         -webkit-overflow-scrolling: touch;
 
         .basis {
@@ -23,7 +23,9 @@
             color: $textColor;
             background: $deepBg;
             border-radius: 8px;
-            line-height: 1.2em;
+            line-height: 1.4em;
+            word-wrap: break-word;
+            word-break: break-all;
 
             .arrow {
                 position: absolute;

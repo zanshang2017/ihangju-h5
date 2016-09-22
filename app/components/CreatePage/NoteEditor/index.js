@@ -21,7 +21,7 @@ export default class NoteEditor extends React.Component {
 
     componentDidMount() {
         var nContent = this.refs.J_Content;
-        var contentH = document.body.clientHeight - document.getElementById('nav').getBoundingClientRect().height;
+        var contentH = document.body.clientHeight - document.getElementById('nav').getBoundingClientRect().height - 60;
         nContent.style.height = contentH + 'px';
     }
 

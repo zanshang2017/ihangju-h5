@@ -4,4 +4,7 @@
   box-sizing: border-box;
   background: #f3f5f4; }
 
+:global .am-tab-content {
+  padding: 0 0 12px; }
+
 /*# sourceMappingURL=styles.css.map */

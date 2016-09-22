@@ -4,6 +4,8 @@ import styles from './styles.css';
 
 import ArticleList from 'components/common/ArticleList';
 
+import Result from 'antd-mobile/lib/page-result';
+
 import _ from 'underscore';
 
 class MainContent extends React.Component {
@@ -62,7 +64,11 @@ class MainContent extends React.Component {
         let list = '';
 
         if (this.page == 0 && articles.length == 0) {
-            list = <div>暂无文章</div>
+            // todo 替换图片
+            list = <Result
+                imgUrl="https://os.alipayobjects.com/rmsportal/MKXqtwNOLFmYmrY.png"
+                title="暂无文章"
+            />
         } else {
             list = <ArticleList items={articles}/>
         }

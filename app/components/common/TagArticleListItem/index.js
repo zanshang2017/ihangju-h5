@@ -25,13 +25,16 @@ function TagArticleListItem(props) {
 
     let recommendationBtn = '';
 
-    if (item.isRecommdationProject) {
-        recommendationBtn = <span className={styles.recommendationBtn} data-id={item.id}
-                                  onClick={removeRecommendation}>取消推荐</span>
-    } else {
-        recommendationBtn =
-            <span className={styles.recommendationBtn} data-id={item.id} onClick={addRecommendation}>推荐</span>
+    if (props.isAdmin) {
+        if (item.isRecommdationProject) {
+            recommendationBtn = <span className={styles.recommendationBtn} data-id={item.id}
+                                      onClick={removeRecommendation}>取消推荐</span>
+        } else {
+            recommendationBtn =
+                <span className={styles.recommendationBtn} data-id={item.id} onClick={addRecommendation}>推荐</span>
+        }
     }
+    
 
     function addRecommendation(e) {
         props.recommendationHandler(e.target.dataset.id);

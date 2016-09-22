@@ -67,13 +67,15 @@ export class FollowsListPage extends React.Component { // eslint-disable-line re
                 <TopBar data-has-back="true">
                     <div data-title>关注</div>
                 </TopBar>
-                <List page={page}
-                        isLast={isLast}
-                        loading={loading}
-                        items={items}
-                        nextPageHandler={this.nextPageHandler.bind(this)}
-                        followUserHandler={this.followUserHandler.bind(this)}>
-                </List>
+                <div className="mainContent">
+                    <List page={page}
+                          isLast={isLast}
+                          loading={loading}
+                          items={items}
+                          nextPageHandler={this.nextPageHandler.bind(this)}
+                          followUserHandler={this.followUserHandler.bind(this)}>
+                    </List>
+                </div>
             </div>
         );
     }
