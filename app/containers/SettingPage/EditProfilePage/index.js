@@ -25,7 +25,7 @@ import {
     IMG_CDN_PATH
 } from '../../../apis.js';
 
-export class EditProfilePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class EditProfilePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
         super(props);

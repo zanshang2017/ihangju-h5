@@ -8,7 +8,7 @@ import {
     IMG_CDN_PATH
 } from '../../../apis.js';
 
-export class BannerInfo extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class BannerInfo extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
         super(props);

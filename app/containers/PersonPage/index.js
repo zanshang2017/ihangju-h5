@@ -22,7 +22,7 @@ import UserDesc from 'components/PersonPage/UserDesc';
 import UserArticle from 'components/PersonPage/UserArticle';
 import List from 'antd-mobile/lib/list';
 
-export class PersonPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class PersonPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
         super(props);

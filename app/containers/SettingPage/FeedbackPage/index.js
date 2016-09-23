@@ -18,7 +18,7 @@ import {
 
 import request from 'utils/request';
 
-export class FeedbackPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class FeedbackPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
         super(props);

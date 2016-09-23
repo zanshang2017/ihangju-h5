@@ -16,7 +16,7 @@ import {
 import TopBar from 'components/common/TopBar';
 import List from 'antd-mobile/lib/list';
 
-export class SettingPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class SettingPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
         super(props);

@@ -22,7 +22,7 @@ import {
 
 import ReadContent from 'components/ReadProjectChapter/ReadContent';
 
-export default class ReadProjectChapter extends React.Component {
+class ReadProjectChapter extends React.Component {
 	constructor(props) {
         super(props);
     }

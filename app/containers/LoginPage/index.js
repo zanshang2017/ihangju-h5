@@ -18,7 +18,7 @@ import {
 } from '../App/actions.js'
 
 /* eslint-disable react/prefer-stateless-function */
-export default class LoginPage extends React.Component {
+class LoginPage extends React.Component {
 
     constructor() {
         super();

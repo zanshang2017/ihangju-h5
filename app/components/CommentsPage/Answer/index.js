@@ -4,7 +4,7 @@ import React from 'react';
 import {convertDate} from '../../../utils/util.js';
 
 /* eslint-disable react/prefer-stateless-function */
-export default class Answer extends React.Component {
+class Answer extends React.Component {
 
     constructor(props) {
         super(props);

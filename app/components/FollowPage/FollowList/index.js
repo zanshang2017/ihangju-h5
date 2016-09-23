@@ -4,7 +4,7 @@ import React from 'react';
 import _ from 'underscore';
 
 /* eslint-disable react/prefer-stateless-function */
-export default class FollowList extends React.Component {
+class FollowList extends React.Component {
 
     constructor(props) {
         super(props);

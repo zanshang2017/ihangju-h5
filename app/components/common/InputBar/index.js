@@ -6,7 +6,7 @@ import {
 } from './constants';
 
 /* eslint-disable react/prefer-stateless-function */
-export default class InputBar extends React.Component {
+class InputBar extends React.Component {
 
     constructor(props) {
         super(props);

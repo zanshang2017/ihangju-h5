@@ -40,7 +40,7 @@ import {
 import styles from './style.scss';
 
 /* eslint-disable react/prefer-stateless-function */
-export default class App extends React.Component {
+class App extends React.Component {
 
     static propTypes = {
         children: React.PropTypes.node

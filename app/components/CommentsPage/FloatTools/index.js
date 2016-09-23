@@ -2,7 +2,7 @@ import styles from './styles.scss';
 import React from 'react';
 
 /* eslint-disable react/prefer-stateless-function */
-export default class FloatTools extends React.Component {
+class FloatTools extends React.Component {
 
     constructor(props) {
         super(props);

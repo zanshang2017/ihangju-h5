@@ -3,7 +3,7 @@ import React from 'react';
 import {Link} from 'react-router';
 
 /* eslint-disable react/prefer-stateless-function */
-export default class TopBar extends React.Component {
+class TopBar extends React.Component {
 
     constructor(props) {
         super(props);

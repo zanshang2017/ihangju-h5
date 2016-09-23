@@ -41,7 +41,7 @@ import ListGroup from 'components/TagDetailPage/ListGroup';
 
 import styles from './styles.css';
 
-export class TagDetailPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class TagDetailPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
         super(props);
