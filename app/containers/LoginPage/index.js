@@ -7,8 +7,8 @@ import {connect} from 'react-redux';
 import {
     THIRDPARTY_LOGIN_URL
 } from '../../apis.js';
-import {Env} from '../../utils/env.js';
-import {getUrlParam} from '../../utils/util.js';
+import {Env} from 'utils/env.js';
+import {getUrlParam} from 'utils/util.js';
 import {router} from 'react-router';
 
 import styles from './styles.scss';
@@ -49,7 +49,7 @@ class LoginPage extends React.Component {
                 var redirect = getUrlParam('redirect') || '/found#fliproute';
 
                 if ((Env.dev && e.origin.indexOf('http://192.168.1.33:8888') > -1) ||
-                    (Env.prod && e.origin.indexOf('http://api.ihangju.com') > -1)) {
+                    (Env.production && e.origin.indexOf('http://api.ihangju.com') > -1)) {
 
                     if (action === 'loginedTicket' && data.t) {
                         //t写入到了 api.ihangju.com和oauth.zan-shang.com

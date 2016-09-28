@@ -50,6 +50,8 @@ import App from 'containers/App';
 
 import createRoutes from './routes';
 
+import {foo} from 'utils/upload.js';
+
 //路由配置
 const rootRoute = {
     path: '/',

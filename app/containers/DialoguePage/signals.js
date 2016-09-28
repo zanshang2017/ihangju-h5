@@ -1,4 +1,4 @@
-import {signalFactory} from '../../utils/signal';
+import {signalFactory} from 'libs/signal';
 
 export default {
     'sendDialogueSuccess': signalFactory()
