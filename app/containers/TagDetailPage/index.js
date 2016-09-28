@@ -238,7 +238,7 @@ class TagDetailPage extends React.Component { // eslint-disable-line react/prefe
                     <div data-btns>{this.topBarBtnHTML}</div>
                 </TopBar>
                 <div ref="J_Container" className="mainContent">
-                    <div className="mainContentInner">
+                    <div className={styles.mainContentInner}>
                         {infoHTML}
                         {descHTML}
                         <ListGroup {...this.props}

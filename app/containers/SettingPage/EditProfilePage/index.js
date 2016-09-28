@@ -69,7 +69,7 @@ class EditProfilePage extends React.Component { // eslint-disable-line react/pre
                         <List.Item
                             arrow="horizontal"
                             extra={
-                                <div className={styles.avatar}><img src={avatarUrl} width="0" height="0"/></div>
+                                <div className={styles.avatar}><img src={avatarUrl}/></div>
                             }
                             onClick={this.avatarClickHandler.bind(this)}
                         >

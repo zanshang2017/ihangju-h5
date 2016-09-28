@@ -6,7 +6,7 @@
     position: relative;
     width: 100%;
     box-sizing: border-box;
-    padding: rem(68) rem(42);
+    padding: rem(68) rem(42) rem(76);
     background: #fff;
     margin-bottom: rem(22);
     text-align: left;
@@ -15,7 +15,7 @@
         font-size: rem(28);
         color: $weakerTitleColor;
         display: inline-block;
-        margin-bottom: rem(18);
+        margin-bottom: rem(2);
 
         strong {
             font-style: italic;
@@ -23,6 +23,12 @@
             color: $linkColor;
         }
     }
+
+    .read {
+        color: $weakerTitleColor;
+        margin-bottom: rem(18);
+    }
+
 
     h3 {
         max-height: rem(112);

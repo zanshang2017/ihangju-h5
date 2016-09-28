@@ -82,6 +82,10 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
 
         let msg_count = (userCenterInfo.comment_notify_count || 0) + (userCenterInfo.discuss_notify_count || 0);
 
+        if(!this.id) {
+            this.context.router.push('/login');
+        }
+
         return (
             <div className="pageInner wrap">
                 <TopBar data-has-back="false">

@@ -35,6 +35,13 @@ const IMG_UPLOAD_TOKEN_API = `//${api_host}/storage/image/uptoken`;
 //三方登录页
 const THIRDPARTY_LOGIN_URL = `http://${thirdparty_login_domain}/oauth/authorize?client_id=ihangju&redirect_uri=http://${api_host}/zanshang/authentication&response_type=code&scope=read&state=33251`;
 
+//退出登录
+/**
+ * restful:
+ *  [DELETE] 退出登录
+ */
+const LOGOUT_API = `//${api_host}/logout`;
+
 //发现接口: 包含banner、分类tag和发现第一页的数据
 const DISCOVERIES_API = `//${api_host}/discoveries`;
 
@@ -468,6 +475,7 @@ export {
     IMG_UPLOAD_TOKEN_API,
 
     THIRDPARTY_LOGIN_URL,
+    LOGOUT_API,
     USER_INFO_API,
     USER_CENTER_API,
     CONFIRM_EDITOR_API,

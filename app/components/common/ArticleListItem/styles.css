@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  padding: 1.81333rem 1.12rem;
+  padding: 1.81333rem 1.12rem 2.02667rem;
   background: #fff;
   margin-bottom: 0.58667rem;
   text-align: left; }
@@ -10,11 +10,14 @@
     font-size: 0.74667rem;
     color: #a09e98;
     display: inline-block;
-    margin-bottom: 0.48rem; }
+    margin-bottom: 0.05333rem; }
     .articleListItem span.source strong {
       font-style: italic;
       font-weight: normal;
       color: #39bcc8; }
+  .articleListItem .read {
+    color: #a09e98;
+    margin-bottom: 0.48rem; }
   .articleListItem h3 {
     max-height: 2.98667rem;
     font-size: 1.17333rem;
