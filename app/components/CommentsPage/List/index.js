@@ -12,7 +12,7 @@ import {convertDate} from '../../../utils/util.js';
 import Answer from '../Answer';
 
 /* eslint-disable react/prefer-stateless-function */
-export default class List extends React.Component {
+class List extends React.Component {
     constructor(props) {
         super(props);
         this.scrollHanderBinded = null;

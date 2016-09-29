@@ -19,6 +19,7 @@ const webpackConfig = isDev
 
 
 console.log('isDev:', isDev);
+// console.log('webpackConfig\n', webpackConfig);
 
 app.use(frontend(webpackConfig));
 

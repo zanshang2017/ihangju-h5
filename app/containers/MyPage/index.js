@@ -25,7 +25,7 @@ import TopBar from 'components/common/TopBar';
 import UserDesc from 'components/MyPage/UserDesc';
 import List from 'antd-mobile/lib/list';
 
-export class MyPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class MyPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
         super(props);
@@ -81,6 +81,10 @@ export class MyPage extends React.Component { // eslint-disable-line react/prefe
         this.id = userInfo.id;
 
         let msg_count = (userCenterInfo.comment_notify_count || 0) + (userCenterInfo.discuss_notify_count || 0);
+
+        if(!this.id) {
+            this.context.router.push('/login');
+        }
 
         return (
             <div className="pageInner wrap">

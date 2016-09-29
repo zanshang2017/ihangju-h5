@@ -25,7 +25,7 @@ import {
     IMG_CDN_PATH
 } from '../../../apis.js';
 
-export class EditProfilePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class EditProfilePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
         super(props);
@@ -69,7 +69,7 @@ export class EditProfilePage extends React.Component { // eslint-disable-line re
                         <List.Item
                             arrow="horizontal"
                             extra={
-                                <div className={styles.avatar}><img src={avatarUrl} width="0" height="0"/></div>
+                                <div className={styles.avatar}><img src={avatarUrl}/></div>
                             }
                             onClick={this.avatarClickHandler.bind(this)}
                         >

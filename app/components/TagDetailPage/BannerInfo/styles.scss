@@ -11,19 +11,36 @@
     text-align:center;
     color: #fff;
 
+    &:after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        background: #000;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: .3;
+        z-index: 0;
+    }
+
     .title {
+        position:relative;
+        z-index: 1;
         font-size: rem(44);
         font-weight:700;
         margin-top: rem(90);
     }
 
     .follow {
+        position:relative;
+        z-index: 1;
         font-size:rem(24);
         margin-top: rem(20);
     }
 
-
     .followBtn {
+        position:relative;
+        z-index: 1;
         width: rem(206);
         height: rem(72);
         line-height: rem(72);
@@ -35,6 +52,8 @@
     }
 
     .followed {
+        position:relative;
+        z-index: 1;
         color: $weakLinkColor;
 
         i {
@@ -57,6 +76,7 @@
     .editBannerImage {
         font-size: rem(32);
         position: absolute;
+        z-index: 1;
         right: rem(38);
         bottom: rem(38);
         text-shadow:1px 1px rgba(0,0,0,.3);

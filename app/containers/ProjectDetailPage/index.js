@@ -26,7 +26,7 @@ import {
 
 
 /* eslint-disable react/prefer-stateless-function */
-export default class DetailPage extends React.Component {
+class DetailPage extends React.Component {
     componentDidMount() {
         if (this.props.routeParams) {
             var id = this.props.routeParams.id;

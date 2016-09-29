@@ -42,7 +42,7 @@ import {
 import {
     TAG_API,
     SUB_TAG_API,
-} from '../../apis.js';
+} from 'apis';
 
 import request from 'utils/request';
 

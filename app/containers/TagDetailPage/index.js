@@ -41,7 +41,7 @@ import ListGroup from 'components/TagDetailPage/ListGroup';
 
 import styles from './styles.css';
 
-export class TagDetailPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class TagDetailPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
         super(props);
@@ -238,7 +238,7 @@ export class TagDetailPage extends React.Component { // eslint-disable-line reac
                     <div data-btns>{this.topBarBtnHTML}</div>
                 </TopBar>
                 <div ref="J_Container" className="mainContent">
-                    <div className="mainContentInner">
+                    <div className={styles.mainContentInner}>
                         {infoHTML}
                         {descHTML}
                         <ListGroup {...this.props}

@@ -21,7 +21,7 @@ import styles from './styles.css';
 import TopBar from 'components/common/TopBar';
 import Button from 'antd-mobile/lib/button';
 
-export class DescriptionPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class DescriptionPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
         super(props);

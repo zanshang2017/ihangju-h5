@@ -1,0 +1,44 @@
+@charset "UTF-8";
+@import './_global';
+@import './_util';
+
+/**
+ * 覆盖antd组件的默认样式
+ */
+
+:global {
+
+    /** Tab组件 **/
+    .am-tab {
+
+        //底部灰线
+        &.am-tab-line .am-tab-bar:after {
+            border-color: $tabBg !important;
+        }
+
+        //选中时文字色
+        .am-tab-tab-active {
+            .am-tab-tab-inner {
+                color: $linkColor !important;
+            }
+        }
+
+        //未选中时文字色
+        .am-tab-tab-inner {
+            color: $weakerTitleColor !important;
+        }
+
+        //选中时底线
+        .am-tab-ink-bar {
+            background-color: $linkColor !important;
+        }
+    }
+
+
+
+
+
+
+
+
+}

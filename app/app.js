@@ -8,8 +8,8 @@ import 'babel-polyfill';
 import 'common/common.scss';
 import 'sanitize.css/lib/sanitize.css';
 
-// import 'antd/dist/antd.css';
 import 'antd-mobile/dist/antd-mobile.css';
+import 'common/antd_cover.scss';
 
 import {Env} from './utils/env.js';
 
@@ -49,6 +49,8 @@ const history = syncHistoryWithStore(browserHistory, store, {
 import App from 'containers/App';
 
 import createRoutes from './routes';
+
+import {foo} from 'utils/upload.js';
 
 //路由配置
 const rootRoute = {

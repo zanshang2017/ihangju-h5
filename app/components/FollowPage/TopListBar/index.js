@@ -4,7 +4,7 @@ import React from 'react';
 import FollowList from 'components/FollowPage/FollowList';
 
 /* eslint-disable react/prefer-stateless-function */
-export default class TopListBar extends React.Component {
+class TopListBar extends React.Component {
 
     constructor(props) {
         super(props);

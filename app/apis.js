@@ -7,17 +7,16 @@
 
 import {Env} from './utils/env.js';
 
-let api_domain;
+let api_host;
 let thirdparty_login_domain;
 
-if (Env.prod) {
-    api_domain = 'www.ihangju.com';
+if (Env.production) {
+    api_host = Env.productionAPIHost;
     thirdparty_login_domain = 'oauth.zan-shang.com';
 } else {
-    api_domain = '192.168.1.33:8888';
+    api_host = Env.devAPIHost;
     thirdparty_login_domain = '192.168.1.33:7777';
 }
-
 
 //图片CDN
 const IMG_CDN_PATH = 'https://o82zr1kfu.qnssl.com/@';
@@ -30,17 +29,35 @@ const IMG_CDN_PATH = 'https://o82zr1kfu.qnssl.com/@';
 	"uptoken": "xxxxxxxxxxx"
    }
  */
-const IMG_UPLOAD_TOKEN_API = `//${api_domain}/storage/image/uptoken`;
+const IMG_UPLOAD_TOKEN_API = `//${api_host}/storage/image/uptoken`;
 
 
 //三方登录页
-const THIRDPARTY_LOGIN_URL = `http://${thirdparty_login_domain}/oauth/authorize?client_id=ihangju&redirect_uri=http://${api_domain}/zanshang/authentication&response_type=code&scope=read&state=33251`;
+const THIRDPARTY_LOGIN_URL = `http://${thirdparty_login_domain}/oauth/authorize?client_id=ihangju&redirect_uri=http://${api_host}/zanshang/authentication&response_type=code&scope=read&state=33251`;
+
+//退出登录
+/**
+ * restful:
+ *  [DELETE] 退出登录
+ */
+const LOGOUT_API = `//${api_host}/logout`;
 
 //发现接口: 包含banner、分类tag和发现第一页的数据
-const DISCOVERIES_API = `//${api_domain}/discoveries`;
+const DISCOVERIES_API = `//${api_host}/discoveries`;
 
 //推荐接口: 推荐分页数据
-const RECOMMENDATION_API = `//${api_domain}/recommendation`;
+const RECOMMENDATION_API = `//${api_host}/recommendation`;
+
+/**
+ * 发送设备号,用于接收推送
+ *
+ * restful:
+ *  [PUT] 通知服务端为用户发送推送
+ *        body: token=xxx&os={ios||android}
+ *  [DELETE] 通知服务端停止推送消息
+ *        body: token=xxx&os={ios||android}
+ */
+const DEVICETOKEN_API = `//${api_host}/devicetoken`;
 
 
 /**
@@ -52,7 +69,7 @@ const RECOMMENDATION_API = `//${api_domain}/recommendation`;
  *
  *  注：不加参数默认读取全部关注
  */
-const MY_FOLLOW_API = `//${api_domain}/myfollow`;
+const MY_FOLLOW_API = `//${api_host}/myfollow`;
 
 /**
  *  关注目录
@@ -63,7 +80,7 @@ const MY_FOLLOW_API = `//${api_domain}/myfollow`;
  *
  *  注：不加参数按默认参数读取
  */
-const MY_FOLLOW_LIST_API = `//${api_domain}/myfollow/list`;
+const MY_FOLLOW_LIST_API = `//${api_host}/myfollow/list`;
 
 
 /**
@@ -75,7 +92,7 @@ const MY_FOLLOW_LIST_API = `//${api_domain}/myfollow/list`;
  *  userid: 用户id
  *
  */
-const CONFIRM_EDITOR_API = `//${api_domain}/confirm/editor`;
+const CONFIRM_EDITOR_API = `//${api_host}/confirm/editor`;
 // sancodeid=579abdeee4b0968c87c1162c&target=console&userid=571dab71e4b0d50d21e7a9fc
 
 /**
@@ -107,7 +124,7 @@ const CONFIRM_EDITOR_API = `//${api_domain}/confirm/editor`;
  *      描述: description {String} 《收获》小门审.
  *      推送: favoritePush | commentPush | letterPush {Boolean}
  */
-const USER_INFO_API = `//${api_domain}/user/me`;
+const USER_INFO_API = `//${api_host}/user/me`;
 
 /**
  * 获取用户中心(MyPage)页数据
@@ -138,7 +155,7 @@ const USER_INFO_API = `//${api_domain}/user/me`;
  "code": "ok"
 }
  */
-const USER_CENTER_API = `//${api_domain}/user/center`;
+const USER_CENTER_API = `//${api_host}/user/center`;
 
 
 /**
@@ -170,7 +187,7 @@ const USER_CENTER_API = `//${api_domain}/user/center`;
  *
  *
  */
-const NOTE_LIST_API = `//${api_domain}/user/notes`;
+const NOTE_LIST_API = `//${api_host}/user/notes`;
 
 /**
  * 灵感记录
@@ -219,23 +236,23 @@ const NOTE_LIST_API = `//${api_domain}/user/notes`;
  *
  *
  */
-const NOTE_API = `//${api_domain}/note`;
+const NOTE_API = `//${api_host}/note`;
 
 /*
-* 作品详情
-* 参数：
-*  id: projectId
-* http://192.168.1.33:8888/project/57a941f4e4b0ab2d4f0d14cd
-*/
-const PROJECTDETAIL_API = `//${api_domain}/project`
+ * 作品详情
+ * 参数：
+ *  id: projectId
+ * http://192.168.1.33:8888/project/57a941f4e4b0ab2d4f0d14cd
+ */
+const PROJECTDETAIL_API = `//${api_host}/project`
 /*
-* 章节阅读
-* 参数:
-* projectId chapterId
-* http://192.168.1.33:8888/project/57a941f4e4b0ab2d4f0d14cd/chapters
-*/
+ * 章节阅读
+ * 参数:
+ * projectId chapterId
+ * http://192.168.1.33:8888/project/57a941f4e4b0ab2d4f0d14cd/chapters
+ */
 
-const READCHAPTER_API = `//${api_domain}/project`
+const READCHAPTER_API = `//${api_host}/project`
 
 /**
  * 作品API
@@ -244,7 +261,7 @@ const READCHAPTER_API = `//${api_domain}/project`
  * 路径: /${projectID}/comments 获取当前作品的评论
  *
  */
-const PROJECT_API = `//${api_domain}/project`
+const PROJECT_API = `//${api_host}/project`
 
 
 /**
@@ -313,7 +330,7 @@ const PROJECT_API = `//${api_domain}/project`
  * [PUT] 请求体数据:/recommendation/project/projectids=${id} 设为推荐作品
  * [DELETE] /recommendation/project?projectids=${id} 取消推荐
  */
-const TAG_API = `//${api_domain}/tags`;
+const TAG_API = `//${api_host}/tags`;
 
 /**
  *  标签订阅接口
@@ -325,14 +342,14 @@ const TAG_API = `//${api_domain}/tags`;
  *      [DELETE]: 取消订阅
  *
  */
-const SUB_TAG_API = `//${api_domain}/subscription/tag`;
+const SUB_TAG_API = `//${api_host}/subscription/tag`;
 
 
 /**
  * 获取用户首页信息
  * 子路径: /${userID} 获取指定uid的用户信息
  */
-const USER_PROFILE_API = `//${api_domain}/profile/`;
+const USER_PROFILE_API = `//${api_host}/profile/`;
 
 /**
  * 用户相关信息API
@@ -344,7 +361,7 @@ const USER_PROFILE_API = `//${api_domain}/profile/`;
  *  [GET] ${userID}/dialogues 私信列表
  *  [GET] ${userID}/management/tag 我管理的标签
  */
-const USER_API = `//${api_domain}/user/`;
+const USER_API = `//${api_host}/user/`;
 
 /**
  * 关注、取消关注用户接口
@@ -353,7 +370,7 @@ const USER_API = `//${api_domain}/user/`;
  *  [PUT] ${userID} 添加对特定user的关注
  *  [DELETE] ${userID} 取消对特定user的关注
  */
-const FOLLOW_USER_API = `//${api_domain}/subscription/user/`;
+const FOLLOW_USER_API = `//${api_host}/subscription/user/`;
 
 /**
  * 用户反馈
@@ -361,7 +378,7 @@ const FOLLOW_USER_API = `//${api_domain}/subscription/user/`;
  * restful:
  *  [PUT] 数据: contact=${email}&content=${message}
  */
-const FEEDBACK_API = `//${api_domain}/feedback`;
+const FEEDBACK_API = `//${api_host}/feedback`;
 
 /**
  * 获取评论列表
@@ -386,7 +403,7 @@ const FEEDBACK_API = `//${api_domain}/feedback`;
 	 }, ... ]
    }
  */
-const COMMENT_LIST_API = `//${api_domain}/notification/comments`;
+const COMMENT_LIST_API = `//${api_host}/notification/comments`;
 
 /**
  * 获取通知列表
@@ -407,7 +424,7 @@ const COMMENT_LIST_API = `//${api_domain}/notification/comments`;
 	 }, ... ]
    }
  */
-const MESSAGE_LIST_API = `//${api_domain}/notification/messages`;
+const MESSAGE_LIST_API = `//${api_host}/notification/messages`;
 
 
 /**
@@ -418,7 +435,7 @@ const MESSAGE_LIST_API = `//${api_domain}/notification/messages`;
  *
  *  body: content=${评论内容}&projectid=${项目id}
  */
-const COMMENT_API = `//${api_domain}/comment`;
+const COMMENT_API = `//${api_host}/comment`;
 
 /**
  * 发送评论答复接口
@@ -428,7 +445,7 @@ const COMMENT_API = `//${api_domain}/comment`;
  *
  *  body: content=${评论内容}&parentid=${项目id}&type=${'answer' || 'to_answer'}
  */
-const ANSWER_API = `//${api_domain}/answer`;
+const ANSWER_API = `//${api_host}/answer`;
 
 
 /**
@@ -439,26 +456,31 @@ const ANSWER_API = `//${api_domain}/answer`;
  *  [PUT] /${letterGroupId} 增加私信
  *        body: content=${私信内容}
  */
-const DIALOGUE_API = `//${api_domain}/dialogue`;
+const DIALOGUE_API = `//${api_host}/dialogue`;
 
 
 /*
-* 收藏接口
-* PUT方法 : 收藏
-* DELETE : 取消收藏
-* 参数 : 57a941f4e4b0ab2d4f0d14cd/project
-*/
-const COLLECTION_API = `//${api_domain}/collection/`
+ * 收藏接口
+ * PUT方法 : 收藏
+ * DELETE : 取消收藏
+ * 参数 : 57a941f4e4b0ab2d4f0d14cd/project
+ */
+const COLLECTION_API = `//${api_host}/collection/`
 //http://192.168.1.33:8888/favorite?projectid=57a941f4e4b0ab2d4f0d14cd
 //http://192.168.1.33:8888/favorite  projectid : 57a941f4e4b0ab2d4f0d14cd
+
+
 export {
     IMG_CDN_PATH,
     IMG_UPLOAD_TOKEN_API,
 
     THIRDPARTY_LOGIN_URL,
+    LOGOUT_API,
     USER_INFO_API,
     USER_CENTER_API,
     CONFIRM_EDITOR_API,
+
+    DEVICETOKEN_API,
 
     DISCOVERIES_API,
     RECOMMENDATION_API,

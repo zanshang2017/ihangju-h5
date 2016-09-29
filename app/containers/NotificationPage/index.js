@@ -34,7 +34,7 @@ import Toast from 'antd-mobile/lib/toast';
 
 import styles from './styles.css';
 
-export class NotificationPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class NotificationPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
         super(props);

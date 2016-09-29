@@ -18,6 +18,7 @@ import {
 import {
     USER_INFO_API,
     DEVICE_TOKEN_API,
+    LOGOUT_API,
 } from '../../apis.js';
 
 import {
@@ -117,8 +118,7 @@ export function* logout() {
     while (action = yield take(LOGOUT)) {
         console.log('logout');
 
-        //todo 退出需要电邮提供新接口!
-        let url = '';
+        let url = LOGOUT_API;
 
         const ret = yield call(request, url, {
             method: 'DELETE',
@@ -130,14 +130,15 @@ export function* logout() {
             credentials: 'include'
         });
 
+        locStorage.removeItem('userInfo'); //清空用户信息
+        yield put(logoutSuccess());
+
         if (ret.err === undefined || ret.err === null) {
 
             //清空用户信息
             if (ret.data.code === 'ok') {
-                locStorage.removeItem('userInfo'); //localStorage
-            }
 
-            yield put(logoutSuccess());
+            }
         } else {
             console.log(ret.err.response); // eslint-disable-line no-console
             yield put(logoutError(ret.err));

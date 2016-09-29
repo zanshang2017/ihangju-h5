@@ -20,7 +20,8 @@ var y = null;
 var	isMoved = true;
 var projectId  = null;
 var chapterId = null;
-export default class ReadContent extends React.Component {
+
+class ReadContent extends React.Component {
 	constructor(props) {
         super(props);
         this.chapterTitle = '';

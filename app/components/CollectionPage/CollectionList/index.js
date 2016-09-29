@@ -6,7 +6,7 @@ import _ from 'underscore';
 import ArticleList3 from 'components/common/ArticleList3';
 
 /* eslint-disable react/prefer-stateless-function */
-export default class CollectionList extends React.Component {
+class CollectionList extends React.Component {
 
     constructor(props) {
         super(props);

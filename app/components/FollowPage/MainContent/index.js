@@ -49,7 +49,7 @@ class MainContent extends React.Component {
         var nWrapH = nWrap.getBoundingClientRect().height;
         var nOuterH = this.nScrollOuter.getBoundingClientRect().height;
 
-        console.log(this.nScrollOuter.scrollTop + nOuterH + '>=' + nWrapH);
+        // console.log(this.nScrollOuter.scrollTop + nOuterH + '>=' + nWrapH);
 
         if ((this.nScrollOuter.scrollTop + nOuterH) - nWrapH > 0 && !this.isLast && !this.props.myFollowLoading) {
             this.props.loadMyFollow(this.page + 1, this.props.currentFollow);

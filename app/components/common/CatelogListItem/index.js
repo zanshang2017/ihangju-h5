@@ -23,7 +23,7 @@ function CatelogListItem(props) {
                                 <strong>{item.attention_number}</strong><span>关注</span>
                             </div>
                             <div>
-                                <strong>{item.project_number}</strong><span>文章</span>
+                                <strong>{item.project_number}</strong><span>作品</span>
                             </div>
                         </div>
                     </div>

@@ -2,19 +2,20 @@ import React from 'react';
 
 import styles from './styles.css';
 
-import { convertDate } from '../../../utils/util.js';
+import {convertDate} from '../../../utils/util.js';
 
 function ArticleListItem(props) {
     let item = props.item;
     let source = [];
 
-    item.sources.forEach(function(v, k){
+    item.sources.forEach(function (v, k) {
         source.push(v.name);
     });
 
-    let modifyTime = convertDate(item.modifyTime);
+    let modifyTime = convertDate(item.modifyTime, 'YYYY-MM-DD');
 
     //    {
+    //        "browsNumber": 24,
     //        "commentNumber": 1,
     //        "modifyTime": 1464513347761,
     //        "sources": [{
@@ -35,22 +36,22 @@ function ArticleListItem(props) {
     return (
         <div className={styles.articleListItem} data-id={item.id} onClick={props.articleClickHandler}>
             <span className={styles.source}><strong>{source}</strong> 更新了</span>
+            <div className={styles.read}>{modifyTime}</div>
             <h3>{item.projectName}</h3>
             <p>{item.description}</p>
             <div className={styles.info}>
                 <div className="fl">
                     <span className="like"><i className="iconfont icon-hearto"></i> {item.likeNumber}</span>
-                    <span className="comment"><i className="iconfont icon-message"></i> {item.commentNumber}</span>
                 </div>
-                <div className="read fr">{modifyTime}</div>
+                <div className="fr">
+                    {item.browsNumber}人已阅读
+                </div>
             </div>
         </div>
     );
 }
 
-ArticleListItem.propTypes = {
-
-};
+ArticleListItem.propTypes = {};
 
 export default ArticleListItem;
 
