@@ -350,7 +350,7 @@ export default function createRoutes(store) {
                 store.dispatch(setCurPage(''));
             }
         }, {
-            path: '/mytag/:id',
+            path: '/mytag',
             name: 'myTagPage',
             getComponent(nextState, cb) {
                 const importModules = Promise.all([
@@ -418,8 +418,8 @@ export default function createRoutes(store) {
             name: 'editProfilePage',
             getComponent(nextState, cb) {
                 const importModules = Promise.all([
-                    System.import('containers/SettingPage/EditProfilePage/reducer'),
-                    System.import('containers/SettingPage/EditProfilePage/sagas'),
+                    System.import('containers/App/reducer'),
+                    System.import('containers/App/sagas'),
                     System.import('containers/SettingPage/EditProfilePage')
                 ]);
 

@@ -1,12 +1,12 @@
 import {take, call, put, select} from 'redux-saga/effects';
 
 import {
-    LOAD_USER_DATA,
+    LOAD_PERSON_DATA,
 } from './constants';
 
 import {
-    loadUserDataSuccess,
-    loadUserDataError,
+    loadPersonDataSuccess,
+    loadPersonDataError,
 } from './actions'
 
 import {
@@ -16,14 +16,14 @@ import {
 import request from 'utils/request';
 
 export default [
-    getUserData,
+    getPersonData,
 ];
 
-export function* getUserData() {
+export function* getPersonData() {
 
     let action = null;
 
-    while (action = yield take(LOAD_USER_DATA)) {
+    while (action = yield take(LOAD_PERSON_DATA)) {
 
         let id = action.payload.id || '';
 
@@ -39,13 +39,13 @@ export function* getUserData() {
             });
 
             if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
-                yield put(loadUserDataSuccess(lists.data.result));
+                yield put(loadPersonDataSuccess(lists.data.result));
             } else {
                 console.log(lists.err.response); // eslint-disable-line no-console
-                yield put(loadUserDataError(lists.err));
+                yield put(loadPersonDataError(lists.err));
             }
         } else {
-            yield put(loadUserDataError(new Error('缺少用户id')));
+            yield put(loadPersonDataError(new Error('缺少用户id')));
         }
 
     }

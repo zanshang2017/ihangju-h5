@@ -21,6 +21,11 @@ class BannerInfo extends React.Component { // eslint-disable-line react/prefer-s
         this.refs.J_ImageUpload.showSheet();
     }
 
+    onImageUploadComplete(base64Img) {
+        alert(base64Img.substring(20, 20));
+    }
+
+
     render() {
         let browseHTML = <div className={styles.bannerInfo}></div>;
 
@@ -35,8 +40,7 @@ class BannerInfo extends React.Component { // eslint-disable-line react/prefer-s
             }
 
             let wrapStyle = {
-                background: 'url(' + _image + ') left top no-repeat',
-                backgroundSize: 'cover'
+                backgroundImage: 'url(' + _image + ')'
             };
 
             let followText = '';
@@ -65,7 +69,7 @@ class BannerInfo extends React.Component { // eslint-disable-line react/prefer-s
                 <div className={styles.follow}>{detail.attention_number}人 已关注</div>
                 {followText}
                 {editBannerImage}
-                <ImageUpload ref="J_ImageUpload"/>
+                <ImageUpload ref="J_ImageUpload" onUploadComplete={this.props.editBannerImageHandler.bind(this)} />
             </div>;
         }
 

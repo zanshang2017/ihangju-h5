@@ -8,11 +8,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {createSelector} from 'reselect';
 import {
-    selectUserInfo,
+    selectPersonInfo,
 } from './selectors';
 
 import {
-    loadUserData,
+    loadPersonData,
 } from './actions';
 
 import styles from './styles.css';
@@ -34,7 +34,7 @@ class PersonPage extends React.Component { // eslint-disable-line react/prefer-s
             this.personID = this.props.routeParams.id;
         }
 
-        this.props.dispatch(loadUserData(this.personID));
+        this.props.dispatch(loadPersonData(this.personID));
     }
 
     componentDidMount() {
@@ -63,10 +63,10 @@ class PersonPage extends React.Component { // eslint-disable-line react/prefer-s
     }
 
     render() {
-        let userInfo = this.props.userInfo || {};
+        let personInfo = this.props.personInfo || {};
 
         return (
-            <div className="pageInner hasTopBar">
+            <div className="pageInner">
                 <TopBar data-has-back="true">
                     <div data-title>个人主页</div>
                     <div data-btns>
@@ -74,11 +74,11 @@ class PersonPage extends React.Component { // eslint-disable-line react/prefer-s
                     </div>
                 </TopBar>
                 <div className="mainContent">
-                    <UserDesc userInfo={userInfo}
+                    <UserDesc personInfo={personInfo}
                               fansClickHandler={this.fansClickHandler.bind(this)}
                               followsClickHandler={this.followsClickHandler.bind(this)}
                     />
-                    <UserArticle userInfo={userInfo}
+                    <UserArticle personInfo={personInfo}
                                  articleClickHandler={this.articleClickHandler.bind(this)}></UserArticle>
                 </div>
             </div>
@@ -97,6 +97,6 @@ PersonPage.contextTypes = {
 };
 
 export default connect(createSelector(
-    selectUserInfo(),
-    (userInfo) => ({userInfo})
+    selectPersonInfo(),
+    (personInfo) => ({personInfo})
 ), mapDispatchToProps)(PersonPage);

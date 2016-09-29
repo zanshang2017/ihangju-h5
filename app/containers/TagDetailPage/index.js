@@ -39,6 +39,10 @@ import BannerInfo from 'components/TagDetailPage/BannerInfo';
 import TagDesc from 'components/TagDetailPage/TagDesc';
 import ListGroup from 'components/TagDetailPage/ListGroup';
 
+import {
+    IMG_CDN_PATH
+} from 'apis.js';
+
 import styles from './styles.css';
 
 class TagDetailPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -84,10 +88,10 @@ class TagDetailPage extends React.Component { // eslint-disable-line react/prefe
         this.props.dispatch(cancelSubTag(this.tagID));
     }
 
-    editBannerImageHandler(image64) {
-        console.log('编辑bannber图');
+    editBannerImageHandler(url) {
+        console.log('banner上传成功', url);
         this.props.dispatch(setDetail({
-            tag_image: image64
+            tag_image: url
         }));
     }
 

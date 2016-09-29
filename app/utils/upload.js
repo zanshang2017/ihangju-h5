@@ -10,7 +10,6 @@ import {
     IMG_UPLOAD_TOKEN_API
 } from 'apis';
 
-
 function uploadImage(fileData) {
     let _resolve = null;
     let _reject = null;

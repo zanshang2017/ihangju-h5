@@ -10,6 +10,8 @@
   margin-bottom: 0.53333rem; }
   .tagDesc textarea {
     width: 100%;
-    height: 4rem; }
+    height: 4rem;
+    padding: 0.21333rem;
+    border: 1px dashed #d9d9d9; }
 
 /*# sourceMappingURL=styles.css.map */

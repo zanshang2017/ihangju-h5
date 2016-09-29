@@ -64,11 +64,8 @@ export function* getUserInfo() {
             console.log(ret.err.response); // eslint-disable-line no-console
             yield put(loadUserInfoError(ret.err));
         }
-
     }
-
 }
-
 
 export function* postUserInfo() {
 
@@ -76,7 +73,7 @@ export function* postUserInfo() {
 
     while (action = yield take(UPDATE_USER_INFO)) {
 
-        console.log('postUserInfo');
+        console.log('postUserInfo', action.payload.data);
 
         let url = USER_INFO_API;
         let data = action.payload.data || null;
@@ -84,13 +81,15 @@ export function* postUserInfo() {
 
         if (data) {
             for (let k in data) {
-                body += `${k}=${data[k]}`;
+                if (data.hasOwnProperty(k)) {
+                    body += `${k}=${data[k]}`;
+                }
             }
         }
 
         const ret = yield call(request, url, {
             method: 'POST',
-            body : body,
+            body: body,
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/x-www-form-urlencoded',

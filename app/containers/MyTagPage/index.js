@@ -12,8 +12,8 @@ import {
 } from './selectors';
 
 import {
-    IMG_CDN_PATH
-} from '../../apis.js';
+    selectUserInfo,
+} from 'containers/App/selectors';
 
 import {
     loadTagData,
@@ -33,9 +33,9 @@ class MyTagPage extends React.Component { // eslint-disable-line react/prefer-st
     }
 
     componentWillMount() {
-        if (this.props.routeParams) {
-            this.personID = this.props.routeParams.id;
-        }
+        let userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
+        this.personID = userInfo.id;
+
         this.props.dispatch(loadTagData(this.personID));
     }
 
@@ -91,6 +91,7 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(createSelector(
     selectTags(),
-    (tags) => ({tags})
+    selectUserInfo(),
+    (tags, userInfo) => ({tags, userInfo})
 ), mapDispatchToProps)(MyTagPage);
 //export default connect(null, mapDispatchToProps)(MyTagPage);

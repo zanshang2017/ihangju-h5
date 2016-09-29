@@ -8,22 +8,25 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {createSelector} from 'reselect';
 
+import styles from './styles.css';
+
 import {
     selectUserInfo,
 } from 'containers/App/selectors';
 
 import {
     loadUserInfo,
+    updateUserInfo,
 } from 'containers/App/actions';
 
-import styles from './styles.css';
+import ImageUpload from 'components/common/ImageUpload';
 
 import TopBar from 'components/common/TopBar';
 import List from 'antd-mobile/lib/list';
 
 import {
     IMG_CDN_PATH
-} from '../../../apis.js';
+} from 'apis.js';
 
 class EditProfilePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -42,6 +45,7 @@ class EditProfilePage extends React.Component { // eslint-disable-line react/pre
 
     avatarClickHandler() {
         console.log('avatarClickHandler');
+        this.refs.J_ImageUpload.showSheet();
     }
 
     nickNameClickHandler() {
@@ -52,6 +56,12 @@ class EditProfilePage extends React.Component { // eslint-disable-line react/pre
     descriptionClickHandler() {
         console.log('descriptionClickHandler');
         this.context.router.push('/setting/profile/description');
+    }
+
+    editAvatarImageHandler(url) {
+        this.props.dispatch(updateUserInfo({
+            avatar: url
+        }));
     }
 
     render() {
@@ -74,6 +84,7 @@ class EditProfilePage extends React.Component { // eslint-disable-line react/pre
                             onClick={this.avatarClickHandler.bind(this)}
                         >
                             <div className={styles.listWrap}>头像</div>
+                            <ImageUpload ref="J_ImageUpload" onUploadComplete={this.editAvatarImageHandler.bind(this)} />
                         </List.Item>
                         <List.Item
                             arrow="horizontal"
@@ -103,7 +114,7 @@ class EditProfilePage extends React.Component { // eslint-disable-line react/pre
 
 
 EditProfilePage.contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: React.PropTypes.object.isRequired,
 };
 
 //const mapStateToProps = selectEditProfilePage();

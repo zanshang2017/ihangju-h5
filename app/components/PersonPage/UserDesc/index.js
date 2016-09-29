@@ -12,11 +12,11 @@ function UserDesc(props) {
 
     var descHTML = '';
     var imageSrc = '';
-    var userInfo = props.userInfo || {};
-    var id = userInfo.id;
+    var personInfo = props.personInfo || {};
+    var id = personInfo.id;
 
-    if (userInfo.avatar) {
-        imageSrc = IMG_CDN_PATH + userInfo.avatar;
+    if (personInfo.avatar) {
+        imageSrc = IMG_CDN_PATH + personInfo.avatar;
     }
 
     return (
@@ -26,18 +26,18 @@ function UserDesc(props) {
             </div>
             <div className={styles.row}>
                 <p className={styles.username}>
-                    {userInfo.nickName}
+                    {personInfo.nickName}
                 </p>
             </div>
             <div className={styles.row}>
                 <div className={styles.btns}>
-                    <button className={styles.btn} onClick={props.fansClickHandler}><strong>{userInfo.fansNumber || 0}</strong><span>粉丝</span></button>
+                    <button className={styles.btn} onClick={props.fansClickHandler}><strong>{personInfo.fansNumber || 0}</strong><span>粉丝</span></button>
                     <span className={styles.divider}>|</span>
-                    <button className={styles.btn} onClick={props.followsClickHandler}><strong>{userInfo.attentionNumber || 0}</strong><span>关注</span></button>
+                    <button className={styles.btn} onClick={props.followsClickHandler}><strong>{personInfo.attentionNumber || 0}</strong><span>关注</span></button>
                 </div>
             </div>
             <div className={styles.row}>
-                <p className={styles.description}>{userInfo.description}</p>
+                <p className={styles.description}>{personInfo.description}</p>
             </div>
         </div>
     );

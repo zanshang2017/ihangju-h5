@@ -10,26 +10,26 @@ const TabPane = Tabs.TabPane;
 
 function UserArticle(props) {
 
-    var userInfo = props.userInfo || {};
+    var personInfo = props.personInfo || {};
 
-    var taProjectNumber = userInfo.projects ? userInfo.projects.length : 0;
+    var taProjectNumber = personInfo.projects ? personInfo.projects.length : 0;
     var taProjectTitle = `TA创作的作品(${taProjectNumber})`;
 
-    var taContractNumber = userInfo.contractProjects ? userInfo.contractProjects.length : 0;
+    var taContractNumber = personInfo.contractProjects ? personInfo.contractProjects.length : 0;
     var taContractTitle = `TA签约的作品(${taContractNumber})`;
 
     var projectContent = '';
     var contractProjectsContent = '';
     var nullContent = <Result imgUrl="https://os.alipayobjects.com/rmsportal/MKXqtwNOLFmYmrY.png" title="内容为空"/>;
 
-    if (userInfo.projects && userInfo.projects.length > 0) {
-        projectContent = <ArticleList2 {...props} items={userInfo.projects}/>;
+    if (personInfo.projects && personInfo.projects.length > 0) {
+        projectContent = <ArticleList2 {...props} items={personInfo.projects}/>;
     } else {
         projectContent = nullContent;
     }
 
-    if (userInfo.contractProjects && userInfo.contractProjects.length > 0) {
-        contractProjectsContent = <ArticleList2 {...props} items={userInfo.contractProjects}/>;
+    if (personInfo.contractProjects && personInfo.contractProjects.length > 0) {
+        contractProjectsContent = <ArticleList2 {...props} items={personInfo.contractProjects}/>;
     } else {
         contractProjectsContent = nullContent;
     }

@@ -28,7 +28,7 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
 
         that._fileReader.onload = function (oFREvent) {
             console.log('onload!');
-            alert(oFREvent.target.result.length);
+            // alert(oFREvent.target.result.length);
             // upload(oFREvent.target.result);
         };
 
@@ -57,23 +57,34 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
             return;
         }
 
+        var that = this;
         var oFile = this._albumFile.files[0];
 
-        uploadImage(oFile).then(function (value) {
-            console.log('上传成功!' + value);
+        uploadImage(oFile).then(function (imgUrl) {
+            // console.log('上传成功!' + imgUrl);
+            that.props.onUploadComplete && that.props.onUploadComplete(imgUrl);
         }, function (error) {
             console.log('上传失败!');
+            that.props.onUploadError && that.props.onUploadError(error);
         });
-
-        this._fileReader.readAsDataURL(oFile);
+        // this._fileReader.readAsDataURL(oFile);
     }
 
     loadCameraFileHandler() {
         if (this._cameraFile.files.length === 0) {
             return;
         }
+
         var oFile = this._albumFile.files[0];
-        this._fileReader.readAsDataURL(oFile);
+
+        uploadImage(oFile).then(function (imgUrl) {
+            // console.log('上传成功!' + imgUrl);
+            that.props.onUploadComplete && that.props.onUploadComplete(imgUrl);
+        }, function (error) {
+            console.log('上传失败!');
+            that.props.onUploadError && that.props.onUploadError(error);
+        });
+        // this._fileReader.readAsDataURL(oFile);
     }
 
     uninstallFileReader() {
@@ -83,7 +94,7 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
 
     showSheet() {
         let that = this;
-        const BUTTONS = ['拍照', '从相册选区', '取消'];
+        const BUTTONS = ['拍照', '从相册选取', '取消'];
 
         ActionSheet.showActionSheetWithOptions({
                 options: BUTTONS,
@@ -133,7 +144,8 @@ ImageUpload.propTypes = {
     detail: React.PropTypes.object,
     subTagHandler: React.PropTypes.func,
     cancelSubTagHandler: React.PropTypes.func,
-    editBannerImageHandler: React.PropTypes.func
+    onUploadComplete: React.PropTypes.func,
+    onUploadError: React.PropTypes.func
 };
 
 export default ImageUpload;

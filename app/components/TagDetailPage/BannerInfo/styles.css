@@ -1,6 +1,8 @@
 .bannerInfo {
   position: relative;
   background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   width: 100%;
   height: 10.29333rem;
   overflow: hidden;
@@ -19,14 +21,15 @@
   .bannerInfo .title {
     position: relative;
     z-index: 1;
-    font-size: 1.17333rem;
+    font-size: 1.33333rem;
     font-weight: 700;
-    margin-top: 2.4rem; }
+    margin-top: 2.13333rem;
+    letter-spacing: 2px; }
   .bannerInfo .follow {
     position: relative;
     z-index: 1;
-    font-size: 0.64rem;
-    margin-top: 0.53333rem; }
+    font-size: 0.74667rem;
+    margin-top: 0.8rem; }
   .bannerInfo .followBtn {
     position: relative;
     z-index: 1;
@@ -36,7 +39,7 @@
     border-radius: 50px;
     font-size: 0.74667rem;
     color: #383b3d;
-    margin: 0.69333rem auto 0;
+    margin: 0.90667rem auto 0;
     background: rgba(255, 255, 255, 0.75); }
   .bannerInfo .followed {
     position: relative;

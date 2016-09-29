@@ -13,6 +13,7 @@
             var docEl = document.documentElement;
             var width = docEl.getBoundingClientRect().width;
             root.rem = width / 20;
+
             if (/ZTE U930_TD/.test(navigator.userAgent)) {
                 root.rem = root.rem * 1.13;
             }

@@ -7,15 +7,15 @@ const selectPersonPage = () => createSelector(
     (personPageState) => personPageState
 );
 
-const selectUserInfo = () => createSelector(
+const selectPersonInfo = () => createSelector(
     selectPersonPageDomain(),
-    (personPageState) => personPageState.get('userInfo')
+    (personPageState) => personPageState.get('personInfo')
 );
 
 export default selectPersonPage;
 export {
     selectPersonPageDomain,
-    selectUserInfo
+    selectPersonInfo
 };
 
 

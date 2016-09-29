@@ -6,9 +6,9 @@
 
 import {
   DEFAULT_ACTION,
-    LOAD_USER_DATA,
-    LOAD_USER_DATA_SUCCESS,
-    LOAD_USER_DATA_ERROR,
+    LOAD_PERSON_DATA,
+    LOAD_PERSON_DATA_SUCCESS,
+    LOAD_PERSON_DATA_ERROR,
 } from './constants';
 
 export function defaultAction() {
@@ -17,27 +17,27 @@ export function defaultAction() {
   };
 }
 
-export function loadUserData(id) {
+export function loadPersonData(id) {
     return {
-        type: LOAD_USER_DATA,
+        type: LOAD_PERSON_DATA,
         payload: {
             id: id,
         }
     };
 }
 
-export function loadUserDataSuccess(data) {
+export function loadPersonDataSuccess(data) {
     return {
-        type: LOAD_USER_DATA_SUCCESS,
+        type: LOAD_PERSON_DATA_SUCCESS,
         payload: {
             data: data
         }
     };
 }
 
-export function loadUserDataError(error) {
+export function loadPersonDataError(error) {
     return {
-        type: LOAD_USER_DATA_ERROR,
+        type: LOAD_PERSON_DATA_ERROR,
         payload: {
             error: error
         }

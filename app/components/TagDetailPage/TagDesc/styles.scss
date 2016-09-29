@@ -16,6 +16,8 @@
     textarea {
         width: 100%;
         height: rem(150);
+        padding: rem(8);
+        border: 1px dashed $borderDeepColor;
     }
 
 }

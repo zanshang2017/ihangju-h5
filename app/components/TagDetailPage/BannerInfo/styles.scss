@@ -5,6 +5,8 @@
 .bannerInfo {
     position:relative;
     background-color: $bg;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     width: 100%;
     height: rem(386);
     overflow: hidden;
@@ -26,16 +28,17 @@
     .title {
         position:relative;
         z-index: 1;
-        font-size: rem(44);
+        font-size: rem(50);
         font-weight:700;
-        margin-top: rem(90);
+        margin-top: rem(80);
+        letter-spacing: 2px;
     }
 
     .follow {
         position:relative;
         z-index: 1;
-        font-size:rem(24);
-        margin-top: rem(20);
+        font-size:rem(28);
+        margin-top: rem(30);
     }
 
     .followBtn {
@@ -47,7 +50,7 @@
         border-radius: 50px;
         font-size: rem(28);
         color: $textColor;
-        margin: rem(26) auto 0;
+        margin: rem(34) auto 0;
         background: rgba(255, 255, 255, .75);
     }
 
