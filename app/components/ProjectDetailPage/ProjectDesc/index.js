@@ -15,7 +15,8 @@ class ProjectDesc extends React.Component{
     }
 	render(){
 		var props = this.props;
-		var _result = props.projectDetail.toJS();
+		var _result = props.projectDetail.toJS()
+		
     	let imageSrc = IMG_CDN_PATH + _result.projectImage;
 		let headSrc = IMG_CDN_PATH + _result.authorAvatar;
 		let modifyTime =  convertDate(_result.modifyTime);

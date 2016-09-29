@@ -37,7 +37,7 @@ class  ProjectTopBar extends React.Component{
 	render() {
         let _conMes = this.props.projectDetail.toJS();
 		return (
-			<div>
+			<div className={style.topBar}>
             	<TopBar data-has-back="true">
                     <div data-title>作品详情</div>
                     <div data-btns>

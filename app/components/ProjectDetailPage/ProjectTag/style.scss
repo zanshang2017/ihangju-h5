@@ -4,6 +4,8 @@
 
 .projectTag{
 	position: relative;
+	display: inline-block;
+	width: 100%;
 	ul{
 		margin: rem(52) rem(200) 0 rem(48);
 		overflow: hidden;
@@ -27,6 +29,6 @@
 		width: rem(140);
 		height: rem(140);
 		right: rem(48);
-		top: rem(-40);
+		top: 0;
 	}
 }

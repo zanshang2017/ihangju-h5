@@ -35,7 +35,7 @@ class DetailPage extends React.Component {
     }
   render() {
         return (
-            <div className="pageInner hasTopBar">
+            <div>
                 <ProjectTopBar {...this.props} />
                 <ProjectDesc {...this.props} />
                 <ProjectTag {...this.props}/>
