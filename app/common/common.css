@@ -46,6 +46,8 @@
     margin-bottom: 0.53333rem; }
   :global .hover {
     background: #f3f5f4 !important; }
+  :global .deepBg {
+    background: #f3f5f4; }
   :global .gapLine {
     display: inline-block;
     height: 0.53333rem;

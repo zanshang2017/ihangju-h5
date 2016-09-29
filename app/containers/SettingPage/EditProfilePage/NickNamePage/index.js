@@ -50,7 +50,7 @@ class NickNamePage extends React.Component { // eslint-disable-line react/prefer
         this.originName = userInfo.nickName;
 
         return (
-            <div className="pageInner hasTopBar">
+            <div className="pageInner deepBg">
                 <TopBar data-has-back="true" backHandler={this.backBtnHandler.bind(this)}>
                     <div data-title>昵称</div>
                 </TopBar>

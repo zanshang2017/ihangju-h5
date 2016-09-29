@@ -26,8 +26,6 @@ import {
     getUserInfo
 } from 'containers/App/sagas.js';
 
-import {fromJS} from 'immutable';
-
 //console.log('Env', Env);
 
 const initialState = {};

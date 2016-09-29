@@ -50,7 +50,7 @@ class DescriptionPage extends React.Component { // eslint-disable-line react/pre
         this.originDescription = userInfo.description;
 
         return (
-            <div className="pageInner hasTopBar">
+            <div className="pageInner deepBg">
                 <TopBar data-has-back="true">
                     <div data-title>个人签名</div>
                 </TopBar>

@@ -40,7 +40,7 @@ class SettingPage extends React.Component { // eslint-disable-line react/prefer-
                     <div data-title>设置</div>
                 </TopBar>
 
-                <div className={`${styles.wrap} mainContent`}>
+                <div className={`${styles.wrap} mainContent deepBg`}>
                     <List>
                         <List.Body>
                             <List.Item

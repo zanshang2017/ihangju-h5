@@ -67,11 +67,15 @@
         background: $tabBg !important;
     }
 
+    .deepBg {
+        background: $gapBg;
+    }
+
     /* 间隔 */
     .gapLine {
         display:inline-block;
         height: rem(20);
-        background: $tabBg;
+        background: $gapBg;
     }
 
 

@@ -151,7 +151,7 @@ class ListGroup extends React.Component {
 
         if (this.props.isAdmin) {
             mainTag =
-                <Tabs ref="J_Tabs" defaultActiveKey="1" animated={false} onChange={this.tabChangeHandler.bind(this)}>
+                <Tabs ref="J_Tabs" defaultActiveKey="1" onChange={this.tabChangeHandler.bind(this)}>
                     <TabPane tab="推荐作品" key={DATA_TYPE.RECOMMENDATION}>
                         <TagArticleList items={this.props.recommendationList || []}
                                         recommendationHandler={this.recommendationHandler.bind(this)}

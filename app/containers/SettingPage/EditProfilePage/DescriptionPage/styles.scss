@@ -8,11 +8,13 @@
 
 .textFieldWrap {
     margin-bottom: rem(35);
+    background: #fff;
 
     .textField {
         width: 100%;
+        font-size: rem(30);
         padding: rem(20);
-        height: 7em;
+        height: 10em;
     }
 }
 

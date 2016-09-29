@@ -52,7 +52,7 @@ export default class NoteEditor extends React.Component {
 
         return (
             <div className={styles.noteEditor}>
-                <TopBar data-has-back="true" backHandler={this.save.bind(this)}>
+                <TopBar data-has-back="true" backHandler={this.props.backFromNote.bind(this)}>
                     <div data-btns>
                         <div onClick={this.save.bind(this)}>保存</div>
                     </div>
@@ -71,6 +71,7 @@ export default class NoteEditor extends React.Component {
 NoteEditor.propTypes = {
     saveNote: React.PropTypes.func,
     deleteNote: React.PropTypes.func,
+    backFromNote: React.PropTypes.func,
     note: React.PropTypes.object,
     noteContent: React.PropTypes.string,
 };

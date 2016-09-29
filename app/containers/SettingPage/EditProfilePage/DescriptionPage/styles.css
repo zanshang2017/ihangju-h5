@@ -2,10 +2,12 @@
   padding: 1.33333rem; }
 
 .textFieldWrap {
-  margin-bottom: 0.93333rem; }
+  margin-bottom: 0.93333rem;
+  background: #fff; }
   .textFieldWrap .textField {
     width: 100%;
+    font-size: 0.8rem;
     padding: 0.53333rem;
-    height: 7em; }
+    height: 10em; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -52,7 +52,7 @@ class MyTagPage extends React.Component { // eslint-disable-line react/prefer-st
         let that = this;
 
         return (
-            <div className="pageInner hasTopBar">
+            <div className="pageInner deepBg">
                 <TopBar data-has-back="true">
                     <div data-title>我管理的标签</div>
                 </TopBar>

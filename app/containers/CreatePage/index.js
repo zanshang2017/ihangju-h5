@@ -72,15 +72,18 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
         }
     }
 
-    saveNoteHandler(id, content) {
+    backFromNote() {
         this.props.dispatch(showNav());
         this.J_EditorWrap.classList.add('hide');
         this.nMainContent.classList.remove('hide');
+    }
 
+    saveNoteHandler(id, content) {
+        this.backFromNote();
         this.props.dispatch(saveNote(id || null, content));
     }
 
-    deleteNoteHandler(id){
+    deleteNoteHandler(id) {
         this.props.dispatch(showNav());
         this.J_EditorWrap.classList.add('hide');
         this.nMainContent.classList.remove('hide');
@@ -128,6 +131,7 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
                         <NoteEditor ref="J_Editor" note={note}
                                     saveNote={this.saveNoteHandler.bind(this)}
                                     deleteNote={this.deleteNoteHandler.bind(this)}
+                                    backFromNote={this.backFromNote.bind(this)}
                                     {...this.props} />
                     </div>
 

@@ -72,7 +72,7 @@ class PushConfigPage extends React.Component { // eslint-disable-line react/pref
         this.id = userInfo.id;
 
         return (
-            <div className="pageInner hasTopBar">
+            <div className="pageInner deepBg">
                 <TopBar data-has-back="true">
                     <div data-title>推送通知</div>
                 </TopBar>

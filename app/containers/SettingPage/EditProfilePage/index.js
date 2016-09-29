@@ -60,7 +60,7 @@ class EditProfilePage extends React.Component { // eslint-disable-line react/pre
         this.id = userInfo.id;
 
         return (
-            <div className="pageInner hasTopBar">
+            <div className="pageInner deepBg">
                 <TopBar data-has-back="true">
                     <div data-title>编辑个人资料</div>
                 </TopBar>

@@ -34,11 +34,20 @@
         }
     }
 
+    /** Button **/
+    .am-button {
+        &.am-button-primary {
+            background: $linkColor !important;
 
+            &:after {
+                border-color: transparent !important;
+            }
+        }
 
-
-
-
-
+        border-top-left-radius: 30px !important;
+        border-top-right-radius: 30px !important;
+        border-bottom-left-radius: 30px !important;
+        border-bottom-right-radius: 30px !important;
+    }
 
 }
