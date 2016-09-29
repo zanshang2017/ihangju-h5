@@ -4,7 +4,8 @@
 
 
 
-div{
+.topBar{
+	height: $topBarHeight;
 	.catalog{
 		position: relative;
 		top:rem(22);

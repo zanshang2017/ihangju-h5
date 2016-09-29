@@ -24,7 +24,6 @@ function convertDate(t, modelString) {
         ONE_DAY = ONE_HOUR * 24,
         ONE_MONTH = ONE_DAY * 30,
         ONE_YEAR = ONE_MONTH * 12;
-
     var msd = Date.now() - t;
     msd = msd > 0 ? msd : 0;
     var time = parseFloat(msd) / 1000; // to second

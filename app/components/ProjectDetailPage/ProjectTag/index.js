@@ -28,12 +28,13 @@ class  ProjectTag extends React.Component{
 		}else{
 			let chaptersDetail = this.props.projectDetailChapter.toJS();
 			let chaptersArr = chaptersDetail.chapters;
-			chaptersArr.map(function(item,key){
-				if(key === 0){
-					return cid = item.id;	
-				}
-			})
-			console.log(cid);
+			if(chaptersArr){
+				chaptersArr.map(function(item,key){
+					if(key === 0){
+						return cid = item.id;	
+					}
+				})	
+			}
 		}
 		var tags = _result.tags || [];
 		if(!_result || _result.size < 1){

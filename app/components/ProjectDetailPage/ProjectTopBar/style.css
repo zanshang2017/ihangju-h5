@@ -1,22 +1,2 @@
-div .catalog {
-  position: relative;
-  top: 0.58667rem;
-  display: block;
-  width: 1.17333rem;
-  height: 1.17333rem;
-  background: url("https://o82zr1kfu.qnssl.com/@/image/57b56aeee4b0f816612ea63c.png") no-repeat;
-  background-size: cover;
-  float: left;
-  margin-right: 1.17333rem; }
-div .share {
-  position: relative;
-  top: 0.58667rem;
-  display: block;
-  width: 1.17333rem;
-  height: 1.17333rem;
-  background: url("https://o82zr1kfu.qnssl.com/@/image/57b56aeee4b0f816612ea63c.png") no-repeat;
-  background-size: cover;
-  float: left;
-  background-position: -1.17333rem 0px; }
-
+.topBar{height:2.66667rem}.topBar .catalog{position:relative;top:.58667rem;display:block;width:1.17333rem;height:1.17333rem;background:url("https://o82zr1kfu.qnssl.com/@/image/57b56aeee4b0f816612ea63c.png") no-repeat;background-size:cover;float:left;margin-right:1.17333rem}.topBar .share{position:relative;top:.58667rem;display:block;width:1.17333rem;height:1.17333rem;background:url("https://o82zr1kfu.qnssl.com/@/image/57b56aeee4b0f816612ea63c.png") no-repeat;background-size:cover;float:left;background-position:-1.17333rem 0px}
 /*# sourceMappingURL=style.css.map */

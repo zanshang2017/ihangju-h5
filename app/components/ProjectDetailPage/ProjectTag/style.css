@@ -1,26 +1,2 @@
-.projectTag {
-  position: relative; }
-  .projectTag ul {
-    margin: 1.38667rem 5.33333rem 0 1.28rem;
-    overflow: hidden; }
-    .projectTag ul li {
-      float: left;
-      min-width: 2.29333rem;
-      height: 1.28rem;
-      font-size: 0.74667rem;
-      color: #bcbab5;
-      background-color: #f3f5f4;
-      text-align: center;
-      line-height: 1.28rem;
-      margin-right: 0.58667rem;
-      margin-top: 0.58667rem;
-      padding: 0 0.26667rem; }
-  .projectTag .readImg {
-    position: absolute;
-    float: right;
-    width: 3.73333rem;
-    height: 3.73333rem;
-    right: 1.28rem;
-    top: -1.06667rem; }
-
+.projectTag{position:relative;display:inline-block;width:100%}.projectTag ul{margin:1.38667rem 5.33333rem 0 1.28rem;overflow:hidden}.projectTag ul li{float:left;min-width:2.29333rem;height:1.28rem;font-size:.74667rem;color:#bcbab5;background-color:#f3f5f4;text-align:center;line-height:1.28rem;margin-right:.58667rem;margin-top:.58667rem;padding:0 .26667rem}.projectTag .readImg{position:absolute;float:right;width:3.73333rem;height:3.73333rem;right:1.28rem;top:0}
 /*# sourceMappingURL=style.css.map */
