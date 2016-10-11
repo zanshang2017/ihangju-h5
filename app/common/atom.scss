@@ -59,6 +59,10 @@
         display: none !important;
     }
 
+    .transparent {
+        opacity: 0 !important;
+    }
+
     .blockGap {
         margin-bottom: rem(20);
     }

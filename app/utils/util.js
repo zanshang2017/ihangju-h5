@@ -194,13 +194,54 @@ function goBottom(nParent, nChild, noAnim) {
  *
  * @param array 数组
  */
-function unique(array){
+function unique(array) {
     var n = [];
-    for(var i = 0;i < array.length; i++){
-        if(n.indexOf(array[i]) == -1) n.push(array[i]);
+    for (var i = 0; i < array.length; i++) {
+        if (n.indexOf(array[i]) == -1) n.push(array[i]);
     }
     return n;
 }
+
+/**
+ * 比较版本号
+ *
+ *  -1  : v1 < v2
+ *  1   : v1 > v2
+ *  0   : v1 == v2
+ *
+ * @param relVersion
+ * @param digit
+ * @returns {number}
+ */
+function compareVersion(v1, v2, digit) {
+
+    if (!v1) {
+        return -1;
+    }
+
+    if (v1 == v2) {
+        return 0;
+    }
+
+    var v = v1.split('.'),
+        r = v2.split('.'),
+        d = digit || v.length,
+        i = -1;
+
+    while (++i < d) {
+        var _v = Number(v[i]) || 0,
+            _r = Number(r[i]) || 0;
+
+        if (_v > _r) {
+            return 1;
+        } else if (_v < _r) {
+            return -1;
+        }
+    }
+
+    return 0;
+}
+
 
 export {
     getUrlParam,
@@ -208,4 +249,5 @@ export {
     locStorage,
     goBottom,
     unique,
+    compareVersion,
 };

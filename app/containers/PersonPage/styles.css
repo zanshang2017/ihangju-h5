@@ -1,3 +1,16 @@
-
+.topBarBtn {
+  display: inline-block;
+  width: 1.17333rem;
+  height: 1.17333rem;
+  background: url(https://o82zr1kfu.qnssl.com/@/image/57fc8488e4b0a46776e0b284.png) no-repeat;
+  background-size: cover;
+  vertical-align: middle;
+  margin-left: 1.17333rem; }
+  .topBarBtn.followUser {
+    background-position: -2.56rem 0; }
+  .topBarBtn.followedUser {
+    background-position: -1.12rem 0; }
+  .topBarBtn.letter {
+    background-position: -4rem 0; }
 
 /*# sourceMappingURL=styles.css.map */

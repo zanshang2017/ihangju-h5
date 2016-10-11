@@ -1,0 +1,50 @@
+@charset "UTF-8";
+@import "../../common/__global.scss";
+@import "../../common/__util.scss";
+
+.guideImage {
+
+    //@include flexBox();
+    //height: 100%;
+    //-webkit-box-pack: start;
+    //-webkit-justify-content: flex-start;
+    //-ms-flex-pack: start;
+    //justify-content: start;
+
+    :global {
+        .slick-dots {
+            bottom: rem(160) !important;
+        }
+
+        .am-carousel .slick-dots li.slick-active button:before {
+            color: red !important;
+        }
+    }
+
+    .enterBtn {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        bottom: rem(155);
+        transform: translate(-50%, 100%);
+        opacity: 1;
+        transition: all .5s ease-in;
+
+        div {
+            width: rem(358);
+            height: rem(94);
+            background: url(https://o82zr1kfu.qnssl.com/@/image/57f8b782e4b0ea9bd4b5beec.png?imageMogr2/auto-orient/) right center no-repeat;
+            background-size: rem(721) rem(92);
+
+            &:active {
+                background-position: left center;
+            }
+        }
+
+    }
+
+    img {
+        margin: 0 auto;
+    }
+}
+

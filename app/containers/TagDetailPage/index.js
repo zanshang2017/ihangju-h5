@@ -137,8 +137,6 @@ class TagDetailPage extends React.Component { // eslint-disable-line react/prefe
     componentWillMount() {
         if (this.props.userInfo) {
             this.userInfo = this.props.userInfo.toJS();
-        } else {
-            this.context.router.push('/login');
         }
 
         if (this.props.routeParams) {
@@ -157,13 +155,12 @@ class TagDetailPage extends React.Component { // eslint-disable-line react/prefe
 
         var that = this;
 
-
         if (props.detail) {
             this.detail = props.detail.toJS();
 
             if (!this.initialized) {
                 this.initialized = true;
-                this.UserID = this.userInfo.id;
+                this.UserID = (this.userInfo && this.userInfo.id) || '';
                 this.hasAdmin = this.detail.extistAdminstrator || false;
                 this.isAdmin = false;
 

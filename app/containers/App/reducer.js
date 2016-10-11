@@ -105,7 +105,7 @@ function globalReducer(state = initialState, action = {}) {
             return state;
 
         case LOGOUT_SUCCESS:
-            return initialState;
+            return state.set('userInfo', false);
 
         case LOGOUT_ERROR:
             return state;

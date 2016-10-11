@@ -9,6 +9,11 @@ import {
     LOAD_PERSON_DATA,
     LOAD_PERSON_DATA_SUCCESS,
     LOAD_PERSON_DATA_ERROR,
+
+    SET_FOLLOW_USER,
+    SET_FOLLOW_USER_SUCCESS,
+    SET_FOLLOW_USER_ERROR,
+
 } from './constants';
 
 export function defaultAction() {
@@ -44,6 +49,34 @@ export function loadPersonDataError(error) {
     };
 }
 
+export function setFollowUser(id, isToFollow) {
+    return {
+        type: SET_FOLLOW_USER,
+        payload: {
+            id: id,
+            isToFollow: isToFollow
+        }
+    };
+}
+
+export function setFollowUserSuccess(id, isToFollow) {
+    return {
+        type: SET_FOLLOW_USER_SUCCESS,
+        payload: {
+            id: id,
+            isToFollow: isToFollow
+        }
+    };
+}
+
+export function setFollowUserError(error) {
+    return {
+        type: SET_FOLLOW_USER_ERROR,
+        payload: {
+            error: error
+        }
+    };
+}
 
 
 

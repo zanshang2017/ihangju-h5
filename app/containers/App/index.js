@@ -14,7 +14,11 @@ import {
     FLIP_BACK
 } from '../../utils/routeEffect.js';
 
-import {Env} from '../../utils/env.js';
+import {Env} from 'utils/env.js';
+
+import {
+    compareVersion
+} from 'utils/util.js'
 
 import {
     loadLocalStorageUserInfo
@@ -50,11 +54,25 @@ class App extends React.Component {
         super(props);
     }
 
+    doGuidePage() {
+        let cur = __APP_CONFIG.ver || '';
+        let old = locStorage.get('version');
+        let lastShowGuideVer = __APP_CONFIG.guide.ver;
+
+        locStorage.set('version', cur);
+
+        //无版本号时
+        if ((!old && lastShowGuideVer) || (cur !== old && compareVersion(lastShowGuideVer, old) > 0)) {
+            this.context.router.push('/guide');
+        }
+    }
+
     componentWillMount() {
         this.props.dispatch(loadLocalStorageUserInfo());
     }
 
     componentDidMount() {
+        this.doGuidePage();
 
         if (Env.debug) {
             openLog();
@@ -178,5 +196,9 @@ function mapDispatchToProps(dispatch) {
         dispatch,
     };
 }
+
+App.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -15,7 +15,7 @@
         width: 100%;
         height: rem(440);
         box-sizing: border-box;
-        padding: rem(42) rem(42) rem(22) rem(10);
+        padding: rem(42) rem(42) rem(22) 0;
         background: #fff;
         margin-bottom: rem(22);
         text-align: center;
@@ -26,12 +26,11 @@
         justify-content: flex-start;
 
         .title {
-            //background:red;
-            width: rem(162);
+            @include flexBox();
+            width: rem(172);
             font-size: rem(40);
             color: $titleColor;
-            padding-bottom: rem(55);
-            @include flexBox();
+            padding: 0 rem(6) rem(55) 0;
             align-items: flex-end;
         }
 

@@ -1,12 +1,11 @@
 import styles from './styles.css';
 import React from 'react';
-import bridge from '../../../utils/bridge';
+import bridge from 'utils/bridge';
 
 import request from 'utils/request';
 import {
     CONFIRM_EDITOR_API
-} from '../../../apis.js';
-
+} from 'apis.js';
 
 /* eslint-disable react/prefer-stateless-function */
 export default class ScanPane extends React.Component {

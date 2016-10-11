@@ -2,6 +2,7 @@
 .wrap {
   box-sizing: border-box; }
   .wrap .tools {
+    width: 5.76rem;
     font-size: 0.8rem;
     position: absolute;
     padding: 0.69333rem 0.26667rem;

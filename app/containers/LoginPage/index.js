@@ -17,17 +17,37 @@ import {
     loadUserInfo
 } from '../App/actions.js'
 
+import {
+    DISPATCH_ORIGIN
+} from '../App/constants';
+
+import signals from './signals';
+
 /* eslint-disable react/prefer-stateless-function */
 class LoginPage extends React.Component {
 
     constructor() {
         super();
         this.loginHandler = null;
+        this.redirectUrl = null;
     }
 
     componentDidMount() {
-        window.addEventListener('message', this.loginHandlerFactory());
         console.warn('LoginPage DidMount');
+
+        let that = this;
+        window.addEventListener('message', this.loginHandlerFactory());
+
+        signals.loginSuccess.add((result)=> {
+            //判断是否需要展示引导页
+            if(1){ //todo 记得关闭
+            // if (result.openPersonalizedRecommendation == true) {
+                that.routeHandler('/follow_recommendation');
+            } else {
+                that.routeHandler(that.redirectUrl);
+            }
+
+        });
     }
 
     componentWillUnmount() {
@@ -46,23 +66,17 @@ class LoginPage extends React.Component {
                 var data = JSON.parse(e.data),
                     action = data.action;
 
-                var redirect = getUrlParam('redirect') || '/found#fliproute';
+                that.redirectUrl = getUrlParam('redirect') || '/found#fliproute';
 
                 if ((Env.dev && e.origin.indexOf('http://192.168.1.33:8888') > -1) ||
                     (Env.production && e.origin.indexOf('http://api.ihangju.com') > -1)) {
 
                     if (action === 'loginedTicket' && data.t) {
+                        console.log('loginedTicket');
                         //t写入到了 api.ihangju.com和oauth.zan-shang.com
                         var ifrm = this.refs.thirdPartyLoginIfrm;
                         ifrm.style.display = 'none';
-                        that.props.dispatch(loadUserInfo());
-
-                        //需要延时处理,等待用户数据加载完毕
-                        //todo 后续改为等待sagas处理完毕
-                        setTimeout(function () {
-                            window.history.back();
-                            // this.routeHandler(redirect);
-                        }.bind(this), 1000);
+                        that.props.dispatch(loadUserInfo(DISPATCH_ORIGIN.LOGIN));
                     }
                 }
             }).bind(this);

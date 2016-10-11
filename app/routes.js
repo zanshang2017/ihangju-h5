@@ -35,6 +35,26 @@ var initedStatus = {};
 export default function createRoutes(store) {
     const {injectReducer, injectSagas} = getHooks(store);
 
+    /**
+     * @method isLogin
+     *
+     * 根据store内的userInfo判断用户是否登录
+     * 注意: 如果登录过期,即时存在数据依然有可能是登出状态,这就需要由请求返回状态码判断登录状态了!
+     * @param _store
+     * @returns {boolean}
+     */
+    // function isLogin() {
+    //     if(store && store.getState) {
+    //         let _state = store.getState().toJS();
+    //
+    //         if (_state && _state.global && _state.global.userInfo && _state.global.userInfo.id) {
+    //             return true;
+    //         }
+    //     }
+    //
+    //     window.location.href = '/login';
+    // }
+
     return [
         {
             path: '/login',
@@ -84,9 +104,14 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
             },
             onEnter: function () {
-                store.dispatch(showNav());
-                routeEffector.autoSet(); //进入页面时设置路由切换效果
-                store.dispatch(setCurPage(PAGE_NAME.FOLLOW_PAGE));
+
+                // if (isLogin()) {
+                    store.dispatch(showNav());
+                    routeEffector.autoSet(); //进入页面时设置路由切换效果
+                    store.dispatch(setCurPage(PAGE_NAME.FOLLOW_PAGE));
+                // }
+
+
             },
             onLeave: function () {
                 store.dispatch(setCurPage(''));
@@ -715,6 +740,36 @@ export default function createRoutes(store) {
                 //store.dispatch(showNav());
             }
         }, {
+            path: '/follow_recommendation',
+            name: 'followRecommendationPage',
+            getComponent(nextState, cb) {
+                const importModules = Promise.all([
+                    System.import('containers/FollowRecommendationPage/reducer'),
+                    System.import('containers/FollowRecommendationPage/sagas'),
+                    System.import('containers/FollowRecommendationPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.followRecommendationPage) {
+                        injectReducer('followRecommendationPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.followRecommendationPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                store.dispatch(hideNav());
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            },
+            onLeave: function () {
+            }
+        }, {
             path: '/bridgeTest',
             name: 'bridgeTest',
             getComponent(nextState, cb) {
@@ -729,14 +784,14 @@ export default function createRoutes(store) {
             path: '/projectDetail/:id',
             name: 'projectDetail',
             getComponent(nextState, cb) {
-                const importModules =  Promise.all([
+                const importModules = Promise.all([
                     System.import('containers/ProjectDetailPage/reducer'),
                     System.import('containers/ProjectDetailPage/sagas'),
                     System.import('containers/ProjectDetailPage/'),
                 ]);
                 const renderRoute = loadModule(cb);
                 importModules.then(([reducer, sagas, component]) => {
-                    if(!initedStatus.detail){
+                    if (!initedStatus.detail) {
                         injectReducer('projectDetail', reducer.default);
                         injectSagas(sagas.default);
                         initedStatus.demoPage = true;
@@ -753,27 +808,39 @@ export default function createRoutes(store) {
             path: '/readProjectChapter/:projectId/:chapterId',
             name: 'readProjectChapter',
             getComponent(nextState, cb) {
-                const importModules =  Promise.all([
+                const importModules = Promise.all([
                     System.import('containers/ReadProjectChapter/reducer'),
                     System.import('containers/ReadProjectChapter/sagas'),
                     System.import('containers/ReadProjectChapter/'),
                 ]);
                 const renderRoute = loadModule(cb);
                 importModules.then(([reducer, sagas, component]) => {
-                    if(!initedStatus.detail){
+                    if (!initedStatus.detail) {
                         injectReducer('readProjectChapter', reducer.default);
                         injectSagas(sagas.default);
                         initedStatus.demoPage = true;
                     }
                     renderRoute(component);
                 });
-                importModules.catch(errorLoading);  
+                importModules.catch(errorLoading);
             },
             onEnter: function () {
                 store.dispatch(hideNav());
                 routeEffector.autoSet();
             }
-         }, {
+        }, {
+            path: '/guide',
+            name: 'guide',
+            getComponent(nextState, cb) {
+                System.import('containers/GuidePage')
+                    .then(loadModule(cb))
+                    .catch(errorLoading);
+            },
+            onEnter: function () {
+                store.dispatch(hideNav());
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            }
+        }, {
             path: '*',
             name: 'notfound',
             getComponent(nextState, cb) {

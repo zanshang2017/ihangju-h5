@@ -71,7 +71,7 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
 
     myTagClickHandler() {
         if (this.id) {
-            this.context.router.push('/mytag/' + this.id);
+            this.context.router.push('/mytag');
         }
     }
 
@@ -82,7 +82,7 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
 
         let msg_count = (userCenterInfo.comment_notify_count || 0) + (userCenterInfo.discuss_notify_count || 0);
 
-        if(!this.id) {
+        if (!this.id) {
             this.context.router.push('/login');
         }
 

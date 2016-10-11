@@ -34,7 +34,7 @@ const initialState = {};
 
 const store = configureStore(initialState, browserHistory);
 
-store.runSaga(getUserInfo); //todo 这里获取用户信息?
+store.runSaga(getUserInfo); //todo 重复绑定
 
 // 同步路由和store状态
 import {selectLocationState} from 'containers/App/selectors';

@@ -1,0 +1,23 @@
+.guideImage :global .slick-dots {
+  bottom: 4.26667rem !important; }
+.guideImage :global .am-carousel .slick-dots li.slick-active button:before {
+  color: red !important; }
+.guideImage .enterBtn {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  bottom: 4.13333rem;
+  transform: translate(-50%, 100%);
+  opacity: 1;
+  transition: all .5s ease-in; }
+  .guideImage .enterBtn div {
+    width: 9.54667rem;
+    height: 2.50667rem;
+    background: url(https://o82zr1kfu.qnssl.com/@/image/57f8b782e4b0ea9bd4b5beec.png?imageMogr2/auto-orient/) right center no-repeat;
+    background-size: 19.22667rem 2.45333rem; }
+    .guideImage .enterBtn div:active {
+      background-position: left center; }
+.guideImage img {
+  margin: 0 auto; }
+
+/*# sourceMappingURL=styles.css.map */

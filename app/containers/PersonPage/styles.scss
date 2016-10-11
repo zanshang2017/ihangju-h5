@@ -2,5 +2,30 @@
 @import "../../common/__global.scss";
 @import "../../common/__util.scss";
 
+.topBarBtn {
+    display: inline-block;
+    width: rem(44);
+    height: rem(44);
+    background: url(https://o82zr1kfu.qnssl.com/@/image/57fc8488e4b0a46776e0b284.png) no-repeat;
+    background-size: cover;
+    vertical-align: middle;
+    margin-left: rem(44);
+
+    &.followUser {
+        background-position: rem(-96) 0;
+    }
+
+    &.followedUser {
+        background-position: rem(-42) 0;
+    }
+
+    &.letter {
+        background-position: rem(-150) 0;
+    }
+}
+
+
+
+
 
 

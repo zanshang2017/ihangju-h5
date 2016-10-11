@@ -64,7 +64,7 @@ class InputBar extends React.Component {
                 <div className={styles.outer}>
                     <div className={styles.inner}>
                         <input ref="J_Input" type="text" placeholder={placeholder} maxLength="500"/>
-                        <button className={styles.btn} onClick={this.submitHandler.bind(this)}>发</button>
+                        <button className={styles.btn} onClick={this.submitHandler.bind(this)}></button>
                     </div>
                 </div>
                 <div ref="J_Mask" className={styles.mask} style={{display: 'none'}}></div>

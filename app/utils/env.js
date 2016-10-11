@@ -14,6 +14,7 @@ var Env = {
 
     productionHost: 'h5.app.ihangju.com',
     productionAPIHost: 'api.ihangju.com',
+
 };
 
 if (location.host.indexOf(PRODUCTION_DOMAIN) !== 0) {

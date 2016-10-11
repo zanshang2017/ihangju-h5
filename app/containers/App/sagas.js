@@ -4,6 +4,7 @@ import {
     UPDATE_USER_INFO,
 
     LOGOUT,
+    DISPATCH_ORIGIN,
 } from './constants';
 
 import {
@@ -17,9 +18,9 @@ import {
 
 import {
     USER_INFO_API,
-    DEVICE_TOKEN_API,
     LOGOUT_API,
-} from '../../apis.js';
+    DEVICETOKEN_API,
+} from 'apis.js';
 
 import {
     locStorage
@@ -27,19 +28,22 @@ import {
 
 import request from 'utils/request';
 
+import loginSignals from 'containers/LoginPage/signals';
+
 export default [
     getUserInfo,
     postUserInfo,
     logout,
 ];
 
+import bridge from 'utils/bridge';
+
 export function* getUserInfo() {
 
     let action = null;
 
     while (action = yield take(LOAD_USER_INFO)) {
-
-        console.log('getUserInfo');
+        console.log('getUserInfo', action);
 
         let url = USER_INFO_API;
 
@@ -60,6 +64,12 @@ export function* getUserInfo() {
             }
 
             yield put(loadUserInfoSuccess(ret.data.result));
+
+            if (DISPATCH_ORIGIN.LOGIN === action.dispatchOrigin) {
+                loginSignals.loginSuccess.dispatch(ret.data.result);
+                putDevicetoken();
+            }
+
         } else {
             console.log(ret.err.response); // eslint-disable-line no-console
             yield put(loadUserInfoError(ret.err));
@@ -119,6 +129,8 @@ export function* logout() {
 
         let url = LOGOUT_API;
 
+        deleteDevicetoken();
+
         const ret = yield call(request, url, {
             method: 'DELETE',
             headers: {
@@ -130,13 +142,11 @@ export function* logout() {
         });
 
         locStorage.removeItem('userInfo'); //清空用户信息
-        yield put(logoutSuccess());
 
         if (ret.err === undefined || ret.err === null) {
-
             //清空用户信息
             if (ret.data.code === 'ok') {
-
+                yield put(logoutSuccess());
             }
         } else {
             console.log(ret.err.response); // eslint-disable-line no-console
@@ -146,3 +156,59 @@ export function* logout() {
     }
 
 }
+
+/**
+ * 发送要注册的token
+ * @param token
+ */
+function putDevicetoken() {
+
+    bridge.device.token = bridge.device.token || locStorage.get('devicetoken');
+    if (!bridge.device.token) {
+        console.warn('无devicetoken,无法接收推送');
+        return;
+    }
+
+    request(DEVICETOKEN_API, {
+        method: "PUT",
+        body: `token=${bridge.device.token}&os=${bridge.device.type || ''}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-API-Version': 'v1.1'
+        },
+        credentials: 'include'
+    }).then(function (ret) {
+
+    }, function (error) {
+
+    });
+}
+
+/**
+ * 删除注册的token
+ */
+function deleteDevicetoken() {
+
+    bridge.device.token = bridge.device.token || locStorage.get('devicetoken');
+    if (!bridge.device.token) {
+        console.warn('无devicetoken');
+        return;
+    }
+
+    request(DEVICETOKEN_API, {
+        method: "DELETE",
+        body: `token=${bridge.device.token}&os=${bridge.device.type || ''}`,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-API-Version': 'v1.1'
+        },
+        credentials: 'include'
+    }).then(function (ret) {
+
+    }, function (error) {
+
+    });
+}
+

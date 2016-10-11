@@ -77,16 +77,16 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
         if (this.props.routeParams) {
             if (this.letterGroupId = this.props.routeParams.id) {
 
-                (function _send() {
-                    sendData();
+                (function _load() {
+                    loadData();
                     that.timer = setTimeout(function () {
-                        _send();
+                        _load();
                     }, 10 * 1000);
                 })();
             }
         }
 
-        function sendData() {
+        function loadData() {
             that.props.dispatch(loadDialogueData(that.letterGroupId));
         }
     }

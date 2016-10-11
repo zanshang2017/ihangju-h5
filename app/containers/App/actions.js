@@ -84,9 +84,10 @@ export function logoutError() {
     }
 }
 
-export function loadUserInfo() {
+export function loadUserInfo(dispatchOrigin) {
     let data = {
-        type: LOAD_USER_INFO
+        type: LOAD_USER_INFO,
+        dispatchOrigin: dispatchOrigin
     };
 
     return data;

@@ -3,6 +3,10 @@
  * 调用客户端API
  */
 
+import {
+    locStorage
+} from './util';
+
 var IOS = 'ios',
     ANDROID = 'android';
 
@@ -17,10 +21,13 @@ var Bridge = function () {
 };
 
 Bridge.prototype = {
-    noop: function () {},
+    noop: function () {
+    },
 
     //设备信息
-    device: {},
+    device: {
+        token: ''
+    },
 
     /**
      * @private
@@ -86,7 +93,7 @@ Bridge.prototype = {
                 if (typeof(params[i]) === 'function') {
                     params[i] = buildCallback(params[i]);
                 }
-                searchParams += (searchParams.length === 0 ? '':'&') + i + '=' + encodeURIComponent(params[i]);
+                searchParams += (searchParams.length === 0 ? '' : '&') + i + '=' + encodeURIComponent(params[i]);
             }
         }
 
@@ -219,3 +226,38 @@ var bridge = new Bridge();
 //导出Bridge实例
 export default bridge;
 
+
+/************************************
+ * Expose Interface                 *
+ ************************************/
+(function (win) {
+    if (win.jsbridge) {
+        console.log('jsbridge已存在!');
+        return;
+    }
+
+    var jsbridge = {
+        /**
+         * 向服务端注册本机
+         *
+         * 此方法只是把设备号保存起来,设备号在用户登录时提交后台,退出登录时通知后台清除。
+         * @param devicetoken
+         */
+        registerPushMsg: function (devicetoken) {
+            console.log(devicetoken);
+            bridge.device.token = devicetoken;
+            locStorage.set('devicetoken', devicetoken);
+        },
+
+        /**
+         * 处理传递来的消息推送
+         * @param obj
+         */
+        handlePushMsg: function (obj) {
+            console.log('pushMsg', obj);
+        }
+    };
+
+    win.jsbridge = jsbridge;
+
+})(window);

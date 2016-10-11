@@ -1,0 +1,27 @@
+@charset "UTF-8";
+/**
+ * 覆盖antd组件的默认样式
+ */
+:global {
+  /** Tab组件 **/
+  /** Button **/ }
+  :global .am-tab.am-tab-line .am-tab-bar:after {
+    border-color: #f3f5f4 !important; }
+  :global .am-tab .am-tab-tab-active .am-tab-tab-inner {
+    color: #39bcc8 !important; }
+  :global .am-tab .am-tab-tab-inner {
+    padding: 18px 0;
+    color: #a09e98 !important; }
+  :global .am-tab .am-tab-ink-bar {
+    background-color: #39bcc8 !important; }
+  :global .am-button {
+    border-top-left-radius: 30px !important;
+    border-top-right-radius: 30px !important;
+    border-bottom-left-radius: 30px !important;
+    border-bottom-right-radius: 30px !important; }
+    :global .am-button.am-button-primary {
+      background: #39bcc8 !important; }
+      :global .am-button.am-button-primary:after {
+        border-color: transparent !important; }
+
+/*# sourceMappingURL=antd_cover.css.map */

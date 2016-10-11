@@ -1,5 +1,5 @@
 import React from 'react';
-import bridge from '../../utils/bridge';
+import bridge from 'utils/bridge';
 
 
 var fileStyle = {

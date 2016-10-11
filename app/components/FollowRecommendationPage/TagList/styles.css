@@ -1,0 +1,47 @@
+@import url(../../../common/common.css);
+.listWrap {
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.37333rem; }
+  .listWrap .listItemWrap {
+    position: relative;
+    float: left;
+    width: 50%;
+    padding: 0.37333rem; }
+    .listWrap .listItemWrap .logo {
+      position: relative; }
+      .listWrap .listItemWrap .logo .shadow {
+        position: absolute;
+        left: 0;
+        top: 0;
+        box-sizing: border-box;
+        width: 100%;
+        height: 5.01333rem;
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.2); }
+      .listWrap .listItemWrap .logo img {
+        width: 100%;
+        height: 5.01333rem;
+        border-radius: 8px; }
+    .listWrap .listItemWrap h3 {
+      position: absolute;
+      bottom: 0.74667rem;
+      left: 0.74667rem;
+      color: #fff;
+      font-weight: normal;
+      font-size: 0.85333rem;
+      letter-spacing: 1px; }
+    .listWrap .listItemWrap button {
+      position: absolute;
+      right: 0.64rem;
+      top: 0.64rem;
+      width: 1.17333rem;
+      height: 1.17333rem;
+      background: url(https://o82zr1kfu.qnssl.com/@/image/57fa2177e4b0a46776dfa06c.png?imageMogr2/auto-orient/) right top no-repeat;
+      background-size: 2.50667rem 1.12rem; }
+
+:global .recommendation-tag-selected {
+  background-position: left top !important; }
+
+/*# sourceMappingURL=styles.css.map */

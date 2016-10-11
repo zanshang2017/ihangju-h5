@@ -72,6 +72,16 @@ const DEVICETOKEN_API = `//${api_host}/devicetoken`;
 const MY_FOLLOW_API = `//${api_host}/myfollow`;
 
 /**
+ * 关注设置
+ *
+ * restful:
+ * [GET]  获取推荐的标签和用户
+ * [PUT]  设置关注标签和用户
+ *        body: tagids=aa,bb,cc&userids=dd,ee,ff
+ */
+const MY_FOLLOW_SETTING_API = `//${api_host}/myfollow/setting`;
+
+/**
  *  关注目录
  *
  *  参数：
@@ -82,6 +92,15 @@ const MY_FOLLOW_API = `//${api_host}/myfollow`;
  */
 const MY_FOLLOW_LIST_API = `//${api_host}/myfollow/list`;
 
+
+/**
+ * 获取引导页推荐数据
+ *
+ * [GET]
+ *
+ * @type {string}
+ */
+const FOLLOW_RECOMMENDATION_API = `//${api_host}/personalized/recommendation`;
 
 /**
  * 扫码登录
@@ -123,6 +142,7 @@ const CONFIRM_EDITOR_API = `//${api_host}/confirm/editor`;
  *      昵称: nickname {String} 门神4.
  *      描述: description {String} 《收获》小门审.
  *      推送: favoritePush | commentPush | letterPush {Boolean}
+ *      是否展示推荐关注: openPersonalizedRecommendation {Boolean} [true:展示推荐关注页| false:不展示推荐关注页]
  */
 const USER_INFO_API = `//${api_host}/user/me`;
 
@@ -196,9 +216,8 @@ const NOTE_LIST_API = `//${api_host}/user/notes`;
  *      /noteID
  *
  * Restful:
- *  GET: 获取
- *
- *  POST: 提交
+ *  [GET] 获取所有记录
+ *  [POST] 提交
  *      请求头:
  *      content-type: application/x-www-form-urlencoded
  *
@@ -207,14 +226,13 @@ const NOTE_LIST_API = `//${api_host}/user/notes`;
  *
  *      ** 注意:若url中不带noteID,则为新增一条记录;否则为修改相应记录 **
  *
- *
- * PUT:新增
+ * [PUT]新增
  *     请求同POST.
  *
- * DELETE: 删除
+ * [DELETE] 删除
  *
  *
- * GET响应:
+ *  GET响应:
  *  {
         "result": {
             "modifyTime": 1469693625021,
@@ -224,28 +242,27 @@ const NOTE_LIST_API = `//${api_host}/user/notes`;
         "code": "ok"
     }
  *
- * POST响应:
+ *  POST响应:
  *  {
 	    "code": "ok"
     }
 
-
  PUT响应: 同POST.
-
  DELETE响应:同POST.
  *
  *
  */
 const NOTE_API = `//${api_host}/note`;
 
-/*
+/**
  * 作品详情
  * 参数：
  *  id: projectId
  * http://192.168.1.33:8888/project/57a941f4e4b0ab2d4f0d14cd
  */
 const PROJECTDETAIL_API = `//${api_host}/project`
-/*
+
+/**
  * 章节阅读
  * 参数:
  * projectId chapterId
@@ -459,10 +476,11 @@ const ANSWER_API = `//${api_host}/answer`;
 const DIALOGUE_API = `//${api_host}/dialogue`;
 
 
-/*
+/**
  * 收藏接口
- * PUT方法 : 收藏
- * DELETE : 取消收藏
+ * restful:
+ * [PUT] 收藏
+ * [DELETE] 取消收藏
  * 参数 : 57a941f4e4b0ab2d4f0d14cd/project
  */
 const COLLECTION_API = `//${api_host}/collection/`
@@ -486,7 +504,10 @@ export {
     RECOMMENDATION_API,
 
     MY_FOLLOW_API,
+    MY_FOLLOW_SETTING_API,
     MY_FOLLOW_LIST_API,
+
+    FOLLOW_RECOMMENDATION_API,
 
     NOTE_LIST_API,
     NOTE_API,

@@ -11,7 +11,7 @@
     background: #fff;
     text-align: left;
     -webkit-overflow-scrolling: touch;
-    border-bottom: 1px solid #f4f5f5;
+    border-bottom: 1px solid #dbd7d7;
     overflow: hidden;
     text-overflow: ellipsis; }
     .listWrap .listItem .basis {

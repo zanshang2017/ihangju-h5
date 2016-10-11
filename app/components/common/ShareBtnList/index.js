@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './style.css';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import bridge from '../../../utils/bridge';
+import bridge from 'utils/bridge';
 
 class ShareBtnList extends React.Component {
     constructor(props) {

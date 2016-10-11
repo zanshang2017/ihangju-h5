@@ -9,7 +9,7 @@ module.exports = (options) => ({
     entry: options.entry,
     output: Object.assign({ // Compile into js/build.js
         path: path.resolve(process.cwd(), 'build'),
-        publicPath: '/app-h5/',
+        publicPath: '/app-h5/', //输出目录映射的线上资源url路径
     }, options.output), // Merge with env dependent settings
     module: {
         loaders: [{

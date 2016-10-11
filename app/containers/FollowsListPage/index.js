@@ -63,7 +63,7 @@ export class FollowsListPage extends React.Component { // eslint-disable-line re
         let loading = projs.loading || false;
 
         return (
-            <div className="pageInner hasTopBar">
+            <div className="pageInner">
                 <TopBar data-has-back="true">
                     <div data-title>关注</div>
                 </TopBar>

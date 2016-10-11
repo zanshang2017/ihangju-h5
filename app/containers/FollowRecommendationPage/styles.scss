@@ -1,0 +1,33 @@
+@charset "UTF-8";
+@import "../../common/__global.scss";
+@import "../../common/__util.scss";
+
+.btnBar {
+    width: 100%;
+    height: rem(112);
+    background: #fff;
+    text-align:center;
+    box-sizing: border-box;
+    border-top: 1px solid $borderDeepColor;
+
+    button {
+        height: rem(68);
+        line-height: rem(68);
+        width: rem(296);
+        margin-top: rem(22);
+
+        font-size: rem(34);
+        color: #000;
+
+        border: 1px solid #333;
+        border-radius: 4px !important;
+        background: #fff;
+
+        &:after {
+            border-color: #000;
+        }
+
+    }
+}
+
+

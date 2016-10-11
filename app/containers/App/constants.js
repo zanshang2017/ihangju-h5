@@ -38,4 +38,9 @@ export const PAGE_NAME = {
     SETTING_PAGE: 'settingPage',
 };
 
+// action发送的源,用于标记用途
+export const DISPATCH_ORIGIN = {
+    LOGIN: 'login'
+}
+
 

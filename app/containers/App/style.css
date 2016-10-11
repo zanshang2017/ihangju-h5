@@ -38,7 +38,7 @@
   -webkit-box-flex: 1;
   flex: 1;
   -webkit-overflow-scrolling: touch;
-  overflow-y: scroll; }
+  overflow-y: auto; }
 :global .logPanel {
   position: fixed;
   top: 0;
