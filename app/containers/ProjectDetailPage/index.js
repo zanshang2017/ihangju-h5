@@ -1,13 +1,12 @@
-
 import React from 'react';
-import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import {connect} from 'react-redux';
+import {createSelector} from 'reselect';
 
-import { 
-    selectDetail, 
+import {
+    selectDetail,
     selectDetailResult,
     selectDetailProjectChapter,
-    selectShareData, 
+    selectShareData,
 
 } from './selectors';
 import TopBar from 'components/common/TopBar';
@@ -33,17 +32,20 @@ class DetailPage extends React.Component {
             this.props.dispatch(loadProjectDetailData(id || null));
         }
     }
-  render() {
+
+    render() {
         return (
-            <div>
+            <div className="pageInner">
                 <ProjectTopBar {...this.props} />
-                <ProjectDesc {...this.props} />
-                <ProjectTag {...this.props}/>
-                <ProjectIntro items={this.props.projectDetail}/>
-                <ProjectComment items={this.props.projectDetail} />
+                <div className="mainContent">
+                    <ProjectDesc {...this.props} />
+                    <ProjectTag {...this.props}/>
+                    <ProjectIntro items={this.props.projectDetail}/>
+                    <ProjectComment items={this.props.projectDetail}/>
+                </div>
             </div>
         );
-  }
+    }
 }
 
 const mapStateToProps = createSelector(

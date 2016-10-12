@@ -18,7 +18,7 @@ import 'file?name=[name].[ext]!./.htaccess';      // eslint-disable-line import/
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {applyRouterMiddleware, Router, browserHistory} from 'react-router';
+import {applyRouterMiddleware, Router, browserHistory, hashHistory} from 'react-router';
 import {syncHistoryWithStore} from 'react-router-redux';
 import useScroll from 'react-router-scroll';
 import configureStore from './store';
@@ -26,13 +26,16 @@ import {
     getUserInfo
 } from 'containers/App/sagas.js';
 
+import Toast from 'antd-mobile/lib/toast';
+
 //console.log('Env', Env);
 
 const initialState = {};
 
 // React.initializeTouchEvents && React.initializeTouchEvents(true);
 
-const store = configureStore(initialState, browserHistory);
+// const store = configureStore(initialState, browserHistory);
+const store = configureStore(initialState, hashHistory);
 
 store.runSaga(getUserInfo); //todo 重复绑定
 
@@ -40,7 +43,11 @@ store.runSaga(getUserInfo); //todo 重复绑定
 import {selectLocationState} from 'containers/App/selectors';
 
 //利用History api改变浏览器历史,并发生url路径变化，需要通过服务端配置引导子路径到实际的物理文件
-const history = syncHistoryWithStore(browserHistory, store, {
+// const history = syncHistoryWithStore(browserHistory, store, {
+//     selectLocationState: selectLocationState(),
+// });
+
+const history = syncHistoryWithStore(hashHistory, store, {
     selectLocationState: selectLocationState(),
 });
 
@@ -66,10 +73,10 @@ ReactDOM.render(
             history={history}
             routes={rootRoute}
             render={
-                // 滚动到页顶
                 applyRouterMiddleware(
                     useScroll(
                         (prevProps, props) => {
+                            Toast.hide(); //清除所有Toast
 
                             if (!prevProps || !props) {
                                 return true;

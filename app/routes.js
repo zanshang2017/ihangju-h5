@@ -21,6 +21,8 @@ import {
     PAGE_NAME,
 } from 'containers/App/constants.js';
 
+import Toast from 'antd-mobile/lib/toast';
+
 const errorLoading = (err) => {
     console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
 };
@@ -31,6 +33,12 @@ const loadModule = (cb) => (componentModule) => {
 
 //标记页面是否加载过,主要解决sagas、reducer重复加载问题
 var initedStatus = {};
+
+
+function beforeGetComponent() {
+    Toast.hide();
+    Toast.loading('加载中...', 100);
+}
 
 export default function createRoutes(store) {
     const {injectReducer, injectSagas} = getHooks(store);
@@ -52,7 +60,7 @@ export default function createRoutes(store) {
     //         }
     //     }
     //
-    //     window.location.href = '/login';
+    //     window.location.href = '/#/login';
     // }
 
     return [
@@ -60,6 +68,9 @@ export default function createRoutes(store) {
             path: '/login',
             name: 'loginPage',
             getComponent(nextState, cb) {
+                
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/LoginPage'),
                 ]);
@@ -82,6 +93,9 @@ export default function createRoutes(store) {
             path: '/follow',
             name: 'followPage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 console.log(nextState);
                 const importModules = Promise.all([
                     System.import('containers/FollowPage/reducer'),
@@ -104,7 +118,6 @@ export default function createRoutes(store) {
                 importModules.catch(errorLoading);
             },
             onEnter: function () {
-
                 // if (isLogin()) {
                     store.dispatch(showNav());
                     routeEffector.autoSet(); //进入页面时设置路由切换效果
@@ -120,6 +133,9 @@ export default function createRoutes(store) {
             path: '/create',
             name: 'createPage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/CreatePage/reducer'),
                     System.import('containers/CreatePage/sagas'),
@@ -151,6 +167,9 @@ export default function createRoutes(store) {
             path: '/found',
             name: 'foundPage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/FoundPage/reducer'),
                     System.import('containers/FoundPage/sagas'),
@@ -183,6 +202,8 @@ export default function createRoutes(store) {
             path: '/my',
             name: 'myPage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
 
                 const importModules = Promise.all([
                     System.import('containers/MyPage/reducer'),
@@ -217,6 +238,8 @@ export default function createRoutes(store) {
             name: 'personPage',
             getComponent(nextState, cb) {
 
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/PersonPage/reducer'),
                     System.import('containers/PersonPage/sagas'),
@@ -250,6 +273,8 @@ export default function createRoutes(store) {
             name: 'fansListPage',
             getComponent(nextState, cb) {
 
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/FansListPage/reducer'),
                     System.import('containers/FansListPage/sagas'),
@@ -282,6 +307,9 @@ export default function createRoutes(store) {
             path: '/followslist/:id',
             name: 'followsListPage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/FollowsListPage/reducer'),
                     System.import('containers/FollowsListPage/sagas'),
@@ -314,6 +342,9 @@ export default function createRoutes(store) {
             path: '/collection/:id',
             name: 'collectionPage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/CollectionPage/reducer'),
                     System.import('containers/CollectionPage/sagas'),
@@ -346,6 +377,9 @@ export default function createRoutes(store) {
             path: '/tag/:id',
             name: 'tagDetailPage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/TagDetailPage/reducer'),
                     System.import('containers/TagDetailPage/sagas'),
@@ -378,6 +412,9 @@ export default function createRoutes(store) {
             path: '/mytag',
             name: 'myTagPage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/MyTagPage/reducer'),
                     System.import('containers/MyTagPage/sagas'),
@@ -410,6 +447,9 @@ export default function createRoutes(store) {
             path: '/setting',
             name: 'settingPage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/App/reducer'),
                     System.import('containers/App/sagas'),
@@ -442,6 +482,9 @@ export default function createRoutes(store) {
             path: 'setting/profile',
             name: 'editProfilePage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/App/reducer'),
                     System.import('containers/App/sagas'),
@@ -472,6 +515,9 @@ export default function createRoutes(store) {
             path: 'setting/profile/nickname',
             name: 'nickNamePage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/App/reducer'),
                     System.import('containers/App/sagas'),
@@ -502,6 +548,9 @@ export default function createRoutes(store) {
             path: 'setting/profile/description',
             name: 'descriptionPage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/App/reducer'),
                     System.import('containers/App/sagas'),
@@ -532,6 +581,9 @@ export default function createRoutes(store) {
             path: 'setting/pushconfig',
             name: 'pushConfigPage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/App/reducer'),
                     System.import('containers/App/sagas'),
@@ -562,6 +614,9 @@ export default function createRoutes(store) {
             path: 'setting/feedback',
             name: 'feedbackPage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/SettingPage/FeedbackPage')
                 ]);
@@ -588,6 +643,9 @@ export default function createRoutes(store) {
             path: '/notification',
             name: 'notificationPage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/NotificationPage/reducer'),
                     System.import('containers/NotificationPage/sagas'),
@@ -619,6 +677,9 @@ export default function createRoutes(store) {
             path: '/dialoguelist',
             name: 'dialogueListPage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/DialogueListPage/reducer'),
                     System.import('containers/DialogueListPage/sagas'),
@@ -650,6 +711,9 @@ export default function createRoutes(store) {
             path: '/dialogue/:id',
             name: 'dialoguePage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/DialoguePage/reducer'),
                     System.import('containers/DialoguePage/sagas'),
@@ -681,6 +745,9 @@ export default function createRoutes(store) {
             path: '/comments/:id',
             name: 'commentsPage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/CommentsPage/reducer'),
                     System.import('containers/CommentsPage/sagas'),
@@ -712,6 +779,9 @@ export default function createRoutes(store) {
             path: '/demo',
             name: 'demoPage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/DemoPage/reducer'),
                     System.import('containers/DemoPage/sagas'),
@@ -743,6 +813,9 @@ export default function createRoutes(store) {
             path: '/follow_recommendation',
             name: 'followRecommendationPage',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/FollowRecommendationPage/reducer'),
                     System.import('containers/FollowRecommendationPage/sagas'),
@@ -784,6 +857,9 @@ export default function createRoutes(store) {
             path: '/projectDetail/:id',
             name: 'projectDetail',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/ProjectDetailPage/reducer'),
                     System.import('containers/ProjectDetailPage/sagas'),
@@ -808,6 +884,9 @@ export default function createRoutes(store) {
             path: '/readProjectChapter/:projectId/:chapterId',
             name: 'readProjectChapter',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 const importModules = Promise.all([
                     System.import('containers/ReadProjectChapter/reducer'),
                     System.import('containers/ReadProjectChapter/sagas'),
@@ -832,6 +911,9 @@ export default function createRoutes(store) {
             path: '/guide',
             name: 'guide',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 System.import('containers/GuidePage')
                     .then(loadModule(cb))
                     .catch(errorLoading);
@@ -844,6 +926,9 @@ export default function createRoutes(store) {
             path: '*',
             name: 'notfound',
             getComponent(nextState, cb) {
+
+                beforeGetComponent();
+
                 System.import('containers/NotFoundPage')
                     .then(loadModule(cb))
                     .catch(errorLoading);

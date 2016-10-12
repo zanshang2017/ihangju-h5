@@ -7,7 +7,8 @@
   left: 0;
   z-index: 9980; }
 :global .foundPageMainContent .am-tab-tab-inner {
-  color: #39bcc8 !important; }
+  color: #39bcc8 !important;
+  padding: 0.66667rem 0; }
 :global .foundPageMainContent .am-tab-nav-container {
   background-color: #f3f5f4;
   font-size: 0.85333rem;

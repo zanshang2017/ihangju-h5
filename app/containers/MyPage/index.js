@@ -4,6 +4,8 @@
  *
  */
 
+import styles from './styles.css';
+
 import React from 'react';
 import {connect} from 'react-redux';
 import {createSelector} from 'reselect';
@@ -18,8 +20,6 @@ import {
 import {
     loadUserCenterData,
 } from './actions';
-
-import styles from './styles.css';
 
 import TopBar from 'components/common/TopBar';
 import UserDesc from 'components/MyPage/UserDesc';

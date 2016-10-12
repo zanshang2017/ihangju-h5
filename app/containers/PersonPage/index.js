@@ -18,6 +18,7 @@ import {
 import {
     loadPersonData,
     setFollowUser,
+    resetState,
 } from './actions';
 
 import _ from 'underscore';
@@ -49,6 +50,7 @@ class PersonPage extends React.Component { // eslint-disable-line react/prefer-s
     }
 
     componentWillUnmount() {
+        this.props.dispatch(resetState());
     }
 
     fansClickHandler() {

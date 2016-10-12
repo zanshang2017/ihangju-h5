@@ -7,6 +7,8 @@ import {
     CONFIRM_EDITOR_API
 } from 'apis.js';
 
+import Toast from 'antd-mobile/lib/toast';
+
 /* eslint-disable react/prefer-stateless-function */
 export default class ScanPane extends React.Component {
 
@@ -21,6 +23,9 @@ export default class ScanPane extends React.Component {
         var that = this;
 
         bridge.sys.qrReader(function (data) {
+
+            if (!data.resp) return;
+
             request(CONFIRM_EDITOR_API, {
                 method: "POST",
                 body: 'target=console&sancodeid=' + data.resp + '&userid=' + that.props.userId,
@@ -31,13 +36,13 @@ export default class ScanPane extends React.Component {
                 },
                 credentials: 'include'
             }).then(function (ret) {
-                if (ret.err === undefined || ret.err === null) {
-                    if (ret.data.code == 'ok') {
-                        alert('扫码成功!');
-                    }
+                if ((ret.err === undefined || ret.err === null) && ret.data.code == 'ok') {
+                    Toast.success('扫码成功');
+                } else {
+                    Toast.fail('扫码失败');
                 }
             }, function (error) {
-
+                Toast.fail('扫码失败');
             });
         });
     }

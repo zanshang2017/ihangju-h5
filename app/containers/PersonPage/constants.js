@@ -14,3 +14,5 @@ export const SET_FOLLOW_USER = 'app/PersonPage/SET_FOLLOW_USER';
 export const SET_FOLLOW_USER_SUCCESS = 'app/PersonPage/SET_FOLLOW_USER_SUCCESS';
 export const SET_FOLLOW_USER_ERROR = 'app/PersonPage/SET_FOLLOW_USER_ERROR';
 
+export const RESET_STATE = 'app/PersonPage/RESET_STATE';
+

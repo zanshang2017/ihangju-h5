@@ -42,7 +42,7 @@ function checkStatus(response) {
     if (response.status === 403) {
         //todo 记录当前页面url,登录后跳回
         console.log('未登录,跳转到登录页');
-        window.location.href = '/login';
+        window.location.href = '/#/login';
         return;
     }
 

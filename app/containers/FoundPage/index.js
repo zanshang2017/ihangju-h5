@@ -35,7 +35,7 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
     }
 
     componentDidMount() {
-        console.warn('FoundPage DidMount');
+        console.log('FoundPage DidMount');
     }
 
     loadDiscoveries() {

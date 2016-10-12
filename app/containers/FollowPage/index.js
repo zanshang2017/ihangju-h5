@@ -33,6 +33,8 @@ import {
 import TopListBar from 'components/FollowPage/TopListBar';
 import MainContent from 'components/FollowPage/MainContent';
 
+import Toast from 'antd-mobile/lib/toast';
+
 export class FollowPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     componentWillMount() {

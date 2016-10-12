@@ -36,22 +36,24 @@ class LoginPage extends React.Component {
         console.warn('LoginPage DidMount');
 
         let that = this;
+        this.refs.thirdPartyLoginIfrm.height = this.refs.J_MainContent.offsetHeight + 'px';
+
         window.addEventListener('message', this.loginHandlerFactory());
 
         signals.loginSuccess.add((result)=> {
             //判断是否需要展示引导页
-            if(1){ //todo 记得关闭
-            // if (result.openPersonalizedRecommendation == true) {
+            if (1) { //todo 记得关闭
+                // if (result.openPersonalizedRecommendation == true) {
                 that.routeHandler('/follow_recommendation');
             } else {
                 that.routeHandler(that.redirectUrl);
             }
-
         });
     }
 
     componentWillUnmount() {
         window.removeEventListener('message', this.loginHandlerFactory());
+        signals.loginSuccess.removeAll();
     }
 
     routeHandler(url) {
@@ -88,7 +90,7 @@ class LoginPage extends React.Component {
     render() {
         return (
             <div className="pageInner">
-                <div>
+                <div ref="J_MainContent" className="mainContent">
                     {
                         <iframe className={styles.loginPage} src={THIRDPARTY_LOGIN_URL}
                                 ref="thirdPartyLoginIfrm"/>

@@ -17,11 +17,12 @@ class MainContent extends React.Component {
     render() {
         return (
             <div id="J_FoundPageMainContentWrap" className="foundPageMainContent">
-                <Tabs defaultActiveKey="1">
-                    <TabPane tab="分类" key="1">
-                        <CatelogList items={this.props.tags || []} refreshHandler={this.props.refresh}/>
-                    </TabPane>
-                </Tabs>
+                {/*<Tabs defaultActiveKey="1">*/}
+                    {/*<TabPane tab="分类" key="1">*/}
+                        {/*<CatelogList items={this.props.tags || []} refreshHandler={this.props.refresh}/>*/}
+                    {/*</TabPane>*/}
+                {/*</Tabs>*/}
+                <CatelogList items={this.props.tags || []} refreshHandler={this.props.refresh}/>
             </div>
         );
     }

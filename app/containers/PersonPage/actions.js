@@ -14,12 +14,20 @@ import {
     SET_FOLLOW_USER_SUCCESS,
     SET_FOLLOW_USER_ERROR,
 
+    RESET_STATE,
+
 } from './constants';
 
 export function defaultAction() {
   return {
     type: DEFAULT_ACTION,
   };
+}
+
+export function resetState() {
+    return {
+        type: RESET_STATE,
+    };
 }
 
 export function loadPersonData(id) {

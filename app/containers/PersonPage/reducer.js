@@ -14,6 +14,8 @@ import {
     SET_FOLLOW_USER,
     SET_FOLLOW_USER_SUCCESS,
     SET_FOLLOW_USER_ERROR,
+
+    RESET_STATE,
 } from './constants';
 
 const initialState = fromJS({
@@ -24,6 +26,9 @@ function PersonPageReducer(state = initialState, action = {}) {
     switch (action.type) {
         case DEFAULT_ACTION:
             return state;
+
+        case RESET_STATE:
+            return state.set('personInfo', false);
 
         case LOAD_PERSON_DATA:
             return state;

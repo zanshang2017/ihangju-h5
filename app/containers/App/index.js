@@ -2,6 +2,8 @@
  * App.react.js
  */
 
+import styles from './style.scss';
+
 import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
@@ -41,8 +43,6 @@ import {
     locStorage
 } from 'utils/util';
 
-import styles from './style.scss';
-
 /* eslint-disable react/prefer-stateless-function */
 class App extends React.Component {
 
@@ -61,7 +61,7 @@ class App extends React.Component {
 
         locStorage.set('version', cur);
 
-        //无版本号时
+        //检测版本号,展示引导页
         if ((!old && lastShowGuideVer) || (cur !== old && compareVersion(lastShowGuideVer, old) > 0)) {
             this.context.router.push('/guide');
         }
@@ -78,7 +78,7 @@ class App extends React.Component {
             openLog();
         }
 
-        console.warn('App DidMount');
+        console.log('App DidMount');
 
         //模拟hover
         (function () {
