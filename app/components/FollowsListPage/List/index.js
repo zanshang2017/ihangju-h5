@@ -7,6 +7,13 @@ import {
     IMG_CDN_PATH
 } from '../../../apis.js';
 
+import LazyLoad from 'react-lazy-load';
+
+import {
+    addImageParam,
+    IMAGE_SIZE_TYPE
+} from 'utils/util.js';
+
 /* eslint-disable react/prefer-stateless-function */
 class List extends React.Component {
 
@@ -37,7 +44,6 @@ class List extends React.Component {
     }
 
     scrollHandler(e) {
-        var winH = document.body.clientHeight;
         var nWrap = document.body;
         var nWrapH = nWrap.getBoundingClientRect().height;
 
@@ -84,12 +90,12 @@ class List extends React.Component {
             <div className={`${styles.listWrap}`}>
                 {
                     this.items.map(function (item) {
-                        let imageSrc = IMG_CDN_PATH + item.avatar;
+                        let imageSrc = addImageParam(IMG_CDN_PATH + item.avatar, IMAGE_SIZE_TYPE.AVATAR);
 
                         return <div className={styles.item} data-id={item.id} key={item.id}
                                     onClick={that.authorClickHandler.bind(that)}>
                             <div className={styles.avatar}>
-                                <img src={imageSrc}/>
+                                <LazyLoad><img src={imageSrc}/></LazyLoad>
                             </div>
                             <div className={styles.info}>
                                 <h4>{item.nickName}</h4>

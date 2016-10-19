@@ -20,6 +20,11 @@ class FollowList extends React.Component {
         this.refs.nFollowListWrap.addEventListener('scroll', that.scrollHanderBinded);
     }
 
+    componentWillUnmount() {
+        this.refs.nFollowListWrap.removeEventListener('scroll', this.scrollHanderBinded);
+        this.scrollHanderBinded = null;
+    }
+
     scrollHandler(e) {
         // console.log('this.myFollowListLoading:' , this.props.myFollowListLoading,
         //     'this.page:', this.page,

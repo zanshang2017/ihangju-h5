@@ -60,7 +60,6 @@ export function* putCommentData() {
     let action = null;
 
     while (action = yield take(SEND_COMMENTS_DATA)) {
-
         let replyData = action.payload.replyData;
 
         let content = replyData.content || '';
@@ -92,6 +91,7 @@ export function* putCommentData() {
 
         if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
             signals.sendCommentSuccess.dispatch();
+            console.log();
             yield put(sendCommentsDataSuccess(lists.data.result, replyData));
         } else {
             console.log(lists.err.response); // eslint-disable-line no-console

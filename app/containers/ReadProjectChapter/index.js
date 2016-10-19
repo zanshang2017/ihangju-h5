@@ -1,19 +1,19 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
+import {connect} from 'react-redux';
+import {createSelector} from 'reselect';
 
 import styles from './style.css';
 import {
-	selectReadChapter,
-	selectProjectInfo,
-	selectShareData,
+    selectReadChapter,
+    selectProjectInfo,
+    selectShareData,
 } from './selectors';
 import {
-	loadReadChapterData,
-	setProjectInfo,
-	loadCollectionData,
-	loadLikeData,
-	setShareData,
+    loadReadChapterData,
+    setProjectInfo,
+    loadCollectionData,
+    loadLikeData,
+    setShareData,
 } from './actions';
 
 import {
@@ -23,9 +23,10 @@ import {
 import ReadContent from 'components/ReadProjectChapter/ReadContent';
 
 class ReadProjectChapter extends React.Component {
-	constructor(props) {
+    constructor(props) {
         super(props);
     }
+
     componentWillMount() {
         //获取保存的项目信息
         var projectInfo = null;
@@ -41,53 +42,53 @@ class ReadProjectChapter extends React.Component {
             this.props.dispach(setProjectInfo(projectInfo));
         }
     }
-	componentDidMount() {
+
+    componentDidMount() {
         if (this.props.routeParams) {
             var projectId = this.props.routeParams.projectId;
             var chapterId = this.props.routeParams.chapterId;
             this.props.dispach(loadReadChapterData(projectId || null, chapterId || null));
         }
     }
-	render() {
-		return (
-			<div>
-				<ReadContent {...this.props} />
-			</div>
-		)
-	}
+
+    render() {
+        return (
+            <ReadContent {...this.props} />
+        )
+    }
 }
 
 const mapStateToProps = createSelector(
-	selectReadChapter(),
-	selectProjectInfo(),
-	selectShareData(),
-	(chapterContent, projectInfo, shareData) => {
-		return {
-			chapterContent,
-			projectInfo,
-			shareData,
-		}
-	}
+    selectReadChapter(),
+    selectProjectInfo(),
+    selectShareData(),
+    (chapterContent, projectInfo, shareData) => {
+        return {
+            chapterContent,
+            projectInfo,
+            shareData,
+        }
+    }
 );
 function mapDispatchToProps(dispach) {
-	return {
-		loadReadChapter: (projectId,chapterId) => {
-			dispach(loadReadChapterData(projectId || null, chapterId || null))
-		},
-		setProjectInfoStatus: (projectInfo) => {
-			dispach(setProjectInfo(projectInfo))
-		},
-		loadCollection: (url, method) => {
-			dispach(loadCollectionData(url,method))
-		},
-		loadLike: (url, method) => {
-			dispach(loadLikeData(url,method))
-		},
-		setShareStatus: (shareData) => {
-			dispach(setShareData(shareData))
-		},
-		dispach,
-	}
+    return {
+        loadReadChapter: (projectId, chapterId) => {
+            dispach(loadReadChapterData(projectId || null, chapterId || null))
+        },
+        setProjectInfoStatus: (projectInfo) => {
+            dispach(setProjectInfo(projectInfo))
+        },
+        loadCollection: (url, method) => {
+            dispach(loadCollectionData(url, method))
+        },
+        loadLike: (url, method) => {
+            dispach(loadLikeData(url, method))
+        },
+        setShareStatus: (shareData) => {
+            dispach(setShareData(shareData))
+        },
+        dispach,
+    }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(ReadProjectChapter);
+export default connect(mapStateToProps, mapDispatchToProps)(ReadProjectChapter);

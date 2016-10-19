@@ -43,8 +43,6 @@ import Tabs from 'antd-mobile/lib/tabs';
 
 const TabPane = Tabs.TabPane;
 
-let hasInitLoaded = false;
-
 export class CreatePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
@@ -70,6 +68,8 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
         if (id) {
             this.props.dispatch(loadNote(id));
         }
+
+        this.refs.J_Editor.focusEditor();
     }
 
     backFromNote() {

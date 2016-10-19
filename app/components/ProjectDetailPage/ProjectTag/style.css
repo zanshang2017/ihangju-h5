@@ -17,6 +17,8 @@
       margin-right: 0.58667rem;
       margin-top: 0.58667rem;
       padding: 0 0.26667rem; }
+      .projectTag ul li a {
+        color: #bcbab5; }
   .projectTag .readImg {
     position: absolute;
     float: right;

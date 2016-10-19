@@ -34,10 +34,12 @@ const loadModule = (cb) => (componentModule) => {
 //标记页面是否加载过,主要解决sagas、reducer重复加载问题
 var initedStatus = {};
 
-
 function beforeGetComponent() {
-    Toast.hide();
-    Toast.loading('加载中...', 100);
+    try {
+        Toast.hide();
+        Toast.loading('加载中...', 100);
+    } catch (e) {
+    }
 }
 
 export default function createRoutes(store) {
@@ -68,7 +70,7 @@ export default function createRoutes(store) {
             path: '/login',
             name: 'loginPage',
             getComponent(nextState, cb) {
-                
+
                 beforeGetComponent();
 
                 const importModules = Promise.all([
@@ -119,11 +121,10 @@ export default function createRoutes(store) {
             },
             onEnter: function () {
                 // if (isLogin()) {
-                    store.dispatch(showNav());
-                    routeEffector.autoSet(); //进入页面时设置路由切换效果
-                    store.dispatch(setCurPage(PAGE_NAME.FOLLOW_PAGE));
+                store.dispatch(showNav());
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+                store.dispatch(setCurPage(PAGE_NAME.FOLLOW_PAGE));
                 // }
-
 
             },
             onLeave: function () {

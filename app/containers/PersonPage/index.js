@@ -23,18 +23,22 @@ import {
 
 import _ from 'underscore';
 
+import signals from './signals';
+
 import styles from './styles.css';
 
 import TopBar from 'components/common/TopBar';
 import UserDesc from 'components/PersonPage/UserDesc';
 import UserArticle from 'components/PersonPage/UserArticle';
-import List from 'antd-mobile/lib/list';
+
+import Toast from 'antd-mobile/lib/toast';
 
 class PersonPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
         super(props);
         this.personID = '';
+        this.isFollowRequesting = false;
     }
 
     componentWillMount() {
@@ -46,7 +50,13 @@ class PersonPage extends React.Component { // eslint-disable-line react/prefer-s
     }
 
     componentDidMount() {
+        var that = this;
+
         console.warn('PersonPage DidMount');
+
+        signals.followRequestComplete.add(()=> {
+            that.isFollowRequesting = false;
+        });
     }
 
     componentWillUnmount() {
@@ -72,8 +82,19 @@ class PersonPage extends React.Component { // eslint-disable-line react/prefer-s
     }
 
     followUserHandler() {
+        if (this.isFollowRequesting) return;
+        this.isFollowRequesting = true;
+
         let personInfo = this.props.personInfo.toJS();
+
         console.log(personInfo.userId, !personInfo.follow);
+        let noticeStr = personInfo.follow ? '正在取消关注' : '正在关注';
+
+        try {
+            Toast.loading(noticeStr);
+        } catch(e){
+        }
+
         this.props.dispatch(setFollowUser(personInfo.userId, !personInfo.follow));
     }
 
@@ -85,14 +106,15 @@ class PersonPage extends React.Component { // eslint-disable-line react/prefer-s
 
     render() {
         let personInfo = (this.props.personInfo && this.props.personInfo.toJS()) || {};
-        console.log('info', personInfo);
         let followUserCls = personInfo.follow ? styles.followedUser : styles.followUser;
         let btns = '';
 
         //当前用户自己不展示功能按钮
-        if(this.props.userInfo.toJS().id !== personInfo.userId) {
-            btns = <div><span className={`${styles.topBarBtn} ${followUserCls}`} onClick={_.throttle(this.followUserHandler.bind(this), 500, {leading: false})}></span>
-                <span className={`${styles.topBarBtn} ${styles.letter}`} onClick={this.letterClickHandler.bind(this)}></span></div>;
+        if (personInfo.userId && this.props.userInfo.toJS().id !== personInfo.userId) {
+            btns = <div><span className={`${styles.topBarBtn} ${followUserCls}`}
+                              onClick={_.throttle(this.followUserHandler.bind(this), 500, {leading: false})}></span>
+                <span className={`${styles.topBarBtn} ${styles.letter}`}
+                      onClick={this.letterClickHandler.bind(this)}></span></div>;
         }
 
         return (
@@ -106,6 +128,7 @@ class PersonPage extends React.Component { // eslint-disable-line react/prefer-s
                               fansClickHandler={this.fansClickHandler.bind(this)}
                               followsClickHandler={this.followsClickHandler.bind(this)}
                     />
+                    <div className="blockGapTag"></div>
                     <UserArticle personInfo={personInfo}
                                  articleClickHandler={this.articleClickHandler.bind(this)}></UserArticle>
                 </div>

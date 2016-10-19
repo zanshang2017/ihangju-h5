@@ -120,9 +120,11 @@ class ListGroup extends React.Component {
             <div ref="J_NotificationPageListGroupWrap" className="tagDetailPageListGroup">
                 <Tabs ref="J_Tabs" defaultActiveKey="1" onChange={this.tabChangeHandler.bind(this)}>
                     <TabPane tab="评论" key="1">
+                        <div className="blockGapTag"></div>
                         <CommentList {...this.props} items={this.props.commentList || []} />
                     </TabPane>
                     <TabPane tab="通知" key="2">
+                        <div className="blockGapTag"></div>
                         <MessageList {...this.props} items={this.props.messageList || []} />
                     </TabPane>
                 </Tabs>

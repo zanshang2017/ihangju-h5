@@ -10,7 +10,7 @@
     background: #fff;
     text-align: left;
     -webkit-overflow-scrolling: touch;
-    border-bottom: 1px solid $borderColor;
+    border-bottom: 1px solid $borderLightColor;
 
     .item {
         @include flexBox();
@@ -21,6 +21,7 @@
             img {
                 width: rem(100);
                 height: rem(100);
+                border-radius: 3px;
             }
         }
 

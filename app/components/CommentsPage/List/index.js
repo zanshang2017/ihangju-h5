@@ -8,6 +8,14 @@ import {
 } from '../../../apis.js';
 
 import {convertDate} from '../../../utils/util.js';
+import {
+    ANSWER_TYPE
+} from 'containers/CommentsPage/constants';
+
+import {
+    addImageParam,
+    IMAGE_SIZE_TYPE
+} from 'utils/util.js';
 
 import Answer from '../Answer';
 
@@ -59,7 +67,8 @@ class List extends React.Component {
     clickHandler(e) {
         let id = e.currentTarget.dataset['id'];
         let name = e.currentTarget.dataset['name'];
-        let type = 'answer';
+        let type = ANSWER_TYPE.ANSWER;
+
         console.log('click list', type, name, id);
         this.props.listClickHandler(e, {id, name, type});
     }
@@ -99,7 +108,7 @@ class List extends React.Component {
             <div ref="J_Wrap" className={`${styles.listWrap}`}>
                 {
                     this.items.map(function (item) {
-                        let imageSrc = IMG_CDN_PATH + item.avatar;
+                        let imageSrc = addImageParam(IMG_CDN_PATH + item.avatar, IMAGE_SIZE_TYPE.AVATAR);
                         let modifyTime = convertDate(item.modifyTime, 'YYYY-MM-DD hh:mm:ss');
 
                         return <div className={styles.listItem} data-id={item.id} data-name={item.userName}

@@ -22,16 +22,30 @@
     .chpCon .authorMes .right {
       float: right;
       margin-right: 1.17333rem; }
-  .chpCon .contentMes {
-    margin-top: 1.33333rem;
-    margin-left: 2.66667rem;
-    margin-right: 1.6rem;
-    padding-bottom: 3.2rem; }
-  .chpCon .contentTitle {
-    margin-left: 2.66667rem;
-    margin-right: 1.6rem;
-    font-size: 1.12rem;
-    color: #7b8f9d; }
+  .chpCon .contentWrap {
+    margin: 0 23px 16px; }
+    .chpCon .contentWrap .contentMes {
+      margin: 32px auto 0;
+      max-width: 600px;
+      overflow: hidden;
+      font-size: 17px;
+      line-height: 1.764em;
+      color: #383b3d; }
+      .chpCon .contentWrap .contentMes p {
+        word-break: break-all; }
+      .chpCon .contentWrap .contentMes section {
+        color: #383b3d;
+        font-size: 17px; }
+      .chpCon .contentWrap .contentMes img {
+        width: 100% !important; }
+    .chpCon .contentWrap .contentTitle {
+      max-width: 600px;
+      margin: 10px auto 0;
+      overflow: hidden;
+      font-size: 21px;
+      line-height: 30px;
+      text-align: left;
+      color: #7b8f9d; }
 
 .chapterTitle {
   color: #39bcc8; }
@@ -44,7 +58,7 @@
     white-space: nowrap; }
   .chapterTitle i {
     position: relative;
-    top: -0.8rem; }
+    top: -0.98667rem; }
 
 .rightStar {
   position: absolute;

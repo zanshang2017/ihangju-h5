@@ -94,15 +94,22 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
     componentDidMount() {
         let that = this;
 
+        signals.loadDialogueSuccess.add(()=> {
+            that.scrollToBottom();
+            signals.loadDialogueSuccess.removeAll(); //只在首次加载时滑到底部
+        });
+
         signals.sendDialogueSuccess.add(()=> {
             that.resetDialogueData();
             that.componentMethod['clear'] && that.componentMethod['clear']();
+            that.scrollToBottom();
         });
     }
 
     componentWillUnmount() {
         clearTimeout(this.timer);
         signals.sendDialogueSuccess.removeAll();
+        signals.loadDialogueSuccess.removeAll();
 
         for (var k in this.componentMethod) {
             if (this.componentMethod.hasOwnProperty(k)) {
@@ -112,7 +119,12 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
     }
 
     componentDidUpdate() {
-        goBottom(document.body, this.refs.J_Wrap);
+    }
+
+    scrollToBottom() {
+        setTimeout(function () {
+            goBottom(this.refs.J_Outer, this.refs.J_Inner);
+        }.bind(this), 0);
     }
 
     // 发送成功之后重置输入栏
@@ -133,15 +145,17 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
         // let loading = dialogue.loading || false;
 
         return (
-            <div ref="J_Wrap" className={`pageInner`}>
+            <div ref="J_Wrap" className='pageInner'>
                 <TopBar data-has-back="true">
                     <div data-title>私信</div>
                 </TopBar>
 
                 <NoticeBar>当前版本无法查看签约详情,请等待新版行距发布!</NoticeBar>
 
-                <div className={`mainContent`}>
-                    <List items={items} myUserId={this.dialogueData['sendUser']}></List>
+                <div ref="J_Outer" className={`mainContent`}>
+                    <div ref="J_Inner">
+                        <List items={items} myUserId={this.dialogueData['sendUser']}></List>
+                    </div>
                 </div>
 
                 <InputBar bindingMethod={{context: this.componentMethod, methodName: ['clear']}}

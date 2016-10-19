@@ -3,6 +3,11 @@
 @import "../../common/__util.scss";
 
 .wrap {
+    .version {
+        text-align: center;
+        padding: rem(30) 0;
+        color: $weakTextColor;
+    }
 }
 
 .listWrap {

@@ -14,11 +14,14 @@
       .projectComment ul li .top {
         overflow: hidden; }
       .projectComment ul li .name {
-        float: left; }
+        float: left;
+        line-height: 1.86667rem; }
         .projectComment ul li .name img {
           display: inline-block;
           width: 1.86667rem;
-          height: 1.86667rem; }
+          height: 1.86667rem;
+          border-radius: 3px;
+          vertical-align: middle; }
         .projectComment ul li .name span {
           display: inline-block;
           margin-left: 0.48rem;
@@ -42,7 +45,8 @@
     margin: 1.01333rem auto 1.44rem;
     border: 1px solid #39bcc8;
     border-radius: 1.06667rem;
-    font-size: 0.8rem;
-    color: #39bcc8; }
+    font-size: 0.8rem; }
+    .projectComment .commentBtn a {
+      color: #39bcc8; }
 
 /*# sourceMappingURL=style.css.map */

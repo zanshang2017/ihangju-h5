@@ -6,6 +6,11 @@ import {
     IMG_CDN_PATH
 } from '../../../apis.js';
 
+import {
+    addImageParam,
+    IMAGE_SIZE_TYPE
+} from 'utils/util.js';
+
 import List from 'antd-mobile/lib/list';
 
 function UserDesc(props) {
@@ -16,22 +21,27 @@ function UserDesc(props) {
     var id = userInfo.id;
 
     if (userInfo.avatar) {
-        imageSrc = IMG_CDN_PATH + userInfo.avatar;
+        imageSrc = addImageParam(IMG_CDN_PATH + userInfo.avatar, IMAGE_SIZE_TYPE.AVATAR_BIG);
     }
 
     return (
         <List>
-            <List.Item
-                onClick={props.clickHandler}
-                arrow="horizontal">
-                <div className={styles.descWrap}>
-                    <div className={styles.image}><img src={imageSrc}/></div>
-                    <div className={styles.info}>
-                        <div className={styles.username}>{userInfo.nickName || ''}</div>
-                        <div className={styles.intro}>{userInfo.description || ''}</div>
+            <List.Body>
+                <List.Item
+                    onClick={props.clickHandler}
+                    arrow="horizontal">
+                    <div className={styles.descWrap}>
+                        <div className={styles.image}>{
+                            imageSrc ? <img src={imageSrc}/> : ''
+                        }
+                        </div>
+                        <div className={styles.info}>
+                            <div className={styles.username}>{userInfo.nickName || ''}</div>
+                            <div className={styles.intro}>{userInfo.description || ''}</div>
+                        </div>
                     </div>
-                </div>
-            </List.Item>
+                </List.Item>
+            </List.Body>
         </List>
     );
 }

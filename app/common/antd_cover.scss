@@ -11,6 +11,14 @@
     /** Tab组件 **/
     .am-tab {
 
+        .am-tab-bar {
+            margin-bottom: 0 !important;
+        }
+
+        .am-tab-nav-container {
+            font-size: rem(32);
+        }
+
         //底部灰线
         &.am-tab-line .am-tab-bar:after {
             border-color: $tabBg !important;
@@ -51,4 +59,43 @@
         border-bottom-right-radius: 30px !important;
     }
 
+    /** List **/
+    .am-list {
+        margin: rem(20) 0 !important;
+        padding: 0 !important;
+        .am-list-item {
+            &:last-child {
+                &:after {
+                    border-bottom-color: $borderColor !important;
+                }
+            }
+
+            .am-list-line {
+                padding: 7px 16px 7px 0;
+
+                .am-list-arrow-horizontal:before {
+                    margin-top: 3px !important;
+                }
+
+                .am-list-arrow {
+                    margin-left: 14px !important;
+                }
+
+                .am-list-extra {
+                    margin-top: 1px !important;
+                }
+            }
+        }
+
+    }
+
+    /** NoticeBar **/
+    .am-top-notice {
+        background-color: #f0fafb;
+        color: #3a3a3a;
+    }
+
+
+
 }
+

@@ -36,6 +36,10 @@ export default class NoteEditor extends React.Component {
         this.props.deleteNote(id);
     }
 
+    focusEditor() {
+        this.refs.J_Content.focus();
+    }
+
     changeHandler(e) {
         this.props.dispatch(updateEditNoteContent(e.target.value));
     }
@@ -57,7 +61,7 @@ export default class NoteEditor extends React.Component {
                         <div onClick={this.save.bind(this)}>保存</div>
                     </div>
                 </TopBar>
-                <div className="hasTopBar">
+                <div className="mainContent">
                     <div className={styles.savedTime}>{modifyTime}</div>
                     <textarea ref="J_Content" className={styles.content} value={this.props.noteContent}
                               onChange={this.changeHandler.bind(this)}/>

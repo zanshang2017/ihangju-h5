@@ -46,14 +46,19 @@
     opacity: 0 !important; }
   :global .blockGap {
     margin-bottom: 0.53333rem; }
+  :global .blockGapTag {
+    height: 0.53333rem;
+    margin: 0;
+    padding: 0;
+    background: #f4f5f5; }
   :global .hover {
     background: #f3f5f4 !important; }
   :global .deepBg {
-    background: #f3f5f4; }
+    background: #f4f5f5; }
   :global .gapLine {
     display: inline-block;
     height: 0.53333rem;
-    background: #f3f5f4; }
+    background: #f4f5f5; }
   :global .f12 {
     font-size: 0.32rem; }
   :global .f13 {
@@ -541,8 +546,6 @@
 :global {
   /*边框*/
   /*四边*/ }
-  :global body {
-    font-family: 'STHeiti', 'Microsoft YaHei', Helvetica, Arial, sans-serif; }
   :global * {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent; }
@@ -554,7 +557,7 @@
     width: 100%;
     height: 100%; }
   :global body {
-    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", Arial, sans-serif;
+    font-family: Verdana, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", Arial, sans-serif;
     font-size: 12px;
     line-height: 1.5;
     color: #666;

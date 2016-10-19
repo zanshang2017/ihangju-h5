@@ -10,6 +10,10 @@ import {
     CHOICE_TYPE
 } from 'containers/FollowRecommendationPage/constants';
 
+import {
+    addImageParam
+} from 'utils/util';
+
 const CLS_SELECTED = 'recommendation-tag-selected';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -47,12 +51,20 @@ class TagList extends React.Component {
             <div className={`${styles.listWrap}`}>
                 {
                     this.items.map(function (item) {
-                        let imageSrc = IMG_CDN_PATH + (item.image || '/image/57fafc47e4b0a46776e00153.png?imageMogr2/auto-orient/');
 
-                        return <div className={styles.listItemWrap} data-id={item.id} onClick={that.clickHandler.bind(that)}>
+                        let imageSrc = '';
+
+                        if (item.image) {
+                            imageSrc = addImageParam(IMG_CDN_PATH + (item.image));
+                        }
+
+                        return <div className={styles.listItemWrap} data-id={item.id}
+                                    onClick={that.clickHandler.bind(that)}>
                             <div className={styles.logo}>
                                 <div className={styles.shadow}></div>
-                                <img src={imageSrc} />
+                                {
+                                    imageSrc ? <img src={imageSrc}/> : ''
+                                }
                             </div>
                             <h3>{item.name}</h3>
                             <button className={item.selected ? CLS_SELECTED : ''}></button>

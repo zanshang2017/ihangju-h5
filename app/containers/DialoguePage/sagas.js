@@ -46,6 +46,7 @@ export function* getDialogueData() {
 
         if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
             yield put(loadDialogueDataSuccess(lists.data.result));
+            signals.loadDialogueSuccess.dispatch();
         } else {
             console.log(lists.err.response); // eslint-disable-line no-console
             yield put(loadDialogueDataError(lists.err));
@@ -77,10 +78,10 @@ export function* putDialogueData() {
         });
 
         if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
-            signals.sendDialogueSuccess.dispatch();
             dialogueData.id = lists.data.result.id;
             dialogueData.sendTime = lists.data.result.sendTime;
             yield put(sendDialogueDataSuccess(dialogueData));
+            signals.sendDialogueSuccess.dispatch();
         } else {
             console.log(lists.err.response); // eslint-disable-line no-console
             yield put(sendDialogueDataError(lists.err));

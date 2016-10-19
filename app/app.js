@@ -18,7 +18,7 @@ import 'file?name=[name].[ext]!./.htaccess';      // eslint-disable-line import/
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import {applyRouterMiddleware, Router, browserHistory, hashHistory} from 'react-router';
+import {applyRouterMiddleware, Router, browserHistory, hashHistory, useRouterHistory} from 'react-router';
 import {syncHistoryWithStore} from 'react-router-redux';
 import useScroll from 'react-router-scroll';
 import configureStore from './store';
@@ -42,7 +42,7 @@ store.runSaga(getUserInfo); //todo 重复绑定
 // 同步路由和store状态
 import {selectLocationState} from 'containers/App/selectors';
 
-//利用History api改变浏览器历史,并发生url路径变化，需要通过服务端配置引导子路径到实际的物理文件
+// browserHistory需要服务端支持,先使用hashHistory.
 // const history = syncHistoryWithStore(browserHistory, store, {
 //     selectLocationState: selectLocationState(),
 // });
@@ -51,11 +51,33 @@ const history = syncHistoryWithStore(hashHistory, store, {
     selectLocationState: selectLocationState(),
 });
 
+// console.log('history', history);
+
+// setTimeout(function(){
+//     history.push('/my');
+//     history.push('/create');
+//     history.push('/follow');
+// }, 2000);
+
+window.onerror = function (e) {
+    // alert('error' + e);
+    // location.reload();
+};
+
 import App from 'containers/App';
 
 import createRoutes from './routes';
 
 import {foo} from 'utils/upload.js';
+
+import {
+    testSupportWebp
+} from 'utils/util';
+
+testSupportWebp();
+
+// alert('dpr:' + window.devicePixelRatio + ' w:' + document.documentElement.clientWidth + ' h:' + document.documentElement.clientHeight);
+// alert(navigator.userAgent);
 
 //路由配置
 const rootRoute = {
@@ -67,6 +89,8 @@ const rootRoute = {
     childRoutes: createRoutes(store),
 };
 
+var hasRemovedAppLoading = false;
+
 ReactDOM.render(
     <Provider store={store}>
         <Router
@@ -76,7 +100,17 @@ ReactDOM.render(
                 applyRouterMiddleware(
                     useScroll(
                         (prevProps, props) => {
-                            Toast.hide(); //清除所有Toast
+
+                            {/*alert('history.length:' + window.history.length);*/
+                            }
+
+
+                            if (!hasRemovedAppLoading) {
+                                hasRemovedAppLoading = true;
+                                document.body.removeChild(document.getElementById('appLoading'));
+                            }
+
+                            Toast.hide(); //清除Toast
 
                             if (!prevProps || !props) {
                                 return true;

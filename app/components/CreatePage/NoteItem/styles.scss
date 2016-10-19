@@ -4,17 +4,22 @@
 @import "../../../common/common.css";
 
 .noteItem {
+
+    &:first-child {
+        margin-top: rem(10);
+    }
+
     position: relative;
     display: block;
     width: rem(667);
-    height: rem(107);
+    height: rem(110);
     margin: 0 auto;
     overflow: hidden;
     line-height: rem(107);
     border-bottom: 1px solid $deepBg;
 
     .content {
-        font-size: rem(28);
+        font-size: rem(32);
         color: $titleColor;
         float:left;
         width: 70%;
@@ -26,18 +31,18 @@
     .right {
         position: absolute;
         right: 0;
-        width: rem(180);
+        width: rem(200);
         text-align:right;
 
         .time {
-            color: $weakerTitleColor;
-            font-size: rem(26);
+            color: $weakTextColor;
+            font-size: rem(24);
         }
 
         i {
-            padding-left: rem(10);
+            padding-left: rem(20);
             color: $weakTextColor;
-            font-size: rem(26);
+            font-size: rem(24);
         }
     }
 

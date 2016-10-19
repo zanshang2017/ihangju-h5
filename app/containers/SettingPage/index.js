@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 
 import styles from './styles.css';
@@ -20,19 +21,26 @@ class SettingPage extends React.Component { // eslint-disable-line react/prefer-
 
     constructor(props) {
         super(props);
+        this.tapCount = 0;
     }
 
     componentWillMount() {
-
     }
 
     componentDidMount() {
+        var that = this;
+
         console.warn('SettingPage DidMount');
+
+        this.refs.J_Wrap.addEventListener('touchstart', function(){
+            that.tapCount++;
+            if(that.tapCount > 15) {
+                that.tapCount = 0;
+            }
+        });
     }
 
     render() {
-        let tags = this.props.tags || [];
-        let that = this;
 
         return (
             <div className="pageInner">
@@ -40,7 +48,7 @@ class SettingPage extends React.Component { // eslint-disable-line react/prefer-
                     <div data-title>设置</div>
                 </TopBar>
 
-                <div className={`${styles.wrap} mainContent deepBg`}>
+                <div ref="J_Wrap" className={`${styles.wrap} mainContent deepBg`}>
                     <List>
                         <List.Body>
                             <List.Item
@@ -84,6 +92,9 @@ class SettingPage extends React.Component { // eslint-disable-line react/prefer-
                             </List.Item>
                         </List.Body>
                     </List>
+
+                    <div className={styles.version}>版本:{window.__APP_CONFIG.ver}</div>
+
                 </div>
             </div>
         );

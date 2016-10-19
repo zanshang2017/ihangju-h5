@@ -6,7 +6,10 @@ import {
     IMG_CDN_PATH
 } from '../../../apis.js';
 
-import List from 'antd-mobile/lib/list';
+import {
+    addImageParam,
+    IMAGE_SIZE_TYPE
+} from 'utils/util.js';
 
 function UserDesc(props) {
 
@@ -16,7 +19,7 @@ function UserDesc(props) {
     var id = personInfo.id;
 
     if (personInfo.avatar) {
-        imageSrc = IMG_CDN_PATH + personInfo.avatar;
+        imageSrc = addImageParam(IMG_CDN_PATH + personInfo.avatar, IMAGE_SIZE_TYPE.AVATAR_BIG);
     }
 
     return (

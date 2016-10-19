@@ -2,60 +2,68 @@
 @import '../../../common/__util.scss';
 @import '../../../common/__global.scss';
 
-.projectComment{
-	width: 100%;
-	.commentNum{
-		width: 100%;
-		border-bottom: 1px solid $borderColor;
-		color: $textColor;
-		font-size: rem(36);
-		padding:0 0 rem(34) rem(48);
-	}
-	ul{
-		margin-left: rem(48);
-		li{
-			padding:rem(40) rem(48) rem(54) 0;
-			border-bottom:1px solid $borderColor;
-			.top{
-				overflow: hidden;
-			}
-			.name{
-				float: left;
-				img{
-					display: inline-block;
-					width: rem(70);
-					height: rem(70);
-				}
-				span{
-					display: inline-block;
-					margin-left: rem(18);
-					font-size: rem(28);
-					color: $titleColor;
-				}
-			}
-			.time{
-				font-size: rem(24);
-				color: #cdcdcd;
-				float: right;
-			}
-			.content{
-				margin-top: rem(30);
-				font-size: rem(34);
-				color: $textColor;
-				line-height: rem(54);
-			}
-		}
-	}
-	.commentBtn{
-		display: block;
-		width: rem(284);
-		height: rem(78);
-		text-align: center;
-		line-height: rem(78);
-		margin: rem(38) auto rem(54);
-		border: 1px solid $linkColor;
-		border-radius: rem(40);
-		font-size: rem(30);
-		color: $linkColor;
-	}
+.projectComment {
+    width: 100%;
+    .commentNum {
+        width: 100%;
+        border-bottom: 1px solid $borderColor;
+        color: $textColor;
+        font-size: rem(36);
+        padding: 0 0 rem(34) rem(48);
+    }
+    ul {
+        margin-left: rem(48);
+        li {
+            padding: rem(40) rem(48) rem(54) 0;
+            border-bottom: 1px solid $borderColor;
+            .top {
+                overflow: hidden;
+            }
+            .name {
+                float: left;
+                line-height: rem(70);
+
+                img {
+                    display: inline-block;
+                    width: rem(70);
+                    height: rem(70);
+                    border-radius: 3px;
+                    vertical-align: middle;
+                }
+                span {
+                    display: inline-block;
+                    margin-left: rem(18);
+                    font-size: rem(28);
+                    color: $titleColor;
+                }
+            }
+            .time {
+                font-size: rem(24);
+                color: #cdcdcd;
+                float: right;
+            }
+            .content {
+                margin-top: rem(30);
+                font-size: rem(34);
+                color: $textColor;
+                line-height: rem(54);
+            }
+        }
+    }
+    .commentBtn {
+        display: block;
+        width: rem(284);
+        height: rem(78);
+        text-align: center;
+        line-height: rem(78);
+        margin: rem(38) auto rem(54);
+        border: 1px solid $linkColor;
+        border-radius: rem(40);
+        font-size: rem(30);
+
+        a {
+            color: $linkColor;
+        }
+
+    }
 }

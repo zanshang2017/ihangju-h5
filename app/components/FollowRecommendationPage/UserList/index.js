@@ -12,6 +12,11 @@ import {
 
 const CLS_SELECTED = 'recommendation-user-selected';
 
+import {
+    addImageParam,
+    IMAGE_SIZE_TYPE,
+} from 'utils/util';
+
 /* eslint-disable react/prefer-stateless-function */
 class UserList extends React.Component {
 
@@ -47,7 +52,7 @@ class UserList extends React.Component {
             <div className={`${styles.listWrap}`}>
                 {
                     this.items.map(function (item) {
-                        let imageSrc = IMG_CDN_PATH + item.avatar;
+                        let imageSrc = addImageParam(IMG_CDN_PATH + item.avatar, IMAGE_SIZE_TYPE.AVATAR_SMALL);
 
                         return <div className={styles.listItemWrap}>
                             <div className={styles.listItem} key={item.id}>

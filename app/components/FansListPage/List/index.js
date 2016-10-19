@@ -1,6 +1,13 @@
 import styles from './styles.scss';
 import React from 'react';
 
+import LazyLoad from 'react-lazy-load';
+
+import {
+    addImageParam,
+    IMAGE_SIZE_TYPE,
+} from 'utils/util.js';
+
 import _ from 'underscore';
 
 import {
@@ -21,9 +28,12 @@ class List extends React.Component {
     componentDidMount() {
         var that = this;
 
+        that.nWrap = that.refs.J_ListWrap;
+        that.nScrollOuter = that.nWrap.parentElement;
+
         //滑动底部加载下一页
         that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 300, {leading: false});
-        window.addEventListener('scroll', that.scrollHanderBinded);
+        that.nScrollOuter.addEventListener('scroll', that.scrollHanderBinded);
     }
 
     componentWillUnmount() {
@@ -31,17 +41,18 @@ class List extends React.Component {
 
         //移除侦听
         if (this.scrollHanderBinded) {
-            window.removeEventListener('scroll', this.scrollHanderBinded);
+            this.nScrollOuter.removeEventListener('scroll', this.scrollHanderBinded);
             this.scrollHanderBinded = null;
         }
     }
 
     scrollHandler(e) {
-        var winH = document.body.clientHeight;
-        var nWrap = document.body;
-        var nWrapH = nWrap.getBoundingClientRect().height;
+        var nWrapH = this.nWrap.getBoundingClientRect().height;
+        var nOuterH = this.nScrollOuter.getBoundingClientRect().height;
 
-        if (nWrap.scrollTop + nWrapH >= nWrap.scrollHeight) {
+        // console.log(Math.ceil((this.nScrollOuter.scrollTop + nOuterH) - nWrapH) > 0);
+
+        if (Math.ceil((this.nScrollOuter.scrollTop + nOuterH) - nWrapH) >= 0) {
             //加载下一页
             if (!this.loading) {
                 if (!this.loading && !this.isLast) {
@@ -72,14 +83,17 @@ class List extends React.Component {
         //     "tutor": true
 
         return (
-            <div className={`${styles.listWrap}`}>
+            <div ref="J_ListWrap" className={`${styles.listWrap}`}>
                 {
                     this.items.map(function (item) {
-                        let imageSrc = IMG_CDN_PATH + item.avatar;
+                        let imageSrc = addImageParam(IMG_CDN_PATH + item.avatar, IMAGE_SIZE_TYPE.AVATAR_SMALL);
 
-                        return <div className={styles.item} data-id={item.id} key={item.id} onClick={that.authorClickHandler.bind(that)}>
+                        return <div className={styles.item} data-id={item.id} key={item.id}
+                                    onClick={that.authorClickHandler.bind(that)}>
                             <div className={styles.avatar}>
-                                <img src={imageSrc}/>
+                                <LazyLoad>
+                                    <img src={imageSrc}/>
+                                </LazyLoad>
                             </div>
                             <div className={styles.info}>
                                 <h4>{item.nickName}</h4>

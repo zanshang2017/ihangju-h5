@@ -54,10 +54,10 @@ class App extends React.Component {
         super(props);
     }
 
-    doGuidePage() {
+    compareVersionShowGuidePage() {
         let cur = __APP_CONFIG.ver || '';
         let old = locStorage.get('version');
-        let lastShowGuideVer = __APP_CONFIG.guide.ver;
+        let lastShowGuideVer = __APP_CONFIG.guide.ver; //需要展示guide的版本,>=此版本号&&未展示过的都需要展示guide。
 
         locStorage.set('version', cur);
 
@@ -72,7 +72,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.doGuidePage();
+        this.compareVersionShowGuidePage();
 
         if (Env.debug) {
             openLog();
@@ -81,9 +81,9 @@ class App extends React.Component {
         console.log('App DidMount');
 
         //模拟hover
-        (function () {
-            var hoveredElement = [];
-
+        // (function () {
+        //     var hoveredElement = [];
+        //
             // document.body.addEventListener('touchstart', function (e) {
             //     var node = e.target;
             //     if (node.nodeType == 1 && node.nodeName.toLowerCase() == 'a') {
@@ -101,9 +101,8 @@ class App extends React.Component {
             //     }
             //     hoveredElement.length = 0;
             // }, true);
-
-        })();
-
+        //
+        // })();
     }
 
     render() {

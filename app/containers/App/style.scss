@@ -47,8 +47,6 @@
     }
 
     .pageInner {
-        width: 100%;
-
         //flex
         display: -webkit-flex;
         display: flex;
@@ -56,6 +54,7 @@
         flex-direction: column;
         width: 100%;
         height: 100%;
+        background: #fff;
     }
 
     .mainContent {
@@ -114,14 +113,4 @@
         }
     }
 }
-
-//antd自定义样式
-:global {
-    .am-top-notice {
-        background-color: #f0fafb;
-        color: #3a3a3a;
-    }
-}
-
-
 

@@ -4,6 +4,7 @@ import styles from './styles.css';
 
 import CatelogListItem from '../CatelogListItem';
 
+
 //todo 下拉刷新有bug
 //import ReactPullToRefresh from 'components/common/ReactPullToRefresh/index';
 //

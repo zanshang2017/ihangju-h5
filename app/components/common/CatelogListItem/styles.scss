@@ -2,8 +2,11 @@
 @import "../../../common/_global";
 @import "../../../common/_util";
 
-
 .catelogListItemWrap {
+
+    &:first-child {
+        padding-top: rem(80);
+    }
 
     a {
         width: 100%;
@@ -11,13 +14,14 @@
     }
 
     .catelogListItem {
+
         position: relative;
         width: 100%;
-        height: rem(440);
+        //height: rem(440);
         box-sizing: border-box;
-        padding: rem(42) rem(42) rem(22) 0;
+        padding: 0 rem(44) rem(78) 0;
+
         background: #fff;
-        margin-bottom: rem(22);
         text-align: center;
         @include flexBox();
         -ms-flex-align: stretch;
@@ -28,10 +32,15 @@
         .title {
             @include flexBox();
             width: rem(172);
-            font-size: rem(40);
+            font-size: rem(42);
+            font-weight: normal;
             color: $titleColor;
-            padding: 0 rem(6) rem(55) 0;
+            padding: 0 rem(6) rem(66) 0;
             align-items: flex-end;
+
+            &.small {
+                font-size: rem(36);
+            }
         }
 
         .info {
@@ -49,25 +58,25 @@
                 width: 100%;
                 height: rem(304);
                 overflow: hidden;
+                background: #ccc;
 
                 img {
                     width: 100%;
                     height: rem(304);
-                    background: #ccc;
                 }
             }
 
             .infoDesc {
-                font-size: rem(30);
+                font-size: rem(24);
 
                 div {
                     float: left;
-                    padding: 0 rem(20) 0 rem(10);
+                    padding: rem(30) rem(42) 0 0;
                     color: $weakTextColor;
 
                     strong {
-                        font-size: rem(34);
-                        padding-right: rem(8);
+                        font-size: rem(30);
+                        padding-right: rem(10);
                         color: $weakLinkColor;
                     }
 

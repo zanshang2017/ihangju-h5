@@ -12,7 +12,10 @@ function ArticleList3(props) {
         <div className={styles.articleList}>
             {
                 items.map(function (item, key) {
-                    return <ArticleListItem3 {...props} item={item} key={item.projectId} />
+                    return <div>
+                        <ArticleListItem3 {...props} item={item} key={item.projectId}/>
+                        <div className="blockGapTag"></div>
+                    </div>
                 })
             }
         </div>

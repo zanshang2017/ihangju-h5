@@ -34,19 +34,20 @@
         color: #cdcdcd; }
   .projectDetails .author {
     width: 100%;
-    overflow: hidden; }
+    overflow: hidden;
+    line-height: 1.86667rem; }
     .projectDetails .author img {
       display: inline-block;
-      float: left;
       width: 1.86667rem;
       height: 1.86667rem;
       margin-left: 1.28rem;
-      margin-right: 0.58667rem; }
+      margin-right: 0.58667rem;
+      border-radius: 3px;
+      vertical-align: middle; }
     .projectDetails .author .name {
       display: inline-block;
       font-size: 0.74667rem;
-      color: #9dadb9;
-      margin-top: 0.58667rem; }
+      color: #9dadb9; }
     .projectDetails .author .date {
       display: inline-block;
       float: right;

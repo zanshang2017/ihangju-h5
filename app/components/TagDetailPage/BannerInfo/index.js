@@ -8,6 +8,11 @@ import {
     IMG_CDN_PATH
 } from '../../../apis.js';
 
+import {
+    addImageParam,
+    IMAGE_SIZE_TYPE
+} from 'utils/util.js';
+
 class BannerInfo extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
@@ -22,9 +27,8 @@ class BannerInfo extends React.Component { // eslint-disable-line react/prefer-s
     }
 
     onImageUploadComplete(base64Img) {
-        alert(base64Img.substring(20, 20));
+        // alert(base64Img.substring(20, 20));
     }
-
 
     render() {
         let browseHTML = <div className={styles.bannerInfo}></div>;
@@ -36,7 +40,7 @@ class BannerInfo extends React.Component { // eslint-disable-line react/prefer-s
             if (detail.tag_image.indexOf('data:image') == 0) {
                 _image = detail.tag_image;
             } else {
-                _image = IMG_CDN_PATH + detail.tag_image;
+                _image = addImageParam(IMG_CDN_PATH + detail.tag_image, IMAGE_SIZE_TYPE.TAG_IMAGE);
             }
 
             let wrapStyle = {
@@ -64,7 +68,7 @@ class BannerInfo extends React.Component { // eslint-disable-line react/prefer-s
                     </div>;
             }
 
-            browseHTML = <div className={styles.bannerInfo} style={wrapStyle}>
+            browseHTML = <div className={`${styles.bannerInfo} blockGap`} style={wrapStyle}>
                 <div className={styles.title}>{detail.tag_name}</div>
                 <div className={styles.follow}>{detail.attention_number}人 已关注</div>
                 {followText}

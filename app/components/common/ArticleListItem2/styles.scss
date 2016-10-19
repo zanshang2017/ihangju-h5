@@ -15,6 +15,7 @@
     h3 {
         max-height: rem(112);
         font-size: rem(44);
+        font-weight: normal;
         line-height: rem(56);
         overflow: hidden;
         text-overflow: ellipsis;
@@ -44,7 +45,7 @@
             margin-right: rem(20);
 
             i {
-                color: $titleColor;
+                color: #9dadb9;
             }
         }
 

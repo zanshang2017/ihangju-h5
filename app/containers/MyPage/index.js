@@ -105,7 +105,7 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
 
                                 onClick={this.collectionClickHandler.bind(this)}
                             >
-                                <div className={styles.listWrap}><i className="iconfont icon-staro"></i>收藏夹</div>
+                                <div className={styles.listWrap}><i className={styles.iconCollection}></i>收藏夹</div>
                             </List.Item>
                             <List.Item
                                 arrow="horizontal"
@@ -115,7 +115,7 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
 
                                 onClick={this.notificationClickHandler.bind(this)}
                             >
-                                <div className={styles.listWrap}><i className="iconfont icon-notification"></i>消息</div>
+                                <div className={styles.listWrap}><i className={styles.iconNotify}></i>消息</div>
                             </List.Item>
                             <List.Item
                                 arrow="horizontal"
@@ -124,7 +124,7 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
                                 }
                                 onClick={this.dialoguesClickHandler.bind(this)}
                             >
-                                <div className={styles.listWrap}><i className="iconfont icon-mail"></i>私信</div>
+                                <div className={styles.listWrap}><i className={styles.iconLetter}></i>私信</div>
                             </List.Item>
                         </List.Body>
                     </List>
@@ -141,7 +141,7 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
                                 onClick={this.myTagClickHandler.bind(this)}
                             >
                                 <div className={styles.listWrap}><i
-                                    className={`iconfont icon-tags ${styles.iconColored}`}></i>我管理的标签
+                                    className={`${styles.iconTag}`}></i>我管理的标签
                                 </div>
                             </List.Item>
                         </List.Body>
@@ -153,7 +153,7 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
                                 arrow="horizontal"
                                 onClick={this.settingHandler.bind(this)}
                             >
-                                <div className={styles.listWrap}><i className={`iconfont icon-setting`}></i>设置</div>
+                                <div className={styles.listWrap}><i className={styles.iconSetting}></i>设置</div>
                             </List.Item>
                         </List.Body>
                     </List>

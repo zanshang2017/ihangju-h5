@@ -1,7 +1,9 @@
 import styles from './styles.scss';
 import React from 'react';
 
-import {convertDate} from '../../../utils/util.js';
+import {
+    ANSWER_TYPE
+} from 'containers/CommentsPage/constants';
 
 /* eslint-disable react/prefer-stateless-function */
 class Answer extends React.Component {
@@ -21,7 +23,7 @@ class Answer extends React.Component {
     clickHandler(e) {
         let id = e.currentTarget.dataset['id'];
         let name = e.currentTarget.dataset['name'];
-        let type = 'to_answer';
+        let type = ANSWER_TYPE.TO_ANSWER;
 
         console.log('answer click', type, name, id);
         this.props.listClickHandler(e, {id, name, type});

@@ -18,7 +18,7 @@ window.addEventListener('popstate', function () {
 });
 
 //export const FLIP_TIMEOUT = 400;
-export const FLIP_TIMEOUT = 300; //时间
+export const FLIP_TIMEOUT = 400; //时间
 
 //无切换效果
 export var NO_EFFECT = {
@@ -77,15 +77,12 @@ export var routeEffector = {
     autoSet() {
         let hash = location.hash.toLowerCase();
 
-        switch (hash) {
-            case '#fliproute':
-                this.set(FLIP_FORWARD);
-                break;
+        if (hash.indexOf('fliproute') > -1) {
+            this.set(FLIP_FORWARD);
+        }
 
-            case '#noeffectroute':
-            default:
-                this.set(NO_EFFECT);
-                break;
+        if (hash.indexOf('noeffectroute') > -1) {
+            this.set(NO_EFFECT);
         }
 
     }

@@ -21,6 +21,7 @@
   .articleListItem h3 {
     max-height: 2.98667rem;
     font-size: 1.17333rem;
+    font-weight: normal;
     line-height: 1.49333rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -46,8 +47,8 @@
     font-size: 0.85333rem;
     color: #383b3d;
     margin-top: 0.88rem;
-    line-height: 1.6em;
-    max-height: 4rem;
+    line-height: 1.4em;
+    max-height: 3.46667rem;
     text-align: left;
     overflow: hidden; }
   .articleListItem div.info {
@@ -57,7 +58,7 @@
     .articleListItem div.info span {
       margin-right: 0.53333rem; }
       .articleListItem div.info span i {
-        color: #7b8f9d; }
+        color: #9dadb9; }
   .articleListItem div.itemType {
     position: absolute;
     top: 0.69333rem;

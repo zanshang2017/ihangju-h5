@@ -67,6 +67,13 @@
         margin-bottom: rem(20);
     }
 
+    .blockGapTag {
+        height: rem(20);
+        margin: 0;
+        padding: 0;
+        background: $gapBg;
+    }
+
     .hover {
         background: $tabBg !important;
     }

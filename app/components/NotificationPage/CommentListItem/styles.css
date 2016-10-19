@@ -7,7 +7,7 @@
   text-align: left;
   font-size: 0.74667rem;
   -webkit-overflow-scrolling: touch;
-  border-bottom: 1px solid #dbd7d7; }
+  border-bottom: 1px solid #f5f5f5; }
   .listItem .item {
     display: -webkit-box;
     display: -moz-box;
@@ -27,7 +27,8 @@
     padding: 0.53333rem 0; }
     .listItem .item .avatar img {
       width: 2.66667rem;
-      height: 2.66667rem; }
+      height: 2.66667rem;
+      border-radius: 3px; }
     .listItem .item .info {
       font-size: 0.74667rem;
       line-height: 1.5em;

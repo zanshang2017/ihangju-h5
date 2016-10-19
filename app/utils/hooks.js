@@ -16,6 +16,7 @@ export function injectAsyncReducer(store) {
 export function injectAsyncSagas(store) {
     // return (sagas) => sagas.map(store.runSaga);
     let prevSagas = [];
+
     return (sagas) => sagas.map((saga) => {
         if (!prevSagas.includes(saga)) {
             store.runSaga(saga);

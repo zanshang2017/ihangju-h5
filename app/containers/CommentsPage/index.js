@@ -19,10 +19,12 @@ import {
 } from './actions';
 
 import _ from 'underscore';
-
 import styles from './styles.css';
 
 import signals from './signals';
+import {
+    goTop
+} from 'utils/util';
 
 import TopBar from 'components/common/TopBar';
 import List from 'components/CommentsPage/List';
@@ -80,20 +82,25 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
     // 发送成功之后重置输入栏
     resetReplyData() {
         this.props.dispatch(changePlaceholder(DEFAULT_PLACEHOLDER));
+
+        let isGoTop = (this.replyData.type == '');
+
         this.replyData.content = '';
         this.replyData.parentid = '';
         this.replyData.type = '';
+
+        isGoTop && goTop(this.refs.J_MainContent);
     }
 
     nextPageHandler(page = 0) {
         if (this.id) {
-            console.log('load page:', page);
+            // console.log('load page:', page);
             this.props.dispatch(loadCommentsData(this.id, page));
         }
     }
 
     clickReplyHandler() {
-        console.log('回复');
+        // console.log('回复');
         // 重置输入框
         this.props.dispatch(changePlaceholder(this.replyReadyInfo.name));
 
@@ -103,7 +110,7 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
     }
 
     clickReportHandler() {
-        console.log('举报');
+        // console.log('举报');
         Toast.info('举报成功', 1.5);
     }
 
@@ -144,7 +151,7 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
                 <TopBar data-has-back="true">
                     <div data-title>评论</div>
                 </TopBar>
-                <div className="mainContent">
+                <div ref="J_MainContent" className="mainContent">
                     <List page={page}
                           isLast={isLast}
                           loading={loading}

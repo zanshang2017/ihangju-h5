@@ -6,13 +6,18 @@ import {
     IMG_CDN_PATH
 } from '../../../apis.js';
 
+import {
+    addImageParam,
+    IMAGE_SIZE_TYPE
+} from 'utils/util.js';
+
 import {convertDate} from '../../../utils/util.js';
 
 function MessageListItem(props) {
     let item = props.item;
     let modifyTime = convertDate(item.modifyTime);
 
-    let imageSrc = IMG_CDN_PATH + item.userAvatar;
+    let imageSrc = addImageParam(IMG_CDN_PATH + item.userAvatar, IMAGE_SIZE_TYPE.AVATAR);
 
     // "modifyTime": 1472535427961,
     // "userAvatar": "/static/random6.png",

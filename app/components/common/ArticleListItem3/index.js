@@ -8,6 +8,11 @@ import {
     IMG_CDN_PATH
 } from '../../../apis.js';
 
+import {
+    addImageParam,
+    IMAGE_SIZE_TYPE
+} from 'utils/util.js';
+
 /**
  * 作品列表-样式2
  *
@@ -22,7 +27,7 @@ function ArticleListItem3(props) {
     let item = props.item;
 
     let modifyTime = convertDate(item.modifyTime);
-    let authorAvatar = IMG_CDN_PATH + item.authorAvatar;
+    let authorAvatar = addImageParam(IMG_CDN_PATH + item.authorAvatar, IMAGE_SIZE_TYPE.AVATAR_SMALL);
 
     // "modifyTime": 1472177758308,
     // "authorName": "门神4",

@@ -13,7 +13,7 @@ import Carousel from 'antd-mobile/lib/carousel';
 
 function Banner(props) {
 
-    if( !props.items ){
+    if (!props.items) {
         //todo +loading动画
         return <div className={styles.banner}></div>;
     }
@@ -24,7 +24,9 @@ function Banner(props) {
                 {
                     props.items.map(function (item, key) {
                         var imageSrc = IMG_CDN_PATH + item.image;
-                        return <div key={key} data-id={item.target} onClick={props.articleClickHandler}><img src={imageSrc} /></div>
+                        return <div key={key} data-id={item.target} onClick={props.articleClickHandler}>
+                                <img src={imageSrc}/>
+                        </div>
                     })
                 }
             </Carousel>

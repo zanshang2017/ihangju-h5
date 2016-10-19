@@ -17,3 +17,8 @@ export const SEND_COMMENTS_DATA_ERROR = 'app/CommentsPage/SEND_COMMENTS_DATA_ERR
 export const SET_COMMENTS_DATA_STATUS = 'app/CommentsPage/SET_COMMENTS_DATA_STATUS';
 
 export const CHANGE_PLACEHOLDER = 'app/CommentsPage/CHANGE_PLACEHOLDER';
+
+export const ANSWER_TYPE = {
+    ANSWER: 'answer',
+    TO_ANSWER: 'to_answer'
+};

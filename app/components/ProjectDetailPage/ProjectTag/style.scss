@@ -21,6 +21,10 @@
 			margin-right: rem(22); 
 			margin-top: rem(22);
 			padding: 0 rem(10);
+
+            a {
+                color: $weakTextColor;
+            }
 		}
 	}
 	.readImg{

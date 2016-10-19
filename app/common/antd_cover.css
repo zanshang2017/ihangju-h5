@@ -4,7 +4,13 @@
  */
 :global {
   /** Tab组件 **/
-  /** Button **/ }
+  /** Button **/
+  /** List **/
+  /** NoticeBar **/ }
+  :global .am-tab .am-tab-bar {
+    margin-bottom: 0 !important; }
+  :global .am-tab .am-tab-nav-container {
+    font-size: 0.85333rem; }
   :global .am-tab.am-tab-line .am-tab-bar:after {
     border-color: #f3f5f4 !important; }
   :global .am-tab .am-tab-tab-active .am-tab-tab-inner {
@@ -23,5 +29,21 @@
       background: #39bcc8 !important; }
       :global .am-button.am-button-primary:after {
         border-color: transparent !important; }
+  :global .am-list {
+    margin: 0.53333rem 0 !important;
+    padding: 0 !important; }
+    :global .am-list .am-list-item:last-child:after {
+      border-bottom-color: #dbd7d7 !important; }
+    :global .am-list .am-list-item .am-list-line {
+      padding: 7px 16px 7px 0; }
+      :global .am-list .am-list-item .am-list-line .am-list-arrow-horizontal:before {
+        margin-top: 3px !important; }
+      :global .am-list .am-list-item .am-list-line .am-list-arrow {
+        margin-left: 14px !important; }
+      :global .am-list .am-list-item .am-list-line .am-list-extra {
+        margin-top: 1px !important; }
+  :global .am-top-notice {
+    background-color: #f0fafb;
+    color: #3a3a3a; }
 
 /*# sourceMappingURL=antd_cover.css.map */

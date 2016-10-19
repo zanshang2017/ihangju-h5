@@ -9,6 +9,7 @@
   .articleListItem2 h3 {
     max-height: 2.98667rem;
     font-size: 1.17333rem;
+    font-weight: normal;
     line-height: 1.49333rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -46,7 +47,7 @@
     .articleListItem2 div.info span {
       margin-right: 0.53333rem; }
       .articleListItem2 div.info span i {
-        color: #7b8f9d; }
+        color: #9dadb9; }
   .articleListItem2 div.itemType {
     position: absolute;
     top: 0.69333rem;

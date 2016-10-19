@@ -30,18 +30,41 @@
 			margin-right: rem(44);
 		}
 	}
-	.contentMes{
-		margin-top: rem(50);
-		margin-left: rem(100);
-		margin-right: rem(60);
-		padding-bottom: rem(120);
-	}
-	.contentTitle{
-		margin-left: rem(100);
-		margin-right: rem(60);
-		font-size: rem(42);
-		color: $titleColor;
-	}
+    .contentWrap {
+        margin: 0 23px 16px;
+
+        .contentMes {
+            margin: 32px auto 0;
+            max-width: 600px;
+            overflow: hidden;
+            font-size: 17px;
+            line-height: 1.764em;
+            color:#383b3d;
+
+            p {
+                word-break: break-all;
+            }
+
+            section {
+                color: #383b3d;
+                font-size: 17px;
+            }
+
+            img {
+                width: 100% !important;
+            }
+        }
+
+        .contentTitle {
+            max-width: 600px;
+            margin:10px auto 0;
+            overflow: hidden;
+            font-size: 21px;
+            line-height: 30px;
+            text-align: left;
+            color: $titleColor;
+        }
+    }
 }
 .chapterTitle{
 	color: $linkColor;
@@ -51,11 +74,11 @@
 	    margin: 0 auto;
 	    overflow: hidden;
 	    text-overflow: ellipsis;
-	    white-space: nowrap;	
+	    white-space: nowrap;
 	}
 	i{
 		position: relative;
-		top: rem(-30);
+		top: rem(-37);
 	}
 }
 .rightStar{

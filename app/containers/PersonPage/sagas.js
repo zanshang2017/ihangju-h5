@@ -13,10 +13,14 @@ import {
     setFollowUserError,
 } from './actions'
 
+import signals from './signals';
+
 import {
     USER_PROFILE_API,
     FOLLOW_USER_API,
 } from '../../apis.js';
+
+import Toast from 'antd-mobile/lib/toast';
 
 import request from 'utils/request';
 
@@ -66,7 +70,7 @@ export function* setFollowUser() {
         let isToFollow = action.payload.isToFollow;
         let url = FOLLOW_USER_API + `${id}`;
 
-        let method = isToFollow ? 'PUT' :'DELETE';
+        let method = isToFollow ? 'PUT' : 'DELETE';
 
         console.log(url, method);
 
@@ -82,9 +86,27 @@ export function* setFollowUser() {
 
         if ((lists.err === undefined || lists.err === null) && (lists.data && lists.data.code === 'ok')) {
             yield put(setFollowUserSuccess(id, isToFollow));
+
+            let notice = isToFollow ? '关注成功!' : '已取消关注!';
+            try {
+                Toast.hide();
+                Toast.success(notice, 2, function(){
+                    signals.followRequestComplete.dispatch();
+                });
+            }catch(e){}
+
+
         } else {
             console.log(lists.err.response); // eslint-disable-line no-console
             yield put(setFollowUserError(lists.err));
+
+            let notice = isToFollow ? '关注失败!' : '取消关注失败!';
+            try {
+                Toast.hide();
+                Toast.fail(notice, 2, function(){
+                    signals.followRequestComplete.dispatch();
+                });
+            }catch(e){}
         }
     }
 }

@@ -8,12 +8,16 @@ import {
     IMG_CDN_PATH
 } from '../../../apis.js';
 
+import {
+    addImageParam,
+    IMAGE_SIZE_TYPE
+} from 'utils/util.js';
+
 function CommentListItem(props) {
-    let that = this;
     let item = props.item;
     let time = convertDate(item.time, 'YYYY-MM-DD hh:mm:ss');
 
-    let imageSrc = IMG_CDN_PATH + item.user.avatar;
+    let imageSrc = addImageParam(IMG_CDN_PATH + item.user.avatar, IMAGE_SIZE_TYPE.AVATAR);
 
     // time": 1473065741681,
     // "projectName": "收藏夹",

@@ -5,6 +5,11 @@ import {
     IMG_CDN_PATH
 } from '../../../apis.js';
 
+import {
+    addImageParam,
+    IMAGE_SIZE_TYPE
+} from 'utils/util.js';
+
 import {convertDate} from '../../../utils/util.js';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -48,7 +53,7 @@ class List extends React.Component {
             <div ref="nDialogueListWrap" className={`${styles.listWrap}`}>
                 {
                     this.items.map(function (item) {
-                        let imageSrc = IMG_CDN_PATH + item.userAvatar;
+                        let imageSrc = addImageParam(IMG_CDN_PATH + item.userAvatar, IMAGE_SIZE_TYPE.AVATAR);
                         let createTime = convertDate(item.lastMessage.createTime);
 
                         return <div className={styles.listItem} data-id={item.letterGroupId} key={item.letterGroupId} onClick={that.clickHandler.bind(that)}>

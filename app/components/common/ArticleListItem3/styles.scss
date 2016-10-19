@@ -8,7 +8,6 @@
     box-sizing: border-box;
     padding: rem(68) rem(42);
     background: #fff;
-    margin-bottom: rem(22);
     text-align: left;
 
     .header {
@@ -20,13 +19,14 @@
             float:left;
 
             img {
-                width: rem(60);
-                height: rem(60);
+                width: rem(70);
+                height: rem(70);
                 vertical-align: bottom;
+                border-radius: 999px;
             }
 
             span {
-                padding-left: rem(10);
+                padding-left: rem(20);
                 color: $titleColor;
             }
         }

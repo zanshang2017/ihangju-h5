@@ -8,23 +8,36 @@
     <meta name="mobile-web-app-capable" content="no">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <title>行距</title>
+    <style>
+        .app-loading {
+            width: 6rem;
+            height: 6rem;
+            margin: auto;
+            background: url(https://o82zr1kfu.qnssl.com/@/image/57fdf7a6e4b0d5d5f481ad9e.gif) center center no-repeat;
+            background-size: cover;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+    </style>
+
     <script>
         (function (root) {
             var docEl = document.documentElement;
             var width = docEl.getBoundingClientRect().width;
             root.rem = width / 20;
-
-            if (/ZTE U930_TD/.test(navigator.userAgent)) {
-                root.rem = root.rem * 1.13;
-            }
             docEl.style.fontSize = root.rem + 'px';
         })(window);
-    </script>
-    <script>
+
+        /**
+         * 全局配置
+         */
         window.__APP_CONFIG = {
-            ver: '0.0.41',
+            ver: '0.0.1',
             guide: {
-                ver: '0.0.41', // >= 此版本号不必再展示guide页
+                ver: '0.0.1', // 本地存储的版本号>=此版本号时不必展示guide页
                 ratio: 0.5625, //图片宽高比
                 images: [
                     'https://o82zr1kfu.qnssl.com/@/image/57f863a5e4b0ea9bd4b58d80.png?imageMogr2/auto-orient/',
@@ -37,29 +50,10 @@
             }
         };
     </script>
-
-    <style>
-        .app-loading {
-            width: 6rem;
-            height: 6rem;
-            background: url(https://o82zr1kfu.qnssl.com/@/image/57fdf7a6e4b0d5d5f481ad9e.gif) center center no-repeat;
-            background-size: cover;
-            position: absolute;
-            margin: auto;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-        }
-
-    </style>
 </head>
+
 <body>
-<div id="app">
-
-    <div class="app-loading"></div>
-
-</div>
-
+<div id="appLoading" class="app-loading"></div>
+<div id="app"></div>
 </body>
 </html>

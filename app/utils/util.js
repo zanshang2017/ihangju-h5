@@ -172,7 +172,7 @@ function goBottom(nParent, nChild, noAnim) {
 
     (function f() {
         // debugger;
-        moveDist = Math.floor(leastDist / 3);
+        moveDist = Math.floor(leastDist / 2);
         goDist = moveDist + nParent.scrollTop;
         leastDist = allDistance - goDist;
 
@@ -182,7 +182,30 @@ function goBottom(nParent, nChild, noAnim) {
         } else {
             setScrollTop(goDist);
             setTimeout(function () {
-                console.log('goDist', goDist, leastDist);
+                // console.log('goDist', goDist, leastDist);
+                f();
+            }, 10);
+        }
+    })();
+}
+
+function goTop(nParent, noAnim) {
+    var moveDist = 0;
+
+    if (noAnim) {
+        setScrollTop(0);
+        return;
+    }
+
+    (function f() {
+        // debugger;
+        moveDist = Math.floor(nParent.scrollTop / 2);
+
+        if (moveDist <= 1) {
+            nParent.scrollTop = 0;
+        } else {
+            nParent.scrollTop = moveDist;
+            setTimeout(function () {
                 f();
             }, 10);
         }
@@ -242,12 +265,65 @@ function compareVersion(v1, v2, digit) {
     return 0;
 }
 
+//图片尺寸配置
+const IMAGE_SIZE_TYPE = {
+    AVATAR: '?imageMogr2/thumbnail/120x120/quality/70',
+    AVATAR_BIG: '?imageMogr2/thumbnail/250x250/quality/70',
+    AVATAR_SMALL: '?imageMogr2/thumbnail/60x60/quality/70',
+
+    TAG_IMAGE: '?imageMogr2/quality/70',
+
+    WEBP: '/format/webp',
+};
+
+//增加千牛图片处理参数
+function addImageParam(url, sizeTypeStr) {
+    if (!url.indexOf('?') > -1) {
+        if (sizeTypeStr) {
+            url += (sizeTypeStr.indexOf('?') > -1 ? sizeTypeStr : '?' + sizeTypeStr);
+        }
+
+        if (localStorage.getItem('isSupportWebp')) {
+            url += ((url.indexOf('?') > -1) ? IMAGE_SIZE_TYPE.WEBP : '?imageMogr2' + IMAGE_SIZE_TYPE.WEBP);
+        }
+
+        return url;
+    }
+}
+
+function testSupportWebp(exec) {
+    var img = new Image(), loaded, _isSupport;
+    if (window.localStorage && window.localStorage.hasOwnProperty('isSupportWebp')) {
+        _isSupport = localStorage.getItem('isSupportWebp') == 'true' ? true : false;
+        exec && exec(_isSupport);
+        return;
+    }
+    img.onload = img.onerror = function () {
+        if (!loaded) {
+            loaded = true;
+            exec && exec(img.width === 2 && img.height === 2);
+            window.localStorage && window.localStorage.setItem('isSupportWebp', img.width === 2 && img.height === 2);
+        }
+    };
+    setTimeout(function () {
+        if (!loaded) {
+            loaded = true;
+            exec(false);
+            window.localStorage && window.localStorage.setItem('isSupportWebp', false);
+        }
+    }, 16);
+    img.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+}
 
 export {
     getUrlParam,
     convertDate,
     locStorage,
+    goTop,
     goBottom,
     unique,
     compareVersion,
+    IMAGE_SIZE_TYPE,
+    testSupportWebp,
+    addImageParam,
 };
