@@ -78,9 +78,10 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
     render() {
         let userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
         let userCenterInfo = this.props.userCenterInfo || {};
+        let notifications = userCenterInfo.notifications || {};
         this.id = userInfo.id;
 
-        let msg_count = (userCenterInfo.comment_notify_count || 0) + (userCenterInfo.discuss_notify_count || 0);
+        let msg_count = (notifications.comment_notify_count || 0) + (notifications.discuss_notify_count || 0);
 
         if (!this.id) {
             this.context.router.replace('/login');
@@ -120,7 +121,7 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
                             <List.Item
                                 arrow="horizontal"
                                 extra={
-                                    <span className={styles.weakText}>{userCenterInfo.letter_notify_count || '0'}</span>
+                                    <span className={styles.weakText}>{notifications.letter_notify_count || '0'}</span>
                                 }
                                 onClick={this.dialoguesClickHandler.bind(this)}
                             >

@@ -66,23 +66,17 @@ class ReadContent extends React.Component {
         var that = this;
         superThis = this;
 
-        this.nWrap = this.refs.J_ChapterWrap;
-        this.nCont = this.refs.J_ChapterCont;
-        this.wrapH = this.nWrap.getBoundingClientRect().height;
-        this.wrapSH = this.nWrap.scrollHeight;
-        this.isTouchTop = true;
-        this.isTouchBottom = false;
-        this.isMoveTop = false;
-        this.isMoveBottom = false;
-        this.touchStartY = 0;
-        this.isAddListener = false;
+        that.resetScrollPage();
 
-        console.log(this.wrapH, this.wrapSH);
+        // console.log(this.wrapH, this.wrapSH);
 
         this.nWrap.addEventListener('scroll', function (e) {
             console.log(that.nWrap.scrollTop);
-            that.isTouchTop = (that.nWrap.scrollTop == 0)
+            that.isTouchTop = (that.nWrap.scrollTop == 0);
             that.isTouchBottom = that.nWrap.scrollTop + that.wrapH >= that.wrapSH - 10;
+
+            debugLog('that.nWrap.scrollTop:' + that.nWrap.scrollTop + ' that.wrapH:' + that.wrapH)
+            debugLog("that.isTouchTop:" + that.isTouchTop + " that.isTouchBottom:" + that.isTouchBottom);
 
             if (that.isTouchTop || that.isTouchBottom) {
                 debugLog('touch!');
@@ -90,7 +84,6 @@ class ReadContent extends React.Component {
                     that.nWrap.addEventListener('touchmove', that.touchmoveHandler);
                     that.isAddListener = true;
                 }
-
             }
         });
 
@@ -105,80 +98,124 @@ class ReadContent extends React.Component {
         // nwrap.addEventListener("touchend", that.tEnd.bind(that), false);
     }
 
+    componentDidUpdate() {
+        // alert('did Update!');
+        this.resetScrollPage();
+    }
+
+    resetScrollPage() {
+        debugLog('reset');
+        this.nWrap = this.refs.J_ChapterWrap;
+        // this.nCont = this.refs.J_ChapterCont;
+        this.wrapH = this.nWrap.getBoundingClientRect().height;
+        this.wrapSH = this.nWrap.scrollHeight;
+        this.isTouchTop = true;
+        this.isTouchBottom = false;
+        this.isMoveTop = false;
+        this.isMoveBottom = false;
+        this.isMoveTopComplete = false;
+        this.isMoveBottomComplete = false;
+        this.touchStartY = 0;
+        this.isAddListener = false;
+
+        this.nWrap.removeEventListener('touchmove', this.touchmoveHandler);
+    }
+
     touchmoveHandler(e) {
         let that = superThis;
         let dist = that.touchStartY - e.touches[0].pageY;
         debugLog('dist:' + dist + ' touchStartY:' + that.touchStartY + ' pageY:' + e.touches[0].pageY);
 
-        that.isMoveTop = dist < 0 && dist < -TRIGGER_PAGE_DIST;
-        that.isMoveBottom = dist > 0 && dist > TRIGGER_PAGE_DIST;
+        if (dist < 0) {
+            that.isMoveTop = true;
+            that.isMoveBottom = false;
+        } else {
+            that.isMoveTop = false;
+            that.isMoveBottom = true;
+        }
 
-        if (that.isMoveTop || that.isMoveBottom) {
+        that.isMoveTopComplete = dist < 0 && dist < -TRIGGER_PAGE_DIST;
+        that.isMoveBottomComplete = dist > 0 && dist > TRIGGER_PAGE_DIST;
+
+        if (that.isMoveTopComplete || that.isMoveBottomComplete) {
             let _chapterContent = that.props.chapterContent.toJS();
             let _projectInfo = that.props.projectInfo.toJS();
             let locStorageProjectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
             let chapterIndex = null;
 
-            if (that.isTouchTop && that.isMoveTop) {
-                alert('上一页');
-                that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
-                that.isAddListener = false;
+            if (that.isTouchTop) {
+                if (that.isMoveTopComplete) {
+                    debugLog('上一页');
+                    that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
+                    that.isAddListener = false;
 
-                for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
-                    let item = _chapterContent.chapters[key];
+                    for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
+                        let item = _chapterContent.chapters[key];
 
-                    if (item.id == chapterId) {
-                        if (key == 0) {
-                            chapterIndex = null;
-                            Toast.info("没有上一章节了", 1.5);
-                            return;
+                        if (item.id == chapterId) {
+                            if (key == 0) {
+                                chapterIndex = null;
+                                Toast.info("没有上一章节了", 1.5);
+                                return;
+                            }
+                            chapterIndex = key - 1;
+                            break;
                         }
-                        chapterIndex = key - 1;
-                        break;
+                    }
+
+                    if (chapterIndex || chapterIndex === 0) {
+                        chapterId = _chapterContent.chapters[chapterIndex].id;
+                        locStorageProjectInfo[projectId].push(chapterId);
+                        that.props.setProjectInfoStatus(_projectInfo);
+                        locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
+
+                        that.nWrap.scrollTop = 0;
                     }
                 }
 
-                if (chapterIndex || chapterIndex === 0) {
-                    chapterId = _chapterContent.chapters[chapterIndex].id;
-                    locStorageProjectInfo[projectId].push(chapterId);
-                    that.props.setProjectInfoStatus(_projectInfo);
-                    locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
-
-                    that.nWrap.scrollTop = 0;
+                if (that.isMoveBottom) {
+                    that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
+                    that.isAddListener = false;
                 }
             }
 
-            if (that.isTouchBottom && that.isMoveBottom) {
-                alert('下一页');
-                that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
-                that.isAddListener = false;
+            if (that.isTouchBottom) {
+                if(that.isMoveBottomComplete) {
+                    debugLog('下一页');
+                    that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
+                    that.isAddListener = false;
 
-                for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
-                    let item = _chapterContent.chapters[key];
+                    for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
+                        let item = _chapterContent.chapters[key];
 
-                    if (item.id == chapterId) {
-                        if (key >= _chapterContent.chapters.length - 1) {
-                            chapterIndex = null;
-                            Toast.info("没有下一章了", 1.5);
-                            return;
+                        if (item.id == chapterId) {
+                            if (key >= _chapterContent.chapters.length - 1) {
+                                chapterIndex = null;
+                                Toast.info("没有下一章了", 1.5);
+                                return;
+                            }
+                            chapterIndex = key + 1;
+                            break;
                         }
-                        chapterIndex = key + 1;
-                        break;
+                    }
+
+                    if (chapterIndex) {
+                        console.log(chapterIndex);
+                        chapterId = _chapterContent.chapters[chapterIndex].id;
+                        locStorageProjectInfo[projectId].push(chapterId);
+                        that.props.setProjectInfoStatus(_projectInfo);
+                        locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
+
+                        that.nWrap.scrollTop = 0;
                     }
                 }
 
-                if (chapterIndex) {
-                    console.log(chapterIndex);
-                    chapterId = _chapterContent.chapters[chapterIndex].id;
-                    locStorageProjectInfo[projectId].push(chapterId);
-                    that.props.setProjectInfoStatus(_projectInfo);
-                    locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
-
-                    that.nWrap.scrollTop = 0;
+                if (that.isMoveTop) {
+                    that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
+                    that.isAddListener = false;
                 }
-
-
             }
+
         }
 
         debugLog(e.touches[0].pageY + ":" + e.touches[0].clientY);

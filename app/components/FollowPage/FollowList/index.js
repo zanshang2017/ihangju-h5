@@ -26,18 +26,16 @@ class FollowList extends React.Component {
     }
 
     scrollHandler(e) {
-        // console.log('this.myFollowListLoading:' , this.props.myFollowListLoading,
-        //     'this.page:', this.page,
-        //     'this.isLast:', this.isLast);
-
         var nWrap = this.refs.nFollowListWrap;
         var nList = this.refs.nFollowList;
 
         var nWrapH = nWrap.getBoundingClientRect().height;
         var nListH = nList.getBoundingClientRect().height;
-        // console.log(nWrap.scrollTop + nWrapH + '>' + nListH);
+        // console.log(nWrap.scrollTop, nWrapH, nListH);
 
-        if (nWrap.scrollTop + nWrapH >= nListH && !this.isLast && !this.props.myFollowListLoading) {
+        var dist = nListH - (nWrap.scrollTop + nWrapH);
+
+        if (dist <= 200 && !this.isLast && !this.props.myFollowListLoading) {
             this.props.loadMyFollowList(this.page + 1);
         }
     }

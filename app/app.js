@@ -83,7 +83,7 @@ const rootRoute = {
     component: App,
     indexRoute: {
         onEnter: (nextState, replace) => replace('/found') //根路径重定向
-        // onEnter: (nextState, replace) => replace('/demo') //根路径重定向
+        // onEnter: (nextState, replace) => replace('/guide') //根路径重定向
     },
     childRoutes: createRoutes(store),
 };
