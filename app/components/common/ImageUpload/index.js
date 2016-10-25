@@ -4,6 +4,8 @@ import ActionSheet from 'antd-mobile/lib/action-sheet';
 
 import {uploadImage} from 'utils/upload';
 
+import bridge from 'utils/bridge'
+
 class ImageUpload extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
@@ -70,15 +72,19 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
         // this._fileReader.readAsDataURL(oFile);
     }
 
-    loadCameraFileHandler() {
-        if (this._cameraFile.files.length === 0) {
-            return;
-        }
+    loadCameraFileHandler(imgData) {
+        var that = this;
 
-        var oFile = this._albumFile.files[0];
+        // if (this._cameraFile.files.length === 0) {
+        //     return;
+        // }
+        //
+        // var oFile = this._albumFile.files[0];
+        alert('获取文件成功');
 
-        uploadImage(oFile).then(function (imgUrl) {
-            // console.log('上传成功!' + imgUrl);
+        // uploadImage(oFile).then(function (imgUrl) {
+        uploadImage(imgData).then(function (imgUrl) {
+            console.log('上传成功!' + imgUrl);
             that.props.onUploadComplete && that.props.onUploadComplete(imgUrl);
         }, function (error) {
             console.log('上传失败!');
@@ -95,6 +101,7 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
     showSheet() {
         let that = this;
         const BUTTONS = ['拍照', '从相册选取', '取消'];
+        // const BUTTONS = ['从相册选取', '取消'];
 
         ActionSheet.showActionSheetWithOptions({
                 options: BUTTONS,
@@ -111,6 +118,11 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
                     case 1:
                         that.showAlbumSelector();
                         break;
+
+                    // case 0:
+                    //     that.showAlbumSelector();
+                    //     break;
+
                     default:
                         break;
                 }
@@ -118,12 +130,24 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
         );
     }
 
+    hideSheet() {
+        ActionSheet.close();
+    }
+
     showAlbumSelector() {
         this._albumFile.dispatchEvent(new MouseEvent('click'));
     }
 
     showCameraSelector() {
-        this._cameraFile.dispatchEvent(new MouseEvent('click'));
+        var that = this;
+        // this._cameraFile.dispatchEvent(new MouseEvent('click'));
+
+        bridge.sys.camera(function (data) {
+            //console.log(data.code, data.resp.substr(0, 100));
+            // alert(data.resp.substr(0, 100));
+            that.loadCameraFileHandler(data.resp);
+        });
+
     }
 
     render() {
@@ -137,7 +161,6 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
                    className="hide"/>
         </div>;
     }
-
 }
 
 ImageUpload.propTypes = {

@@ -29,6 +29,7 @@ function uploadImage(fileData) {
         if (resp.err === undefined || resp.err === null) {
             if (resp.data.uptoken) {
                 console.log(resp.data.uptoken);
+                console.log(fileData);
                 send(fileData, resp.data.uptoken, _resolve, _reject);
                 return;
             }

@@ -16,6 +16,7 @@ import {
   LOAD_PROJECTCHAPTER_DATA_ERROR,
 
   SET_SHARE_DATA,
+    RESET_STATE,
 } from './constants';
 
 export function defaultAction() {
@@ -28,7 +29,7 @@ export function loadProjectDetailData(id = null) {
     let data = {
     	type: LOAD_PROJECTDETAIL_DATA,
     	payload: {
-        	
+
     	}
     };
     if (id) {
@@ -87,11 +88,17 @@ export function loadProjectChapterDataError(error){
 }
 
 export function setShareData(shareData){
-  
+
   return {
     type: SET_SHARE_DATA,
     payload: {
       data: shareData
     }
   }
+}
+
+export function resetState() {
+    return {
+        type: RESET_STATE,
+    };
 }

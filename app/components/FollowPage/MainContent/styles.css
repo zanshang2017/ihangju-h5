@@ -1,6 +1,7 @@
 .followPageMainContent {
-  overflow-y: auto;
   display: inline-block;
-  width: 100%; }
+  width: 100%;
+  min-height: 100%;
+  background: #f4f5f5; }
 
 /*# sourceMappingURL=styles.css.map */

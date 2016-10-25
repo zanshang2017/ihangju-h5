@@ -35,6 +35,7 @@ class PushConfigPage extends React.Component { // eslint-disable-line react/pref
     }
 
     componentWillMount() {
+        this.userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
     }
 
     componentDidMount() {
@@ -46,7 +47,6 @@ class PushConfigPage extends React.Component { // eslint-disable-line react/pref
         this.props.dispatch(updateUserInfo({
             commentpush: checked
         }));
-
     }
 
     favoriteChangeHandler(checked) {
@@ -67,9 +67,8 @@ class PushConfigPage extends React.Component { // eslint-disable-line react/pref
         const { getFieldProps } = this.props.form;
 
         let that = this;
-        let userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
-        let pushConfig = userInfo.pushConfig;
-        this.id = userInfo.id;
+        let pushConfig = this.userInfo.pushConfig;
+        this.id = this.userInfo.id;
 
         return (
             <div className="pageInner deepBg">

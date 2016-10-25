@@ -45,7 +45,7 @@ export function* getUserInfo() {
     while (action = yield take(LOAD_USER_INFO)) {
         console.log('getUserInfo', action);
 
-        let url = USER_INFO_API;
+        let url = USER_INFO_API + '?r=' + Math.random();
 
         const ret = yield call(request, url, {
             headers: {

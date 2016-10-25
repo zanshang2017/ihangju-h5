@@ -21,8 +21,16 @@ export default class NoteEditor extends React.Component {
 
     componentDidMount() {
         var nContent = this.refs.J_Content;
-        var contentH = document.body.clientHeight - document.getElementById('nav').getBoundingClientRect().height - 60;
+        var contentH = document.body.clientHeight - document.getElementById('nav').getBoundingClientRect().height;
         nContent.style.height = contentH + 'px';
+
+        this.refs.J_Content.addEventListener('focus', function(){
+            this.refs.J_DeleteBtn.classList.add('hide');
+        }.bind(this));
+
+        this.refs.J_Content.addEventListener('blur', function(){
+            this.refs.J_DeleteBtn.classList.remove('hide');
+        }.bind(this));
     }
 
     save() {
@@ -65,7 +73,7 @@ export default class NoteEditor extends React.Component {
                     <div className={styles.savedTime}>{modifyTime}</div>
                     <textarea ref="J_Content" className={styles.content} value={this.props.noteContent}
                               onChange={this.changeHandler.bind(this)}/>
-                    <div className={styles.deleteNote} onClick={this.delete.bind(this)}><i className="iconfont icon-delete"></i></div>
+                    <div ref="J_DeleteBtn" className={styles.deleteNote} onClick={this.delete.bind(this)}><i className="iconfont icon-delete"></i></div>
                 </div>
             </div>
         );

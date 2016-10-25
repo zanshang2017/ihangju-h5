@@ -41,8 +41,11 @@ export class FollowPage extends React.Component { // eslint-disable-line react/p
     }
 
     componentDidMount() {
-        this.loadMyFollow();
         console.warn('FollowPage DidMount');
+
+        if (!this.props.currentFollow) {
+            this.loadMyFollow();
+        }
     }
 
     loadMyFollow(page, currentFollow) {

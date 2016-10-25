@@ -1,23 +1,19 @@
 import React from 'react';
 import styles from './style.css';
-import CopyToClipboard from 'react-copy-to-clipboard';
 import bridge from 'utils/bridge';
+
+import Toast from 'antd-mobile/lib/toast';
 
 class ShareBtnList extends React.Component {
     constructor(props) {
         super(props);
-        this.copContent = {
-            value: window.location.href,
-            copied: false
-        }
     }
 
     componentDidMount() {
-
     }
 
     shareWx() {
-        alert("微信分享");
+        // alert("微信分享");
         console.log(this.shareMes);
         bridge.share.wechat(this.shareMes.url,
             this.shareMes.title,
@@ -31,7 +27,7 @@ class ShareBtnList extends React.Component {
     }
 
     shareFriend() {
-        alert("朋友圈分享");
+        // alert("朋友圈分享");
         bridge.share.wechatTimeline(this.shareMes.url,
             this.shareMes.title,
             this.shareMes.content,
@@ -43,25 +39,25 @@ class ShareBtnList extends React.Component {
     }
 
     shareWb() {
-        alert("微博分享");
+        // alert("微博分享");
         bridge.share.weibo(this.shareMes.title, function (data) {
             console.log(data.code, data.resp);
         });
     }
 
     shareInstation() {
-        alert("站内分享");
+        // alert("站内分享");
+    }
+
+    copyToClipboard() {
+        bridge.sys.copyToClipboard(this.shareMes.url, function () {
+            Toast.info('已复制到剪切板');
+            this.refs._sharelayer.classList.add('hide');
+        }.bind(this));
     }
 
     report() {
-        alert("举报成功");
-        this.refs._sharelayer.classList.add('hide');
-    }
-
-    copyCon() {
-        this.copContent.value = this.shareMes.url;
-        this.copContent.copied = true;
-        alert("拷贝成功");
+        Toast.info("举报成功");
         this.refs._sharelayer.classList.add('hide');
     }
 
@@ -113,28 +109,26 @@ class ShareBtnList extends React.Component {
                                     <span>微博</span>
                                 </div>
                             </li>
-                            <li onClick={this.shareInstation.bind(this)}>
-                                <div className={styles.shareImg}>
-                                    <span className={styles.instation}></span>
-                                </div>
-                                <div>
-                                    <span>站内分享</span>
-                                </div>
-                            </li>
+                            {/*<li onClick={this.shareInstation.bind(this)}>*/}
+                                {/*<div className={styles.shareImg}>*/}
+                                    {/*<span className={styles.instation}></span>*/}
+                                {/*</div>*/}
+                                {/*<div>*/}
+                                    {/*<span>站内分享</span>*/}
+                                {/*</div>*/}
+                            {/*</li>*/}
                         </ul>
                     </div>
                     <div className={styles.otherBtn}>
                         <ul>
-                            <CopyToClipboard text={this.copContent.value} onCopy={this.copyCon.bind(this)}>
-                                <li>
-                                    <div className={styles.shareImg}>
-                                        <span className={styles.copyLink}></span>
-                                    </div>
-                                    <div>
-                                        <span>复制链接</span>
-                                    </div>
-                                </li>
-                            </CopyToClipboard>
+                            <li onClick={this.copyToClipboard.bind(this)}>
+                                <div className={styles.shareImg}>
+                                    <span className={styles.copyLink}></span>
+                                </div>
+                                <div>
+                                    <span>复制链接</span>
+                                </div>
+                            </li>
                             <li onClick={this.report.bind(this)}>
                                 <div className={styles.shareImg}>
                                     <span className={styles.report}></span>

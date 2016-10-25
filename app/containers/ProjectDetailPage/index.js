@@ -7,30 +7,36 @@ import {
     selectDetailResult,
     selectDetailProjectChapter,
     selectShareData,
-
 } from './selectors';
-import TopBar from 'components/common/TopBar';
+
 import ProjectDesc from 'components/ProjectDetailPage/ProjectDesc';
 import ProjectTag from 'components/ProjectDetailPage/ProjectTag';
 import ProjectIntro from 'components/ProjectDetailPage/ProjectIntro';
 import ProjectComment from 'components/ProjectDetailPage/ProjectComment';
 import ProjectTopBar from 'components/ProjectDetailPage/ProjectTopBar';
-import styles from './style.css';
+
+// import styles from './style.css';
 
 import {
     loadProjectDetailData,
     loadProjectChapterData,
     setShareData,
+    resetState,
 } from './actions';
 
 
 /* eslint-disable react/prefer-stateless-function */
 class DetailPage extends React.Component {
-    componentDidMount() {
+    componentWillMount() {
         if (this.props.routeParams) {
             var id = this.props.routeParams.id;
-            this.props.dispatch(loadProjectDetailData(id || null));
+            // this.props.dispatch(loadProjectDetailData(id || null));
+            this.props.loadProjectDetail(id || null);
         }
+    }
+
+    componentWillUnmount() {
+        this.props.dispatch(resetState());
     }
 
     render() {

@@ -39,10 +39,6 @@ import BannerInfo from 'components/TagDetailPage/BannerInfo';
 import TagDesc from 'components/TagDetailPage/TagDesc';
 import ListGroup from 'components/TagDetailPage/ListGroup';
 
-import {
-    IMG_CDN_PATH
-} from 'apis.js';
-
 import styles from './styles.css';
 
 class TagDetailPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -57,8 +53,6 @@ class TagDetailPage extends React.Component { // eslint-disable-line react/prefe
         this.isAdmin = false;
         this.isEditing = false;
         this.initialized = false;
-
-        props.dispatch(resetAllState()); //重置state
     }
 
     doEdit() {
@@ -135,6 +129,8 @@ class TagDetailPage extends React.Component { // eslint-disable-line react/prefe
     }
 
     componentWillMount() {
+        this.props.dispatch(resetAllState()); //重置state
+
         if (this.props.userInfo) {
             this.userInfo = this.props.userInfo.toJS();
         }
@@ -177,7 +173,7 @@ class TagDetailPage extends React.Component { // eslint-disable-line react/prefe
 
                 // console.log('this.isAdmin:', this.isAdmin);
 
-                if (this.isAdmin) {
+                if (this.hasAdmin) {
                     this.loadRecommendationHandler();
                 }
 
@@ -191,7 +187,7 @@ class TagDetailPage extends React.Component { // eslint-disable-line react/prefe
                 } else {
                     this.topBarBtnHTML = <div onClick={this.doEdit.bind(this)}>编辑</div>
                 }
-            } else {
+            } else if (!this.isAdmin && !this.hasAdmin) {
                 if (this.detail.isFollow) {
                     this.topBarBtnHTML = <div onClick={this.cancelSubTagHandler.bind(this)}>已关注</div>;
                 } else {
@@ -219,7 +215,7 @@ class TagDetailPage extends React.Component { // eslint-disable-line react/prefe
         let infoHTML = '';
         let descHTML = '';
 
-        if (this.isAdmin) {
+        if (this.isAdmin || this.hasAdmin) {
             infoHTML = <BannerInfo {...this.props}
                                    detail={this.detail}
                                    subTagHandler={this.subTagHandler.bind(this)}
@@ -245,6 +241,7 @@ class TagDetailPage extends React.Component { // eslint-disable-line react/prefe
                         <ListGroup {...this.props}
                                    tagID={this.tagID}
                                    isAdmin={this.isAdmin}
+                                   hasAdmin={this.hasAdmin}
                                    loadRecommendationHandler={this.loadRecommendationHandler.bind(this)}
                                    loadAllHandler={this.loadAllHandler.bind(this)}/>
                     </div>

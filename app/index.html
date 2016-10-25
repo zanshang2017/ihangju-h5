@@ -24,20 +24,13 @@
     </style>
 
     <script>
-        (function (root) {
-            var docEl = document.documentElement;
-            var width = docEl.getBoundingClientRect().width;
-            root.rem = width / 20;
-            docEl.style.fontSize = root.rem + 'px';
-        })(window);
-
         /**
          * 全局配置
          */
         window.__APP_CONFIG = {
-            ver: '0.0.1',
+            ver: '0.0.8',
             guide: {
-                ver: '0.0.1', // 本地存储的版本号>=此版本号时不必展示guide页
+                ver: '0.0.8', // 本地存储的版本号>=此版本号时不必展示guide页
                 ratio: 0.5625, //图片宽高比
                 images: [
                     'https://o82zr1kfu.qnssl.com/@/image/57f863a5e4b0ea9bd4b58d80.png?imageMogr2/auto-orient/',
@@ -49,11 +42,36 @@
                 }
             }
         };
+
+        (function (root) {
+            var docEl = document.documentElement;
+            var width = docEl.getBoundingClientRect().width;
+            root.rem = width / 20;
+            docEl.style.fontSize = root.rem + 'px';
+        })(window);
     </script>
 </head>
 
 <body>
 <div id="appLoading" class="app-loading"></div>
 <div id="app"></div>
+
+<script>
+    (function () {
+        var doc = document;
+        var docEl = doc.documentElement;
+        var d = doc.createElement('DIV');
+        d.style.width = '1rem';
+        doc.body.appendChild(d);
+        var actW = parseFloat(doc.defaultView.getComputedStyle(d).width);
+        var fontSize = parseFloat(docEl.style.fontSize);
+        var ratio =  actW / fontSize;
+        doc.body.removeChild(d);
+        if(ratio > 1.05) {
+            docEl.style.fontSize = fontSize / ratio + 'px';
+        }
+    })();
+</script>
+
 </body>
 </html>

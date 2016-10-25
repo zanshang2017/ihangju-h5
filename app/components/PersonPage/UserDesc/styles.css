@@ -19,16 +19,17 @@
   -webkit-flex-direction: column;
   flex-direction: column; }
   .descWrap div.row {
-    margin: 0.26667rem auto; }
+    margin: 0.16rem auto; }
     .descWrap div.row img.avatar {
       width: 3.84rem;
       height: 3.84rem;
       border-radius: 0.21333rem; }
     .descWrap div.row .username {
+      padding-top: 0.64rem;
       font-size: 1.06667rem;
       color: #383b3d; }
     .descWrap div.row .btns {
-      padding-bottom: 0.53333rem;
+      padding-bottom: 0.69333rem;
       border-bottom: 1px solid #fff; }
     .descWrap div.row .btn {
       font-size: 0.74667rem;

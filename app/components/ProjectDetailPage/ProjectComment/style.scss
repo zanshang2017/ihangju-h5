@@ -11,11 +11,12 @@
         font-size: rem(36);
         padding: 0 0 rem(34) rem(48);
     }
+
     ul {
         margin-left: rem(48);
         li {
-            padding: rem(40) rem(48) rem(54) 0;
-            border-bottom: 1px solid $borderColor;
+            padding: rem(30) rem(48) rem(30) 0;
+            border-bottom: 1px solid $borderLightColor;
             .top {
                 overflow: hidden;
             }

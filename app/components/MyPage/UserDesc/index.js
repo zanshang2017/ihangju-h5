@@ -31,8 +31,8 @@ function UserDesc(props) {
                     onClick={props.clickHandler}
                     arrow="horizontal">
                     <div className={styles.descWrap}>
-                        <div className={styles.image}>{
-                            imageSrc ? <img src={imageSrc}/> : ''
+                        <div className={`${styles.image}`}>{
+                            imageSrc ? <img src={imageSrc}/> : <div className={styles.noAvatar}></div>
                         }
                         </div>
                         <div className={styles.info}>

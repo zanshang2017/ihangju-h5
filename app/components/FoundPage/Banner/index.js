@@ -6,24 +6,26 @@ import {
     IMG_CDN_PATH
 } from '../../../apis.js';
 
-// import { Carousel } from 'antd';
+import {
+    addImageParam,
+    IMAGE_SIZE_TYPE
+} from 'utils/util.js';
 
 import Carousel from 'antd-mobile/lib/carousel';
-// import { Carousel } from "antd-mobile";
 
 function Banner(props) {
-
     if (!props.items) {
-        //todo +loading动画
         return <div className={styles.banner}></div>;
     }
+
+    let imageSrc = '';
 
     return (
         <div className={styles.banner}>
             <Carousel>
                 {
                     props.items.map(function (item, key) {
-                        var imageSrc = IMG_CDN_PATH + item.image;
+                        imageSrc = addImageParam(IMG_CDN_PATH + item.image, IMAGE_SIZE_TYPE.BANNER_IMAGE);
                         return <div key={key} data-id={item.target} onClick={props.articleClickHandler}>
                                 <img src={imageSrc}/>
                         </div>

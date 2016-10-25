@@ -5,7 +5,7 @@
 import styles from './style.scss';
 
 import React from 'react';
-import {Link} from 'react-router';
+// import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import {createSelector} from 'reselect';
 import ReactCSSTransitionGroup from '../../../node_modules/react/lib/ReactCSSTransitionGroup';
@@ -21,6 +21,12 @@ import {Env} from 'utils/env.js';
 import {
     compareVersion
 } from 'utils/util.js'
+
+import {
+    jsBridgeEvent
+} from 'utils/bridge.js'
+
+import signals from './signals';
 
 import {
     loadLocalStorageUserInfo
@@ -76,33 +82,81 @@ class App extends React.Component {
 
         if (Env.debug) {
             openLog();
+        } else {
+            window.debugLog = function () {
+            };
         }
 
+        this.addSignalHandler();
+
         console.log('App DidMount');
+
+        // alert(window.devicePixelRatio);
+        // alert(document.documentElement.offsetWidth);
+        // setInterval(function(){
+        //     alert(document.documentElement.style.fontSize);
+        // }, 3000);
+
+
+        // document.body.addEventListener('touchstart', function(){
+        //     this.getElementsByClassName('mainContent')[0].classList.add('showScrollbar');
+        // });
+        //
+        // document.body.addEventListener('touchend', function(){
+        //     setTimeout(function(){
+        //         this.getElementsByClassName('mainContent')[0].classList.remove('showScrollbar');
+        //     }.bind(this), 3000);
+        //
+        // });
 
         //模拟hover
         // (function () {
         //     var hoveredElement = [];
         //
-            // document.body.addEventListener('touchstart', function (e) {
-            //     var node = e.target;
-            //     if (node.nodeType == 1 && node.nodeName.toLowerCase() == 'a') {
-            //         node.classList.add('hover');
-            //         hoveredElement.push(node);
-            //         e.stopPropagation();
-            //     }
-            // });
-            //
-            // document.body.addEventListener('touchend', function (e) {
-            //     if (hoveredElement.length > 0) {
-            //         hoveredElement.forEach(function (v, k) {
-            //             v.classList.remove('hover');
-            //         });
-            //     }
-            //     hoveredElement.length = 0;
-            // }, true);
+        // document.body.addEventListener('touchstart', function (e) {
+        //     var node = e.target;
+        //     if (node.nodeType == 1 && node.nodeName.toLowerCase() == 'a') {
+        //         node.classList.add('hover');
+        //         hoveredElement.push(node);
+        //         e.stopPropagation();
+        //     }
+        // });
+        //
+        // document.body.addEventListener('touchend', function (e) {
+        //     if (hoveredElement.length > 0) {
+        //         hoveredElement.forEach(function (v, k) {
+        //             v.classList.remove('hover');
+        //         });
+        //     }
+        //     hoveredElement.length = 0;
+        // }, true);
         //
         // })();
+    }
+
+    addSignalHandler() {
+        var that = this;
+
+        jsBridgeEvent.onPushMsgComment.add((msg) => {
+            let url = `/notification/1`;
+            that.context.router.push(url);
+        });
+
+        jsBridgeEvent.onPushMsgLike.add((msg) => {
+            let url = `/notification/2`;
+            that.context.router.push(url);
+        });
+
+        //进入私信详情页
+        jsBridgeEvent.onPushMsgLetter.add((msg) => {
+            let url = `/dialogue/${msg.targetid || ''}`;
+            that.context.router.push(url);
+        });
+
+        signals.onUnLogin.add(()=> {
+            that.context.router.replace('/login');
+        });
+
     }
 
     render() {
@@ -157,7 +211,8 @@ function openLog() {
     });
 
     window.debugLog = function (text) {
-        nCont.innerHTML = text;
+        nCont.innerHTML += text + '<br/>';
+        nCont.scrollTop = nCont.scrollHeight;
     };
 
     // setInterval(function () {

@@ -37,7 +37,7 @@ import ScanPane from 'components/CreatePage/ScanPane';
 import NotePane from 'components/CreatePage/NotePane';
 import NoteEditor from 'components/CreatePage/NoteEditor';
 
-// import styles from './styles.scss';
+import styles from './styles.scss';
 
 import Tabs from 'antd-mobile/lib/tabs';
 
@@ -49,18 +49,6 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
         super(props);
         this.nMainContent = null;
         this.J_EditorWrap = null;
-        this.userId = '';
-    }
-
-    componentWillMount() {
-        var userInfo = this.props.userInfo;
-
-        if (!userInfo) {
-            this.routeHandler('/login?redirect=' + encodeURIComponent('/') + 'create');
-            // this.routeHandler('/login');
-        } else {
-            this.userId = userInfo.toJS().id;
-        }
     }
 
     componentDidMount() {
@@ -102,11 +90,13 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
     }
 
     routeHandler(url) {
-        this.context.router.replace(url);
+        this.context.router.push(url);
     }
 
     render() {
-        let note = null;
+        var userInfo = this.props.userInfo;
+        var userId = '';
+        var note = null;
 
         if (this.props.currentNote) {
             note = this.props.currentNote.toJS();
@@ -114,13 +104,20 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
             note = null;
         }
 
+        if (!userInfo) {
+            this.routeHandler('/login?redirect=' + encodeURIComponent('/') + 'create');
+            // this.routeHandler('/login');
+        } else {
+            userId = userInfo.toJS().id;
+        }
+
         return (
             <div className="pageInner">
-                <div className="mainContent">
-                    <div ref="J_MainContentWrap">
+                <div className={`createPage mainContent`}>
+                    <div ref="J_MainContentWrap" className="">
                         <Tabs defaultActiveKey="1">
                             <TabPane tab="扫码创作" key="1">
-                                <ScanPane userId={this.userId}/>
+                                <ScanPane userId={userId}/>
                             </TabPane>
                             <TabPane tab="灵感记录" key="2">
                                 <NotePane {...this.props} openNote={this.openNoteHandler.bind(this)}/>

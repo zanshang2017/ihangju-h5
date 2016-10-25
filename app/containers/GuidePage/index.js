@@ -39,10 +39,9 @@ class GuidePage extends React.Component {
 
         if (to === last) {
             that.refs.J_EnterBtn.classList.remove('hide');
-            setTimeout(function(){
+            setTimeout(function () {
                 that.refs.J_EnterBtn.classList.remove('transparent');
             }, 0);
-
         }
     }
 
@@ -68,6 +67,10 @@ class GuidePage extends React.Component {
             }
         }
 
+        var bgStyle = {
+            backgroundColor: this.guideStyle.background
+        };
+
         const settings = {
             dots: true,
             autoplay: false,
@@ -79,7 +82,7 @@ class GuidePage extends React.Component {
 
         return (
             <div className="pageInner">
-                <div className="mainContent" style={that.guideStyle}>
+                <div className="mainContent">
                     <div className={styles.guideImage}>
                         <Carousel {...settings}>
                             {
@@ -91,7 +94,9 @@ class GuidePage extends React.Component {
                                         align="center"
                                         className="flex-container-justify"
                                     >
-                                        <img src={imageSrc} style={imgStyle}/>
+                                        <div style={bgStyle}>
+                                            <img src={imageSrc} style={imgStyle}/>
+                                        </div>
                                     </Flex>
                                 })
                             }

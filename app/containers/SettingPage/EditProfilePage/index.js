@@ -19,6 +19,11 @@ import {
     updateUserInfo,
 } from 'containers/App/actions';
 
+import {
+    addImageParam,
+    IMAGE_SIZE_TYPE,
+} from 'utils/util.js';
+
 import ImageUpload from 'components/common/ImageUpload';
 
 import TopBar from 'components/common/TopBar';
@@ -41,6 +46,10 @@ class EditProfilePage extends React.Component { // eslint-disable-line react/pre
 
     componentDidMount() {
         console.warn('EditProfilePage DidMount');
+    }
+
+    componentWillUnmount() {
+        this.refs.J_ImageUpload.hideSheet();
     }
 
     avatarClickHandler() {
@@ -66,7 +75,7 @@ class EditProfilePage extends React.Component { // eslint-disable-line react/pre
 
     render() {
         let userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
-        let avatarUrl = IMG_CDN_PATH + userInfo.avatar;
+        let avatarUrl = addImageParam(IMG_CDN_PATH + userInfo.avatar, IMAGE_SIZE_TYPE.AVATAR);
         this.id = userInfo.id;
 
         return (

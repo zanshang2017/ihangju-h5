@@ -470,6 +470,7 @@ const ANSWER_API = `//${api_host}/answer`;
  *
  * restful:
  *  [GET] /${letterGroupId}?size=100000 获取指定私信组的私信 //todo 加分页
+ *  [PUT] body: userid=${对方userid} 增加私信组,返回私信组id
  *  [PUT] /${letterGroupId} 增加私信
  *        body: content=${私信内容}
  */

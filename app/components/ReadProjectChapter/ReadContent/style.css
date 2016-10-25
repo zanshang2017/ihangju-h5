@@ -1,9 +1,8 @@
 @import url(../../../common/common.css);
 .chpCon {
-  position: absolute;
   width: 100%;
   min-height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch; }
   .chpCon .authorMes {
     width: 100%;
@@ -12,6 +11,7 @@
     line-height: 2.82667rem; }
     .chpCon .authorMes img {
       display: inline-block;
+      vertical-align: middle;
       width: 1.86667rem;
       height: 1.86667rem;
       border-radius: 1.86667rem;
@@ -40,7 +40,7 @@
         width: 100% !important; }
     .chpCon .contentWrap .contentTitle {
       max-width: 600px;
-      margin: 10px auto 0;
+      margin: 20px auto 0;
       overflow: hidden;
       font-size: 21px;
       line-height: 30px;
@@ -68,12 +68,11 @@
     color: #39bcc8; }
 
 .bottomBar {
-  position: fixed;
-  bottom: 0;
   width: 100%;
   z-index: 99999;
   background-color: #fff;
-  height: 2.82667rem; }
+  height: 2.82667rem;
+  border-top: 1px solid #dbd7d7; }
   .bottomBar ul {
     float: right;
     margin-right: 1.17333rem;
@@ -100,6 +99,7 @@
         display: inline-block;
         position: relative;
         top: -0.4rem;
-        left: 0.26667rem; }
+        left: 0.26667rem;
+        color: #383b3d; }
 
 /*# sourceMappingURL=style.css.map */

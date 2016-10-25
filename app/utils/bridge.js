@@ -7,6 +7,8 @@ import {
     locStorage
 } from './util';
 
+import {signalFactory} from 'libs/signal';
+
 var IOS = 'ios',
     ANDROID = 'android';
 
@@ -134,13 +136,29 @@ Bridge.prototype = {
             });
         },
 
+        copyToClipboard: function (text, fn) {
+            var that = this.superthat;
+            that.pushBack('sbridge:', 'clipboard.Copy', {
+                callback: fn || that.noop,
+                text: text
+            });
+        },
+
+        paste: function (fn) {
+            var that = this.superthat;
+            that.pushBack('sbridge:', 'clipboard.Paste', {
+                callback: fn || that.noop,
+            });
+        },
+
         //sbridge://Camera/?callback=cb
         quit: function (fn) {
             var that = this.superthat;
             that.pushBack('sbridge:', 'Quit', {
                 callback: fn || that.noop
             });
-        }
+        },
+
     },
 
     share: {
@@ -227,6 +245,12 @@ var bridge = new Bridge();
 export default bridge;
 
 
+var jsBridgeEvent = {
+    onPushMsgComment: signalFactory(),
+    onPushMsgLike: signalFactory(),
+    onPushMsgLetter: signalFactory(),
+};
+
 /************************************
  * Expose Interface                 *
  ************************************/
@@ -238,9 +262,9 @@ export default bridge;
 
     var jsbridge = {
         /**
-         * 向服务端注册本机
+         * 向消息推送服务端注册本机
          *
-         * 此方法只是把设备号保存起来,设备号在用户登录时提交后台,退出登录时通知后台清除。
+         * 此方法只是把设备号保存起来。设备号应在用户登录时提交后台,退出登录时通知后台清除。
          * @param devicetoken
          */
         registerPushMsg: function (devicetoken) {
@@ -251,13 +275,44 @@ export default bridge;
 
         /**
          * 处理传递来的消息推送
-         * @param obj
+         * @param {String} objStr {"type": '1', "targetid": 'xxx'}
+         *  type字段: comment: 2,  like: 3,  letter: 4
+         *
          */
-        handlePushMsg: function (obj) {
-            console.log('pushMsg', obj);
+        handlePushMsg: function (objStr) {
+            // alert('接受到推送消息!' + objStr);
+            let msgObj = JSON.parse(objStr);
+
+            // http://h5.dev.ihangju.com/#/dialoguelist/56ef8c8ce4b0bf20e0cb7ebc:571dab71e4b0d50d21e7a9fc?_k=xun4zo
+
+            switch (msgObj.type) {
+                case '2' :
+                    jsBridgeEvent.onPushMsgComment.dispatch(msgObj);
+                    break;
+
+                case '3' :
+                    jsBridgeEvent.onPushMsgLike.dispatch(msgObj);
+                    break;
+
+                case '4' :
+                    jsBridgeEvent.onPushMsgLetter.dispatch(msgObj);
+                    break;
+
+                default:
+                    break;
+            }
+
+            console.log('pushMsg', msgObj);
         }
     };
 
     win.jsbridge = jsbridge;
 
 })(window);
+
+
+export {
+    jsBridgeEvent
+};
+
+

@@ -149,7 +149,7 @@ class ListGroup extends React.Component {
 
         let mainTag = '';
 
-        if (this.props.isAdmin) {
+        if (this.props.hasAdmin) {
             mainTag =
                 <Tabs ref="J_Tabs" defaultActiveKey="1" onChange={this.tabChangeHandler.bind(this)}>
                     <TabPane tab="推荐作品" key={DATA_TYPE.RECOMMENDATION}>
@@ -173,7 +173,7 @@ class ListGroup extends React.Component {
         }
 
         return (
-            <div ref="J_TagDetailPageListGroupWrap" className="tagDetailPageListGroup">
+            <div ref="J_TagDetailPageListGroupWrap" className={styles.tagDetailPageListGroup}>
                 {mainTag}
             </div>
         );

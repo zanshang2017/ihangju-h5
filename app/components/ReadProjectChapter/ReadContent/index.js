@@ -15,11 +15,30 @@ import {
     COLLECTION_API,
 } from '../../../apis.js';
 
+import {
+    addImageParam,
+    IMAGE_SIZE_TYPE,
+} from 'utils/util'
+
+import Toast from 'antd-mobile/lib/toast';
+
+import {Link} from 'react-router';
+
 var x = null;
 var y = null;
-var isMoved = true;
+
+const AREA = {
+    HEAD: 'head',
+    FOOT: 'foot'
+};
+var moveArea = '';
+
+const TRIGGER_PAGE_DIST = 20;// 滑动距离
+
 var projectId = null;
 var chapterId = null;
+
+var superThis = null;
 
 class ReadContent extends React.Component {
     constructor(props) {
@@ -45,105 +64,263 @@ class ReadContent extends React.Component {
 
     componentDidMount() {
         var that = this;
-        var touchDom = that.refs.nFollowListWrap;
-        touchDom.addEventListener("touchstart", that.tStart.bind(that), false);
-        touchDom.addEventListener("touchmove", that.tMove.bind(that), false);
-        touchDom.addEventListener("touchend", that.tEnd.bind(that), false);
-    }
+        superThis = this;
 
-    tStart(event) {
-        if (isMoved) {
-            var touches = event.targetTouches;
-            if (touches.length == 1) {
-                x = touches[0].pageX;
-                y = touches[0].pageY;
+        this.nWrap = this.refs.J_ChapterWrap;
+        this.nCont = this.refs.J_ChapterCont;
+        this.wrapH = this.nWrap.getBoundingClientRect().height;
+        this.wrapSH = this.nWrap.scrollHeight;
+        this.isTouchTop = true;
+        this.isTouchBottom = false;
+        this.isMoveTop = false;
+        this.isMoveBottom = false;
+        this.touchStartY = 0;
+        this.isAddListener = false;
+
+        console.log(this.wrapH, this.wrapSH);
+
+        this.nWrap.addEventListener('scroll', function (e) {
+            console.log(that.nWrap.scrollTop);
+            that.isTouchTop = (that.nWrap.scrollTop == 0)
+            that.isTouchBottom = that.nWrap.scrollTop + that.wrapH >= that.wrapSH - 10;
+
+            if (that.isTouchTop || that.isTouchBottom) {
+                debugLog('touch!');
+                if (!that.isAddListener) {
+                    that.nWrap.addEventListener('touchmove', that.touchmoveHandler);
+                    that.isAddListener = true;
+                }
+
             }
-            isMoved = false;
-        }
+        });
+
+        this.nWrap.addEventListener('touchstart', function (e) {
+            that.touchStartY = e.touches[0].pageY;
+            debugLog('touchStartY:' + that.touchStartY);
+        });
+
+        // var nwrap = that.refs.J_ChapterCont;
+        // nwrap.addEventListener("touchstart", that.tStart.bind(that), false);
+        // nwrap.addEventListener("touchmove", that.tMove.bind(that), false);
+        // nwrap.addEventListener("touchend", that.tEnd.bind(that), false);
     }
 
-    tMove(event) {
-        event.preventDefault();
-        if (!isMoved) {
-            var touches = event.targetTouches;
-            let _chapterContent = this.props.chapterContent.toJS();
-            let _projectInfo = this.props.projectInfo.toJS();
+    touchmoveHandler(e) {
+        let that = superThis;
+        let dist = that.touchStartY - e.touches[0].pageY;
+        debugLog('dist:' + dist + ' touchStartY:' + that.touchStartY + ' pageY:' + e.touches[0].pageY);
+
+        that.isMoveTop = dist < 0 && dist < -TRIGGER_PAGE_DIST;
+        that.isMoveBottom = dist > 0 && dist > TRIGGER_PAGE_DIST;
+
+        if (that.isMoveTop || that.isMoveBottom) {
+            let _chapterContent = that.props.chapterContent.toJS();
+            let _projectInfo = that.props.projectInfo.toJS();
             let locStorageProjectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
             let chapterIndex = null;
-            // let projectInfoKey = null;
-            //  _projectInfo.map(function(item, key) {
-            // 	if(item.pid == projectId){
-            // 		projectInfoKey = key;
-            // 	}
-            // })
 
-            var nwrap = this.refs.nFollowListWrap;
-            var nwrapH = nwrap.getBoundingClientRect().height;
-            var bodyH = document.body.clientHeight;
-            var bodyS = document.body.scrollTop
-            if (touches.length == 1) {
-                var x1 = touches[0].pageX,
-                    y1 = touches[0].pageY;
-                if (((y1 + 40) < y)) {
-                    ;
-                    isMoved = true;
-                    if (bodyH + bodyS >= nwrapH) {
-                        var that = this;
-                        _chapterContent.chapters.map(function (item, key) {
-                            if (item.id == chapterId) {
-                                if (key > _chapterContent.chapters.length) {
-                                    chapterIndex = null;
-                                    alert("没有下一章了");
-                                    return;
-                                }
-                                chapterIndex = key + 1;
-                                return chapterIndex;
-                            }
-                        })
-                        if (chapterIndex) {
-                            chapterId = _chapterContent.chapters[chapterIndex].id;
-                            locStorageProjectInfo[projectId].push(chapterId);
-                            that.props.setProjectInfoStatus(_projectInfo);
-                            locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
+            if (that.isTouchTop && that.isMoveTop) {
+                alert('上一页');
+                that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
+                that.isAddListener = false;
+
+                for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
+                    let item = _chapterContent.chapters[key];
+
+                    if (item.id == chapterId) {
+                        if (key == 0) {
+                            chapterIndex = null;
+                            Toast.info("没有上一章节了", 1.5);
+                            return;
                         }
-
-
+                        chapterIndex = key - 1;
+                        break;
                     }
                 }
-                if (((y1 - 40) > y)) {
-                    isMoved = true;
-                    if (document.body.scrollTop === 0) {
-                        alert("下滑");
-                        var that = this;
-                        _chapterContent.chapters.map(function (item, key) {
-                            if (item.id == chapterId) {
-                                if (key < 1) {
-                                    chapterIndex = null;
-                                    // alert("没有上一章节了");
-                                    return;
-                                }
-                                chapterIndex = key - 1;
-                                return chapterIndex;
-                            }
-                        })
-                        if (chapterIndex || chapterIndex === 0) {
-                            chapterId = _chapterContent.chapters[chapterIndex].id;
-                            locStorageProjectInfo[projectId].push(chapterId);
-                            that.props.setProjectInfoStatus(_projectInfo);
-                            locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
-                        }
 
-                    }
+                if (chapterIndex || chapterIndex === 0) {
+                    chapterId = _chapterContent.chapters[chapterIndex].id;
+                    locStorageProjectInfo[projectId].push(chapterId);
+                    that.props.setProjectInfoStatus(_projectInfo);
+                    locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
 
-
+                    that.nWrap.scrollTop = 0;
                 }
             }
+
+            if (that.isTouchBottom && that.isMoveBottom) {
+                alert('下一页');
+                that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
+                that.isAddListener = false;
+
+                for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
+                    let item = _chapterContent.chapters[key];
+
+                    if (item.id == chapterId) {
+                        if (key >= _chapterContent.chapters.length - 1) {
+                            chapterIndex = null;
+                            Toast.info("没有下一章了", 1.5);
+                            return;
+                        }
+                        chapterIndex = key + 1;
+                        break;
+                    }
+                }
+
+                if (chapterIndex) {
+                    console.log(chapterIndex);
+                    chapterId = _chapterContent.chapters[chapterIndex].id;
+                    locStorageProjectInfo[projectId].push(chapterId);
+                    that.props.setProjectInfoStatus(_projectInfo);
+                    locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
+
+                    that.nWrap.scrollTop = 0;
+                }
+
+
+            }
         }
+
+        debugLog(e.touches[0].pageY + ":" + e.touches[0].clientY);
+        e.preventDefault();
     }
 
-    tEnd(event) {
-
-    }
+    // tStart(event) {
+    //
+    //     debugLog('Start <<<<<<<<<<<');
+    //     var nwrap = this.refs.J_ChapterWrap;
+    //     var ncont = this.refs.J_ChapterCont;
+    //     var ncontH = ncont.getBoundingClientRect().height;
+    //     var nwrapH = nwrap.getBoundingClientRect().height;
+    //     var touches = event.targetTouches;
+    //
+    //     if (touches.length == 1) {
+    //         x = touches[0].pageX;
+    //         y = touches[0].pageY;
+    //
+    //         // debugLog('start:' + y);
+    //         console.log((nwrap.scrollTop + nwrapH) + ":" + ncontH);
+    //         // debugLog(nwrap.scrollTop + '==' + (nwrap.scrollHeight - nwrapH) + '(' +nwrap.scrollHeight + '-' + nwrapH + ')');
+    //
+    //         if (nwrap.scrollTop == 0) {
+    //             moveArea = AREA.HEAD;
+    //         } else if ((nwrap.scrollTop + nwrapH) + 5 >= ncontH) {
+    //             // } else if (Math.abs(nwrap.scrollHeight - nwrap.scrollTop - nwrapH) < 5) {
+    //             moveArea = AREA.FOOT;
+    //         } else {
+    //             moveArea = '';
+    //         }
+    //     } else {
+    //         moveArea = '';
+    //     }
+    //
+    //     debugLog('moveArea:' + moveArea);
+    //     console.log('moveArea:' + moveArea);
+    // }
+    //
+    // tMove(event) {
+    //     if (moveArea) {
+    //         event.preventDefault();
+    //         debugLog('move');
+    //
+    //         var that = this;
+    //         var touches = event.targetTouches;
+    //
+    //         if (touches.length == 1) {
+    //             var y1 = touches[0].pageY;
+    //             var dist = y - y1;
+    //             var nwrap = this.refs.J_ChapterWrap;
+    //             var nwrapH = nwrap.getBoundingClientRect().height;
+    //             var key = 0;
+    //             var len = 0;
+    //
+    //             debugLog('move:' + dist);
+    //             // console.log(dist);
+    //
+    //             var toNext = dist > 0 && dist > TRIGGER_PAGE_DIST && moveArea === AREA.FOOT,
+    //                 toPrevious = dist < 0 && dist < -TRIGGER_PAGE_DIST && moveArea === AREA.HEAD;
+    //
+    //             if (toNext || toPrevious) {
+    //
+    //                 toNext && alert('toNext!');
+    //                 toPrevious && alert('toPrevious!');
+    //
+    //                 moveArea = '';
+    //
+    //                 console.log('in moveY:', y - y1);
+    //                 console.log(nwrap.scrollTop + ":" + nwrapH);
+    //
+    //                 let _chapterContent = this.props.chapterContent.toJS();
+    //                 let _projectInfo = this.props.projectInfo.toJS();
+    //                 let locStorageProjectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
+    //                 let chapterIndex = null;
+    //
+    //                 // let projectInfoKey = null;
+    //                 //  _projectInfo.map(function(item, key) {
+    //                 // 	if(item.pid == projectId){
+    //                 // 		projectInfoKey = key;
+    //                 // 	}
+    //                 // })
+    //
+    //                 if (toNext) {
+    //                     for (key = 0, len = _chapterContent.chapters.length; key < len; key++) {
+    //                         let item = _chapterContent.chapters[key];
+    //
+    //                         if (item.id == chapterId) {
+    //                             if (key >= _chapterContent.chapters.length - 1) {
+    //                                 chapterIndex = null;
+    //                                 Toast.info("没有下一章了", 1.5);
+    //                                 return;
+    //                             }
+    //                             chapterIndex = key + 1;
+    //                             break;
+    //                         }
+    //                     }
+    //
+    //                     if (chapterIndex) {
+    //                         console.log(chapterIndex);
+    //                         chapterId = _chapterContent.chapters[chapterIndex].id;
+    //                         locStorageProjectInfo[projectId].push(chapterId);
+    //                         that.props.setProjectInfoStatus(_projectInfo);
+    //                         locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
+    //
+    //                         nwrap.scrollTop = 0;
+    //                     }
+    //                 }
+    //
+    //                 if (toPrevious) {
+    //                     for (key = 0, len = _chapterContent.chapters.length; key < len; key++) {
+    //                         let item = _chapterContent.chapters[key];
+    //
+    //                         if (item.id == chapterId) {
+    //                             if (key == 0) {
+    //                                 chapterIndex = null;
+    //                                 Toast.info("没有上一章节了", 1.5);
+    //                                 return;
+    //                             }
+    //                             chapterIndex = key - 1;
+    //                             break;
+    //                         }
+    //                     }
+    //
+    //                     if (chapterIndex || chapterIndex === 0) {
+    //                         chapterId = _chapterContent.chapters[chapterIndex].id;
+    //                         locStorageProjectInfo[projectId].push(chapterId);
+    //                         that.props.setProjectInfoStatus(_projectInfo);
+    //                         locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
+    //
+    //                         nwrap.scrollTop = 0;
+    //                     }
+    //                 }
+    //             }
+    //
+    //         }
+    //     }
+    // }
+    //
+    // tEnd(event) {
+    //     debugLog('End >>>>>>>>>>>>>');
+    // }
 
     showReadTopbar() {
         let _redTopdom = this.refs._readTopbar;
@@ -197,12 +374,10 @@ class ReadContent extends React.Component {
         var props = this.props;
         var _chapterContent = props.chapterContent.toJS();
         //var projectInfo =  props.projectInfo.toJS();
-        let authorAvatar = IMG_CDN_PATH + _chapterContent.authorAvatar;
+        let authorAvatar = addImageParam(IMG_CDN_PATH + _chapterContent.authorAvatar, IMAGE_SIZE_TYPE.AVATAR_SMALL);
         let modifyTime = convertDate(_chapterContent.modifyTime)
         var chapterIndex = null;
         try {
-
-
             if (projectId && chapterId && _chapterContent.chapters && _chapterContent.chapters.length > 0) {
                 _chapterContent.chapters.map(function (item, key) {
                     if (item.id == chapterId) {
@@ -221,11 +396,11 @@ class ReadContent extends React.Component {
                     let _authorMesdom = this.refs._authorMes;
                     if (chapterIndex === 0) {
                         if (_authorMesdom) {
-                            _authorMesdom.classList.remove('hidden');
+                            _authorMesdom.classList.remove('hide');
                         }
                     } else {
                         if (_authorMesdom) {
-                            _authorMesdom.classList.add('hidden');
+                            _authorMesdom.classList.add('hide');
                         }
                     }
                     this.chapterList = _chapterContent.chapters[chapterIndex].content || '';
@@ -261,9 +436,10 @@ class ReadContent extends React.Component {
                 </div>
                 <ChapterList ref="J_ChapterList" items={this.props.chapterContent}/>
 
-                <div className="mainContent">
-                    <div ref="nFollowListWrap" className={styles.chpCon} onClick={this.showReadTopbar.bind(this)}>
-                        <div ref="_authorMes" className={`${styles.authorMes} hidden`}>
+                <div id="J_ChapterWrap" ref="J_ChapterWrap" className="mainContent">
+                    <div id="J_ChapterCont" ref="J_ChapterCont" className={styles.chpCon}
+                         onClick={this.showReadTopbar.bind(this)}>
+                        <div ref="_authorMes" className={`${styles.authorMes} hide`}>
                             <img src={authorAvatar}/>
                             <span className={styles.left}>{_chapterContent.authorUserName}</span>
                             <span className={styles.right}>{modifyTime}更新</span>
@@ -279,7 +455,8 @@ class ReadContent extends React.Component {
                 </div>
                 <div ref="_readBottombar" className={`${styles.bottomBar} hide`}>
                     <ul>
-                        <li><i className={styles.i1}></i><span>8</span></li>
+                        <li><Link to={`/comments/${projectId}#fliproute`}><i
+                            className={styles.i1}></i><span>{_chapterContent.commentNumber || 0}</span></Link></li>
                         <li><i ref="_readLike" onClick={this.likeHeart.bind(this)}>
                             {likeClass}
                         </i></li>

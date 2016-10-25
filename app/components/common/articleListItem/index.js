@@ -44,7 +44,7 @@ function ArticleListItem(props) {
                     <span className="like"><i className="iconfont icon-hearto"></i> {item.likeNumber}</span>
                 </div>
                 <div className="fr">
-                    {item.browsNumber}人已阅读
+                    {item.browsNumber || 0}人已阅读
                 </div>
             </div>
         </div>

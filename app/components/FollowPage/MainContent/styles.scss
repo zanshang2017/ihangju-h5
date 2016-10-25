@@ -3,8 +3,9 @@
 @import "../../../common/_util.scss";
 
 .followPageMainContent {
-    overflow-y:auto;
     display:inline-block;
     width: 100%;
+    min-height: 100%;
+    background: $gapBg;
 }
 

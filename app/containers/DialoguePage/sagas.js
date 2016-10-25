@@ -3,6 +3,7 @@ import {take, call, put, select} from 'redux-saga/effects';
 import {
     LOAD_DIALOGUE_DATA,
     SEND_DIALOGUE_DATA,
+    GET_LETTERGROUP_ID,
 } from './constants';
 
 import {
@@ -10,6 +11,8 @@ import {
     loadDialogueDataError,
     sendDialogueDataSuccess,
     sendDialogueDataError,
+    getLetterGroupIdSuccess,
+    getLetterGroupIdError,
 } from './actions'
 
 import {
@@ -20,9 +23,12 @@ import signals from './signals';
 
 import request from 'utils/request';
 
+import Toast from 'antd-mobile/lib/toast';
+
 export default [
     getDialogueData,
     putDialogueData,
+    getUserGroupData,
 ];
 
 export function* getDialogueData() {
@@ -83,8 +89,42 @@ export function* putDialogueData() {
             yield put(sendDialogueDataSuccess(dialogueData));
             signals.sendDialogueSuccess.dispatch();
         } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
+            console.log(lists.err); // eslint-disable-line no-console
             yield put(sendDialogueDataError(lists.err));
+            Toast.fail('发送失败');
+        }
+    }
+}
+
+
+export function* getUserGroupData() {
+
+    let action = null;
+
+    while (action = yield take(GET_LETTERGROUP_ID)) {
+        let userId = action.payload.userId;
+
+        let body = `userid=${userId}`;
+        let url = DIALOGUE_API;
+
+        const lists = yield call(request, url, {
+            method: 'PUT',
+            body: body,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-API-Version': 'v1.1'
+            },
+            credentials: 'include'
+        });
+
+        if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
+            yield put(getLetterGroupIdSuccess());
+            signals.getLetterGroupIdSuccess.dispatch(lists.data.result.letterId);
+        } else {
+            console.log(lists.err); // eslint-disable-line no-console
+            yield put(getLetterGroupIdError(lists.err));
+            Toast.fail('数据获取失败');
         }
     }
 }

@@ -18,6 +18,7 @@ import {
 import {
     loadDialogueData,
     sendDialogueData,
+    getLetterGroupId,
 } from './actions';
 
 import _ from 'underscore';
@@ -68,27 +69,26 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
         let that = this;
         let userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
 
-        //todo 无登录信息重新登录
-
         this.dialogueData['sendUser'] = userInfo.id;
         this.dialogueData['sendUserName'] = userInfo.nickName;
         this.dialogueData['sendUserAvatar'] = userInfo.avatar;
 
         if (this.props.routeParams) {
-            if (this.letterGroupId = this.props.routeParams.id) {
+            let paramId = this.props.routeParams.id;
 
-                (function _load() {
-                    loadData();
-                    that.timer = setTimeout(function () {
-                        _load();
-                    }, 10 * 1000);
-                })();
+            if (~paramId.indexOf(':')) { //有":"代表为groupId,否则为userId,需要请求服务端获取
+                this.letterGroupId = paramId;
+                this.loadDialogueList();
+            } else { //否则是userId,须从后台获取groupId
+                this.props.dispatch(getLetterGroupId(paramId));
+
+                signals.getLetterGroupIdSuccess.add((letterGroupId)=> {
+                    that.letterGroupId = letterGroupId;
+                    that.loadDialogueList();
+                });
             }
         }
 
-        function loadData() {
-            that.props.dispatch(loadDialogueData(that.letterGroupId));
-        }
     }
 
     componentDidMount() {
@@ -110,6 +110,7 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
         clearTimeout(this.timer);
         signals.sendDialogueSuccess.removeAll();
         signals.loadDialogueSuccess.removeAll();
+        signals.getLetterGroupIdSuccess.removeAll();
 
         for (var k in this.componentMethod) {
             if (this.componentMethod.hasOwnProperty(k)) {
@@ -119,6 +120,21 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
     }
 
     componentDidUpdate() {
+    }
+
+    loadDialogueList() {
+        let that = this;
+
+        (function _load() {
+            loadData();
+            that.timer = setTimeout(function () {
+                _load();
+            }, 10 * 1000);
+        })();
+
+        function loadData() {
+            that.props.dispatch(loadDialogueData(that.letterGroupId));
+        }
     }
 
     scrollToBottom() {
@@ -159,7 +175,9 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
                 </div>
 
                 <InputBar bindingMethod={{context: this.componentMethod, methodName: ['clear']}}
-                          submitHandler={this.submitHandler.bind(this)}></InputBar>
+                          submitHandler={this.submitHandler.bind(this)}
+                          placeholder="请输入私信内容"
+                ></InputBar>
             </div>
         );
     }

@@ -1,19 +1,27 @@
 import React from 'react';
 import {Link} from 'react-router';
 import style from './style.css';
+
 import {
     IMG_CDN_PATH
 } from '../../../apis.js';
+
+import {
+    addImageParam,
+    IMAGE_SIZE_TYPE,
+} from 'utils/util.js';
+
 import {
     locStorage
 } from 'utils/util';
+
 class ProjectTag extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        let readImgsrc = IMG_CDN_PATH + '/image/57b2ed2de4b0f816612df7d7.png';
+        let readImgsrc = addImageParam(IMG_CDN_PATH + '/image/57b2ed2de4b0f816612df7d7.png');
         let tagList = '';
         var _result = this.props.projectDetail.toJS();
         var cid = null;
@@ -53,8 +61,9 @@ class ProjectTag extends React.Component {
                 <ul>
                     {tagList}
                 </ul>
-                <Link to={`/readProjectChapter/${_result.projectId}/${cid}`}><img className={style.readImg}
-                                                                                  src={readImgsrc}/></Link>
+                <Link to={`/readProjectChapter/${_result.projectId}/${cid}`}>
+                    <img className={style.readImg} src={readImgsrc}/>
+                </Link>
             </div>
         )
     }

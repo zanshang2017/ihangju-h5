@@ -1,12 +1,10 @@
 import React from 'react';
 
-import styles from './styles.css';
-
 import CatelogList from 'components/common/CatelogList';
 
-import Tabs from 'antd-mobile/lib/tabs';
-
-const TabPane = Tabs.TabPane;
+// import styles from './styles.css';
+// import Tabs from 'antd-mobile/lib/tabs';
+// const TabPane = Tabs.TabPane;
 
 class MainContent extends React.Component {
 

@@ -36,6 +36,11 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
 
     componentDidMount() {
         console.log('FoundPage DidMount');
+        // var j_span = this.refs.J_Span;
+        // setTimeout(function(){
+        //     alert(j_span.getBoundingClientRect().width);
+        // }, 2000);
+        // debugger;
     }
 
     loadDiscoveries() {

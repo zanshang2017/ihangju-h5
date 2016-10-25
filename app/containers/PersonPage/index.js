@@ -99,9 +99,8 @@ class PersonPage extends React.Component { // eslint-disable-line react/prefer-s
     }
 
     letterClickHandler() {
-        let myId = this.props.userInfo.toJS().id;
         let userId = this.props.personInfo.toJS().userId;
-        this.context.router.push(`/dialogue/${myId}:${userId}`);
+        this.context.router.push(`/dialogue/${userId}`);
     }
 
     render() {

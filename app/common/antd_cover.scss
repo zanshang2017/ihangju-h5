@@ -11,12 +11,16 @@
     /** Tab组件 **/
     .am-tab {
 
+        .am-tab-content {
+            padding: 0 0 12px !important;
+        }
+
         .am-tab-bar {
             margin-bottom: 0 !important;
         }
 
         .am-tab-nav-container {
-            font-size: rem(32);
+            font-size: rem(32) !important;
         }
 
         //底部灰线
@@ -33,7 +37,7 @@
 
         //未选中时文字色
         .am-tab-tab-inner {
-            padding: 18px 0;
+            padding: 18px 0 !important;
             color: $weakerTitleColor !important;
         }
 
@@ -71,7 +75,7 @@
             }
 
             .am-list-line {
-                padding: 7px 16px 7px 0;
+                padding: 7px 16px 7px 0 !important;
 
                 .am-list-arrow-horizontal:before {
                     margin-top: 3px !important;
@@ -91,11 +95,24 @@
 
     /** NoticeBar **/
     .am-top-notice {
-        background-color: #f0fafb;
-        color: #3a3a3a;
+        background-color: #f0fafb !important;
+        color: #3a3a3a !important;
     }
 
+    /** action-sheet **/
+    .am-action-sheet {
+        .am-action-sheet-title {
+            margin: 12px auto 6px !important;
+        }
+        .am-action-sheet-message {
+            margin: 6px auto 12px !important;
+        }
+    }
 
+    /** Result **/
+    .am-page-result {
+        padding-top: 10%;
+    }
 
 }
 

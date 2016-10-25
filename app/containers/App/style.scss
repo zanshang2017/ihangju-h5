@@ -50,6 +50,7 @@
         //flex
         display: -webkit-flex;
         display: flex;
+        box-sizing: border-box;
         -webkit-flex-direction: column;
         flex-direction: column;
         width: 100%;
@@ -77,7 +78,7 @@
 
         position:fixed;
         top: 0;
-        font-size: 30px;
+        font-size: rem(26);
         width: 100%;
         height: rem(600);
         background: rgba(255, 255, 255, .5);

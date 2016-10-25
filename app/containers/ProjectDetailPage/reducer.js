@@ -12,6 +12,7 @@ import {
   LOAD_PROJECTCHAPTER_DATA_ERROR,
 
   SET_SHARE_DATA,
+    RESET_STATE,
 } from './constants';
 
 const initialState = fromJS({
@@ -47,6 +48,10 @@ function detailPageReducer(state = initialState, action = {}) {
     case SET_SHARE_DATA:
       state = state.setIn(['shareData'], fromJS(action.payload.data));
       return state;
+
+      case RESET_STATE:
+          return initialState;
+
     default:
       return state;
   }

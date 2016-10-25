@@ -34,6 +34,10 @@ class ListGroup extends React.Component {
     }
 
     componentWillMount() {
+        if (this.props.defaultTabKey !== activeKey) {
+            activeKey = this.props.defaultTabKey;
+            this.tabChangeHandler(activeKey);
+        }
     }
 
     componentDidMount() {
@@ -44,6 +48,7 @@ class ListGroup extends React.Component {
         //滑动底部加载下一页
         that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 300, {leading: false});
         that.nWrap.addEventListener('scroll', that.scrollHanderBinded);
+
     }
 
     componentWillUpdate(nProps) {
@@ -118,14 +123,14 @@ class ListGroup extends React.Component {
     render() {
         return (
             <div ref="J_NotificationPageListGroupWrap" className="tagDetailPageListGroup">
-                <Tabs ref="J_Tabs" defaultActiveKey="1" onChange={this.tabChangeHandler.bind(this)}>
+                <Tabs ref="J_Tabs" defaultActiveKey={activeKey} onChange={this.tabChangeHandler.bind(this)}>
                     <TabPane tab="评论" key="1">
                         <div className="blockGapTag"></div>
-                        <CommentList {...this.props} items={this.props.commentList || []} />
+                        <CommentList {...this.props} items={this.props.commentList || []}/>
                     </TabPane>
                     <TabPane tab="通知" key="2">
                         <div className="blockGapTag"></div>
-                        <MessageList {...this.props} items={this.props.messageList || []} />
+                        <MessageList {...this.props} items={this.props.messageList || []}/>
                     </TabPane>
                 </Tabs>
             </div>

@@ -11,8 +11,8 @@ Android版使用Hybird方式开发，前端部分为单页应用。
 
 ## 命令
 - 开发: npm start
-- 打包: npm run build
-
+- 测试打包: npm run build
+- 上线打包: npm run 
 
 
 

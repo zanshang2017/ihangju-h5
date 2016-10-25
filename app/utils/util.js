@@ -272,6 +272,7 @@ const IMAGE_SIZE_TYPE = {
     AVATAR_SMALL: '?imageMogr2/thumbnail/60x60/quality/70',
 
     TAG_IMAGE: '?imageMogr2/quality/70',
+    BANNER_IMAGE: '?imageMogr2/quality/75',
 
     WEBP: '/format/webp',
 };

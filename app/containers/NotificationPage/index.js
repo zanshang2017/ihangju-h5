@@ -32,7 +32,7 @@ import ListGroup from 'components/NotificationPage/ListGroup';
 import ActionSheet from 'antd-mobile/lib/action-sheet';
 import Toast from 'antd-mobile/lib/toast';
 
-import styles from './styles.css';
+// import styles from './styles.css';
 
 class NotificationPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -40,6 +40,31 @@ class NotificationPage extends React.Component { // eslint-disable-line react/pr
         super(props);
         this.UserID = null;
         this.userInfo = null;
+        this.defaultTabKey = 1;
+    }
+
+    componentWillMount() {
+        if (this.props.userInfo) {
+            this.userInfo = this.props.userInfo.toJS();
+        } else {
+            this.context.router.replace('/login');
+        }
+
+        this.defaultTabKey = this.props.routeParams.tab || 1;
+    }
+
+    componentDidMount() {
+        // console.warn('NotificationPage DidMount', this.isAdmin, this.tagID);
+        this.props.dispatch(loadCommentList());
+    }
+
+    componentWillUpdate(props) {
+        // console.log('will update', props.detail);
+    }
+
+    componentWillUnmount() {
+        // console.warn('NotificationPage willUnmount');
+        ActionSheet.close();
     }
 
     loadCommentHandler(page = 0, size = 10) {
@@ -96,7 +121,6 @@ class NotificationPage extends React.Component { // eslint-disable-line react/pr
                     default:
                         break;
                 }
-                ;
             });
     }
 
@@ -106,27 +130,6 @@ class NotificationPage extends React.Component { // eslint-disable-line react/pr
 
     userClickHandler(id) {
         this.context.router.push('/person/' + id);
-    }
-
-    componentWillMount() {
-        if (this.props.userInfo) {
-            this.userInfo = this.props.userInfo.toJS();
-        } else {
-            this.context.router.push('/login');
-        }
-    }
-
-    componentDidMount() {
-        // console.warn('NotificationPage DidMount', this.isAdmin, this.tagID);
-        this.props.dispatch(loadCommentList());
-    }
-
-    componentWillUpdate(props) {
-        // console.log('will update', props.detail);
-    }
-
-    componentWillUnmount() {
-        // console.warn('NotificationPage willUnmount');
     }
 
     render() {
@@ -143,6 +146,7 @@ class NotificationPage extends React.Component { // eslint-disable-line react/pr
                         loadMessageHandler={this.loadMessageHandler.bind(this)}
                         commentClickHandler={this.commentClickHandler.bind(this)}
                         userClickHandler={this.userClickHandler.bind(this)}
+                        defaultTabKey={this.defaultTabKey}
                     />
                 </div>
             </div>

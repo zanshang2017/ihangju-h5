@@ -11,7 +11,7 @@
     flex-direction: column;
 
     div.row {
-        margin: rem(10) auto;
+        margin: rem(6) auto;
 
         img.avatar {
             width: rem(144);
@@ -20,12 +20,13 @@
         }
 
         .username {
+            padding-top: rem(24);
             font-size: rem(40);
             color: $textColor;
         }
 
         .btns {
-            padding-bottom: rem(20);
+            padding-bottom: rem(26);
             border-bottom: 1px solid $topBarBg;
         }
 

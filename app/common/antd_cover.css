@@ -6,17 +6,21 @@
   /** Tab组件 **/
   /** Button **/
   /** List **/
-  /** NoticeBar **/ }
+  /** NoticeBar **/
+  /** action-sheet **/
+  /** Result **/ }
+  :global .am-tab .am-tab-content {
+    padding: 0 0 12px !important; }
   :global .am-tab .am-tab-bar {
     margin-bottom: 0 !important; }
   :global .am-tab .am-tab-nav-container {
-    font-size: 0.85333rem; }
+    font-size: 0.85333rem !important; }
   :global .am-tab.am-tab-line .am-tab-bar:after {
     border-color: #f3f5f4 !important; }
   :global .am-tab .am-tab-tab-active .am-tab-tab-inner {
     color: #39bcc8 !important; }
   :global .am-tab .am-tab-tab-inner {
-    padding: 18px 0;
+    padding: 18px 0 !important;
     color: #a09e98 !important; }
   :global .am-tab .am-tab-ink-bar {
     background-color: #39bcc8 !important; }
@@ -35,7 +39,7 @@
     :global .am-list .am-list-item:last-child:after {
       border-bottom-color: #dbd7d7 !important; }
     :global .am-list .am-list-item .am-list-line {
-      padding: 7px 16px 7px 0; }
+      padding: 7px 16px 7px 0 !important; }
       :global .am-list .am-list-item .am-list-line .am-list-arrow-horizontal:before {
         margin-top: 3px !important; }
       :global .am-list .am-list-item .am-list-line .am-list-arrow {
@@ -43,7 +47,13 @@
       :global .am-list .am-list-item .am-list-line .am-list-extra {
         margin-top: 1px !important; }
   :global .am-top-notice {
-    background-color: #f0fafb;
-    color: #3a3a3a; }
+    background-color: #f0fafb !important;
+    color: #3a3a3a !important; }
+  :global .am-action-sheet .am-action-sheet-title {
+    margin: 12px auto 6px !important; }
+  :global .am-action-sheet .am-action-sheet-message {
+    margin: 6px auto 12px !important; }
+  :global .am-page-result {
+    padding-top: 10%; }
 
 /*# sourceMappingURL=antd_cover.css.map */

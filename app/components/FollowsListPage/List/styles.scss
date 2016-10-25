@@ -11,10 +11,9 @@
 
     .item {
         @include flexBox();
-        padding: rem(50) 0;
-        margin: 0 rem(35);
-        border-bottom: 1px solid $borderColor;
-
+        padding: rem(50) rem(35) rem(50) 0;
+        margin: 0 0 0 rem(35);
+        border-bottom: 1px solid $borderLightColor;
 
         .avatar {
             img {

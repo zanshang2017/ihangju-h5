@@ -12,6 +12,13 @@ class InputBar extends React.Component {
         super(props);
     }
 
+    componentWillMount() {
+        this.defaultPlaceholder = DEFAULT_PLACEHOLDER;
+        if (this.props.placeholder) {
+            this.defaultPlaceholder = this.props.placeholder;
+        }
+    }
+
     componentDidMount() {
         let that = this;
 
@@ -53,9 +60,9 @@ class InputBar extends React.Component {
     }
 
     render() {
-        let placeholder = DEFAULT_PLACEHOLDER;
+        let placeholder = this.defaultPlaceholder;
 
-        if (this.props.placeholder && this.props.placeholder !== DEFAULT_PLACEHOLDER) {
+        if (this.props.placeholder && this.props.placeholder !== this.defaultPlaceholder) {
             placeholder = '回复' + this.props.placeholder + ':';
         }
 

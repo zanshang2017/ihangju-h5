@@ -5,13 +5,11 @@
 
 import 'babel-polyfill';
 
-import 'common/common.scss';
+import 'common/common.css';
 import 'sanitize.css/lib/sanitize.css';
 
 import 'antd-mobile/dist/antd-mobile.css';
-import 'common/antd_cover.scss';
-
-import {Env} from './utils/env.js';
+import 'common/antd_cover.css';
 
 import 'file?name=[name].[ext]!./.htaccess';      // eslint-disable-line import/no-unresolved
 
@@ -85,6 +83,7 @@ const rootRoute = {
     component: App,
     indexRoute: {
         onEnter: (nextState, replace) => replace('/found') //根路径重定向
+        // onEnter: (nextState, replace) => replace('/demo') //根路径重定向
     },
     childRoutes: createRoutes(store),
 };

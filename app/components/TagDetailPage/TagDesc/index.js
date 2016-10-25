@@ -9,7 +9,6 @@ export class TagDesc extends React.Component { // eslint-disable-line react/pref
     }
 
     render() {
-
         let _desc = this.props.description || '';
         let _html = '';
 
@@ -18,9 +17,13 @@ export class TagDesc extends React.Component { // eslint-disable-line react/pref
                 <textarea ref="J_DescTextarea" defaultValue={_desc} placeholder="请输入标签简介"></textarea>
             </div>;
         } else {
-            _html = <div className={`${styles.tagDesc} blockGap`}>
-                {_desc}
-            </div>;
+            if(_desc) {
+                _html = <div className={`${styles.tagDesc} blockGap`}>
+                    {_desc}
+                </div>;
+            } else {
+                _html = <div></div>;
+            }
         }
 
         return (

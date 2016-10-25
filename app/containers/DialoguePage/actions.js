@@ -14,6 +14,10 @@ import {
     SEND_DIALOGUE_DATA_SUCCESS,
     SEND_DIALOGUE_DATA_ERROR,
 
+    GET_LETTERGROUP_ID,
+    GET_LETTERGROUP_ID_SUCCESS,
+    GET_LETTERGROUP_ID_ERROR,
+
     SET_DIALOGUE_DATA_STATUS,
 } from './constants';
 
@@ -71,6 +75,34 @@ export function sendDialogueDataSuccess(dialogueData) {
         }
     };
 }
+
+export function getLetterGroupId(userId) {
+    return {
+        type: GET_LETTERGROUP_ID,
+        payload: {
+            userId: userId,
+        }
+    };
+}
+
+export function getLetterGroupIdSuccess(letterGroupId) {
+    return {
+        type: GET_LETTERGROUP_ID_SUCCESS,
+        payload: {
+            letterGroupId: letterGroupId,
+        }
+    };
+}
+
+export function getLetterGroupIdError(error) {
+    return {
+        type: GET_LETTERGROUP_ID_ERROR,
+        payload: {
+            error: error,
+        }
+    };
+}
+
 
 export function sendDialogueDataError(error) {
     return {

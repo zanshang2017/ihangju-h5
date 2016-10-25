@@ -115,12 +115,16 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
     }
 
     listClickHandler(e, opt) {
-        var id = opt.id;
-        var name = opt.name || '';
-        var type = opt.type || 'answer';
-        var event = e.nativeEvent;
-        var nWrap = this.refs.J_FloatTools.refs.J_Wrap;
-        var nTools = this.refs.J_FloatTools.refs.J_Tools;
+        var id = opt.id,
+            name = opt.name || '',
+            type = opt.type || 'answer',
+            event = e.nativeEvent,
+            nWrap = this.refs.J_FloatTools.refs.J_Wrap,
+            nTools = this.refs.J_FloatTools.refs.J_Tools,
+            nMainW = this.refs.J_MainContent.clientWidth,
+            _style = '',
+            nToolsW = '';
+
 
         // 获取当前点击的用户信息
         this.replyReadyInfo.id = id;
@@ -128,8 +132,15 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
         this.replyReadyInfo.type = type;
 
         if (id) {
-            var _style = `top:${event.pageY + 'px'};left:${event.pageX + 'px'}`;
             nWrap.style.display = '';
+            nToolsW = nTools.clientWidth;
+
+            if (event.pageX + nToolsW > nMainW) {
+                _style = `top:${event.pageY + 'px'};left:${nMainW - nToolsW - 2 + 'px'}`;
+            } else {
+                _style = `top:${event.pageY + 'px'};left:${event.pageX + 'px'}`;
+            }
+
             nTools.setAttribute('style', _style);
         }
     }

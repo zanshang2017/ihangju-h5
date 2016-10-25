@@ -641,7 +641,7 @@ export default function createRoutes(store) {
             onLeave: function () {
             }
         }, {
-            path: '/notification',
+            path: '/notification(/:tab)',
             name: 'notificationPage',
             getComponent(nextState, cb) {
 

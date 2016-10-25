@@ -22,6 +22,10 @@ class BannerInfo extends React.Component { // eslint-disable-line react/prefer-s
     componentDidMount() {
     }
 
+    componentWillUnmount() {
+        this.refs.J_ImageUpload.hideSheet();
+    }
+
     showEditBannerImageSheet() {
         this.refs.J_ImageUpload.showSheet();
     }

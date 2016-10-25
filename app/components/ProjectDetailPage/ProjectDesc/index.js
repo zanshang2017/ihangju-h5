@@ -54,9 +54,9 @@ class ProjectDesc extends React.Component {
                 </div>
                 <div className={style.num}>
                     <ul>
-                        <li>阅读<em>301986</em></li>
-                        <li>喜欢<em>2114</em></li>
-                        <li>关注<em>804</em></li>
+                        <li>阅读<em>{_result.browseNumber}</em></li>
+                        <li>喜欢<em>{_result.likeNumber}</em></li>
+                        <li>关注<em>{_result.followNumber}</em></li>
                     </ul>
                 </div>
             </div>

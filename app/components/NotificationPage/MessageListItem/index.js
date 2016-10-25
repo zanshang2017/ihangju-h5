@@ -65,7 +65,7 @@ function MessageListItem(props) {
                     <img src={imageSrc}/>
                 </div>
                 <div className={styles.info}>
-                    <h4>{item.userName}</h4>
+                    <h4><span data-id={item.userId} onClick={clickHandler}>{item.userName}</span></h4>
                     <p>{desc}</p>
                 </div>
                 <div className={styles.time}>{modifyTime}</div>
