@@ -138,7 +138,6 @@ class ShareBtnList extends React.Component {
                                 </div>
                             </li>
                             <li></li>
-                            <li></li>
                         </ul>
                     </div>
                     <div onClick={this.hideShareLayer.bind(this)} className={styles.cancelBtn}>取消</div>
