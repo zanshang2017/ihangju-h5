@@ -14,6 +14,10 @@ import {
     SET_DIALOGUE_LIST_DATA_STATUS,
 } from './constants';
 
+import {
+    LOGOUT_SUCCESS,
+} from 'containers/App/constants';
+
 const initialState = fromJS({
     lists: fromJS({
         data: false,
@@ -53,6 +57,9 @@ function DialogueListPageReducer(state = initialState, action = {}) {
             }
 
             return state;
+
+        case LOGOUT_SUCCESS:
+            return initialState;
 
         default:
             return state;

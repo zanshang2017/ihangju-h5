@@ -32,12 +32,12 @@ class SettingPage extends React.Component { // eslint-disable-line react/prefer-
 
         console.warn('SettingPage DidMount');
 
-        this.refs.J_Wrap.addEventListener('touchstart', function(){
-            that.tapCount++;
-            if(that.tapCount > 15) {
-                that.tapCount = 0;
-            }
-        });
+        // this.refs.J_Wrap.addEventListener('touchstart', function () {
+        //     that.tapCount++;
+        //     if (that.tapCount > 15) {
+        //         that.tapCount = 0;
+        //     }
+        // });
     }
 
     render() {

@@ -12,6 +12,10 @@ import {
     LOAD_TAG_DATA_ERROR,
 } from './constants';
 
+import {
+    LOGOUT_SUCCESS,
+} from 'containers/App/constants';
+
 const initialState = fromJS({
     tags: false,
 });
@@ -29,6 +33,9 @@ function myTagPageReducer(state = initialState, action = {}) {
 
         case LOAD_TAG_DATA_ERROR:
             return state;
+
+        case LOGOUT_SUCCESS:
+            return initialState;
 
         default:
             return state;

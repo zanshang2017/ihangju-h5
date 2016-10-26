@@ -45,7 +45,8 @@ export function* getUserInfo() {
     while (action = yield take(LOAD_USER_INFO)) {
         console.log('getUserInfo', action);
 
-        let url = USER_INFO_API + '?r=' + Math.random();
+        // let url = USER_INFO_API + '?r=' + Math.random();
+        let url = USER_INFO_API;
 
         const ret = yield call(request, url, {
             headers: {
@@ -92,7 +93,7 @@ export function* postUserInfo() {
         if (data) {
             for (let k in data) {
                 if (data.hasOwnProperty(k)) {
-                    body += `${k}=${data[k]}`;
+                    body += `${k.toLowerCase()}=${data[k]}&`;  //参数全小写!
                 }
             }
         }

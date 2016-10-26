@@ -3,7 +3,9 @@
 @import "../../../common/_util";
 
 .catelogListItemWrap {
+    background: #fff;
 
+    padding-top: rem(40);
     &:first-child {
         padding-top: rem(80);
     }
@@ -14,14 +16,12 @@
     }
 
     .catelogListItem {
-
         position: relative;
         width: 100%;
         //height: rem(440);
         box-sizing: border-box;
-        padding: 0 rem(44) rem(78) 0;
+        padding: 0 rem(44) rem(38) 0;
 
-        background: #fff;
         text-align: center;
         @include flexBox();
         -ms-flex-align: stretch;

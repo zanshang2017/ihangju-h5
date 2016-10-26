@@ -5,6 +5,8 @@ import {
     DEFAULT_PLACEHOLDER
 } from './constants';
 
+import Toast from 'antd-mobile/lib/toast';
+
 /* eslint-disable react/prefer-stateless-function */
 class InputBar extends React.Component {
 
@@ -51,7 +53,7 @@ class InputBar extends React.Component {
         if (v.trim()) {
             this.props.submitHandler(v);
         } else {
-            alert('请输入文字!');
+            Toast.fail('请输入文字', 1.5);
         }
     }
 

@@ -21,6 +21,10 @@ import {
 
 } from './constants';
 
+import {
+    LOGOUT_SUCCESS,
+} from 'containers/App/constants';
+
 const initialState = fromJS({
     commentList: false,
     messageList: false,
@@ -141,6 +145,9 @@ function notificationPageReducer(state = initialState, action = {}) {
             }
 
             return state;
+
+        case LOGOUT_SUCCESS:
+            return initialState;
 
         default:
             return state;

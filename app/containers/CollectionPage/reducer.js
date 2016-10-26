@@ -14,6 +14,10 @@ import {
     SET_COLLECTION_DATA_STATUS,
 } from './constants';
 
+import {
+    LOGOUT_SUCCESS,
+} from 'containers/App/constants';
+
 const initialState = fromJS({
     collectionProjs: fromJS({
         data: false,
@@ -74,6 +78,9 @@ function CollectionPageReducer(state = initialState, action = {}) {
             }
 
             return state;
+
+        case LOGOUT_SUCCESS:
+            return initialState;
 
         default:
             return state;

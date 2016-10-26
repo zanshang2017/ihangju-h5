@@ -34,7 +34,7 @@ function ArticleListItem(props) {
     //    }
 
     return (
-        <div className={styles.articleListItem} data-id={item.id} onClick={props.articleClickHandler}>
+        <div className={styles.articleListItem} data-hashover="true" data-id={item.id} onClick={props.articleClickHandler}>
             <span className={styles.source}><strong>{source}</strong> 更新了</span>
             <div className={styles.read}>{modifyTime}</div>
             <h3>{item.projectName}</h3>

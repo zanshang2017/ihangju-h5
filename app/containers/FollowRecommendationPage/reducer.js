@@ -20,6 +20,10 @@ import {
 
 } from './constants';
 
+import {
+    LOGOUT_SUCCESS,
+} from 'containers/App/constants';
+
 const initialState = fromJS({
     recommendation: fromJS({
         data: false,
@@ -97,6 +101,9 @@ function FollowRecommendationPageReducer(state = initialState, action = {}) {
             }
 
             return state;
+
+        case LOGOUT_SUCCESS:
+            return initialState;
 
         default:
             return state;

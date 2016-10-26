@@ -4,6 +4,9 @@
 
 const PRODUCTION_DOMAIN = 'h5.app.ihangju.com';
 const PREPUB_DOMAIN = 'preh5.app.ihangju.com';
+const CONTAINER_UA = {
+    'android': 'HangJuAndroid', //HangJuAndroid/1.0 /线后是版本号
+};
 
 var Env = {
     dev: false,
@@ -20,8 +23,8 @@ var Env = {
 };
 
 if (location.host.indexOf(PRODUCTION_DOMAIN) === 0) {
-    Env.dev = true;
-    Env.production = false;
+    Env.dev = false;
+    Env.production = true;
 } else {
     Env.dev = true;
     Env.production = false;

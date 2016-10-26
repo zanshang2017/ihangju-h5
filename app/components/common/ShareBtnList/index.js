@@ -85,7 +85,7 @@ class ShareBtnList extends React.Component {
 
                     <div className={styles.sharebtnList}>
                         <ul>
-                            <li onClick={this.shareWx.bind(this)}>
+                            <li data-hashover="true" onClick={this.shareWx.bind(this)}>
                                 <div className={styles.shareImg}>
                                     <span className={styles.wx}></span>
                                 </div>
@@ -93,7 +93,7 @@ class ShareBtnList extends React.Component {
                                     <span>微信</span>
                                 </div>
                             </li>
-                            <li onClick={this.shareFriend.bind(this)}>
+                            <li data-hashover="true" onClick={this.shareFriend.bind(this)}>
                                 <div className={styles.shareImg}>
                                     <span className={styles.wxFriend}></span>
                                 </div>
@@ -101,7 +101,7 @@ class ShareBtnList extends React.Component {
                                     <span>朋友圈</span>
                                 </div>
                             </li>
-                            <li onClick={this.shareWb.bind(this)}>
+                            <li data-hashover="true" onClick={this.shareWb.bind(this)}>
                                 <div className={styles.shareImg}>
                                     <span className={styles.wb}></span>
                                 </div>
@@ -109,7 +109,7 @@ class ShareBtnList extends React.Component {
                                     <span>微博</span>
                                 </div>
                             </li>
-                            {/*<li onClick={this.shareInstation.bind(this)}>*/}
+                            {/*<li data-hashover="true" onClick={this.shareInstation.bind(this)}>*/}
                                 {/*<div className={styles.shareImg}>*/}
                                     {/*<span className={styles.instation}></span>*/}
                                 {/*</div>*/}
@@ -121,7 +121,7 @@ class ShareBtnList extends React.Component {
                     </div>
                     <div className={styles.otherBtn}>
                         <ul>
-                            <li onClick={this.copyToClipboard.bind(this)}>
+                            <li data-hashover="true" onClick={this.copyToClipboard.bind(this)}>
                                 <div className={styles.shareImg}>
                                     <span className={styles.copyLink}></span>
                                 </div>
@@ -129,7 +129,7 @@ class ShareBtnList extends React.Component {
                                     <span>复制链接</span>
                                 </div>
                             </li>
-                            <li onClick={this.report.bind(this)}>
+                            <li data-hashover="true"onClick={this.report.bind(this)}>
                                 <div className={styles.shareImg}>
                                     <span className={styles.report}></span>
                                 </div>

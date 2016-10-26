@@ -49,7 +49,7 @@ function TagArticleListItem(props) {
     }
 
     return (
-        <div className={styles.articleListItem} data-id={item.id} onClick={props.articleClickHandler}>
+        <div className={styles.articleListItem} data-id={item.id} data-hashover="true" onClick={props.articleClickHandler}>
             <span className={styles.source}><strong>{item.authorName}</strong> 更新了</span>
             {recommendationBtn}
             <h3>{item.projectName}</h3>

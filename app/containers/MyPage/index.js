@@ -94,7 +94,7 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
                 </TopBar>
 
                 <div className={`mainContent ${styles.wrap}`}>
-                    <UserDesc userInfo={userInfo} clickHandler={this.userDescClickHandler.bind(this)}/>
+                    <UserDesc userInfomation={userCenterInfo.userinformation} clickHandler={this.userDescClickHandler.bind(this)}/>
 
                     <List>
                         <List.Body>

@@ -20,8 +20,13 @@ import {
     SEND_DIALOGUE_DATA_ERROR,
 
     SET_DIALOGUE_DATA_STATUS,
+    RESET_STATE,
 
 } from './constants';
+
+import {
+    LOGOUT_SUCCESS,
+} from 'containers/App/constants';
 
 const initialState = fromJS({
     dialogue: fromJS({
@@ -73,6 +78,12 @@ function DialoguePageReducer(state = initialState, action = {}) {
             }
 
             return state;
+
+        case RESET_STATE:
+            return initialState;
+
+        case LOGOUT_SUCCESS:
+            return initialState;
 
         default:
             return state;

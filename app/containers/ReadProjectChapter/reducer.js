@@ -19,6 +19,10 @@ import {
 	SET_SHARE_DATA,
 } from './constants';
 
+import {
+    LOGOUT_SUCCESS,
+} from 'containers/App/constants';
+
 const initialState = fromJS({
 	'chapterContent' : {},
 	'projectInfo' : {},
@@ -77,6 +81,10 @@ function readProjectChapter(state = initialState, action = {}) {
 		case SET_SHARE_DATA:
             state = state.setIn(['shareData'], fromJS(action.payload.data));
             return state;
+
+        case LOGOUT_SUCCESS:
+            return initialState;
+
 		default:
 			return state;
 	}

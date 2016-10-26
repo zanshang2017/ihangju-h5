@@ -51,8 +51,6 @@
     margin: 0;
     padding: 0;
     background: #f4f5f5; }
-  :global .hover {
-    background: #f3f5f4 !important; }
   :global .deepBg {
     background: #f4f5f5; }
   :global .gapLine {
@@ -651,13 +649,14 @@
     -webkit-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden; }
   :global .r1bt, :global .r1bb, :global .r1bl, :global .r1br, :global .r1b {
-    position: relative; }
+    position: relative;
+    z-index: 999; }
   :global .r1bt:before, :global .r1bb:after {
     pointer-events: none;
     position: absolute;
     content: "";
     height: 1px;
-    background: rgba(32, 35, 37, 0.15);
+    background: #d9d9d9;
     left: 0;
     right: 0; }
   :global .r1bt:before {
@@ -669,7 +668,7 @@
     position: absolute;
     content: "";
     width: 1px;
-    background: rgba(32, 35, 37, 0.15);
+    background: #d9d9d9;
     top: 0;
     bottom: 0; }
   :global .r1bl:before {
@@ -685,7 +684,7 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    border: 1px solid rgba(32, 35, 37, 0.15);
+    border: 1px solid #d9d9d9;
     pointer-events: none; }
   @media (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
     :global .r1bt:before, :global .r1bb:after {

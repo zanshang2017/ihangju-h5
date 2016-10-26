@@ -19,6 +19,7 @@ import {
     loadDialogueData,
     sendDialogueData,
     getLetterGroupId,
+    resetState,
 } from './actions';
 
 import _ from 'underscore';
@@ -36,6 +37,8 @@ import List from 'components/DialoguePage/List';
 import InputBar from 'components/common/InputBar';
 
 import NoticeBar from 'antd-mobile/lib/top-notice';
+
+import Toast from 'antd-mobile/lib/toast';
 
 export class DialoguePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -88,7 +91,6 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
                 });
             }
         }
-
     }
 
     componentDidMount() {
@@ -96,20 +98,34 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
 
         signals.loadDialogueSuccess.add(()=> {
             that.scrollToBottom();
+            Toast.hide();
             signals.loadDialogueSuccess.removeAll(); //只在首次加载时滑到底部
+        });
+
+        signals.loadDialogueError.add(()=> {
+            Toast.hide();
+            Toast.fail('加载失败!');
         });
 
         signals.sendDialogueSuccess.add(()=> {
             that.resetDialogueData();
             that.componentMethod['clear'] && that.componentMethod['clear']();
             that.scrollToBottom();
+            Toast.hide();
+        });
+
+        signals.sendDialogueError.add(()=> {
+            Toast.hide();
+            Toast.fail('发送失败,请检查网络!');
         });
     }
 
     componentWillUnmount() {
         clearTimeout(this.timer);
         signals.sendDialogueSuccess.removeAll();
+        signals.sendDialogueError.removeAll();
         signals.loadDialogueSuccess.removeAll();
+        signals.loadDialogueError.removeAll();
         signals.getLetterGroupIdSuccess.removeAll();
 
         for (var k in this.componentMethod) {
@@ -117,6 +133,8 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
                 delete this.componentMethod[k];
             }
         }
+
+        this.props.dispatch(resetState());
     }
 
     componentDidUpdate() {
@@ -149,6 +167,7 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
     }
 
     submitHandler(content) {
+        Toast.loading('发送中...');
         this.dialogueData.content = content;
         this.props.dispatch(sendDialogueData(this.letterGroupId, _.clone(this.dialogueData)));
     }

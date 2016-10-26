@@ -24,6 +24,10 @@ import {
     CHANGE_PLACEHOLDER,
 } from './constants';
 
+import {
+    LOGOUT_SUCCESS,
+} from 'containers/App/constants';
+
 const initialState = fromJS({
     comments: fromJS({
         data: false,
@@ -102,6 +106,9 @@ function CommentsPageReducer(state = initialState, action = {}) {
 
         case CHANGE_PLACEHOLDER:
             return state.set('inputPlaceholder', action.payload.placeholder);
+
+        case LOGOUT_SUCCESS:
+            return initialState;
 
         default:
             return state;

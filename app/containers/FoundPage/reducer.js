@@ -20,6 +20,10 @@ import {
 
 } from './constants';
 
+import {
+    LOGOUT_SUCCESS,
+} from 'containers/App/constants';
+
 const initialState = fromJS({
     discoveriesData: false,
     recommendationData: false,
@@ -75,6 +79,8 @@ function foundPageReducer(state = initialState, action = null) {
         case LOAD_RECOMMENDATION_DATA_ERROR:
             return state;
 
+        case LOGOUT_SUCCESS:
+            return initialState;
 
         default:
             return state;

@@ -28,7 +28,7 @@ export default class NoteItem extends React.Component {
         var time = convertDate(this.item.modifyTime, 'YYYY/MM/DD');
 
         return (
-            <li className={styles.noteItem} onClick={this.handlerClick.bind(this)}>
+            <li data-hashover="true" className={`${styles.noteItem}`} onClick={this.handlerClick.bind(this)}>
                 <span className={styles.content}>{this.item.content}</span>
                 <div className={styles.right}>
                     <span className={styles.time}>{time}</span>

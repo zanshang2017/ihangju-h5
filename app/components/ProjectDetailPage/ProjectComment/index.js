@@ -50,7 +50,7 @@ class ProjectComment extends React.Component {
                 <ul>
                     {contentList}
                 </ul>
-                <span className={style.commentBtn}><Link to={`/comments/${_result.projectId}`}>查看更多评论</Link></span>
+                <span data-hashover="true" className={style.commentBtn}><Link to={`/comments/${_result.projectId}`}>查看更多评论</Link></span>
             </div>
         )
     }

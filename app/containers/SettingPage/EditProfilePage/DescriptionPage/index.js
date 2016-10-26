@@ -37,17 +37,16 @@ class DescriptionPage extends React.Component { // eslint-disable-line react/pre
             alert('请填写昵称!');
         } else {
             if (this.originDescription !== this.refs.J_Description.value) {
-                this.props.dispatch(updateUserInfo({
-                    description: this.refs.J_Description.value
-                }));
+                let obj = Object.assign({}, {description: this.refs.J_Description.value}, this.userInfo.pushConfig);
+                this.props.dispatch(updateUserInfo(obj));
             }
             window.history.back();
         }
     }
 
     render() {
-        let userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
-        this.originDescription = userInfo.description;
+        this.userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
+        this.originDescription = this.userInfo.description;
 
         return (
             <div className="pageInner deepBg">

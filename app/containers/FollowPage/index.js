@@ -20,6 +20,10 @@ import {
     selectMyFollowListDataStatus,
 } from './selectors';
 
+import {
+    selectUserInfo,
+} from '../App/selectors'
+
 import styles from './styles.scss';
 
 import {
@@ -42,6 +46,13 @@ export class FollowPage extends React.Component { // eslint-disable-line react/p
 
     componentDidMount() {
         console.warn('FollowPage DidMount');
+
+        var userInfo = this.props.userInfo;
+
+        if (!userInfo) {
+            this.context.router.replace('/login?redirect=' + encodeURIComponent('/') + 'follow');
+            return;
+        }
 
         if (!this.props.currentFollow) {
             this.loadMyFollow();
@@ -88,6 +99,7 @@ export class FollowPage extends React.Component { // eslint-disable-line react/p
 }
 
 const mapStateToProps = createSelector(
+    selectUserInfo(),
     selectMyFollowData(),
     selectMyFollowListData(),
     selectCurrentFollow(),
@@ -95,8 +107,9 @@ const mapStateToProps = createSelector(
     selectMyFollowListLoading(),
     selectMyFollowDataStatus(),
     selectMyFollowListDataStatus(),
-    (myFollowData, myFollowListData, currentFollow, myFollowLoading, myFollowListLoading, selectMyFollowDataStatus, selectMyFollowListDataStatus) => {
+    (userInfo, myFollowData, myFollowListData, currentFollow, myFollowLoading, myFollowListLoading, selectMyFollowDataStatus, selectMyFollowListDataStatus) => {
         return {
+            userInfo,
             myFollowData,
             myFollowListData,
             currentFollow,

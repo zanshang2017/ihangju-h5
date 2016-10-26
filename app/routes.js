@@ -37,7 +37,7 @@ var initedStatus = {};
 function beforeGetComponent() {
     try {
         Toast.hide();
-        Toast.loading('加载中...', 100);
+        Toast.loading('加载中...', 15);
     } catch (e) {
     }
 }

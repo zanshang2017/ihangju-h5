@@ -51,10 +51,11 @@ export function* getDialogueData() {
         });
 
         if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
-            yield put(loadDialogueDataSuccess(lists.data.result));
             signals.loadDialogueSuccess.dispatch();
+            yield put(loadDialogueDataSuccess(lists.data.result));
         } else {
             console.log(lists.err.response); // eslint-disable-line no-console
+            signals.loadDialogueError.dispatch();
             yield put(loadDialogueDataError(lists.err));
         }
     }
@@ -91,7 +92,7 @@ export function* putDialogueData() {
         } else {
             console.log(lists.err); // eslint-disable-line no-console
             yield put(sendDialogueDataError(lists.err));
-            Toast.fail('发送失败');
+            signals.sendDialogueError.dispatch();
         }
     }
 }

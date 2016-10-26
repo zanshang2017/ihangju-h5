@@ -67,10 +67,17 @@
     .am-list {
         margin: rem(20) 0 !important;
         padding: 0 !important;
+
+        .am-list-body {
+            &:before {
+                border-top-color: $borderDeepColor !important;
+            }
+        }
+
         .am-list-item {
             &:last-child {
                 &:after {
-                    border-bottom-color: $borderColor !important;
+                    border-bottom-color: $borderDeepColor !important;
                 }
             }
 
@@ -88,6 +95,11 @@
                 .am-list-extra {
                     margin-top: 1px !important;
                 }
+
+                .am-list-content {
+                    font-size: rem(32) !important;
+                }
+
             }
         }
 

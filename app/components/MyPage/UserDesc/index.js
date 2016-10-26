@@ -17,11 +17,11 @@ function UserDesc(props) {
 
     var descHTML = '';
     var imageSrc = '';
-    var userInfo = props.userInfo || {};
-    var id = userInfo.id;
+    var userInfomation = props.userInfomation || {};
+    var id = userInfomation.id;
 
-    if (userInfo.avatar) {
-        imageSrc = addImageParam(IMG_CDN_PATH + userInfo.avatar, IMAGE_SIZE_TYPE.AVATAR_BIG);
+    if (userInfomation.avatar) {
+        imageSrc = addImageParam(IMG_CDN_PATH + userInfomation.avatar, IMAGE_SIZE_TYPE.AVATAR_BIG);
     }
 
     return (
@@ -36,8 +36,8 @@ function UserDesc(props) {
                         }
                         </div>
                         <div className={styles.info}>
-                            <div className={styles.username}>{userInfo.nickName || ''}</div>
-                            <div className={styles.intro}>{userInfo.description || ''}</div>
+                            <div className={styles.username}>{userInfomation.name || ''}</div>
+                            <div className={styles.intro}>{userInfomation.description || ''}</div>
                         </div>
                     </div>
                 </List.Item>

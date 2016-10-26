@@ -41,7 +41,7 @@ function ArticleListItem3(props) {
     // "authorAvatar": "/image/571df9f4e4b00659abde343d.jpg"
 
     return (
-        <div className={styles.articleListItem3} data-id={item.projectId} onClick={props.articleClickHandler}>
+        <div className={styles.articleListItem3} data-id={item.projectId} data-hashover="true" onClick={props.articleClickHandler}>
             <div className={styles.header}>
                 <div className={styles.author} data-id={item.authorId} onClick={props.authorClickHandler}>
                     <img src={authorAvatar}/>

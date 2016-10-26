@@ -68,15 +68,14 @@ class EditProfilePage extends React.Component { // eslint-disable-line react/pre
     }
 
     editAvatarImageHandler(url) {
-        this.props.dispatch(updateUserInfo({
-            avatar: url
-        }));
+        let obj = Object.assign({}, {avatar: url}, this.userInfo.pushConfig);
+        this.props.dispatch(updateUserInfo(obj));
     }
 
     render() {
-        let userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
-        let avatarUrl = addImageParam(IMG_CDN_PATH + userInfo.avatar, IMAGE_SIZE_TYPE.AVATAR);
-        this.id = userInfo.id;
+        this.userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
+        let avatarUrl = addImageParam(IMG_CDN_PATH + this.userInfo.avatar, IMAGE_SIZE_TYPE.AVATAR);
+        this.id = this.userInfo.id;
 
         return (
             <div className="pageInner deepBg">
@@ -98,7 +97,7 @@ class EditProfilePage extends React.Component { // eslint-disable-line react/pre
                         <List.Item
                             arrow="horizontal"
                             extra={
-                                <span className={styles.weakText}>{userInfo.nickName || ''}</span>
+                                <span className={styles.weakText}>{this.userInfo.nickName || ''}</span>
                             }
                             onClick={this.nickNameClickHandler.bind(this)}
                         >
@@ -107,7 +106,7 @@ class EditProfilePage extends React.Component { // eslint-disable-line react/pre
                         <List.Item
                             arrow="horizontal"
                             extra={
-                                <span className={styles.weakText}>{userInfo.description || ''}</span>
+                                <span className={styles.weakText}>{this.userInfo.description || ''}</span>
                             }
                             onClick={this.descriptionClickHandler.bind(this)}
                         >

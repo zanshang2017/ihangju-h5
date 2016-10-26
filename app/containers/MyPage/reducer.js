@@ -12,6 +12,10 @@ import {
     LOAD_USER_CENTER_DATA_ERROR,
 } from './constants';
 
+import {
+    LOGOUT_SUCCESS,
+} from 'containers/App/constants';
+
 const initialState = fromJS({
     userCenterInfo: false,
 });
@@ -29,6 +33,9 @@ function myPageReducer(state = initialState, action = {}) {
 
         case LOAD_USER_CENTER_DATA_ERROR:
             return state;
+
+        case LOGOUT_SUCCESS:
+            return initialState;
 
         default:
             return state;

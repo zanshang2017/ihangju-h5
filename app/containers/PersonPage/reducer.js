@@ -18,6 +18,10 @@ import {
     RESET_STATE,
 } from './constants';
 
+import {
+    LOGOUT_SUCCESS,
+} from 'containers/App/constants';
+
 const initialState = fromJS({
     personInfo: false,
 });
@@ -45,6 +49,9 @@ function PersonPageReducer(state = initialState, action = {}) {
         case SET_FOLLOW_USER_SUCCESS:
             let _follow = !state.getIn(['personInfo', 'follow']);
             return state.setIn(['personInfo', 'follow'], _follow);
+
+        case LOGOUT_SUCCESS:
+            return initialState;
 
         default:
             return state;

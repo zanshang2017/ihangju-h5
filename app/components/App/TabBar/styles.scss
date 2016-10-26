@@ -28,7 +28,7 @@
                 -webkit-box-orient: vertical;
                 color: $titleColor;
                 font-size: rem(24);
-                padding-top: rem(12);
+                padding-top: rem(15);
 
                 strong {
                     font-weight: normal;
@@ -42,7 +42,7 @@
                     margin-bottom: rem(2);
                     background-repeat: no-repeat;
                     background-size: rem(44) rem(44);
-                    background-position: rem(2) rem(2);
+                    background-position: rem(1) rem(0);
 
 
                     &.follow {

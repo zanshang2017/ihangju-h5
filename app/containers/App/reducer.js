@@ -78,16 +78,18 @@ function globalReducer(state = initialState, action = {}) {
             return state;
 
         case UPDATE_USER_INFO_SUCCESS:
+
             data = action.payload.data || null;
 
             _userInfo = JSON.parse(locStorage.get('userInfo')) || {};
 
+            _state = state;
+
             if (data) {
                 for (let k in data) {
-                    if (k.match(/push$/igm)) {
+                    if (k.endsWith('Push')) {
                         let v = data[k];
-                        k = k.split('push')[0] + 'Push';
-                        _state = state.setIn(['userInfo', 'pushConfig', k], v);
+                        _state = _state.setIn(['userInfo', 'pushConfig', k], v);
                         _userInfo['pushConfig'][k] = v;
                     } else {
                         _state = state.setIn(['userInfo', k], data[k]);
