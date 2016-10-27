@@ -78,7 +78,7 @@ class ListGroup extends React.Component {
 
         console.log(Math.ceil(this.nWrap.scrollTop + nWrapH), this.nWrap.scrollHeight);
 
-        if (Math.ceil(this.nWrap.scrollTop + nWrapH) >= this.nWrap.scrollHeight) {
+        if (this.nWrap.scrollHeight - (this.nWrap.scrollTop + nWrapH) < 100) {
             //加载下一页
             if (activeKey == '1' && !this.props.commentListStatus.get('loading')) {
                 let status = this.props.commentListStatus.toJS();

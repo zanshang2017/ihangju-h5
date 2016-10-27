@@ -6,13 +6,12 @@ Android版使用Hybird方式开发，前端部分为单页应用。
 - 视图层框架：React
 - 构建工具：Webpack
 - 项目模板：react-boilerplate
-- UI库: ant-design
-- iconfont: ant-design
+- UI库: ant-design-mobile
 
 ## 命令
-- 开发: npm start
-- 测试打包: npm run build
-- 上线打包: npm run 
+- 开发调试: npm start 本地开发调试
+- 测试打包: npm run prepub  用于部署到33进行测试
+- 正式打包: npm run publish 用于正式发布!
 
 
 
