@@ -41,7 +41,8 @@ function ArticleListItem(props) {
             <p>{item.description}</p>
             <div className={styles.info}>
                 <div className="fl">
-                    <span className="like"><i className="iconfont icon-hearto"></i> {item.likeNumber}</span>
+                    {/*<span className="like"><i className="iconfont icon-hearto"></i> {item.likeNumber}</span>*/}
+                    <span className="like"><span className={styles.heart}></span><span className={styles.heartNum}>{item.likeNumber}</span></span>
                 </div>
                 <div className="fr">
                     {item.browsNumber || 0}人已阅读

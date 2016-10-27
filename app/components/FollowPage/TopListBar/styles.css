@@ -14,9 +14,12 @@
   text-align: center; }
   .title i {
     position: relative;
-    top: 0.05333rem;
-    font-size: 0.85333rem;
-    color: #39bcc8;
-    padding-left: 0.32rem; }
+    top: 0.10667rem;
+    display: inline-block;
+    height: 0.85333rem;
+    width: 0.85333rem;
+    margin-left: 0.32rem;
+    background-repeat: no-repeat;
+    background-size: cover; }
 
 /*# sourceMappingURL=styles.css.map */
