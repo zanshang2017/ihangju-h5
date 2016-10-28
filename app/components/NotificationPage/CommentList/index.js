@@ -12,7 +12,7 @@ function CommentList(props) {
         <div className={styles.list}>
             {
                 items.map(function (item, key) {
-                    return <CommentListItem {...props} item={item} key={key} />
+                    return <CommentListItem {...props} item={item} key={key + '-' + parseInt(Math.random() * 100000)} />
                 })
             }
         </div>

@@ -112,7 +112,7 @@ class List extends React.Component {
                         let modifyTime = convertDate(item.modifyTime, 'YYYY-MM-DD hh:mm:ss');
 
                         return <div className={styles.listItem} data-id={item.id} data-name={item.userName}
-                                    key={item.id} onClick={that.clickHandler.bind(that)}>
+                                    key={item.id + '-' + parseInt(Math.random() * 100000)} onClick={that.clickHandler.bind(that)}>
                             <div className={styles.basis}>
                                 <div className={styles.avatar}>
                                     <img src={imageSrc}/>

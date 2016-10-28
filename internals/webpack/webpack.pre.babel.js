@@ -15,7 +15,7 @@ module.exports = require('./webpack.base.babel')({
     path.join(process.cwd(), 'app/app.js'),
   ],
 
-  publicPath: '//o8bwp9o9p.qnssl.com/app-h5/',
+  publicPath: '/app-h5/',
 
   // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
   output: {
