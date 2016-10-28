@@ -14,6 +14,10 @@ import {
     logout,
 } from 'containers/App/actions';
 
+import {
+    Env
+} from 'utils/env';
+
 import TopBar from 'components/common/TopBar';
 import List from 'antd-mobile/lib/list';
 
@@ -29,7 +33,6 @@ class SettingPage extends React.Component { // eslint-disable-line react/prefer-
 
     componentDidMount() {
         var that = this;
-
         console.warn('SettingPage DidMount');
 
         // this.refs.J_Wrap.addEventListener('touchstart', function () {
@@ -93,7 +96,9 @@ class SettingPage extends React.Component { // eslint-disable-line react/prefer-
                         </List.Body>
                     </List>
 
-                    <div className={styles.version}>版本:{window.__APP_CONFIG.ver}</div>
+                    <div className={styles.version}>
+                        <p>版本:{window.__APP_CONFIG.ver}_{Env.shell}</p>
+                    </div>
 
                 </div>
             </div>

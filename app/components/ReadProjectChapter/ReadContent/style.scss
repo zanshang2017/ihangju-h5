@@ -8,6 +8,10 @@
     min-height: 100%;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    -webkit-transition: transform .5s ease;
+    transition: transform .5s ease;
+
+
     .authorMes {
         width: 100%;
         height: $navHeight;

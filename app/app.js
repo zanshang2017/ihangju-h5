@@ -11,7 +11,7 @@ import 'sanitize.css/lib/sanitize.css';
 import 'antd-mobile/dist/antd-mobile.css';
 import 'common/antd_cover.css';
 
-import 'file?name=[name].[ext]!./.htaccess';      // eslint-disable-line import/no-unresolved
+// import 'file?name=[name].[ext]!./.htaccess';      // eslint-disable-line import/no-unresolved
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -61,6 +61,8 @@ window.onerror = function (e) {
     // alert('error' + e);
     // location.reload();
 };
+
+window.debugLog = function(){};
 
 import App from 'containers/App';
 

@@ -24,16 +24,10 @@ import Toast from 'antd-mobile/lib/toast';
 
 import {Link} from 'react-router';
 
-var x = null;
-var y = null;
+import _ from 'underscore';
 
-const AREA = {
-    HEAD: 'head',
-    FOOT: 'foot'
-};
-var moveArea = '';
 
-const TRIGGER_PAGE_DIST = 20;// 滑动距离
+const TRIGGER_PAGE_DIST = 60;// 滑动距离
 
 var projectId = null;
 var chapterId = null;
@@ -70,27 +64,10 @@ class ReadContent extends React.Component {
 
         // console.log(this.wrapH, this.wrapSH);
 
-        this.nWrap.addEventListener('scroll', function (e) {
-            console.log(that.nWrap.scrollTop);
-            that.isTouchTop = (that.nWrap.scrollTop == 0);
-            that.isTouchBottom = that.nWrap.scrollTop + that.wrapH >= that.wrapSH - 10;
-
-            debugLog('that.nWrap.scrollTop:' + that.nWrap.scrollTop + ' that.wrapH:' + that.wrapH)
-            debugLog("that.isTouchTop:" + that.isTouchTop + " that.isTouchBottom:" + that.isTouchBottom);
-
-            if (that.isTouchTop || that.isTouchBottom) {
-                debugLog('touch!');
-                if (!that.isAddListener) {
-                    that.nWrap.addEventListener('touchmove', that.touchmoveHandler);
-                    that.isAddListener = true;
-                }
-            }
-        });
-
-        this.nWrap.addEventListener('touchstart', function (e) {
-            that.touchStartY = e.touches[0].pageY;
-            debugLog('touchStartY:' + that.touchStartY);
-        });
+        this.scrollHanderBinded = _.throttle(this.scrollHandler.bind(this), 50, {leading: false});
+        this.touchStartBinded = this.touchStartHandler.bind(this);
+        this.nWrap.addEventListener('scroll', this.scrollHanderBinded);
+        this.nWrap.addEventListener('touchstart', this.touchStartBinded);
 
         // var nwrap = that.refs.J_ChapterCont;
         // nwrap.addEventListener("touchstart", that.tStart.bind(that), false);
@@ -99,14 +76,45 @@ class ReadContent extends React.Component {
     }
 
     componentDidUpdate() {
-        // alert('did Update!');
         this.resetScrollPage();
+    }
+
+    componentWillUnmount() {
+        this.nWrap.removeEventListener('scroll', this.scrollHanderBinded);
+        this.nWrap.removeEventListener('touchstart', this.touchStartBinded);
+        this.nWrap.removeEventListener('touchmove', this.touchmoveHandler);
+    }
+
+    touchStartHandler(e) {
+        var that = this;
+        that.isMoveComplete = false;
+        that.touchStartY = e.touches[0].pageY;
+        debugLog('touchStartY:' + that.touchStartY);
+    }
+
+    scrollHandler(e) {
+        var that = this;
+
+        console.log(that.nWrap.scrollTop);
+        that.isTouchTop = (that.nWrap.scrollTop == 0);
+        that.isTouchBottom = that.nWrap.scrollTop + that.wrapH >= that.wrapSH - 10;
+
+        debugLog('that.nWrap.scrollTop:' + that.nWrap.scrollTop + ' that.wrapH:' + that.wrapH)
+        debugLog("that.isTouchTop:" + that.isTouchTop + " that.isTouchBottom:" + that.isTouchBottom);
+
+        if (that.isTouchTop || that.isTouchBottom) {
+            debugLog('touch!');
+            if (!that.isAddListener) {
+                that.nWrap.addEventListener('touchmove', that.touchmoveHandler);
+                that.isAddListener = true;
+            }
+        }
     }
 
     resetScrollPage() {
         debugLog('reset');
         this.nWrap = this.refs.J_ChapterWrap;
-        // this.nCont = this.refs.J_ChapterCont;
+        this.nCont = this.refs.J_ChapterCont;
         this.wrapH = this.nWrap.getBoundingClientRect().height;
         this.wrapSH = this.nWrap.scrollHeight;
         this.isTouchTop = true;
@@ -119,11 +127,13 @@ class ReadContent extends React.Component {
         this.isAddListener = false;
 
         this.nWrap.removeEventListener('touchmove', this.touchmoveHandler);
+        this.nWrap.removeEventListener('touchend', this.touchendHandler);
     }
 
     touchmoveHandler(e) {
         let that = superThis;
         let dist = that.touchStartY - e.touches[0].pageY;
+
         debugLog('dist:' + dist + ' touchStartY:' + that.touchStartY + ' pageY:' + e.touches[0].pageY);
 
         if (dist < 0) {
@@ -134,230 +144,104 @@ class ReadContent extends React.Component {
             that.isMoveBottom = true;
         }
 
-        that.isMoveTopComplete = dist < 0 && dist < -TRIGGER_PAGE_DIST;
-        that.isMoveBottomComplete = dist > 0 && dist > TRIGGER_PAGE_DIST;
+        if ((that.isTouchTop && that.isMoveBottom) || (that.isTouchBottom && that.isMoveTop)) {
+            debugLog('方向相反,解绑!');
+            that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
+            that.isAddListener = false;
+            return;
+        }
 
-        if (that.isMoveTopComplete || that.isMoveBottomComplete) {
+        that.nWrap.addEventListener('touchend', that.touchendHandler);
+
+        that.isMoveTopComplete = dist < -TRIGGER_PAGE_DIST;
+        that.isMoveBottomComplete = dist > TRIGGER_PAGE_DIST;
+
+        if ((that.isMoveTopComplete || that.isMoveBottomComplete)) {
             let _chapterContent = that.props.chapterContent.toJS();
             let _projectInfo = that.props.projectInfo.toJS();
             let locStorageProjectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
             let chapterIndex = null;
 
-            if (that.isTouchTop) {
-                if (that.isMoveTopComplete) {
-                    debugLog('上一页');
-                    that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
-                    that.isAddListener = false;
+            that.isMoveComplete = true;
 
-                    for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
-                        let item = _chapterContent.chapters[key];
+            if (that.isTouchTop && that.isMoveTopComplete) {
+                debugLog('上一页');
 
-                        if (item.id == chapterId) {
-                            if (key == 0) {
-                                chapterIndex = null;
-                                Toast.info("没有上一章节了", 1.5);
-                                return;
-                            }
-                            chapterIndex = key - 1;
-                            break;
+                for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
+                    let item = _chapterContent.chapters[key];
+
+                    if (item.id == chapterId) {
+                        if (key == 0) {
+                            chapterIndex = null;
+                            Toast.info("没有上一章了", 1.5);
+                            return;
                         }
-                    }
-
-                    if (chapterIndex || chapterIndex === 0) {
-                        chapterId = _chapterContent.chapters[chapterIndex].id;
-                        locStorageProjectInfo[projectId].push(chapterId);
-                        that.props.setProjectInfoStatus(_projectInfo);
-                        locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
-
-                        that.nWrap.scrollTop = 0;
+                        chapterIndex = key - 1;
+                        break;
                     }
                 }
 
-                if (that.isMoveBottom) {
-                    that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
-                    that.isAddListener = false;
+                if (chapterIndex || chapterIndex === 0) {
+                    chapterId = _chapterContent.chapters[chapterIndex].id;
+                    locStorageProjectInfo[projectId].push(chapterId);
+                    that.props.setProjectInfoStatus(_projectInfo);
+                    locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
+
+                    that.nWrap.scrollTop = 0;
                 }
+
+                // that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
+                // that.isAddListener = false;
+
             }
 
-            if (that.isTouchBottom) {
-                if(that.isMoveBottomComplete) {
-                    debugLog('下一页');
-                    that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
-                    that.isAddListener = false;
+            if (that.isTouchBottom && that.isMoveBottomComplete) {
+                debugLog('下一页');
 
-                    for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
-                        let item = _chapterContent.chapters[key];
+                for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
+                    let item = _chapterContent.chapters[key];
 
-                        if (item.id == chapterId) {
-                            if (key >= _chapterContent.chapters.length - 1) {
-                                chapterIndex = null;
-                                Toast.info("没有下一章了", 1.5);
-                                return;
-                            }
-                            chapterIndex = key + 1;
-                            break;
+                    if (item.id == chapterId) {
+                        if (key >= _chapterContent.chapters.length - 1) {
+                            chapterIndex = null;
+                            Toast.info("没有下一章了", 1.5);
+                            return;
                         }
-                    }
-
-                    if (chapterIndex) {
-                        console.log(chapterIndex);
-                        chapterId = _chapterContent.chapters[chapterIndex].id;
-                        locStorageProjectInfo[projectId].push(chapterId);
-                        that.props.setProjectInfoStatus(_projectInfo);
-                        locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
-
-                        that.nWrap.scrollTop = 0;
+                        chapterIndex = key + 1;
+                        break;
                     }
                 }
 
-                if (that.isMoveTop) {
-                    that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
-                    that.isAddListener = false;
+                if (chapterIndex) {
+                    console.log(chapterIndex);
+                    chapterId = _chapterContent.chapters[chapterIndex].id;
+                    locStorageProjectInfo[projectId].push(chapterId);
+                    that.props.setProjectInfoStatus(_projectInfo);
+                    locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
+
+                    that.nWrap.scrollTop = 0;
                 }
+
+                // that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
+                // that.isAddListener = false;
             }
 
+        }
+        else {
+            // 拖拽动画
+            // that.nCont.style.webkitTransform = 'translate3d(0, ' + (-dist) + 'px, 0)';
+            // that.nCont.style.transform = 'translate3d(0, ' + (-dist) + 'px, 0)';
         }
 
         debugLog(e.touches[0].pageY + ":" + e.touches[0].clientY);
         e.preventDefault();
     }
 
-    // tStart(event) {
-    //
-    //     debugLog('Start <<<<<<<<<<<');
-    //     var nwrap = this.refs.J_ChapterWrap;
-    //     var ncont = this.refs.J_ChapterCont;
-    //     var ncontH = ncont.getBoundingClientRect().height;
-    //     var nwrapH = nwrap.getBoundingClientRect().height;
-    //     var touches = event.targetTouches;
-    //
-    //     if (touches.length == 1) {
-    //         x = touches[0].pageX;
-    //         y = touches[0].pageY;
-    //
-    //         // debugLog('start:' + y);
-    //         console.log((nwrap.scrollTop + nwrapH) + ":" + ncontH);
-    //         // debugLog(nwrap.scrollTop + '==' + (nwrap.scrollHeight - nwrapH) + '(' +nwrap.scrollHeight + '-' + nwrapH + ')');
-    //
-    //         if (nwrap.scrollTop == 0) {
-    //             moveArea = AREA.HEAD;
-    //         } else if ((nwrap.scrollTop + nwrapH) + 5 >= ncontH) {
-    //             // } else if (Math.abs(nwrap.scrollHeight - nwrap.scrollTop - nwrapH) < 5) {
-    //             moveArea = AREA.FOOT;
-    //         } else {
-    //             moveArea = '';
-    //         }
-    //     } else {
-    //         moveArea = '';
-    //     }
-    //
-    //     debugLog('moveArea:' + moveArea);
-    //     console.log('moveArea:' + moveArea);
-    // }
-    //
-    // tMove(event) {
-    //     if (moveArea) {
-    //         event.preventDefault();
-    //         debugLog('move');
-    //
-    //         var that = this;
-    //         var touches = event.targetTouches;
-    //
-    //         if (touches.length == 1) {
-    //             var y1 = touches[0].pageY;
-    //             var dist = y - y1;
-    //             var nwrap = this.refs.J_ChapterWrap;
-    //             var nwrapH = nwrap.getBoundingClientRect().height;
-    //             var key = 0;
-    //             var len = 0;
-    //
-    //             debugLog('move:' + dist);
-    //             // console.log(dist);
-    //
-    //             var toNext = dist > 0 && dist > TRIGGER_PAGE_DIST && moveArea === AREA.FOOT,
-    //                 toPrevious = dist < 0 && dist < -TRIGGER_PAGE_DIST && moveArea === AREA.HEAD;
-    //
-    //             if (toNext || toPrevious) {
-    //
-    //                 toNext && alert('toNext!');
-    //                 toPrevious && alert('toPrevious!');
-    //
-    //                 moveArea = '';
-    //
-    //                 console.log('in moveY:', y - y1);
-    //                 console.log(nwrap.scrollTop + ":" + nwrapH);
-    //
-    //                 let _chapterContent = this.props.chapterContent.toJS();
-    //                 let _projectInfo = this.props.projectInfo.toJS();
-    //                 let locStorageProjectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
-    //                 let chapterIndex = null;
-    //
-    //                 // let projectInfoKey = null;
-    //                 //  _projectInfo.map(function(item, key) {
-    //                 // 	if(item.pid == projectId){
-    //                 // 		projectInfoKey = key;
-    //                 // 	}
-    //                 // })
-    //
-    //                 if (toNext) {
-    //                     for (key = 0, len = _chapterContent.chapters.length; key < len; key++) {
-    //                         let item = _chapterContent.chapters[key];
-    //
-    //                         if (item.id == chapterId) {
-    //                             if (key >= _chapterContent.chapters.length - 1) {
-    //                                 chapterIndex = null;
-    //                                 Toast.info("没有下一章了", 1.5);
-    //                                 return;
-    //                             }
-    //                             chapterIndex = key + 1;
-    //                             break;
-    //                         }
-    //                     }
-    //
-    //                     if (chapterIndex) {
-    //                         console.log(chapterIndex);
-    //                         chapterId = _chapterContent.chapters[chapterIndex].id;
-    //                         locStorageProjectInfo[projectId].push(chapterId);
-    //                         that.props.setProjectInfoStatus(_projectInfo);
-    //                         locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
-    //
-    //                         nwrap.scrollTop = 0;
-    //                     }
-    //                 }
-    //
-    //                 if (toPrevious) {
-    //                     for (key = 0, len = _chapterContent.chapters.length; key < len; key++) {
-    //                         let item = _chapterContent.chapters[key];
-    //
-    //                         if (item.id == chapterId) {
-    //                             if (key == 0) {
-    //                                 chapterIndex = null;
-    //                                 Toast.info("没有上一章节了", 1.5);
-    //                                 return;
-    //                             }
-    //                             chapterIndex = key - 1;
-    //                             break;
-    //                         }
-    //                     }
-    //
-    //                     if (chapterIndex || chapterIndex === 0) {
-    //                         chapterId = _chapterContent.chapters[chapterIndex].id;
-    //                         locStorageProjectInfo[projectId].push(chapterId);
-    //                         that.props.setProjectInfoStatus(_projectInfo);
-    //                         locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
-    //
-    //                         nwrap.scrollTop = 0;
-    //                     }
-    //                 }
-    //             }
-    //
-    //         }
-    //     }
-    // }
-    //
-    // tEnd(event) {
-    //     debugLog('End >>>>>>>>>>>>>');
-    // }
+    touchendHandler(e) {
+        var that = superThis;
+        that.nCont.style.webkitTransform = 'translate3d(0, 0, 0)';
+        that.nWrap.removeEventListener('touchend', that.touchendHandler);
+    }
 
     showReadTopbar() {
         let _redTopdom = this.refs._readTopbar;

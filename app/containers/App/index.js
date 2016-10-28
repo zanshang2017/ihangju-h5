@@ -87,6 +87,8 @@ class App extends React.Component {
             };
         }
 
+        debugLog('UA:' + navigator.userAgent);
+
         this.addSignalHandler();
 
         console.log('App DidMount');
@@ -107,8 +109,8 @@ class App extends React.Component {
                     hoveredElem.forEach(function (v) {
                         v.classList.remove('hover');
                     });
+                    hoveredElement.length = 0;
                 }
-                hoveredElement.length = 0;
             }, true);
 
             function detectHover(node, e) {

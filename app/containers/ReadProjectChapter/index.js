@@ -34,7 +34,7 @@ class ReadProjectChapter extends React.Component {
         try {
             projectInfo = JSON.parse(locStorage.get('projectInfo'));
         } catch (e) {
-            alert(e);
+            // alert(e);
         }
 
         //console.log(projectInfo);
