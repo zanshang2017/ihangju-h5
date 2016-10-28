@@ -51,7 +51,7 @@ function CommentListItem(props) {
     }
 
     return (
-        <div className={styles.listItem} data-id={item.projectId} onClick={clickHandler}>
+        <div className={styles.listItem} data-hashover="true" data-id={item.projectId} onClick={clickHandler}>
             <div className={styles.item}>
                 <div className={styles.avatar}>
                     <img src={imageSrc}/>

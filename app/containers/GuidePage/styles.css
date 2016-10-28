@@ -1,13 +1,13 @@
 .guideImage :global .slick-dots {
-  bottom: 4.26667rem !important; }
+  bottom: 4.53333rem !important; }
 .guideImage :global .am-carousel .slick-dots li.slick-active button:before {
   color: red !important; }
 .guideImage .enterBtn {
   position: fixed;
   left: 50%;
-  top: 50%;
-  bottom: 4.13333rem;
+  bottom: 3.46667rem !important;
   transform: translate(-50%, 100%);
+  -webkit-transform: translate(-50%, 100%);
   opacity: 1;
   transition: all .5s ease-in; }
   .guideImage .enterBtn div {

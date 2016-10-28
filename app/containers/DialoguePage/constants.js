@@ -19,3 +19,4 @@ export const GET_LETTERGROUP_ID_SUCCESS = 'app/DialoguePage/GET_LETTERGROUP_ID_S
 export const GET_LETTERGROUP_ID_ERROR = 'app/DialoguePage/GET_LETTERGROUP_ID_ERROR';
 
 export const SET_DIALOGUE_DATA_STATUS = 'app/DialoguePage/SET_DIALOGUE_DATA_STATUS';
+export const RESET_STATE = 'app/DialoguePage/RESET_STATE';

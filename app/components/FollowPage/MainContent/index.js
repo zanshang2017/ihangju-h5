@@ -46,12 +46,14 @@ class MainContent extends React.Component {
         //     'this.isLast:', this.isLast);
 
         var nWrap = this.refs.J_FollowPageMainContentWrap;
-        var nWrapH = nWrap.getBoundingClientRect().height;
-        var nOuterH = this.nScrollOuter.getBoundingClientRect().height;
+        var nWrapH = nWrap ? nWrap.getBoundingClientRect().height : 0;
+        var nOuterH = this.nScrollOuter ? this.nScrollOuter.getBoundingClientRect().height : 0;
 
+        var dist = nWrapH - (this.nScrollOuter.scrollTop + nOuterH);
         // console.log(this.nScrollOuter.scrollTop + nOuterH + '>=' + nWrapH);
 
-        if ((this.nScrollOuter.scrollTop + nOuterH) - nWrapH > 0 && !this.isLast && !this.props.myFollowLoading) {
+        if ( dist <= 350 && !this.isLast && !this.props.myFollowLoading) {
+            debugLog('加载');
             this.props.loadMyFollow(this.page + 1, this.props.currentFollow);
         }
     }
@@ -80,7 +82,7 @@ class MainContent extends React.Component {
 
         return (
             <div id="J_FollowPageMainContentWrap" ref="J_FollowPageMainContentWrap"
-                 className={`${styles.followPageMainContent} hasTopBar`}>
+                 className={`${styles.followPageMainContent}`}>
                 {list}
             </div>
         );

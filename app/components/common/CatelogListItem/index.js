@@ -19,7 +19,7 @@ class CatelogListItem extends React.Component {
         var imageSrc = addImageParam(IMG_CDN_PATH + item.image);
         var smallFont = item.tag_name.length > 2 ? styles.small : '';
 
-        return <div className={styles.catelogListItemWrap}>
+        return <div data-hashover="true" className={styles.catelogListItemWrap}>
             <Link to={`/tag/${item.tag_id}#fliproute`}>
                 <div className={styles.catelogListItem}>
                     <div className={`${styles.title} ${smallFont}`}>{item.tag_name}</div>

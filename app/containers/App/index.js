@@ -91,47 +91,41 @@ class App extends React.Component {
 
         console.log('App DidMount');
 
-        // alert(window.devicePixelRatio);
-        // alert(document.documentElement.offsetWidth);
-        // setInterval(function(){
-        //     alert(document.documentElement.style.fontSize);
-        // }, 3000);
+        //emulate hover
+        (function () {
+            var hoveredElement = [];
+            var body = document.body;
+            var hoveredElem = [];
+
+            document.body.addEventListener('touchstart', function (e) {
+                var node = e.target;
+                detectHover(node, e);
+            });
+
+            document.body.addEventListener('touchend', function (e) {
+                if (hoveredElem.length > 0) {
+                    hoveredElem.forEach(function (v) {
+                        v.classList.remove('hover');
+                    });
+                }
+                hoveredElement.length = 0;
+            }, true);
+
+            function detectHover(node, e) {
+                // console.log('continue', node);
+                var use = node.dataset['hashover'];
+
+                if (use && node.nodeType === 1 && node !== body) {
+                    node.classList.add('hover');
+                    hoveredElem.push(node);
+                    e.stopPropagation();
+                } else if(node.parentNode !== body){
+                    detectHover(node.parentNode, e);
+                }
+            }
+        })();
 
 
-        // document.body.addEventListener('touchstart', function(){
-        //     this.getElementsByClassName('mainContent')[0].classList.add('showScrollbar');
-        // });
-        //
-        // document.body.addEventListener('touchend', function(){
-        //     setTimeout(function(){
-        //         this.getElementsByClassName('mainContent')[0].classList.remove('showScrollbar');
-        //     }.bind(this), 3000);
-        //
-        // });
-
-        //模拟hover
-        // (function () {
-        //     var hoveredElement = [];
-        //
-        // document.body.addEventListener('touchstart', function (e) {
-        //     var node = e.target;
-        //     if (node.nodeType == 1 && node.nodeName.toLowerCase() == 'a') {
-        //         node.classList.add('hover');
-        //         hoveredElement.push(node);
-        //         e.stopPropagation();
-        //     }
-        // });
-        //
-        // document.body.addEventListener('touchend', function (e) {
-        //     if (hoveredElement.length > 0) {
-        //         hoveredElement.forEach(function (v, k) {
-        //             v.classList.remove('hover');
-        //         });
-        //     }
-        //     hoveredElement.length = 0;
-        // }, true);
-        //
-        // })();
     }
 
     addSignalHandler() {

@@ -35,7 +35,7 @@ const initialState = {};
 // const store = configureStore(initialState, browserHistory);
 const store = configureStore(initialState, hashHistory);
 
-store.runSaga(getUserInfo); //todo 重复绑定
+store.runSaga(getUserInfo);
 
 // 同步路由和store状态
 import {selectLocationState} from 'containers/App/selectors';
@@ -83,7 +83,7 @@ const rootRoute = {
     component: App,
     indexRoute: {
         onEnter: (nextState, replace) => replace('/found') //根路径重定向
-        // onEnter: (nextState, replace) => replace('/demo') //根路径重定向
+        // onEnter: (nextState, replace) => replace('/guide') //根路径重定向
     },
     childRoutes: createRoutes(store),
 };
@@ -103,13 +103,12 @@ ReactDOM.render(
                             {/*alert('history.length:' + window.history.length);*/
                             }
 
-
                             if (!hasRemovedAppLoading) {
                                 hasRemovedAppLoading = true;
                                 document.body.removeChild(document.getElementById('appLoading'));
                             }
 
-                            Toast.hide(); //清除Toast
+                            Toast.hide(); //页面加载后清除loading
 
                             if (!prevProps || !props) {
                                 return true;

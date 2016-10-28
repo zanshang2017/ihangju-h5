@@ -61,9 +61,13 @@
 
         i {
             position: relative;
-            top: rem(2);
-            font-size: rem(28);
-            padding-right: rem(6);
+            top: rem(4);
+            margin-right: rem(6);
+            display: inline-block;
+            height: rem(32);
+            width: rem(32);
+            background-repeat: no-repeat;
+            background-size: cover;
         }
     }
 

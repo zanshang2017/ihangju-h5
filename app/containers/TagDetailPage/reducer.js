@@ -38,6 +38,10 @@ import {
 
 } from './constants';
 
+import {
+    LOGOUT_SUCCESS,
+} from 'containers/App/constants';
+
 const initialState = fromJS({
     isEditing: false,
     detail: false,
@@ -239,6 +243,9 @@ function tagDetailPageReducer(state = initialState, action = {}) {
 
         case RESET_ALL_STATE:
             console.log('initialState', initialState);
+            return initialState;
+
+        case LOGOUT_SUCCESS:
             return initialState;
 
         default:

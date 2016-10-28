@@ -6,6 +6,9 @@ import {uploadImage} from 'utils/upload';
 
 import bridge from 'utils/bridge'
 
+import Toast from 'antd-mobile/lib/toast';
+
+
 class ImageUpload extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
@@ -59,14 +62,20 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
             return;
         }
 
+        Toast.loading('上传中,请稍后...');
+
         var that = this;
         var oFile = this._albumFile.files[0];
 
         uploadImage(oFile).then(function (imgUrl) {
             // console.log('上传成功!' + imgUrl);
+            Toast.hide();
+            Toast.success('上传成功!', 2);
             that.props.onUploadComplete && that.props.onUploadComplete(imgUrl);
         }, function (error) {
             console.log('上传失败!');
+            Toast.hide();
+            Toast.fail('上传失败,请检查网络!', 3);
             that.props.onUploadError && that.props.onUploadError(error);
         });
         // this._fileReader.readAsDataURL(oFile);
@@ -100,8 +109,8 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
 
     showSheet() {
         let that = this;
-        const BUTTONS = ['拍照', '从相册选取', '取消'];
-        // const BUTTONS = ['从相册选取', '取消'];
+        // const BUTTONS = ['拍照', '从相册选取', '取消'];
+        const BUTTONS = ['从相册选取', '取消'];
 
         ActionSheet.showActionSheetWithOptions({
                 options: BUTTONS,
@@ -112,16 +121,16 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
             },
             (buttonIndex) => {
                 switch (buttonIndex) {
-                    case 0:
-                        that.showCameraSelector();
-                        break;
-                    case 1:
-                        that.showAlbumSelector();
-                        break;
-
                     // case 0:
+                    //     that.showCameraSelector();
+                    //     break;
+                    // case 1:
                     //     that.showAlbumSelector();
                     //     break;
+
+                    case 0:
+                        that.showAlbumSelector();
+                        break;
 
                     default:
                         break;

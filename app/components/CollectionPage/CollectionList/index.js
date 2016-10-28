@@ -39,19 +39,16 @@ class CollectionList extends React.Component {
         var nWrapH = this.nWrap.getBoundingClientRect().height;
 
         // var nContentH = this.refs.J_CollectionListWrap.getBoundingClientRect().height;
-        // console.log(Math.ceil(this.nWrap.scrollTop + nWrapH), this.nWrap.scrollHeight);
+        console.log(Math.ceil(this.nWrap.scrollTop + nWrapH), this.nWrap.scrollHeight);
 
         // if (window.debugLog) {
         //     window.debugLog((nWrap.scrollTop + nWrapH) + '>=' +  nWrap.scrollHeight);
         // }
+        var dist = this.nWrap.scrollHeight - (this.nWrap.scrollTop + nWrapH);
 
-        if (Math.ceil(this.nWrap.scrollTop + nWrapH) >= this.nWrap.scrollHeight) {
+        if (dist <= 200 && !this.loading && !this.isLast) {
             //加载下一页
-            if (!this.loading) {
-                if (!this.loading && !this.isLast) {
-                    this.props.nextPageHandler(this.page + 1);
-                }
-            }
+            this.props.nextPageHandler(this.page + 1);
         }
     }
 

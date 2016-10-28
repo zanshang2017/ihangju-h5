@@ -35,11 +35,11 @@ class TopListBar extends React.Component {
         let nArrowClass = nArrow.classList;
 
         if(!nArrowClass.contains('iconDown')){
-            nArrowClass.add('iconUp');
+            nArrowClass.add('iconDown');
         }
 
         if(nArrowClass.contains('iconUp')){
-            nArrowClass.remove('iconDown');
+            nArrowClass.remove('iconUp');
         }
     }
 
@@ -56,7 +56,7 @@ class TopListBar extends React.Component {
         }
 
         return (
-            <div className={`r1bb`}>
+            <div>
                 <div id="J_followPageTopListBar" ref="nTopListBar" className={`${styles.bar}`}>
                     {/*<div className={styles.title} onClick={this.toggleMyFollowListHandler.bind(this)}>{title}<i
                         ref="nTopListBarTitleArrow" className="icon-down iconfont"></i></div>*/}

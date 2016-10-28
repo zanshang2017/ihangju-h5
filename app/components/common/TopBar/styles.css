@@ -19,7 +19,14 @@
   color: #7b8f9d;
   text-align: center; }
   .back i {
-    font-size: 1.06667rem; }
+    position: relative;
+    top: 0.32rem;
+    display: inline-block;
+    height: 1.06667rem;
+    width: 1.06667rem;
+    margin-left: 0.32rem;
+    background-repeat: no-repeat;
+    background-size: cover; }
 
 .title {
   color: #383b3d;

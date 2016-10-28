@@ -26,6 +26,11 @@ import {
 
 } from './constants';
 
+import {
+    LOGOUT_SUCCESS,
+} from 'containers/App/constants';
+
+
 const initialState = fromJS({
     myFollowData: false,
     myFollowListData: fromJS({
@@ -195,6 +200,9 @@ function followPageReducer(state = initialState, action = null) {
             }
 
             return state;
+
+        case LOGOUT_SUCCESS:
+            return initialState;
 
         default:
             return state;

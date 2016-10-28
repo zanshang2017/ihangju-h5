@@ -24,7 +24,11 @@
         left: rem(40);
         bottom: rem(40);
         i {
-            font-size: rem(50);
+            display: inline-block;
+            height: rem(44);
+            width: rem(44);
+            background-repeat: no-repeat;
+            background-size: cover;
         }
     }
 

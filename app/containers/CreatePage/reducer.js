@@ -31,6 +31,10 @@ import {
 
 } from './constants';
 
+import {
+    LOGOUT_SUCCESS,
+} from 'containers/App/constants';
+
 const initialState = fromJS({
     notes: false,
     showTab: 1, //显示的tab内容编号
@@ -129,6 +133,9 @@ function createPageReducer(state = initialState, action = null) {
 
         case CLEAR_CURRENT_NOTE:
             return state.set('currentNote', false).set('noteContent', '');
+
+        case LOGOUT_SUCCESS:
+            return initialState;
 
         default:
             return state;

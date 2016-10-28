@@ -34,7 +34,7 @@ function ArticleListItem(props) {
     //    }
 
     return (
-        <div className={styles.articleListItem} data-id={item.id} onClick={props.articleClickHandler}>
+        <div className={styles.articleListItem} data-hashover="true" data-id={item.id} onClick={props.articleClickHandler}>
             <span className={styles.source}><strong>{source}</strong> 更新了</span>
             <div className={styles.read}>{modifyTime}</div>
             <h3>{item.projectName}</h3>
@@ -42,7 +42,7 @@ function ArticleListItem(props) {
             <div className={styles.info}>
                 <div className="fl">
                     {/*<span className="like"><i className="iconfont icon-hearto"></i> {item.likeNumber}</span>*/}
-                    <span className="like"><span className={styles.heart}></span><span className={styles.heartNum}>{item.likeNumber}</span></span>
+                    <span className="like"><span className={`${styles.heart} iconHeart`}></span><span className={styles.heartNum}>{item.likeNumber}</span></span>
                 </div>
                 <div className="fr">
                     {item.browsNumber || 0}人已阅读

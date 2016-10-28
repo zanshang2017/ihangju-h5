@@ -6,7 +6,9 @@
   height: 2.66667rem;
   line-height: 2.66667rem;
   font-size: 0.85333rem;
-  background: #fff; }
+  background: #fff;
+  border-bottom: 1px solid #d9d9d9;
+  z-index: 9999; }
 
 .title {
   color: #383b3d;

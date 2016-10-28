@@ -15,6 +15,10 @@ import {
     RESET_STATE,
 } from './constants';
 
+import {
+    LOGOUT_SUCCESS,
+} from 'containers/App/constants';
+
 const initialState = fromJS({
 	'projectDetailChapter' : {},
 	"projectDetail": {},
@@ -50,6 +54,9 @@ function detailPageReducer(state = initialState, action = {}) {
       return state;
 
       case RESET_STATE:
+          return initialState;
+
+      case LOGOUT_SUCCESS:
           return initialState;
 
     default:

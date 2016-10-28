@@ -41,8 +41,11 @@
 
         i {
             padding-left: rem(20);
-            color: $weakTextColor;
-            font-size: rem(24);
+            display: inline-block;
+            height: rem(32);
+            width: rem(32);
+            background-repeat: no-repeat;
+            background-size: cover;
         }
     }
 

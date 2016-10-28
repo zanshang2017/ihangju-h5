@@ -31,13 +31,13 @@ function ArticleListItem2(props) {
     // "likeNumber": 9
 
     return (
-        <div className={styles.articleListItem2} data-id={item.projectId} onClick={props.articleClickHandler}>
+        <div className={styles.articleListItem2} data-id={item.projectId} data-hashover="true" onClick={props.articleClickHandler}>
             <h3>{item.projectName}</h3>
             <p>{item.description}</p>
             <div className={styles.info}>
                 <div className="fl">
-                    <span className="like"><i className="iconfont icon-hearto"></i> {item.likeNumber}</span>
-                    <span className="comment"><i className="iconfont icon-message"></i> {item.commentNumber}</span>
+                    <span className="like"><i className="iconHeart"></i> {item.likeNumber}</span>
+                    <span className="comment"><i className="iconMes"></i> {item.commentNumber}</span>
                 </div>
                 <div className="read fr">阅读 {item.browseNumber || 0}</div>
             </div>

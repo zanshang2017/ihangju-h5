@@ -71,7 +71,6 @@
     color: $linkColor;
     span {
         display: inline-block;
-        width: rem(200);
         margin: 0 auto;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -79,7 +78,13 @@
     }
     i {
         position: relative;
-        top: rem(-37);
+        top: rem(-35);
+        display: inline-block;
+        height: rem(32);
+        width: rem(32);
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin-left: rem(4);
     }
 }
 
@@ -88,7 +93,13 @@
     right: rem(44);
     top: 0;
     i {
-        color: $linkColor;
+        position: relative;
+        top: rem(12);
+        display: inline-block;
+        height: rem(40);
+        width: rem(40);
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 }
 

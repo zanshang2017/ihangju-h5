@@ -15,6 +15,10 @@ import {
     SET_LIST_DATA_STATUS,
 } from './constants';
 
+import {
+    LOGOUT_SUCCESS,
+} from 'containers/App/constants';
+
 const initialState = fromJS({
     fansList: fromJS({
         data: false,
@@ -74,6 +78,9 @@ function FansListPageReducer(state = initialState, action = {}) {
             }
 
             return state;
+
+        case LOGOUT_SUCCESS:
+            return initialState;
 
         default:
             return state;

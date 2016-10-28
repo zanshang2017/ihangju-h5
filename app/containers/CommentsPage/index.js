@@ -72,11 +72,18 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
         let that = this;
         signals.sendCommentSuccess.add(()=> {
             that.resetReplyData();
+            Toast.hide();
+        });
+
+        signals.sendCommentError.add(()=> {
+            Toast.hide();
+            Toast.fail('评论发送失败,请检查网络!', 3);
         });
     }
 
     componentWillUnmount() {
         signals.sendCommentSuccess.removeAll();
+        signals.sendCommentError.removeAll();
     }
 
     // 发送成功之后重置输入栏
@@ -146,6 +153,7 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
     }
 
     submitHandler(content) {
+        Toast.loading('发送中...');
         this.replyData.content = content;
         this.props.dispatch(sendCommentsData(_.clone(this.replyData)));
     }

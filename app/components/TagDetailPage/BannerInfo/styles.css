@@ -47,9 +47,13 @@
     color: #7d786a; }
     .bannerInfo .followed i {
       position: relative;
-      top: 0.05333rem;
-      font-size: 0.74667rem;
-      padding-right: 0.16rem; }
+      top: 0.10667rem;
+      margin-right: 0.16rem;
+      display: inline-block;
+      height: 0.85333rem;
+      width: 0.85333rem;
+      background-repeat: no-repeat;
+      background-size: cover; }
   .bannerInfo img {
     position: absolute;
     top: 0;

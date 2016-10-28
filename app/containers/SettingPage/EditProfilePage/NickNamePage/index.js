@@ -37,17 +37,16 @@ class NickNamePage extends React.Component { // eslint-disable-line react/prefer
             alert('请填写昵称!');
         } else {
             if (this.originName !== this.refs.J_NickName.value) {
-                this.props.dispatch(updateUserInfo({
-                    nickname: this.refs.J_NickName.value
-                }));
+                let obj = Object.assign({}, {nickname: this.refs.J_NickName.value}, this.userInfo.pushConfig);
+                this.props.dispatch(updateUserInfo(obj));
             }
             window.history.back();
         }
     }
 
     render() {
-        let userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
-        this.originName = userInfo.nickName;
+        this.userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
+        this.originName = this.userInfo.nickName || '';
 
         return (
             <div className="pageInner deepBg">
@@ -58,7 +57,7 @@ class NickNamePage extends React.Component { // eslint-disable-line react/prefer
                     <List.Body>
                         <List.Item>
                             <input ref="J_NickName" className={styles.inputField} placeholder="请输入昵称" maxLength="10"
-                                   defaultValue={userInfo.nickName || ''}/>
+                                   defaultValue={this.userInfo.nickName || ''}/>
                         </List.Item>
                     </List.Body>
                 </List>

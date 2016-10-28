@@ -19,6 +19,7 @@ import {
     GET_LETTERGROUP_ID_ERROR,
 
     SET_DIALOGUE_DATA_STATUS,
+    RESET_STATE,
 } from './constants';
 
 export function defaultAction() {
@@ -113,7 +114,6 @@ export function sendDialogueDataError(error) {
     };
 }
 
-
 export function setDialogueDataStatus(data) {
     var payload = {};
 
@@ -135,4 +135,9 @@ export function setDialogueDataStatus(data) {
     };
 }
 
+export function resetState() {
+    return {
+        type: RESET_STATE,
+    };
+}
 

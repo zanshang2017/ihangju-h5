@@ -22,24 +22,23 @@ export default [
 ];
 
 export function* getUserCenterData() {
+    while (yield take(LOAD_USER_CENTER_DATA)) {
+        let url = USER_CENTER_API;
+        const lists = yield call(request, url, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-API-Version': 'v1.1'
+            },
+            credentials: 'include'
+        });
 
-    let action = yield take(LOAD_USER_CENTER_DATA);
+        if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
+            yield put(loadUserCenterDataSuccess(lists.data.result));
+        } else {
+            console.log(lists.err.response); // eslint-disable-line no-console
+            yield put(loadUserCenterDataError(lists.err));
+        }
 
-    let url = USER_CENTER_API;
-
-    const lists = yield call(request, url, {
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-API-Version': 'v1.1'
-        },
-        credentials: 'include'
-    });
-
-    if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
-        yield put(loadUserCenterDataSuccess(lists.data.result));
-    } else {
-        console.log(lists.err.response); // eslint-disable-line no-console
-        yield put(loadUserCenterDataError(lists.err));
     }
 }

@@ -56,7 +56,7 @@ class List extends React.Component {
                         let imageSrc = addImageParam(IMG_CDN_PATH + item.userAvatar, IMAGE_SIZE_TYPE.AVATAR);
                         let createTime = convertDate(item.lastMessage.createTime);
 
-                        return <div className={styles.listItem} data-id={item.letterGroupId} key={item.letterGroupId} onClick={that.clickHandler.bind(that)}>
+                        return <div className={styles.listItem} data-hashover="true" data-id={item.letterGroupId} key={item.letterGroupId} onClick={that.clickHandler.bind(that)}>
                             <div className={styles.item}>
                                 <div className={styles.avatar} >
                                     <img src={imageSrc}/>

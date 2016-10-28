@@ -28,7 +28,10 @@
       font-size: 0.64rem; }
     .noteItem .right i {
       padding-left: 0.53333rem;
-      color: #bcbab5;
-      font-size: 0.64rem; }
+      display: inline-block;
+      height: 0.85333rem;
+      width: 0.85333rem;
+      background-repeat: no-repeat;
+      background-size: cover; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -13,7 +13,8 @@ import {
 } from 'containers/App/selectors';
 
 import {
-    updateUserInfo
+    loadUserInfo,
+    updateUserInfo,
 } from 'containers/App/actions';
 
 import styles from './styles.css';
@@ -21,11 +22,7 @@ import styles from './styles.css';
 import TopBar from 'components/common/TopBar';
 import List from 'antd-mobile/lib/list';
 import Switch from 'antd-mobile/lib/switch';
-import { createForm } from 'rc-form/lib';
-
-import {
-    IMG_CDN_PATH
-} from '../../../apis.js';
+import {createForm} from 'rc-form/lib';
 
 class PushConfigPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -36,6 +33,7 @@ class PushConfigPage extends React.Component { // eslint-disable-line react/pref
 
     componentWillMount() {
         this.userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
+        this.pushConfig = this.userInfo.pushConfig;
     }
 
     componentDidMount() {
@@ -44,27 +42,29 @@ class PushConfigPage extends React.Component { // eslint-disable-line react/pref
 
     commentChangeHandler(checked) {
         console.log('commentClickHandler', checked);
-        this.props.dispatch(updateUserInfo({
-            commentpush: checked
-        }));
+        this.dispatchConfig('commentPush', checked);
     }
 
     favoriteChangeHandler(checked) {
         console.log('favoriteClickHandler', checked);
-        this.props.dispatch(updateUserInfo({
-            favoritepush: checked
-        }));
+        this.dispatchConfig('favoritePush', checked);
     }
 
     letterChangeHandler(checked) {
         console.log('letterClickHandler', checked);
-        this.props.dispatch(updateUserInfo({
-            letterpush: checked
-        }));
+        this.dispatchConfig('letterPush', checked);
+    }
+
+    dispatchConfig(key, checked) {
+        if (typeof key === 'string' && (key in this.pushConfig)) {
+            this.pushConfig[key] = checked;
+            console.log('推送:', this.pushConfig);
+            this.props.dispatch(updateUserInfo(this.pushConfig));
+        }
     }
 
     render() {
-        const { getFieldProps } = this.props.form;
+        const {getFieldProps} = this.props.form;
 
         let that = this;
         let pushConfig = this.userInfo.pushConfig;
