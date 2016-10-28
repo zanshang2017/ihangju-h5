@@ -58,14 +58,13 @@
     color: #bcbab5;
     font-size: 0.74667rem; }
     .articleListItem div.info span {
-      margin-right: 0.53333rem; }
+      margin-right: 0.66667rem; }
       .articleListItem div.info span i {
         position: relative;
         top: 0.16rem;
         display: inline-block;
         height: 0.85333rem;
         width: 0.85333rem;
-        margin-left: 0.32rem;
         background-repeat: no-repeat;
         background-size: cover; }
   .articleListItem div.itemType {

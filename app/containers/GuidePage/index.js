@@ -82,7 +82,7 @@ class GuidePage extends React.Component {
 
         return (
             <div className="pageInner">
-                <div className="mainContent">
+                <div className="mainContent" style={bgStyle}>
                     <div className={styles.guideImage}>
                         <Carousel {...settings}>
                             {
@@ -94,7 +94,7 @@ class GuidePage extends React.Component {
                                         align="center"
                                         className="flex-container-justify"
                                     >
-                                        <div style={bgStyle}>
+                                        <div>
                                             <img src={imageSrc} style={imgStyle}/>
                                         </div>
                                     </Flex>

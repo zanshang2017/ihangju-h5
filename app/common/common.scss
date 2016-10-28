@@ -2,7 +2,6 @@
 @import "./__util.scss";
 @import "./__global.scss";
 @import "./atom.scss";
-@import "./iconfont/iconfont.scss";
 
 // <<< 全局样式
 :global {
@@ -287,6 +286,8 @@
             opacity: 1;
         }
     }
+
+
 
 }
 //全局样式 >>>

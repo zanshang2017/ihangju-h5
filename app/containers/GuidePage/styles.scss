@@ -13,32 +13,31 @@
 
     :global {
         .slick-dots {
-            bottom: rem(170) !important;
-        }
-
-        .am-carousel .slick-dots li.slick-active button:before {
-            color: red !important;
+            display: none !important;
         }
     }
 
     .enterBtn {
         position: fixed;
         left: 50%;
-        bottom: rem(130) !important;
+
+        @media screen and (max-device-width: 359px) {
+            bottom: rem(200) !important;
+        }
+
+        @media screen and (min-device-width: 360px) {
+            bottom: rem(260) !important;
+        }
+
         transform: translate(-50%, 100%);
         -webkit-transform: translate(-50%, 100%);
         opacity: 1;
         transition: all .5s ease-in;
 
         div {
-            width: rem(358);
-            height: rem(94);
-            background: url(https://o82zr1kfu.qnssl.com/@/image/57f8b782e4b0ea9bd4b5beec.png?imageMogr2/auto-orient/) right center no-repeat;
-            background-size: rem(721) rem(92);
-
-            &:active {
-                background-position: left center;
-            }
+            width: rem(400);
+            height: rem(240);
+            //background: rgba(0, 0, 0, .1);
         }
 
     }

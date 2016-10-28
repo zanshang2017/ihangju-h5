@@ -24,19 +24,17 @@
     </style>
 
     <script>
-
-
         (function () {
             var guideImages = {
                 '720': [
-                    'https://o82zr1kfu.qnssl.com/@/image/5812bfe8e4b0edf1e7b8e588.png?imageMogr2/auto-orient/',
-                    'https://o82zr1kfu.qnssl.com/@/image/5812bff2e4b0edf1e7b8e58a.png?imageMogr2/auto-orient/',
-                    'https://o82zr1kfu.qnssl.com/@/image/5812bff9e4b0edf1e7b8e58c.png?imageMogr2/auto-orient/',
+                    'https://o82zr1kfu.qnssl.com/@/image/5812f68ce4b0edf1e7b8faeb.png?imageMogr2/auto-orient/',
+                    'https://o82zr1kfu.qnssl.com/@/image/5812f697e4b0edf1e7b8faf1.png?imageMogr2/auto-orient/',
+                    'https://o82zr1kfu.qnssl.com/@/image/5812f6a2e4b0edf1e7b8faf7.png?imageMogr2/auto-orient/'
                 ],
                 '1080': [
-                    'https://o82zr1kfu.qnssl.com/@/image/5812c00de4b0edf1e7b8e58e.png?imageMogr2/auto-orient/',
-                    'https://o82zr1kfu.qnssl.com/@/image/5812c018e4b0edf1e7b8e590.png?imageMogr2/auto-orient/',
-                    'https://o82zr1kfu.qnssl.com/@/image/5812c022e4b0edf1e7b8e592.png?imageMogr2/auto-orient/',
+                    'https://o82zr1kfu.qnssl.com/@/image/5812f704e4b0edf1e7b8fb22.png?imageMogr2/auto-orient/',
+                    'https://o82zr1kfu.qnssl.com/@/image/5812f70de4b0edf1e7b8fb29.png?imageMogr2/auto-orient/',
+                    'https://o82zr1kfu.qnssl.com/@/image/5812f715e4b0edf1e7b8fb2e.png?imageMogr2/auto-orient/'
                 ]
             };
 
@@ -44,10 +42,10 @@
              * 全局配置
              */
             window.__APP_CONFIG = {
-                ver: '0.0.11',
+                ver: '0.0.13',
                 guide: {
-                    ver: '0.0.11', // 本地存储的版本号>=此版本号时不必展示guide页
-                    images: (window.devicePixelRatio > 2 ? guideImages['720'] : guideImages['1080']),
+                    ver: '0.0.13', // 本地存储的版本号>=此版本号时不必展示guide页
+                    images: (window.devicePixelRatio > 2 ? guideImages['1080'] : guideImages['720']),
                     ratio: 0.5625, //图片宽高比
                     style: {
                         background: '#f3f4f6'

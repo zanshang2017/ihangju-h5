@@ -26,6 +26,7 @@ import {
 
 import Toast from 'antd-mobile/lib/toast';
 
+
 //console.log('Env', Env);
 
 const initialState = {};
@@ -62,7 +63,8 @@ window.onerror = function (e) {
     // location.reload();
 };
 
-window.debugLog = function(){};
+window.debugLog = function () {
+};
 
 import App from 'containers/App';
 

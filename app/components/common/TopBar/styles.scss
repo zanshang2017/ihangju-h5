@@ -10,7 +10,6 @@
     height: $topBarHeight;
     line-height: $topBarHeight;
     font-size: rem(32);
-
     background: $topBarBg;
     border-bottom: 1px solid $borderDeepColor;
     z-index: $zIndexL3;
@@ -27,8 +26,9 @@
     text-align: center;
 
     i {
+        vertical-align: text-bottom;
         position: relative;
-        top: rem(12);
+        top: rem(2);
         display: inline-block;
         height: rem(40);
         width: rem(40);
@@ -37,6 +37,7 @@
         background-size: cover;
     }
 }
+
 
 .title {
     color: $textColor;
