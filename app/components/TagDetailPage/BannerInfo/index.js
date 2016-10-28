@@ -58,7 +58,7 @@ class BannerInfo extends React.Component { // eslint-disable-line react/prefer-s
                 followText =
                     <div className={styles.followBtn} onClick={this.props.cancelSubTagHandler}><span
                         className={styles.followed}><i
-                        className="iconfont icon-check"></i>已关注</span></div>;
+                        className="iconCheck"></i>已关注</span></div>;
             } else {
                 followText =
                     <div className={styles.followBtn} onClick={this.props.subTagHandler}><span

@@ -282,7 +282,7 @@ class ReadContent extends React.Component {
         let method = '';
         let url = COLLECTION_API + projectId + '/project';
 
-        if (readStardom.classList.contains('icon-staro')) {
+        if (readStardom.classList.contains('iconStaro')) {
             method = 'PUT';
         } else {
             method = 'DELETE';
@@ -330,8 +330,7 @@ class ReadContent extends React.Component {
             }
         } catch (e) {
         }
-
-        var collectionClass = (_chapterContent.collection ? 'icon-star' : 'icon-staro');
+        var collectionClass = (_chapterContent.collection ? 'iconStar' : 'iconStaro');
         var likeClass = (_chapterContent.like ? (
             <img src='https://o82zr1kfu.qnssl.com/@/image/57c64c9fe4b073472e7954e7.png'></img>) : (
             <img src='https://o82zr1kfu.qnssl.com/@/image/57c6400be4b073472e79312f.png'></img>));
@@ -343,11 +342,11 @@ class ReadContent extends React.Component {
                         <div data-title>
                             <div onClick={this.showChapterList.bind(this)} className={styles.chapterTitle}>
                                 <span>{this.chapterTitle}</span>
-                                <i className="icon-down iconfont"></i>
+                                <i className="iconDown"></i>
                             </div>
                             <div className={styles.rightStar}>
                                 <i onClick={this.readStar.bind(this)} ref="_readStar"
-                                   className={`${collectionClass} iconfont`}></i>
+                                   className={`${collectionClass}`}></i>
                             </div>
                         </div>
                         <div data-btns>
@@ -357,9 +356,9 @@ class ReadContent extends React.Component {
                 </div>
                 <ChapterList ref="J_ChapterList" items={this.props.chapterContent}/>
 
-                <div id="J_ChapterWrap" ref="J_ChapterWrap" className="mainContent">
+                <div id="J_ChapterWrap" ref="J_ChapterWrap" className="mainContent" onClick={this.showReadTopbar.bind(this)}>
                     <div id="J_ChapterCont" ref="J_ChapterCont" className={styles.chpCon}
-                         onClick={this.showReadTopbar.bind(this)}>
+                         >
                         <div ref="_authorMes" className={`${styles.authorMes} hide`}>
                             <img src={authorAvatar}/>
                             <span className={styles.left}>{_chapterContent.authorUserName}</span>

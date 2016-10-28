@@ -60,7 +60,14 @@
     .articleListItem div.info span {
       margin-right: 0.53333rem; }
       .articleListItem div.info span i {
-        color: #9dadb9; }
+        position: relative;
+        top: 0.16rem;
+        display: inline-block;
+        height: 0.85333rem;
+        width: 0.85333rem;
+        margin-left: 0.32rem;
+        background-repeat: no-repeat;
+        background-size: cover; }
   .articleListItem div.itemType {
     position: absolute;
     top: 0.69333rem;

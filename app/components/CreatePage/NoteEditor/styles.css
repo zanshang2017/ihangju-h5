@@ -15,6 +15,10 @@
   left: 1.06667rem;
   bottom: 1.06667rem; }
   .noteEditor .deleteNote i {
-    font-size: 1.33333rem; }
+    display: inline-block;
+    height: 1.17333rem;
+    width: 1.17333rem;
+    background-repeat: no-repeat;
+    background-size: cover; }
 
 /*# sourceMappingURL=styles.css.map */

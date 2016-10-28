@@ -23,7 +23,6 @@ function UserDesc(props) {
     if (userInfomation.avatar) {
         imageSrc = addImageParam(IMG_CDN_PATH + userInfomation.avatar, IMAGE_SIZE_TYPE.AVATAR_BIG);
     }
-
     return (
         <List>
             <List.Body>

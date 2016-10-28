@@ -61,8 +61,17 @@
         span {
             margin-right: rem(20);
 
-            i {
-                color: #9dadb9;
+            .heart{
+                position: relative;
+                top: rem(6);
+                display: inline-block;
+                height: rem(32);
+                width: rem(32);
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            .heartNum{
+                font-size: rem(24);
             }
         }
 

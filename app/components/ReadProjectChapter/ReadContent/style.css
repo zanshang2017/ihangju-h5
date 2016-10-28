@@ -53,21 +53,32 @@
   color: #39bcc8; }
   .chapterTitle span {
     display: inline-block;
-    width: 5.33333rem;
     margin: 0 auto;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; }
   .chapterTitle i {
     position: relative;
-    top: -0.98667rem; }
+    top: -0.93333rem;
+    display: inline-block;
+    height: 0.85333rem;
+    width: 0.85333rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: 0.10667rem; }
 
 .rightStar {
   position: absolute;
   right: 1.17333rem;
   top: 0; }
   .rightStar i {
-    color: #39bcc8; }
+    position: relative;
+    top: 0.32rem;
+    display: inline-block;
+    height: 1.06667rem;
+    width: 1.06667rem;
+    background-repeat: no-repeat;
+    background-size: cover; }
 
 .bottomBar {
   width: 100%;

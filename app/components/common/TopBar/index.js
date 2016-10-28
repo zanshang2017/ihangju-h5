@@ -40,7 +40,7 @@ class TopBar extends React.Component {
 
         if (this.props['data-has-back'] == 'true') {
             backBtn = <div onClick={this.handleBack.bind(this)} data-hashover="true" className={styles.back}><i
-                className="icon-left iconfont"></i>
+                className="iconBack"></i>
             </div>;
         }
 

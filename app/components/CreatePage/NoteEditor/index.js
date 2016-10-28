@@ -73,7 +73,7 @@ export default class NoteEditor extends React.Component {
                     <div className={styles.savedTime}>{modifyTime}</div>
                     <textarea ref="J_Content" className={styles.content} value={this.props.noteContent}
                               onChange={this.changeHandler.bind(this)}/>
-                    <div ref="J_DeleteBtn" className={styles.deleteNote} onClick={this.delete.bind(this)}><i className="iconfont icon-delete"></i></div>
+                    <div ref="J_DeleteBtn" className={styles.deleteNote} onClick={this.delete.bind(this)}><i className="iconDelete"></i></div>
                 </div>
             </div>
         );

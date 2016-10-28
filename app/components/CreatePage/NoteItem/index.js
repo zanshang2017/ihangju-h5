@@ -32,7 +32,7 @@ export default class NoteItem extends React.Component {
                 <span className={styles.content}>{this.item.content}</span>
                 <div className={styles.right}>
                     <span className={styles.time}>{time}</span>
-                    <i className="icon-right iconfont"></i>
+                    <i className="iconRight"></i>
                 </div>
             </li>
         );

@@ -118,7 +118,7 @@ class List extends React.Component {
                                     <img src={imageSrc}/>
                                 </div>
                                 <div className={styles.info}>
-                                    <h4>{item.userName || ''}</h4>
+                                    <span>{item.userName || ''}</span>
                                     <p className={styles.time}>{modifyTime}</p>
                                 </div>
                             </div>

@@ -27,7 +27,14 @@
     text-align: center;
 
     i {
-        font-size: rem(40);
+        position: relative;
+        top: rem(12);
+        display: inline-block;
+        height: rem(40);
+        width: rem(40);
+        margin-left: rem(12);
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 }
 
