@@ -35,6 +35,8 @@ const IMG_UPLOAD_TOKEN_API = `//${api_host}/storage/image/uptoken`;
 //三方登录页
 const THIRDPARTY_LOGIN_URL = `//${thirdparty_login_domain}/oauth/authorize?client_id=ihangju&redirect_uri=http://${api_host}/zanshang/authentication&response_type=code&scope=read&state=33251`;
 
+const THIRDPARTY_LOGOUT_URL = `//${thirdparty_login_domain}/authentication`; //method DELETE
+
 //退出登录
 /**
  * restful:
@@ -494,6 +496,8 @@ export {
     IMG_UPLOAD_TOKEN_API,
 
     THIRDPARTY_LOGIN_URL,
+    THIRDPARTY_LOGOUT_URL,
+
     LOGOUT_API,
     USER_INFO_API,
     USER_CENTER_API,

@@ -25,7 +25,7 @@ class CatelogListItem extends React.Component {
                     <div className={`${styles.title} ${smallFont}`}>{item.tag_name}</div>
                     <div className={styles.info}>
                         <div className={styles.infoImg}>
-                            <LazyLoad>
+                            <LazyLoad offset={200}>
                                 <img src={imageSrc} />
                             </LazyLoad>
                         </div>

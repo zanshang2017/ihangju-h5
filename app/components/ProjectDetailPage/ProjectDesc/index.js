@@ -22,8 +22,8 @@ class ProjectDesc extends React.Component {
         var props = this.props;
         var _result = props.projectDetail.toJS();
 
-        let imageSrc = addImageParam(IMG_CDN_PATH + _result.projectImage);
-        let headSrc = addImageParam(IMG_CDN_PATH + _result.authorAvatar, IMAGE_SIZE_TYPE.AVATAR_SMALL);
+        let imageSrc = _result.projectImage ? addImageParam(IMG_CDN_PATH + _result.projectImage) : '';
+        let headSrc = _result.authorAvatar ? addImageParam(IMG_CDN_PATH + _result.authorAvatar, IMAGE_SIZE_TYPE.AVATAR_SMALL) : '';
         let modifyTime = convertDate(_result.modifyTime);
         let publisher = '';
 
@@ -38,13 +38,17 @@ class ProjectDesc extends React.Component {
             <div className={style.projectDetails}>
                 <div className={style.cover}>
                     <div className={style.coverImg}>
-                        <img src={imageSrc}/>
+                        {
+                            imageSrc && <img src={imageSrc}/>
+                        }
                     </div>
                     {publisher}
                 </div>
                 <div className={style.author}>
                     <Link to={`/person/${_result.authorId}`}>
-                        <img src={headSrc}/>
+                        {
+                            headSrc && <img src={headSrc}/>
+                        }
                         <span className={style.name}>{_result.authorName}</span>
                     </Link>
                     <span className={style.date}>{modifyTime}更新</span>

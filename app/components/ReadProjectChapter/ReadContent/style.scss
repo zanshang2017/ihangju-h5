@@ -3,14 +3,54 @@
 @import '../../../common/__util.scss';
 @import "../../../common/common.css";
 
+$loadingHeight: 75px;
+
+.chpWrap {
+    position: relative;
+    //margin-bottom: -$loadingHeight;
+}
+
 .chpCon {
+    position: relative;
+    display: inline-block;
     width: 100%;
     min-height: 100%;
-    overflow-y: auto;
+    margin-bottom: -$loadingHeight;
     -webkit-overflow-scrolling: touch;
-    -webkit-transition: transform .5s ease;
-    transition: transform .5s ease;
 
+    .loading {
+        display: inline-block;
+        width: rem(40);
+        height: rem(40);
+        background: url(https://o82zr1kfu.qnssl.com/@/image/5816aa34e4b0edf1e7b9ed66.gif) left center no-repeat;
+        background-size: cover;
+        vertical-align: middle;
+        margin-right: rem(20);
+    }
+
+    .toPreviourPageNotice {
+        width: 100%;
+        height: $loadingHeight;
+        line-height: $loadingHeight;
+        background: #efefef;
+        color: #666;
+        font-size: 14px;
+        text-align: center;
+        position: absolute;
+        top: -$loadingHeight;
+    }
+
+    .toNextPageNotice {
+        position: absolute;
+        //bottom: -$loadingHeight;
+        width: 100%;
+        height: $loadingHeight;
+        line-height: $loadingHeight;
+        background: #efefef;
+        color: #666;
+        font-size: 14px;
+        text-align: center;
+    }
 
     .authorMes {
         width: 100%;
@@ -36,7 +76,7 @@
         }
     }
     .contentWrap {
-        margin: 0 23px 16px;
+        margin: 20px 23px 16px;
 
         .contentMes {
             margin: 32px auto 0;
@@ -62,7 +102,7 @@
 
         .contentTitle {
             max-width: 600px;
-            margin: 20px auto 0;
+            margin: 0 auto;
             overflow: hidden;
             font-size: 21px;
             line-height: 30px;

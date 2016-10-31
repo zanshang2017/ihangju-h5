@@ -2,6 +2,8 @@ import React from 'react';
 
 import styles from './styles.css';
 
+import Result from 'antd-mobile/lib/page-result';
+
 import _ from 'underscore';
 
 import CommentList from 'components/NotificationPage/CommentList';
@@ -48,7 +50,6 @@ class ListGroup extends React.Component {
         //滑动底部加载下一页
         that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 300, {leading: false});
         that.nWrap.addEventListener('scroll', that.scrollHanderBinded);
-
     }
 
     componentWillUpdate(nProps) {
@@ -121,16 +122,36 @@ class ListGroup extends React.Component {
     }
 
     render() {
+
+        let commentHtml = <Result
+            imgUrl="https://o82zr1kfu.qnssl.com/@/image/5813164ee4b0edf1e7b90b15.png?imageMogr2/auto-orient/"
+            title="还没有任何评论哦~"
+        />;
+
+        let messageHtml = <Result
+            imgUrl="https://o82zr1kfu.qnssl.com/@/image/5813164ee4b0edf1e7b90b15.png?imageMogr2/auto-orient/"
+            title="还没有任何通知哦~"
+        />;
+
+        if (this.props.commentList) {
+            commentHtml = <CommentList {...this.props} items={this.props.commentList || []}/>;
+        }
+
+        if (this.props.messageList) {
+            messageHtml = <MessageList {...this.props} items={this.props.messageList || []}/>;
+        }
+
+
         return (
             <div ref="J_NotificationPageListGroupWrap" className="tagDetailPageListGroup">
                 <Tabs ref="J_Tabs" defaultActiveKey={activeKey} onChange={this.tabChangeHandler.bind(this)}>
                     <TabPane tab="评论" key="1">
                         <div className="blockGapTag"></div>
-                        <CommentList {...this.props} items={this.props.commentList || []}/>
+                        {commentHtml}
                     </TabPane>
                     <TabPane tab="通知" key="2">
                         <div className="blockGapTag"></div>
-                        <MessageList {...this.props} items={this.props.messageList || []}/>
+                        {messageHtml}
                     </TabPane>
                 </Tabs>
             </div>

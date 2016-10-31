@@ -2,7 +2,8 @@
  * Created by Howard on 16/6/27.
  */
 
-const PRODUCTION_DOMAIN = 'h5.app.ihangju.com';
+// const PRODUCTION_DOMAIN = 'h5.app.ihangju.com';
+const PRODUCTION_DOMAIN = 'h5.dev.ihangju.com'; //todo 测试后记得恢复!
 const PREPUB_DOMAIN = 'preh5.app.ihangju.com';
 
 var ua = navigator.userAgent;
@@ -28,6 +29,9 @@ var Env = {
 
     devHost: '192.168.1.33:8888',
     devAPIHost: '192.168.1.33:8888',
+
+    // devHost: 'testapi.ihangju.com',
+    // devAPIHost: 'testapi.ihangju.com',
 
     productionHost: 'h5.app.ihangju.com',
     productionAPIHost: 'api.ihangju.com',

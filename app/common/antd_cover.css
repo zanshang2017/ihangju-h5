@@ -58,6 +58,15 @@
   :global .am-action-sheet .am-action-sheet-message {
     margin: 6px auto 12px !important; }
   :global .am-page-result {
-    padding-top: 10%; }
+    padding-top: 0 !important; }
+    :global .am-page-result .am-page-result-pic {
+      min-width: 320px;
+      height: 240px;
+      margin: 0 auto;
+      background-size: 100% 100%; }
+    :global .am-page-result .am-page-result-title {
+      font-size: 13px !important;
+      font-weight: 100 !important;
+      margin-top: 15px !important; }
 
 /*# sourceMappingURL=antd_cover.css.map */

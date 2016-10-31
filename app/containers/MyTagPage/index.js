@@ -21,6 +21,7 @@ import {
 
 import styles from './styles.css';
 
+import Result from 'antd-mobile/lib/page-result';
 import TopBar from 'components/common/TopBar';
 import List from 'antd-mobile/lib/list';
 
@@ -33,14 +34,18 @@ class MyTagPage extends React.Component { // eslint-disable-line react/prefer-st
     }
 
     componentWillMount() {
-        let userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
-        this.personID = userInfo.id;
 
-        this.props.dispatch(loadTagData(this.personID));
+
     }
 
     componentDidMount() {
         console.warn('MyTagPage DidMount');
+        let userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
+        this.personID = userInfo.id;
+
+        if (this.personID) {
+            this.props.dispatch(loadTagData(this.personID));
+        }
     }
 
     tagClickHandler(id) {
@@ -51,27 +56,36 @@ class MyTagPage extends React.Component { // eslint-disable-line react/prefer-st
         let tags = this.props.tags || [];
         let that = this;
 
+        let listHtml = <Result
+            imgUrl="https://o82zr1kfu.qnssl.com/@/image/58131655e4b0edf1e7b90b19.png?imageMogr2/auto-orient/"
+            title="您没有任何管理的标签"
+        />;
+
+        if (tags.length > 0) {
+            listHtml = <List>
+                <List.Body>
+                    {
+                        tags.map(function (tag) {
+                            return <List.Item
+                                arrow="horizontal"
+                                key={tag.id}
+                                onClick={that.tagClickHandler.bind(that, tag.id)}
+                            >
+                                <div className={styles.tag}>{tag.name}</div>
+                            </List.Item>
+                        })
+                    }
+                </List.Body>
+            </List>;
+        }
+
         return (
             <div className="pageInner deepBg">
                 <TopBar data-has-back="true">
                     <div data-title>我管理的标签</div>
                 </TopBar>
                 <div className="mainContent">
-                    <List>
-                        <List.Body>
-                            {
-                                tags.map(function (tag) {
-                                    return <List.Item
-                                        arrow="horizontal"
-                                        key={tag.id}
-                                        onClick={that.tagClickHandler.bind(that, tag.id)}
-                                    >
-                                        <div className={styles.tag}>{tag.name}</div>
-                                    </List.Item>
-                                })
-                            }
-                        </List.Body>
-                    </List>
+                    {listHtml}
                 </div>
             </div>
         );

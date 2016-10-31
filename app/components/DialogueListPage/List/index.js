@@ -12,6 +12,8 @@ import {
 
 import {convertDate} from '../../../utils/util.js';
 
+import Result from 'antd-mobile/lib/page-result';
+
 /* eslint-disable react/prefer-stateless-function */
 class List extends React.Component {
 
@@ -37,6 +39,11 @@ class List extends React.Component {
         this.loading = this.props.loading;
         this.items = this.props.items ? this.props.items : [];
 
+        let dialogHtml = <Result
+            imgUrl="https://o82zr1kfu.qnssl.com/@/image/58131655e4b0edf1e7b90b19.png?imageMogr2/auto-orient/"
+            title="还没有收到私信哦~"
+        />;
+
         // {
         //     "letterGroupId": "571dab71e4b0d50d21e7a9fc:573747fee4b0afac484db029",
         //     "nickName": "易佐",
@@ -49,27 +56,30 @@ class List extends React.Component {
         //     "userId": "573747fee4b0afac484db029"
         // }
 
+        if (this.items.length > 0) {
+            dialogHtml = this.items.map(function (item) {
+                let imageSrc = addImageParam(IMG_CDN_PATH + item.userAvatar, IMAGE_SIZE_TYPE.AVATAR);
+                let createTime = convertDate(item.lastMessage.createTime);
+
+                return <div className={styles.listItem} data-hashover="true" data-id={item.letterGroupId}
+                            key={item.letterGroupId} onClick={that.clickHandler.bind(that)}>
+                    <div className={styles.item}>
+                        <div className={styles.avatar}>
+                            <img src={imageSrc}/>
+                        </div>
+                        <div className={styles.info}>
+                            <h4>{item.nickName || ''}</h4>
+                            <p>{item.lastMessage.content || ''}</p>
+                        </div>
+                        <div className={styles.time}>{createTime}</div>
+                    </div>
+                </div>
+            });
+        }
+
         return (
             <div ref="nDialogueListWrap" className={`${styles.listWrap}`}>
-                {
-                    this.items.map(function (item) {
-                        let imageSrc = addImageParam(IMG_CDN_PATH + item.userAvatar, IMAGE_SIZE_TYPE.AVATAR);
-                        let createTime = convertDate(item.lastMessage.createTime);
-
-                        return <div className={styles.listItem} data-hashover="true" data-id={item.letterGroupId} key={item.letterGroupId} onClick={that.clickHandler.bind(that)}>
-                            <div className={styles.item}>
-                                <div className={styles.avatar} >
-                                    <img src={imageSrc}/>
-                                </div>
-                                <div className={styles.info}>
-                                    <h4>{item.nickName || ''}</h4>
-                                    <p>{item.lastMessage.content || ''}</p>
-                                </div>
-                                <div className={styles.time}>{createTime}</div>
-                            </div>
-                        </div>
-                    })
-                }
+                {dialogHtml}
             </div>
         );
     }

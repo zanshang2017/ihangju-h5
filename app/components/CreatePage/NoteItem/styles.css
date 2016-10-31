@@ -25,13 +25,14 @@
     text-align: right; }
     .noteItem .right .time {
       color: #bcbab5;
-      font-size: 0.64rem; }
+      font-size: 0.64rem;
+      padding-right: 0.53333rem; }
     .noteItem .right i {
-      padding-left: 0.53333rem;
       display: inline-block;
       height: 0.85333rem;
       width: 0.85333rem;
       background-repeat: no-repeat;
-      background-size: cover; }
+      background-size: cover;
+      vertical-align: middle; }
 
 /*# sourceMappingURL=styles.css.map */

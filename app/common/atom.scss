@@ -85,7 +85,11 @@
         background: $gapBg;
     }
 
-
+    /* 动画 */
+    .hasTransition {
+        -webkit-transition: transform .5s ease;
+        transition: transform .5s ease;
+    }
 
     /*文字排版*/
     .f12 {

@@ -33,11 +33,11 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
     }
 
     componentWillMount() {
-        this.props.dispatch(loadUserCenterData());
     }
 
     componentDidMount() {
         console.warn('MyPage DidMount');
+        this.props.dispatch(loadUserCenterData());
     }
 
     settingHandler() {
@@ -87,6 +87,27 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
             this.context.router.replace('/login');
         }
 
+        let tagManageHtml = '';
+        if (userCenterInfo.managermentTagNumber) {
+            tagManageHtml = <List>
+                <List.Body>
+                    <List.Item
+                        arrow="horizontal"
+                        extra={
+                            <span
+                                className={styles.weakText}>{userCenterInfo.managermentTagNumber || '0'}</span>
+                        }
+
+                        onClick={this.myTagClickHandler.bind(this)}
+                    >
+                        <div className={styles.listWrap}><i
+                            className={`${styles.iconTag}`}></i>我管理的标签
+                        </div>
+                    </List.Item>
+                </List.Body>
+            </List>
+        }
+
         return (
             <div className="pageInner wrap">
                 <TopBar data-has-back="false">
@@ -94,7 +115,8 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
                 </TopBar>
 
                 <div className={`mainContent ${styles.wrap}`}>
-                    <UserDesc userInfomation={userCenterInfo.userinformation} clickHandler={this.userDescClickHandler.bind(this)}/>
+                    <UserDesc userInfomation={userCenterInfo.userinformation}
+                              clickHandler={this.userDescClickHandler.bind(this)}/>
 
                     <List>
                         <List.Body>
@@ -130,23 +152,7 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
                         </List.Body>
                     </List>
 
-                    <List>
-                        <List.Body>
-                            <List.Item
-                                arrow="horizontal"
-                                extra={
-                                    <span
-                                        className={styles.weakText}>{userCenterInfo.managermentTagNumber || '0'}</span>
-                                }
-
-                                onClick={this.myTagClickHandler.bind(this)}
-                            >
-                                <div className={styles.listWrap}><i
-                                    className={`${styles.iconTag}`}></i>我管理的标签
-                                </div>
-                            </List.Item>
-                        </List.Body>
-                    </List>
+                    {tagManageHtml}
 
                     <List>
                         <List.Body>

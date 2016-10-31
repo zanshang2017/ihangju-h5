@@ -20,7 +20,7 @@ function UserArticle(props) {
 
     var projectContent = '';
     var contractProjectsContent = '';
-    var nullContent = <Result imgUrl="https://os.alipayobjects.com/rmsportal/MKXqtwNOLFmYmrY.png" title="内容为空"/>;
+    var nullContent = <Result imgUrl="https://o82zr1kfu.qnssl.com/@/image/5813164ee4b0edf1e7b90b15.png?imageMogr2/auto-orient/" title="还没有内容哦~"/>;
 
     if (personInfo.projects && personInfo.projects.length > 0) {
         projectContent = <ArticleList2 {...props} items={personInfo.projects}/>;

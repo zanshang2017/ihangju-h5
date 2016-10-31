@@ -1,6 +1,7 @@
 @charset "UTF-8";
 :global {
   /* 间隔 */
+  /* 动画 */
   /*文字排版*/
   /*定位*/
   /*长度高度*/
@@ -57,6 +58,9 @@
     display: inline-block;
     height: 0.53333rem;
     background: #f4f5f5; }
+  :global .hasTransition {
+    -webkit-transition: transform .5s ease;
+    transition: transform .5s ease; }
   :global .f12 {
     font-size: 0.32rem; }
   :global .f13 {

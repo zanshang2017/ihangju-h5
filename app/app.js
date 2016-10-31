@@ -112,7 +112,10 @@ ReactDOM.render(
                                 document.body.removeChild(document.getElementById('appLoading'));
                             }
 
-                            Toast.hide(); //页面加载后清除loading
+                            try {
+                                Toast.hide(); //页面加载后清除loading
+                            } catch (e) {
+                            }
 
                             if (!prevProps || !props) {
                                 return true;

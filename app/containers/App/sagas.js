@@ -19,6 +19,7 @@ import {
 import {
     USER_INFO_API,
     LOGOUT_API,
+    THIRDPARTY_LOGOUT_URL,
     DEVICETOKEN_API,
 } from 'apis.js';
 
@@ -145,9 +146,19 @@ export function* logout() {
         locStorage.removeItem('userInfo'); //清空用户信息
 
         if (ret.err === undefined || ret.err === null) {
-            //清空用户信息
+
+            yield put(logoutSuccess());
+
+            //通知第三方清除登录信息
             if (ret.data.code === 'ok') {
-                yield put(logoutSuccess());
+                const thirdPartyRet = yield call(request, THIRDPARTY_LOGOUT_URL, {
+                    method: 'DELETE',
+                    // credentials: 'include'
+                });
+
+                if (!(thirdPartyRet.err === undefined || thirdPartyRet.err === null)) {
+                    yield put(logoutError(thirdPartyRet.err));
+                }
             }
         } else {
             console.log(ret.err.response); // eslint-disable-line no-console
