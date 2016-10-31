@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './style.css';
 import ChapterList from '../../common/ChapterList';
 import ShareBtnList from '../../common/ShareBtnList';
+import {take, call, put, select} from 'redux-saga/effects';
+import {Env} from 'utils/env';
 
 import {
     locStorage,
@@ -45,7 +47,7 @@ class ReadContent extends React.Component {
             chapterId = this.props.routeParams.chapterId;
         }
         this.shareData = {
-            url: window.location.href,
+            url: `https://${Env.shareHost}/share/index.html?project=${projectId}&chapter=${chapterId}`,
             title: this.chapterTitle,
             content: '',
             imgSrc: IMG_CDN_PATH + 'image/5743b85fe4b00243fbd23456.jpg'
@@ -283,10 +285,10 @@ class ReadContent extends React.Component {
     }
 
     shareShow() {
-        let oldHref = window.location.href;
-        let lastIndex = oldHref.lastIndexOf('/') + 1;
-        let newHref = oldHref.substring(0, lastIndex) + chapterId;
-        this.shareData.url = newHref;
+        // let oldHref = window.location.href;
+        // let lastIndex = oldHref.lastIndexOf('/') + 1;
+        // let newHref = oldHref.substring(0, lastIndex) + chapterId;
+        this.shareData.url = `https://${Env.shareHost}/share/index.html?project=${projectId}&chapter=${chapterId}`,
         this.shareData.title = this.chapterTitle;
         this.props.setShareStatus(this.shareData);
         this.refs.J_ShareBtnListRead.showShareLayer();

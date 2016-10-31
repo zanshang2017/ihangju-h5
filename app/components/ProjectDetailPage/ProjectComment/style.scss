@@ -10,6 +10,9 @@
         color: $textColor;
         font-size: rem(36);
         padding: 0 0 rem(34) rem(48);
+        em{
+            font-style: inherit;
+        }
     }
 
     ul {
