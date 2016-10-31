@@ -20,11 +20,11 @@ export default function request(url, options) {
         .then((data) => ({data}))
         .catch((err) => {
             //todo 采集
-
             console.error('url:', url, 'options:', options);
-
-            //todo 通过navigator.onLine获取网络状态
-            Toast.fail('数据加载失败,请检查网络!');
+            if (url.indexOf('zan-shang') < 0) { // 赞赏退出错误不提示,等待接口优化
+                //todo 通过navigator.onLine获取网络状态
+                Toast.fail('数据加载失败,请检查网络!');
+            }
         });
 }
 
