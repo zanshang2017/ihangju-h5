@@ -80,9 +80,12 @@ class ReadContent extends React.Component {
     }
 
     resetScrollPage() {
+        var that = this;
+
         debugLog('reset');
         this.nWrap = this.refs.J_ChapterWrap;
         this.nCont = this.refs.J_ChapterCont;
+        this.nNextPull = this.refs.J_NextPull;
         this.wrapH = this.nWrap.getBoundingClientRect().height;
         this.wrapSH = this.nWrap.scrollHeight;
         this.isTouchTop = true;
@@ -101,6 +104,11 @@ class ReadContent extends React.Component {
         this.nCont.style.transform = 'translate3d(0, 0, 0)';
 
         this.bindTouchMove();
+
+        // this.nNextPull.style.display = 'none';
+        // setTimeout(function(){
+        //     that.nNextPull.style.display = '';
+        // }, 2000);
     }
 
     scrollHandler(e) {
@@ -377,7 +385,7 @@ class ReadContent extends React.Component {
                      onClick={this.showReadTopbar.bind(this)}>
                     <div id="J_ChapterCont" ref="J_ChapterCont" className={styles.chpCon}
                     >
-                        <div className={styles.toPreviourPageNotice}><i className={styles.loading}></i>加载上一章</div>
+                        <div ref="J_PreviourPull" className={styles.toPreviourPageNotice}><i className={styles.loading}></i>加载上一章</div>
 
                         <div ref="_authorMes" className={`${styles.authorMes} hide`}>
                             <img src={authorAvatar}/>
@@ -392,10 +400,10 @@ class ReadContent extends React.Component {
                                  dangerouslySetInnerHTML={{__html: `${this.chapterList}`}}>
                             </div>
                         </div>
-
-                        <div className={styles.toNextPageNotice}><i className={styles.loading}></i>加载下一章</div>
-
+                        <div ref="J_NextPull" className={styles.toNextPageNotice}><i className={styles.loading}></i>加载下一章</div>
                     </div>
+
+
                 </div>
                 <div ref="_readBottombar" className={`${styles.bottomBar} hide`}>
                     <ul>

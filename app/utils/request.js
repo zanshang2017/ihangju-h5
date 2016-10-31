@@ -56,7 +56,7 @@ function checkStatus(response) {
     }
 
     // 服务端错误,请联系后台开发人员
-    if (response.status === 405 ) {
+    if (response.status === 405) {
         //todo 采集 通知405
     }
 

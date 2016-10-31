@@ -149,17 +149,21 @@ export function* logout() {
 
             yield put(logoutSuccess());
 
-            //通知第三方清除登录信息
-            if (ret.data.code === 'ok') {
-                const thirdPartyRet = yield call(request, THIRDPARTY_LOGOUT_URL, {
-                    method: 'DELETE',
-                    // credentials: 'include'
-                });
+            try {
+                //通知第三方清除登录信息
+                if (ret.data.code === 'ok') {
+                    const thirdPartyRet = yield call(request, THIRDPARTY_LOGOUT_URL, {
+                        method: 'DELETE',
+                        credentials: 'include'
+                    });
 
-                if (!(thirdPartyRet.err === undefined || thirdPartyRet.err === null)) {
-                    yield put(logoutError(thirdPartyRet.err));
+                    if (!(thirdPartyRet.err === undefined || thirdPartyRet.err === null)) {
+                        yield put(logoutError(thirdPartyRet.err));
+                    }
                 }
+            } catch (e) {
             }
+
         } else {
             console.log(ret.err.response); // eslint-disable-line no-console
             yield put(logoutError(ret.err));
