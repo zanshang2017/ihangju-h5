@@ -76,14 +76,20 @@ class ShareBtnList extends React.Component {
         let shareDom = this.refs._sharelayer;
         shareDom.classList.remove('hide');
     }
-
+    hideLayer(e) {
+        var that = this;
+        let dom = this.refs._sharelayer;
+        if(e.target === dom){
+            that.hideShareLayer();
+        }
+    }
     render() {
         var that = this;
         if (this.props.items) {
             that.shareMes = this.props.items.toJS();
         }
         return (
-            <div ref="_sharelayer" className={`${styles.shareBg} hide`}>
+            <div onClick={this.hideLayer.bind(this)} ref="_sharelayer" className={`${styles.shareBg} hide`}>
                 <div className={styles.share}>
                     <div className={`${styles.signProject} hide`}>
                         <span>签作品</span>
