@@ -6,6 +6,8 @@
     color: #383b3d;
     font-size: 0.96rem;
     padding: 0 0 0.90667rem 1.28rem; }
+    .projectComment .commentNum em {
+      font-style: inherit; }
   .projectComment ul {
     margin-left: 1.28rem; }
     .projectComment ul li {

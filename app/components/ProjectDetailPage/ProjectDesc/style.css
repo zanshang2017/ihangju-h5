@@ -72,6 +72,7 @@
         float: left;
         margin-left: 0.74667rem; }
         .projectDetails .num ul li em {
-          margin-left: 0.21333rem; }
+          margin-left: 0.21333rem;
+          font-style: inherit; }
 
 /*# sourceMappingURL=style.css.map */

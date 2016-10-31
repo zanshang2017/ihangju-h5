@@ -15,11 +15,13 @@ class ShareBtnList extends React.Component {
     shareWx() {
         // alert("微信分享");
         console.log(this.shareMes);
+        var that = this;
         bridge.share.wechat(this.shareMes.url,
             this.shareMes.title,
             this.shareMes.content,
             this.shareMes.imgSrc,
             function (data) {
+                that.hideShareLayer();
                 console.log(data.code, data.resp);
             }
         );
@@ -28,11 +30,13 @@ class ShareBtnList extends React.Component {
 
     shareFriend() {
         // alert("朋友圈分享");
+        var that = this;
         bridge.share.wechatTimeline(this.shareMes.url,
             this.shareMes.title,
             this.shareMes.content,
             this.shareMes.imgSrc,
             function (data) {
+                that.hideShareLayer();
                 console.log(data.code, data.resp);
             }
         );
@@ -40,7 +44,9 @@ class ShareBtnList extends React.Component {
 
     shareWb() {
         // alert("微博分享");
+        var that = this;
         bridge.share.weibo(this.shareMes.title, function (data) {
+            that.hideShareLayer();
             console.log(data.code, data.resp);
         });
     }
