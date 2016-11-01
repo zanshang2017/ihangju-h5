@@ -71,7 +71,6 @@ class MainContent extends React.Component {
         let list = '';
 
         if (this.page == 0 && articles.length == 0) {
-            // todo 替换图片
             list = <Result
                 imgUrl="https://o82zr1kfu.qnssl.com/@/image/58131646e4b0edf1e7b90b10.png?imageMogr2/auto-orient/"
                 title="还没有文章哦~"

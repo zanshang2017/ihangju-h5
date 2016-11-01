@@ -42,6 +42,7 @@ class LoginPage extends React.Component {
         }catch(e){
         }
 
+
         let that = this;
         this.refs.thirdPartyLoginIfrm.height = this.refs.J_MainContent.offsetHeight + 'px';
 
@@ -50,10 +51,13 @@ class LoginPage extends React.Component {
         signals.loginSuccess.add((result)=> {
             //判断是否需要展示引导页
             // if (1) { //todo 记得关闭 测试用
+
+            debugger;
+
             if (result.openPersonalizedRecommendation == true) {
                 that.routeHandler('/follow_recommendation');
             } else {
-                if(that.redirectUrl) {
+                if(that.redirectUrl && that.redirectUrl.indexOf('login') < 0) {
                     window.location.replace(that.redirectUrl);
                 } else {
                     that.routeHandler(that.redirectPageName);
@@ -80,7 +84,7 @@ class LoginPage extends React.Component {
                     action = data.action;
 
                 that.redirectPageName = getUrlParam('redirect') || '/found#fliproute';
-                that.redirectUrl = decodeURIComponent(getUrlParam('url'));
+                that.redirectUrl = getUrlParam('url') ? decodeURIComponent(getUrlParam('url')) : null;
 
                 if ((Env.dev && e.origin.indexOf('http://192.168.1.33:8888') > -1) ||
                     (Env.production && e.origin.indexOf('http://api.ihangju.com') > -1)) {

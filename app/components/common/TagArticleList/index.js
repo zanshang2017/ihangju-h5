@@ -14,7 +14,6 @@ function TagArticleList(props) {
     var noContent = '';
 
     if (!items || items.length === 0) {
-        //todo 替换图片
         noContent = <Result
             imgUrl="https://o82zr1kfu.qnssl.com/@/image/5813164ee4b0edf1e7b90b15.png?imageMogr2/auto-orient/"
             title="还没有内容哦~"
