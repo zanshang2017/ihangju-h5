@@ -22,10 +22,16 @@ const selectNoteContent = () => createSelector(
     (createPageState) => createPageState.get('noteContent')
 );
 
+const selectIdentify = () => createSelector(
+    selectCreatePageDomain(),
+    (createPageState) => createPageState.get('identify')
+);
+
 export default selectCreatePage;
 
 export {
     selectNotes,
     selectCurrentNote,
     selectNoteContent,
+    selectIdentify,
 };

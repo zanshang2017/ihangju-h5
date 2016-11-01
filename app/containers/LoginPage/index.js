@@ -38,10 +38,11 @@ class LoginPage extends React.Component {
         console.warn('LoginPage DidMount');
 
         try {
-            Toast.hide();
-        }catch(e){
+            setTimeout(function () {
+                Toast.hide();
+            }, 0)
+        } catch (e) {
         }
-
 
         let that = this;
         this.refs.thirdPartyLoginIfrm.height = this.refs.J_MainContent.offsetHeight + 'px';
@@ -54,7 +55,7 @@ class LoginPage extends React.Component {
             if (result.openPersonalizedRecommendation == true) {
                 that.routeHandler('/follow_recommendation');
             } else {
-                if(that.redirectUrl && that.redirectUrl.indexOf('login') < 0) {
+                if (that.redirectUrl && that.redirectUrl.indexOf('login') < 0) {
                     window.location.replace(that.redirectUrl);
                 } else {
                     that.routeHandler(that.redirectPageName);

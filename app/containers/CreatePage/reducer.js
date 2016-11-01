@@ -26,6 +26,10 @@ import {
     DELETE_NOTE_SUCCESS,
     DELETE_NOTE_ERROR,
 
+    IDENTIFY_AUTH,
+    IDENTIFY_AUTH_SUCCESS,
+    IDENTIFY_AUTH_ERROR,
+
     UPDATE_NOTE_EDIT_CONTENT,
     CLEAR_CURRENT_NOTE,
 
@@ -40,6 +44,7 @@ const initialState = fromJS({
     showTab: 1, //显示的tab内容编号
     currentNote: false, //当前编辑note的基本信息
     noteContent: '', //当前编辑note的内容
+    identify: false,
 });
 
 function createPageReducer(state = initialState, action = null) {
@@ -127,6 +132,14 @@ function createPageReducer(state = initialState, action = null) {
         case DELETE_NOTE_ERROR:
             return state;
 
+        case IDENTIFY_AUTH:
+            return state;
+
+        case IDENTIFY_AUTH_SUCCESS:
+            return state.set('identify', action.payload.data);
+
+        case IDENTIFY_AUTH_ERROR:
+            return state;
 
         case UPDATE_NOTE_EDIT_CONTENT:
             return state.set('noteContent', action.payload.content || '');

@@ -1,12 +1,15 @@
 @import url(../../../common/common.css);
 .wrap {
   padding-top: 1.33333rem; }
-  .wrap .scanBtn {
+  .wrap .scanBtn, .wrap .noScanBtn {
     width: 17.78667rem;
     height: 14.82667rem;
     margin: 0 auto;
     background: url(https://o82zr1kfu.qnssl.com/@/image/579ab8abe4b02e1710abacc5.png?imageMogr2/quality/70) center center no-repeat;
     background-size: cover; }
+  .wrap .noScanBtn {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%); }
   .wrap .guide {
     text-align: center;
     color: #7b8f9d;

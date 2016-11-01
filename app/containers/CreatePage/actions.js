@@ -28,6 +28,10 @@ import {
     DELETE_NOTE_SUCCESS,
     DELETE_NOTE_ERROR,
 
+    IDENTIFY_AUTH,
+    IDENTIFY_AUTH_SUCCESS,
+    IDENTIFY_AUTH_ERROR,
+
 } from './constants';
 
 export function defaultAction() {
@@ -161,6 +165,27 @@ export function deleteNoteError(error) {
         payload: {
             error: error
         }
+    };
+}
+
+export function identifyAuth() {
+    return {
+        type: IDENTIFY_AUTH,
+    };
+}
+
+export function identifyAuthSuccess(data) {
+    return {
+        type: IDENTIFY_AUTH_SUCCESS,
+        payload: {
+            data: data
+        }
+    };
+}
+
+export function identifyAuthError() {
+    return {
+        type: IDENTIFY_AUTH_ERROR,
     };
 }
 

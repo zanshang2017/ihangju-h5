@@ -4,6 +4,7 @@ import {
     LOAD_NOTE,
     SAVE_NOTE,
     DELETE_NOTE,
+    IDENTIFY_AUTH,
 } from 'containers/CreatePage/constants';
 
 import {
@@ -17,11 +18,14 @@ import {
     updateEditNoteContent,
     deleteNoteSuccess,
     deleteNoteError,
+    identifyAuthSuccess,
+    identifyAuthError,
 } from 'containers/CreatePage/actions';
 
 import {
     NOTE_LIST_API,
     NOTE_API,
+    IDENTIFY_AUTH_API,
 } from '../../apis.js';
 
 import request from 'utils/request';
@@ -31,6 +35,7 @@ export default [
     getNote,
     uploadNote,
     deleteNote,
+    identifyAuth,
 ];
 
 export function* getNotesData() {
@@ -169,6 +174,32 @@ export function* deleteNote() {
 }
 
 
+export function* identifyAuth() {
+
+    let action = null;
+
+    while (action = yield take(IDENTIFY_AUTH)) {
+
+        let url = IDENTIFY_AUTH_API;
+
+        const ret = yield call(request, url, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-API-Version': 'v1.1'
+            },
+            credentials: 'include'
+        });
+
+        if (ret) {
+            if (ret.err === undefined || ret.err === null) {
+                yield put(identifyAuthSuccess(ret.data.result));
+            } else {
+                yield put(identifyAutherror(ret.err));
+            }
+        }
+    }
+}
 
 
 

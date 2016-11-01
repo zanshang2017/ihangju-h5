@@ -1,32 +1,80 @@
 import React from 'react';
-import {Link} from 'react-router';
 import styles from './styles.css';
 
-function TabBar(props) {
+import _ from 'underscore';
 
-    let tabClass = styles.tabBar;
-
-    if (!props.showNav) {
-        tabClass += ' none';
+class TabBar extends React.Component {
+    constructor(props) {
+        super(props);
     }
 
-    tabClass += ' ' + (styles[props.curPage] || '');
+    componentWillMount() {
+        this.isDuringDelay = false;
+        this.timer = null;
+        this.pageName = '';
+    }
 
-    return (
-        <nav id="nav" className={`${tabClass}`}>
-            <ul className="clearfix">
-                <li data-hashover="true"><Link to={'/follow'}><span className={`${styles.follow}`}></span><strong>关注</strong></Link></li>
-                <li data-hashover="true"><Link to={'/found'}><span className={`${styles.found}`}></span><strong>发现</strong></Link></li>
-                <li data-hashover="true"><Link to={'/create'}><span className={styles.write}></span><strong>创作</strong></Link></li>
-                <li data-hashover="true"><Link to={'/my'}><span className={styles.my}></span><strong>我的</strong></Link></li>
-                {/*<li><Link to={'/projectDetail/57a941f4e4b0ab2d4f0d14cd'}><span className="follow"></span><strong>Detail</strong></Link></li>*/}
-                {/*<li><Link to={'/bridgeTest'}><span className="follow"></span><strong>Bridge</strong></Link></li>*/}
-                {/*<li><Link to={'/login'}><span className={styles.write}></span><strong>登录</strong></Link></li>*/}
-                {/*<li><Link to={'/demo#fliproute'}><span className="follow"></span><strong>Demo</strong></Link></li>*/}
-            </ul>
-        </nav>
-    );
+    routeHandler(e) {
+        let newPageName = e.currentTarget.dataset['id'];
+
+        if (!this.isDuringDelay || (this.pageName != newPageName)) {
+            this.pageName = newPageName;
+            this.doRoute();
+            console.log('跳转', newPageName)
+        } else {
+            console.log("被阻止")
+        }
+    }
+
+    doRoute() {
+        let that = this;
+
+        this.context.router.replace(this.pageName);
+        this.isDuringDelay = true;
+
+        this.timer = setTimeout(function () {
+            that.isDuringDelay = false;
+        }, 1000);
+    }
+
+
+    render() {
+        let tabClass = styles.tabBar;
+
+        if (!this.props.showNav) {
+            tabClass += ' none';
+        }
+
+        tabClass += ' ' + (styles[this.props.curPage] || '');
+
+        return (
+            <nav id="nav" className={`${tabClass}`}>
+                <ul className="clearfix">
+                    <li data-hashover="true"><a data-id="/follow" onClick={this.routeHandler.bind(this)}><span
+                        className={`${styles.follow}`}></span><strong>关注</strong></a></li>
+                    <li data-hashover="true"><a data-id="/found" onClick={this.routeHandler.bind(this)}><span
+                        className={`${styles.found}`}></span><strong>发现</strong></a>
+                    </li>
+                    <li data-hashover="true"><a data-id="/create" onClick={this.routeHandler.bind(this)}><span
+                        className={styles.write}></span><strong>创作</strong></a></li>
+                    <li data-hashover="true"><a data-id="/my" onClick={this.routeHandler.bind(this)}><span
+                        className={styles.my}></span><strong>我的</strong></a></li>
+                    {/*<li><Link to={'/projectDetail/57a941f4e4b0ab2d4f0d14cd'}><span className="follow"></span><strong>Detail</strong></Link></li>*/}
+                    {/*<li><Link to={'/bridgeTest'}><span className="follow"></span><strong>Bridge</strong></Link></li>*/}
+                    {/*<li><Link to={'/login'}><span className={styles.write}></span><strong>登录</strong></Link></li>*/}
+                    {/*<li><Link to={'/demo#fliproute'}><span className="follow"></span><strong>Demo</strong></Link></li>*/}
+                </ul>
+            </nav>
+        );
+    }
+
 }
+
+
+TabBar.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
+
 
 TabBar.propTypes = {
     showNav: React.PropTypes.bool,

@@ -7,12 +7,17 @@
 
     padding-top: rem(50);
 
-    .scanBtn {
+    .scanBtn, .noScanBtn {
         width: rem(667);
         height:rem(556);
         margin: 0 auto;
         background: url(https://o82zr1kfu.qnssl.com/@/image/579ab8abe4b02e1710abacc5.png?imageMogr2/quality/70) center center no-repeat;
         background-size: cover;
+    }
+
+    .noScanBtn {
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
     }
 
     .guide {

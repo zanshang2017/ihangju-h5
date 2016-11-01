@@ -22,6 +22,11 @@ export default class ScanPane extends React.Component {
     scanClickHander(e) {
         var that = this;
 
+        if (!that.props.isAuthor) {
+            Toast.info('服务商无法创建作品', 2);
+            return;
+        }
+
         bridge.sys.qrReader(function (data) {
 
             if (!data.resp) return;
@@ -48,9 +53,12 @@ export default class ScanPane extends React.Component {
     }
 
     render() {
+        let isAuthor = this.props.isAuthor;
+
         return (
             <div className={styles.wrap}>
-                <div className={styles.scanBtn} onClick={this.scanClickHander.bind(this)}></div>
+                <div className={isAuthor ? styles.scanBtn : styles.noScanBtn}
+                     onClick={this.scanClickHander.bind(this)}></div>
                 <div className={styles.guide}>
                     <span>请在电脑浏览器输入</span>
                     <strong>www.ihangju.com</strong>

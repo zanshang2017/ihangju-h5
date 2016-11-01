@@ -27,5 +27,8 @@ export const DELETE_NOTE = 'app/CreatePage/DELETE_NOTE'; //删除note
 export const DELETE_NOTE_SUCCESS = 'app/CreatePage/DELETE_NOTE_SUCCESS';
 export const DELETE_NOTE_ERROR = 'app/CreatePage/DELETE_NOTE_ERROR';
 
+export const IDENTIFY_AUTH = 'app/CreatePage/IDENTIFY_AUTH'; //识别用户身份
+export const IDENTIFY_AUTH_SUCCESS = 'app/CreatePage/IDENTIFY_AUTH_SUCCESS';
+export const IDENTIFY_AUTH_ERROR = 'app/CreatePage/IDENTIFY_AUTH_ERROR';
 
 

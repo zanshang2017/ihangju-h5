@@ -36,14 +36,25 @@
     text-align: center; }
   .chpCon .nextChapterBtn {
     width: 80%;
-    margin: 30px auto 20px;
+    margin: 40px auto;
     font-size: 16px;
     color: #666;
-    height: 1.86667rem;
-    line-height: 1.86667rem;
+    height: 2.13333rem;
+    line-height: 2.13333rem;
     text-align: center;
     border: 1px solid #999;
-    border-radius: 5px;
+    border-radius: 3px;
+    background: #efefef; }
+  .chpCon .lastChapterNotice {
+    width: 80%;
+    margin: 40px auto;
+    font-size: 16px;
+    color: #aaa;
+    height: 2.13333rem;
+    line-height: 2.13333rem;
+    text-align: center;
+    border: 1px solid #efefef;
+    border-radius: 3px;
     background: #efefef; }
   .chpCon .authorMes {
     width: 100%;

@@ -14,6 +14,7 @@ import {
     selectNotes,
     selectCurrentNote,
     selectNoteContent,
+    selectIdentify,
 } from './selectors';
 
 import {
@@ -26,6 +27,7 @@ import {
     loadNote,
     saveNote,
     deleteNote,
+    identifyAuth,
 } from './actions';
 
 import {
@@ -57,8 +59,10 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
 
         if (!userInfo) {
             this.routeHandler('/login?redirect=' + encodeURIComponent('/') + 'create');
+            return;
         } else {
             this.userId = userInfo.toJS().id;
+            this.props.dispatch(identifyAuth());
         }
     }
 
@@ -113,13 +117,22 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
             note = null;
         }
 
+        if (this.props.identify) {
+            this.identify = this.props.identify;
+            if (this.identify.type === 'author' || this.identify.type === null) {
+                this.isAuthor = true;
+            }
+        } else {
+            this.isAuthor = false;
+        }
+
         return (
             <div className="pageInner">
                 <div className="mainContent">
                     <div ref="J_MainContentWrap">
                         <Tabs defaultActiveKey="1">
                             <TabPane tab="扫码创作" key="1">
-                                <ScanPane userId={this.userId}/>
+                                <ScanPane userId={this.userId} isAuthor={this.isAuthor} />
                             </TabPane>
                             <TabPane tab="灵感记录" key="2">
                                 <NotePane {...this.props} openNote={this.openNoteHandler.bind(this)}/>
@@ -150,12 +163,14 @@ const mapStateToProps = createSelector(
     selectUserInfo(),
     selectCurrentNote(),
     selectNoteContent(),
-    (notes, userInfo, currentNote, noteContent) => {
+    selectIdentify(),
+    (notes, userInfo, currentNote, noteContent, identify) => {
         return {
             notes,
             userInfo,
             currentNote,
-            noteContent
+            noteContent,
+            identify,
         }
     }
 );

@@ -275,6 +275,7 @@ class ReadContent extends React.Component {
     }
 
     nextChapterHandler(e) {
+
         e.preventDefault();
         e.stopPropagation();
 
@@ -397,10 +398,13 @@ class ReadContent extends React.Component {
             }
         } catch (e) {
         }
+
         var collectionClass = (_chapterContent.collection ? 'iconStaro' : 'iconStar');
         var likeClass = (_chapterContent.like ? (
             <img src='https://o82zr1kfu.qnssl.com/@/image/57c64c9fe4b073472e7954e7.png'></img>) : (
             <img src='https://o82zr1kfu.qnssl.com/@/image/57c6400be4b073472e79312f.png'></img>));
+
+        var isEndChapter = (_chapterContent && _chapterContent.chapters && _chapterContent.chapters.length - 1 === chapterIndex);
 
         return (
             <div className="pageInner">
@@ -444,12 +448,19 @@ class ReadContent extends React.Component {
                                  dangerouslySetInnerHTML={{__html: `${this.chapterList}`}}>
                             </div>
                         </div>
-                        <div ref="J_NextChapterBtn" data-hashover="true" onClick={this.nextChapterHandler.bind(this)}
-                             className={styles.nextChapterBtn}>下一章
-                        </div>
+                        {
+                            (this.chapterList) ?
+                                ((!isEndChapter) ?
+                                    <div ref="J_NextChapterBtn" data-hashover="true" onClick={this.nextChapterHandler.bind(this)}
+                                    className={styles.nextChapterBtn}>下一章
+                                    </div>
+                                    :
+                                    <div className={styles.lastChapterNotice}>已读完</div>
+                                ) : ''
+                        }
+
                         {/*<div ref="J_NextPull" className={styles.toNextPageNotice}><i className={styles.loading}></i>加载下一章</div>*/}
                     </div>
-
 
                 </div>
                 <div ref="_readBottombar" className={`${styles.bottomBar} hide`}>

@@ -501,6 +501,8 @@ const COLLECTION_API = `//${api_host}/collection/`;
 
 const FAVORITE_API = `//${api_host}/favorite`;
 
+const IDENTIFY_AUTH_API = `//${api_host}/identityauthentication`;
+
 export {
     IMG_CDN_PATH,
     IMG_UPLOAD_TOKEN_API,
@@ -552,5 +554,7 @@ export {
     DIALOGUE_API,
     COLLECTION_API,
     FAVORITE_API,
+
+    IDENTIFY_AUTH_API,
 };
 

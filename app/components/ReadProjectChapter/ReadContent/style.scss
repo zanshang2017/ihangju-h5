@@ -54,14 +54,27 @@ $loadingHeight: 75px;
 
     .nextChapterBtn {
         width:80%;
-        margin: 30px auto 20px;
+        margin: 40px auto;
         font-size: 16px;
         color: #666;
-        height: rem(70);
-        line-height: rem(70);
+        height: rem(80);
+        line-height: rem(80);
         text-align:center;
         border: 1px solid #999;
-        border-radius: 5px;
+        border-radius: 3px;
+        background: #efefef;
+    }
+
+    .lastChapterNotice {
+        width:80%;
+        margin: 40px auto;
+        font-size: 16px;
+        color: #aaa;
+        height: rem(80);
+        line-height: rem(80);
+        text-align:center;
+        border: 1px solid #efefef;
+        border-radius: 3px;
         background: #efefef;
     }
 
