@@ -19,6 +19,7 @@ import TopBar from '../../common/TopBar';
 import {
     IMG_CDN_PATH,
     COLLECTION_API,
+    FAVORITE_API,
 } from '../../../apis.js';
 
 import {
@@ -323,7 +324,7 @@ class ReadContent extends React.Component {
 
     likeHeart() {
         let _chapterContent = this.props.chapterContent.toJS();
-        let url = COLLECTION_API + projectId + '/project';
+        let url = FAVORITE_API + '?projectid=' + projectId;
         let method = '';
         if (_chapterContent.like) {
             method = 'DELETE';

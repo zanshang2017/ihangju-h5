@@ -51,9 +51,6 @@ class LoginPage extends React.Component {
         signals.loginSuccess.add((result)=> {
             //判断是否需要展示引导页
             // if (1) { //todo 记得关闭 测试用
-
-            debugger;
-
             if (result.openPersonalizedRecommendation == true) {
                 that.routeHandler('/follow_recommendation');
             } else {

@@ -119,14 +119,13 @@ export function* changeCollection() {
     }
 }
 
-export function* changeLike() {
-    let action = null;
-    while (action = yield take(LOAD_LIKE_DATA)) {
-        let url = action.payload.url;
-        let method = action.payload.method;
-
-        const likeResult = yield call(request, url, {
-            method: method,
+export function* changeLike(){
+	let action = null;
+	while(action = yield take(LOAD_LIKE_DATA)) {
+		let url = action.payload.url;
+		let method = action.payload.method;
+		const likeResult = yield call(request, url, {
+			method: method,
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
