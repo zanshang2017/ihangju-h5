@@ -2,8 +2,12 @@
  * Created by Howard on 16/6/27.
  */
 
-// const PRODUCTION_DOMAIN = 'h5.app.ihangju.com';
-const PRODUCTION_DOMAIN = 'h5.dev.ihangju.com'; //todo 测试后记得恢复!
+import {
+    guid
+} from 'utils/util.js'
+
+const PRODUCTION_DOMAIN = 'h5.app.ihangju.com';
+// const PRODUCTION_DOMAIN = 'h5.dev.ihangju.com'; //todo 测试后记得恢复!
 const PREPUB_DOMAIN = 'preh5.app.ihangju.com';
 
 var ua = navigator.userAgent;
@@ -11,7 +15,7 @@ var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
     iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),
     android = ua.match(/(Android);?[\s\/]+([\d.]+)?/),
     shell = ua.match(/HangJuAndroid\/[^\s]+/),
-    shell = shell ? shell[0] : 'Web',
+    shell = shell ? shell[0] : 'Browser',
     shellName = shell && shell.split('/')[0],
     shellVersion = shell && shell.split('/')[1];
 
@@ -24,6 +28,8 @@ var Env = {
     dev: false,
     production: true,
     debug: false,
+
+    guid: guid().generate('*-*-*'),
 
     shareHost: 'www.ihangju.com',
 

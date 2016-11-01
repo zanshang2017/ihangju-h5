@@ -89,7 +89,7 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
         // }
         //
         // var oFile = this._albumFile.files[0];
-        alert('获取文件成功');
+        // alert('获取文件成功');
 
         // uploadImage(oFile).then(function (imgUrl) {
         uploadImage(imgData).then(function (imgUrl) {

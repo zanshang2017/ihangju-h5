@@ -40,13 +40,15 @@ export function* getProjectDetailData(){
             credentials: 'include'
 		});
 
-		if(projectResult.err === undefined || projectResult.err === null){
-			yield put(loadProjectDetailDataSuccess(projectResult.data));
-			
-		}else{
-			console.log(projectResult.error.response);
-			yield put(loadProjectDetailDataError(projectResult.error));
-		}
+        if (projectResult) {
+            if (projectResult.err === undefined || projectResult.err === null) {
+                yield put(loadProjectDetailDataSuccess(projectResult.data));
+
+            } else {
+                console.log(projectResult.error.response);
+                yield put(loadProjectDetailDataError(projectResult.error));
+            }
+        }
 	}
 }
 
@@ -66,13 +68,15 @@ export function* getProjectChapterData(){
             credentials: 'include'
 		});
 
-		if(projectResult.err === undefined || projectResult.err === null){
-			yield put(loadProjectChapterDataSuccess(projectResult.data));
-			
-		}else{
-			console.log(projectResult.error.response);
-			yield put(loadProjectChapterDataError(projectResult.error));
-		}
+        if(projectResult) {
+            if (projectResult.err === undefined || projectResult.err === null) {
+                yield put(loadProjectChapterDataSuccess(projectResult.data));
+
+            } else {
+                console.log(projectResult.error.response);
+                yield put(loadProjectChapterDataError(projectResult.error));
+            }
+        }
 
 	}
 }

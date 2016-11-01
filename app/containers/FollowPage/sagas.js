@@ -58,17 +58,18 @@ export function* getMyFollowData() {
             credentials: 'include'
         });
 
-        if (lists.err === undefined || lists.err === null) {
-            if (lists.data.result) {
-                yield put(loadMyFollowDataSuccess(lists.data, page));
+        if (lists) {
+            if (lists.err === undefined || lists.err === null) {
+                if (lists.data.result) {
+                    yield put(loadMyFollowDataSuccess(lists.data, page));
+                } else {
+                    yield put(setMyFollowDataStatus({isLast: true}));
+                }
             } else {
-                yield put(setMyFollowDataStatus({isLast: true}));
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(loadMyFollowDataError(lists.err));
             }
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(loadMyFollowDataError(lists.err));
         }
-
     }
 
 }
@@ -95,17 +96,19 @@ export function* getMyFollowListData() {
             credentials: 'include'
         });
 
-        if (lists.err === undefined || lists.err === null) {
-            if (lists.data.result
-                && (lists.data.result.followUsers.length > 0
-                || lists.data.result.followTags.length > 0)) {
-                yield put(loadMyFollowListDataSuccess(lists.data, page));
+        if (lists) {
+            if (lists.err === undefined || lists.err === null) {
+                if (lists.data.result
+                    && (lists.data.result.followUsers.length > 0
+                    || lists.data.result.followTags.length > 0)) {
+                    yield put(loadMyFollowListDataSuccess(lists.data, page));
+                } else {
+                    yield put(setMyFollowListDataStatus({isLast: true}));
+                }
             } else {
-                yield put(setMyFollowListDataStatus({isLast: true}));
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(loadMyFollowListDataError(lists.err));
             }
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(loadMyFollowListDataError(lists.err));
         }
 
     }

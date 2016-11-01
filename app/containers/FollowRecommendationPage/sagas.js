@@ -40,11 +40,13 @@ export function* getListData() {
             credentials: 'include'
         });
 
-        if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
-            yield put(loadRecommendationDataSuccess(lists.data.result));
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(loadRecommendationDataError(lists.err));
+        if (lists) {
+            if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
+                yield put(loadRecommendationDataSuccess(lists.data.result));
+            } else {
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(loadRecommendationDataError(lists.err));
+            }
         }
     }
 }
@@ -73,13 +75,15 @@ export function* putFollow() {
             credentials: 'include'
         });
 
-        if (lists.err === undefined || lists.err === null) {
-            if (lists.data.code === 'ok') {
-                signals.putFollowSuccess.dispatch();
+        if (lists) {
+            if (lists.err === undefined || lists.err === null) {
+                if (lists.data.code === 'ok') {
+                    signals.putFollowSuccess.dispatch();
+                }
+            } else {
+                console.log(lists.err.response); // eslint-disable-line no-console
+                signals.putFollowError.dispatch();
             }
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            signals.putFollowError.dispatch();
         }
     }
 }

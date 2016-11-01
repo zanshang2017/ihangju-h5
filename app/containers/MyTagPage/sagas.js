@@ -41,11 +41,13 @@ export function* getTagData() {
         });
 
         try {
-            if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
-                yield put(loadTagDataSuccess(lists.data.result));
-            } else {
-                console.log(lists.err.response); // eslint-disable-line no-console
-                yield put(loadTagDataError(lists.err));
+            if (lists) {
+                if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
+                    yield put(loadTagDataSuccess(lists.data.result));
+                } else {
+                    console.log(lists.err.response); // eslint-disable-line no-console
+                    yield put(loadTagDataError(lists.err));
+                }
             }
         } catch (e) {
         }

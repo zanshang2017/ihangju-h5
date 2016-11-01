@@ -40,13 +40,14 @@ export function* getDiscoveriesData() {
             }
         });
 
-        if (lists.err === undefined || lists.err === null) {
-            yield put(loadDiscoveriesDataSuccess(lists.data));
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(loadDiscoveriesDataError(lists.err));
+        if (lists) {
+            if (lists.err === undefined || lists.err === null) {
+                yield put(loadDiscoveriesDataSuccess(lists.data));
+            } else {
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(loadDiscoveriesDataError(lists.err));
+            }
         }
-
     }
 }
 
@@ -67,11 +68,13 @@ export function* getRecommendationData() {
         }
     });
 
-    if (lists.err === undefined || lists.err === null) {
-        yield put(loadRecommendationDataSuccess(lists.data));
-    } else {
-        console.log(lists.err.response); // eslint-disable-line no-console
-        yield put(loadRecommendationDataError(lists.err));
+    if (lists) {
+        if (lists.err === undefined || lists.err === null) {
+            yield put(loadRecommendationDataSuccess(lists.data));
+        } else {
+            console.log(lists.err.response); // eslint-disable-line no-console
+            yield put(loadRecommendationDataError(lists.err));
+        }
     }
 }
 

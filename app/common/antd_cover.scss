@@ -126,10 +126,11 @@
         padding-top: 0 !important;
 
         .am-page-result-pic {
-            min-width: 320px;
-            height: 240px;
-            margin: 0 auto;
-            background-size: 100% 100%;
+            min-width: 320px !important;
+            height: 240px !important;
+            margin: 0 auto !important;
+            background-size: 100% 100% !important;
+            background-repeat: no-repeat !important;
         }
 
         .am-page-result-title {

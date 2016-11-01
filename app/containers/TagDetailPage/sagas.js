@@ -79,19 +79,21 @@ export function* getTagList() {
             credentials: 'include'
         });
 
-        if (lists.err === undefined || lists.err === null) {
-            if (lists.data.result) {
-                if (lists.data.result.projects && lists.data.result.projects.length <= 0) {
-                    yield [put(loadTagListSuccess(lists.data, page)), put(setProjectListStatus({isLast: true}))];
+        if (lists) {
+            if (lists.err === undefined || lists.err === null) {
+                if (lists.data.result) {
+                    if (lists.data.result.projects && lists.data.result.projects.length <= 0) {
+                        yield [put(loadTagListSuccess(lists.data, page)), put(setProjectListStatus({isLast: true}))];
+                    } else {
+                        yield put(loadTagListSuccess(lists.data, page));
+                    }
                 } else {
-                    yield put(loadTagListSuccess(lists.data, page));
+                    yield put(setProjectListStatus({isLast: true}));
                 }
             } else {
-                yield put(setProjectListStatus({isLast: true}));
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(loadTagListError(lists.err));
             }
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(loadTagListError(lists.err));
         }
     }
 }
@@ -119,20 +121,22 @@ export function* getTagRecommendationList() {
             credentials: 'include'
         });
 
-        if (lists.err === undefined || lists.err === null) {
-            // debugger;
-            if (lists.data.result && lists.data.result.length > 0) {
-                yield put(loadTagRecommendationListSuccess(lists.data, page));
-            } else {
-                //第一页无数据,说明内容为空
-                if (lists.data.result && 0 === page) {
+        if (lists) {
+            if (lists.err === undefined || lists.err === null) {
+                // debugger;
+                if (lists.data.result && lists.data.result.length > 0) {
                     yield put(loadTagRecommendationListSuccess(lists.data, page));
+                } else {
+                    //第一页无数据,说明内容为空
+                    if (lists.data.result && 0 === page) {
+                        yield put(loadTagRecommendationListSuccess(lists.data, page));
+                    }
+                    yield put(setRecommendationListStatus({isLast: true}));
                 }
-                yield put(setRecommendationListStatus({isLast: true}));
+            } else {
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(loadRecommendationListError(lists.err));
             }
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(loadRecommendationListError(lists.err));
         }
     }
 }
@@ -158,13 +162,15 @@ export function* putSubTag() {
             credentials: 'include'
         });
 
-        if (lists.err === undefined || lists.err === null) {
-            if (lists.data.code === 'ok') {
-                yield put(subTagSuccess());
+        if (lists) {
+            if (lists.err === undefined || lists.err === null) {
+                if (lists.data.code === 'ok') {
+                    yield put(subTagSuccess());
+                }
+            } else {
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(subTagError(lists.err));
             }
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(subTagError(lists.err));
         }
     }
 }
@@ -194,13 +200,15 @@ export function* postEditTag() {
             credentials: 'include'
         });
 
-        if (lists.err === undefined || lists.err === null) {
-            if (lists.data.result) {
-                yield put(editTagSuccess(lists.data, page));
+        if (lists) {
+            if (lists.err === undefined || lists.err === null) {
+                if (lists.data.result) {
+                    yield put(editTagSuccess(lists.data, page));
+                }
+            } else {
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(editTagError(lists.err));
             }
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(editTagError(lists.err));
         }
     }
 }
@@ -226,14 +234,17 @@ export function* deleteSubTag() {
             credentials: 'include'
         });
 
-        if (lists.err === undefined || lists.err === null) {
-            if (lists.data.code === 'ok') {
-                yield put(cancelSubTagSuccess());
+        if (lists) {
+            if (lists.err === undefined || lists.err === null) {
+                if (lists.data.code === 'ok') {
+                    yield put(cancelSubTagSuccess());
+                }
+            } else {
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(cancelSubTagError(lists.err));
             }
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(cancelSubTagError(lists.err));
         }
+
     }
 }
 
@@ -273,13 +284,15 @@ export function* tagRecommendationProject() {
             credentials: 'include'
         });
 
-        if (lists.err === undefined || lists.err === null) {
-            if (lists.data.code === 'ok') {
-                yield put(recommendationProjectSuccess(id, isRemove));
+        if (lists) {
+            if (lists.err === undefined || lists.err === null) {
+                if (lists.data.code === 'ok') {
+                    yield put(recommendationProjectSuccess(id, isRemove));
+                }
+            } else {
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(recommendationProjectError(lists.err));
             }
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(recommendationProjectError(lists.err));
         }
     }
 }

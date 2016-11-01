@@ -50,13 +50,15 @@ export function* getDialogueData() {
             credentials: 'include'
         });
 
-        if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
-            signals.loadDialogueSuccess.dispatch();
-            yield put(loadDialogueDataSuccess(lists.data.result));
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            signals.loadDialogueError.dispatch();
-            yield put(loadDialogueDataError(lists.err));
+        if (lists) {
+            if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
+                signals.loadDialogueSuccess.dispatch();
+                yield put(loadDialogueDataSuccess(lists.data.result));
+            } else {
+                console.log(lists.err.response); // eslint-disable-line no-console
+                signals.loadDialogueError.dispatch();
+                yield put(loadDialogueDataError(lists.err));
+            }
         }
     }
 }
@@ -84,15 +86,17 @@ export function* putDialogueData() {
             credentials: 'include'
         });
 
-        if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
-            dialogueData.id = lists.data.result.id;
-            dialogueData.sendTime = lists.data.result.sendTime;
-            yield put(sendDialogueDataSuccess(dialogueData));
-            signals.sendDialogueSuccess.dispatch();
-        } else {
-            console.log(lists.err); // eslint-disable-line no-console
-            yield put(sendDialogueDataError(lists.err));
-            signals.sendDialogueError.dispatch();
+        if (lists) {
+            if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
+                dialogueData.id = lists.data.result.id;
+                dialogueData.sendTime = lists.data.result.sendTime;
+                yield put(sendDialogueDataSuccess(dialogueData));
+                signals.sendDialogueSuccess.dispatch();
+            } else {
+                console.log(lists.err); // eslint-disable-line no-console
+                yield put(sendDialogueDataError(lists.err));
+                signals.sendDialogueError.dispatch();
+            }
         }
     }
 }
@@ -119,13 +123,15 @@ export function* getUserGroupData() {
             credentials: 'include'
         });
 
-        if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
-            yield put(getLetterGroupIdSuccess());
-            signals.getLetterGroupIdSuccess.dispatch(lists.data.result.letterId);
-        } else {
-            console.log(lists.err); // eslint-disable-line no-console
-            yield put(getLetterGroupIdError(lists.err));
-            Toast.fail('数据获取失败');
+        if (lists) {
+            if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
+                yield put(getLetterGroupIdSuccess());
+                signals.getLetterGroupIdSuccess.dispatch(lists.data.result.letterId);
+            } else {
+                console.log(lists.err); // eslint-disable-line no-console
+                yield put(getLetterGroupIdError(lists.err));
+                Toast.fail('数据获取失败');
+            }
         }
     }
 }

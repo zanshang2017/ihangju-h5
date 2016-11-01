@@ -30,11 +30,13 @@ export function* getGithubData() {
     //发起请求
     const lists = yield call(request, requestURL); //必须返回Promise
 
-    //待返回后对response进行判断
-    if (lists.err === undefined || lists.err === null) {
-        yield put(loadListSuccess(lists.data));
-    } else {
-        console.log(lists.err.response); // eslint-disable-line no-console
-        yield put(loadListError(lists.err));
+    if (lists) {
+        //待返回后对response进行判断
+        if (lists.err === undefined || lists.err === null) {
+            yield put(loadListSuccess(lists.data));
+        } else {
+            console.log(lists.err.response); // eslint-disable-line no-console
+            yield put(loadListError(lists.err));
+        }
     }
 }

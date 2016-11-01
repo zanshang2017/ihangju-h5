@@ -32,6 +32,12 @@ import {
     loadLocalStorageUserInfo
 } from './actions.js';
 
+import {
+    feedbackLog
+} from 'utils/feedbackLog';
+
+import Toast from 'antd-mobile/lib/toast';
+
 
 // <<<<< 预先加在一些模块,避免无样式闪烁
 import ProjectDesc from 'components/ProjectDetailPage/ProjectDesc';
@@ -41,6 +47,8 @@ import ProjectComment from 'components/ProjectDetailPage/ProjectComment';
 import ProjectTopBar from 'components/ProjectDetailPage/ProjectTopBar';
 
 import UserDesc from 'components/PersonPage/UserDesc';
+
+import ReadContent from 'components/ReadProjectChapter/ReadContent';
 
 import TopListBar from 'components/FollowPage/TopListBar';
 // >>>>>
@@ -105,6 +113,8 @@ class App extends React.Component {
 
         this.addSignalHandler();
 
+        // feedbackLog.doListen(); //todo 错误收集
+
         console.log('App DidMount');
 
         //emulate hover
@@ -116,16 +126,21 @@ class App extends React.Component {
             document.body.addEventListener('touchstart', function (e) {
                 var node = e.target;
                 detectHover(node, e);
+
+                document.body.addEventListener('touchmove', touchOverHandler, true);
+                document.body.addEventListener('touchend', touchOverHandler, true);
             });
 
-            document.body.addEventListener('touchend', function (e) {
+            function touchOverHandler() {
                 if (hoveredElem.length > 0) {
                     hoveredElem.forEach(function (v) {
                         v.classList.remove('hover');
                     });
                     hoveredElement.length = 0;
                 }
-            }, true);
+
+                document.body.addEventListener('touchmove', touchOverHandler, true);
+            }
 
             function detectHover(node, e) {
                 // console.log('continue', node);
@@ -135,12 +150,20 @@ class App extends React.Component {
                     node.classList.add('hover');
                     hoveredElem.push(node);
                     e.stopPropagation();
-                } else if(node.parentNode !== body){
+                } else if (node.parentNode !== body) {
                     detectHover(node.parentNode, e);
                 }
             }
         })();
 
+
+        // window.addEventListener("offline", function (e) {
+        //     Toast.fail('网络中断,请检查网络!', 3);
+        // });
+        //
+        // window.addEventListener("online", function (e) {
+        //     Toast.success('网络已恢复!', 2);
+        // });
 
     }
 
@@ -164,7 +187,8 @@ class App extends React.Component {
         });
 
         signals.onUnLogin.add(()=> {
-            that.context.router.replace('/login');
+            var redirect = '?url=' + encodeURIComponent(location.href);
+            that.context.router.replace('/login' + redirect);
         });
 
     }

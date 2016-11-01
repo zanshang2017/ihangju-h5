@@ -43,11 +43,13 @@ export function* getListData() {
             credentials: 'include'
         });
 
-        if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
-            yield put(loadListDataSuccess(lists.data.result, page));
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(loadListDataError(lists.err));
+        if (lists) {
+            if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
+                yield put(loadListDataSuccess(lists.data.result, page));
+            } else {
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(loadListDataError(lists.err));
+            }
         }
     }
 }
@@ -61,7 +63,7 @@ export function* setFollowUser() {
         let isToFollow = action.payload.isToFollow;
         let url = FOLLOW_USER_API + `${id}`;
 
-        let method = isToFollow ? 'PUT' :'DELETE';
+        let method = isToFollow ? 'PUT' : 'DELETE';
 
         console.log(url, method);
 
@@ -75,11 +77,13 @@ export function* setFollowUser() {
             credentials: 'include'
         });
 
-        if ((lists.err === undefined || lists.err === null) && (lists.data && lists.data.code === 'ok')) {
-            yield put(setFollowUserSuccess(id, isToFollow));
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(setFollowUserError(lists.err));
+        if (lists) {
+            if ((lists.err === undefined || lists.err === null) && (lists.data && lists.data.code === 'ok')) {
+                yield put(setFollowUserSuccess(id, isToFollow));
+            } else {
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(setFollowUserError(lists.err));
+            }
         }
     }
 }

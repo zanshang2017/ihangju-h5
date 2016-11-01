@@ -38,11 +38,13 @@ export function* getDialogueLists() {
             credentials: 'include'
         });
 
-        if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
-            yield put(loadDialogueListDataSuccess(lists.data.result));
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(loadDialogueListDataError(lists.err));
+        if (lists) {
+            if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
+                yield put(loadDialogueListDataSuccess(lists.data.result));
+            } else {
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(loadDialogueListDataError(lists.err));
+            }
         }
     }
 }

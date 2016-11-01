@@ -13,6 +13,8 @@ import {router} from 'react-router';
 
 import styles from './styles.scss';
 
+import Toast from 'antd-mobile/lib/toast';
+
 import {
     loadUserInfo
 } from '../App/actions.js'
@@ -35,6 +37,11 @@ class LoginPage extends React.Component {
     componentDidMount() {
         console.warn('LoginPage DidMount');
 
+        try {
+            Toast.hide();
+        }catch(e){
+        }
+
         let that = this;
         this.refs.thirdPartyLoginIfrm.height = this.refs.J_MainContent.offsetHeight + 'px';
 
@@ -46,7 +53,11 @@ class LoginPage extends React.Component {
             if (result.openPersonalizedRecommendation == true) {
                 that.routeHandler('/follow_recommendation');
             } else {
-                that.routeHandler(that.redirectUrl);
+                if(that.redirectUrl) {
+                    window.location.replace(that.redirectUrl);
+                } else {
+                    that.routeHandler(that.redirectPageName);
+                }
             }
         });
     }
@@ -57,7 +68,7 @@ class LoginPage extends React.Component {
     }
 
     routeHandler(url) {
-        this.context.router.push(url);
+        this.context.router.replace(url);
     }
 
     loginHandlerFactory() {
@@ -68,7 +79,8 @@ class LoginPage extends React.Component {
                 var data = JSON.parse(e.data),
                     action = data.action;
 
-                that.redirectUrl = getUrlParam('redirect') || '/found#fliproute';
+                that.redirectPageName = getUrlParam('redirect') || '/found#fliproute';
+                that.redirectUrl = decodeURIComponent(getUrlParam('url'));
 
                 if ((Env.dev && e.origin.indexOf('http://192.168.1.33:8888') > -1) ||
                     (Env.production && e.origin.indexOf('http://api.ihangju.com') > -1)) {

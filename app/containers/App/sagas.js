@@ -58,23 +58,25 @@ export function* getUserInfo() {
             credentials: 'include'
         });
 
-        if (ret.err === undefined || ret.err === null) {
+        if (ret) {
+            if (ret.err === undefined || ret.err === null) {
 
-            //用户信息写入localStorage
-            if (ret.data.result.id) {
-                locStorage.set('userInfo', JSON.stringify(ret.data.result));
+                //用户信息写入localStorage
+                if (ret.data.result.id) {
+                    locStorage.set('userInfo', JSON.stringify(ret.data.result));
+                }
+
+                yield put(loadUserInfoSuccess(ret.data.result));
+
+                if (DISPATCH_ORIGIN.LOGIN === action.dispatchOrigin) {
+                    loginSignals.loginSuccess.dispatch(ret.data.result);
+                    putDevicetoken();
+                }
+
+            } else {
+                console.log(ret.err.response); // eslint-disable-line no-console
+                yield put(loadUserInfoError(ret.err));
             }
-
-            yield put(loadUserInfoSuccess(ret.data.result));
-
-            if (DISPATCH_ORIGIN.LOGIN === action.dispatchOrigin) {
-                loginSignals.loginSuccess.dispatch(ret.data.result);
-                putDevicetoken();
-            }
-
-        } else {
-            console.log(ret.err.response); // eslint-disable-line no-console
-            yield put(loadUserInfoError(ret.err));
         }
     }
 }
@@ -110,11 +112,14 @@ export function* postUserInfo() {
             credentials: 'include'
         });
 
-        if (ret.err === undefined || ret.err === null) {
-            yield put(updateUserInfoSuccess(action.payload.data));
-        } else {
-            console.log(ret.err.response); // eslint-disable-line no-console
-            yield put(updateUserInfoError(ret.err));
+        if (ret) {
+
+            if (ret.err === undefined || ret.err === null) {
+                yield put(updateUserInfoSuccess(action.payload.data));
+            } else {
+                console.log(ret.err.response); // eslint-disable-line no-console
+                yield put(updateUserInfoError(ret.err));
+            }
         }
 
     }
@@ -145,28 +150,30 @@ export function* logout() {
 
         locStorage.removeItem('userInfo'); //清空用户信息
 
-        if (ret.err === undefined || ret.err === null) {
+        if (ret) {
+            if (ret.err === undefined || ret.err === null) {
 
-            yield put(logoutSuccess());
+                yield put(logoutSuccess());
 
-            try {
-                //通知第三方清除登录信息
-                if (ret.data.code === 'ok') {
-                    const thirdPartyRet = yield call(request, THIRDPARTY_LOGOUT_URL, {
-                        method: 'DELETE',
-                        credentials: 'include'
-                    });
+                try {
+                    //通知第三方清除登录信息
+                    if (ret.data.code === 'ok') {
+                        const thirdPartyRet = yield call(request, THIRDPARTY_LOGOUT_URL, {
+                            method: 'DELETE',
+                            credentials: 'include'
+                        });
 
-                    if (!(thirdPartyRet.err === undefined || thirdPartyRet.err === null)) {
-                        yield put(logoutError(thirdPartyRet.err));
+                        if (!(thirdPartyRet.err === undefined || thirdPartyRet.err === null)) {
+                            yield put(logoutError(thirdPartyRet.err));
+                        }
                     }
+                } catch (e) {
                 }
-            } catch (e) {
-            }
 
-        } else {
-            console.log(ret.err.response); // eslint-disable-line no-console
-            yield put(logoutError(ret.err));
+            } else {
+                console.log(ret.err.response); // eslint-disable-line no-console
+                yield put(logoutError(ret.err));
+            }
         }
 
     }

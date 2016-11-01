@@ -48,11 +48,13 @@ export function* getPersonData() {
                 credentials: 'include'
             });
 
-            if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
-                yield put(loadPersonDataSuccess(lists.data.result));
-            } else {
-                console.log(lists.err.response); // eslint-disable-line no-console
-                yield put(loadPersonDataError(lists.err));
+            if (lists) {
+                if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
+                    yield put(loadPersonDataSuccess(lists.data.result));
+                } else {
+                    console.log(lists.err.response); // eslint-disable-line no-console
+                    yield put(loadPersonDataError(lists.err));
+                }
             }
         } else {
             yield put(loadPersonDataError(new Error('缺少用户id')));
@@ -84,29 +86,33 @@ export function* setFollowUser() {
             credentials: 'include'
         });
 
-        if ((lists.err === undefined || lists.err === null) && (lists.data && lists.data.code === 'ok')) {
-            yield put(setFollowUserSuccess(id, isToFollow));
+        if(lists) {
+            if ((lists.err === undefined || lists.err === null) && (lists.data && lists.data.code === 'ok')) {
+                yield put(setFollowUserSuccess(id, isToFollow));
 
-            let notice = isToFollow ? '关注成功!' : '已取消关注!';
-            try {
-                Toast.hide();
-                Toast.success(notice, 2, function(){
-                    signals.followRequestComplete.dispatch();
-                });
-            }catch(e){}
+                let notice = isToFollow ? '关注成功!' : '已取消关注!';
+                try {
+                    Toast.hide();
+                    Toast.success(notice, 2, function () {
+                        signals.followRequestComplete.dispatch();
+                    });
+                } catch (e) {
+                }
 
 
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(setFollowUserError(lists.err));
+            } else {
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(setFollowUserError(lists.err));
 
-            let notice = isToFollow ? '关注失败!' : '取消关注失败!';
-            try {
-                Toast.hide();
-                Toast.fail(notice, 2, function(){
-                    signals.followRequestComplete.dispatch();
-                });
-            }catch(e){}
+                let notice = isToFollow ? '关注失败!' : '取消关注失败!';
+                try {
+                    Toast.hide();
+                    Toast.fail(notice, 2, function () {
+                        signals.followRequestComplete.dispatch();
+                    });
+                } catch (e) {
+                }
+            }
         }
     }
 }

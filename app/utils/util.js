@@ -225,6 +225,32 @@ function unique(array) {
     return n;
 }
 
+
+/**
+ * guid
+ * @returns {{generate: generate}}
+ */
+function guid() {
+    var defaultMode = '**-*-*-*-**';
+
+    function s4() {
+        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    }
+
+    return {
+        //传入模式字符串, 一个通配符对应4位16进制随机数.
+        //如: *-*-** --> 07b6-78b4-aa5aa3c1
+        //默认将以标准GUID(UUID)规范输出： "ee812a81-2461-bb9b-1cdf-fdce551abb9e"
+        generate: function (mode) {
+            if (typeof mode == 'string' && mode.indexOf('*') > -1) {
+                defaultMode = mode;
+            }
+
+            return defaultMode.replace(/\*/g, s4);
+        }
+    };
+}
+
 /**
  * 比较版本号
  *
@@ -323,6 +349,7 @@ export {
     goTop,
     goBottom,
     unique,
+    guid,
     compareVersion,
     IMAGE_SIZE_TYPE,
     testSupportWebp,

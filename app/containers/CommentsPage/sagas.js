@@ -46,11 +46,13 @@ export function* getCommentsData() {
             credentials: 'include'
         });
 
-        if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
-            yield put(loadCommentsDataSuccess(lists.data.result, page));
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(loadCommentsDataError(lists.err));
+        if (lists) {
+            if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
+                yield put(loadCommentsDataSuccess(lists.data.result, page));
+            } else {
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(loadCommentsDataError(lists.err));
+            }
         }
     }
 }
@@ -89,13 +91,15 @@ export function* putCommentData() {
             credentials: 'include'
         });
 
-        if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
-            signals.sendCommentSuccess.dispatch();
-            console.log();
-            yield put(sendCommentsDataSuccess(lists.data.result, replyData));
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(sendCommentsDataError(lists.err));
+        if (lists) {
+            if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
+                signals.sendCommentSuccess.dispatch();
+                console.log();
+                yield put(sendCommentsDataSuccess(lists.data.result, replyData));
+            } else {
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(sendCommentsDataError(lists.err));
+            }
         }
     }
 }

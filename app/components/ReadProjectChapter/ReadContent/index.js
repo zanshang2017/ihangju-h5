@@ -1,3 +1,8 @@
+/**
+ *
+ * todo: 上拉加载下一章有bug,先调整为点击按钮加载下一章,下拉加载上一章功能保留。
+ */
+
 import React from 'react';
 import styles from './style.css';
 import ChapterList from '../../common/ChapterList';
@@ -59,6 +64,9 @@ class ReadContent extends React.Component {
         var that = this;
         superThis = this;
 
+        this.nWrap = this.refs.J_ChapterWrap;
+        this.nCont = this.refs.J_ChapterCont;
+
         that.resetScrollPage();
 
         // console.log(this.wrapH, this.wrapSH);
@@ -83,9 +91,7 @@ class ReadContent extends React.Component {
         var that = this;
 
         debugLog('reset');
-        this.nWrap = this.refs.J_ChapterWrap;
-        this.nCont = this.refs.J_ChapterCont;
-        this.nNextPull = this.refs.J_NextPull;
+        // this.nNextPull = this.refs.J_NextPull;
         this.wrapH = this.nWrap.getBoundingClientRect().height;
         this.wrapSH = this.nWrap.scrollHeight;
         this.isTouchTop = true;
@@ -104,11 +110,6 @@ class ReadContent extends React.Component {
         this.nCont.style.transform = 'translate3d(0, 0, 0)';
 
         this.bindTouchMove();
-
-        // this.nNextPull.style.display = 'none';
-        // setTimeout(function(){
-        //     that.nNextPull.style.display = '';
-        // }, 2000);
     }
 
     scrollHandler(e) {
@@ -121,7 +122,12 @@ class ReadContent extends React.Component {
         debugLog('that.nWrap.scrollTop:' + that.nWrap.scrollTop + ' that.wrapH:' + that.wrapH)
         debugLog("that.isTouchTop:" + that.isTouchTop + " that.isTouchBottom:" + that.isTouchBottom);
 
-        if (that.isTouchTop || that.isTouchBottom) {
+        // if (that.isTouchTop || that.isTouchBottom) {
+        //     debugLog('touch!');
+        //     that.bindTouchMove();
+        // }
+
+        if (that.isTouchTop) {
             debugLog('touch!');
             that.bindTouchMove();
         }
@@ -164,7 +170,6 @@ class ReadContent extends React.Component {
         }
 
         that.nWrap.addEventListener('touchend', that.touchendHandler);
-
         console.log('dist:', Math.abs(dist));
 
         that.isMoveTopComplete = dist < -TRIGGER_PAGE_DIST;
@@ -214,39 +219,39 @@ class ReadContent extends React.Component {
 
                 }
 
-                if (that.isTouchBottom && that.isMoveBottomComplete) {
-                    debugLog('下一页');
-
-                    for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
-                        let item = _chapterContent.chapters[key];
-
-                        if (item.id == chapterId) {
-                            if (key >= _chapterContent.chapters.length - 1) {
-                                chapterIndex = null;
-                                Toast.info("没有下一章了", 1.5);
-                                break;
-                            }
-                            chapterIndex = key + 1;
-                            break;
-                        }
-                    }
-
-                    if (chapterIndex) {
-                        console.log(chapterIndex);
-                        chapterId = _chapterContent.chapters[chapterIndex].id;
-                        locStorageProjectInfo[projectId].push(chapterId);
-                        that.props.setProjectInfoStatus(_projectInfo);
-                        locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
-
-                        that.nWrap.scrollTop = 0;
-                        that.resetScrollPage();
-                    }
-
-                    that.isTriggerTurnToPage = true;
-                    setTimeout(function () {
-                        that.isTriggerTurnToPage = false;
-                    }, 1.5 * 1e3);
-                }
+                // if (that.isTouchBottom && that.isMoveBottomComplete) {
+                //     debugLog('下一页');
+                //
+                //     for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
+                //         let item = _chapterContent.chapters[key];
+                //
+                //         if (item.id == chapterId) {
+                //             if (key >= _chapterContent.chapters.length - 1) {
+                //                 chapterIndex = null;
+                //                 Toast.info("没有下一章了", 1.5);
+                //                 break;
+                //             }
+                //             chapterIndex = key + 1;
+                //             break;
+                //         }
+                //     }
+                //
+                //     if (chapterIndex) {
+                //         console.log(chapterIndex);
+                //         chapterId = _chapterContent.chapters[chapterIndex].id;
+                //         locStorageProjectInfo[projectId].push(chapterId);
+                //         that.props.setProjectInfoStatus(_projectInfo);
+                //         locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
+                //
+                //         that.nWrap.scrollTop = 0;
+                //         that.resetScrollPage();
+                //     }
+                //
+                //     that.isTriggerTurnToPage = true;
+                //     setTimeout(function () {
+                //         that.isTriggerTurnToPage = false;
+                //     }, 1.5 * 1e3);
+                // }
             }
         } else { // 未达触发翻页的距离,添加拖动动画
             let _dist = -(dist / 2);
@@ -268,12 +273,48 @@ class ReadContent extends React.Component {
         }, 500);
     }
 
+    nextChapterHandler(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        let that = this;
+
+        let _chapterContent = that.props.chapterContent.toJS();
+        let _projectInfo = that.props.projectInfo.toJS();
+        let locStorageProjectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
+        let chapterIndex = null;
+
+        for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
+            let item = _chapterContent.chapters[key];
+
+            if (item.id == chapterId) {
+                if (key >= _chapterContent.chapters.length - 1) {
+                    chapterIndex = null;
+                    Toast.info("没有下一章了", 1.5);
+                    break;
+                }
+                chapterIndex = key + 1;
+                break;
+            }
+        }
+
+        if (chapterIndex) {
+            console.log(chapterIndex);
+            chapterId = _chapterContent.chapters[chapterIndex].id;
+            locStorageProjectInfo[projectId].push(chapterId);
+            that.props.setProjectInfoStatus(_projectInfo);
+            locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
+
+            that.nWrap.scrollTop = 0;
+            that.resetScrollPage();
+        }
+    }
+
     showReadTopbar() {
         let _redTopdom = this.refs._readTopbar;
         let _redBottomdom = this.refs._readBottombar
         _redTopdom.classList.toggle('hide');
         _redBottomdom.classList.toggle('hide');
-
     }
 
     showChapterList() {
@@ -297,7 +338,7 @@ class ReadContent extends React.Component {
         // let lastIndex = oldHref.lastIndexOf('/') + 1;
         // let newHref = oldHref.substring(0, lastIndex) + chapterId;
         this.shareData.url = `https://${Env.shareHost}/share/index.html?project=${projectId}&chapter=${chapterId}`,
-        this.shareData.title = this.chapterTitle;
+            this.shareData.title = this.chapterTitle;
         this.props.setShareStatus(this.shareData);
         this.refs.J_ShareBtnListRead.showShareLayer();
     }
@@ -355,7 +396,7 @@ class ReadContent extends React.Component {
             }
         } catch (e) {
         }
-        var collectionClass = (_chapterContent.collection ? 'iconStar' : 'iconStaro');
+        var collectionClass = (_chapterContent.collection ? 'iconStaro' : 'iconStar');
         var likeClass = (_chapterContent.like ? (
             <img src='https://o82zr1kfu.qnssl.com/@/image/57c64c9fe4b073472e7954e7.png'></img>) : (
             <img src='https://o82zr1kfu.qnssl.com/@/image/57c6400be4b073472e79312f.png'></img>));
@@ -385,7 +426,9 @@ class ReadContent extends React.Component {
                      onClick={this.showReadTopbar.bind(this)}>
                     <div id="J_ChapterCont" ref="J_ChapterCont" className={styles.chpCon}
                     >
-                        <div ref="J_PreviourPull" className={styles.toPreviourPageNotice}><i className={styles.loading}></i>加载上一章</div>
+                        <div ref="J_PreviourPull" className={styles.toPreviourPageNotice}><i
+                            className={styles.loading}></i>加载上一章
+                        </div>
 
                         <div ref="_authorMes" className={`${styles.authorMes} hide`}>
                             <img src={authorAvatar}/>
@@ -400,7 +443,10 @@ class ReadContent extends React.Component {
                                  dangerouslySetInnerHTML={{__html: `${this.chapterList}`}}>
                             </div>
                         </div>
-                        <div ref="J_NextPull" className={styles.toNextPageNotice}><i className={styles.loading}></i>加载下一章</div>
+                        <div ref="J_NextChapterBtn" data-hashover="true" onClick={this.nextChapterHandler.bind(this)}
+                             className={styles.nextChapterBtn}>下一章
+                        </div>
+                        {/*<div ref="J_NextPull" className={styles.toNextPageNotice}><i className={styles.loading}></i>加载下一章</div>*/}
                     </div>
 
 

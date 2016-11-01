@@ -53,12 +53,13 @@ export function* getNotesData() {
             credentials: 'include'
         });
 
-        if (lists.err === undefined || lists.err === null) {
-            yield put(loadNotesDataSuccess(lists.data, page));
-        } else {
-            yield put(loadNotesDataError(lists.err));
+        if (lists) {
+            if (lists.err === undefined || lists.err === null) {
+                yield put(loadNotesDataSuccess(lists.data, page));
+            } else {
+                yield put(loadNotesDataError(lists.err));
+            }
         }
-
     }
 }
 
@@ -80,13 +81,13 @@ export function* getNote() {
             },
             credentials: 'include'
         });
-
-        if (ret.err === undefined || ret.err === null) {
-            yield put(loadNoteSuccess(ret.data));
-        } else {
-            yield put(loadNoteError(ret.err));
+        if (ret) {
+            if (ret.err === undefined || ret.err === null) {
+                yield put(loadNoteSuccess(ret.data));
+            } else {
+                yield put(loadNoteError(ret.err));
+            }
         }
-
     }
 }
 
@@ -121,13 +122,14 @@ export function* uploadNote() {
             credentials: 'include'
         });
 
-        if (ret.err === undefined || ret.err === null) {
-            yield put(saveNoteSuccess(ret.data));
-            yield put(loadNotesData());
-        } else {
-            yield put(saveNoteError(ret.err));
+        if (ret) {
+            if (ret.err === undefined || ret.err === null) {
+                yield put(saveNoteSuccess(ret.data));
+                yield put(loadNotesData());
+            } else {
+                yield put(saveNoteError(ret.err));
+            }
         }
-
     }
 }
 
@@ -155,13 +157,14 @@ export function* deleteNote() {
             credentials: 'include'
         });
 
-        if (ret.err === undefined || ret.err === null) {
-            yield put(deleteNoteSuccess(ret.data));
-            yield put(loadNotesData());
-        } else {
-            yield put(deleteNoteError(ret.err));
+        if (ret) {
+            if (ret.err === undefined || ret.err === null) {
+                yield put(deleteNoteSuccess(ret.data));
+                yield put(loadNotesData());
+            } else {
+                yield put(deleteNoteError(ret.err));
+            }
         }
-
     }
 }
 

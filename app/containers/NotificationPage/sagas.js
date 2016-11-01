@@ -48,19 +48,21 @@ export function* getCommentList() {
             credentials: 'include'
         });
 
-        if (lists.err === undefined || lists.err === null) {
-            if (lists.data.result) {
-                if (lists.data.result && lists.data.result.length <= 0) {
-                    yield [put(loadCommentListSuccess(lists.data, page)), put(setCommentListStatus({isLast: true}))];
+        if (lists) {
+            if (lists.err === undefined || lists.err === null) {
+                if (lists.data.result) {
+                    if (lists.data.result && lists.data.result.length <= 0) {
+                        yield [put(loadCommentListSuccess(lists.data, page)), put(setCommentListStatus({isLast: true}))];
+                    } else {
+                        yield put(loadCommentListSuccess(lists.data, page));
+                    }
                 } else {
-                    yield put(loadCommentListSuccess(lists.data, page));
+                    yield put(setCommentListStatus({isLast: true}));
                 }
             } else {
-                yield put(setCommentListStatus({isLast: true}));
+                console.log(lists.err.response); // eslint-disable-line no-console
+                yield put(loadCommentListError(lists.err));
             }
-        } else {
-            console.log(lists.err.response); // eslint-disable-line no-console
-            yield put(loadCommentListError(lists.err));
         }
     }
 }

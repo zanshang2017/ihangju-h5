@@ -44,6 +44,15 @@ const THIRDPARTY_LOGOUT_URL = `//${thirdparty_login_domain}/authentication`; //m
  */
 const LOGOUT_API = `//${api_host}/logout`;
 
+
+/**
+ * 错误日志
+ * @type {string}
+ */
+const FEEDBACKLOG_API = `https://${api_host}/httpfeedback/upload`;
+
+
+
 //发现接口: 包含banner、分类tag和发现第一页的数据
 const DISCOVERIES_API = `//${api_host}/discoveries`;
 
@@ -486,7 +495,7 @@ const DIALOGUE_API = `//${api_host}/dialogue`;
  * [DELETE] 取消收藏
  * 参数 : 57a941f4e4b0ab2d4f0d14cd/project
  */
-const COLLECTION_API = `//${api_host}/collection/`
+const COLLECTION_API = `//${api_host}/collection/`;
 //http://192.168.1.33:8888/favorite?projectid=57a941f4e4b0ab2d4f0d14cd
 //http://192.168.1.33:8888/favorite  projectid : 57a941f4e4b0ab2d4f0d14cd
 
@@ -502,6 +511,8 @@ export {
     USER_INFO_API,
     USER_CENTER_API,
     CONFIRM_EDITOR_API,
+
+    FEEDBACKLOG_API,
 
     DEVICETOKEN_API,
 
