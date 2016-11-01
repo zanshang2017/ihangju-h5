@@ -485,9 +485,13 @@ const DIALOGUE_API = `//${api_host}/dialogue`;
  * 参数 : 57a941f4e4b0ab2d4f0d14cd/project
  */
 const COLLECTION_API = `//${api_host}/collection/`
+//   http://192.168.1.33:8888collection/58180786e4b068e48801a422/project
+
 //http://192.168.1.33:8888/favorite?projectid=57a941f4e4b0ab2d4f0d14cd
 //http://192.168.1.33:8888/favorite  projectid : 57a941f4e4b0ab2d4f0d14cd
 
+
+const FAVORITE_API = `//${api_host}/`
 
 export {
     IMG_CDN_PATH,
@@ -535,5 +539,6 @@ export {
 
     DIALOGUE_API,
     COLLECTION_API,
+    FAVORITE_API,
 };
 
