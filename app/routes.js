@@ -25,6 +25,14 @@ import Toast from 'antd-mobile/lib/toast';
 
 const errorLoading = (err) => {
     console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
+    //todo 采集失败信息
+
+    try {
+        Toast.hide(); //此方法如果没有Toast展示时调用会抛异常,必须捕获
+    } catch (e) {}
+
+    Toast.fail('加载失败,请检查网络!');
+    // alert(location.href); //路由已切换
 };
 
 const loadModule = (cb) => (componentModule) => {
@@ -37,9 +45,9 @@ var initedStatus = {};
 function beforeGetComponent() {
     try {
         Toast.hide();
-        Toast.loading('加载中...', 15);
     } catch (e) {
     }
+    Toast.loading('加载中...', 10);
 }
 
 export default function createRoutes(store) {
@@ -70,8 +78,6 @@ export default function createRoutes(store) {
             path: '/login',
             name: 'loginPage',
             getComponent(nextState, cb) {
-
-                beforeGetComponent();
 
                 const importModules = Promise.all([
                     System.import('containers/LoginPage'),
@@ -142,6 +148,7 @@ export default function createRoutes(store) {
                     System.import('containers/CreatePage/sagas'),
                     System.import('containers/CreatePage')
                 ]);
+
 
                 const renderRoute = loadModule(cb);
 

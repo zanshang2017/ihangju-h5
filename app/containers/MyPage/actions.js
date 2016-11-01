@@ -32,7 +32,7 @@ export function loadUserCenterDataSuccess(data) {
     };
 }
 
-export function loadUserCenterDataError(error) {
+export function loadUserCenterDataError(error = null) {
     return {
         type: LOAD_USER_CENTER_DATA_ERROR,
         payload: {

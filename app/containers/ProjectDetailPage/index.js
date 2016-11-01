@@ -15,7 +15,8 @@ import ProjectIntro from 'components/ProjectDetailPage/ProjectIntro';
 import ProjectComment from 'components/ProjectDetailPage/ProjectComment';
 import ProjectTopBar from 'components/ProjectDetailPage/ProjectTopBar';
 
-// import styles from './style.css';
+
+import style from './style.css';
 
 import {
     loadProjectDetailData,
@@ -33,6 +34,9 @@ class DetailPage extends React.Component {
             // this.props.dispatch(loadProjectDetailData(id || null));
             this.props.loadProjectDetail(id || null);
         }
+    }
+
+    componentDidMount() {
     }
 
     componentWillUnmount() {

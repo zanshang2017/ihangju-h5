@@ -16,8 +16,8 @@ function TagArticleList(props) {
     if (!items || items.length === 0) {
         //todo 替换图片
         noContent = <Result
-            imgUrl="https://os.alipayobjects.com/rmsportal/MKXqtwNOLFmYmrY.png"
-            title="内容为空"
+            imgUrl="https://o82zr1kfu.qnssl.com/@/image/5813164ee4b0edf1e7b90b15.png?imageMogr2/auto-orient/"
+            title="还没有内容哦~"
         />;
     }
 

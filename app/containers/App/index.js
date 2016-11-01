@@ -32,6 +32,20 @@ import {
     loadLocalStorageUserInfo
 } from './actions.js';
 
+
+// <<<<< 预先加在一些模块,避免无样式闪烁
+import ProjectDesc from 'components/ProjectDetailPage/ProjectDesc';
+import ProjectTag from 'components/ProjectDetailPage/ProjectTag';
+import ProjectIntro from 'components/ProjectDetailPage/ProjectIntro';
+import ProjectComment from 'components/ProjectDetailPage/ProjectComment';
+import ProjectTopBar from 'components/ProjectDetailPage/ProjectTopBar';
+
+import UserDesc from 'components/PersonPage/UserDesc';
+
+import TopListBar from 'components/FollowPage/TopListBar';
+// >>>>>
+
+
 import {
     selectGlobal,
     selectUserInfo,
@@ -87,6 +101,8 @@ class App extends React.Component {
             };
         }
 
+        debugLog('UA:' + navigator.userAgent);
+
         this.addSignalHandler();
 
         console.log('App DidMount');
@@ -107,8 +123,8 @@ class App extends React.Component {
                     hoveredElem.forEach(function (v) {
                         v.classList.remove('hover');
                     });
+                    hoveredElement.length = 0;
                 }
-                hoveredElement.length = 0;
             }, true);
 
             function detectHover(node, e) {

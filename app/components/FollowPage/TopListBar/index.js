@@ -58,8 +58,6 @@ class TopListBar extends React.Component {
         return (
             <div>
                 <div id="J_followPageTopListBar" ref="nTopListBar" className={`${styles.bar}`}>
-                    {/*<div className={styles.title} onClick={this.toggleMyFollowListHandler.bind(this)}>{title}<i
-                        ref="nTopListBarTitleArrow" className="icon-down iconfont"></i></div>*/}
                     <div className={styles.title} onClick={this.toggleMyFollowListHandler.bind(this)}>{title}
                         <i ref="nTopListBarTitleArrow"  className="iconDown"></i>
                     </div>

@@ -57,7 +57,6 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
 
         if (!userInfo) {
             this.routeHandler('/login?redirect=' + encodeURIComponent('/') + 'create');
-            // this.routeHandler('/login');
         } else {
             this.userId = userInfo.toJS().id;
         }

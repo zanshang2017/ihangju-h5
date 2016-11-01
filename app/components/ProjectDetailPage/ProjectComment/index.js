@@ -9,6 +9,7 @@ import {
     addImageParam,
     IMAGE_SIZE_TYPE,
 } from '../../../utils/util.js';
+
 class ProjectComment extends React.Component {
     constructor(props) {
         super(props);
@@ -26,13 +27,15 @@ class ProjectComment extends React.Component {
             let imageUrl = '';
             contentList = _result.comments.map(function (item, key) {
                 createTime = convertDate(item.createTime);
-                imageUrl = addImageParam(IMG_CDN_PATH + item.commentUser.avatar, IMAGE_SIZE_TYPE.AVATAR_SMALL);
+                imageUrl = item.commentUser.avatar ? addImageParam(IMG_CDN_PATH + item.commentUser.avatar, IMAGE_SIZE_TYPE.AVATAR_SMALL) : '';
 
                 return <li key={key}>
                     <div className={style.top}>
                         <div className={style.name}>
                             <Link to={`/person/${item.commentUser.id}`}>
-                                <img src={imageUrl}/>
+                                {
+                                    imageUrl ? <img src={imageUrl}/> : ''
+                                }
                                 <span>{item.commentUser.nickName}</span>
                             </Link>
                         </div>

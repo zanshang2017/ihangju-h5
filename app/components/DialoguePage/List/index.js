@@ -118,8 +118,8 @@ class List extends React.Component {
             })
         } else {
             _html = <Result
-                imgUrl="https://os.alipayobjects.com/rmsportal/MKXqtwNOLFmYmrY.png"
-                title="无私信"
+                imgUrl="https://o82zr1kfu.qnssl.com/@/image/58131655e4b0edf1e7b90b19.png?imageMogr2/auto-orient/"
+                title="还没有私信哦~"
             />
         }
 

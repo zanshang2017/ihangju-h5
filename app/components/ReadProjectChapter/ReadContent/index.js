@@ -23,23 +23,15 @@ import {
 } from 'utils/util'
 
 import Toast from 'antd-mobile/lib/toast';
-
 import {Link} from 'react-router';
+import _ from 'underscore';
 
-var x = null;
-var y = null;
-
-const AREA = {
-    HEAD: 'head',
-    FOOT: 'foot'
-};
-var moveArea = '';
-
-const TRIGGER_PAGE_DIST = 20;// 滑动距离
+var TRIGGER_PAGE_DIST = 150;// 滑动距离
+// var TRIGGER_PAGE_DIST = document.documentElement.clientHeight / 5;// 滑动距离
+// TRIGGER_PAGE_DIST = TRIGGER_PAGE_DIST > 160 ? 160 : TRIGGER_PAGE_DIST < 80 ? 80 : TRIGGER_PAGE_DIST;
 
 var projectId = null;
 var chapterId = null;
-
 var superThis = null;
 
 class ReadContent extends React.Component {
@@ -72,43 +64,29 @@ class ReadContent extends React.Component {
 
         // console.log(this.wrapH, this.wrapSH);
 
-        this.nWrap.addEventListener('scroll', function (e) {
-            console.log(that.nWrap.scrollTop);
-            that.isTouchTop = (that.nWrap.scrollTop == 0);
-            that.isTouchBottom = that.nWrap.scrollTop + that.wrapH >= that.wrapSH - 10;
-
-            debugLog('that.nWrap.scrollTop:' + that.nWrap.scrollTop + ' that.wrapH:' + that.wrapH)
-            debugLog("that.isTouchTop:" + that.isTouchTop + " that.isTouchBottom:" + that.isTouchBottom);
-
-            if (that.isTouchTop || that.isTouchBottom) {
-                debugLog('touch!');
-                if (!that.isAddListener) {
-                    that.nWrap.addEventListener('touchmove', that.touchmoveHandler);
-                    that.isAddListener = true;
-                }
-            }
-        });
-
-        this.nWrap.addEventListener('touchstart', function (e) {
-            that.touchStartY = e.touches[0].pageY;
-            debugLog('touchStartY:' + that.touchStartY);
-        });
-
-        // var nwrap = that.refs.J_ChapterCont;
-        // nwrap.addEventListener("touchstart", that.tStart.bind(that), false);
-        // nwrap.addEventListener("touchmove", that.tMove.bind(that), false);
-        // nwrap.addEventListener("touchend", that.tEnd.bind(that), false);
+        this.scrollHanderBinded = _.throttle(this.scrollHandler.bind(this), 300, {leading: false});
+        this.touchStartBinded = this.touchStartHandler.bind(this);
+        this.nWrap.addEventListener('scroll', this.scrollHanderBinded);
+        this.nWrap.addEventListener('touchstart', this.touchStartBinded);
     }
 
     componentDidUpdate() {
-        // alert('did Update!');
         this.resetScrollPage();
     }
 
+    componentWillUnmount() {
+        this.nWrap.removeEventListener('scroll', this.scrollHanderBinded);
+        this.nWrap.removeEventListener('touchstart', this.touchStartBinded);
+        this.nWrap.removeEventListener('touchmove', this.touchmoveHandler);
+    }
+
     resetScrollPage() {
+        var that = this;
+
         debugLog('reset');
         this.nWrap = this.refs.J_ChapterWrap;
-        // this.nCont = this.refs.J_ChapterCont;
+        this.nCont = this.refs.J_ChapterCont;
+        this.nNextPull = this.refs.J_NextPull;
         this.wrapH = this.nWrap.getBoundingClientRect().height;
         this.wrapSH = this.nWrap.scrollHeight;
         this.isTouchTop = true;
@@ -117,16 +95,58 @@ class ReadContent extends React.Component {
         this.isMoveBottom = false;
         this.isMoveTopComplete = false;
         this.isMoveBottomComplete = false;
+        this.isTriggerTurnToPage = false;
         this.touchStartY = 0;
         this.isAddListener = false;
 
-        this.nWrap.removeEventListener('touchmove', this.touchmoveHandler);
+        this.nWrap.removeEventListener('touchend', this.touchendHandler);
+
+        this.nCont.style.webkitTransform = 'translate3d(0, 0, 0)';
+        this.nCont.style.transform = 'translate3d(0, 0, 0)';
+
+        this.bindTouchMove();
+
+        // this.nNextPull.style.display = 'none';
+        // setTimeout(function(){
+        //     that.nNextPull.style.display = '';
+        // }, 2000);
+    }
+
+    scrollHandler(e) {
+        var that = this;
+
+        console.log(that.nWrap.scrollTop);
+        that.isTouchTop = (that.nWrap.scrollTop == 0);
+        that.isTouchBottom = that.nWrap.scrollTop + that.wrapH >= that.wrapSH - 10;
+
+        debugLog('that.nWrap.scrollTop:' + that.nWrap.scrollTop + ' that.wrapH:' + that.wrapH)
+        debugLog("that.isTouchTop:" + that.isTouchTop + " that.isTouchBottom:" + that.isTouchBottom);
+
+        if (that.isTouchTop || that.isTouchBottom) {
+            debugLog('touch!');
+            that.bindTouchMove();
+        }
+    }
+
+    bindTouchMove() {
+        if (!this.isAddListener) {
+            this.nWrap.addEventListener('touchmove', this.touchmoveHandler);
+            this.isAddListener = true;
+        }
+    }
+
+    touchStartHandler(e) {
+        var that = this;
+        that.isMoveComplete = false;
+        that.touchStartY = e.touches[0].pageY;
+        debugLog('touchStartY:' + that.touchStartY);
     }
 
     touchmoveHandler(e) {
         let that = superThis;
         let dist = that.touchStartY - e.touches[0].pageY;
-        debugLog('dist:' + dist + ' touchStartY:' + that.touchStartY + ' pageY:' + e.touches[0].pageY);
+
+        debugLog('touchStartY:' + that.touchStartY + ' pageY:' + e.touches[0].pageY);
 
         if (dist < 0) {
             that.isMoveTop = true;
@@ -136,20 +156,33 @@ class ReadContent extends React.Component {
             that.isMoveBottom = true;
         }
 
-        that.isMoveTopComplete = dist < 0 && dist < -TRIGGER_PAGE_DIST;
-        that.isMoveBottomComplete = dist > 0 && dist > TRIGGER_PAGE_DIST;
+        if ((that.isTouchTop && that.isMoveBottom) || (that.isTouchBottom && that.isMoveTop)) {
+            debugLog('方向相反,解绑!');
+            console.log('方向相反,解绑!');
+            that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
+            that.isAddListener = false;
+            return;
+        }
 
-        if (that.isMoveTopComplete || that.isMoveBottomComplete) {
-            let _chapterContent = that.props.chapterContent.toJS();
-            let _projectInfo = that.props.projectInfo.toJS();
-            let locStorageProjectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
-            let chapterIndex = null;
+        that.nWrap.addEventListener('touchend', that.touchendHandler);
 
-            if (that.isTouchTop) {
-                if (that.isMoveTopComplete) {
+        console.log('dist:', Math.abs(dist));
+
+        that.isMoveTopComplete = dist < -TRIGGER_PAGE_DIST;
+        that.isMoveBottomComplete = dist > TRIGGER_PAGE_DIST;
+
+
+        if ((that.isMoveTopComplete || that.isMoveBottomComplete)) {
+            if (!that.isTriggerTurnToPage) {
+                let _chapterContent = that.props.chapterContent.toJS();
+                let _projectInfo = that.props.projectInfo.toJS();
+                let locStorageProjectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
+                let chapterIndex = null;
+
+                that.isMoveComplete = true;
+
+                if (that.isTouchTop && that.isMoveTopComplete) {
                     debugLog('上一页');
-                    that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
-                    that.isAddListener = false;
 
                     for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
                         let item = _chapterContent.chapters[key];
@@ -157,8 +190,8 @@ class ReadContent extends React.Component {
                         if (item.id == chapterId) {
                             if (key == 0) {
                                 chapterIndex = null;
-                                Toast.info("没有上一章节了", 1.5);
-                                return;
+                                Toast.info("没有上一章了", 1.5);
+                                break;
                             }
                             chapterIndex = key - 1;
                             break;
@@ -172,20 +205,18 @@ class ReadContent extends React.Component {
                         locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
 
                         that.nWrap.scrollTop = 0;
+                        that.resetScrollPage();
                     }
+
+                    that.isTriggerTurnToPage = true;
+                    setTimeout(function () {
+                        that.isTriggerTurnToPage = false;
+                    }, 1.5 * 1e3);
+
                 }
 
-                if (that.isMoveBottom) {
-                    that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
-                    that.isAddListener = false;
-                }
-            }
-
-            if (that.isTouchBottom) {
-                if(that.isMoveBottomComplete) {
+                if (that.isTouchBottom && that.isMoveBottomComplete) {
                     debugLog('下一页');
-                    that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
-                    that.isAddListener = false;
 
                     for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
                         let item = _chapterContent.chapters[key];
@@ -194,7 +225,7 @@ class ReadContent extends React.Component {
                             if (key >= _chapterContent.chapters.length - 1) {
                                 chapterIndex = null;
                                 Toast.info("没有下一章了", 1.5);
-                                return;
+                                break;
                             }
                             chapterIndex = key + 1;
                             break;
@@ -209,157 +240,34 @@ class ReadContent extends React.Component {
                         locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
 
                         that.nWrap.scrollTop = 0;
+                        that.resetScrollPage();
                     }
-                }
 
-                if (that.isMoveTop) {
-                    that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
-                    that.isAddListener = false;
+                    that.isTriggerTurnToPage = true;
+                    setTimeout(function () {
+                        that.isTriggerTurnToPage = false;
+                    }, 1.5 * 1e3);
                 }
             }
-
+        } else { // 未达触发翻页的距离,添加拖动动画
+            let _dist = -(dist / 2);
+            that.nCont.style.webkitTransform = 'translate3d(0, ' + (_dist) + 'px, 0)';
+            that.nCont.style.transform = 'translate3d(0, ' + (_dist) + 'px, 0)';
         }
 
         debugLog(e.touches[0].pageY + ":" + e.touches[0].clientY);
         e.preventDefault();
     }
 
-    // tStart(event) {
-    //
-    //     debugLog('Start <<<<<<<<<<<');
-    //     var nwrap = this.refs.J_ChapterWrap;
-    //     var ncont = this.refs.J_ChapterCont;
-    //     var ncontH = ncont.getBoundingClientRect().height;
-    //     var nwrapH = nwrap.getBoundingClientRect().height;
-    //     var touches = event.targetTouches;
-    //
-    //     if (touches.length == 1) {
-    //         x = touches[0].pageX;
-    //         y = touches[0].pageY;
-    //
-    //         // debugLog('start:' + y);
-    //         console.log((nwrap.scrollTop + nwrapH) + ":" + ncontH);
-    //         // debugLog(nwrap.scrollTop + '==' + (nwrap.scrollHeight - nwrapH) + '(' +nwrap.scrollHeight + '-' + nwrapH + ')');
-    //
-    //         if (nwrap.scrollTop == 0) {
-    //             moveArea = AREA.HEAD;
-    //         } else if ((nwrap.scrollTop + nwrapH) + 5 >= ncontH) {
-    //             // } else if (Math.abs(nwrap.scrollHeight - nwrap.scrollTop - nwrapH) < 5) {
-    //             moveArea = AREA.FOOT;
-    //         } else {
-    //             moveArea = '';
-    //         }
-    //     } else {
-    //         moveArea = '';
-    //     }
-    //
-    //     debugLog('moveArea:' + moveArea);
-    //     console.log('moveArea:' + moveArea);
-    // }
-    //
-    // tMove(event) {
-    //     if (moveArea) {
-    //         event.preventDefault();
-    //         debugLog('move');
-    //
-    //         var that = this;
-    //         var touches = event.targetTouches;
-    //
-    //         if (touches.length == 1) {
-    //             var y1 = touches[0].pageY;
-    //             var dist = y - y1;
-    //             var nwrap = this.refs.J_ChapterWrap;
-    //             var nwrapH = nwrap.getBoundingClientRect().height;
-    //             var key = 0;
-    //             var len = 0;
-    //
-    //             debugLog('move:' + dist);
-    //             // console.log(dist);
-    //
-    //             var toNext = dist > 0 && dist > TRIGGER_PAGE_DIST && moveArea === AREA.FOOT,
-    //                 toPrevious = dist < 0 && dist < -TRIGGER_PAGE_DIST && moveArea === AREA.HEAD;
-    //
-    //             if (toNext || toPrevious) {
-    //
-    //                 toNext && alert('toNext!');
-    //                 toPrevious && alert('toPrevious!');
-    //
-    //                 moveArea = '';
-    //
-    //                 console.log('in moveY:', y - y1);
-    //                 console.log(nwrap.scrollTop + ":" + nwrapH);
-    //
-    //                 let _chapterContent = this.props.chapterContent.toJS();
-    //                 let _projectInfo = this.props.projectInfo.toJS();
-    //                 let locStorageProjectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
-    //                 let chapterIndex = null;
-    //
-    //                 // let projectInfoKey = null;
-    //                 //  _projectInfo.map(function(item, key) {
-    //                 // 	if(item.pid == projectId){
-    //                 // 		projectInfoKey = key;
-    //                 // 	}
-    //                 // })
-    //
-    //                 if (toNext) {
-    //                     for (key = 0, len = _chapterContent.chapters.length; key < len; key++) {
-    //                         let item = _chapterContent.chapters[key];
-    //
-    //                         if (item.id == chapterId) {
-    //                             if (key >= _chapterContent.chapters.length - 1) {
-    //                                 chapterIndex = null;
-    //                                 Toast.info("没有下一章了", 1.5);
-    //                                 return;
-    //                             }
-    //                             chapterIndex = key + 1;
-    //                             break;
-    //                         }
-    //                     }
-    //
-    //                     if (chapterIndex) {
-    //                         console.log(chapterIndex);
-    //                         chapterId = _chapterContent.chapters[chapterIndex].id;
-    //                         locStorageProjectInfo[projectId].push(chapterId);
-    //                         that.props.setProjectInfoStatus(_projectInfo);
-    //                         locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
-    //
-    //                         nwrap.scrollTop = 0;
-    //                     }
-    //                 }
-    //
-    //                 if (toPrevious) {
-    //                     for (key = 0, len = _chapterContent.chapters.length; key < len; key++) {
-    //                         let item = _chapterContent.chapters[key];
-    //
-    //                         if (item.id == chapterId) {
-    //                             if (key == 0) {
-    //                                 chapterIndex = null;
-    //                                 Toast.info("没有上一章节了", 1.5);
-    //                                 return;
-    //                             }
-    //                             chapterIndex = key - 1;
-    //                             break;
-    //                         }
-    //                     }
-    //
-    //                     if (chapterIndex || chapterIndex === 0) {
-    //                         chapterId = _chapterContent.chapters[chapterIndex].id;
-    //                         locStorageProjectInfo[projectId].push(chapterId);
-    //                         that.props.setProjectInfoStatus(_projectInfo);
-    //                         locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
-    //
-    //                         nwrap.scrollTop = 0;
-    //                     }
-    //                 }
-    //             }
-    //
-    //         }
-    //     }
-    // }
-    //
-    // tEnd(event) {
-    //     debugLog('End >>>>>>>>>>>>>');
-    // }
+    touchendHandler(e) {
+        var that = superThis;
+        that.nCont.classList.add('hasTransition');
+        that.nCont.style.webkitTransform = 'translate3d(0, 0, 0)';
+        that.nWrap.removeEventListener('touchend', that.touchendHandler);
+        setTimeout(function () {
+            that.nCont.classList.remove('hasTransition');
+        }, 500);
+    }
 
     showReadTopbar() {
         let _redTopdom = this.refs._readTopbar;
@@ -474,9 +382,12 @@ class ReadContent extends React.Component {
                 </div>
                 <ChapterList ref="J_ChapterList" items={this.props.chapterContent}/>
 
-                <div id="J_ChapterWrap" ref="J_ChapterWrap" className="mainContent" onClick={this.showReadTopbar.bind(this)}>
+                <div id="J_ChapterWrap" ref="J_ChapterWrap" className={`${styles.chpWrap} mainContent`}
+                     onClick={this.showReadTopbar.bind(this)}>
                     <div id="J_ChapterCont" ref="J_ChapterCont" className={styles.chpCon}
-                         >
+                    >
+                        <div ref="J_PreviourPull" className={styles.toPreviourPageNotice}><i className={styles.loading}></i>加载上一章</div>
+
                         <div ref="_authorMes" className={`${styles.authorMes} hide`}>
                             <img src={authorAvatar}/>
                             <span className={styles.left}>{_chapterContent.authorUserName}</span>
@@ -487,9 +398,13 @@ class ReadContent extends React.Component {
                                 {this.chapterTitle}
                             </div>
                             <div className={styles.contentMes}
-                                 dangerouslySetInnerHTML={{__html: `${this.chapterList}`}}/>
+                                 dangerouslySetInnerHTML={{__html: `${this.chapterList}`}}>
+                            </div>
                         </div>
+                        <div ref="J_NextPull" className={styles.toNextPageNotice}><i className={styles.loading}></i>加载下一章</div>
                     </div>
+
+
                 </div>
                 <div ref="_readBottombar" className={`${styles.bottomBar} hide`}>
                     <ul>

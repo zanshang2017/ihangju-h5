@@ -4,6 +4,7 @@ import React from 'react';
 import _ from 'underscore';
 
 import ArticleList3 from 'components/common/ArticleList3';
+import Result from 'antd-mobile/lib/page-result';
 
 /* eslint-disable react/prefer-stateless-function */
 class CollectionList extends React.Component {
@@ -70,11 +71,20 @@ class CollectionList extends React.Component {
         this.loading = this.props.loading;
         this.items = this.props.items ? this.props.items : [];
 
+        let listHtml = <Result
+            imgUrl="https://o82zr1kfu.qnssl.com/@/image/5813164ee4b0edf1e7b90b15.png?imageMogr2/auto-orient/"
+            title="还没有收藏过文章哦~"
+        />;
+
+        if (this.items.length > 0) {
+            listHtml = <ArticleList3 items={this.items}
+                                     articleClickHandler={this.articleClickHandler.bind(this)}
+                                     authorClickHandler={this.authorClickHandler.bind(this)}></ArticleList3>
+        }
+
         return (
             <div ref="J_CollectionListWrap" className={`${styles.listWrap}`}>
-                <ArticleList3 items={this.items}
-                              articleClickHandler={this.articleClickHandler.bind(this)}
-                              authorClickHandler={this.authorClickHandler.bind(this)}></ArticleList3>
+                {listHtml}
             </div>
         );
     }

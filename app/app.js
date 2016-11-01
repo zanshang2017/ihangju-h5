@@ -11,7 +11,7 @@ import 'sanitize.css/lib/sanitize.css';
 import 'antd-mobile/dist/antd-mobile.css';
 import 'common/antd_cover.css';
 
-import 'file?name=[name].[ext]!./.htaccess';      // eslint-disable-line import/no-unresolved
+// import 'file?name=[name].[ext]!./.htaccess';      // eslint-disable-line import/no-unresolved
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -25,6 +25,7 @@ import {
 } from 'containers/App/sagas.js';
 
 import Toast from 'antd-mobile/lib/toast';
+
 
 //console.log('Env', Env);
 
@@ -60,6 +61,9 @@ const history = syncHistoryWithStore(hashHistory, store, {
 window.onerror = function (e) {
     // alert('error' + e);
     // location.reload();
+};
+
+window.debugLog = function () {
 };
 
 import App from 'containers/App';
@@ -108,7 +112,10 @@ ReactDOM.render(
                                 document.body.removeChild(document.getElementById('appLoading'));
                             }
 
-                            Toast.hide(); //页面加载后清除loading
+                            try {
+                                Toast.hide(); //页面加载后清除loading
+                            } catch (e) {
+                            }
 
                             if (!prevProps || !props) {
                                 return true;

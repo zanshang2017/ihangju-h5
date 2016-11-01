@@ -19,8 +19,9 @@
   color: #7b8f9d;
   text-align: center; }
   .back i {
+    vertical-align: text-bottom;
     position: relative;
-    top: 0.32rem;
+    top: 0.05333rem;
     display: inline-block;
     height: 1.06667rem;
     width: 1.06667rem;

@@ -24,24 +24,36 @@
     </style>
 
     <script>
-        /**
-         * 全局配置
-         */
-        window.__APP_CONFIG = {
-            ver: '0.0.10',
-            guide: {
-                ver: '0.0.9', // 本地存储的版本号>=此版本号时不必展示guide页
-                ratio: 0.5625, //图片宽高比
-                images: [
-                    'https://o82zr1kfu.qnssl.com/@/image/57f863a5e4b0ea9bd4b58d80.png?imageMogr2/auto-orient/',
-                    'https://o82zr1kfu.qnssl.com/@/image/57f863b9e4b0ea9bd4b58d89.png?imageMogr2/auto-orient/',
-                    'https://o82zr1kfu.qnssl.com/@/image/57f863d0e4b0ea9bd4b58d93.png?imageMogr2/auto-orient/',
+        (function () {
+            var guideImages = {
+                '720': [
+                    'https://o82zr1kfu.qnssl.com/@/image/5812f68ce4b0edf1e7b8faeb.png?imageMogr2/auto-orient/',
+                    'https://o82zr1kfu.qnssl.com/@/image/5812f697e4b0edf1e7b8faf1.png?imageMogr2/auto-orient/',
+                    'https://o82zr1kfu.qnssl.com/@/image/5812f6a2e4b0edf1e7b8faf7.png?imageMogr2/auto-orient/'
                 ],
-                style: {
-                    background: '#EEF1F3'
+                '1080': [
+                    'https://o82zr1kfu.qnssl.com/@/image/5812f704e4b0edf1e7b8fb22.png?imageMogr2/auto-orient/',
+                    'https://o82zr1kfu.qnssl.com/@/image/5812f70de4b0edf1e7b8fb29.png?imageMogr2/auto-orient/',
+                    'https://o82zr1kfu.qnssl.com/@/image/5812f715e4b0edf1e7b8fb2e.png?imageMogr2/auto-orient/'
+                ]
+            };
+
+            /**
+             * 全局配置
+             */
+            window.__APP_CONFIG = {
+                ver: '0.0.14',
+                guide: {
+                    ver: '0.0.14', // 本地存储的版本号>=此版本号时不必展示guide页
+                    images: (window.devicePixelRatio > 2 ? guideImages['1080'] : guideImages['720']),
+                    ratio: 0.5625, //图片宽高比
+                    style: {
+                        background: '#f3f4f6'
+                    }
                 }
-            }
-        };
+            };
+        })();
+
 
         (function (root) {
             var docEl = document.documentElement;
@@ -49,6 +61,8 @@
             root.rem = width / 20;
             docEl.style.fontSize = root.rem + 'px';
         })(window);
+
+
     </script>
 </head>
 
@@ -65,9 +79,9 @@
         doc.body.appendChild(d);
         var actW = parseFloat(doc.defaultView.getComputedStyle(d).width);
         var fontSize = parseFloat(docEl.style.fontSize);
-        var ratio =  actW / fontSize;
+        var ratio = actW / fontSize;
         doc.body.removeChild(d);
-        if(ratio > 1.05) {
+        if (ratio > 1.05) {
             docEl.style.fontSize = fontSize / ratio + 'px';
         }
     })();

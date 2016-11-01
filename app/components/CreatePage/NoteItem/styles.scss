@@ -37,15 +37,16 @@
         .time {
             color: $weakTextColor;
             font-size: rem(24);
+            padding-right: rem(20);
         }
 
         i {
-            padding-left: rem(20);
             display: inline-block;
             height: rem(32);
             width: rem(32);
             background-repeat: no-repeat;
             background-size: cover;
+            vertical-align: middle;
         }
     }
 
