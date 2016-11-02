@@ -23,25 +23,7 @@ export default function request(url, options) {
             .then(parseJSON)
             .then((data) => ({data}))
             .catch((err) => {
-
-                //采集错误信息
-                console.error('url:', url, 'options:', options);
-
-                if (!isIgnoreDomain(url)) { // 赞赏退出错误不提示,等待接口优化
-                    feedbackLog.addLog({
-                        url: url,
-                        desc: '接口请求失败',
-                        err: JSON.stringify(err),
-                        options: JSON.stringify(options),
-                        type: feedbackLog.type.ERROR
-                    });
-
-                    if (navigator.onLine) {
-                        Toast.fail('数据加载失败,请稍后再试!');
-                    } else {
-                        Toast.fail('数据加载失败,请检查网络!');
-                    }
-                }
+                errorHandler(err, url, options);
             });
     } catch (e) {
     }
@@ -72,22 +54,13 @@ function isIgnoreDomain(url) {
 }
 
 /**
- * Parse json
- * @param  {object}
- * @return {object}
- */
-function parseJSON(response) {
-    return response.json();
-}
-
-/**
  * 检查返回值
  * @return {object|undefined} 返回包装后的数据
  */
 function checkStatus(response) {
 
     // 正常返回
-    if (response.status >= 200 && response.status < 300) {
+    if ((response.status >= 200 && response.status < 300) || response.status === 0) {
         return response;
     }
 
@@ -97,21 +70,55 @@ function checkStatus(response) {
         console.log('未登录,跳转到登录页');
         try {
             Toast.hide();
-        }catch(e){}
+        } catch (e) {
+        }
 
         signals.onUnLogin.dispatch();
-
-        return;
-    }
-
-    // 服务端错误,请联系后台开发人员
-    if (response.status === 405) {
-        //todo 采集 通知405
-
         return;
     }
 
     const error = new Error(response.statusText);
     error.response = response;
     throw error;
+}
+
+
+/**
+ * Parse json
+ * @param  {object}
+ * @return {object}
+ */
+function parseJSON(response) {
+    if (response && response.json) {
+        return response.json();
+    }
+}
+
+
+/**
+ * 错误处理
+ * @param err
+ */
+function errorHandler(err, url, options) {
+    //采集错误信息
+    console.error('url:', url, 'options:', options);
+
+    if (!isIgnoreDomain(url)) { // 赞赏退出错误不提示,等待接口优化
+        feedbackLog.addLog({
+            url: url,
+            desc: '接口请求失败',
+            err: JSON.stringify(err),
+            options: JSON.stringify(options),
+            type: feedbackLog.type.ERROR
+        });
+
+        if (location.href.indexOf('login') < 0) {
+            if (navigator.onLine) {
+                Toast.fail('数据加载失败,请稍后再试!');
+            } else {
+                Toast.fail('数据加载失败,请检查网络!');
+            }
+        }
+
+    }
 }

@@ -113,7 +113,7 @@ class App extends React.Component {
 
         this.addSignalHandler();
 
-        // feedbackLog.doListen(); //todo 错误收集
+        feedbackLog.doListen(); //todo 错误收集
 
         console.log('App DidMount');
 

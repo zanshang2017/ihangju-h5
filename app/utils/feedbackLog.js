@@ -1,9 +1,11 @@
 /**
  * Created by Howard on 2016/10/31.
+ *
+ * 发送错误日志
  */
 
 import 'whatwg-fetch';  // https://github.github.io/fetch/
-import request from 'utils/request';
+
 import {Env} from 'utils/env';
 import {
     locStorage
@@ -12,7 +14,6 @@ import {
 import {
     FEEDBACKLOG_API
 } from 'apis.js';
-
 
 var logTimer = null;
 
@@ -83,22 +84,14 @@ var feedbackLog = {
             logs[keys[i]] = locStorage.get(keys[i]);
         }
 
-        formData.append('file', new Blob([JSON.stringify(logs)]));
-        // formData.append('file', JSON.stringify(logs));
-        // formData.append('data', JSON.stringify(logs));
+        var blob = new Blob([JSON.stringify(logs)]);
+        formData.append('file', blob);
 
         console.log('发送LOG:', logs, formData.values());
 
         fetch(feedbackApi, {
             method: 'POST',
-            data: formData,
-            headers: {
-                'Accept': 'application/json',
-                // 'Content-Type': 'application/json',
-                // 'Content-Type': undefined,
-                // 'Content-Type': 'multipart/form-data',
-                'X-API-Version': 'v1.1'
-            },
+            body: formData,
             credentials: 'include'
         }).then(function (resp) {
             if (resp.ok) { //HTTP 2xx
@@ -111,7 +104,6 @@ var feedbackLog = {
             ++retryTime; //增大发送频率
             logTimer = setTimeout(that.logHandler.bind(that), Math.pow(retryTime, 2) * delay);
         });
-
     },
 
     //不断查询localstorage里有无新log,存在就尝试发送,成功后清除本地缓存,并继续检查
@@ -123,23 +115,21 @@ var feedbackLog = {
     logHandler: function () {
         var keys = locStorage.keys();
         var logKeys = [];
-// debugger;
+
         for (var i = 0, len = keys.length; i < len; i++) {
             if (keys[i] && keys[i].match(regKey)) {
                 logKeys.push(keys[i]);
             }
         }
 
-        console.log(logKeys);
-
         if (logKeys && logKeys.length > 0) {
             this.sendLogs(logKeys);
         } else {
             logTimer = setTimeout(this.logHandler.bind(this), 3000);
         }
-
     }
-}
+
+};
 
 export {
     feedbackLog

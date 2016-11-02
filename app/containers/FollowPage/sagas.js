@@ -87,7 +87,7 @@ export function* getMyFollowListData() {
 
         let url = MY_FOLLOW_LIST_API + `?page=${page}&size=${size}`;
 
-        const lists = yield call(request, url, {
+        var lists = yield call(request, url, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',

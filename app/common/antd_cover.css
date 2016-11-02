@@ -8,7 +8,8 @@
   /** List **/
   /** NoticeBar **/
   /** action-sheet **/
-  /** Result **/ }
+  /** Result **/
+  /** Switch **/ }
   :global .am-tab .am-tab-content {
     padding: 0 0 12px !important; }
   :global .am-tab .am-tab-bar {
@@ -69,5 +70,7 @@
       font-size: 13px !important;
       font-weight: 100 !important;
       margin-top: 15px !important; }
+  :global .am-switch input[type="checkbox"]:checked + .checkbox {
+    background-color: #000 !important; }
 
 /*# sourceMappingURL=antd_cover.css.map */

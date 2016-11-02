@@ -44,14 +44,11 @@ const THIRDPARTY_LOGOUT_URL = `//${thirdparty_login_domain}/authentication`; //m
  */
 const LOGOUT_API = `//${api_host}/logout`;
 
-
 /**
  * 错误日志
  * @type {string}
  */
-const FEEDBACKLOG_API = `https://${api_host}/httpfeedback/upload`;
-
-
+const FEEDBACKLOG_API = `//${api_host}/httpfeedback/upload`;
 
 //发现接口: 包含banner、分类tag和发现第一页的数据
 const DISCOVERIES_API = `//${api_host}/discoveries`;

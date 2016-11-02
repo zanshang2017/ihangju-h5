@@ -132,7 +132,7 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
                     <div ref="J_MainContentWrap">
                         <Tabs defaultActiveKey="1">
                             <TabPane tab="扫码创作" key="1">
-                                <ScanPane userId={this.userId} isAuthor={this.isAuthor} />
+                                <ScanPane userId={this.userId} isAuthor={this.isAuthor}/>
                             </TabPane>
                             <TabPane tab="灵感记录" key="2">
                                 <NotePane {...this.props} openNote={this.openNoteHandler.bind(this)}/>

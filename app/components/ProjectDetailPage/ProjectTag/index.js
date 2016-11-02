@@ -62,7 +62,7 @@ class ProjectTag extends React.Component {
                     {tagList}
                 </ul>
                 <Link to={`/readProjectChapter/${_result.projectId}/${cid}`}>
-                    <img className={style.readImg} src={readImgsrc}/>
+                    <img className={style.readImg} src={readImgsrc} data-hashover="true" />
                 </Link>
             </div>
         )

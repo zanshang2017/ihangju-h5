@@ -140,6 +140,12 @@
         }
     }
 
+    /** Switch **/
+    .am-switch {
+        input[type="checkbox"]:checked + .checkbox {
+            background-color: #000 !important;
+        }
+    }
 
 }
 
