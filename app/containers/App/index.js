@@ -164,7 +164,6 @@ class App extends React.Component {
         // window.addEventListener("online", function (e) {
         //     Toast.success('网络已恢复!', 2);
         // });
-
     }
 
     addSignalHandler() {
@@ -184,6 +183,14 @@ class App extends React.Component {
         jsBridgeEvent.onPushMsgLetter.add((msg) => {
             let url = `/dialogue/${msg.targetid || ''}`;
             that.context.router.push(url);
+        });
+
+        //进入作品详情页
+        jsBridgeEvent.onPushMsgProjectDetail.add((msg) => {
+            if (msg.targetid) {
+                let url = `/projectDetail/${msg.targetid || ''}`;
+                that.context.router.push(url);
+            }
         });
 
         signals.onUnLogin.add(()=> {

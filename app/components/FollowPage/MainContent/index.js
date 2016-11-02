@@ -83,7 +83,7 @@ class MainContent extends React.Component {
             <div id="J_FollowPageMainContentWrap" ref="J_FollowPageMainContentWrap"
                  className={`${styles.followPageMainContent}`}>
                 {list}
-                <div className={styles.loading}>加载中</div>
+                {/*<div className={styles.loadingBar}><i className={`${styles.loading} iconLoading`}></i>加载中</div>*/}
             </div>
         );
     }

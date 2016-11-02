@@ -244,11 +244,11 @@ var bridge = new Bridge();
 //导出Bridge实例
 export default bridge;
 
-
 var jsBridgeEvent = {
     onPushMsgComment: signalFactory(),
     onPushMsgLike: signalFactory(),
     onPushMsgLetter: signalFactory(),
+    onPushMsgProjectDetail: signalFactory(),
 };
 
 /************************************
@@ -296,6 +296,10 @@ var jsBridgeEvent = {
 
                 case '4' :
                     jsBridgeEvent.onPushMsgLetter.dispatch(msgObj);
+                    break;
+
+                case '7' :
+                    jsBridgeEvent.onPushMsgProjectDetail.dispatch(msgObj);
                     break;
 
                 default:
