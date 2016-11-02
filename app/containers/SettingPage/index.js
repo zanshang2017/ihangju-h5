@@ -97,7 +97,7 @@ class SettingPage extends React.Component { // eslint-disable-line react/prefer-
                     </List>
 
                     <div className={styles.version}>
-                        <p>版本:{window.__APP_CONFIG.ver}_{Env.shell}</p>
+                        <p>版本:{Env.VERSION}_{Env.shell}</p>
                     </div>
 
                 </div>

@@ -53,14 +53,19 @@ var feedbackLog = {
         }
 
         var key = o.type + '/' + Env.guid + '/' + time;
+
         o.time = time;
-        o.timeString = d.toLocaleString();
+        o.localTime = d.toLocaleString();
+        o.ISOTime = d.toISOString && d.toISOString();
         o.platform = "h5_ihangju";
+        o.h5Ver = Env.VERSION;
         o.OS = Env.platform.android ? 'android' : (Env.platform.ipad || Env.platform.iphone) ? 'ios' : 'web';
         o.shell = Env.shell || '';
+        o.onLine = (navigator.onLine !== undefined) ? navigator.onLine : undefined;
         o.UA = window.navigator.userAgent;
-        o.onLine = navigator.onLine;
         locStorage.set(key, JSON.stringify(o));
+
+        debugLog('增加Log:' + JSON.stringify(o));
     },
 
     //删除指定log
@@ -76,6 +81,12 @@ var feedbackLog = {
 
     //发送ls中存储的log
     sendLogs: function (keys) {
+
+        //限制最大发送条数
+        if (keys && keys.length > 30) {
+            keys = keys.slice(0, 30);
+        }
+
         var that = this;
         var logs = {};
         var formData = new FormData();
@@ -87,23 +98,28 @@ var feedbackLog = {
         var blob = new Blob([JSON.stringify(logs)]);
         formData.append('file', blob);
 
-        console.log('发送LOG:', logs, formData.values());
+        console.log('发送LOG');
+        debugLog('发送LOG');
 
-        fetch(feedbackApi, {
-            method: 'POST',
-            body: formData,
-            credentials: 'include'
-        }).then(function (resp) {
-            if (resp.ok) { //HTTP 2xx
-                that.removeLog(keys);
-                retryTime = 0;
-            }
+        try {
+            fetch(feedbackApi, {
+                method: 'POST',
+                body: formData,
+                credentials: 'include'
+            }).then(function (resp) {
+                if (resp.ok) { //HTTP 2xx
+                    that.removeLog(keys);
+                    retryTime = 0;
+                }
 
-            logTimer = setTimeout(that.logHandler.bind(that), delay);
-        }, function (error) {
-            ++retryTime; //增大发送频率
-            logTimer = setTimeout(that.logHandler.bind(that), Math.pow(retryTime, 2) * delay);
-        });
+                logTimer = setTimeout(that.logHandler.bind(that), delay);
+            }, function (error) {
+                ++retryTime; //增大发送频率
+                logTimer = setTimeout(that.logHandler.bind(that), Math.pow(retryTime, 2) * delay);
+            });
+        } catch (e) {
+            debugLog('feedbackApi send error:' + e);
+        }
     },
 
     //不断查询localstorage里有无新log,存在就尝试发送,成功后清除本地缓存,并继续检查
@@ -121,6 +137,8 @@ var feedbackLog = {
                 logKeys.push(keys[i]);
             }
         }
+
+        debugLog('logKeys:' + logKeys);
 
         if (logKeys && logKeys.length > 0) {
             this.sendLogs(logKeys);

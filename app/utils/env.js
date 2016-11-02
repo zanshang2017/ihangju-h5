@@ -4,27 +4,36 @@
 
 import {
     guid
-} from 'utils/util.js'
+} from 'utils/util.js';
+
+const VERSION = window.__APP_CONFIG.ver || 'undefined';
 
 const PRODUCTION_DOMAIN = 'h5.app.ihangju.com';
 // const PRODUCTION_DOMAIN = 'h5.dev.ihangju.com'; //todo 测试后记得恢复!
 const PREPUB_DOMAIN = 'preh5.app.ihangju.com';
 
+var rDeliveryChannel = /\((.*)\)/ig;
+
 var ua = navigator.userAgent;
 var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
     iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),
     android = ua.match(/(Android);?[\s\/]+([\d.]+)?/),
-    shell = ua.match(/HangJuAndroid\/[^\s]+/),
+    shell = ua.match(/HangJuAndroid\(\w*\)\/[^\s]+/),
     shell = shell ? shell[0] : 'Browser',
     shellName = shell && shell.split('/')[0],
-    shellVersion = shell && shell.split('/')[1];
+    shellVersion = shell && shell.split('/')[1],
+    deliveryChannel = shellName && rDeliveryChannel.exec(shellName);
+    deliveryChannel = deliveryChannel && (deliveryChannel[1] || '') ;
 
 // alert(ua);
 // alert(shell);
 // alert(shellName);
 // alert(shellVersion);
+// alert(deliveryChannel);
 
 var Env = {
+    VERSION,
+
     dev: false,
     production: true,
     debug: false,
