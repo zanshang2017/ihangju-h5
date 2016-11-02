@@ -20,11 +20,16 @@ import styles from './styles.css';
 
 import TopBar from 'components/common/TopBar';
 import List from 'antd-mobile/lib/list';
+import Toast from 'antd-mobile/lib/toast';
 
 class NickNamePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
         super(props);
+    }
+
+    componentWillMount() {
+        this.userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
     }
 
     componentDidMount() {
@@ -34,18 +39,17 @@ class NickNamePage extends React.Component { // eslint-disable-line react/prefer
 
     backBtnHandler() {
         if (this.refs.J_NickName.value.length <= 0) {
-            alert('请填写昵称!');
+            Toast.fail('请填写昵称!', 2.5);
         } else {
             if (this.originName !== this.refs.J_NickName.value) {
                 let obj = Object.assign({}, {nickname: this.refs.J_NickName.value}, this.userInfo.pushConfig);
                 this.props.dispatch(updateUserInfo(obj));
             }
-            window.history.back();
+            this.context.router.goBack();
         }
     }
 
     render() {
-        this.userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
         this.originName = this.userInfo.nickName || '';
 
         return (

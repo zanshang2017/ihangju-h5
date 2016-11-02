@@ -87,7 +87,6 @@ class SettingPage extends React.Component { // eslint-disable-line react/prefer-
                                 arrow="horizontal"
                                 onClick={function () {
                                     this.props.dispatch(logout());
-                                    //todo 同时取消消息推送
                                     this.context.router.push('/found');
                                 }.bind(this)}
                             >

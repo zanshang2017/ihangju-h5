@@ -34,7 +34,9 @@ import {
 const initialState = fromJS({
     loading: false, //加载信息
     error: false, //全局错误
-    userInfo: false, //三方登录后通过user/me获取的用户信息
+    userInfo: { //三方登录后通过user/me获取的用户信息
+        pushConfig: {}
+    },
     showNav: true, //显示导航
     curPage: '', //当前页面
 });

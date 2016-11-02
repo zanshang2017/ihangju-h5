@@ -8,9 +8,9 @@ import {
 
 const VERSION = window.__APP_CONFIG.ver || 'undefined';
 
-const PRODUCTION_DOMAIN = 'h5.app.ihangju.com';
+const PRODUCTION_DOMAIN = 'h5app.ihangju.com';
 // const PRODUCTION_DOMAIN = 'h5.dev.ihangju.com'; //todo 测试后记得恢复!
-const PREPUB_DOMAIN = 'preh5.app.ihangju.com';
+const PREPUB_DOMAIN = 'preh5app.ihangju.com';
 
 var rDeliveryChannel = /\((.*)\)/ig;
 

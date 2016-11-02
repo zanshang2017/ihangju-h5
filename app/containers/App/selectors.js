@@ -6,10 +6,11 @@ import { createSelector } from 'reselect';
 
 const selectGlobal = () => (state) => state.get('global');
 
-const selectUserInfo = () => createSelector(
+const selectUserInfo = () => {
+    return createSelector(
     selectGlobal(),
     (globalState) => globalState.get('userInfo')
-);
+)};
 
 const selectShowNav = () => createSelector(
     selectGlobal(),

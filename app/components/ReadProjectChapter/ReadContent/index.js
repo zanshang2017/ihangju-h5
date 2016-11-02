@@ -432,7 +432,7 @@ class ReadContent extends React.Component {
                     <div id="J_ChapterCont" ref="J_ChapterCont" className={styles.chpCon}
                     >
                         <div ref="J_PreviourPull" className={styles.toPreviourPageNotice}><i
-                            className={styles.loading}></i>加载上一章
+                            className={`${styles.loading} iconLoading`}></i>加载上一章
                         </div>
 
                         <div ref="_authorMes" className={`${styles.authorMes} hide`}>

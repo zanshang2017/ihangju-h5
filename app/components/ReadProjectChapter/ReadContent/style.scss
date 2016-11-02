@@ -17,12 +17,6 @@ $loadingHeight: 75px;
     -webkit-overflow-scrolling: touch;
 
     .loading {
-        display: inline-block;
-        width: rem(40);
-        height: rem(40);
-        background: url(https://o82zr1kfu.qnssl.com/@/image/5816aa34e4b0edf1e7b9ed66.gif) left center no-repeat;
-        background-size: cover;
-        vertical-align: middle;
         margin-right: rem(20);
         margin-top: rem(-5);
     }

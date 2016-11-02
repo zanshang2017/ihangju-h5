@@ -93,33 +93,36 @@ export function* postUserInfo() {
         let data = action.payload.data || null;
         let body = '';
 
-        if (data) {
-            for (let k in data) {
-                if (data.hasOwnProperty(k)) {
-                    body += `${k.toLowerCase()}=${data[k]}&`;  //参数全小写!
+        try {
+            if (data) {
+                for (let k in data) {
+                    if (data.hasOwnProperty(k)) {
+                        body += `${k.toLowerCase()}=${data[k]}&`;  //参数全小写!
+                    }
                 }
             }
-        }
 
-        const ret = yield call(request, url, {
-            method: 'POST',
-            body: body,
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-API-Version': 'v1.1'
-            },
-            credentials: 'include'
-        });
+            const ret = yield call(request, url, {
+                method: 'POST',
+                body: body,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-API-Version': 'v1.1'
+                },
+                credentials: 'include'
+            });
 
-        if (ret) {
-
-            if (ret.err === undefined || ret.err === null) {
-                yield put(updateUserInfoSuccess(action.payload.data));
-            } else {
-                console.log(ret.err.response); // eslint-disable-line no-console
-                yield put(updateUserInfoError(ret.err));
+            if (ret) {
+                if (ret.err === undefined || ret.err === null) {
+                    yield put(updateUserInfoSuccess(action.payload.data));
+                } else {
+                    console.log(ret.err.response); // eslint-disable-line no-console
+                    yield put(updateUserInfoError(ret.err));
+                }
             }
+        } catch (e) {
+            debugLog('postUserInfo.error:' + e);
         }
 
     }

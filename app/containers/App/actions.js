@@ -113,6 +113,7 @@ export function loadUserInfoError(error) {
 
 
 export function updateUserInfo(data={}) {
+    // debugLog('updateUserInfo:' + Object.values(data));
     return {
         type: UPDATE_USER_INFO,
         payload: {

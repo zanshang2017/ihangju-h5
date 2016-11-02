@@ -6,12 +6,6 @@
   width: 100%;
   -webkit-overflow-scrolling: touch; }
   .chpCon .loading {
-    display: inline-block;
-    width: 1.06667rem;
-    height: 1.06667rem;
-    background: url(https://o82zr1kfu.qnssl.com/@/image/5816aa34e4b0edf1e7b9ed66.gif) left center no-repeat;
-    background-size: cover;
-    vertical-align: middle;
     margin-right: 0.53333rem;
     margin-top: -0.13333rem; }
   .chpCon .toPreviourPageNotice {
