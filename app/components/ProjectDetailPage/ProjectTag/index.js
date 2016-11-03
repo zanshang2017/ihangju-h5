@@ -20,19 +20,27 @@ class ProjectTag extends React.Component {
         super(props);
     }
 
+    componentWillMount() {
+
+    }
+
+    componentDidUpdate() {
+        this._result = this.props.projectDetail.toJS();
+        this.locStorageProjectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
+        this.newArr = this.locStorageProjectInfo[this._result.projectId];
+        if (this._result.projectId) {
+            this.props.loadChapter(this._result.projectId);
+        }
+    }
+
     render() {
         let readImgsrc = addImageParam(IMG_CDN_PATH + '/image/57b2ed2de4b0f816612df7d7.png');
+        let cid = null;
         let tagList = '';
-        var _result = this.props.projectDetail.toJS();
-        var cid = null;
-        var locStorageProjectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
-        var newArr = locStorageProjectInfo[_result.projectId];
-        if (_result.projectId) {
-            this.props.loadChapter(_result.projectId);
-        }
-        if (newArr) {
-            for (var i in newArr) {
-                cid = newArr[i];
+
+        if (this.newArr) {
+            for (var i in this.newArr) {
+                cid = this.newArr[i];
             }
         } else {
             let chaptersDetail = this.props.projectDetailChapter.toJS();
@@ -46,8 +54,8 @@ class ProjectTag extends React.Component {
             }
         }
 
-        var tags = _result.tagArray || [];
-        if (!_result || _result.size < 1) {
+        var tags = (this._result && this._result.tagArray) || [];
+        if (!this._result || (this._result && this._result.size < 1)) {
             tagList = <li>空标签</li>;
         } else {
             tagList = tags.map(function (item, key) {
@@ -56,14 +64,23 @@ class ProjectTag extends React.Component {
                 </li>
             });
         }
-        return (
-            <div className={style.projectTag}>
+
+        var _html = '';
+
+        if (this._result) {
+            _html = <div>
                 <ul>
                     {tagList}
                 </ul>
-                <Link to={`/readProjectChapter/${_result.projectId}/${cid}`}>
-                    <img className={style.readImg} src={readImgsrc} data-hashover="true" />
+                <Link to={`/readProjectChapter/${this._result.projectId}/${cid}`}>
+                    <img className={style.readImg} src={readImgsrc} data-hashover="true"/>
                 </Link>
+            </div>;
+        }
+
+        return (
+            <div className={style.projectTag}>
+                {_html}
             </div>
         )
     }

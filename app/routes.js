@@ -4,6 +4,8 @@
 
 import {getHooks} from 'utils/hooks';
 
+import {feedbackLog} from 'utils/feedbackLog';
+
 import {
     routeEffector,
     NO_EFFECT,
@@ -23,16 +25,29 @@ import {
 
 import Toast from 'antd-mobile/lib/toast';
 
-const errorLoading = (err) => {
+const errorLoading = (err, opt = null) => {
     console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
-    //todo 采集失败信息
+
+    feedbackLog.addLog({
+        desc: '页面请求失败',
+        err: JSON.stringify(err),
+        options: opt ? JSON.stringify(opt) : '',
+        type: feedbackLog.type.ERROR
+    });
 
     try {
         Toast.hide(); //此方法如果没有Toast展示时调用会抛异常,必须捕获
-    } catch (e) {}
+    } catch (e) {
+    }
 
-    Toast.fail('加载失败,请检查网络!');
-    // alert(location.href); //路由已切换
+    if (location.href.indexOf('login') < 0) {
+        if (navigator.onLine) {
+            Toast.fail('加载失败,请稍后再试!');
+        } else {
+            Toast.fail('加载失败,请检查网络!');
+        }
+    }
+
 };
 
 const loadModule = (cb) => (componentModule) => {
@@ -89,7 +104,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/login'
+                    });
+                });
             },
             onEnter: function () {
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
@@ -123,7 +142,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/follow'
+                    });
+                });
             },
             onEnter: function () {
                 // if (isLogin()) {
@@ -161,7 +184,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/create'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(showNav());
@@ -196,7 +223,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/found'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(showNav());
@@ -231,7 +262,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/my'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(showNav());
@@ -266,7 +301,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/person/:id'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(hideNav());
@@ -301,7 +340,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/fanslist/:id'
+                    });
+                });
             },
             onEnter: function () {
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
@@ -336,7 +379,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/followslist/:id'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(hideNav());
@@ -371,7 +418,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/collection/:id'
+                    });
+                });
             },
             onEnter: function () {
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
@@ -406,7 +457,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/tag/:id'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(hideNav());
@@ -441,7 +496,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/mytag'
+                    });
+                });
             },
             onEnter: function () {
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
@@ -476,7 +535,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/setting'
+                    });
+                });
             },
             onEnter: function () {
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
@@ -487,7 +550,7 @@ export default function createRoutes(store) {
                 store.dispatch(setCurPage(''));
             }
         }, {
-            path: 'setting/profile',
+            path: '/setting/profile',
             name: 'editProfilePage',
             getComponent(nextState, cb) {
 
@@ -511,7 +574,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/setting/profile'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(hideNav());
@@ -520,7 +587,7 @@ export default function createRoutes(store) {
             onLeave: function () {
             }
         }, {
-            path: 'setting/profile/nickname',
+            path: '/setting/profile/nickname',
             name: 'nickNamePage',
             getComponent(nextState, cb) {
 
@@ -544,7 +611,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/setting/profile/nickname'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(hideNav());
@@ -553,7 +624,7 @@ export default function createRoutes(store) {
             onLeave: function () {
             }
         }, {
-            path: 'setting/profile/description',
+            path: '/setting/profile/description',
             name: 'descriptionPage',
             getComponent(nextState, cb) {
 
@@ -577,7 +648,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: 'setting/profile/description'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(hideNav());
@@ -586,7 +661,7 @@ export default function createRoutes(store) {
             onLeave: function () {
             }
         }, {
-            path: 'setting/pushconfig',
+            path: '/setting/pushconfig',
             name: 'pushConfigPage',
             getComponent(nextState, cb) {
 
@@ -610,7 +685,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: 'setting/pushconfig'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(hideNav());
@@ -619,7 +698,7 @@ export default function createRoutes(store) {
             onLeave: function () {
             }
         }, {
-            path: 'setting/feedback',
+            path: '/setting/feedback',
             name: 'feedbackPage',
             getComponent(nextState, cb) {
 
@@ -639,7 +718,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: 'setting/feedback'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(hideNav());
@@ -672,7 +755,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/notification(/:tab)'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(hideNav());
@@ -706,7 +793,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/dialoguelist'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(hideNav());
@@ -740,7 +831,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/dialogue/:id'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(hideNav());
@@ -774,7 +869,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/comments/:id'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(hideNav());
@@ -842,7 +941,11 @@ export default function createRoutes(store) {
                     renderRoute(component);
                 });
 
-                importModules.catch(errorLoading);
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/follow_recommendation'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(hideNav());
@@ -882,7 +985,12 @@ export default function createRoutes(store) {
                     }
                     renderRoute(component);
                 });
-                importModules.catch(errorLoading);
+
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/projectDetail/:id'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(hideNav());
@@ -909,7 +1017,12 @@ export default function createRoutes(store) {
                     }
                     renderRoute(component);
                 });
-                importModules.catch(errorLoading);
+
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/readProjectChapter/:projectId/:chapterId'
+                    });
+                });
             },
             onEnter: function () {
                 store.dispatch(hideNav());
@@ -924,7 +1037,11 @@ export default function createRoutes(store) {
 
                 System.import('containers/GuidePage')
                     .then(loadModule(cb))
-                    .catch(errorLoading);
+                    .catch(function (err) {
+                        errorLoading(err, {
+                            path: '/guide'
+                        });
+                    });
             },
             onEnter: function () {
                 store.dispatch(hideNav());
@@ -939,7 +1056,11 @@ export default function createRoutes(store) {
 
                 System.import('containers/NotFoundPage')
                     .then(loadModule(cb))
-                    .catch(errorLoading);
+                    .catch(function (err) {
+                        errorLoading(err, {
+                            path: '*'
+                        });
+                    });
             },
             onEnter: function () {
                 routeEffector.autoSet(); //进入页面时设置路由切换效果

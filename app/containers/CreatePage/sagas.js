@@ -192,10 +192,10 @@ export function* identifyAuth() {
         });
 
         if (ret) {
-            if (ret.err === undefined || ret.err === null) {
+            if ((ret.err === undefined || ret.err === null) && ret.data && ret.data.result) {
                 yield put(identifyAuthSuccess(ret.data.result));
             } else {
-                yield put(identifyAutherror(ret.err));
+                yield put(identifyAuthError(ret.err));
             }
         }
     }

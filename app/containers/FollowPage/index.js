@@ -42,9 +42,6 @@ import Toast from 'antd-mobile/lib/toast';
 export class FollowPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     componentWillMount() {
-    }
-
-    componentDidMount() {
         console.warn('FollowPage DidMount');
 
         var userInfo = this.props.userInfo;
@@ -57,6 +54,9 @@ export class FollowPage extends React.Component { // eslint-disable-line react/p
         if (!this.props.currentFollow) {
             this.loadMyFollow();
         }
+    }
+
+    componentDidMount() {
     }
 
     loadMyFollow(page, currentFollow) {

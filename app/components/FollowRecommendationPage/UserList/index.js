@@ -54,8 +54,8 @@ class UserList extends React.Component {
                     this.items.map(function (item) {
                         let imageSrc = addImageParam(IMG_CDN_PATH + item.avatar, IMAGE_SIZE_TYPE.AVATAR_SMALL);
 
-                        return <div className={styles.listItemWrap}>
-                            <div className={styles.listItem} key={item.id}>
+                        return <div className={styles.listItemWrap} key={item.id}>
+                            <div className={styles.listItem}>
                                 <div className={styles.item}>
                                     <div className={styles.avatar}>
                                         <img src={imageSrc}/>

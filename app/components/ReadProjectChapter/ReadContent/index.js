@@ -91,7 +91,6 @@ class ReadContent extends React.Component {
     resetScrollPage() {
         var that = this;
 
-        debugLog('reset');
         // this.nNextPull = this.refs.J_NextPull;
         this.wrapH = this.nWrap.getBoundingClientRect().height;
         this.wrapSH = this.nWrap.scrollHeight;
@@ -120,8 +119,8 @@ class ReadContent extends React.Component {
         that.isTouchTop = (that.nWrap.scrollTop == 0);
         that.isTouchBottom = that.nWrap.scrollTop + that.wrapH >= that.wrapSH - 10;
 
-        debugLog('that.nWrap.scrollTop:' + that.nWrap.scrollTop + ' that.wrapH:' + that.wrapH)
-        debugLog("that.isTouchTop:" + that.isTouchTop + " that.isTouchBottom:" + that.isTouchBottom);
+        // debugLog('that.nWrap.scrollTop:' + that.nWrap.scrollTop + ' that.wrapH:' + that.wrapH)
+        // debugLog("that.isTouchTop:" + that.isTouchTop + " that.isTouchBottom:" + that.isTouchBottom);
 
         // if (that.isTouchTop || that.isTouchBottom) {
         //     debugLog('touch!');
@@ -129,7 +128,7 @@ class ReadContent extends React.Component {
         // }
 
         if (that.isTouchTop) {
-            debugLog('touch!');
+            // debugLog('touch!');
             that.bindTouchMove();
         }
     }
@@ -145,14 +144,14 @@ class ReadContent extends React.Component {
         var that = this;
         that.isMoveComplete = false;
         that.touchStartY = e.touches[0].pageY;
-        debugLog('touchStartY:' + that.touchStartY);
+        // debugLog('touchStartY:' + that.touchStartY);
     }
 
     touchmoveHandler(e) {
         let that = superThis;
         let dist = that.touchStartY - e.touches[0].pageY;
 
-        debugLog('touchStartY:' + that.touchStartY + ' pageY:' + e.touches[0].pageY);
+        // debugLog('touchStartY:' + that.touchStartY + ' pageY:' + e.touches[0].pageY);
 
         if (dist < 0) {
             that.isMoveTop = true;
@@ -163,8 +162,8 @@ class ReadContent extends React.Component {
         }
 
         if ((that.isTouchTop && that.isMoveBottom) || (that.isTouchBottom && that.isMoveTop)) {
-            debugLog('方向相反,解绑!');
-            console.log('方向相反,解绑!');
+            // debugLog('方向相反,解绑!');
+            // console.log('方向相反,解绑!');
             that.nWrap.removeEventListener('touchmove', that.touchmoveHandler);
             that.isAddListener = false;
             return;
@@ -187,7 +186,7 @@ class ReadContent extends React.Component {
                 that.isMoveComplete = true;
 
                 if (that.isTouchTop && that.isMoveTopComplete) {
-                    debugLog('上一页');
+                    // debugLog('上一页');
 
                     for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
                         let item = _chapterContent.chapters[key];
@@ -260,7 +259,7 @@ class ReadContent extends React.Component {
             that.nCont.style.transform = 'translate3d(0, ' + (_dist) + 'px, 0)';
         }
 
-        debugLog(e.touches[0].pageY + ":" + e.touches[0].clientY);
+        // debugLog(e.touches[0].pageY + ":" + e.touches[0].clientY);
         e.preventDefault();
     }
 

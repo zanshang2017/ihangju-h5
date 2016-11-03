@@ -44,6 +44,7 @@ var feedbackLog = {
     addLog: function (o) {
         var d = new Date();
         var time = d.getTime();
+
         if (o.type
             && o.type !== type.LOG
             && o.type !== type.WARN
@@ -53,6 +54,13 @@ var feedbackLog = {
         }
 
         var key = o.type + '/' + Env.guid + '/' + time;
+
+        var userInfo = JSON.parse(locStorage.get('userInfo'));
+
+        if (userInfo) {
+            o.uid = userInfo.id || '';
+            o.nickName = userInfo.nickName || '';
+        }
 
         o.time = time;
         o.localTime = d.toLocaleString();
@@ -129,24 +137,26 @@ var feedbackLog = {
     },
 
     logHandler: function () {
-        var keys = locStorage.keys();
-        var logKeys = [];
+        try {
+            var keys = locStorage.keys();
+            var logKeys = [];
 
-        for (var i = 0, len = keys.length; i < len; i++) {
-            if (keys[i] && keys[i].match(regKey)) {
-                logKeys.push(keys[i]);
+            for (var i = 0, len = keys.length; i < len; i++) {
+                if (keys[i] && keys[i].match(regKey)) {
+                    logKeys.push(keys[i]);
+                }
             }
-        }
 
-        debugLog('logKeys:' + logKeys);
+            debugLog('logKeys:' + logKeys);
 
-        if (logKeys && logKeys.length > 0) {
-            this.sendLogs(logKeys);
-        } else {
-            logTimer = setTimeout(this.logHandler.bind(this), 3000);
+            if (logKeys && logKeys.length > 0) {
+                this.sendLogs(logKeys);
+            } else {
+                logTimer = setTimeout(this.logHandler.bind(this), 3000);
+            }
+        } catch (e) {
         }
     }
-
 };
 
 export {

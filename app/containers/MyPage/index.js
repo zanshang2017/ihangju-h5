@@ -33,6 +33,13 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
     }
 
     componentWillMount() {
+        let userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
+
+        this.id = userInfo.id;
+        if (!this.id) {
+            this.context.router.replace('/login');
+        }
+
     }
 
     componentDidMount() {
@@ -76,16 +83,9 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
     }
 
     render() {
-        let userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
         let userCenterInfo = this.props.userCenterInfo || {};
         let notifications = userCenterInfo.notifications || {};
-        this.id = userInfo.id;
-
         let msg_count = (notifications.comment_notify_count || 0) + (notifications.discuss_notify_count || 0);
-
-        if (!this.id) {
-            this.context.router.replace('/login');
-        }
 
         let tagManageHtml = '';
         if (userCenterInfo.managermentTagNumber) {

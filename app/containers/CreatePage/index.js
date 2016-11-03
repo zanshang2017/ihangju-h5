@@ -119,7 +119,7 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
 
         if (this.props.identify) {
             this.identify = this.props.identify;
-            if (this.identify.type === 'author' || this.identify.type === null) {
+            if (this.identify.type === 'author' || this.identify.type === null || this.identify.type === 'null') {
                 this.isAuthor = true;
             }
         } else {

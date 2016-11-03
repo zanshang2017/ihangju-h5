@@ -58,7 +58,7 @@ class TagList extends React.Component {
                             imageSrc = addImageParam(IMG_CDN_PATH + (item.image));
                         }
 
-                        return <div className={styles.listItemWrap} data-id={item.id}
+                        return <div className={styles.listItemWrap} data-id={item.id} key={item.id}
                                     onClick={that.clickHandler.bind(that)}>
                             <div className={styles.logo}>
                                 <div className={styles.shadow}></div>

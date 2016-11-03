@@ -40,7 +40,7 @@ class LoginPage extends React.Component {
         try {
             setTimeout(function () {
                 Toast.hide();
-            }, 0)
+            }, 0);
         } catch (e) {
         }
 

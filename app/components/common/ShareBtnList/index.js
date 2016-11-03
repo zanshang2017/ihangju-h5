@@ -89,8 +89,6 @@ class ShareBtnList extends React.Component {
             that.shareMes = this.props.items.toJS();
         }
 
-        debugLog(Object.values(that.shareMes));
-
         return (
             <div onClick={this.hideLayer.bind(this)} ref="_sharelayer" className={`${styles.shareBg} hide`}>
                 <div className={styles.share}>

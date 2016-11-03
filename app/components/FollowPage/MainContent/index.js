@@ -52,7 +52,7 @@ class MainContent extends React.Component {
         var dist = nWrapH - (this.nScrollOuter.scrollTop + nOuterH);
         // console.log(this.nScrollOuter.scrollTop + nOuterH + '>=' + nWrapH);
 
-        if ( dist <= 350 && !this.isLast && !this.props.myFollowLoading) {
+        if (dist <= 350 && !this.isLast && !this.props.myFollowLoading) {
             debugLog('加载');
             this.props.loadMyFollow(this.page + 1, this.props.currentFollow);
         }
@@ -69,6 +69,7 @@ class MainContent extends React.Component {
 
         let articles = this.props.myFollowData ? this.props.myFollowData.toJS() : [];
         let list = '';
+        let _loadingBar = '';
 
         if (this.page == 0 && articles.length == 0) {
             list = <Result
@@ -77,13 +78,20 @@ class MainContent extends React.Component {
             />
         } else {
             list = <ArticleList items={articles} articleClickHandler={this.articleClickHandler.bind(this)}/>
+
+            if (this.isLast) {
+                _loadingBar = <div className={styles.loadingBar}><span className={styles.noMore}>没有了~</span></div>
+            } else {
+                _loadingBar = <div className={styles.loadingBar}><i className={`${styles.loading} iconLoading`}></i>加载中
+                </div>;
+            }
         }
 
         return (
             <div id="J_FollowPageMainContentWrap" ref="J_FollowPageMainContentWrap"
                  className={`${styles.followPageMainContent}`}>
                 {list}
-                {/*<div className={styles.loadingBar}><i className={`${styles.loading} iconLoading`}></i>加载中</div>*/}
+                {_loadingBar}
             </div>
         );
     }
