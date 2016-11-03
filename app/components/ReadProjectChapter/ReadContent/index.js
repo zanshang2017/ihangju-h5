@@ -31,13 +31,14 @@ import Toast from 'antd-mobile/lib/toast';
 import {Link} from 'react-router';
 import _ from 'underscore';
 
-var TRIGGER_PAGE_DIST = 150;// 滑动距离
+var TRIGGER_PAGE_DIST = 200;// 滑动距离
 // var TRIGGER_PAGE_DIST = document.documentElement.clientHeight / 5;// 滑动距离
 // TRIGGER_PAGE_DIST = TRIGGER_PAGE_DIST > 160 ? 160 : TRIGGER_PAGE_DIST < 80 ? 80 : TRIGGER_PAGE_DIST;
 
 var projectId = null;
 var chapterId = null;
 var superThis = null;
+
 
 class ReadContent extends React.Component {
     constructor(props) {
@@ -48,6 +49,8 @@ class ReadContent extends React.Component {
     }
 
     componentWillMount() {
+        superThis = this;
+
         if (this.props.routeParams) {
             projectId = this.props.routeParams.projectId;
             chapterId = this.props.routeParams.chapterId;
@@ -63,10 +66,6 @@ class ReadContent extends React.Component {
 
     componentDidMount() {
         var that = this;
-        superThis = this;
-
-        this.nWrap = this.refs.J_ChapterWrap;
-        this.nCont = this.refs.J_ChapterCont;
 
         that.resetScrollPage();
 
@@ -91,6 +90,9 @@ class ReadContent extends React.Component {
     resetScrollPage() {
         var that = this;
 
+        this.nWrap = this.refs.J_ChapterWrap;
+        this.nCont = this.refs.J_ChapterCont;
+
         // this.nNextPull = this.refs.J_NextPull;
         this.wrapH = this.nWrap.getBoundingClientRect().height;
         this.wrapSH = this.nWrap.scrollHeight;
@@ -106,8 +108,8 @@ class ReadContent extends React.Component {
 
         this.nWrap.removeEventListener('touchend', this.touchendHandler);
 
-        this.nCont.style.webkitTransform = 'translate3d(0, 0, 0)';
-        this.nCont.style.transform = 'translate3d(0, 0, 0)';
+        that.nCont.style.webkitTransform = 'translate3d(0, 0, 0)';
+        that.nCont.style.transform = 'translate3d(0, 0, 0)';
 
         this.bindTouchMove();
     }
@@ -143,7 +145,7 @@ class ReadContent extends React.Component {
     touchStartHandler(e) {
         var that = this;
         that.isMoveComplete = false;
-        that.touchStartY = e.touches[0].pageY;
+        that.touchStartY = e.touches[0].pageY || 0;
         // debugLog('touchStartY:' + that.touchStartY);
     }
 
@@ -170,7 +172,7 @@ class ReadContent extends React.Component {
         }
 
         that.nWrap.addEventListener('touchend', that.touchendHandler);
-        console.log('dist:', Math.abs(dist));
+        // console.log('dist:', Math.abs(dist));
 
         that.isMoveTopComplete = dist < -TRIGGER_PAGE_DIST;
         that.isMoveBottomComplete = dist > TRIGGER_PAGE_DIST;
@@ -213,45 +215,13 @@ class ReadContent extends React.Component {
                     }
 
                     that.isTriggerTurnToPage = true;
+
                     setTimeout(function () {
                         that.isTriggerTurnToPage = false;
                     }, 1.5 * 1e3);
 
                 }
 
-                // if (that.isTouchBottom && that.isMoveBottomComplete) {
-                //     debugLog('下一页');
-                //
-                //     for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
-                //         let item = _chapterContent.chapters[key];
-                //
-                //         if (item.id == chapterId) {
-                //             if (key >= _chapterContent.chapters.length - 1) {
-                //                 chapterIndex = null;
-                //                 Toast.info("没有下一章了", 1.5);
-                //                 break;
-                //             }
-                //             chapterIndex = key + 1;
-                //             break;
-                //         }
-                //     }
-                //
-                //     if (chapterIndex) {
-                //         console.log(chapterIndex);
-                //         chapterId = _chapterContent.chapters[chapterIndex].id;
-                //         locStorageProjectInfo[projectId].push(chapterId);
-                //         that.props.setProjectInfoStatus(_projectInfo);
-                //         locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
-                //
-                //         that.nWrap.scrollTop = 0;
-                //         that.resetScrollPage();
-                //     }
-                //
-                //     that.isTriggerTurnToPage = true;
-                //     setTimeout(function () {
-                //         that.isTriggerTurnToPage = false;
-                //     }, 1.5 * 1e3);
-                // }
             }
         } else { // 未达触发翻页的距离,添加拖动动画
             let _dist = -(dist / 2);
@@ -266,11 +236,16 @@ class ReadContent extends React.Component {
     touchendHandler(e) {
         var that = superThis;
         that.nCont.classList.add('hasTransition');
-        that.nCont.style.webkitTransform = 'translate3d(0, 0, 0)';
+
+        // setTimeout(function () {
+            that.nCont.style.webkitTransform = 'translate3d(0, 0, 0)';
+            that.nCont.style.transform = 'translate3d(0, 0, 0)';
+        // }, 300)
+
         that.nWrap.removeEventListener('touchend', that.touchendHandler);
         setTimeout(function () {
             that.nCont.classList.remove('hasTransition');
-        }, 500);
+        }, 600);
     }
 
     nextChapterHandler(e) {
@@ -313,7 +288,7 @@ class ReadContent extends React.Component {
 
     showReadTopbar() {
         let _redTopdom = this.refs._readTopbar;
-        let _redBottomdom = this.refs._readBottombar
+        let _redBottomdom = this.refs._readBottombar;
         _redTopdom.classList.toggle('hide');
         _redBottomdom.classList.toggle('hide');
     }
@@ -338,8 +313,8 @@ class ReadContent extends React.Component {
         // let oldHref = window.location.href;
         // let lastIndex = oldHref.lastIndexOf('/') + 1;
         // let newHref = oldHref.substring(0, lastIndex) + chapterId;
-        this.shareData.url = `https://${Env.shareHost}/share/index.html?project=${projectId}&chapter=${chapterId}`,
-            this.shareData.title = this.chapterTitle;
+        this.shareData.url = `https://${Env.shareHost}/share/index.html?project=${projectId}&chapter=${chapterId}`;
+        this.shareData.title = this.chapterTitle;
         this.props.setShareStatus(this.shareData);
         this.refs.J_ShareBtnListRead.showShareLayer();
     }
@@ -450,11 +425,16 @@ class ReadContent extends React.Component {
                         {
                             (this.chapterList) ?
                                 ((!isEndChapter) ?
-                                    <div ref="J_NextChapterBtn" data-hashover="true" onClick={this.nextChapterHandler.bind(this)}
-                                    className={styles.nextChapterBtn}>下一章
-                                    </div>
-                                    :
-                                    <div className={styles.lastChapterNotice}>已读完</div>
+                                        <div className={styles.bottomBtn}>
+                                            <div ref="J_NextChapterBtn" data-hashover="true"
+                                                 onClick={this.nextChapterHandler.bind(this)}
+                                                 className={styles.nextChapterBtn}>下一章
+                                            </div>
+                                        </div>
+                                        :
+                                        <div className={styles.bottomBtn}>
+                                            <div className={styles.lastChapterNotice}>已读完</div>
+                                        </div>
                                 ) : ''
                         }
 

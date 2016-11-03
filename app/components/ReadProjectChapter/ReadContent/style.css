@@ -10,46 +10,46 @@
     margin-top: -0.13333rem; }
   .chpCon .toPreviourPageNotice {
     width: 100%;
-    height: 75px;
-    line-height: 75px;
+    height: 100px;
+    line-height: 100px;
     background: #efefef;
     color: #666;
     font-size: 14px;
     text-align: center;
     position: absolute;
-    top: -75px; }
+    top: -100px; }
   .chpCon .toNextPageNotice {
     position: absolute;
-    bottom: -75px;
+    bottom: -100px;
     width: 100%;
-    height: 75px;
-    line-height: 75px;
+    height: 100px;
+    line-height: 100px;
     background: #efefef;
     color: #666;
     font-size: 14px;
     text-align: center; }
-  .chpCon .nextChapterBtn {
-    width: 80%;
-    margin: 40px auto;
+  .chpCon .bottomBtn {
+    width: 100%;
+    padding: 40px 23px;
     font-size: 16px;
-    color: #666;
-    height: 2.13333rem;
-    line-height: 2.13333rem;
-    text-align: center;
-    border: 1px solid #999;
-    border-radius: 3px;
-    background: #efefef; }
-  .chpCon .lastChapterNotice {
-    width: 80%;
-    margin: 40px auto;
-    font-size: 16px;
-    color: #aaa;
-    height: 2.13333rem;
-    line-height: 2.13333rem;
-    text-align: center;
-    border: 1px solid #efefef;
-    border-radius: 3px;
-    background: #efefef; }
+    text-align: center; }
+    .chpCon .bottomBtn .nextChapterBtn {
+      width: 100%;
+      height: 40px;
+      line-height: 37px;
+      color: #666;
+      text-align: center;
+      border: 1px solid #999;
+      border-radius: 3px;
+      background: #efefef; }
+    .chpCon .bottomBtn .lastChapterNotice {
+      width: 100%;
+      height: 40px;
+      line-height: 37px;
+      color: #aaa;
+      border: 1px solid #efefef;
+      border-radius: 3px;
+      background: #efefef; }
   .chpCon .authorMes {
     width: 100%;
     height: 2.82667rem;

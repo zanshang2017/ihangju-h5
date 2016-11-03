@@ -287,6 +287,11 @@
         }
     }
 
+    .contAnimate {
+        -webkit-animation: zoomIn 1.2s ease 1;
+        animation: zoomIn 1.2s ease 1;
+    }
+
 
 
 }

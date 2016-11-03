@@ -54,14 +54,15 @@ var feedbackLog = {
         }
 
         var key = o.type + '/' + Env.guid + '/' + time;
-
         var userInfo = JSON.parse(locStorage.get('userInfo'));
+        var deviceToken = locStorage.get('devicetoken') || '';
 
         if (userInfo) {
             o.uid = userInfo.id || '';
             o.nickName = userInfo.nickName || '';
         }
 
+        o.deviceToken = deviceToken;
         o.time = time;
         o.localTime = d.toLocaleString();
         o.ISOTime = d.toISOString && d.toISOString();

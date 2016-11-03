@@ -131,7 +131,10 @@ class App extends React.Component {
                 document.body.addEventListener('touchend', touchOverHandler, true);
             });
 
-            function touchOverHandler() {
+            function touchOverHandler(e) {
+
+                // e.stopPropagation();
+
                 if (hoveredElem.length > 0) {
                     hoveredElem.forEach(function (v) {
                         v.classList.remove('hover');
@@ -139,7 +142,9 @@ class App extends React.Component {
                     hoveredElement.length = 0;
                 }
 
-                document.body.addEventListener('touchmove', touchOverHandler, true);
+                document.body.removeEventListener('touchmove', touchOverHandler, true);
+                document.body.removeEventListener('touchend', touchOverHandler, true);
+
             }
 
             function detectHover(node, e) {

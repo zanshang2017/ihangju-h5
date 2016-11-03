@@ -59,8 +59,8 @@
     height: 0.53333rem;
     background: #f4f5f5; }
   :global .hasTransition {
-    -webkit-transition: transform .6s ease;
-    transition: transform .6s ease; }
+    transition: transform .5s ease;
+    -webkit-transition: transform .5s ease; }
   :global .f12 {
     font-size: 0.32rem; }
   :global .f13 {
@@ -405,5 +405,8 @@
     transform: scale3d(0.3, 0.3, 0.3); }
   50% {
     opacity: 1; } }
+  :global .contAnimate {
+    -webkit-animation: zoomIn 1.2s ease 1;
+    animation: zoomIn 1.2s ease 1; }
 
 /*# sourceMappingURL=common.css.map */
