@@ -25,6 +25,12 @@ import {
 
 import Toast from 'antd-mobile/lib/toast';
 
+import {
+    locStorage
+} from 'utils/util.js'
+
+import {hashHistory} from 'react-router';
+
 const errorLoading = (err, opt = null) => {
     console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
 
@@ -57,12 +63,25 @@ const loadModule = (cb) => (componentModule) => {
 //标记页面是否加载过,主要解决sagas、reducer重复加载问题
 var initedStatus = {};
 
-function beforeGetComponent() {
+/**
+ * 获取页面前的准备工作,返回值可作为页面后续是否加载的条件
+ * @param isCheckLogin {boolean} 是否进行登录检查
+ * @returns {boolean}
+ */
+function beforeGetComponent(isCheckLogin = true) {
+
+    if (isCheckLogin && !locStorage.get('userInfo')) {
+        hashHistory.push('/login');
+        return false;
+    }
+
     try {
         Toast.hide();
     } catch (e) {
     }
     Toast.loading('加载中...', 10);
+
+    return true;
 }
 
 export default function createRoutes(store) {
@@ -121,8 +140,9 @@ export default function createRoutes(store) {
             name: 'followPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
-
+                if (!beforeGetComponent()) {
+                    return;
+                }
                 console.log(nextState);
                 const importModules = Promise.all([
                     System.import('containers/FollowPage/reducer'),
@@ -164,8 +184,9 @@ export default function createRoutes(store) {
             name: 'createPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
-
+                if (!beforeGetComponent()) {
+                    return;
+                }
                 const importModules = Promise.all([
                     System.import('containers/CreatePage/reducer'),
                     System.import('containers/CreatePage/sagas'),
@@ -203,7 +224,7 @@ export default function createRoutes(store) {
             name: 'foundPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                beforeGetComponent(false);
 
                 const importModules = Promise.all([
                     System.import('containers/FoundPage/reducer'),
@@ -242,7 +263,9 @@ export default function createRoutes(store) {
             name: 'myPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                if (!beforeGetComponent()) {
+                    return;
+                }
 
                 const importModules = Promise.all([
                     System.import('containers/MyPage/reducer'),
@@ -281,7 +304,7 @@ export default function createRoutes(store) {
             name: 'personPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                beforeGetComponent(false);
 
                 const importModules = Promise.all([
                     System.import('containers/PersonPage/reducer'),
@@ -320,7 +343,7 @@ export default function createRoutes(store) {
             name: 'fansListPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                beforeGetComponent(false);
 
                 const importModules = Promise.all([
                     System.import('containers/FansListPage/reducer'),
@@ -359,7 +382,9 @@ export default function createRoutes(store) {
             name: 'followsListPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                if (!beforeGetComponent()) {
+                    return;
+                }
 
                 const importModules = Promise.all([
                     System.import('containers/FollowsListPage/reducer'),
@@ -398,7 +423,9 @@ export default function createRoutes(store) {
             name: 'collectionPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                if (!beforeGetComponent()) {
+                    return;
+                }
 
                 const importModules = Promise.all([
                     System.import('containers/CollectionPage/reducer'),
@@ -437,7 +464,7 @@ export default function createRoutes(store) {
             name: 'tagDetailPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                beforeGetComponent(false);
 
                 const importModules = Promise.all([
                     System.import('containers/TagDetailPage/reducer'),
@@ -476,7 +503,9 @@ export default function createRoutes(store) {
             name: 'myTagPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                if (!beforeGetComponent()) {
+                    return;
+                }
 
                 const importModules = Promise.all([
                     System.import('containers/MyTagPage/reducer'),
@@ -515,7 +544,9 @@ export default function createRoutes(store) {
             name: 'settingPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                if (!beforeGetComponent()) {
+                    return;
+                }
 
                 const importModules = Promise.all([
                     System.import('containers/App/reducer'),
@@ -554,7 +585,9 @@ export default function createRoutes(store) {
             name: 'editProfilePage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                if (!beforeGetComponent()) {
+                    return;
+                }
 
                 const importModules = Promise.all([
                     System.import('containers/App/reducer'),
@@ -591,7 +624,9 @@ export default function createRoutes(store) {
             name: 'nickNamePage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                if (!beforeGetComponent()) {
+                    return;
+                }
 
                 const importModules = Promise.all([
                     System.import('containers/App/reducer'),
@@ -628,7 +663,9 @@ export default function createRoutes(store) {
             name: 'descriptionPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                if (!beforeGetComponent()) {
+                    return;
+                }
 
                 const importModules = Promise.all([
                     System.import('containers/App/reducer'),
@@ -665,7 +702,9 @@ export default function createRoutes(store) {
             name: 'pushConfigPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                if (!beforeGetComponent()) {
+                    return;
+                }
 
                 const importModules = Promise.all([
                     System.import('containers/App/reducer'),
@@ -702,7 +741,9 @@ export default function createRoutes(store) {
             name: 'feedbackPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                if (!beforeGetComponent()) {
+                    return;
+                }
 
                 const importModules = Promise.all([
                     System.import('containers/SettingPage/FeedbackPage')
@@ -735,7 +776,9 @@ export default function createRoutes(store) {
             name: 'notificationPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                if (!beforeGetComponent()) {
+                    return;
+                }
 
                 const importModules = Promise.all([
                     System.import('containers/NotificationPage/reducer'),
@@ -773,7 +816,9 @@ export default function createRoutes(store) {
             name: 'dialogueListPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                if (!beforeGetComponent()) {
+                    return;
+                }
 
                 const importModules = Promise.all([
                     System.import('containers/DialogueListPage/reducer'),
@@ -811,7 +856,9 @@ export default function createRoutes(store) {
             name: 'dialoguePage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                if (!beforeGetComponent()) {
+                    return;
+                }
 
                 const importModules = Promise.all([
                     System.import('containers/DialoguePage/reducer'),
@@ -849,7 +896,7 @@ export default function createRoutes(store) {
             name: 'commentsPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                beforeGetComponent(false);
 
                 const importModules = Promise.all([
                     System.import('containers/CommentsPage/reducer'),
@@ -887,7 +934,7 @@ export default function createRoutes(store) {
             name: 'demoPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                beforeGetComponent(false);
 
                 const importModules = Promise.all([
                     System.import('containers/DemoPage/reducer'),
@@ -921,7 +968,7 @@ export default function createRoutes(store) {
             name: 'followRecommendationPage',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                beforeGetComponent(false);
 
                 const importModules = Promise.all([
                     System.import('containers/FollowRecommendationPage/reducer'),
@@ -969,7 +1016,7 @@ export default function createRoutes(store) {
             name: 'projectDetail',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                beforeGetComponent(false);
 
                 const importModules = Promise.all([
                     System.import('containers/ProjectDetailPage/reducer'),
@@ -1001,7 +1048,7 @@ export default function createRoutes(store) {
             name: 'readProjectChapter',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                beforeGetComponent(false);
 
                 const importModules = Promise.all([
                     System.import('containers/ReadProjectChapter/reducer'),
@@ -1033,7 +1080,7 @@ export default function createRoutes(store) {
             name: 'guide',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                beforeGetComponent(false);
 
                 System.import('containers/GuidePage')
                     .then(loadModule(cb))
@@ -1052,7 +1099,7 @@ export default function createRoutes(store) {
             name: 'notfound',
             getComponent(nextState, cb) {
 
-                beforeGetComponent();
+                beforeGetComponent(false);
 
                 System.import('containers/NotFoundPage')
                     .then(loadModule(cb))

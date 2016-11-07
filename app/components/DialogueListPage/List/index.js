@@ -57,9 +57,10 @@ class List extends React.Component {
         // }
 
         if (this.items.length > 0) {
+
             dialogHtml = this.items.map(function (item) {
                 let imageSrc = addImageParam(IMG_CDN_PATH + item.userAvatar, IMAGE_SIZE_TYPE.AVATAR);
-                let createTime = convertDate(item.lastMessage.createTime);
+                let createTime = (item.lastMessage && item.lastMessage.createTime) ? (convertDate(item.lastMessage.createTime)) : '';
 
                 return <div className={styles.listItem} data-hashover="true" data-id={item.letterGroupId}
                             key={item.letterGroupId} onClick={that.clickHandler.bind(that)}>
@@ -69,7 +70,7 @@ class List extends React.Component {
                         </div>
                         <div className={styles.info}>
                             <h4>{item.nickName || ''}</h4>
-                            <p>{item.lastMessage.content || ''}</p>
+                            <p>{item.lastMessage && (item.lastMessage.content || '')}</p>
                         </div>
                         <div className={styles.time}>{createTime}</div>
                     </div>
