@@ -25,10 +25,14 @@ import {
     resetState,
 } from './actions';
 
+import Toast from 'antd-mobile/lib/toast';
+
 
 /* eslint-disable react/prefer-stateless-function */
 class DetailPage extends React.Component {
     componentWillMount() {
+        // Toast.loading('加载中...', 3);
+
         if (this.props.routeParams) {
             var id = this.props.routeParams.id;
             // this.props.dispatch(loadProjectDetailData(id || null));
@@ -44,15 +48,22 @@ class DetailPage extends React.Component {
     }
 
     render() {
+        let _content = '';
+        let _data = this.props.projectDetail.toJS();
+
+        if (_data.projectId) { //内容下载到时展示
+            _content = <div className="mainContent">
+                <ProjectDesc {...this.props} />
+                <ProjectTag {...this.props}/>
+                <ProjectIntro items={this.props.projectDetail}/>
+                <ProjectComment items={this.props.projectDetail}/>
+            </div>;
+        }
+
         return (
             <div className="pageInner">
                 <ProjectTopBar {...this.props} />
-                <div className="mainContent">
-                    <ProjectDesc {...this.props} />
-                    <ProjectTag {...this.props}/>
-                    <ProjectIntro items={this.props.projectDetail}/>
-                    <ProjectComment items={this.props.projectDetail}/>
-                </div>
+                {_content}
             </div>
         );
     }

@@ -202,7 +202,6 @@ class App extends React.Component {
             var redirect = '?url=' + encodeURIComponent(location.href);
             that.context.router.replace('/login' + redirect);
         });
-
     }
 
     render() {

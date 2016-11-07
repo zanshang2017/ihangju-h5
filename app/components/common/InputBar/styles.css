@@ -2,13 +2,13 @@
 .wrap {
   box-sizing: border-box;
   width: 100%;
-  height: 2.34667rem;
+  height: 2.50667rem;
   background: #f5f5f5; }
   .wrap .outer {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    padding: 0.26667rem 0.53333rem; }
+    padding: 0.26667rem 0.53333rem 0.26667rem; }
     .wrap .outer .inner {
       width: 100%;
       height: 100%;
@@ -21,13 +21,13 @@
         padding: 0.53333rem 2.13333rem 0.53333rem 0.53333rem;
         font-size: 0.8rem; }
       .wrap .outer .inner .btn {
-        width: 1.28rem;
+        width: 1.38667rem;
         height: 1.28rem;
         box-sizing: content-box;
-        background: url(https://o82zr1kfu.qnssl.com/@/image/57fcb811e4b0a46776e0d39c.png) 0.26667rem top no-repeat;
+        background: url(https://o82zr1kfu.qnssl.com/@/image/57fcb811e4b0a46776e0d39c.png) 0.34667rem top no-repeat;
         background-size: 1.22667rem 1.22667rem;
         position: absolute;
-        top: 0.08rem;
+        top: 0.16rem;
         right: 0.13333rem;
         color: #fff;
         margin: 0.18667rem;

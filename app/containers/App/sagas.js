@@ -19,7 +19,7 @@ import {
 import {
     USER_INFO_API,
     LOGOUT_API,
-    THIRDPARTY_LOGOUT_URL,
+    THIRDPARTY_LOGOUT_API,
     DEVICETOKEN_API,
 } from 'apis.js';
 
@@ -161,7 +161,7 @@ export function* logout() {
                 try {
                     //通知第三方清除登录信息
                     if (ret.data.code === 'ok') {
-                        const thirdPartyRet = yield call(request, THIRDPARTY_LOGOUT_URL, {
+                        const thirdPartyRet = yield call(request, THIRDPARTY_LOGOUT_API, {
                             method: 'DELETE',
                             credentials: 'include'
                         });

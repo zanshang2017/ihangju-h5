@@ -6,6 +6,8 @@
 	position: relative;
 	display: inline-block;
 	width: 100%;
+    //min-height: rem(79); // 防抖
+
 	ul{
 		margin: rem(52) rem(200) 0 rem(48);
 		overflow: hidden;
@@ -18,9 +20,10 @@
 			background-color: $tabBg;
 			text-align: center;
 			line-height: rem(48);
-			margin-right: rem(22); 
+			margin-right: rem(22);
 			margin-top: rem(22);
 			padding: 0 rem(10);
+            border-radius: 2px;
 
             a {
                 color: $weakTextColor;
@@ -33,7 +36,7 @@
 		width: rem(140);
 		height: rem(140);
 		right: rem(48);
-		top: 0;
+		top: rem(20);
         border-radius: 999px;
 	}
 }

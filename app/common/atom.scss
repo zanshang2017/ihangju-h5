@@ -87,8 +87,12 @@
 
     /* 动画 */
     .hasTransition {
-        transition: transform .5s ease;
-        -webkit-transition: transform .5s ease;
+        transition: all .5s ease;
+        -webkit-transition: all .5s ease;
+    }
+
+    .heightZero {
+        height: 0 !important;
     }
 
     /*文字排版*/

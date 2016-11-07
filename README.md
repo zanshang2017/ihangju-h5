@@ -16,4 +16,6 @@ Android版使用Hybird方式开发，前端部分为单页应用。
 ## 发布流程!
 - 确认版本代码无误后,修改index.html中的版本号(window.__APP_CONFIG.ver),如果需要展示引导图,修该相关配置,同时不要忘了指定引导页所需版本号(window.__APP_CONFIG.guide.ver,将来以此判断是否要再次展示轮播图)
 - 执行正式打包命令
-
+- 执行 zip -9r h5-app_yourVersion.zip build -x 'DS_Store'
+- 将zip文件传给后端运维部署上线
+- 上线后同产品经理做好线上测试！

@@ -74,7 +74,7 @@
       margin: 32px auto 0;
       max-width: 600px;
       overflow: hidden;
-      font-size: 17px;
+      font-size: 16px;
       line-height: 1.764em;
       color: #383b3d; }
       .chpCon .contentWrap .contentMes p {
@@ -92,6 +92,11 @@
       line-height: 30px;
       text-align: left;
       color: #7b8f9d; }
+
+.topbar {
+  position: relative;
+  overflow: hidden;
+  height: 2.66667rem; }
 
 .chapterTitle {
   color: #39bcc8; }
@@ -129,7 +134,11 @@
   z-index: 99999;
   background-color: #fff;
   height: 2.82667rem;
-  border-top: 1px solid #dbd7d7; }
+  border-top: 1px solid #dbd7d7;
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0); }
   .bottomBar ul {
     float: right;
     margin-right: 1.17333rem;

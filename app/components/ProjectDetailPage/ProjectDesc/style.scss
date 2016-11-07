@@ -4,10 +4,11 @@
 
 .projectDetails {
     width: 100%;
+
     .cover {
         position: relative;
-        padding-top: rem(56);
-        padding-bottom: rem(84);
+        padding-top: rem(46);
+        padding-bottom: rem(46);
         .coverImg {
             width: rem(238);
             height: rem(326);
@@ -66,7 +67,6 @@
         .date {
             display: inline-block;
             float: right;
-            margin-top: rem(24);
             font-size: rem(24);
             color: #cdcdcd;
             margin-right: rem(50);
@@ -77,7 +77,7 @@
         color: $titleColor;
         line-height: rem(63);
         text-align: center;
-        margin: rem(38) rem(48) rem(36);
+        margin: rem(28) rem(48) rem(30);
     }
     .num {
         margin: 0 rem(48);

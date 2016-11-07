@@ -24,7 +24,7 @@ class ProjectTag extends React.Component {
 
     }
 
-    componentDidUpdate() {
+    componentDidMount() {
         this._result = this.props.projectDetail.toJS();
         this.locStorageProjectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
         this.newArr = this.locStorageProjectInfo[this._result.projectId];
@@ -55,11 +55,14 @@ class ProjectTag extends React.Component {
         }
 
         var tags = (this._result && this._result.tagArray) || [];
+
+        console.log(tags)
+;
         if (!this._result || (this._result && this._result.size < 1)) {
             tagList = <li>空标签</li>;
         } else {
             tagList = tags.map(function (item, key) {
-                return <li key={item.id}>
+                return <li key={item.id + 'tag'}>
                     <Link to={`/tag/${item.id}`}>{item.name}</Link>
                 </li>
             });

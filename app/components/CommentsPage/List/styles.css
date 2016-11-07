@@ -5,7 +5,8 @@
   -webkit-overflow-scrolling: touch; }
   .listWrap .listItem {
     position: relative;
-    width: 100%;
+    width: 97%;
+    margin-left: 3%;
     box-sizing: border-box;
     padding: 0.53333rem 0.53333rem 0.53333rem 1.12rem;
     background: #fff;

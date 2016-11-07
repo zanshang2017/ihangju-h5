@@ -2,8 +2,8 @@
   width: 100%; }
   .projectDetails .cover {
     position: relative;
-    padding-top: 1.49333rem;
-    padding-bottom: 2.24rem; }
+    padding-top: 1.22667rem;
+    padding-bottom: 1.22667rem; }
     .projectDetails .cover .coverImg {
       width: 6.34667rem;
       height: 8.69333rem;
@@ -51,7 +51,6 @@
     .projectDetails .author .date {
       display: inline-block;
       float: right;
-      margin-top: 0.64rem;
       font-size: 0.64rem;
       color: #cdcdcd;
       margin-right: 1.33333rem; }
@@ -60,7 +59,7 @@
     color: #7b8f9d;
     line-height: 1.68rem;
     text-align: center;
-    margin: 1.01333rem 1.28rem 0.96rem; }
+    margin: 0.74667rem 1.28rem 0.8rem; }
   .projectDetails .num {
     margin: 0 1.28rem; }
     .projectDetails .num ul {

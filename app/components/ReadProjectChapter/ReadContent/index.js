@@ -151,6 +151,7 @@ class ReadContent extends React.Component {
 
     touchmoveHandler(e) {
         let that = superThis;
+        // console.log(that, that.touchStartY);
         let dist = that.touchStartY - e.touches[0].pageY;
 
         // debugLog('touchStartY:' + that.touchStartY + ' pageY:' + e.touches[0].pageY);
@@ -238,8 +239,8 @@ class ReadContent extends React.Component {
         that.nCont.classList.add('hasTransition');
 
         // setTimeout(function () {
-            that.nCont.style.webkitTransform = 'translate3d(0, 0, 0)';
-            that.nCont.style.transform = 'translate3d(0, 0, 0)';
+        that.nCont.style.webkitTransform = 'translate3d(0, 0, 0)';
+        that.nCont.style.transform = 'translate3d(0, 0, 0)';
         // }, 300)
 
         that.nWrap.removeEventListener('touchend', that.touchendHandler);
@@ -289,8 +290,8 @@ class ReadContent extends React.Component {
     showReadTopbar() {
         let _redTopdom = this.refs._readTopbar;
         let _redBottomdom = this.refs._readBottombar;
-        _redTopdom.classList.toggle('hide');
-        _redBottomdom.classList.toggle('hide');
+        _redTopdom.classList.toggle('heightZero');
+        _redBottomdom.classList.toggle('heightZero');
     }
 
     showChapterList() {
@@ -337,7 +338,7 @@ class ReadContent extends React.Component {
         var props = this.props;
         var _chapterContent = props.chapterContent.toJS();
         //var projectInfo =  props.projectInfo.toJS();
-        let authorAvatar = addImageParam(IMG_CDN_PATH + _chapterContent.authorAvatar, IMAGE_SIZE_TYPE.AVATAR_SMALL);
+        let authorAvatar = _chapterContent.authorAvatar ? addImageParam(IMG_CDN_PATH + _chapterContent.authorAvatar, IMAGE_SIZE_TYPE.AVATAR_SMALL) : '';
         let modifyTime = convertDate(_chapterContent.modifyTime)
         var chapterIndex = null;
         try {
@@ -381,8 +382,8 @@ class ReadContent extends React.Component {
         var isEndChapter = (_chapterContent && _chapterContent.chapters && _chapterContent.chapters.length - 1 === chapterIndex);
 
         return (
-            <div className="pageInner">
-                <div ref="_readTopbar" className="hide">
+            <div className={`pageInner`}>
+                <div ref="_readTopbar" className={`hasTransition ${styles.topbar}`}>
                     <TopBar data-has-back="true">
                         <div data-title>
                             <div onClick={this.showChapterList.bind(this)} className={styles.chapterTitle}>
@@ -442,7 +443,7 @@ class ReadContent extends React.Component {
                     </div>
 
                 </div>
-                <div ref="_readBottombar" className={`${styles.bottomBar} hide`}>
+                <div ref="_readBottombar" className={`${styles.bottomBar} hasTransition`}>
                     <ul>
                         <li><Link to={`/comments/${projectId}#fliproute`}><i
                             className={styles.i1}></i><span>{_chapterContent.commentNumber || 0}</span></Link></li>

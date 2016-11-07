@@ -65,12 +65,12 @@
                         background-size: cover;
                     }
                     &.wb {
-                        background: url("http://o82zr1kfu.qnssl.com/@/image/57c4eaafe4b0ddd2e19d9ce3.png") no-repeat;
+                        background: url("https://o82zr1kfu.qnssl.com/@/image/57c4eaafe4b0ddd2e19d9ce3.png") no-repeat;
                         background-size: cover;
                         background-position: rem(-88);
                     }
                     &.instation {
-                        background: url("http://o82zr1kfu.qnssl.com/@/image/57c4eaafe4b0ddd2e19d9ce3.png") no-repeat;
+                        background: url("https://o82zr1kfu.qnssl.com/@/image/57c4eaafe4b0ddd2e19d9ce3.png") no-repeat;
                         background-size: cover;
                     }
                 }
@@ -100,12 +100,12 @@
                     height: rem(88);
                     margin: 0 auto;
                     &.copyLink {
-                        background: url("http://o82zr1kfu.qnssl.com/@/image/57c4eecfe4b0ddd2e19d9ec5.png") no-repeat;
+                        background: url("https://o82zr1kfu.qnssl.com/@/image/57c4eecfe4b0ddd2e19d9ec5.png") no-repeat;
                         background-position: rem(-88);
                         background-size: cover;
                     }
                     &.report {
-                        background: url("http://o82zr1kfu.qnssl.com/@/image/57c4eecfe4b0ddd2e19d9ec5.png") no-repeat;
+                        background: url("https://o82zr1kfu.qnssl.com/@/image/57c4eecfe4b0ddd2e19d9ec5.png") no-repeat;
                         background-size: cover;
                     }
                 }
@@ -113,10 +113,10 @@
         }
     }
     .cancelBtn {
-        height: rem(60);
+        height: 40px;
         width: 100%;
         text-align: center;
-        line-height: rem(60);
+        line-height: 40px;
         background-color: $deepBg;
     }
 }

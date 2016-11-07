@@ -69,12 +69,21 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
 
         uploadImage(oFile).then(function (imgUrl) {
             // console.log('上传成功!' + imgUrl);
-            Toast.hide();
+            try {
+                Toast.hide();
+            }catch(e){
+            }
+
             Toast.success('上传成功!', 2);
             that.props.onUploadComplete && that.props.onUploadComplete(imgUrl);
         }, function (error) {
             console.log('上传失败!');
-            Toast.hide();
+
+            try {
+                Toast.hide();
+            }catch(e){
+            }
+
             Toast.fail('上传失败,请检查网络!', 3);
             that.props.onUploadError && that.props.onUploadError(error);
         });

@@ -75,6 +75,12 @@ class List extends React.Component {
         this.props.listClickHandler(e, {id, name, type});
     }
 
+    clickUserHandler(e) {
+        let userId = e.currentTarget.dataset['id'];
+        this.context.router.push(`/person/${userId}`);
+        e.stopPropagation();
+    }
+
     render() {
         let that = this;
 
@@ -113,15 +119,16 @@ class List extends React.Component {
             title="还没有任何评论哦~"
         />;
 
-        if(this.items && this.items.length > 0) {
+        if (this.items && this.items.length > 0) {
             _list = this.items.map(function (item) {
                 let imageSrc = addImageParam(IMG_CDN_PATH + item.avatar, IMAGE_SIZE_TYPE.AVATAR);
                 let modifyTime = convertDate(item.modifyTime, 'YYYY-MM-DD hh:mm:ss');
 
                 return <div className={styles.listItem} data-id={item.id} data-name={item.userName}
-                            key={item.id + '-' + parseInt(Math.random() * 100000)} onClick={that.clickHandler.bind(that)}>
+                            key={item.id + '-' + parseInt(Math.random() * 100000)}
+                            onClick={that.clickHandler.bind(that)}>
                     <div className={styles.basis}>
-                        <div className={styles.avatar}>
+                        <div className={styles.avatar} data-id={item.userId} onClick={that.clickUserHandler.bind(that)}>
                             <img src={imageSrc}/>
                         </div>
                         <div className={styles.info}>

@@ -84,9 +84,8 @@ class LoginPage extends React.Component {
                 that.redirectPageName = getUrlParam('redirect') || '/found#fliproute';
                 that.redirectUrl = getUrlParam('url') ? decodeURIComponent(getUrlParam('url')) : null;
 
-                if ((Env.dev && e.origin.indexOf('http://192.168.1.33:8888') > -1) ||
-                    (Env.production && e.origin.indexOf('http://api.ihangju.com') > -1)) {
-
+                if ((Env.dev && e.origin.indexOf('192.168.1.33:8888') > -1) ||
+                    (Env.production && e.origin.indexOf('api.ihangju.com') > -1)) {
                     if (action === 'loginedTicket' && data.t) {
                         console.log('loginedTicket');
                         //t写入到了 api.ihangju.com和oauth.zan-shang.com

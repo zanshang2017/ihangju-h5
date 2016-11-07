@@ -59,8 +59,10 @@
     height: 0.53333rem;
     background: #f4f5f5; }
   :global .hasTransition {
-    transition: transform .5s ease;
-    -webkit-transition: transform .5s ease; }
+    transition: all .5s ease;
+    -webkit-transition: all .5s ease; }
+  :global .heightZero {
+    height: 0 !important; }
   :global .f12 {
     font-size: 0.32rem; }
   :global .f13 {
