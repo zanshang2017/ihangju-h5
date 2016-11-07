@@ -6,7 +6,7 @@
 	position: relative;
 	display: inline-block;
 	width: 100%;
-    //min-height: rem(79); // 防抖
+    min-height: rem(100);
 
 	ul{
 		margin: rem(52) rem(200) 0 rem(48);
@@ -35,8 +35,8 @@
 		float: right;
 		width: rem(140);
 		height: rem(140);
-		right: rem(48);
-		top: rem(20);
+		right: rem(38);
+		top: rem(10);
         border-radius: 999px;
 	}
 }

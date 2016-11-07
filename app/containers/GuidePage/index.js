@@ -46,7 +46,7 @@ class GuidePage extends React.Component {
     }
 
     clickEnterBtnHandler() {
-        this.context.router.push('/');
+        this.context.router.replace('/');
     }
 
     render() {

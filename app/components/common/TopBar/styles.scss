@@ -19,7 +19,7 @@
 .back {
     position: absolute;
     left: 0;
-    top: 0;
+    top: -1px;
     width: rem(126);
     height: $topBarHeight;
     color: $titleColor;
@@ -32,7 +32,6 @@
         display: inline-block;
         height: rem(40);
         width: rem(40);
-        margin-left: rem(12);
         background-repeat: no-repeat;
         background-size: cover;
     }

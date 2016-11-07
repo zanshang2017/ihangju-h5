@@ -1,7 +1,8 @@
 .projectTag {
   position: relative;
   display: inline-block;
-  width: 100%; }
+  width: 100%;
+  min-height: 2.66667rem; }
   .projectTag ul {
     margin: 1.38667rem 5.33333rem 0 1.28rem;
     overflow: hidden; }
@@ -25,8 +26,8 @@
     float: right;
     width: 3.73333rem;
     height: 3.73333rem;
-    right: 1.28rem;
-    top: 0.53333rem;
+    right: 1.01333rem;
+    top: 0.26667rem;
     border-radius: 999px; }
 
 /*# sourceMappingURL=style.css.map */
