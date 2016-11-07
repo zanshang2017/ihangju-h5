@@ -68,10 +68,14 @@ var initedStatus = {};
  * @param isCheckLogin {boolean} 是否进行登录检查
  * @returns {boolean}
  */
-function beforeGetComponent(isCheckLogin = true) {
+function beforeGetComponent(isCheckLogin = true, path = '/found') {
 
     if (isCheckLogin && !locStorage.get('userInfo')) {
-        hashHistory.push('/login');
+        try {
+            Toast.hide();
+        } catch (e) {
+        }
+        hashHistory.replace('/login?redirect=' + encodeURIComponent(path));
         return false;
     }
 
@@ -140,7 +144,7 @@ export default function createRoutes(store) {
             name: 'followPage',
             getComponent(nextState, cb) {
 
-                if (!beforeGetComponent()) {
+                if (!beforeGetComponent(true, '/follow')) {
                     return;
                 }
                 console.log(nextState);
@@ -184,7 +188,7 @@ export default function createRoutes(store) {
             name: 'createPage',
             getComponent(nextState, cb) {
 
-                if (!beforeGetComponent()) {
+                if (!beforeGetComponent(true, '/create')) {
                     return;
                 }
                 const importModules = Promise.all([
@@ -263,7 +267,7 @@ export default function createRoutes(store) {
             name: 'myPage',
             getComponent(nextState, cb) {
 
-                if (!beforeGetComponent()) {
+                if (!beforeGetComponent(true, '/my')) {
                     return;
                 }
 
@@ -382,7 +386,7 @@ export default function createRoutes(store) {
             name: 'followsListPage',
             getComponent(nextState, cb) {
 
-                if (!beforeGetComponent()) {
+                if (!beforeGetComponent(true, '/followslist/' + nextState.params.id)) {
                     return;
                 }
 
@@ -423,7 +427,7 @@ export default function createRoutes(store) {
             name: 'collectionPage',
             getComponent(nextState, cb) {
 
-                if (!beforeGetComponent()) {
+                if (!beforeGetComponent(true, '/collection/' + nextState.params.id)) {
                     return;
                 }
 
@@ -503,7 +507,7 @@ export default function createRoutes(store) {
             name: 'myTagPage',
             getComponent(nextState, cb) {
 
-                if (!beforeGetComponent()) {
+                if (!beforeGetComponent(true, '/mytag')) {
                     return;
                 }
 
@@ -544,7 +548,7 @@ export default function createRoutes(store) {
             name: 'settingPage',
             getComponent(nextState, cb) {
 
-                if (!beforeGetComponent()) {
+                if (!beforeGetComponent(true, '/setting')) {
                     return;
                 }
 
@@ -585,7 +589,7 @@ export default function createRoutes(store) {
             name: 'editProfilePage',
             getComponent(nextState, cb) {
 
-                if (!beforeGetComponent()) {
+                if (!beforeGetComponent(true, '/setting/profile')) {
                     return;
                 }
 
@@ -624,7 +628,7 @@ export default function createRoutes(store) {
             name: 'nickNamePage',
             getComponent(nextState, cb) {
 
-                if (!beforeGetComponent()) {
+                if (!beforeGetComponent(true, '/setting/profile/nickname')) {
                     return;
                 }
 
@@ -663,7 +667,7 @@ export default function createRoutes(store) {
             name: 'descriptionPage',
             getComponent(nextState, cb) {
 
-                if (!beforeGetComponent()) {
+                if (!beforeGetComponent(true, '/setting/profile/description')) {
                     return;
                 }
 
@@ -702,7 +706,7 @@ export default function createRoutes(store) {
             name: 'pushConfigPage',
             getComponent(nextState, cb) {
 
-                if (!beforeGetComponent()) {
+                if (!beforeGetComponent(true, '/setting/pushconfig')) {
                     return;
                 }
 
@@ -741,7 +745,7 @@ export default function createRoutes(store) {
             name: 'feedbackPage',
             getComponent(nextState, cb) {
 
-                if (!beforeGetComponent()) {
+                if (!beforeGetComponent(true , '/setting/feedback')) {
                     return;
                 }
 
@@ -776,7 +780,7 @@ export default function createRoutes(store) {
             name: 'notificationPage',
             getComponent(nextState, cb) {
 
-                if (!beforeGetComponent()) {
+                if (!beforeGetComponent(true, '/notification')) {
                     return;
                 }
 
@@ -816,7 +820,7 @@ export default function createRoutes(store) {
             name: 'dialogueListPage',
             getComponent(nextState, cb) {
 
-                if (!beforeGetComponent()) {
+                if (!beforeGetComponent(true, '/dialoguelist')) {
                     return;
                 }
 
@@ -856,7 +860,7 @@ export default function createRoutes(store) {
             name: 'dialoguePage',
             getComponent(nextState, cb) {
 
-                if (!beforeGetComponent()) {
+                if (!beforeGetComponent(true, '/dialogue/' + nextState.params.id)) {
                     return;
                 }
 
