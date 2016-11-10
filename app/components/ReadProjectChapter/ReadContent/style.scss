@@ -75,13 +75,11 @@ $loadingHeight: 100px;
     }
 
 
-
-
     .authorMes {
         width: 100%;
-        height: $navHeight;
+        height: $topBarHeight;
         border-bottom: 1px solid $navBorderColor;
-        line-height: $navHeight;
+        line-height: $topBarHeight;
         img {
             display: inline-block;
             vertical-align: middle;
@@ -139,15 +137,19 @@ $loadingHeight: 100px;
 
 
 .topbar {
-    position: relative;
+    position: fixed;
+    top: 0;
     overflow:hidden;
     height: $topBarHeight;
+    width: 100%;
+    z-index: $zIndexL4;
 }
 
 .chapterTitle {
     color: $linkColor;
     span {
         display: inline-block;
+        max-width: 60%;
         margin: 0 auto;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -155,13 +157,14 @@ $loadingHeight: 100px;
     }
     i {
         position: relative;
-        top: rem(-35);
+        top: rem(-38);
         display: inline-block;
         height: rem(32);
         width: rem(32);
         background-repeat: no-repeat;
         background-size: cover;
         margin-left: rem(4);
+        vertical-align: middle;
     }
 }
 
@@ -171,7 +174,7 @@ $loadingHeight: 100px;
     top: 0;
     i {
         position: relative;
-        top: rem(12);
+        top: rem(6);
         display: inline-block;
         height: rem(40);
         width: rem(40);
@@ -182,14 +185,15 @@ $loadingHeight: 100px;
 
 .bottomBar {
     width: 100%;
-    z-index: $zIndexL2;
+    z-index: $zIndexL4;
     background-color: $topBarBg;
-    height: $navHeight;
+    height: $topBarHeight;
     border-top: 1px solid $borderColor;
-    position: relative;
+    position: fixed;
+    bottom: 0;
     overflow: hidden;
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, $topBarHeight, 0);
+    -webkit-transform: translate3d(0, $topBarHeight, 0);
 
     ul {
         float: right;

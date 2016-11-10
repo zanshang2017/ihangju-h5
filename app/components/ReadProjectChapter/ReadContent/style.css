@@ -52,9 +52,9 @@
       background: #efefef; }
   .chpCon .authorMes {
     width: 100%;
-    height: 2.82667rem;
+    height: 2.66667rem;
     border-bottom: 1px solid #f3f5f4;
-    line-height: 2.82667rem; }
+    line-height: 2.66667rem; }
     .chpCon .authorMes img {
       display: inline-block;
       vertical-align: middle;
@@ -94,27 +94,32 @@
       color: #7b8f9d; }
 
 .topbar {
-  position: relative;
+  position: fixed;
+  top: 0;
   overflow: hidden;
-  height: 2.66667rem; }
+  height: 2.66667rem;
+  width: 100%;
+  z-index: 999; }
 
 .chapterTitle {
   color: #39bcc8; }
   .chapterTitle span {
     display: inline-block;
+    max-width: 60%;
     margin: 0 auto;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; }
   .chapterTitle i {
     position: relative;
-    top: -0.93333rem;
+    top: -1.01333rem;
     display: inline-block;
     height: 0.85333rem;
     width: 0.85333rem;
     background-repeat: no-repeat;
     background-size: cover;
-    margin-left: 0.10667rem; }
+    margin-left: 0.10667rem;
+    vertical-align: middle; }
 
 .rightStar {
   position: absolute;
@@ -122,7 +127,7 @@
   top: 0; }
   .rightStar i {
     position: relative;
-    top: 0.32rem;
+    top: 0.16rem;
     display: inline-block;
     height: 1.06667rem;
     width: 1.06667rem;
@@ -131,14 +136,15 @@
 
 .bottomBar {
   width: 100%;
-  z-index: 99999;
+  z-index: 999;
   background-color: #fff;
-  height: 2.82667rem;
+  height: 2.66667rem;
   border-top: 1px solid #dbd7d7;
-  position: relative;
+  position: fixed;
+  bottom: 0;
   overflow: hidden;
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0); }
+  transform: translate3d(0, 2.66667rem, 0);
+  -webkit-transform: translate3d(0, 2.66667rem, 0); }
   .bottomBar ul {
     float: right;
     margin-right: 1.17333rem;

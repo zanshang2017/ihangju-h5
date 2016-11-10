@@ -93,9 +93,9 @@ export function* putCommentData() {
 
         if (lists) {
             if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
-                signals.sendCommentSuccess.dispatch();
-                console.log();
+                console.log('评论成功!');
                 yield put(sendCommentsDataSuccess(lists.data.result, replyData));
+                signals.sendCommentSuccess.dispatch();
             } else {
                 console.log(lists.err.response); // eslint-disable-line no-console
                 yield put(sendCommentsDataError(lists.err));

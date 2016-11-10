@@ -12,6 +12,7 @@ import {
     LOAD_COLLECTION_DATA_ERROR,
 
     SET_COLLECTION_DATA_STATUS,
+    RESET_STATE,
 } from './constants';
 
 import {
@@ -80,6 +81,9 @@ function CollectionPageReducer(state = initialState, action = {}) {
             return state;
 
         case LOGOUT_SUCCESS:
+            return initialState;
+
+        case RESET_STATE:
             return initialState;
 
         default:

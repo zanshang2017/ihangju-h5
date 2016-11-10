@@ -3,6 +3,7 @@ import React from 'react';
 
 import _ from 'underscore';
 
+import LoadingList from 'components/common/LoadingList';
 import ArticleList3 from 'components/common/ArticleList3';
 import Result from 'antd-mobile/lib/page-result';
 
@@ -20,35 +21,14 @@ class CollectionList extends React.Component {
     componentDidMount() {
         var that = this;
         that.nWrap = that.refs.J_CollectionListWrap.parentElement;
-
-        //滑动底部加载下一页
-        that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 300, {leading: false});
-        that.nWrap.addEventListener('scroll', that.scrollHanderBinded);
     }
 
     componentWillUnmount() {
         console.log('Collection List: willUnmount.');
-
-        //移除侦听
-        if (this.scrollHanderBinded) {
-            this.nWrap.removeEventListener('scroll', this.scrollHanderBinded);
-            this.scrollHanderBinded = null;
-        }
     }
 
-    scrollHandler(e) {
-        var nWrapH = this.nWrap.getBoundingClientRect().height;
-
-        // var nContentH = this.refs.J_CollectionListWrap.getBoundingClientRect().height;
-        console.log(Math.ceil(this.nWrap.scrollTop + nWrapH), this.nWrap.scrollHeight);
-
-        // if (window.debugLog) {
-        //     window.debugLog((nWrap.scrollTop + nWrapH) + '>=' +  nWrap.scrollHeight);
-        // }
-        var dist = this.nWrap.scrollHeight - (this.nWrap.scrollTop + nWrapH);
-
-        if (dist <= 200 && !this.loading && !this.isLast) {
-            //加载下一页
+    loadHandler() {
+        if(!this.loading && !this.isLast) {
             this.props.nextPageHandler(this.page + 1);
         }
     }
@@ -77,9 +57,15 @@ class CollectionList extends React.Component {
         />;
 
         if (this.items.length > 0) {
-            listHtml = <ArticleList3 items={this.items}
-                                     articleClickHandler={this.articleClickHandler.bind(this)}
-                                     authorClickHandler={this.authorClickHandler.bind(this)}></ArticleList3>
+            listHtml = <LoadingList outer={this.nWrap}
+                                    isLast={this.isLast}
+                                    isLoading={this.loading}
+                                    loadHandler={this.loadHandler.bind(this)}
+                                    offset="350">
+                <ArticleList3 items={this.items}
+                              articleClickHandler={this.articleClickHandler.bind(this)}
+                              authorClickHandler={this.authorClickHandler.bind(this)}></ArticleList3>
+            </LoadingList>;
         }
 
         return (

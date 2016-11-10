@@ -59,10 +59,14 @@
     height: 0.53333rem;
     background: #f4f5f5; }
   :global .hasTransition {
-    transition: all .5s ease;
-    -webkit-transition: all .5s ease; }
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease; }
   :global .heightZero {
     height: 0 !important; }
+  :global .topBarPositionOut {
+    transform: translate3d(0, -2.66667rem, 0) !important; }
+  :global .readPage__BottomBarPositionOut {
+    transform: translate3d(0, 0, 0) !important; }
   :global .f12 {
     font-size: 0.32rem; }
   :global .f13 {

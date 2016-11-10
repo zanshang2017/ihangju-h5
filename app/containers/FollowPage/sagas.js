@@ -60,6 +60,7 @@ export function* getMyFollowData() {
 
         if (lists) {
             if (lists.err === undefined || lists.err === null) {
+
                 if (lists.data && lists.data.result && lists.data.result.length > 0) {
                     yield put(loadMyFollowDataSuccess(lists.data, page));
 

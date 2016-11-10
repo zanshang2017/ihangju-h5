@@ -60,7 +60,7 @@ function followPageReducer(state = initialState, action = null) {
             return state;
 
         case LOAD_MY_FOLLOW_DATA:
-            return state.set('myFollowLoading', false);
+            return state.set('myFollowLoading', true);
 
         case LOAD_MY_FOLLOW_DATA_SUCCESS:
 
@@ -92,12 +92,14 @@ function followPageReducer(state = initialState, action = null) {
 
             if (data.code === 'ok' && data.result) {
                 if (page > 0) {
-                    // let _state = state.set('myFollowLoading', false).mergeDeepIn(['myFollowData'], data.result || []);
-                    let _merged = state.set('myFollowLoading', false).get('myFollowData').concat(fromJS(data.result))
+                    state = state.set('myFollowLoading', false);
+                    let _merged = state.get('myFollowData').concat(fromJS(data.result));
                     return state.set('myFollowData', _merged);
                 } else {
                     return state.set('myFollowLoading', false).set('myFollowData', fromJS(data.result));
                 }
+            } else {
+                return state.set('myFollowLoading', false);
             }
 
             return state;
@@ -143,11 +145,11 @@ function followPageReducer(state = initialState, action = null) {
             if (page > 0) {
                 state = state.set('myFollowListLoading', false);
 
-                if(Array.isArray(_followUsers)) {
+                if (Array.isArray(_followUsers)) {
                     state = state.setIn(['myFollowListData', 'followUsers'], state.getIn(['myFollowListData', 'followUsers']).concat(fromJS(_followUsers)));
                 }
 
-                if(Array.isArray(_followTags)) {
+                if (Array.isArray(_followTags)) {
                     state = state.setIn(['myFollowListData', 'followTags'], state.getIn(['myFollowListData', 'followTags']).concat(fromJS(_followTags)));
                 }
 
@@ -155,11 +157,11 @@ function followPageReducer(state = initialState, action = null) {
             } else {
                 state = state.set('myFollowListLoading', false);
 
-                if(Array.isArray(_followUsers)) {
+                if (Array.isArray(_followUsers)) {
                     state = state.setIn(['myFollowListData', 'followUsers'], fromJS(_followUsers));
                 }
 
-                if(Array.isArray(_followTags)) {
+                if (Array.isArray(_followTags)) {
                     state = state.setIn(['myFollowListData', 'followTags'], fromJS(_followTags));
                 }
 

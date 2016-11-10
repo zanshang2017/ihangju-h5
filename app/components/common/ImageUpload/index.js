@@ -4,7 +4,7 @@ import ActionSheet from 'antd-mobile/lib/action-sheet';
 
 import {uploadImage} from 'utils/upload';
 
-import bridge from 'utils/bridge'
+import bridge from 'utils/bridge';
 
 import Toast from 'antd-mobile/lib/toast';
 

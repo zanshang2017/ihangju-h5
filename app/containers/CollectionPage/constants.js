@@ -11,4 +11,5 @@ export const LOAD_COLLECTION_DATA_SUCCESS = 'app/CollectionPage/LOAD_COLLECTION_
 export const LOAD_COLLECTION_DATA_ERROR = 'app/CollectionPage/LOAD_COLLECTION_DATA_ERROR';
 
 export const SET_COLLECTION_DATA_STATUS = 'app/CollectionPage/SET_COLLECTION_DATA_STATUS';
+export const RESET_STATE = 'app/CollectionPage/RESET_STATE';
 

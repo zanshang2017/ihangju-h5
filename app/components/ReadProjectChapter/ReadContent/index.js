@@ -290,8 +290,8 @@ class ReadContent extends React.Component {
     showReadTopbar() {
         let _redTopdom = this.refs._readTopbar;
         let _redBottomdom = this.refs._readBottombar;
-        _redTopdom.classList.toggle('heightZero');
-        _redBottomdom.classList.toggle('heightZero');
+        _redTopdom.classList.toggle('topBarPositionOut');
+        _redBottomdom.classList.toggle('readPage__BottomBarPositionOut');
     }
 
     showChapterList() {
@@ -368,7 +368,7 @@ class ReadContent extends React.Component {
                         }
                     }
                     this.chapterList = _chapterContent.chapters[chapterIndex].content || '';
-                    this.chapterTitle = _chapterContent.chapters[chapterIndex].title || '';
+                    this.chapterTitle = _chapterContent.chapters[chapterIndex].title || '无题';
                 }
             }
         } catch (e) {
@@ -383,7 +383,7 @@ class ReadContent extends React.Component {
 
         return (
             <div className={`pageInner`}>
-                <div ref="_readTopbar" className={`hasTransition ${styles.topbar}`}>
+                <div ref="_readTopbar" className={`hasTransition ${styles.topbar} topBarPositionOut`}>
                     <TopBar data-has-back="true">
                         <div data-title>
                             <div onClick={this.showChapterList.bind(this)} className={styles.chapterTitle}>

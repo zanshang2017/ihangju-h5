@@ -72,11 +72,15 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
         let that = this;
         signals.sendCommentSuccess.add(()=> {
             that.resetReplyData();
-            Toast.hide();
+            try {
+                Toast.hide();
+            }catch(e){}
         });
 
         signals.sendCommentError.add(()=> {
-            Toast.hide();
+            try {
+                Toast.hide();
+            }catch(e){}
             Toast.fail('评论发送失败,请检查网络!', 3);
         });
     }

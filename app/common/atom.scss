@@ -87,12 +87,20 @@
 
     /* 动画 */
     .hasTransition {
-        transition: all .5s ease;
-        -webkit-transition: all .5s ease;
+        transition: all .4s ease;
+        -webkit-transition: all .4s ease;
     }
 
     .heightZero {
         height: 0 !important;
+    }
+
+    .topBarPositionOut {
+        transform: translate3d(0, -$topBarHeight, 0) !important;
+    }
+
+    .readPage__BottomBarPositionOut {
+        transform: translate3d(0, 0, 0) !important;
     }
 
     /*文字排版*/

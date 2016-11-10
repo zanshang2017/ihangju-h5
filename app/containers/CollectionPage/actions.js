@@ -11,6 +11,7 @@ import {
     LOAD_COLLECTION_DATA_ERROR,
 
     SET_COLLECTION_DATA_STATUS,
+    RESET_STATE,
 } from './constants';
 
 export function defaultAction() {
@@ -69,6 +70,10 @@ export function setCollectionDataStatus(data) {
     };
 }
 
-
+export function resetState() {
+    return {
+        type: RESET_STATE,
+    };
+}
 
 

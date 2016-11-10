@@ -11,7 +11,7 @@
   /** Result **/
   /** Switch **/ }
   :global .am-tab .am-tab-content {
-    padding: 0 0 12px !important; }
+    padding: 0 !important; }
   :global .am-tab .am-tab-bar {
     margin-bottom: 0 !important; }
   :global .am-tab .am-tab-nav-container {

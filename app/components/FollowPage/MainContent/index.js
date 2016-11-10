@@ -2,58 +2,38 @@ import React from 'react';
 
 import styles from './styles.css';
 
+import LoadingList from 'components/common/LoadingList';
 import ArticleList from 'components/common/ArticleList';
 
 import Result from 'antd-mobile/lib/page-result';
 
-import _ from 'underscore';
 
 class MainContent extends React.Component {
 
     constructor(props) {
         super(props);
         this.scrollHanderBinded = null;
+        this.outer = null;
+    }
+
+    componentWillMount() {
     }
 
     componentDidMount() {
-        var that = this;
-        var nWrap = this.refs.J_FollowPageMainContentWrap;
-        that.nScrollOuter = nWrap.parentElement;
-
-        //滑动底部加载下一页
-        that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 300, {leading: false});
-        that.nScrollOuter.addEventListener('scroll', that.scrollHanderBinded);
+        //goTop
+        if (this.page == 0 && this.outer) {
+            this.outer.scrollTop = 0;
+        }
     }
 
     componentDidUpdate() {
-        //goTop
-        if (this.page == 0) {
-            this.nScrollOuter.scrollTop = 0;
-        }
     }
 
     componentWillUnmount() {
-        //移除侦听
-        if (this.scrollHanderBinded) {
-            this.nScrollOuter.removeEventListener('scroll', this.scrollHanderBinded);
-            this.scrollHanderBinded = null;
-        }
     }
 
-    scrollHandler(e) {
-        // console.log('this.myFollowLoading:', this.props.myFollowLoading,
-        //     'this.page:', this.page,
-        //     'this.isLast:', this.isLast);
-
-        var nWrap = this.refs.J_FollowPageMainContentWrap;
-        var nWrapH = nWrap ? nWrap.getBoundingClientRect().height : 0;
-        var nOuterH = this.nScrollOuter ? this.nScrollOuter.getBoundingClientRect().height : 0;
-
-        var dist = nWrapH - (this.nScrollOuter.scrollTop + nOuterH);
-        // console.log(this.nScrollOuter.scrollTop + nOuterH + '>=' + nWrapH);
-
-        if (dist <= 350 && !this.isLast && !this.props.myFollowLoading) {
-            debugLog('加载');
+    loadHandler() {
+        if (!this.props.myFollowLoading) {
             this.props.loadMyFollow(this.page + 1, this.props.currentFollow);
         }
     }
@@ -64,34 +44,32 @@ class MainContent extends React.Component {
     }
 
     render() {
+        this.outer = this.refs.J_FollowPageMainContentWrap && this.refs.J_FollowPageMainContentWrap.parentElement;
         this.page = this.props.selectMyFollowDataStatus.get('page') || 0;
         this.isLast = this.props.selectMyFollowDataStatus.get('isLast') || false;
 
         let articles = this.props.myFollowData ? this.props.myFollowData.toJS() : [];
         let list = '';
-        let _loadingBar = '';
 
-        if (this.page == 0 && articles.length == 0) {
+        if (this.page == 0 && articles.length == 0 && this.outer) {
             list = <Result
                 imgUrl="https://o82zr1kfu.qnssl.com/@/image/58131646e4b0edf1e7b90b10.png?imageMogr2/auto-orient/"
                 title="还没有文章哦~"
             />
         } else {
-            list = <ArticleList items={articles} articleClickHandler={this.articleClickHandler.bind(this)}/>
-
-            if (this.isLast) {
-                _loadingBar = <div className={styles.loadingBar}><span className={styles.noMore}>没有了~</span></div>
-            } else {
-                _loadingBar = <div className={styles.loadingBar}><i className={`${styles.loading} iconLoading`}></i>加载中
-                </div>;
-            }
+            list = <LoadingList outer={this.outer}
+                                isLast={this.isLast}
+                                isLoading={this.props.myFollowLoading}
+                                loadHandler={this.loadHandler.bind(this)}
+                                offset="350">
+                <ArticleList items={articles} articleClickHandler={this.articleClickHandler.bind(this)}/>
+            </LoadingList>;
         }
 
         return (
             <div id="J_FollowPageMainContentWrap" ref="J_FollowPageMainContentWrap"
                  className={`${styles.followPageMainContent}`}>
                 {list}
-                {_loadingBar}
             </div>
         );
     }

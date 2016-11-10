@@ -7,13 +7,17 @@
 
 import {Env} from './utils/env.js';
 
-let api_host;
+let api_host = '';
+let api_scheme = '';
+
 let thirdparty_login_domain;
 
 if (Env.production) {
+    api_scheme = Env.productionAPIScheme;
     api_host = Env.productionAPIHost;
     thirdparty_login_domain = 'oauth.zan-shang.com';
 } else {
+    api_scheme = Env.devAPIScheme;
     api_host = Env.devAPIHost;
     thirdparty_login_domain = '192.168.1.33:7777';
 }
@@ -29,7 +33,7 @@ const IMG_CDN_PATH = 'https://o82zr1kfu.qnssl.com/@';
 	"uptoken": "xxxxxxxxxxx"
    }
  */
-const IMG_UPLOAD_TOKEN_API = `//${api_host}/storage/image/uptoken`;
+const IMG_UPLOAD_TOKEN_API = `${api_scheme}//${api_host}/storage/image/uptoken`;
 
 //三方登录跳转页
 const THIRDPARTY_LOGIN_REDIRECT_URL = encodeURIComponent(`http://${api_host}/zanshang/authentication`);
@@ -45,19 +49,19 @@ const THIRDPARTY_LOGOUT_API = `http://${thirdparty_login_domain}/authentication`
  * restful:
  *  [DELETE] 退出登录
  */
-const LOGOUT_API = `//${api_host}/logout`;
+const LOGOUT_API = `${api_scheme}//${api_host}/logout`;
 
 /**
  * 错误日志
  * @type {string}
  */
-const FEEDBACKLOG_API = `//${api_host}/httpfeedback/upload`;
+const FEEDBACKLOG_API = `${api_scheme}//${api_host}/httpfeedback/upload`;
 
 //发现接口: 包含banner、分类tag和发现第一页的数据
-const DISCOVERIES_API = `//${api_host}/discoveries`;
+const DISCOVERIES_API = `${api_scheme}//${api_host}/discoveries`;
 
 //推荐接口: 推荐分页数据
-const RECOMMENDATION_API = `//${api_host}/recommendation`;
+const RECOMMENDATION_API = `${api_scheme}//${api_host}/recommendation`;
 
 /**
  * 发送设备号,用于接收推送
@@ -68,7 +72,7 @@ const RECOMMENDATION_API = `//${api_host}/recommendation`;
  *  [DELETE] 通知服务端停止推送消息
  *        body: token=xxx&os={ios||android}
  */
-const DEVICETOKEN_API = `//${api_host}/devicetoken`;
+const DEVICETOKEN_API = `${api_scheme}//${api_host}/devicetoken`;
 
 
 /**
@@ -80,7 +84,7 @@ const DEVICETOKEN_API = `//${api_host}/devicetoken`;
  *
  *  注：不加参数默认读取全部关注
  */
-const MY_FOLLOW_API = `//${api_host}/myfollow`;
+const MY_FOLLOW_API = `${api_scheme}//${api_host}/myfollow`;
 
 /**
  * 关注设置
@@ -90,7 +94,7 @@ const MY_FOLLOW_API = `//${api_host}/myfollow`;
  * [PUT]  设置关注标签和用户
  *        body: tagids=aa,bb,cc&userids=dd,ee,ff
  */
-const MY_FOLLOW_SETTING_API = `//${api_host}/myfollow/setting`;
+const MY_FOLLOW_SETTING_API = `${api_scheme}//${api_host}/myfollow/setting`;
 
 /**
  *  关注目录
@@ -101,7 +105,7 @@ const MY_FOLLOW_SETTING_API = `//${api_host}/myfollow/setting`;
  *
  *  注：不加参数按默认参数读取
  */
-const MY_FOLLOW_LIST_API = `//${api_host}/myfollow/list`;
+const MY_FOLLOW_LIST_API = `${api_scheme}//${api_host}/myfollow/list`;
 
 
 /**
@@ -111,7 +115,7 @@ const MY_FOLLOW_LIST_API = `//${api_host}/myfollow/list`;
  *
  * @type {string}
  */
-const FOLLOW_RECOMMENDATION_API = `//${api_host}/personalized/recommendation`;
+const FOLLOW_RECOMMENDATION_API = `${api_scheme}//${api_host}/personalized/recommendation`;
 
 /**
  * 扫码登录
@@ -122,7 +126,7 @@ const FOLLOW_RECOMMENDATION_API = `//${api_host}/personalized/recommendation`;
  *  userid: 用户id
  *
  */
-const CONFIRM_EDITOR_API = `//${api_host}/confirm/editor`;
+const CONFIRM_EDITOR_API = `${api_scheme}//${api_host}/confirm/editor`;
 // sancodeid=579abdeee4b0968c87c1162c&target=console&userid=571dab71e4b0d50d21e7a9fc
 
 /**
@@ -155,7 +159,7 @@ const CONFIRM_EDITOR_API = `//${api_host}/confirm/editor`;
  *      推送: favoritePush | commentPush | letterPush {Boolean}
  *      是否展示推荐关注: openPersonalizedRecommendation {Boolean} [true:展示推荐关注页| false:不展示推荐关注页]
  */
-const USER_INFO_API = `//${api_host}/user/me`;
+const USER_INFO_API = `${api_scheme}//${api_host}/user/me`;
 
 /**
  * 获取用户中心(MyPage)页数据
@@ -186,7 +190,7 @@ const USER_INFO_API = `//${api_host}/user/me`;
  "code": "ok"
 }
  */
-const USER_CENTER_API = `//${api_host}/user/center`;
+const USER_CENTER_API = `${api_scheme}//${api_host}/user/center`;
 
 
 /**
@@ -218,7 +222,7 @@ const USER_CENTER_API = `//${api_host}/user/center`;
  *
  *
  */
-const NOTE_LIST_API = `//${api_host}/user/notes`;
+const NOTE_LIST_API = `${api_scheme}//${api_host}/user/notes`;
 
 /**
  * 灵感记录
@@ -263,7 +267,7 @@ const NOTE_LIST_API = `//${api_host}/user/notes`;
  *
  *
  */
-const NOTE_API = `//${api_host}/note`;
+const NOTE_API = `${api_scheme}//${api_host}/note`;
 
 /**
  * 作品详情
@@ -271,7 +275,7 @@ const NOTE_API = `//${api_host}/note`;
  *  id: projectId
  * http://192.168.1.33:8888/project/57a941f4e4b0ab2d4f0d14cd
  */
-const PROJECTDETAIL_API = `//${api_host}/project`
+const PROJECTDETAIL_API = `${api_scheme}//${api_host}/project`
 
 /**
  * 章节阅读
@@ -280,7 +284,7 @@ const PROJECTDETAIL_API = `//${api_host}/project`
  * http://192.168.1.33:8888/project/57a941f4e4b0ab2d4f0d14cd/chapters
  */
 
-const READCHAPTER_API = `//${api_host}/project`
+const READCHAPTER_API = `${api_scheme}//${api_host}/project`
 
 /**
  * 作品API
@@ -289,7 +293,7 @@ const READCHAPTER_API = `//${api_host}/project`
  * 路径: /${projectID}/comments 获取当前作品的评论
  *
  */
-const PROJECT_API = `//${api_host}/project`
+const PROJECT_API = `${api_scheme}//${api_host}/project`
 
 
 /**
@@ -358,7 +362,7 @@ const PROJECT_API = `//${api_host}/project`
  * [PUT] 请求体数据:/recommendation/project/projectids=${id} 设为推荐作品
  * [DELETE] /recommendation/project?projectids=${id} 取消推荐
  */
-const TAG_API = `//${api_host}/tags`;
+const TAG_API = `${api_scheme}//${api_host}/tags`;
 
 /**
  *  标签订阅接口
@@ -370,14 +374,14 @@ const TAG_API = `//${api_host}/tags`;
  *      [DELETE]: 取消订阅
  *
  */
-const SUB_TAG_API = `//${api_host}/subscription/tag`;
+const SUB_TAG_API = `${api_scheme}//${api_host}/subscription/tag`;
 
 
 /**
  * 获取用户首页信息
  * 子路径: /${userID} 获取指定uid的用户信息
  */
-const USER_PROFILE_API = `//${api_host}/profile/`;
+const USER_PROFILE_API = `${api_scheme}//${api_host}/profile/`;
 
 /**
  * 用户相关信息API
@@ -389,7 +393,7 @@ const USER_PROFILE_API = `//${api_host}/profile/`;
  *  [GET] ${userID}/dialogues 私信列表
  *  [GET] ${userID}/management/tag 我管理的标签
  */
-const USER_API = `//${api_host}/user/`;
+const USER_API = `${api_scheme}//${api_host}/user/`;
 
 /**
  * 关注、取消关注用户接口
@@ -398,7 +402,7 @@ const USER_API = `//${api_host}/user/`;
  *  [PUT] ${userID} 添加对特定user的关注
  *  [DELETE] ${userID} 取消对特定user的关注
  */
-const FOLLOW_USER_API = `//${api_host}/subscription/user/`;
+const FOLLOW_USER_API = `${api_scheme}//${api_host}/subscription/user/`;
 
 /**
  * 用户反馈
@@ -406,7 +410,7 @@ const FOLLOW_USER_API = `//${api_host}/subscription/user/`;
  * restful:
  *  [PUT] 数据: contact=${email}&content=${message}
  */
-const FEEDBACK_API = `//${api_host}/feedback`;
+const FEEDBACK_API = `${api_scheme}//${api_host}/feedback`;
 
 /**
  * 获取评论列表
@@ -431,7 +435,7 @@ const FEEDBACK_API = `//${api_host}/feedback`;
 	 }, ... ]
    }
  */
-const COMMENT_LIST_API = `//${api_host}/notification/comments`;
+const COMMENT_LIST_API = `${api_scheme}//${api_host}/notification/comments`;
 
 /**
  * 获取通知列表
@@ -452,7 +456,7 @@ const COMMENT_LIST_API = `//${api_host}/notification/comments`;
 	 }, ... ]
    }
  */
-const MESSAGE_LIST_API = `//${api_host}/notification/messages`;
+const MESSAGE_LIST_API = `${api_scheme}//${api_host}/notification/messages`;
 
 
 /**
@@ -463,7 +467,7 @@ const MESSAGE_LIST_API = `//${api_host}/notification/messages`;
  *
  *  body: content=${评论内容}&projectid=${项目id}
  */
-const COMMENT_API = `//${api_host}/comment`;
+const COMMENT_API = `${api_scheme}//${api_host}/comment`;
 
 /**
  * 发送评论答复接口
@@ -473,7 +477,7 @@ const COMMENT_API = `//${api_host}/comment`;
  *
  *  body: content=${评论内容}&parentid=${项目id}&type=${'answer' || 'to_answer'}
  */
-const ANSWER_API = `//${api_host}/answer`;
+const ANSWER_API = `${api_scheme}//${api_host}/answer`;
 
 
 /**
@@ -485,7 +489,7 @@ const ANSWER_API = `//${api_host}/answer`;
  *  [PUT] /${letterGroupId} 增加私信
  *        body: content=${私信内容}
  */
-const DIALOGUE_API = `//${api_host}/dialogue`;
+const DIALOGUE_API = `${api_scheme}//${api_host}/dialogue`;
 
 
 /**
@@ -495,13 +499,13 @@ const DIALOGUE_API = `//${api_host}/dialogue`;
  * [DELETE] 取消收藏
  * 参数 : 57a941f4e4b0ab2d4f0d14cd/project
  */
-const COLLECTION_API = `//${api_host}/collection/`;
+const COLLECTION_API = `${api_scheme}//${api_host}/collection/`;
 //http://192.168.1.33:8888/favorite?projectid=57a941f4e4b0ab2d4f0d14cd
 //http://192.168.1.33:8888/favorite  projectid : 57a941f4e4b0ab2d4f0d14cd
 
-const FAVORITE_API = `//${api_host}/favorite`;
+const FAVORITE_API = `${api_scheme}//${api_host}/favorite`;
 
-const IDENTIFY_AUTH_API = `//${api_host}/identityauthentication`;
+const IDENTIFY_AUTH_API = `${api_scheme}//${api_host}/identityauthentication`;
 
 export {
     IMG_CDN_PATH,

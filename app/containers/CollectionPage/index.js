@@ -13,6 +13,7 @@ import {
 
 import {
     loadCollectionData,
+    resetState,
 } from './actions';
 
 import styles from './styles.css';
@@ -40,6 +41,10 @@ export class CollectionPage extends React.Component { // eslint-disable-line rea
 
     componentDidMount() {
         console.warn('CollectionPage DidMount');
+    }
+
+    componentWillUnmount() {
+        this.props.dispatch(resetState());
     }
 
     nextPageHandler(page = 0) {
