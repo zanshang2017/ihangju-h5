@@ -326,9 +326,9 @@ class ReadContent extends React.Component {
         let url = COLLECTION_API + projectId + '/project';
 
         if (readStardom.classList.contains('iconStaro')) {
-            method = 'PUT';
-        } else {
             method = 'DELETE';
+        } else {
+            method = 'PUT';
         }
 
         this.props.loadCollection(url, method);
@@ -374,7 +374,7 @@ class ReadContent extends React.Component {
         } catch (e) {
         }
 
-        var collectionClass = (_chapterContent.collection ? 'iconStaro' : 'iconStar');
+        var collectionClass = (_chapterContent.collection ? 'iconStaro' : 'iconStar'); // 选择 : 未选择
         var likeClass = (_chapterContent.like ? (
             <img src='https://o82zr1kfu.qnssl.com/@/image/57c64c9fe4b073472e7954e7.png'></img>) : (
             <img src='https://o82zr1kfu.qnssl.com/@/image/57c6400be4b073472e79312f.png'></img>));

@@ -123,32 +123,26 @@ class App extends React.Component {
             var body = document.body;
             var hoveredElem = [];
 
-            document.body.addEventListener('touchstart', function (e) {
-                var node = e.target;
-                detectHover(node, e);
-
-                document.body.addEventListener('touchmove', touchOverHandler, true);
-                document.body.addEventListener('touchend', touchOverHandler, true);
+            body.addEventListener('touchstart', function (e) {
+                detectHover(e.target, e);
             });
 
-            function touchOverHandler(e) {
+            body.addEventListener('touchmove', touchOverHandler, true);
+            body.addEventListener('touchend', touchOverHandler, true);
 
+            function touchOverHandler(e) {
                 // e.stopPropagation();
 
                 if (hoveredElem.length > 0) {
                     hoveredElem.forEach(function (v) {
                         v.classList.remove('hover');
                     });
+                    console.log('remove hover');
                     hoveredElement.length = 0;
                 }
-
-                document.body.removeEventListener('touchmove', touchOverHandler, true);
-                document.body.removeEventListener('touchend', touchOverHandler, true);
-
             }
 
             function detectHover(node, e) {
-                // console.log('continue', node);
                 var use = node.dataset['hashover'];
 
                 if (use && node.nodeType === 1 && node !== body) {
