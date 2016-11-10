@@ -1,0 +1,16 @@
+.wrap {
+  background: #f4f5f5; }
+  .wrap .loadingBar {
+    width: 100%;
+    background: #f4f5f5;
+    padding: 5px 0 15px;
+    color: #666;
+    font-size: 14px;
+    text-align: center; }
+    .wrap .loadingBar .noMore {
+      color: #aaa; }
+  .wrap .loading {
+    margin-right: 0.53333rem;
+    margin-top: -0.13333rem; }
+
+/*# sourceMappingURL=styles.css.map */
