@@ -63,11 +63,13 @@
             docEl.style.fontSize = root.rem + 'px';
         })(window);
     </script>
+
 </head>
 
 <body>
 <div id="appLoading" class="app-loading"></div>
 <div id="app"></div>
+
 
 <script>
     (function () {
@@ -80,7 +82,7 @@
         var fontSize = parseFloat(docEl.style.fontSize);
         var ratio = actW / fontSize;
         doc.body.removeChild(d);
-        if (ratio > 1.05) {
+        if (Math.abs(ratio - 1) > .05) {
             docEl.style.fontSize = fontSize / ratio + 'px';
         }
     })();
