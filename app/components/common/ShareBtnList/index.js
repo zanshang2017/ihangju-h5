@@ -45,7 +45,8 @@ class ShareBtnList extends React.Component {
     shareWb() {
         // alert("微博分享");
         var that = this;
-        bridge.share.weibo(this.shareMes.title, function (data) {
+        var shareText = this.shareMes.title + ' ' + this.shareMes.url;
+        bridge.share.weibo(shareText, function (data) {
             that.hideShareLayer();
             console.log(data.code, data.resp);
         });
