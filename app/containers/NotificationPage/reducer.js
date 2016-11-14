@@ -19,6 +19,8 @@ import {
     SET_COMMENT_LIST_STATUS,
     SET_MESSAGE_LIST_STATUS,
 
+    RESET_STATES,
+
 } from './constants';
 
 import {
@@ -147,6 +149,9 @@ function notificationPageReducer(state = initialState, action = {}) {
             return state;
 
         case LOGOUT_SUCCESS:
+            return initialState;
+
+        case RESET_STATES:
             return initialState;
 
         default:

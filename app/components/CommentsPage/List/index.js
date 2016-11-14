@@ -18,6 +18,7 @@ import {
 } from 'utils/util.js';
 
 import Answer from '../Answer';
+import LoadingList from 'components/common/LoadingList';
 
 import Result from 'antd-mobile/lib/page-result';
 
@@ -33,35 +34,17 @@ class List extends React.Component {
 
     componentDidMount() {
         var that = this;
-
         that.nWrap = that.refs.J_Wrap.parentElement;
-
-        //滑动底部加载下一页
-        that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 300, {leading: false});
-        that.nWrap.addEventListener('scroll', that.scrollHanderBinded);
     }
 
     componentWillUnmount() {
         console.log('Comments List: willUnmount.');
-
-        //移除侦听
-        if (this.scrollHanderBinded) {
-            this.nWrap.removeEventListener('scroll', this.scrollHanderBinded);
-            this.scrollHanderBinded = null;
-        }
     }
 
-    scrollHandler(e) {
-        var nWrapH = this.nWrap.getBoundingClientRect().height;
-
-        // console.log(nWrap.scrollTop + nWrapH, nWrap.scrollHeight, this.props.recommendationListStatus.toJS(), this.props.projectListStatus.toJS());
-
-        if (Math.ceil(this.nWrap.scrollTop + nWrapH) >= this.nWrap.scrollHeight) {
-            //加载下一页
-            if (!this.loading) {
-                if (!this.loading && !this.isLast) {
-                    this.props.nextPageHandler(this.page + 1);
-                }
+    loadHandler() {
+        if (!this.loading) {
+            if (!this.loading && !this.isLast) {
+                this.props.nextPageHandler(this.page + 1);
             }
         }
     }
@@ -142,10 +125,16 @@ class List extends React.Component {
             })
         }
 
-
         return (
             <div ref="J_Wrap" className={`${styles.listWrap}`}>
-                {_list}
+                <LoadingList outer={this.nWrap}
+                             isLast={this.isLast}
+                             isLoading={this.loading}
+                             loadHandler={this.loadHandler.bind(this)}
+                             offset="350">
+                    {_list}
+                    <div className="blockGapTag"></div>
+                </LoadingList>
             </div>
         );
     }

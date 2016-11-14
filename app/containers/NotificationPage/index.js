@@ -24,7 +24,9 @@ import {
     loadMessageList,
     setCommentListStatus,
     setMessageListStatus,
+    resetStates,
 } from './actions';
+
 
 import TopBar from 'components/common/TopBar';
 import ListGroup from 'components/NotificationPage/ListGroup';
@@ -41,6 +43,8 @@ class NotificationPage extends React.Component { // eslint-disable-line react/pr
         this.UserID = null;
         this.userInfo = null;
         this.defaultTabKey = 1;
+
+        console.log('N constructor');
     }
 
     componentWillMount() {
@@ -51,20 +55,28 @@ class NotificationPage extends React.Component { // eslint-disable-line react/pr
         }
 
         this.defaultTabKey = this.props.routeParams.tab || 1;
+
+        console.log('N willMount');
     }
 
     componentDidMount() {
         // console.warn('NotificationPage DidMount', this.isAdmin, this.tagID);
         this.props.dispatch(loadCommentList());
+
+        console.log('N didMount');
     }
 
     componentWillUpdate(props) {
         // console.log('will update', props.detail);
+        console.log('N willUpdate');
     }
 
     componentWillUnmount() {
         // console.warn('NotificationPage willUnmount');
         ActionSheet.close();
+        // this.props.dispatch(resetStates());
+
+        console.log('N willUnmount');
     }
 
     loadCommentHandler(page = 0, size = 10) {

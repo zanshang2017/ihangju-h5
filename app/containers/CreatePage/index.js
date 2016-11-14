@@ -128,26 +128,23 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
 
         return (
             <div className="pageInner">
-                <div className="mainContent">
-                    <div ref="J_MainContentWrap">
-                        <Tabs defaultActiveKey="1">
-                            <TabPane tab="扫码创作" key="1">
-                                <ScanPane userId={this.userId} isAuthor={this.isAuthor}/>
-                            </TabPane>
-                            <TabPane tab="灵感记录" key="2">
-                                <NotePane {...this.props} openNote={this.openNoteHandler.bind(this)}/>
-                            </TabPane>
-                        </Tabs>
-                    </div>
+                <div ref="J_MainContentWrap" className="mainContent">
+                    <Tabs defaultActiveKey="1">
+                        <TabPane tab="扫码创作" key="1">
+                            <ScanPane userId={this.userId} isAuthor={this.isAuthor}/>
+                        </TabPane>
+                        <TabPane tab="灵感记录" key="2">
+                            <NotePane {...this.props} openNote={this.openNoteHandler.bind(this)}/>
+                        </TabPane>
+                    </Tabs>
+                </div>
 
-                    <div ref="J_EditorWrap" className={` hide`}>
-                        <NoteEditor ref="J_Editor" note={note}
-                                    saveNote={this.saveNoteHandler.bind(this)}
-                                    deleteNote={this.deleteNoteHandler.bind(this)}
-                                    backFromNote={this.backFromNote.bind(this)}
-                                    {...this.props} />
-                    </div>
-
+                <div ref="J_EditorWrap" className="mainContent hide">
+                    <NoteEditor ref="J_Editor" note={note}
+                                saveNote={this.saveNoteHandler.bind(this)}
+                                deleteNote={this.deleteNoteHandler.bind(this)}
+                                backFromNote={this.backFromNote.bind(this)}
+                                {...this.props} />
                 </div>
             </div>
         );

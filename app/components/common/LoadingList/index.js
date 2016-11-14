@@ -56,7 +56,7 @@ class LoadingList extends React.Component {
             var outerH = this.outer ? this.outer.getBoundingClientRect().height : 0;
 
             var dist = this.outer.scrollHeight - (this.outer.scrollTop + outerH);
-            console.log(this.outer.scrollTop + outerH + '>=' + this.outer.scrollHeight);
+            console.log('dist:', dist);
 
             if (dist <= this.offsetDist && !this.props.isLast && !this.props.isLoading) {
                 console.log('加载');

@@ -18,6 +18,8 @@ import {
     SET_COMMENT_LIST_STATUS,
     SET_MESSAGE_LIST_STATUS,
 
+    RESET_STATES,
+
 } from './constants';
 
 export function defaultAction() {
@@ -129,5 +131,12 @@ export function setMessageListStatus(data) {
         payload: payload
     };
 }
+
+export function resetStates() {
+    return {
+        type: RESET_STATES
+    }
+}
+
 
 

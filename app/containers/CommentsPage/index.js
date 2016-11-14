@@ -16,6 +16,7 @@ import {
     loadCommentsData,
     sendCommentsData,
     changePlaceholder,
+    resetStates,
 } from './actions';
 
 import _ from 'underscore';
@@ -88,6 +89,7 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
     componentWillUnmount() {
         signals.sendCommentSuccess.removeAll();
         signals.sendCommentError.removeAll();
+        this.props.dispatch(resetStates());
     }
 
     // 发送成功之后重置输入栏

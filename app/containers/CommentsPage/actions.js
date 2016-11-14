@@ -17,6 +17,8 @@ import {
     SET_COMMENTS_DATA_STATUS,
 
     CHANGE_PLACEHOLDER,
+
+    RESET_STATES,
 } from './constants';
 
 export function defaultAction() {
@@ -114,6 +116,9 @@ export function changePlaceholder(placeholder) {
     }
 }
 
-
-
+export function resetStates() {
+    return {
+        type: RESET_STATES
+    }
+}
 

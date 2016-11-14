@@ -26,7 +26,6 @@ import {
 
 import Toast from 'antd-mobile/lib/toast';
 
-
 //console.log('Env', Env);
 
 const initialState = {};
@@ -58,10 +57,10 @@ const history = syncHistoryWithStore(hashHistory, store, {
 //     history.push('/follow');
 // }, 2000);
 
-window.onerror = function (e) {
-    // alert('error' + e);
-    // location.reload();
-};
+// window.onerror = function (e) {
+//     // alert('error' + e);
+//     // location.reload();
+// };
 
 window.debugLog = function () {
 };

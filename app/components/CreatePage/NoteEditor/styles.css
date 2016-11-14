@@ -1,24 +1,38 @@
 @import url(../../../common/common.css);
-.noteEditor .savedTime {
-  font-size: 0.64rem;
-  color: #a09e98;
-  text-align: center;
-  padding: 0.26667rem; }
-.noteEditor .content {
+.noteEditor {
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+  -webkit-flex-direction: column;
+  flex-direction: column;
   width: 100%;
-  padding: 0.53333rem;
-  line-height: 1.6rem;
-  font-size: 0.96rem;
-  color: #7b8f9d; }
-.noteEditor .deleteNote {
-  position: fixed;
-  left: 1.06667rem;
-  bottom: 1.06667rem; }
-  .noteEditor .deleteNote i {
-    display: inline-block;
-    height: 1.17333rem;
-    width: 1.17333rem;
-    background-repeat: no-repeat;
-    background-size: cover; }
+  height: 100%;
+  background: #fff; }
+  .noteEditor .savedTime {
+    font-size: 0.64rem;
+    color: #a09e98;
+    text-align: center;
+    padding: 0.53333rem; }
+  .noteEditor .contentWrap {
+    -webkit-box-flex: 1;
+    flex: 1;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto; }
+    .noteEditor .contentWrap .content {
+      width: 100%;
+      padding: 0.53333rem;
+      line-height: 1.6rem;
+      font-size: 0.96rem;
+      color: #7b8f9d; }
+  .noteEditor .deleteNote {
+    position: fixed;
+    left: 1.06667rem;
+    bottom: 1.06667rem; }
+    .noteEditor .deleteNote i {
+      display: inline-block;
+      height: 1.17333rem;
+      width: 1.17333rem;
+      background-repeat: no-repeat;
+      background-size: cover; }
 
 /*# sourceMappingURL=styles.css.map */

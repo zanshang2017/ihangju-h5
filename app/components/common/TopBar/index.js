@@ -27,6 +27,7 @@ class TopBar extends React.Component {
     render() {
 
         var that = this;
+        var _style = {};
 
         if (Array.isArray(this.props.children)) {
             this.props.children.map(function (child) {
@@ -44,14 +45,15 @@ class TopBar extends React.Component {
             </div>;
         }
 
+        if (this.props['data-style']) {
+            _style = this.props['data-style'];
+        }
 
         return (
-            <div>
-                <div className={`${styles.bar}`}>
-                    {backBtn}
-                    <div className={styles.title}>{this.title}</div>
-                    <div className={styles.btns}>{this.btns}</div>
-                </div>
+            <div className={`${styles.bar}`} style={_style}>
+                {backBtn}
+                <div className={styles.title}>{this.title}</div>
+                <div className={styles.btns}>{this.btns}</div>
             </div>
         );
     }

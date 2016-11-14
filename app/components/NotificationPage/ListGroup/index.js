@@ -8,8 +8,7 @@ import _ from 'underscore';
 
 import CommentList from 'components/NotificationPage/CommentList';
 import MessageList from 'components/NotificationPage/MessageList';
-
-import {} from 'containers/NotificationPage/actions';
+import LoadingList from 'components/common/LoadingList';
 
 import Tabs from 'antd-mobile/lib/tabs';
 
@@ -24,15 +23,10 @@ class ListGroup extends React.Component {
 
     constructor(props) {
         super(props);
-
         nList = null;
         nTabs = null;
         nTabsHeight = null;
         activeKey = 1;
-
-        this.scrollHanderBinded = null;
-        this.curPage = 0;
-        this.isLast = false;
     }
 
     componentWillMount() {
@@ -43,63 +37,36 @@ class ListGroup extends React.Component {
     }
 
     componentDidMount() {
-        var that = this;
-
         this.nWrap = this.refs.J_NotificationPageListGroupWrap.parentElement;
-
-        //滑动底部加载下一页
-        that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 300, {leading: false});
-        that.nWrap.addEventListener('scroll', that.scrollHanderBinded);
+        this.curPage = 0;
+        this.isLast = false;
     }
 
-    componentWillUpdate(nProps) {
+    componentWillUpdate() {
         if (activeKey == '1') {
             this.curPage = this.props.commentListStatus.get('page') || 0;
             this.isLast = this.props.commentListStatus.get('isLast') || false;
+            this.isCommentListLoading = this.props.commentListStatus.get('loading');
         }
 
         if (activeKey == '2') {
             this.curPage = this.props.messageListStatus.get('page') || 0;
             this.isLast = this.props.messageListStatus.get('isLast') || false;
+            this.isMessageListLoading = this.props.messageListStatus.get('loading');
         }
     }
 
     componentWillUnmount() {
         console.log('NotificationPage.ListGroup: willUnmount.');
-
-        //移除侦听
-        if (this.scrollHanderBinded) {
-            this.nWrap.removeEventListener('scroll', this.scrollHanderBinded);
-            this.scrollHanderBinded = null;
-        }
     }
 
-    scrollHandler(e) {
-        var nWrapH = this.nWrap.getBoundingClientRect().height;
+    loadHandler() {
+        if (activeKey == '1' && !this.props.commentListStatus.get('loading')) {
+            this.props.loadCommentHandler(this.curPage + 1);
+        }
 
-        console.log(Math.ceil(this.nWrap.scrollTop + nWrapH), this.nWrap.scrollHeight);
-
-        if (this.nWrap.scrollHeight - (this.nWrap.scrollTop + nWrapH) < 100) {
-            //加载下一页
-            if (activeKey == '1' && !this.props.commentListStatus.get('loading')) {
-                let status = this.props.commentListStatus.toJS();
-                this.isLast = status ? status.isLast : false;
-                this.curPage = status ? status.page : 0;
-                if (!status.loading && !this.isLast) {
-                    this.props.loadCommentHandler(this.curPage + 1);
-                }
-            }
-
-            if (activeKey == '2' && !this.props.messageListStatus.get('loading')) {
-                let status = this.props.messageListStatus.toJS();
-
-                this.isLast = status ? status.isLast : false;
-                this.curPage = status ? status.page : 0;
-                // console.log(this.isLast, this.curPage);
-                if (!status.loading && !this.isLast) {
-                    this.props.loadMessageHandler(this.curPage + 1);
-                }
-            }
+        if (activeKey == '2' && !this.props.messageListStatus.get('loading')) {
+            this.props.loadMessageHandler(this.curPage + 1);
         }
     }
 
@@ -141,17 +108,46 @@ class ListGroup extends React.Component {
             messageHtml = <MessageList {...this.props} items={this.props.messageList || []}/>;
         }
 
+        let status = '';
+
+        if (activeKey == '1') {
+            status = this.props.commentListStatus.toJS();
+            this.curPage = status.page || 0;
+            this.isLast = status.isLast || false;
+            this.isCommentListLoading = status.loading;
+        }
+
+        if (activeKey == '2') {
+            status = this.props.messageListStatus.toJS();
+            this.curPage = status.page || 0;
+            this.isLast = status.isLast || false;
+            this.isMessageListLoading = status.loading;
+        }
 
         return (
             <div ref="J_NotificationPageListGroupWrap" className="tagDetailPageListGroup">
                 <Tabs ref="J_Tabs" defaultActiveKey={activeKey} onChange={this.tabChangeHandler.bind(this)}>
                     <TabPane tab="评论" key="1">
                         <div className="blockGapTag"></div>
-                        {commentHtml}
+                        <LoadingList outer={this.nWrap}
+                                     isLast={this.isLast}
+                                     isLoading={this.isCommentListLoading}
+                                     loadHandler={this.loadHandler.bind(this)}
+                                     offset="350">
+                            {commentHtml}
+                            <div className="blockGapTag"></div>
+                        </LoadingList>
                     </TabPane>
                     <TabPane tab="通知" key="2">
                         <div className="blockGapTag"></div>
-                        {messageHtml}
+                        <LoadingList outer={this.nWrap}
+                                     isLast={this.isLast}
+                                     isLoading={this.isMessageListLoading}
+                                     loadHandler={this.loadHandler.bind(this)}
+                                     offset="350">
+                            {messageHtml}
+                            <div className="blockGapTag"></div>
+                        </LoadingList>
                     </TabPane>
                 </Tabs>
             </div>

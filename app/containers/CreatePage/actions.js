@@ -49,7 +49,7 @@ export function changeTab(id) {
     };
 }
 
-export function loadNotesData(page = 0, size = 10) {
+export function loadNotesData(page = 0, size = 20) {
     return {
         type: LOAD_NOTES_DATA,
         payload: {

@@ -22,6 +22,8 @@ import {
     SET_COMMENTS_DATA_STATUS,
 
     CHANGE_PLACEHOLDER,
+
+    RESET_STATES,
 } from './constants';
 
 import {
@@ -108,6 +110,9 @@ function CommentsPageReducer(state = initialState, action = {}) {
             return state.set('inputPlaceholder', action.payload.placeholder);
 
         case LOGOUT_SUCCESS:
+            return initialState;
+
+        case RESET_STATES:
             return initialState;
 
         default:

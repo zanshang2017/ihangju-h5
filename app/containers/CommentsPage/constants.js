@@ -22,3 +22,5 @@ export const ANSWER_TYPE = {
     ANSWER: 'answer',
     TO_ANSWER: 'to_answer'
 };
+
+export const RESET_STATES = 'app/CommentsPage/RESET_STATES';

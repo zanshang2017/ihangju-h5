@@ -24,11 +24,11 @@ export default class NoteEditor extends React.Component {
         var contentH = document.body.clientHeight - document.getElementById('nav').getBoundingClientRect().height;
         nContent.style.height = contentH + 'px';
 
-        this.refs.J_Content.addEventListener('focus', function(){
+        this.refs.J_Content.addEventListener('focus', function () {
             this.refs.J_DeleteBtn.classList.add('hide');
         }.bind(this));
 
-        this.refs.J_Content.addEventListener('blur', function(){
+        this.refs.J_Content.addEventListener('blur', function () {
             this.refs.J_DeleteBtn.classList.remove('hide');
         }.bind(this));
     }
@@ -62,18 +62,23 @@ export default class NoteEditor extends React.Component {
             this.note = null;
         }
 
+        let _style = {
+            backgroundColor: '#f3f5f4'
+        };
+
         return (
             <div className={styles.noteEditor}>
-                <TopBar data-has-back="true" backHandler={this.props.backFromNote.bind(this)}>
+                <TopBar data-has-back="true" data-style={_style} backHandler={this.props.backFromNote.bind(this)}>
                     <div data-btns>
                         <div onClick={this.save.bind(this)}>保存</div>
                     </div>
                 </TopBar>
-                <div className="mainContent">
-                    <div className={styles.savedTime}>{modifyTime}</div>
+                <div className={styles.savedTime}>{modifyTime}</div>
+                <div className={styles.contentWrap}>
                     <textarea ref="J_Content" className={styles.content} value={this.props.noteContent}
                               onChange={this.changeHandler.bind(this)}/>
-                    <div ref="J_DeleteBtn" className={styles.deleteNote} onClick={this.delete.bind(this)}><i className="iconDelete"></i></div>
+                    <div ref="J_DeleteBtn" className={styles.deleteNote} onClick={this.delete.bind(this)}><i
+                        className="iconDelete"></i></div>
                 </div>
             </div>
         );

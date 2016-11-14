@@ -17,3 +17,4 @@ export const LOAD_MESSAGE_LIST_ERROR = 'app/NotificationPage/LOAD_MESSAGE_LIST_E
 export const SET_COMMENT_LIST_STATUS = 'app/NotificationPage/SET_COMMENT_LIST_STATUS';
 export const SET_MESSAGE_LIST_STATUS = 'app/NotificationPage/SET_MESSAGE_LIST_STATUS';
 
+export const RESET_STATES = 'app/NotificationPage/RESET_STATES';

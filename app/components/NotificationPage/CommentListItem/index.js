@@ -15,7 +15,7 @@ import {
 
 function CommentListItem(props) {
     let item = props.item;
-    let time = convertDate(item.time, 'YYYY-MM-DD hh:mm:ss');
+    let time = item.time ? convertDate(item.time, 'YYYY-MM-DD hh:mm:ss') : '';
 
     let imageSrc = addImageParam(IMG_CDN_PATH + item.user.avatar, IMAGE_SIZE_TYPE.AVATAR);
 
@@ -45,6 +45,7 @@ function CommentListItem(props) {
     } else {
         contentHtml = <div className={styles.comment}><span>{item.content}</span></div>;
     }
+
     function clickHandler(e) {
         var id = e.currentTarget.dataset['id'];
         props.commentClickHandler(id);

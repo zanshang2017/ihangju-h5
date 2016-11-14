@@ -4,7 +4,7 @@
 @import "../../../common/common.css";
 
 .bar {
-    z-index: $zIndexL4;
+    position:relative;
     box-sizing: border-box;
     width: 100%;
     height: $topBarHeight;
@@ -12,8 +12,7 @@
     font-size: rem(32);
     background: $topBarBg;
     border-bottom: 1px solid $borderDeepColor;
-    z-index: $zIndexL3;
-
+    z-index: $zIndexL4;
 }
 
 .back {

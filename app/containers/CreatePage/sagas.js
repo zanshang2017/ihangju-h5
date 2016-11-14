@@ -176,9 +176,9 @@ export function* deleteNote() {
 
 export function* identifyAuth() {
 
-    let action = null;
+    var action = null;
 
-    while (action = yield take(IDENTIFY_AUTH)) {
+    while ( action = yield take(IDENTIFY_AUTH)) {
 
         let url = IDENTIFY_AUTH_API;
 
