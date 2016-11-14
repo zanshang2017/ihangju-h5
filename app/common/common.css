@@ -67,6 +67,9 @@
     transform: translate3d(0, -2.66667rem, 0) !important; }
   :global .readPage__BottomBarPositionOut {
     transform: translate3d(0, 0, 0) !important; }
+  :global .rotateZ180 {
+    -webkit-transform: rotateZ(180deg);
+    transform: rotateZ(180deg); }
   :global .f12 {
     font-size: 0.32rem; }
   :global .f13 {

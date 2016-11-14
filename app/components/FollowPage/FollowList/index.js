@@ -59,18 +59,19 @@ class FollowList extends React.Component {
 
     showFollowList() {
         let nFollowListWrap = this.refs.nFollowListWrap;
-        if (!nFollowListWrap.style.height) {
+
+        if (!nFollowListWrap.style.height || parseInt(nFollowListWrap.style.height) == 0) {
             nFollowListWrap.style.height = document.getElementById("J_Container").getBoundingClientRect().height + 'px';
         }
-        nFollowListWrap.classList.remove('hide');
 
+        nFollowListWrap.scrollTop = 0;
         this.myFollowListPage = 0;
         this.props.loadMyFollowList(this.myFollowListPage);
     }
 
     hideFollowList() {
         let nFollowListWrap = this.refs.nFollowListWrap;
-        nFollowListWrap.classList.add('hide');
+        nFollowListWrap.style.height = 0;
     }
 
     render() {
@@ -92,7 +93,7 @@ class FollowList extends React.Component {
         }
 
         return (
-            <div ref="nFollowListWrap" className={`${styles.listWrap} hide`}>
+            <div ref="nFollowListWrap" className={`${styles.listWrap} hasTransition`}>
                 <div ref="nFollowList" className={`${styles.list}`}
                      onClick={this.changeCurrentHandler.bind(this)}
                      onScroll={this.scrollHanderBinded}>
