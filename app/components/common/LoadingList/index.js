@@ -19,6 +19,7 @@ class LoadingList extends React.Component {
         this.offsetDist = this.props.offset || 50; //底部触发加载的距离
         this.outer = null;
         this.isHalt = this.props.isHalt !== undefined ? this.props.isHalt : false;
+        this.showLastNotice = this.props.showLastNotice === undefined ? true : this.props.showLastNotice;
     }
 
     componentDidMount() {
@@ -84,7 +85,9 @@ class LoadingList extends React.Component {
         let _loadingBar = '';
 
         if (this.props.isLast) {
-            _loadingBar = <div className={styles.loadingBar}><span className={styles.noMore}>没有更多了</span></div>;
+            if (this.showLastNotice) {
+                _loadingBar = <div className={styles.loadingBar}><span className={styles.noMore}>没有更多了</span></div>;
+            }
         } else {
             _loadingBar = <div className={styles.loadingBar}><i className={`${styles.loading} iconLoading`}></i>加载中
             </div>;

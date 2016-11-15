@@ -97,10 +97,10 @@ class List extends React.Component {
         //     }]
         // }
 
-        let _list = <Result
+        let _list = <div style={{background: '#fff'}}><Result
             imgUrl="https://o82zr1kfu.qnssl.com/@/image/5813164ee4b0edf1e7b90b15.png?imageMogr2/auto-orient/"
             title="还没有任何评论哦~"
-        />;
+        /></div>;
 
         if (this.items && this.items.length > 0) {
             _list = this.items.map(function (item) {
@@ -130,10 +130,13 @@ class List extends React.Component {
                 <LoadingList outer={this.nWrap}
                              isLast={this.isLast}
                              isLoading={this.loading}
+                             showLastNotice={false}
                              loadHandler={this.loadHandler.bind(this)}
                              offset="350">
                     {_list}
-                    <div className="blockGapTag"></div>
+                    {
+                        !this.isLast ? <div className="blockGapTag"></div>  : ''
+                    }
                 </LoadingList>
             </div>
         );
