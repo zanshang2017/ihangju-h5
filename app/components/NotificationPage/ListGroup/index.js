@@ -90,15 +90,15 @@ class ListGroup extends React.Component {
 
     render() {
 
-        let commentHtml = <Result
+        let commentHtml = <div style={{background: '#fff'}}><Result
             imgUrl="https://o82zr1kfu.qnssl.com/@/image/5813164ee4b0edf1e7b90b15.png?imageMogr2/auto-orient/"
             title="还没有任何评论哦~"
-        />;
+        /></div>;
 
-        let messageHtml = <Result
+        let messageHtml = <div style={{background: '#fff'}}><Result
             imgUrl="https://o82zr1kfu.qnssl.com/@/image/5813164ee4b0edf1e7b90b15.png?imageMogr2/auto-orient/"
             title="还没有任何通知哦~"
-        />;
+        /></div>;
 
         if (this.props.commentList) {
             commentHtml = <CommentList {...this.props} items={this.props.commentList || []}/>;
@@ -132,6 +132,7 @@ class ListGroup extends React.Component {
                         <LoadingList outer={this.nWrap}
                                      isLast={this.isLast}
                                      isLoading={this.isCommentListLoading}
+                                     showLastNotice={false}
                                      loadHandler={this.loadHandler.bind(this)}
                                      offset="350">
                             {commentHtml}
@@ -143,6 +144,7 @@ class ListGroup extends React.Component {
                         <LoadingList outer={this.nWrap}
                                      isLast={this.isLast}
                                      isLoading={this.isMessageListLoading}
+                                     showLastNotice={false}
                                      loadHandler={this.loadHandler.bind(this)}
                                      offset="350">
                             {messageHtml}
