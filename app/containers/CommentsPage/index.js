@@ -176,7 +176,7 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
                 <TopBar data-has-back="true">
                     <div data-title>评论</div>
                 </TopBar>
-                <div ref="J_MainContent" className="mainContent">
+                <div ref="J_MainContent" className={`${styles.mainWrap} mainContent`}>
                     <List page={page}
                           isLast={isLast}
                           loading={loading}

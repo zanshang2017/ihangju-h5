@@ -67,7 +67,7 @@ function CommentsPageReducer(state = initialState, action = {}) {
                 state = state.setIn(['comments', 'data'], fromJS(data));
             }
 
-            if (data && data.length === 0) {
+            if (data && data.length < 10) {
                 state = state.setIn(['comments', 'isLast'], true);
             }
 

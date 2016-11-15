@@ -69,7 +69,7 @@ export function* putFollow() {
             body: body,
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
                 'X-API-Version': 'v1.1'
             },
             credentials: 'include'
