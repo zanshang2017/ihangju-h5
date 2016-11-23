@@ -1,0 +1,39 @@
+.item {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 17px;
+  color: #030303;
+  height: 44px;
+  line-height: 44px;
+  padding-left: 12px;
+  margin: 8px 0;
+  text-align: left; }
+  .item .textWrap {
+    width: 100%;
+    padding-right: 2rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap; }
+  .item i.beforeIcon {
+    display: inline-block;
+    height: 0.85333rem;
+    width: 0.85333rem;
+    background-repeat: no-repeat;
+    background-size: 0.85333rem;
+    vertical-align: middle;
+    box-sizing: content-box;
+    padding-right: 10px; }
+  .item i.afterIcon {
+    display: inline-block;
+    height: 0.85333rem;
+    width: 0.85333rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    right: 0.8rem;
+    top: 0;
+    bottom: 0;
+    margin: auto; }
+
+/*# sourceMappingURL=styles.css.map */

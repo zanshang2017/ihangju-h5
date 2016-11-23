@@ -17,10 +17,9 @@ class TopListBar extends React.Component {
         let nArrow = this.refs.nTopListBarTitleArrow;
         let nArrowClass = nArrow.classList;
 
-        nArrowClass.toggle('iconDown');
-        nArrowClass.toggle('iconUp');
+        nArrowClass.toggle('rotateZ180');
 
-        if (nArrowClass.contains('iconDown')) {
+        if (!nArrowClass.contains('rotateZ180')) {
             this.refs.J_FollowList.hideFollowList();
         } else {
             this.refs.J_FollowList.showFollowList();
@@ -34,13 +33,7 @@ class TopListBar extends React.Component {
         let nArrow = this.refs.nTopListBarTitleArrow;
         let nArrowClass = nArrow.classList;
 
-        if(!nArrowClass.contains('iconDown')){
-            nArrowClass.add('iconDown');
-        }
-
-        if(nArrowClass.contains('iconUp')){
-            nArrowClass.remove('iconUp');
-        }
+        nArrowClass.remove('rotateZ180');
     }
 
     render() {
@@ -59,7 +52,7 @@ class TopListBar extends React.Component {
             <div>
                 <div id="J_followPageTopListBar" ref="nTopListBar" className={`${styles.bar}`}>
                     <div className={styles.title} onClick={this.toggleMyFollowListHandler.bind(this)}>{title}
-                        <i ref="nTopListBarTitleArrow"  className="iconDown"></i>
+                        <i ref="nTopListBarTitleArrow"  className="iconDown hasTransition"></i>
                     </div>
                 </div>
                 {followList}

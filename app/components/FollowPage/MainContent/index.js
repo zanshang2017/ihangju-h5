@@ -7,7 +7,6 @@ import ArticleList from 'components/common/ArticleList';
 
 import Result from 'antd-mobile/lib/page-result';
 
-
 class MainContent extends React.Component {
 
     constructor(props) {
@@ -20,13 +19,13 @@ class MainContent extends React.Component {
     }
 
     componentDidMount() {
+    }
+
+    componentDidUpdate() {
         //goTop
         if (this.page == 0 && this.outer) {
             this.outer.scrollTop = 0;
         }
-    }
-
-    componentDidUpdate() {
     }
 
     componentWillUnmount() {

@@ -1,5 +1,6 @@
 import styles from './styles.css';
 import React from 'react';
+import {hashHistory} from 'react-router';
 
 /* eslint-disable react/prefer-stateless-function */
 class TopBar extends React.Component {
@@ -11,7 +12,11 @@ class TopBar extends React.Component {
     }
 
     handleBack() {
-        this.props.backHandler ? this.props.backHandler() : window.history.back();
+        if (this.props.backHandler) {
+            this.props.backHandler()
+        } else {
+            hashHistory.goBack();
+        }
     }
 
     getChild(child) {
@@ -59,8 +64,11 @@ class TopBar extends React.Component {
     }
 }
 
-TopBar.propTypes = {};
+TopBar
+    .propTypes = {};
 
-export default TopBar;
+export
+default
+TopBar;
 
 

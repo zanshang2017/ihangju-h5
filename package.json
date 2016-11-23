@@ -188,6 +188,7 @@
     "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-antd": "^0.5.1",
+    "babel-plugin-import": "^1.0.1",
     "babel-plugin-react-transform": "^2.0.2",
     "babel-plugin-transform-react-constant-elements": "^6.8.0",
     "babel-plugin-transform-react-inline-elements": "^6.8.0",

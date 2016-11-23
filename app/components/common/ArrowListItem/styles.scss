@@ -1,0 +1,51 @@
+@charset "UTF-8";
+@import "../../../common/_global";
+@import "../../../common/_util";
+
+.item {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 17px;
+    color: #030303;
+    height: 44px;
+    line-height: 44px;
+    padding-left: 12px;
+    margin: 8px 0;
+    text-align: left;
+
+    .textWrap {
+        width: 100%;
+        padding-right: 2rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    i.beforeIcon {
+        display: inline-block;
+        height: 0.85333rem;
+        width: 0.85333rem;
+        background-repeat: no-repeat;
+        background-size: 0.85333rem;
+        vertical-align: middle;
+        box-sizing: content-box;
+        padding-right: 10px;
+    }
+
+
+    i.afterIcon {
+        display: inline-block;
+        height: 0.85333rem;
+        width: 0.85333rem;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        right: rem(30);
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+
+}
+

@@ -62,7 +62,7 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
             return;
         }
 
-        Toast.loading('上传中,请稍后...');
+        Toast.loading('上传中,请稍后...', 30);
 
         var that = this;
         var oFile = this._albumFile.files[0];

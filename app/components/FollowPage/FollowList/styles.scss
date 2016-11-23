@@ -9,6 +9,7 @@
     top: $topBarHeight;
     z-index: $zIndexL4;
     width: 100%;
+    height: 0;
     box-sizing: border-box;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
@@ -18,7 +19,8 @@
         box-sizing: border-box;
         width: 100%;
         padding: rem(32);
-        background: rgba(255, 255, 255, .95);
+        //background: rgba(255, 255, 255, .95);
+        background: $deepBg;
         font-size: rem(32);
         color: $titleColor;
 
