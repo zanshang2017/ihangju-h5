@@ -5,9 +5,33 @@ import styles from './styles.css';
 
 export class SearchBar extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
+
+    componentWillMount() {
+    }
+
     componentDidMount() {
         this.items = this.props.items;
         this.setInputValue(this.props.searchKeyword);
+
+        let nInput = this.refs.J_SearchInput;
+
+        if (nInput) {
+            setTimeout(function () {
+                //计算居中位置
+                let _fontSize = parseFloat(window.getComputedStyle(nInput, null).fontSize);
+                let placeholderW = nInput.getAttribute('placeholder').length * _fontSize;
+                let nInputW = nInput.offsetWidth;
+                let placeholderOffset = (nInputW - placeholderW) / 2;
+
+                this.nInputStyleStr = JSON.stringify({
+                    'text-indent': placeholderOffset + 'px',
+                    'background-position': (placeholderOffset - 1.5 * _fontSize) + 'px' + ' center'
+                });
+
+                nInput.style.cssText = nInputStyleStr.substr(1, nInputStyleStr.length - 2).replace(/\,/g, ';').replace(/\"/g, '');
+            }, 0);
+        }
+
     }
 
     componentWillUnmount(props) {

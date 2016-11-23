@@ -38,24 +38,21 @@
             border: 1px solid #e7e7e7;
             border-radius: 50px;
             background-color: #fff;
-            background-position: 3.4rem center;
             background-repeat: no-repeat;
             background-size: 1em;
             padding: rem(10) rem(10) rem(10) 0;
             line-height: 1.2em;
-            text-indent: rem(175);
+
+            background-position: 11px center;
+            text-indent: 31px;
 
             &::-webkit-input-placeholder {
                 color: #7a797b;
             }
 
             &.editing {
-
-                //background-position: rem(25) center;
-                //text-indent: rem(75);
-                background-position: 10px center;
-                text-indent: 20px;
-                //border-color: #000;
+                background-position: 11px center !important;
+                text-indent: 31px !important;
             }
         }
     }
