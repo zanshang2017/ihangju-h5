@@ -4,9 +4,19 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/SearchPage/DEFAULT_ACTION';
 
-export const SET_SEARCHED = 'app/SearchPage/SET_SEARCHED';
+/**
+ * localStorage常量
+ * @type {string}
+ */
+export const SEARCH_HISTORY_KEYWORDS_LOCALSTORAGE = 'app/searchPage/searchHistoryKeywords';
+
+
+/**
+ * Action类型常量
+ * @type {string}
+ */
+export const DEFAULT_ACTION = 'app/SearchPage/DEFAULT_ACTION';
 
 export const CHANGE_TAB = 'app/SearchPage/CHANGE_TAB';
 
@@ -21,7 +31,6 @@ export const LOAD_SEARCH_RESULT_SUCCESS = 'app/SearchPage/LOAD_SEARCH_RESULT_SUC
 export const LOAD_SEARCH_RESULT_ERROR = 'app/SearchPage/LOAD_SEARCH_RESULT_ERROR';
 
 export const SET_SEARCH_KEYWORD = 'app/SearchPage/SET_SEARCH_KEYWORD';
-export const SEARCH_HISTORY_KEYWORDS_LOCALSTORAGE = 'app/searchPage/searchHistoryKeywords';
 
 export const RESET_ALL_STATE = 'app/searchPage/RESET_ALL_STATE';
 

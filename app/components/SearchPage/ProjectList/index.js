@@ -46,7 +46,7 @@ export class ProjectList extends React.Component { // eslint-disable-line react/
         }
 
         return (
-            <div ref="J_ProjectListWrap" className={styles.wrap}>
+            <div ref="J_ProjectListWrap">
                 {list}
             </div>
         )

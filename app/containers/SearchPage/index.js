@@ -133,7 +133,8 @@ export class SearchPage extends React.Component { // eslint-disable-line react/p
         return (
             <div className="pageInner">
                 <SearchBar ref="J_SearchBar" {...this.props} searchHandler={this.searchHandler.bind(this)}></SearchBar>
-                <div ref="J_History" className="mainContent">
+
+                <div ref="J_History" className={`${styles.wrapBg} mainContent`}>
                     <HistoryList items={this.props.history}
                                  searchHandler={this.searchHandler.bind(this)}
                                  removeAllHistoryHandler={this.removeAllHistoryHandler.bind(this)}/>
@@ -143,13 +144,13 @@ export class SearchPage extends React.Component { // eslint-disable-line react/p
                     <SwitchTab {...this.props} switchTabHandler={this.switchTabHandler.bind(this)}/>
                 </div>
 
-                <div ref="tagOuter" className={`${tab1Cls} mainContent`}>
+                <div ref="tagOuter" className={`${tab1Cls} ${styles.wrapBg} mainContent`}>
                     <TagList {...this.props} loadNextHandler={this.loadNextHandler.bind(this)} outer={this.refs.tagOuter} />
                 </div>
-                <div ref="projectOuter" className={`${tab2Cls} mainContent`}>
+                <div ref="projectOuter" className={`${tab2Cls} ${styles.wrapBg} mainContent`}>
                     <ProjectList {...this.props} loadNextHandler={this.loadNextHandler.bind(this)} outer={this.refs.projectOuter} />
                 </div>
-                <div ref="userOuter" className={`${tab3Cls} mainContent`}>
+                <div ref="userOuter" className={`${tab3Cls} ${styles.wrapBg} mainContent`}>
                     <UserList {...this.props} loadNextHandler={this.loadNextHandler.bind(this)} outer={this.refs.userOuter} />
                 </div>
 

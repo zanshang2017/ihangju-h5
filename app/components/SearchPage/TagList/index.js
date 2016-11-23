@@ -55,7 +55,7 @@ export class TagList extends React.Component { // eslint-disable-line react/pref
         }
 
         return (
-            <div ref="J_TagListWrap" className={styles.wrap}>
+            <div ref="J_TagListWrap">
                 {list}
             </div>
         )

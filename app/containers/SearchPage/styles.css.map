@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAIA,OAAQ;EACJ,UAAU,ECgBN,OAAO",
+"sources": ["styles.scss","../../common/__global.scss"],
 "names": [],
 "file": "styles.css"
 }
