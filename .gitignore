@@ -10,5 +10,6 @@ stats.json
 npm-debug.log
 .idea
 bak.*
+bak_*
 *.zip
 

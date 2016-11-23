@@ -1,0 +1,17 @@
+@charset "UTF-8";
+@import "../../../common/_global.scss";
+@import "../../../common/_util.scss";
+
+
+.wrap {
+    padding: 10px 0 0;
+    //border-bottom: 1px solid $borderDeepColor;
+}
+
+.noContent {
+    text-align: center;
+    padding: 50px;
+    color: $weakTextColor;
+    font-size: 14px;
+}
+

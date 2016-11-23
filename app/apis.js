@@ -507,6 +507,15 @@ const FAVORITE_API = `${api_scheme}//${api_host}/favorite`;
 
 const IDENTIFY_AUTH_API = `${api_scheme}//${api_host}/identityauthentication`;
 
+/**
+ * 搜索接口
+ *
+ * restful:
+ *  [GET] ?content=keywords
+ */
+const SEARCH_API = `${api_scheme}//${api_host}/search`;
+
+
 export {
     IMG_CDN_PATH,
     IMG_UPLOAD_TOKEN_API,
@@ -560,5 +569,6 @@ export {
     FAVORITE_API,
 
     IDENTIFY_AUTH_API,
+    SEARCH_API,
 };
 

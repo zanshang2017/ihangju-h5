@@ -46,6 +46,41 @@
         .am-tab-ink-bar {
             background-color: $linkColor !important;
         }
+
+    }
+
+    /** 胶囊tab **/
+    .am-tab-capsule {
+
+        .am-tab-nav-container {
+            font-size: 14px !important;
+        }
+
+        .am-tab-bar {
+            border-color: #424447 !important;
+        }
+
+        .am-tab-ink-bar {
+            background-color: transparent !important;
+        }
+
+        .am-tab-nav {
+            .am-tab-tab:not(:last-child) {
+                border-right: 1px solid #424447 !important;
+            }
+        }
+
+        .am-tab-tab-active {
+            .am-tab-tab-inner {
+                background-color: #424447 !important;
+                color: #fff !important;
+            }
+        }
+
+        .am-tab-tab-inner {
+            padding: 8px 0 !important;
+            color: #424447 !important;
+        }
     }
 
     /** Button **/

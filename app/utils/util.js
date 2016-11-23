@@ -2,6 +2,8 @@
  * Created by Howard on 16/7/18.
  */
 
+function noop(){}
+
 function getUrlParam(param, uri) {
     var value;
 
@@ -342,6 +344,23 @@ function testSupportWebp(exec) {
     img.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
 }
 
+
+function goBackHelper(handler) {
+    if(!!(window.history && history.pushState)) {
+        window.addEventListener('hashchange', handler, false);
+
+        return {
+            remove: function(){
+                window.removeEventListener('hashchange', handler, false);
+            }
+        }
+    } else {
+        return {
+            remove: noop
+        }
+    }
+}
+
 export {
     getUrlParam,
     convertDate,
@@ -354,4 +373,5 @@ export {
     IMAGE_SIZE_TYPE,
     testSupportWebp,
     addImageParam,
+    goBackHelper,
 };

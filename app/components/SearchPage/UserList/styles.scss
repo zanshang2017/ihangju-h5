@@ -1,0 +1,51 @@
+@charset "UTF-8";
+@import "../../../common/_global.scss";
+@import "../../../common/_util.scss";
+
+.listWrap {
+    width: 100%;
+    padding: 10px 0 0;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+
+    .item {
+        @include flexBox();
+        padding: rem(50) rem(35) rem(50) rem(35);
+        border-bottom: 1px solid $borderLightColor;
+        background: #fff;
+
+        .avatar {
+            width: rem(100);
+            height: rem(100);
+
+            img {
+                width: rem(100);
+                height: rem(100);
+                border-radius: 999px;
+            }
+        }
+
+        .info {
+            font-size: rem(28);
+            line-height: 1.5em;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            padding-left: rem(25);
+        }
+
+        i.afterIcon {
+            height: 0.85333rem;
+            width: 0.85333rem;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+    }
+}
+
+.noContent {
+    text-align: center;
+    padding: 50px;
+    color: $weakTextColor;
+    font-size: 14px;
+}

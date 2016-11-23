@@ -82,7 +82,7 @@ export function* getTagList() {
         if (lists) {
             if (lists.err === undefined || lists.err === null) {
                 if (lists.data.result) {
-                    if (lists.data.result.projects && lists.data.result.projects.length <= 0) {
+                    if (lists.data.result.projects && lists.data.result.projects.length < size) {
                         yield [put(loadTagListSuccess(lists.data, page)), put(setProjectListStatus({isLast: true}))];
                     } else {
                         yield put(loadTagListSuccess(lists.data, page));

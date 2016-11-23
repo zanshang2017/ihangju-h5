@@ -1,7 +1,11 @@
 {
     "plugins": [
-        ["antd", {
-            "libraryName": "antd-mobile"
-        }]
+        [
+            "import",
+            {
+                "style": "css",
+                "libraryName": "antd-mobile"
+            }
+        ]
     ]
 }

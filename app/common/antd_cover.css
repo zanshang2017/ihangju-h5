@@ -4,6 +4,7 @@
  */
 :global {
   /** Tab组件 **/
+  /** 胶囊tab **/
   /** Button **/
   /** List **/
   /** NoticeBar **/
@@ -25,6 +26,20 @@
     color: #a09e98 !important; }
   :global .am-tab .am-tab-ink-bar {
     background-color: #39bcc8 !important; }
+  :global .am-tab-capsule .am-tab-nav-container {
+    font-size: 14px !important; }
+  :global .am-tab-capsule .am-tab-bar {
+    border-color: #424447 !important; }
+  :global .am-tab-capsule .am-tab-ink-bar {
+    background-color: transparent !important; }
+  :global .am-tab-capsule .am-tab-nav .am-tab-tab:not(:last-child) {
+    border-right: 1px solid #424447 !important; }
+  :global .am-tab-capsule .am-tab-tab-active .am-tab-tab-inner {
+    background-color: #424447 !important;
+    color: #fff !important; }
+  :global .am-tab-capsule .am-tab-tab-inner {
+    padding: 8px 0 !important;
+    color: #424447 !important; }
   :global .am-button {
     border-top-left-radius: 30px !important;
     border-top-right-radius: 30px !important;
