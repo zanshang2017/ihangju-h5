@@ -62,7 +62,7 @@ class TabBar extends React.Component {
                     {/*<li><Link to={'/projectDetail/57a941f4e4b0ab2d4f0d14cd'}><span className="follow"></span><strong>Detail</strong></Link></li>*/}
                     {/*<li><Link to={'/bridgeTest'}><span className="follow"></span><strong>Bridge</strong></Link></li>*/}
                     {/*<li><Link to={'/login'}><span className={styles.write}></span><strong>登录</strong></Link></li>*/}
-                    {/*<li><Link to={'/demo#fliproute'}><span className="follow"></span><strong>Demo</strong></Link></li>*/}
+                    {/*<li data-hashover="true"><a data-id="/demo" onClick={this.routeHandler.bind(this)}><span className={styles.my}></span><strong>Demo</strong></a></li>*/}
                 </ul>
             </nav>
         );
