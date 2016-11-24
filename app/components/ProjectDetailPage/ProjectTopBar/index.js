@@ -19,11 +19,11 @@ class ProjectTopBar extends React.Component {
     componentWillMount() {
     }
 
-    showChapterListHandler() {
-        let _conMes = this.props.projectDetail.toJS();
-        this.props.loadChapter(_conMes.projectId);
-        this.refs.J_ChapterList.showChapterList();
-    }
+    // showChapterListHandler() {
+    //     let _conMes = this.props.projectDetail.toJS();
+    //     this.props.loadChapter(_conMes.projectId);
+    //     this.refs.J_ChapterList.showChapterList();
+    // }
 
     shareProject() {
         let _conMes = this.props.projectDetail.toJS();
@@ -45,11 +45,11 @@ class ProjectTopBar extends React.Component {
                 <TopBar data-has-back="true">
                     <div data-title>作品详情</div>
                     <div data-btns>
-                        <span onClick={this.showChapterListHandler.bind(this)} className={style.catalog}></span>
+                        {/*<span onClick={this.showChapterListHandler.bind(this)} className={style.catalog}></span>*/}
                         <span onClick={this.shareProject.bind(this)} className={style.share}></span>
                     </div>
                 </TopBar>
-                <ChapterList ref="J_ChapterList" items={this.props.projectDetailChapter}/>
+                {/*<ChapterList ref="J_ChapterList" items={this.props.projectDetailChapter}/>*/}
                 <ShareBtnList ref="J_ShareBtnList" items={this.props.shareData}/>
             </div>
         )

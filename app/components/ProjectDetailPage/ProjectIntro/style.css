@@ -1,8 +1,2 @@
-.prodectIntro {
-  margin: 0.90667rem 1.28rem 2.02667rem;
-  font-size: 0.90667rem;
-  color: #383b3d;
-  line-height: 1.33333rem;
-  white-space: pre-wrap; }
-
+.prodectIntro{width:100%;display:inline-block;font-size:.90667rem;color:#383b3d;line-height:1.33333rem;white-space:pre-wrap;padding:0 .74667rem .74667rem;color:#666;font-size:.8rem;background:#fff;border-bottom:1px solid #ededed}.prodectIntro .title{display:block;color:#000;font-size:.90667rem;margin-bottom:.53333rem}
 /*# sourceMappingURL=style.css.map */

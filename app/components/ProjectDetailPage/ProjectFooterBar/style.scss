@@ -1,0 +1,51 @@
+@charset 'UTF-8';
+@import '../../../common/__util.scss';
+@import '../../../common/__global.scss';
+
+.prodectFooterBar{
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	background-color: $bg;
+	height: rem(100);
+	line-height: rem(100);
+	border-top: 1px solid #c9c5c5;
+	color: #666;
+	font-size: rem(36);
+	a{
+		display: block;
+		color: #666;
+	}
+	.listDiv{
+		position: relative;
+		width: 50%;
+		text-align: center;
+		float: left;
+		i{
+			position: relative;
+			top: rem(4);
+		    display: inline-block;
+		    height: rem(34);
+		    width: rem(34);
+		    margin-right: rem(18);
+		    &.read{
+				background: url(https://o82zr1kfu.qnssl.com/@/image/58355b81e4b0d2bddbe2ab94.png?imageView2/2/w/300) center no-repeat;
+			    background-size: cover;
+				
+			}
+			&.signWork{
+				background: url(https://o82zr1kfu.qnssl.com/@/image/58355bade4b0d2bddbe2abb6.png?imageView2/2/w/300) center no-repeat;
+			    background-size: cover;
+			}
+
+		}
+	}
+	.listDiv:first-child::before{
+		content: '';
+	    border-left: 1px solid #c8c5c6;
+	    position: absolute;
+	    height: 50%;
+	    right: 0;
+	    top: 25%;
+	}
+}
