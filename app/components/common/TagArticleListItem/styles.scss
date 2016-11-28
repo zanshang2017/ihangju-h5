@@ -11,6 +11,10 @@
     margin-bottom: rem(20);
     text-align: left;
 
+    &:last-child {
+        margin-bottom: 0;
+    }
+
     span.source {
         font-size: rem(28);
         color: $weakerTitleColor;

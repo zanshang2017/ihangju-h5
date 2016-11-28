@@ -34,8 +34,8 @@ import {
 const initialState = fromJS({
     myFollowData: false,
     myFollowListData: fromJS({
-        'followUsers': [],
-        'followTags': []
+        'followUsers': false,
+        'followTags': false
     }),
     currentFollow: false, //当前选择的列表类型， null表示未选择，默认加载全部关注
     myFollowLoading: false, //关注文章列表加载中

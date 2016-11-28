@@ -4,13 +4,16 @@
   left: 0;
   box-sizing: border-box;
   width: 100%;
-  height: 2.82667rem;
+  height: 54px;
   z-index: 9999;
   font-size: 14px;
   background: #fff;
-  border-top: 1px solid #f3f5f4; }
+  border-top: 1px solid #f3f5f4;
+  transition: bottom .5s ease .3s;
+  -webkit-transition: bottom .5s ease .3s; }
   .tabBar ul {
-    display: -webkit-box; }
+    display: -webkit-box;
+    height: 54px; }
     .tabBar ul li {
       -webkit-box-flex: 1;
       padding: 0 0.53333rem; }
@@ -21,21 +24,21 @@
         -webkit-box-pack: center;
         -webkit-box-orient: vertical;
         color: #7b8f9d;
-        font-size: 0.64rem;
-        padding-top: 0.4rem; }
+        font-size: 12px;
+        padding-top: 8px; }
         .tabBar ul li a strong {
           font-weight: normal; }
         .tabBar ul li a span {
           display: block;
           opacity: 1;
-          margin-bottom: 0.05333rem;
+          margin-bottom: 1px;
+          background-size: 22px 22px;
           background-repeat: no-repeat;
-          background-size: 1.17333rem 1.17333rem;
           background-position: center center; }
           @media screen and (max-device-width: 359px) {
             .tabBar ul li a span {
-              height: 1.17333rem;
-              width: 1.17333rem; }
+              height: 22px;
+              width: 22px; }
               .tabBar ul li a span.follow {
                 background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAclBMVEUAAAB7j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j52og+wgAAAAJXRSTlMArBqE7xHzsacmSQX64Lx4WNRCLNmIH1Ppl3p5X046NAifnnS4JII8rgAAAW5JREFUOMvNVdmWgyAMHWVR3FtrbbXrdPz/X5wELQ09UA9vzQsQruFyE+LPd5o6HauSFwUvq+NJfULu2W6ybMf2HmibTA5LWgdU/Oo9mYyZEnkuVDYmUrvu4h2bHXSY8406b2d92CGzsTU6o9bBLcKdmro6cJT0e3pmCZudHbcSPo1ERWP3SCH3K5ojlX6exxziWti4GccmJmiIzed1CuJTDlsMhIdtX0yAd4qTK/gvJKqGLnCTvwusrjBu4COCheXE065LOUw2hksKCxiKSRIOGJcBREWywNiz18CYZIQvABoYFV+YGN4ERgIzPRrafkXjp0TcXDL2ghu8LAEXSMpnA7IgNOAtDCtgc0EONf5Yp4HSyUjBAf36BV9VQ5ZO6YwxWzpPUgwpKym+dCMH9p5uXyGxLnIUUkiJhhS/Eegvt9pYMzx6+qwSlDTkwYa0gqAmE96+whsjMrsvLbd+ttyattzwZh7+m/D/gL7S/gH4jD7ocnsQOwAAAABJRU5ErkJggg==); }
               .tabBar ul li a span.found {
@@ -46,8 +49,8 @@
                 background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAsCAMAAAApWqozAAAAYFBMVEUAAAB7j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j51Oj7LiAAAAH3RSTlMA+sbWDcJlF+7mkYdXL6HyzoFDNSwnHwgG5XlqXExe+6pUWQAAAURJREFUOMulk1mSgzAMRG2M2fdAmKzv/rccPjIYzAiqSP9Z9RBqq622umRGJ012UcfqLR/Z/oh9a2bp9z4bMSkvx7DMmRTtsZ2G5vIZvQHdyWx4g6Cfpw/gFopwDmnpjmUKd7FxAq9l4QWJ1PoJZl0x8BTgamM/gsqd/D69tyH3L18JhJ4LqAUYOCo51UJnaeZhXRnAfH0b8j1/v0E5G3Lqypl1qRPzbP7ybIQ8O/sTTTuM49AysZHaVbF8g4U60OBe96CO1VVGa1N16pR+/EJc1blw+XUTex8HYr40BOveGWip80Rny8JVrwPnR09fF+cWAtlgAO36WOwsat0qhViGY0jWjtWOgLPw8RhnDbZgZdhC6y3lIbEPtxS37ofAunUvgoQt4o23wjIHyVUbRDWbHmOm+Vc6G9VW17tN/Q9Se194+wUeGCfJRMMZEAAAAABJRU5ErkJggg==); } }
           @media screen and (min-device-width: 360px) {
             .tabBar ul li a span {
-              height: 1.22667rem;
-              width: 1.22667rem; }
+              height: 24px;
+              width: 24px; }
               .tabBar ul li a span.follow {
                 background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEIAAABCCAMAAADUivDaAAAAeFBMVEUAAAB7j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j517j50EtZSyAAAAJ3RSTlMAbxv56OC5AzT12E/SkGYR8bGAXw2ZU0opB6ymhkbNc1ounncWxCTtDIZMAAACYElEQVRYw+1XV2KjMBBF2DQDplkQwDHEJdz/hrsq7AAjLGX1m/cF0uiBpo/zCyNkYX0mjwc512H289OXpvTzaYHcL5vLD85X/mFS4OBXZiwfNJp2EdEPPUE3adC9J7lQuIHXP+rQzdo2c8P60XtwH/pGufFxlioqd7vpVsXMf6x3CFoqJU5k5zMZOUkR2qr23ZskqAJnF0ElSW6uQo+esD8BAjUJyYWqkFa/hBpeiBzDfQmFfK2XvwXDNXAMEFwFx/fKmCduh9ExxHjgWlv6ascZGscYn5yjg4VqYoiVF49JSWKsoZgfqf6JcR0TfL5JvdlV0+0vEm6/mfvO3gr8s/20RP+53i7Y4l3ak6v3uWU4T1ucV/tPbkRhWR9tM1wnjCv+hs+eQvaUbB2inBNEkZZpMWeQcuUeCVsK/z4NTBArnMPjP9eSF7MhthpjHqR0sqUQwUQh/iROK6lkJk3zJEQWY0hFDgCGrenDJE+dHXjczEAH8Ezdl0tLP3jBeVjVolwGwKYelNrT4CmjmsI3o+B+5zrKixy1p+HDLVhnicN/ULTJJJEgCrOLgGslIVzETJ01FBhyi6IbaWONOlGU9mi5h2jVogEnQg6HEqzewQHFvoOn0bswAzFVmEWpowt2AN0Ldn3KETh7uynHLPF1msRnm37ti4B9KVoVxMGmIMqyPKrL8lAONS7LoyjLFs1BA82BfYti3yjhds03add81K5ZN424dR3fta41tK4KtHfzBvp+MWjjkcM/URuvREYXBbgf2DARBGyYGHoPdmhmPdJYD1bW453tkGk56v7CBH8AgLOoKKGn2oQAAAAASUVORK5CYII=); }
               .tabBar ul li a span.found {

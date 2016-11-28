@@ -67,7 +67,7 @@ export class FollowsListPage extends React.Component { // eslint-disable-line re
                 <TopBar data-has-back="true">
                     <div data-title>关注</div>
                 </TopBar>
-                <div className="mainContent">
+                <div className="mainContent whiteBg">
                     <List page={page}
                           isLast={isLast}
                           loading={loading}

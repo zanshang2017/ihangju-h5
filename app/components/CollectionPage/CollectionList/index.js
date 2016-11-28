@@ -56,7 +56,7 @@ class CollectionList extends React.Component {
             title="还没有收藏过文章哦~"
         />;
 
-        if (this.items.length > 0) {
+        if(this.loading || this.items.length > 0) {
             listHtml = <LoadingList outer={this.nWrap}
                                     isLast={this.isLast}
                                     isLoading={this.loading}

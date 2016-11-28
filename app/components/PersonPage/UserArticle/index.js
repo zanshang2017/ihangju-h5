@@ -20,18 +20,18 @@ function UserArticle(props) {
 
     var projectContent = '';
     var contractProjectsContent = '';
-    var nullContent = <Result imgUrl="https://o82zr1kfu.qnssl.com/@/image/5813164ee4b0edf1e7b90b15.png?imageMogr2/auto-orient/" title="还没有内容哦~"/>;
+    var nullContent = <Result imgUrl="https://o82zr1kfu.qnssl.com/@/image/5813164ee4b0edf1e7b90b15.png" title="还没有内容哦~"/>;
 
-    if (personInfo.projects && personInfo.projects.length > 0) {
-        projectContent = <ArticleList2 {...props} items={personInfo.projects}/>;
-    } else {
+    if(!personInfo || (personInfo.projects && personInfo.projects.length <= 0)) {
         projectContent = nullContent;
+    } else {
+        projectContent = <ArticleList2 {...props} items={personInfo.projects}/>;
     }
 
-    if (personInfo.contractProjects && personInfo.contractProjects.length > 0) {
-        contractProjectsContent = <ArticleList2 {...props} items={personInfo.contractProjects}/>;
-    } else {
+    if (!personInfo || (personInfo.contractProjects && personInfo.contractProjects.length <= 0)) {
         contractProjectsContent = nullContent;
+    } else {
+        contractProjectsContent = <ArticleList2 {...props} items={personInfo.contractProjects}/>;
     }
 
     return (

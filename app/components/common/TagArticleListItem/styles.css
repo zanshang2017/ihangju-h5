@@ -6,6 +6,8 @@
   background: #fff;
   margin-bottom: 0.53333rem;
   text-align: left; }
+  .articleListItem:last-child {
+    margin-bottom: 0; }
   .articleListItem span.source {
     font-size: 0.74667rem;
     color: #a09e98;

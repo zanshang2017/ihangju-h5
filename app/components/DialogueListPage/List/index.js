@@ -56,7 +56,7 @@ class List extends React.Component {
         //     "userId": "573747fee4b0afac484db029"
         // }
 
-        if (this.items.length > 0) {
+        if (this.loading || this.items.length > 0) {
 
             dialogHtml = this.items.map(function (item) {
                 let imageSrc = addImageParam(IMG_CDN_PATH + item.userAvatar, IMAGE_SIZE_TYPE.AVATAR);

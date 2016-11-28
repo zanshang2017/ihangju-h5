@@ -160,8 +160,9 @@ class ListGroup extends React.Component {
         if (this.outerElement && this.innerElement) {
             if (this.props.hasAdmin) {
 
-
-                if ((this.recommendationList && this.recommendationList.length > 0)) {
+                if (!this.isRecommendationLoading && this.isRecommendationLast && (this.recommendationList && this.recommendationList.length <= 0)) {
+                    recomendationHtml = noContent;
+                } else {
                     recomendationHtml = <LoadingList ref="J_ReommendationLoadingList"
                                                      name="J_ReommendationLoadingList"
                                                      outer={this.outerElement}
@@ -174,11 +175,11 @@ class ListGroup extends React.Component {
                                         isAdmin={this.props.isAdmin}
                                         articleClickHandler={this.articleClickHandler.bind(this)}/>
                     </LoadingList>;
-                } else {
-                    recomendationHtml = noContent;
                 }
 
-                if ((this.projectList && this.projectList.length > 0)) {
+                if (!this.isProjectLoading && this.isProjectLast && (this.projectList && this.projectList.length <= 0)) {
+                    projectHtml = noContent;
+                } else {
                     projectHtml = <LoadingList ref="J_ProjectLoadingList"
                                                name="J_ProjectLoadingList"
                                                outer={this.outerElement}
@@ -191,10 +192,7 @@ class ListGroup extends React.Component {
                                         isAdmin={this.props.isAdmin}
                                         articleClickHandler={this.articleClickHandler.bind(this)}/>
                     </LoadingList>;
-                } else {
-                    projectHtml = noContent;
                 }
-
 
                 mainTag =
                     <Tabs ref="J_Tabs" defaultActiveKey="1" onChange={this.tabChangeHandler.bind(this)}>
@@ -207,7 +205,10 @@ class ListGroup extends React.Component {
                     </Tabs>;
             } else {
 
-                if ((this.projectList && this.projectList.length > 0)) {
+                if (!this.isProjectLoading && this.isProjectLast && (this.projectList && this.projectList.length <= 0)) {
+                    mainTag = noContent;
+                    document.querySelector('.mainContent').classList.add('whiteBg');
+                } else {
                     mainTag = <LoadingList outer={this.outerElement}
                                            isLast={this.isProjectLast} isLoading={this.isProjectLoading}
                                            offset="300"
@@ -217,8 +218,8 @@ class ListGroup extends React.Component {
                                         isAdmin={this.props.isAdmin}
                                         articleClickHandler={this.articleClickHandler.bind(this)}/>
                     </LoadingList>;
-                } else {
-                    mainTag = noContent;
+
+                    document.querySelector('.mainContent').classList.remove('whiteBg');
                 }
 
             }

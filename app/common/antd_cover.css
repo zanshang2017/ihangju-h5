@@ -38,7 +38,7 @@
     background-color: #424447 !important;
     color: #fff !important; }
   :global .am-tab-capsule .am-tab-tab-inner {
-    padding: 8px 0 !important;
+    padding: 7px 0 8px !important;
     color: #424447 !important; }
   :global .am-button {
     border-top-left-radius: 30px !important;
@@ -74,7 +74,8 @@
   :global .am-action-sheet .am-action-sheet-message {
     margin: 6px auto 12px !important; }
   :global .am-page-result {
-    padding-top: 0 !important; }
+    padding-top: 0 !important;
+    padding-bottom: 20px !important; }
     :global .am-page-result .am-page-result-pic {
       min-width: 320px !important;
       height: 240px !important;

@@ -6,16 +6,20 @@
     position: relative;
     width: 100%;
     box-sizing: border-box;
-    padding: rem(68) rem(42) rem(76);
+    padding: 34px 22px 38px;
     background: #fff;
-    margin-bottom: rem(22);
+    margin-bottom: 11px;
     text-align: left;
 
+    &:last-child {
+        margin-bottom: 0;
+    }
+
     span.source {
-        font-size: rem(28);
+        font-size: 14px;
         color: $weakerTitleColor;
         display: inline-block;
-        margin-bottom: rem(2);
+        margin-bottom: 1px;
 
         strong {
             font-style: italic;
@@ -26,15 +30,15 @@
 
     .read {
         color: $weakerTitleColor;
-        margin-bottom: rem(18);
+        margin-bottom: 9px;
     }
 
 
     h3 {
-        max-height: rem(112);
-        font-size: rem(44);
+        max-height: 56px;
+        font-size: 22px;
         font-weight: normal;
-        line-height: rem(56);
+        line-height: 28px;
         overflow:hidden;
         text-overflow: ellipsis;
         color: $titleColor;
@@ -44,34 +48,34 @@
     }
 
     p {
-        font-size: rem(32);
+        font-size: 16px;
         color: $textColor;
-        margin-top: rem(33);
+        margin-top: 16px;
         line-height: 1.4em;
-        max-height:rem(130);
+        max-height: 65px;
         text-align:left;
         overflow:hidden;
     }
 
     div.info {
-        margin-top: rem(45);
+        margin-top: 23px;
         color: $weakTextColor;
-        font-size: rem(28);
+        font-size: 14px;
 
         span {
-            margin-right: rem(20);
+            margin-right: 10px;
 
             .heart{
                 position: relative;
-                top: rem(6);
+                top: 3px;
                 display: inline-block;
-                height: rem(32);
-                width: rem(32);
+                height: 16px;
+                width: 16px;
                 background-repeat: no-repeat;
                 background-size: cover;
             }
             .heartNum{
-                font-size: rem(24);
+                font-size: 12px;
             }
         }
 
@@ -79,11 +83,11 @@
 
     div.itemType {
         position: absolute;
-        top: rem(26);
+        top: 13px;
         right: 0;
-        width: rem(134);
-        height: rem(38);
-        line-height: rem(38);
+        width: 67px;
+        height: 19px;
+        line-height: 19px;
         color: $weakTextColor;
         background: #f3f5f4;
     }

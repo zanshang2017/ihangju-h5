@@ -119,7 +119,7 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
     showSheet() {
         let that = this;
         // const BUTTONS = ['拍照', '从相册选取', '取消'];
-        const BUTTONS = ['从相册选取', '取消'];
+        // const BUTTONS = ['从相册选取', '取消'];
 
         ActionSheet.showActionSheetWithOptions({
                 options: BUTTONS,

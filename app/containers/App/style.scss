@@ -12,16 +12,6 @@
 }
 
 :global {
-    html {
-        height: 100%;
-    }
-
-    body {
-        width: 100%;
-        height: 100%;
-        overflow: visible; //for position:sticky
-    }
-
     #app {
         height: 100%;
     }
@@ -55,7 +45,7 @@
         flex-direction: column;
         width: 100%;
         height: 100%;
-        background: #fff;
+        background: $deepBg;
     }
 
     .mainContent {

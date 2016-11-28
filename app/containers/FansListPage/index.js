@@ -61,7 +61,7 @@ export class FansListPage extends React.Component { // eslint-disable-line react
                 <TopBar data-has-back="true">
                     <div data-title>粉丝</div>
                 </TopBar>
-                <div className="mainContent">
+                <div className="mainContent whiteBg">
                     <FansList page={page}
                               isLast={isLast}
                               loading={loading}

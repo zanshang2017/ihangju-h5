@@ -52,7 +52,7 @@ class DetailPage extends React.Component {
         let _data = this.props.projectDetail.toJS();
 
         if (_data.projectId) { //内容下载到时展示
-            _content = <div className="mainContent">
+            _content = <div className="mainContent whiteBg">
                 <ProjectDesc {...this.props} />
                 <ProjectTag {...this.props}/>
                 <ProjectIntro items={this.props.projectDetail}/>

@@ -7,8 +7,13 @@
     width: 100%;
     box-sizing: border-box;
     padding: rem(68) rem(42);
+    margin-bottom: rem(20);
     background: #fff;
     text-align: left;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
 
     .header {
         line-height: rem(60);

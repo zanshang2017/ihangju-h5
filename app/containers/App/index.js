@@ -89,6 +89,9 @@ class App extends React.Component {
 
         locStorage.set('version', cur);
 
+        // alert('old:' + old + ' cur:' + cur);
+        // alert('lastShowGuideVer:' + lastShowGuideVer);
+
         //检测版本号,展示引导页
         if ((!old && lastShowGuideVer) || (cur !== old && compareVersion(lastShowGuideVer, old) > 0)) {
             this.context.router.push('/guide');
@@ -146,11 +149,15 @@ class App extends React.Component {
                 var use = node.dataset['hashover'];
 
                 if (use && node.nodeType === 1 && node !== body) {
+                    debugLog('find hover');
                     node.classList.add('hover');
                     hoveredElem.push(node);
                     e.stopPropagation();
-                } else if (node.parentNode !== body) {
+                } else if (node.parentNode && node.parentNode !== body) {
+                    debugLog('no find hover');
                     detectHover(node.parentNode, e);
+                } else {
+                    debugLog('No hover');
                 }
             }
         })();

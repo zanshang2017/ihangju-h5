@@ -2,27 +2,29 @@
   position: relative;
   width: 100%;
   box-sizing: border-box;
-  padding: 1.81333rem 1.12rem 2.02667rem;
+  padding: 34px 22px 38px;
   background: #fff;
-  margin-bottom: 0.58667rem;
+  margin-bottom: 11px;
   text-align: left; }
+  .articleListItem:last-child {
+    margin-bottom: 0; }
   .articleListItem span.source {
-    font-size: 0.74667rem;
+    font-size: 14px;
     color: #a09e98;
     display: inline-block;
-    margin-bottom: 0.05333rem; }
+    margin-bottom: 1px; }
     .articleListItem span.source strong {
       font-style: italic;
       font-weight: normal;
       color: #39bcc8; }
   .articleListItem .read {
     color: #a09e98;
-    margin-bottom: 0.48rem; }
+    margin-bottom: 9px; }
   .articleListItem h3 {
-    max-height: 2.98667rem;
-    font-size: 1.17333rem;
+    max-height: 56px;
+    font-size: 22px;
     font-weight: normal;
-    line-height: 1.49333rem;
+    line-height: 28px;
     overflow: hidden;
     text-overflow: ellipsis;
     color: #7b8f9d;
@@ -44,36 +46,36 @@
     -webkit-align-items: flex-start;
     align-items: flex-start; }
   .articleListItem p {
-    font-size: 0.85333rem;
+    font-size: 16px;
     color: #383b3d;
-    margin-top: 0.88rem;
+    margin-top: 16px;
     line-height: 1.4em;
-    max-height: 3.46667rem;
+    max-height: 65px;
     text-align: left;
     overflow: hidden; }
   .articleListItem div.info {
-    margin-top: 1.2rem;
+    margin-top: 23px;
     color: #bcbab5;
-    font-size: 0.74667rem; }
+    font-size: 14px; }
     .articleListItem div.info span {
-      margin-right: 0.53333rem; }
+      margin-right: 10px; }
       .articleListItem div.info span .heart {
         position: relative;
-        top: 0.16rem;
+        top: 3px;
         display: inline-block;
-        height: 0.85333rem;
-        width: 0.85333rem;
+        height: 16px;
+        width: 16px;
         background-repeat: no-repeat;
         background-size: cover; }
       .articleListItem div.info span .heartNum {
-        font-size: 0.64rem; }
+        font-size: 12px; }
   .articleListItem div.itemType {
     position: absolute;
-    top: 0.69333rem;
+    top: 13px;
     right: 0;
-    width: 3.57333rem;
-    height: 1.01333rem;
-    line-height: 1.01333rem;
+    width: 67px;
+    height: 19px;
+    line-height: 19px;
     color: #bcbab5;
     background: #f3f5f4; }
 

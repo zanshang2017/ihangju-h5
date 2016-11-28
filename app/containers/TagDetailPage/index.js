@@ -227,15 +227,13 @@ class TagDetailPage extends React.Component { // eslint-disable-line react/prefe
                 <TagDesc ref="J_TagDesc" {...this.props} description={this.detail ? this.detail.tag_description : ''}/>;
         }
 
-        console.log('this.refs.J_Container', this.refs.J_Container);
-
         return (
             <div className="pageInner hasTopBar">
                 <TopBar data-has-back="true" backHandler={this.backHandler.bind(this)}>
                     <div data-title>{this.detail && this.detail.tag_name || ''}</div>
                     <div data-btns>{this.topBarBtnHTML}</div>
                 </TopBar>
-                <div ref="J_Container" className="mainContent">
+                <div ref="J_MainContent" className="mainContent">
                     <div className={styles.mainContentInner}>
                         {infoHTML}
                         {descHTML}

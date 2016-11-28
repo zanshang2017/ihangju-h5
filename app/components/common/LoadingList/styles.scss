@@ -8,9 +8,9 @@
     .loadingBar {
         width: 100%;
         background: $gapBg;
-        padding: 5px 0 15px;
+        padding: 15px 0;
         color: #666;
-        font-size: 14px;
+        font-size: 12px;
         text-align: center;
 
         .noMore {
@@ -19,8 +19,8 @@
     }
 
     .loading {
-        margin-right: rem(20);
-        margin-top: rem(-5);
+        margin-right: 10px;
+        margin-top: -3px;
     }
 }
 
