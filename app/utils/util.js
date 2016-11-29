@@ -312,7 +312,7 @@ function addImageParam(url, sizeTypeStr) {
             url += (sizeTypeStr.indexOf('?') > -1 ? sizeTypeStr : '?' + sizeTypeStr);
         }
 
-        if (localStorage.getItem('isSupportWebp')) {
+        if (localStorage.getItem('isSupportWebp') === 'true') {
             url += ((url.indexOf('?') > -1) ? IMAGE_SIZE_TYPE.WEBP : '?imageMogr2' + IMAGE_SIZE_TYPE.WEBP);
         }
 
@@ -330,8 +330,12 @@ function testSupportWebp(exec) {
     img.onload = img.onerror = function () {
         if (!loaded) {
             loaded = true;
-            exec && exec(img.width === 2 && img.height === 2);
-            window.localStorage && window.localStorage.setItem('isSupportWebp', img.width === 2 && img.height === 2);
+
+            if(img.width === 2 && img.height === 2) {
+                _isSupport = true;
+            }
+            exec && exec(_isSupport);
+            window.localStorage && window.localStorage.setItem('isSupportWebp', _isSupport);
         }
     };
     setTimeout(function () {

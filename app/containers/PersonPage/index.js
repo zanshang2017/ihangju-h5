@@ -122,7 +122,7 @@ class PersonPage extends React.Component { // eslint-disable-line react/prefer-s
                     <div data-title>个人主页</div>
                     <div data-btns>{btns}</div>
                 </TopBar>
-                <div className="mainContent">
+                <div className="mainContent whiteBg">
                     <UserDesc personInfo={personInfo}
                               fansClickHandler={this.fansClickHandler.bind(this)}
                               followsClickHandler={this.followsClickHandler.bind(this)}

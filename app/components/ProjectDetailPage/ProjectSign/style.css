@@ -1,2 +1,72 @@
-.projectSign{width:100%;background-color:#fff;padding:.74667rem;margin-top:.74667rem;border-top:1px solid #ededed;border-bottom:1px solid #ededed}.projectSign .title{color:#000;font-size:.90667rem}.projectSign .salecopyright{font-size:.64rem;overflow:hidden}.projectSign .salecopyright span{display:block;float:left;color:#666;margin-top:.8rem}.projectSign .salecopyright ul{float:right;width:16rem}.projectSign .salecopyright ul li{float:right;color:#39bcc8;background-color:#d2f3f3;padding:.26667rem .8rem;margin-left:.53333rem;margin-top:.53333rem;border-radius:1.06667rem}.projectSign .soldoutcopyright{font-size:.64rem;overflow:hidden}.projectSign .soldoutcopyright span{display:block;float:left;color:#666;margin-top:.8rem}.projectSign .soldoutcopyright ul{float:right;width:13.33333rem}.projectSign .soldoutcopyright ul li{float:right;color:#666;background-color:#f1f1f1;padding:.26667rem .8rem;margin-left:.53333rem;margin-top:.53333rem;border-radius:1.06667rem}.projectSign .salecopyrightstatus{background-color:#f2f2f2;color:#888;font-size:.64rem;margin:.74667rem 0}.projectSign .salecopyrightstatus .salecopyrightstatusText{overflow:hidden;padding:.74667rem .74667rem 0 .74667rem}.projectSign .salecopyrightstatus .salecopyrightstatusText span{display:block;float:left}.projectSign .salecopyrightstatus .salecopyrightstatusText span.salecopyrightstatusTitle{font-size:.58667rem;border:1px solid #c7c7c7;padding:0 .26667rem;border-radius:.26667rem;margin-right:.48rem}.projectSign .salecopyrightstatus .salecopyrightstatusText span.salecopyrightstatusNumber{position:relative;top:.10667rem}.projectSign .salecopyrightstatus .salecopyrightstatusText:last-child{padding-bottom:.74667rem}
+.projectSign {
+  width: 100%;
+  background-color: #fff;
+  padding: 0.74667rem;
+  margin-top: 0.74667rem;
+  border-top: 1px solid #ededed;
+  border-bottom: 1px solid #ededed; }
+  .projectSign .title {
+    color: #000;
+    font-size: 0.90667rem; }
+  .projectSign .salecopyright {
+    font-size: 0.64rem;
+    overflow: hidden; }
+    .projectSign .salecopyright span {
+      display: block;
+      float: left;
+      color: #666;
+      margin-top: 0.8rem; }
+    .projectSign .salecopyright ul {
+      float: right;
+      width: 16rem; }
+      .projectSign .salecopyright ul li {
+        float: right;
+        color: #39bcc8;
+        background-color: #d2f3f3;
+        padding: 0.26667rem 0.8rem;
+        margin-left: 0.53333rem;
+        margin-top: 0.53333rem;
+        border-radius: 1.06667rem; }
+  .projectSign .soldoutcopyright {
+    font-size: 0.64rem;
+    overflow: hidden; }
+    .projectSign .soldoutcopyright span {
+      display: block;
+      float: left;
+      color: #666;
+      margin-top: 0.8rem; }
+    .projectSign .soldoutcopyright ul {
+      float: right;
+      width: 13.33333rem; }
+      .projectSign .soldoutcopyright ul li {
+        float: right;
+        color: #666;
+        background-color: #f1f1f1;
+        padding: 0.26667rem 0.8rem;
+        margin-left: 0.53333rem;
+        margin-top: 0.53333rem;
+        border-radius: 1.06667rem; }
+  .projectSign .salecopyrightstatus {
+    background-color: #f2f2f2;
+    color: #888;
+    font-size: 0.64rem;
+    margin: 0.74667rem 0; }
+    .projectSign .salecopyrightstatus .salecopyrightstatusText {
+      overflow: hidden;
+      padding: 0.74667rem 0.74667rem 0 0.74667rem; }
+      .projectSign .salecopyrightstatus .salecopyrightstatusText span {
+        display: block;
+        float: left; }
+        .projectSign .salecopyrightstatus .salecopyrightstatusText span.salecopyrightstatusTitle {
+          font-size: 0.58667rem;
+          border: 1px solid #c7c7c7;
+          padding: 0 0.26667rem;
+          border-radius: 0.26667rem;
+          margin-right: 0.48rem; }
+        .projectSign .salecopyrightstatus .salecopyrightstatusText span.salecopyrightstatusNumber {
+          position: relative;
+          top: 0.10667rem; }
+    .projectSign .salecopyrightstatus .salecopyrightstatusText:last-child {
+      padding-bottom: 0.74667rem; }
+
 /*# sourceMappingURL=style.css.map */

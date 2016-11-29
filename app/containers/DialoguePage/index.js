@@ -187,7 +187,7 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
 
                 <NoticeBar>当前版本无法查看签约详情,请等待新版行距发布!</NoticeBar>
 
-                <div ref="J_Outer" className={`mainContent`}>
+                <div ref="J_Outer" className={`mainContent whiteBg`}>
                     <div ref="J_Inner">
                         <List items={items} myUserId={this.dialogueData['sendUser']}></List>
                     </div>

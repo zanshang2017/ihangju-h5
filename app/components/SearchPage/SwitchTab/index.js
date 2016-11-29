@@ -20,7 +20,7 @@ export class SwitchTab extends React.Component { // eslint-disable-line react/pr
     render() {
 
         return (
-            <div className={styles.wrap}>
+            <div className={`${styles.wrap} whiteBg`}>
                 <Tabs defaultActiveKey={this.defaultTab} type="capsule" onChange={this.tabSwitchHandler.bind(this)}>
                     <TabPane tab="标签" key="1"></TabPane>
                     <TabPane tab="作品" key="2"></TabPane>

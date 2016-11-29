@@ -75,7 +75,6 @@ export class UserList extends React.Component { // eslint-disable-line react/pre
                                 loadHandler={that.loadHandler.bind(that)}
                                 offset="150">
                 {itemsHtml}
-                <div className="blockGapTag"></div>
             </LoadingList>
         } else {
             list = <div className={styles.noContent}>没有相应的搜索结果</div>

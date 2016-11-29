@@ -37,19 +37,23 @@ class TabBar extends React.Component {
         }, 1000);
     }
 
-
     render() {
-        let tabClass = styles.tabBar;
+        let nNav = this.refs.J_Nav;
+        let tabCls = styles.tabBar;
+        let noTabBarCls = 'none'; //styles.noTabBar;
+        let curPageCls = styles[this.props.curPage] || '';
 
-        if (!this.props.showNav) {
-            tabClass += ' none';
+        if(nNav) {
+            if (!this.props.showNav) {
+                nNav.classList.add(noTabBarCls);
+            }
+
+            curPageCls && nNav.classList.add(curPageCls);
         }
 
-        tabClass += ' ' + (styles[this.props.curPage] || '');
-
         return (
-            <nav id="nav" className={`${tabClass}`}>
-                <ul className="clearfix">
+            <nav id="nav" ref="J_Nav" className={`${tabCls} ${curPageCls}`}>
+                <ul>
                     <li data-hashover="true"><a data-id="/follow" onClick={this.routeHandler.bind(this)}><span
                         className={`${styles.follow}`}></span><strong>关注</strong></a></li>
                     <li data-hashover="true"><a data-id="/found" onClick={this.routeHandler.bind(this)}><span

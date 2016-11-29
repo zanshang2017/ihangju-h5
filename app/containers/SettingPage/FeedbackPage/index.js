@@ -73,18 +73,20 @@ class FeedbackPage extends React.Component { // eslint-disable-line react/prefer
                 <TopBar data-has-back="true">
                     <div data-title>意见反馈</div>
                 </TopBar>
-                <div className={styles.textWrap}>
-                    <div className={`${styles.textFieldWrap} r1b`}>
+                <div className="mainContent whiteBg">
+                    <div className={styles.textWrap}>
+                        <div className={`${styles.textFieldWrap} r1b`}>
                         <textarea ref="J_Content" className={`${styles.textField}`} placeholder="来吐槽一下我们的行距..."
                                   maxLength="150"
                                   defaultValue={this.originDescription || ''}></textarea>
+                        </div>
+                        <p>请留下联系方式以便与您取得联系:</p>
+                        <div className={`${styles.textFieldWrap} r1b`}>
+                            <input type="text" ref="J_Contact" className={styles.contactField} placeholder="手机号/QQ/邮箱"
+                                   maxLength="50"/>
+                        </div>
+                        <Button type="primary" onClick={this.submitClickHandler.bind(this)}>发送</Button>
                     </div>
-                    <p>请留下联系方式以便与您取得联系:</p>
-                    <div className={`${styles.textFieldWrap} r1b`}>
-                        <input type="text" ref="J_Contact" className={styles.contactField} placeholder="手机号/QQ/邮箱"
-                               maxLength="50"/>
-                    </div>
-                    <Button type="primary" onClick={this.submitClickHandler.bind(this)}>发送</Button>
                 </div>
             </div>
         );

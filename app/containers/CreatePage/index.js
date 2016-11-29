@@ -128,7 +128,7 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
 
         return (
             <div className="pageInner">
-                <div ref="J_MainContentWrap" className="mainContent">
+                <div ref="J_MainContentWrap" className="mainContent whiteBg">
                     <Tabs defaultActiveKey="1">
                         <TabPane tab="扫码创作" key="1">
                             <ScanPane userId={this.userId} isAuthor={this.isAuthor}/>
@@ -139,7 +139,7 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
                     </Tabs>
                 </div>
 
-                <div ref="J_EditorWrap" className="mainContent hide">
+                <div ref="J_EditorWrap" className="mainContent whiteBg hide">
                     <NoteEditor ref="J_Editor" note={note}
                                 saveNote={this.saveNoteHandler.bind(this)}
                                 deleteNote={this.deleteNoteHandler.bind(this)}

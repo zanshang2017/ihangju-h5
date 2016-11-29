@@ -53,30 +53,34 @@ class MyTagPage extends React.Component { // eslint-disable-line react/prefer-st
     }
 
     render() {
-        let tags = this.props.tags || [];
+        let tags = this.props.tags;
         let that = this;
 
-        let listHtml = <Result
-            imgUrl="https://o82zr1kfu.qnssl.com/@/image/58131655e4b0edf1e7b90b19.png?imageMogr2/auto-orient/"
-            title="您没有任何管理的标签"
-        />;
+        let listHtml = '';
 
-        if (tags.length > 0) {
-            listHtml = <List>
-                <List.Body>
-                    {
-                        tags.map(function (tag) {
-                            return <List.Item
-                                arrow="horizontal"
-                                key={tag.id}
-                                onClick={that.tagClickHandler.bind(that, tag.id)}
-                            >
-                                <div className={styles.tag}>{tag.name}</div>
-                            </List.Item>
-                        })
-                    }
-                </List.Body>
-            </List>;
+        if (tags) {
+            if (tags.length > 0) {
+                listHtml = <List>
+                    <List.Body>
+                        {
+                            tags.map(function (tag) {
+                                return <List.Item
+                                    arrow="horizontal"
+                                    key={tag.id}
+                                    onClick={that.tagClickHandler.bind(that, tag.id)}
+                                >
+                                    <div className={styles.tag}>{tag.name}</div>
+                                </List.Item>
+                            })
+                        }
+                    </List.Body>
+                </List>;
+            } else {
+                listHtml = <Result
+                    imgUrl="https://o82zr1kfu.qnssl.com/@/image/58131655e4b0edf1e7b90b19.png?imageMogr2/auto-orient/"
+                    title="您没有任何管理的标签"
+                />
+            }
         }
 
         return (

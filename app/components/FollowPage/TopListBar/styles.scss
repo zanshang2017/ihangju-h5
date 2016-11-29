@@ -9,7 +9,7 @@
     width: 100%;
     height: $topBarHeight;
     line-height: $topBarHeight;
-    font-size: rem(32);
+    font-size: 16px;
     background: $topBarBg;
     border-bottom: 1px solid $borderDeepColor;
     z-index: $zIndexL3;
@@ -17,16 +17,16 @@
 
 .title {
     color: $textColor;
-    font-size: rem(32);
+    font-size: 16px;
     text-align: center;
 
     i{
         position: relative;
-        top: rem(4);
+        top: 2px;
         display: inline-block;
-        height: rem(32);
-        width: rem(32);
-        margin-left: rem(12);
+        height: 16px;
+        width: 16px;
+        margin-left: 6px;
         background-repeat: no-repeat;
         background-size: cover;
     }

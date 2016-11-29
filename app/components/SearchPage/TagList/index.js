@@ -48,7 +48,6 @@ export class TagList extends React.Component { // eslint-disable-line react/pref
                          loadHandler={this.loadHandler.bind(this)}
                          offset="350">
                 <ArrowList items={items} icon="iconTag" clickHandler={this.clickHandler.bind(this)}></ArrowList>
-                <div className="blockGapTag"></div>
             </LoadingList>
         } else {
             list = <div className={styles.noContent}>没有相应的搜索结果</div>

@@ -50,7 +50,7 @@ class MainContent extends React.Component {
         let articles = this.props.myFollowData ? this.props.myFollowData.toJS() : [];
         let list = '';
 
-        if (this.page == 0 && articles.length == 0 && this.outer) {
+        if (this.page == 0 && articles.length == 0 && this.outer && !this.props.myFollowLoading) {
             list = <Result
                 imgUrl="https://o82zr1kfu.qnssl.com/@/image/58131646e4b0edf1e7b90b10.png?imageMogr2/auto-orient/"
                 title="还没有文章哦~"

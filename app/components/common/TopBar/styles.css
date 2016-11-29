@@ -3,9 +3,9 @@
   position: relative;
   box-sizing: border-box;
   width: 100%;
-  height: 2.66667rem;
-  line-height: 2.66667rem;
-  font-size: 0.85333rem;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
   background: #fff;
   border-bottom: 1px solid #d9d9d9;
   z-index: 999; }
@@ -14,28 +14,28 @@
   position: absolute;
   left: 0;
   top: -1px;
-  width: 3.36rem;
-  height: 2.66667rem;
+  width: 63px;
+  height: 50px;
   color: #7b8f9d;
   text-align: center; }
   .back i {
     vertical-align: text-bottom;
     position: relative;
-    top: 0.05333rem;
+    top: 1px;
     display: inline-block;
-    height: 1.06667rem;
-    width: 1.06667rem;
+    height: 20px;
+    width: 20px;
     background-repeat: no-repeat;
     background-size: cover; }
 
 .title {
   color: #383b3d;
-  font-size: 0.90667rem;
+  font-size: 17px;
   text-align: center; }
 
 .btns {
   position: absolute;
-  right: 1.33333rem;
+  right: 25px;
   top: 0;
   color: #7b8f9d; }
 

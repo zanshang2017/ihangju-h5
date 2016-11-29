@@ -136,7 +136,6 @@ class ListGroup extends React.Component {
                                      loadHandler={this.loadHandler.bind(this)}
                                      offset="350">
                             {commentHtml}
-                            <div className="blockGapTag"></div>
                         </LoadingList>
                     </TabPane>
                     <TabPane tab="通知" key="2">
@@ -148,7 +147,6 @@ class ListGroup extends React.Component {
                                      loadHandler={this.loadHandler.bind(this)}
                                      offset="350">
                             {messageHtml}
-                            <div className="blockGapTag"></div>
                         </LoadingList>
                     </TabPane>
                 </Tabs>

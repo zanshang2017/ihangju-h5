@@ -9,7 +9,7 @@
     width: 100%;
     height: $topBarHeight;
     line-height: $topBarHeight;
-    font-size: rem(32);
+    font-size: 16px;
     background: $topBarBg;
     border-bottom: 1px solid $borderDeepColor;
     z-index: $zIndexL4;
@@ -19,7 +19,7 @@
     position: absolute;
     left: 0;
     top: -1px;
-    width: rem(126);
+    width: 63px;
     height: $topBarHeight;
     color: $titleColor;
     text-align: center;
@@ -27,10 +27,10 @@
     i {
         vertical-align: text-bottom;
         position: relative;
-        top: rem(2);
+        top: 1px;
         display: inline-block;
-        height: rem(40);
-        width: rem(40);
+        height: 20px;
+        width: 20px;
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -39,13 +39,13 @@
 
 .title {
     color: $textColor;
-    font-size: rem(34);
+    font-size: 17px;
     text-align: center;
 }
 
 .btns {
     position: absolute;
-    right: rem(50);
+    right: 25px;
     top: 0;
     color: $titleColor;
 }

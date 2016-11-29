@@ -86,6 +86,7 @@ class LoadingList extends React.Component {
 
         if (this.props.isLast) {
             if (this.showLastNotice) {
+
                 //条数长度大于一页时才显示此提示,否则隐藏,样式上好看一些
                 if (this.outer && (this.outer.scrollHeight > this.outer.offsetHeight)) {
                     _loadingBar = <div className={styles.loadingBar}><span className={styles.noMore}>没有更多了</span></div>;

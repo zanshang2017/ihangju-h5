@@ -78,7 +78,7 @@
         }
 
         .am-tab-tab-inner {
-            padding: 8px 0 !important;
+            padding: 7px 0 8px !important;
             color: #424447 !important;
         }
     }
@@ -160,6 +160,7 @@
     /** Result **/
     .am-page-result {
         padding-top: 0 !important;
+        padding-bottom: 20px !important;
 
         .am-page-result-pic {
             min-width: 320px !important;

@@ -402,7 +402,7 @@ class ReadContent extends React.Component {
                 </div>
                 <ChapterList ref="J_ChapterList" items={this.props.chapterContent}/>
 
-                <div id="J_ChapterWrap" ref="J_ChapterWrap" className={`${styles.chpWrap} mainContent`}
+                <div id="J_ChapterWrap" ref="J_ChapterWrap" className={`${styles.chpWrap} mainContent whiteBg`}
                      onClick={this.showReadTopbar.bind(this)}>
                     <div id="J_ChapterCont" ref="J_ChapterCont" className={styles.chpCon}
                     >

@@ -23,7 +23,7 @@ function UserDesc(props) {
     }
 
     return (
-        <div className={styles.descWrap}>
+        <div className={`${styles.descWrap} whiteBg`}>
             <div className={styles.row}>
                 <img className={styles.avatar} src={imageSrc}/>
             </div>
