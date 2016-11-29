@@ -56,8 +56,7 @@ class ProjectTag extends React.Component {
 
         var tags = (this._result && this._result.tagArray) || [];
 
-        console.log(tags)
-;
+        
         if (!this._result || (this._result && this._result.size < 1)) {
             tagList = <li>空标签</li>;
         } else {
@@ -72,12 +71,13 @@ class ProjectTag extends React.Component {
 
         if (this._result) {
             _html = <div>
+                <span className={style.title}>标签</span>
                 <ul>
                     {tagList}
                 </ul>
-                <Link to={`/readProjectChapter/${this._result.projectId}/${cid}`}>
+                {/*<Link to={`/readProjectChapter/${this._result.projectId}/${cid}`}>
                     <img className={style.readImg} src={readImgsrc} data-hashover="true"/>
-                </Link>
+                </Link>*/}
             </div>;
         }
 

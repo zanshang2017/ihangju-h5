@@ -7,26 +7,30 @@
 	display: inline-block;
 	width: 100%;
     min-height: rem(100);
-
+	background: $bg;
+	margin-top: rem(28);
+	border-top: 1px solid #ededed;
+	border-bottom: 1px solid #ededed;
+	padding: rem(28);
+	.title{
+		display: block;
+		font-size: rem(34);
+		color: #000;
+	}
 	ul{
-		margin: rem(52) rem(200) 0 rem(48);
 		overflow: hidden;
+		margin: rem(20) 0 rem(38) 0;
 		li{
 			float: left;
-			min-width: rem(86);
-			height: rem(48);
-			font-size: rem(28);
-			color: $weakTextColor;
-			background-color: $tabBg;
-			text-align: center;
-			line-height: rem(48);
-			margin-right: rem(22);
-			margin-top: rem(22);
-			padding: 0 rem(10);
-            border-radius: 2px;
-
+			font-size: rem(26);
+			color: $linkColor;
+			background-color: $bg;
+			padding: rem(8) rem(16);
+            border-radius: rem(8);
+			border: 1px solid $linkColor;
+			margin: rem(18) rem(28) 0 0;
             a {
-                color: $weakTextColor;
+                color: $linkColor;
             }
 		}
 	}
@@ -36,7 +40,7 @@
 		width: rem(140);
 		height: rem(140);
 		right: rem(38);
-		top: rem(10);
+		top: rem(100);
         border-radius: 999px;
 	}
 }

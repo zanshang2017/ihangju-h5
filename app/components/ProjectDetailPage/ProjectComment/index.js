@@ -18,6 +18,12 @@ class ProjectComment extends React.Component {
     render() {
         var _result = this.props.items.toJS();
         let contentList = '';
+        let contentNum = '';
+        if(_result.professionalreviews.length < 1) {
+            contentNum = '0';
+        }else {
+            contentNum = _result.professionalreviews.length;
+        }
         if (!_result.comments) {
             contentList = <li>加载中...</li>
         } else if (_result.professionalreviews.length < 1) {
@@ -39,7 +45,7 @@ class ProjectComment extends React.Component {
                 imageUrl = item.avatar ? addImageParam(IMG_CDN_PATH + item.avatar, IMAGE_SIZE_TYPE.AVATAR_SMALL) : '';
 
                 return <li key={key}>
-                    <div className={style.top}>
+                    {/*<div className={style.top}>
                         <div className={style.name}>
                             <Link to={`/person/${item.authorid}`}>
                                 {
@@ -51,17 +57,34 @@ class ProjectComment extends React.Component {
                         <div className={style.time}>{createTime}</div>
                     </div>
                     <div className={style.content}>
-                        {item.coment}
+                        {item.content}
+                    </div>*/}
+                    <div className={style.left}>
+                        <Link to={`/person/${item.authorid}`}>
+                            {
+                                imageUrl ? <img src={imageUrl}/> : ''
+                            }
+                        </Link>
+                    </div>
+                    <div className={style.right}>
+                        <div className={style.top}>
+                            <span>{item.authorname}</span>
+                            <div className={style.time}>{createTime}</div>
+                        </div>
+                        <div className={style.content}>
+                            {item.coment}
+                        </div>
                     </div>
                 </li>
             })
         }
         return (
             <div className={style.projectComment}>
-                <div className={style.commentNum}>专业点评</div>
+                <div className={style.commentNum}>专业点评<em>({contentNum})</em></div>
                 <ul>
                     {contentList}
                 </ul>
+                {/*<span data-hashover="true" className={style.commentBtn}><Link to={`/comments/${_result.projectId}`}>查看更多评论</Link></span>*/}
             </div>
         )
     }

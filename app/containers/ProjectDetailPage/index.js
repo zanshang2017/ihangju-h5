@@ -14,7 +14,8 @@ import ProjectTag from 'components/ProjectDetailPage/ProjectTag';
 import ProjectIntro from 'components/ProjectDetailPage/ProjectIntro';
 import ProjectComment from 'components/ProjectDetailPage/ProjectComment';
 import ProjectTopBar from 'components/ProjectDetailPage/ProjectTopBar';
-
+import ProjectSign from 'components/ProjectDetailPage/ProjectSign';
+import ProjectFooterBar from 'components/ProjectDetailPage/ProjectFooterBar';
 
 import style from './style.css';
 
@@ -52,11 +53,14 @@ class DetailPage extends React.Component {
         let _data = this.props.projectDetail.toJS();
 
         if (_data.projectId) { //内容下载到时展示
-            _content = <div className="mainContent">
+            _content = <div className="mainContent deepBg">
                 <ProjectDesc {...this.props} />
-                <ProjectTag {...this.props}/>
                 <ProjectIntro items={this.props.projectDetail}/>
+                <ProjectTag {...this.props}/>
+                <ProjectSign {...this.props}/>
                 <ProjectComment items={this.props.projectDetail}/>
+                <p className={style.copyrightText}>版权声明：一切权利归作者／著作权人所有，未经许可，不得转载或以任何商业用途使用。</p>
+                <ProjectFooterBar {...this.props}/>
             </div>;
         }
 

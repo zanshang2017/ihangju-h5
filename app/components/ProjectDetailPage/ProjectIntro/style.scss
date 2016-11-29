@@ -3,9 +3,21 @@
 @import '../../../common/__global.scss';
 
 .prodectIntro{
-	margin: rem(34) rem(48) rem(76);
+	width: 100%;
+	display: inline-block;
 	font-size: rem(34);
 	color: $textColor;
 	line-height: rem(50);
 	white-space: pre-wrap;
+	padding: 0 rem(28) rem(28);
+	color: #666;
+	font-size: rem(30);
+	background: $bg;
+	border-bottom: 1px solid #ededed;
+	.title{
+		display: block;
+		color: #000;
+		font-size: rem(34);
+		margin-bottom: rem(20);
+	}
 }

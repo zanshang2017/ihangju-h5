@@ -4,54 +4,67 @@
 
 .projectComment {
     width: 100%;
+    background-color: $bg;
+    margin-top: rem(28);
+    border-top: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
+    padding: rem(28) 0 rem(28) rem(28);
     .commentNum {
         width: 100%;
-        border-bottom: 1px solid $borderColor;
-        color: $textColor;
+        color: #000;
         font-size: rem(36);
-        padding: 0 0 rem(34) rem(48);
         em{
+            position: relative;
+            top: rem(-4);
             font-style: inherit;
+            font-size: rem(24);
+            margin-right: rem(10);
         }
     }
 
 
-    ul {
-        margin-left: rem(48);
-        li {
-            padding: rem(30) rem(48) rem(30) 0;
-            border-bottom: 1px solid $borderLightColor;
-            .top {
-                overflow: hidden;
-            }
-            .name {
-                float: left;
-                line-height: rem(70);
 
-                img {
-                    display: inline-block;
+    ul {
+        li {
+            margin-top: rem(28);
+            overflow: hidden;
+            .left {
+                float: left;
+                img{
+                    position: relative;
+                    top: rem(10);
                     width: rem(70);
                     height: rem(70);
-                    border-radius: 3px;
-                    vertical-align: middle;
-                }
-                span {
-                    display: inline-block;
-                    margin-left: rem(18);
-                    font-size: rem(28);
-                    color: $titleColor;
+                    border-radius: rem(70);
+
                 }
             }
-            .time {
-                font-size: rem(24);
-                color: #cdcdcd;
-                float: right;
+            .right {
+                margin-left: rem(110);
+                border-bottom: 1px solid $borderLightColor;
+                line-height: rem(44);
+                padding-bottom: rem(28);
+                font-size: rem(26);
+                color: #666;
+                padding-right: rem(28);
+                padding-top: rem(8);
+                .top {
+                    .time{
+                        float: right;
+                        font-size: rem(24);
+                        color: #999;
+                    }
+                }
+                .content{
+                    color: #333;
+                    font-size: rem(34);
+                }
             }
-            .content {
-                margin-top: rem(30);
-                font-size: rem(34);
-                color: $textColor;
-                line-height: rem(54);
+
+        }
+        li:last-child {
+            .right {
+                border-bottom: none;
             }
         }
     }
