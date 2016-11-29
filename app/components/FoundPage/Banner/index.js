@@ -22,7 +22,7 @@ function Banner(props) {
 
     return (
         <div className={styles.banner}>
-            <Carousel>
+            <Carousel autoplay="true" infinite="true" autoplayInterval="5000">
                 {
                     props.items.map(function (item, key) {
                         imageSrc = addImageParam(IMG_CDN_PATH + item.image, IMAGE_SIZE_TYPE.BANNER_IMAGE);

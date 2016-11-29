@@ -406,8 +406,8 @@ class ReadContent extends React.Component {
                      onClick={this.showReadTopbar.bind(this)}>
                     <div id="J_ChapterCont" ref="J_ChapterCont" className={styles.chpCon}
                     >
-                        <div ref="J_PreviourPull" className={styles.toPreviourPageNotice}><i
-                            className={`${styles.loading} iconLoading`}></i>加载上一章
+                        <div ref="J_PreviourPull" className={styles.toPreviourPageNoticeWrap}>
+                            <div className={styles.toPreviourPageNotice}><i className={`${styles.loading} iconLoading`}></i>加载上一章</div>
                         </div>
 
                         <div ref="_authorMes" className={`${styles.authorMes} hide`}>

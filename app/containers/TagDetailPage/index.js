@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import { hashHistory } from 'react-router'
 import {connect} from 'react-redux';
 
 import {createSelector} from 'reselect';
@@ -124,8 +125,8 @@ class TagDetailPage extends React.Component { // eslint-disable-line react/prefe
     }
 
     backHandler() {
-        window.history.back();
         this.props.dispatch(setEditing(false));
+        hashHistory.goBack();
     }
 
     componentWillMount() {

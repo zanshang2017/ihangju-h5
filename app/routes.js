@@ -745,7 +745,7 @@ export default function createRoutes(store) {
             name: 'feedbackPage',
             getComponent(nextState, cb) {
 
-                if (!beforeGetComponent(true , '/setting/feedback')) {
+                if (!beforeGetComponent(true, '/setting/feedback')) {
                     return;
                 }
 
@@ -934,40 +934,6 @@ export default function createRoutes(store) {
                 store.dispatch(showNav());
             }
         }, {
-            path: '/demo',
-            name: 'demoPage',
-            getComponent(nextState, cb) {
-
-                beforeGetComponent(false);
-
-                const importModules = Promise.all([
-                    System.import('containers/DemoPage/reducer'),
-                    System.import('containers/DemoPage/sagas'),
-                    System.import('containers/DemoPage')
-                ]);
-
-                const renderRoute = loadModule(cb);
-
-                importModules.then(([reducer, sagas, component]) => {
-                    if (!initedStatus.demoPage) {
-                        injectReducer('demoPage', reducer.default);
-                        injectSagas(sagas.default);
-                        initedStatus.demoPage = true;
-                    }
-
-                    renderRoute(component);
-                });
-
-                importModules.catch(errorLoading);
-            },
-            onEnter: function () {
-                //store.dispatch(hideNav());
-                routeEffector.autoSet(); //进入页面时设置路由切换效果
-            },
-            onLeave: function () {
-                //store.dispatch(showNav());
-            }
-        }, {
             path: '/follow_recommendation',
             name: 'followRecommendationPage',
             getComponent(nextState, cb) {
@@ -1005,15 +971,42 @@ export default function createRoutes(store) {
             onLeave: function () {
             }
         }, {
-            path: '/bridgeTest',
-            name: 'bridgeTest',
+            path: '/search',
+            name: 'searchPage',
             getComponent(nextState, cb) {
-                System.import('containers/BridgeTestPage')
-                    .then(loadModule(cb))
-                    .catch(errorLoading);
+
+                beforeGetComponent(false);
+
+                const importModules = Promise.all([
+                    System.import('containers/SearchPage/reducer'),
+                    System.import('containers/SearchPage/sagas'),
+                    System.import('containers/SearchPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.searchPage) {
+                        injectReducer('searchPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.searchPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/search(/:keywords)'
+                    });
+                });
             },
             onEnter: function () {
+                store.dispatch(hideNav());
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
+            },
+            onLeave: function () {
+                store.dispatch(showNav());
             }
         }, {
             path: '/projectDetail/:id',
@@ -1115,6 +1108,51 @@ export default function createRoutes(store) {
             },
             onEnter: function () {
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
+            }
+        }, {
+            path: '/bridgeTest',
+            name: 'bridgeTest',
+            getComponent(nextState, cb) {
+                System.import('containers/BridgeTestPage')
+                    .then(loadModule(cb))
+                    .catch(errorLoading);
+            },
+            onEnter: function () {
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            }
+        }, {
+            path: '/demo',
+            name: 'demoPage',
+            getComponent(nextState, cb) {
+
+                beforeGetComponent(false);
+
+                const importModules = Promise.all([
+                    System.import('containers/DemoPage/reducer'),
+                    System.import('containers/DemoPage/sagas'),
+                    System.import('containers/DemoPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.demoPage) {
+                        injectReducer('demoPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.demoPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                //store.dispatch(hideNav());
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            },
+            onLeave: function () {
+                //store.dispatch(showNav());
             }
         }
     ];

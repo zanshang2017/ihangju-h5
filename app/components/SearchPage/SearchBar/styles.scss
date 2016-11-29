@@ -1,0 +1,68 @@
+@charset "UTF-8";
+@import "../../../common/_global.scss";
+@import "../../../common/_util.scss";
+
+.wrap {
+    text-align: center;
+    @include flexBox();
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    -ms-flex-pack: center;
+    justify-content: flex-start;
+
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: $topBarHeight;
+    line-height: $topBarHeight;
+    font-size: rem(32);
+    background: $topBarBg;
+    border-bottom: 1px solid $borderDeepColor;
+    z-index: $zIndexL4;
+
+    .searchInputWrap {
+        font-size: 16px;
+        color: $deepTextColor;
+        padding: rem(15) 0 rem(15) rem(15);
+        @include flexBox();
+        -webkit-box-flex: 1;
+        flex: 1;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        align-items: flex-start;
+        -webkit-justify-content: flex-start;
+        justify-content: space-around;
+
+        .searchInput {
+            width: 100%;
+            border: 1px solid #e7e7e7;
+            border-radius: 50px;
+            background-color: #fff;
+            background-repeat: no-repeat;
+            background-size: 1em;
+            padding: rem(10) rem(10) rem(10) 0;
+            line-height: 1.2em;
+
+            background-position: 11px center;
+            text-indent: 31px;
+
+            &::-webkit-input-placeholder {
+                color: #7a797b;
+            }
+
+            &.editing {
+                background-position: 11px center !important;
+                text-indent: 31px !important;
+            }
+        }
+    }
+
+    .backBtn {
+        @include flexBox();
+        width: rem(130);
+        text-align: center;
+    }
+
+}
+
+

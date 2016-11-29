@@ -2,9 +2,7 @@ import React from 'react';
 
 import CatelogList from 'components/common/CatelogList';
 
-// import styles from './styles.css';
-// import Tabs from 'antd-mobile/lib/tabs';
-// const TabPane = Tabs.TabPane;
+import styles from './styles.css';
 
 class MainContent extends React.Component {
 
@@ -12,14 +10,26 @@ class MainContent extends React.Component {
         super(props);
     }
 
+    componentDidMount() {
+    }
+
+    searchBtnHandler() {
+        this.context.router.push(`/search`);
+    }
+
     render() {
         return (
-            <div id="J_FoundPageMainContentWrap" className="foundPageMainContent">
-                {/*<Tabs defaultActiveKey="1">*/}
-                    {/*<TabPane tab="分类" key="1">*/}
-                        {/*<CatelogList items={this.props.tags || []} refreshHandler={this.props.refresh}/>*/}
-                    {/*</TabPane>*/}
-                {/*</Tabs>*/}
+            <div id="J_FoundPageMainContentWrap" className={styles.foundPageMainContent}>
+                <div className={styles.navBar}>
+                    <div className={styles.title}>
+                        <span>分类</span>
+                    </div>
+                    <div ref="J_SearchBtn" className={styles.searchBtn} data-hashover="true"
+                         onClick={this.searchBtnHandler.bind(this)}>
+                        <div className={`iconSearch ${styles.searchIcon}`}></div>
+                    </div>
+                </div>
+
                 <CatelogList items={this.props.tags || []} refreshHandler={this.props.refresh}/>
             </div>
         );
@@ -31,6 +41,10 @@ MainContent.propTypes = {
         React.PropTypes.array,
         React.PropTypes.object
     ])
+};
+
+MainContent.contextTypes = {
+    router: React.PropTypes.object.isRequired
 };
 
 export default MainContent;
