@@ -93,20 +93,37 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
     loadCameraFileHandler(imgData) {
         var that = this;
 
-        // if (this._cameraFile.files.length === 0) {
-        //     return;
-        // }
-        //
-        // var oFile = this._albumFile.files[0];
+        if (this._cameraFile.files.length === 0) {
+            return;
+        }
+
+        var oFile = this._cameraFile.files[0];
         // alert('获取文件成功');
 
-        // uploadImage(oFile).then(function (imgUrl) {
-        uploadImage(imgData).then(function (imgUrl) {
+        Toast.loading('上传中,请稍后...', 30);
+
+        uploadImage(oFile).then(function (imgUrl) {
+        // uploadImage(imgData).then(function (imgUrl) {
             console.log('上传成功!' + imgUrl);
+
+            try {
+                Toast.hide();
+            }catch(e){
+            }
+
+            Toast.success('上传成功!', 2);
+
             that.props.onUploadComplete && that.props.onUploadComplete(imgUrl);
         }, function (error) {
             console.log('上传失败!');
+            try {
+                Toast.hide();
+            }catch(e){
+            }
+
+            Toast.fail('上传失败,请检查网络!', 3);
             that.props.onUploadError && that.props.onUploadError(error);
+
         });
         // this._fileReader.readAsDataURL(oFile);
     }
@@ -118,7 +135,7 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
 
     showSheet() {
         let that = this;
-        // const BUTTONS = ['拍照', '从相册选取', '取消'];
+        const BUTTONS = ['拍照', '从相册选取', '取消'];
         // const BUTTONS = ['从相册选取', '取消'];
 
         ActionSheet.showActionSheetWithOptions({
@@ -130,16 +147,16 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
             },
             (buttonIndex) => {
                 switch (buttonIndex) {
-                    // case 0:
-                    //     that.showCameraSelector();
-                    //     break;
-                    // case 1:
-                    //     that.showAlbumSelector();
-                    //     break;
-
                     case 0:
+                        that.showCameraSelector();
+                        break;
+                    case 1:
                         that.showAlbumSelector();
                         break;
+
+                    // case 0:
+                    //     that.showAlbumSelector();
+                    //     break;
 
                     default:
                         break;
@@ -157,14 +174,13 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
     }
 
     showCameraSelector() {
-        var that = this;
-        // this._cameraFile.dispatchEvent(new MouseEvent('click'));
+        this._cameraFile.dispatchEvent(new MouseEvent('click'));
 
-        bridge.sys.camera(function (data) {
-            //console.log(data.code, data.resp.substr(0, 100));
+        // bridge.sys.camera(function (data) {
+        //     console.log(data.code, data.resp.substr(0, 100));
             // alert(data.resp.substr(0, 100));
-            that.loadCameraFileHandler(data.resp);
-        });
+            // that.loadCameraFileHandler(data.resp);
+        // });
 
     }
 

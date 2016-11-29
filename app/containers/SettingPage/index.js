@@ -21,26 +21,26 @@ import {
 import TopBar from 'components/common/TopBar';
 import List from 'antd-mobile/lib/list';
 
+import secretMenu from 'utils/secretMenu';
+
 class SettingPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
         super(props);
         this.tapCount = 0;
+        this.tapCountTimeout = null;
     }
 
     componentWillMount() {
     }
 
     componentDidMount() {
-        var that = this;
+        secretMenu.doListen(this.refs.J_Version);
         console.warn('SettingPage DidMount');
+    }
 
-        // this.refs.J_Wrap.addEventListener('touchstart', function () {
-        //     that.tapCount++;
-        //     if (that.tapCount > 15) {
-        //         that.tapCount = 0;
-        //     }
-        // });
+    componentWillUnmount() {
+        secretMenu.removeListen();
     }
 
     render() {
@@ -95,7 +95,7 @@ class SettingPage extends React.Component { // eslint-disable-line react/prefer-
                         </List.Body>
                     </List>
 
-                    <div className={styles.version}>
+                    <div ref="J_Version" className={styles.version}>
                         <p>版本:{Env.VERSION}_{Env.shell}</p>
                     </div>
 
