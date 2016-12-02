@@ -24,14 +24,12 @@
         width: 1.38667rem;
         height: 1.28rem;
         box-sizing: content-box;
-        background: url(https://o82zr1kfu.qnssl.com/@/image/57fcb811e4b0a46776e0d39c.png) 0.34667rem top no-repeat;
+        background: url(https://o82zr1kfu.qnssl.com/@/image/57fcb811e4b0a46776e0d39c.png) 0.34667rem center no-repeat #fff;
         background-size: 1.22667rem 1.22667rem;
         position: absolute;
         top: 0.16rem;
         right: 0.13333rem;
-        color: #fff;
-        margin: 0.18667rem;
-        padding-left: 0.26667rem;
+        padding: 0.18667rem 0.18667rem 0.18667rem 0.45333rem;
         border-left: 1px solid #f5f5f5; }
   .wrap .mask {
     width: 100%;

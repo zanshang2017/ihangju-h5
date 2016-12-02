@@ -33,14 +33,12 @@
                 width: rem(52);
                 height: rem(48);
                 box-sizing: content-box;
-                background: url(https://o82zr1kfu.qnssl.com/@/image/57fcb811e4b0a46776e0d39c.png) rem(13) top no-repeat;
+                background: url(https://o82zr1kfu.qnssl.com/@/image/57fcb811e4b0a46776e0d39c.png) rem(13) center no-repeat #fff;
                 background-size: rem(46) rem(46);
                 position:absolute;
                 top: rem(6);
                 right: rem(5);
-                color: #fff;
-                margin: rem(7);
-                padding-left: rem(10);
+                padding:rem(7) rem(7) rem(7) rem(17);
                 border-left: 1px solid $deepBg;
             }
 

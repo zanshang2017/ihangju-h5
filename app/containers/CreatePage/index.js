@@ -86,9 +86,9 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
     }
 
     backFromNote() {
-        this.props.dispatch(showNav());
         this.J_EditorWrap.classList.add('hide');
         this.nMainContent.classList.remove('hide');
+        this.props.dispatch(showNav());
     }
 
     saveNoteHandler(id, content) {

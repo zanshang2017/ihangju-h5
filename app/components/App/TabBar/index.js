@@ -46,6 +46,8 @@ class TabBar extends React.Component {
         if(nNav) {
             if (!this.props.showNav) {
                 nNav.classList.add(noTabBarCls);
+            } else {
+                nNav.classList.remove(noTabBarCls);
             }
 
             curPageCls && nNav.classList.add(curPageCls);

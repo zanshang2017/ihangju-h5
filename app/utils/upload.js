@@ -18,8 +18,6 @@ function uploadImage(fileData) {
         _reject = reject;
     });
 
-    alert('upload')
-
     request(IMG_UPLOAD_TOKEN_API, {
         headers: {
             'Accept': 'application/json',
@@ -28,7 +26,6 @@ function uploadImage(fileData) {
         },
         credentials: 'include'
     }).then((resp) => {
-        alert('fetch token!');
 
         if (resp.err === undefined || resp.err === null) {
             if (resp.data.uptoken) {
