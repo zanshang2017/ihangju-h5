@@ -41,7 +41,7 @@ class InputBar extends React.Component {
     }
 
     componentWillUpdate(props) {
-        if (props.placeholder) {
+        if (props.placeholder && this.refs.J_Input.value.length == 0) {
             this.refs.J_Input.value = '';
             this.refs.J_Input.focus();
         }
