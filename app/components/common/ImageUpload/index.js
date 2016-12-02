@@ -135,8 +135,8 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
 
     showSheet() {
         let that = this;
-        const BUTTONS = ['拍照', '从相册选取', '取消'];
-        // const BUTTONS = ['从相册选取', '取消'];
+        // const BUTTONS = ['拍照', '从相册选取', '取消'];
+        const BUTTONS = ['从相册选取', '取消'];
 
         ActionSheet.showActionSheetWithOptions({
                 options: BUTTONS,
@@ -147,16 +147,16 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
             },
             (buttonIndex) => {
                 switch (buttonIndex) {
-                    case 0:
-                        that.showCameraSelector();
-                        break;
-                    case 1:
-                        that.showAlbumSelector();
-                        break;
-
                     // case 0:
+                    //     that.showCameraSelector();
+                    //     break;
+                    // case 1:
                     //     that.showAlbumSelector();
                     //     break;
+
+                    case 0:
+                        that.showAlbumSelector();
+                        break;
 
                     default:
                         break;

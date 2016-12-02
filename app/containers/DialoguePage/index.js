@@ -170,6 +170,7 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
         Toast.loading('发送中...');
         this.dialogueData.content = content;
         this.props.dispatch(sendDialogueData(this.letterGroupId, _.clone(this.dialogueData)));
+
     }
 
     render() {

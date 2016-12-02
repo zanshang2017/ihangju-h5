@@ -58,7 +58,9 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
             id: '',
             name: '',
             type: '',
-        }
+        };
+
+        this.componentMethod = {};
     }
 
     componentWillMount() {
@@ -90,6 +92,12 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
         signals.sendCommentSuccess.removeAll();
         signals.sendCommentError.removeAll();
         this.props.dispatch(resetStates());
+
+        for (var k in this.componentMethod) {
+            if (this.componentMethod.hasOwnProperty(k)) {
+                delete this.componentMethod[k];
+            }
+        }
     }
 
     // 发送成功之后重置输入栏
@@ -162,6 +170,7 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
         Toast.loading('发送中...');
         this.replyData.content = content;
         this.props.dispatch(sendCommentsData(_.clone(this.replyData)));
+        this.componentMethod['clear'] && this.componentMethod['clear']();
     }
 
     render() {
@@ -188,7 +197,9 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
                                 clickReportHandler={this.clickReportHandler.bind(this)}
                     ></FloatTools>
                 </div>
-                <InputBar placeholder={this.props.placeholder} submitHandler={this.submitHandler.bind(this)}></InputBar>
+                <InputBar bindingMethod={{context: this.componentMethod, methodName: ['clear']}}
+                          placeholder={this.props.placeholder}
+                          submitHandler={this.submitHandler.bind(this)}></InputBar>
             </div>
         );
     }
