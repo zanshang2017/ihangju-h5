@@ -3,6 +3,10 @@ import {connect} from 'react-redux';
 import {createSelector} from 'reselect';
 
 import {
+    selectUserInfo
+} from 'containers/App/selectors';
+
+import {
     selectDetail,
     selectDetailResult,
     selectDetailProjectChapter,
@@ -87,12 +91,14 @@ class DetailPage extends React.Component {
 }
 
 const mapStateToProps = createSelector(
+    selectUserInfo(),
     selectDetailResult(),
     selectDetailProjectChapter(),
     selectProjectCopyright(),
     selectShareData(),
-    (projectDetail, projectDetailChapter, projectCopyright, shareData) => {
+    (userInfo, projectDetail, projectDetailChapter, projectCopyright, shareData) => {
         return {
+            userInfo,
             projectDetail,
             projectDetailChapter,
             projectCopyright,

@@ -23,6 +23,7 @@ class ProjectFooterBar extends React.Component {
     }
 
     componentWillMount() {
+        this.userInfo = this.props.userInfo.toJS();
         signals.loadCopyrightSuccess.add(this.onCopyrightLoaded.bind(this));
     }
 
@@ -139,7 +140,9 @@ class ProjectFooterBar extends React.Component {
 
     }
 
-    signedWords() {
+    goSignPanel() {
+        let that = this;
+
         Modal.alert('去认证', '通过服务商认证后，您才可以购买版权', [
             {
                 text: '再想想',
@@ -151,6 +154,7 @@ class ProjectFooterBar extends React.Component {
                 text: '去认证',
                 onPress: function () {
                     console.log('去认证');
+                    that.context.router.push(`/selectService/${that.userInfo.id}`);
                 }
             },
         ]);
@@ -162,7 +166,7 @@ class ProjectFooterBar extends React.Component {
         } else if (this.isAccessUserIdentify) {
             Toast.info('您已认证为作者,无法申请服务商认证', 2.5);
         } else {
-            this.signedWords();
+            this.goSignPanel();
         }
     }
 
@@ -206,6 +210,10 @@ class ProjectFooterBar extends React.Component {
         )
     }
 }
+
+ProjectFooterBar.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 export default ProjectFooterBar;
 

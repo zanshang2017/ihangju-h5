@@ -256,7 +256,7 @@ class App extends React.Component {
                     okText="去完善"
                     onClick={()=> {
                         that.refs.J_AuthenticationNoticePanel.hide();
-                        that.context.router.replace('/found');
+                        that.context.router.replace(`/authorAttest/${this.userInfo.id}`);
                     }}
                 />
 
