@@ -1,0 +1,72 @@
+@charset "UTF-8";
+@import "../../common/__global.scss";
+@import "../../common/__util.scss";
+
+.authorAttest {
+	position: relative;
+	.title {
+		font-size: rem(30);
+		padding-left: rem(32);
+		padding-top: rem(20);
+	}
+	.IDcard {
+		position: relative;
+		.cardImg {
+			position: relative;
+			margin: rem(54) rem(54) 0;
+			background-color: #fff;
+			height: rem(396);
+			text-align: center;
+			.bgImg{
+				img {
+					width: rem(412);
+					padding: rem(44) 0;
+				}
+				span {
+					display: block;
+					font-size: rem(32);
+					color: #666;
+				}
+			}
+			.cardFrontImg {
+				i {
+					position: absolute;
+					left: rem(20);
+					top: rem(40);
+					display:inline-block; 
+					width:rem(40); 
+					height:rem(4); 
+					background:#e1dede; 
+					font-size:0; 
+					line-height:0;
+					vertical-align:middle;
+					-webkit-transform: rotate(45deg);
+				}
+				i:after { 
+					content:'.'; 
+					display:block; 
+					width:rem(40); 
+					height:rem(4); 
+					background:#e1dede;
+					-webkit-transform: rotate(-90deg)
+				}
+				img{
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					z-index: 2;
+					width: rem(472);
+					height: rem(300);
+					margin-left: rem(-236);
+					margin-top: rem(-150);
+				}
+			}
+		}
+	}
+	.footerText {
+		text-align: center;
+		margin: rem(54) 0 ;
+		font-size: rem(24);
+		color: #a2a2a3;
+	}
+}

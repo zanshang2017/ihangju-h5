@@ -1,0 +1,16 @@
+@charset "UTF-8";
+@import "../../../common/_global.scss";
+@import "../../../common/_util.scss";
+
+.attestErrAlert {
+	width: 100%;
+	text-align: center;
+	position: fixed;
+	top: $topBarHeight;
+	font-size: rem(36);
+	background-color: #d8270f;
+	color: #fff;
+	z-index: $zIndexL4;
+	line-height: rem(84); 
+
+}

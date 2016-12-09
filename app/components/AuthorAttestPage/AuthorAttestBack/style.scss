@@ -1,0 +1,47 @@
+@charset 'UTF-8';
+@import '../../../common/__util.scss';
+@import '../../../common/__global.scss';
+
+.backBg{
+	position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, .5);
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    .layerCon{
+    	position: absolute;
+    	width: rem(640);
+    	top: 50%;
+    	left: 50%;
+    	background-color: $bg;
+    	margin-left: rem(-320);
+    	margin-top: rem(-140);
+    	text-align: center;
+    	font-size: rem(36);
+    	border-radius: rem(10);
+    	.topText{
+			line-height: rem(140);
+			padding: rem(20) rem(20);
+            height: rem(140);
+			color: #2a2b2c;
+            font-size: rem(36);
+    	}
+    	.btnList{
+    		border-top: 1px solid $borderColor;
+    		span{
+    			display: block;
+    			width: 50%;
+    			float: left;
+                line-height: rem(100);
+                font-size: rem(40);
+                color: #0e76f3;
+    			&.btnLeft{
+    				border-right: 1px solid $borderColor;
+                    color: #f9112c;
+    			}
+    		}
+    	}
+    }
+}

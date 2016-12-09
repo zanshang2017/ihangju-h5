@@ -515,6 +515,16 @@ const IDENTIFY_AUTH_API = `${api_scheme}//${api_host}/identityauthentication`;
  */
 const SEARCH_API = `${api_scheme}//${api_host}/search`;
 
+/**
+ * 作者认证接口
+ * http://192.168.1.33:8888/identityauthentication/profile/57a98caae4b0c25e9b71d8f9
+*/
+
+const AUTHORATTEST_API = `${api_scheme}//${api_host}/identityauthentication/profile/`;
+
+const UPDATE_SERVICEPERSONAL_API = `${api_scheme}//${api_host}/identityauthentication/individual`;
+const UPDATE_SERVICEAGENCY_API = `${api_scheme}//${api_host}/identityauthentication/agency`;
+const UPDATE_AUTHOR_API = `${api_scheme}//${api_host}/identityauthentication/author`;
 
 export {
     IMG_CDN_PATH,
@@ -570,5 +580,10 @@ export {
 
     IDENTIFY_AUTH_API,
     SEARCH_API,
+
+    AUTHORATTEST_API,
+    UPDATE_SERVICEPERSONAL_API,
+    UPDATE_SERVICEAGENCY_API,
+    UPDATE_AUTHOR_API
 };
 
