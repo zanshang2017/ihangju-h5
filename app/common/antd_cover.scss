@@ -85,12 +85,31 @@
 
     /** Button **/
     .am-button {
+        background: #eee !important;
+        color: #b8b8b8 !important;
+        font-size: 18px;
+
+        &:after {
+            border-color: transparent !important;
+        }
+
         &.am-button-primary {
             background: $linkColor !important;
+            color: #fff !important;
 
             &:after {
                 border-color: transparent !important;
             }
+
+            &:active {
+                background: white !important;
+            }
+        }
+
+        &.am-button-ghost {
+            color: $linkColor !important;
+            border: 1px solid $linkColor !important;
+            background-color: transparent !important;
         }
 
         border-top-left-radius: 30px !important;
@@ -98,6 +117,11 @@
         border-bottom-left-radius: 30px !important;
         border-bottom-right-radius: 30px !important;
     }
+
+
+
+
+
 
     /** List **/
     .am-list {
@@ -143,8 +167,15 @@
 
     /** NoticeBar **/
     .am-top-notice {
-        background-color: #f0fafb !important;
-        color: #3a3a3a !important;
+        background-color: #effbfa !important;
+        color: #3a3a3b !important;
+        border-bottom: 1px solid $borderLightColor !important;
+        font-size: 14px !important;
+
+        .am-top-notice-content {
+            margin-left: 14px !important;
+            margin-right: 14px !important;
+        }
     }
 
     /** action-sheet **/
@@ -182,6 +213,20 @@
         input[type="checkbox"]:checked + .checkbox {
             background-color: #000 !important;
         }
+    }
+
+    /** Modal **/
+    .am-modal {
+        .am-modal-button-group-h {
+            .am-modal-button {
+                color: $linkColor !important;
+            }
+        }
+    }
+
+    /** Toast **/
+    .am-toast {
+        z-index: 1999;
     }
 
 }

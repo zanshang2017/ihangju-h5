@@ -515,6 +515,28 @@ const IDENTIFY_AUTH_API = `${api_scheme}//${api_host}/identityauthentication`;
  */
 const SEARCH_API = `${api_scheme}//${api_host}/search`;
 
+/**
+ * 获取版权列表接口
+ */
+const AGREEMENTS_API = `${api_scheme}//${api_host}/user/project/agreements`;
+
+/**
+ * 版权申请
+ *
+ * restful:
+ *  [PUT]: 提交签约申请
+ *  [PUT]: /${agreementId} 同意签约
+ *  [DELETE]: /${agreementId} 拒绝签约
+ */
+const AGREEMENT_API = `${api_scheme}//${api_host}/agreement`;
+
+/**
+ * 版权操作
+ * @restful:
+ *  [GET] 获取同指定用户间待处理的版权列表 /${userId}
+ *  [GET] 获取同指定用户的版权状态 /${userId}/status
+ */
+const AGREEMENT_PROFILE_API = `${api_scheme}//${api_host}/agreement/profile`;
 
 export {
     IMG_CDN_PATH,
@@ -570,5 +592,9 @@ export {
 
     IDENTIFY_AUTH_API,
     SEARCH_API,
+
+    AGREEMENTS_API,
+    AGREEMENT_API,
+    AGREEMENT_PROFILE_API,
 };
 

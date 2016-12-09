@@ -15,6 +15,11 @@
     z-index: $zIndexL4;
 }
 
+.barTopGap {
+    height: 20px;
+    background: $topBarBg;
+}
+
 .back {
     position: absolute;
     left: 0;

@@ -1,0 +1,85 @@
+.wrap {
+  position: relative;
+  height: 98%;
+  margin: 0 0.26667rem 10px;
+  border: 1px solid #dbd7d7;
+  border-width: 0 1px;
+  background: #fff; }
+  .wrap .projectInfo {
+    padding: 14px 0;
+    margin: 0 14px;
+    border-bottom: 1px dashed #dbd7d7; }
+    .wrap .projectInfo h4 {
+      font-size: 17px;
+      padding-bottom: 14px;
+      font-weight: 300; }
+    .wrap .projectInfo span {
+      font-size: 14px;
+      color: #50c6cf; }
+  .wrap .copyrights {
+    padding: 14px 14px 10px; }
+    .wrap .copyrights .purview {
+      clear: both;
+      padding: 0 0 0 0.13333rem;
+      font-size: 14px;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-align: center;
+      -moz-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -moz-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -ms-flex-align: stretch;
+      align-items: stretch;
+      -ms-flex-pack: center;
+      justify-content: flex-start; }
+      .wrap .copyrights .purview .iconAuthorizationCfg {
+        background-position: left center;
+        background-repeat: no-repeat;
+        display: inline-block;
+        padding-left: 1.44rem;
+        height: 1.17333rem;
+        line-height: 1.17333rem;
+        vertical-align: middle;
+        background-size: 1.17333rem 1.17333rem;
+        margin-right: 0.34667rem; }
+      .wrap .copyrights .purview ul {
+        -webkit-box-flex: 1;
+        flex: 1;
+        text-align: right; }
+        .wrap .copyrights .purview ul li {
+          display: inline-block;
+          background: #eee;
+          height: 20px;
+          line-height: 20px;
+          font-size: 12px;
+          color: #7d786a;
+          padding: 0 10px;
+          margin: 0 0 5px 8px;
+          border-radius: 10px; }
+  .wrap .leavewordsWrap {
+    border-top: 1px solid #dbd7d7;
+    padding: 18px 0.74667rem; }
+    .wrap .leavewordsWrap textarea.leavewords {
+      width: 100%;
+      min-height: 15em;
+      border: none;
+      font-size: 18px;
+      color: #000; }
+
+.bottomLine {
+  margin: -10px 0.26667rem 0;
+  height: 4px;
+  box-sizing: border-box;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAECAYAAACzzX7wAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGBJREFUeNpiOHDg1M9///79xwZ+/fr9n4mBgWHuoUNn/gIVMSCDz5+/Mhw7dv41SEENEE+8c+cRw5cv3xiAGhnevv3A8ODBU5C6MkagFTBNaUCcA8RaQAwSbALiHQABBgBwd0DS4oslsQAAAABJRU5ErkJggg==) left bottom repeat-x #fff;
+  border-right: 1px solid #dbd7d7; }
+
+/*# sourceMappingURL=styles.css.map */

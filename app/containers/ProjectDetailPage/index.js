@@ -6,9 +6,11 @@ import {
     selectDetail,
     selectDetailResult,
     selectDetailProjectChapter,
+    selectProjectCopyright,
     selectShareData,
 } from './selectors';
 
+import LoadingBar from 'components/common/LoadingBar';
 import ProjectDesc from 'components/ProjectDetailPage/ProjectDesc';
 import ProjectTag from 'components/ProjectDetailPage/ProjectTag';
 import ProjectIntro from 'components/ProjectDetailPage/ProjectIntro';
@@ -22,8 +24,10 @@ import style from './style.css';
 import {
     loadProjectDetailData,
     loadProjectChapterData,
+    loadProjectCopyrightData,
     setShareData,
     resetState,
+    resetCopyright,
 } from './actions';
 
 import Toast from 'antd-mobile/lib/toast';
@@ -32,20 +36,27 @@ import Toast from 'antd-mobile/lib/toast';
 /* eslint-disable react/prefer-stateless-function */
 class DetailPage extends React.Component {
     componentWillMount() {
-        // Toast.loading('加载中...', 3);
-
         if (this.props.routeParams) {
             var id = this.props.routeParams.id;
-            // this.props.dispatch(loadProjectDetailData(id || null));
             this.props.loadProjectDetail(id || null);
         }
     }
 
     componentDidMount() {
+        this.isGotoAgreementLeavewords = false;
     }
 
     componentWillUnmount() {
-        this.props.dispatch(resetState());
+        if (!this.isGotoAgreementLeavewords) {
+            this.props.dispatch(resetState());
+        } else {
+            this.props.dispatch(resetCopyright());
+        }
+    }
+
+    submitAgreementHandler() {
+        this.isGotoAgreementLeavewords = true;
+        this.context.router.push(`/projectDetail/${this.props.routeParams.id}/agreementLeavewords`);
     }
 
     render() {
@@ -60,8 +71,10 @@ class DetailPage extends React.Component {
                 <ProjectSign {...this.props}/>
                 <ProjectComment items={this.props.projectDetail}/>
                 <p className={style.copyrightText}>版权声明：一切权利归作者／著作权人所有，未经许可，不得转载或以任何商业用途使用。</p>
-                <ProjectFooterBar {...this.props}/>
+                <ProjectFooterBar {...this.props} submitAgreement={this.submitAgreementHandler.bind(this)} />
             </div>;
+        } else {
+            _content = <LoadingBar />;
         }
 
         return (
@@ -76,11 +89,13 @@ class DetailPage extends React.Component {
 const mapStateToProps = createSelector(
     selectDetailResult(),
     selectDetailProjectChapter(),
+    selectProjectCopyright(),
     selectShareData(),
-    (projectDetail, projectDetailChapter, shareData) => {
+    (projectDetail, projectDetailChapter, projectCopyright, shareData) => {
         return {
             projectDetail,
             projectDetailChapter,
+            projectCopyright,
             shareData
         }
     }
@@ -94,11 +109,18 @@ function mapDispatchToProps(dispatch) {
         loadChapter: (id) => {
             dispatch(loadProjectChapterData(id || null))
         },
+        loadProjectCopyrightData: function () {
+            dispatch(loadProjectCopyrightData(this.routeParams.id || null));
+        },
         setShareStatus: (shareData) => {
             dispatch(setShareData(shareData))
         },
         dispatch,
     };
 }
+
+DetailPage.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailPage);

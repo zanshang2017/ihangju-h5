@@ -19,6 +19,8 @@ import {
     SEND_DIALOGUE_DATA_SUCCESS,
     SEND_DIALOGUE_DATA_ERROR,
 
+    GET_AGREEMENT_STATUS_SUCCESS,
+
     SET_DIALOGUE_DATA_STATUS,
     RESET_STATE,
 
@@ -33,9 +35,10 @@ const initialState = fromJS({
         data: false,
         page: 0,
         isLast: false,
-        loading: false,
+        loading: true,
         sending: false,
-    })
+    }),
+    agreementStatus: false
 });
 
 function DialoguePageReducer(state = initialState, action = {}) {
@@ -66,6 +69,9 @@ function DialoguePageReducer(state = initialState, action = {}) {
             dialogueData = action.payload.dialogueData;
             let insertedData = state.getIn(['dialogue', 'data']).unshift(fromJS(dialogueData));
             return state.setIn(['dialogue', 'data'], insertedData);
+
+        case GET_AGREEMENT_STATUS_SUCCESS:
+            return state.set('agreementStatus', fromJS(action.payload.data));
 
         case SEND_DIALOGUE_DATA_ERROR:
             return state.setIn(['dialogue', 'sending'], false);

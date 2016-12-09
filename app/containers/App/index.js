@@ -19,7 +19,8 @@ import {
 import {Env} from 'utils/env.js';
 
 import {
-    compareVersion
+    compareVersion,
+    isLogin,
 } from 'utils/util.js'
 
 import {
@@ -29,7 +30,8 @@ import {
 import signals from './signals';
 
 import {
-    loadLocalStorageUserInfo
+    loadLocalStorageUserInfo,
+    loadUserInfo,
 } from './actions.js';
 
 import {
@@ -71,6 +73,8 @@ import {
     locStorage
 } from 'utils/util';
 
+import ImageWithDescPanel from 'components/common/ImageWithDescPanel';
+
 /* eslint-disable react/prefer-stateless-function */
 class App extends React.Component {
 
@@ -80,30 +84,32 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
+        this.hasOpenedAuthenticationPanel = false;
     }
 
-    compareVersionShowGuidePage() {
+    compareVersionToShowGuidePage() {
         let cur = __APP_CONFIG.ver || '';
         let old = locStorage.get('version');
         let lastShowGuideVer = __APP_CONFIG.guide.ver; //需要展示guide的版本,>=此版本号&&未展示过的都需要展示guide。
 
         locStorage.set('version', cur);
 
-        // alert('old:' + old + ' cur:' + cur);
-        // alert('lastShowGuideVer:' + lastShowGuideVer);
-
         //检测版本号,展示引导页
         if ((!old && lastShowGuideVer) || (cur !== old && compareVersion(lastShowGuideVer, old) > 0)) {
             this.context.router.push('/guide');
+            return true;
         }
+
+        return false;
     }
 
     componentWillMount() {
-        this.props.dispatch(loadLocalStorageUserInfo());
+        // this.props.dispatch(loadLocalStorageUserInfo());
+        this.props.dispatch(loadUserInfo());
     }
 
     componentDidMount() {
-        this.compareVersionShowGuidePage();
+        this.compareVersionToShowGuidePage();
 
         if (Env.debug) {
             openLog();
@@ -114,11 +120,12 @@ class App extends React.Component {
 
         debugLog('UA:' + navigator.userAgent);
 
-        this.addSignalHandler();
+        this.addSignalHandler(); //添加全局事件处理
 
-        feedbackLog.doListen();
+        feedbackLog.doListen(); //侦听反馈日志
 
         console.log('App DidMount');
+
 
         //emulate hover
         (function () {
@@ -206,12 +213,22 @@ class App extends React.Component {
     }
 
     render() {
+        let that = this;
         let pageClass;
 
         if (this.props.showNav) {
             pageClass = 'page';
         } else {
             pageClass = 'pageNoNav';
+        }
+
+        if (this.props.userInfo) {
+            this.userInfo = this.props.userInfo.toJS();
+
+            if (this.userInfo.openidentityauthentication && !this.hasOpenedAuthenticationPanel) {
+                this.refs.J_AuthenticationNoticePanel.show();
+                this.hasOpenedAuthenticationPanel = true;
+            }
         }
 
         return (
@@ -229,11 +246,25 @@ class App extends React.Component {
                         })}
                     </ReactCSSTransitionGroup>
                 </div>
+                <TabBar showNav={this.props.showNav} curPage={this.props.curPage || ''}/>
+
+                <ImageWithDescPanel
+                    ref="J_AuthenticationNoticePanel"
+                    image="https://o82zr1kfu.qnssl.com/@/image/5848cefae4b05c2d3be5390a.png?imageView2/2/w/300"
+                    title="服务商想签你的作品"
+                    desc="需要完善信息认证，才能完成签约"
+                    okText="去完善"
+                    onClick={()=> {
+                        that.refs.J_AuthenticationNoticePanel.hide();
+                        that.context.router.replace('/found');
+                    }}
+                />
+
                 <div id="logPanel" className="logPanel none unfold">
                     <a href="javascript:void(0);" className="btn" id="toggle">打开/关闭</a>
                     <div className="content"></div>
                 </div>
-                <TabBar showNav={this.props.showNav} curPage={this.props.curPage || ''}/>
+
             </div>
         );
     }

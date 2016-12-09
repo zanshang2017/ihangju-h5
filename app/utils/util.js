@@ -302,6 +302,8 @@ const IMAGE_SIZE_TYPE = {
     TAG_IMAGE: '?imageMogr2/quality/70',
     BANNER_IMAGE: '?imageMogr2/quality/75',
 
+    PROJ_COVER: '?imageMogr2/thumbnail/140x184/quality/70',
+
     WEBP: '/format/webp',
 };
 
@@ -365,6 +367,11 @@ function goBackHelper(handler) {
     }
 }
 
+//登录用户会写入locstorage
+function isLogin() {
+    return !!JSON.parse(locStorage.get('userInfo'));
+}
+
 export {
     getUrlParam,
     convertDate,
@@ -378,4 +385,5 @@ export {
     testSupportWebp,
     addImageParam,
     goBackHelper,
+    isLogin,
 };

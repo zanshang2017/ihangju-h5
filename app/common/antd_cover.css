@@ -10,7 +10,9 @@
   /** NoticeBar **/
   /** action-sheet **/
   /** Result **/
-  /** Switch **/ }
+  /** Switch **/
+  /** Modal **/
+  /** Toast **/ }
   :global .am-tab .am-tab-content {
     padding: 0 !important; }
   :global .am-tab .am-tab-bar {
@@ -41,14 +43,26 @@
     padding: 7px 0 8px !important;
     color: #424447 !important; }
   :global .am-button {
+    background: #eee !important;
+    color: #b8b8b8 !important;
+    font-size: 18px;
     border-top-left-radius: 30px !important;
     border-top-right-radius: 30px !important;
     border-bottom-left-radius: 30px !important;
     border-bottom-right-radius: 30px !important; }
+    :global .am-button:after {
+      border-color: transparent !important; }
     :global .am-button.am-button-primary {
-      background: #39bcc8 !important; }
+      background: #39bcc8 !important;
+      color: #fff !important; }
       :global .am-button.am-button-primary:after {
         border-color: transparent !important; }
+      :global .am-button.am-button-primary:active {
+        background: white !important; }
+    :global .am-button.am-button-ghost {
+      color: #39bcc8 !important;
+      border: 1px solid #39bcc8 !important;
+      background-color: transparent !important; }
   :global .am-list {
     margin: 0.53333rem 0 !important;
     padding: 0 !important; }
@@ -67,8 +81,13 @@
       :global .am-list .am-list-item .am-list-line .am-list-content {
         font-size: 0.85333rem !important; }
   :global .am-top-notice {
-    background-color: #f0fafb !important;
-    color: #3a3a3a !important; }
+    background-color: #effbfa !important;
+    color: #3a3a3b !important;
+    border-bottom: 1px solid #f5f5f5 !important;
+    font-size: 14px !important; }
+    :global .am-top-notice .am-top-notice-content {
+      margin-left: 14px !important;
+      margin-right: 14px !important; }
   :global .am-action-sheet .am-action-sheet-title {
     margin: 12px auto 6px !important; }
   :global .am-action-sheet .am-action-sheet-message {
@@ -88,5 +107,9 @@
       margin-top: 15px !important; }
   :global .am-switch input[type="checkbox"]:checked + .checkbox {
     background-color: #000 !important; }
+  :global .am-modal .am-modal-button-group-h .am-modal-button {
+    color: #39bcc8 !important; }
+  :global .am-toast {
+    z-index: 1999; }
 
 /*# sourceMappingURL=antd_cover.css.map */

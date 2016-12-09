@@ -9,6 +9,7 @@ import {connect} from 'react-redux';
 import {createSelector} from 'reselect';
 import {
     selectDialogue,
+    selectAgreementStatus,
 } from './selectors';
 
 import {
@@ -19,6 +20,7 @@ import {
     loadDialogueData,
     sendDialogueData,
     getLetterGroupId,
+    getAgreementStatus,
     resetState,
 } from './actions';
 
@@ -27,6 +29,10 @@ import _ from 'underscore';
 import {
     goBottom
 } from '../../utils/util';
+
+import {
+    AGREEMENT_STATUS
+} from './constants';
 
 import styles from './styles.css';
 
@@ -48,6 +54,7 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
         this.letterGroupId = '';
         this.timer = null;
         this.componentMethod = {};
+        this.providerId = '';
 
         // 评论信息的数据结构:
         //    "sendUser": "571dab71e4b0d50d21e7a9fc",
@@ -82,12 +89,14 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
             if (~paramId.indexOf(':')) { //有":"代表为groupId,否则为userId,需要请求服务端获取
                 this.letterGroupId = paramId;
                 this.loadDialogueList();
+                this.loadAgreementStatus(paramId);
             } else { //否则是userId,须从后台获取groupId
                 this.props.dispatch(getLetterGroupId(paramId));
 
                 signals.getLetterGroupIdSuccess.add((letterGroupId)=> {
                     that.letterGroupId = letterGroupId;
                     that.loadDialogueList();
+                    this.loadAgreementStatus(letterGroupId);
                 });
             }
         }
@@ -155,6 +164,21 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
         }
     }
 
+    loadAgreementStatus(groupId) {
+        let userId = this.dialogueData['sendUser'];
+
+        if (groupId) {
+            //从groupId中解析出对方id
+            let groups = groupId.split(':');
+            this.providerId = groups[0] === userId ? groups[1] : groups[0];
+            this.props.dispatch(getAgreementStatus(this.providerId));
+        }
+    }
+
+    gotoAgreementDetail() {
+        this.context.router.push(`/agreement/detail/${this.providerId}`);
+    }
+
     scrollToBottom() {
         setTimeout(function () {
             goBottom(this.refs.J_Outer, this.refs.J_Inner);
@@ -175,10 +199,21 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
 
     render() {
         let dialogue = this.props.dialogue ? this.props.dialogue.toJS() : {};
+        let agreementStatus = this.props.agreementStatus ? this.props.agreementStatus.toJS() : false;
         let items = dialogue.data ? dialogue.data.reverse() : []; //反序展示
         // let page = dialogue.page || 0;
         // let isLast = dialogue.isLast || false;
         // let loading = dialogue.loading || false;
+        let _noticeHtml = '';
+
+        if (agreementStatus && agreementStatus.result && agreementStatus.result.laststatus != '') {
+            let _status = AGREEMENT_STATUS[agreementStatus.result.laststatus] || {};
+            _noticeHtml = <NoticeBar>
+                <div className="fl">{_status.desc}</div>
+                <div className="fr" onClick={this.gotoAgreementDetail.bind(this)}>详情<i className="anticon anticon-right"></i></div>
+            </NoticeBar>;
+        }
+
 
         return (
             <div ref="J_Wrap" className='pageInner'>
@@ -186,11 +221,13 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
                     <div data-title>私信</div>
                 </TopBar>
 
-                <NoticeBar>当前版本无法查看签约详情,请等待新版行距发布!</NoticeBar>
+                <div ref="J_NoticeBarWrap" className={`${styles.noticeBarWrap}`}>
+                    {_noticeHtml}
+                </div>
 
                 <div ref="J_Outer" className={`mainContent whiteBg`}>
                     <div ref="J_Inner">
-                        <List items={items} myUserId={this.dialogueData['sendUser']}></List>
+                        <List items={items} myUserId={dialogue['sendUser']} loading={dialogue['loading']}></List>
                     </div>
                 </div>
 
@@ -216,5 +253,7 @@ function mapDispatchToProps(dispatch) {
 export default connect(createSelector(
     selectUserInfo(),
     selectDialogue(),
-    (userInfo, dialogue) => ({userInfo, dialogue})
+    selectAgreementStatus(),
+    (userInfo, dialogue, agreementStatus) => ({userInfo, dialogue, agreementStatus})
 ), mapDispatchToProps)(DialoguePage);
+

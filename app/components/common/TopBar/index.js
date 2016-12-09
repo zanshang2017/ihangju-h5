@@ -33,6 +33,7 @@ class TopBar extends React.Component {
 
         var that = this;
         var _style = {};
+        var barTopGapHtml = '';
 
         if (Array.isArray(this.props.children)) {
             this.props.children.map(function (child) {
@@ -54,12 +55,21 @@ class TopBar extends React.Component {
             _style = this.props['data-style'];
         }
 
+        // 增加头部空白,兼容ios
+        // if (1) {
+        //     barTopGapHtml = <div className={styles.barTopGap}></div>;
+        // }
+
         return (
-            <div className={`${styles.bar}`} style={_style}>
-                {backBtn}
-                <div className={styles.title}>{this.title}</div>
-                <div className={styles.btns}>{this.btns}</div>
+            <div>
+                {barTopGapHtml}
+                <div className={`${styles.bar} ${styles.bar_ios}`} style={_style}>
+                    {backBtn}
+                    <div className={styles.title}>{this.title}</div>
+                    <div className={styles.btns}>{this.btns}</div>
+                </div>
             </div>
+
         );
     }
 }

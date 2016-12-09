@@ -2,24 +2,10 @@
 @import "../../common/__global.scss";
 @import "../../common/__util.scss";
 
-
-.listWrap {
-    padding: rem(10) 0;
-    color: $weakerTitleColor !important;
-
+.noticeBarWrap {
     i {
-        padding-right: rem(26);
-        font-size: rem(36);
+        padding-left: 4px;
+        font-size: 12px;
     }
 }
-
-.iconColored {
-    color: $linkColor !important;
-}
-
-.weakText {
-    color: $weakerTitleColor !important;
-}
-
-
 

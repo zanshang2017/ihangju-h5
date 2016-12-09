@@ -37,4 +37,30 @@
     right: 0;
     top: 25%; }
 
+.copyrightTitle {
+  text-align: left;
+  text-indent: 1.17333rem;
+  font-size: 18px;
+  color: #000; }
+
+.copyrightCloseBtn {
+  color: #a09e98;
+  margin-right: 15px; }
+
+.copyrightWrap {
+  clear: both;
+  padding: 1.17333rem; }
+  .copyrightWrap .copyrightBtns button {
+    background: #eee;
+    height: 44px;
+    line-height: 44px;
+    padding: 0 16px;
+    color: #b8b8b8;
+    font-size: 18px;
+    margin: 0 18px 18px 0;
+    border-radius: 30px; }
+    .copyrightWrap .copyrightBtns button.selected {
+      background: #39bcc8 !important;
+      color: #fff !important; }
+
 /*# sourceMappingURL=style.css.map */

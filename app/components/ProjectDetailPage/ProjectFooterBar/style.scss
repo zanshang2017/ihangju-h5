@@ -31,7 +31,6 @@
 		    &.read{
 				background: url(https://o82zr1kfu.qnssl.com/@/image/58355b81e4b0d2bddbe2ab94.png?imageView2/2/w/300) center no-repeat;
 			    background-size: cover;
-				
 			}
 			&.signWork{
 				background: url(https://o82zr1kfu.qnssl.com/@/image/58355bade4b0d2bddbe2abb6.png?imageView2/2/w/300) center no-repeat;
@@ -48,4 +47,42 @@
 	    right: 0;
 	    top: 25%;
 	}
+
+}
+
+
+.copyrightTitle {
+    text-align: left;
+    text-indent: rem(44);
+    font-size: 18px;
+    color: $deepTextColor;
+}
+
+.copyrightCloseBtn {
+    color: $weakerTitleColor;
+    margin-right: 15px;
+}
+
+.copyrightWrap {
+    clear:both;
+    padding:rem(44);
+
+    .copyrightBtns {
+        button {
+            background: #eee;
+            height: 44px;
+            line-height: 44px;
+            padding: 0 16px;
+            color: #b8b8b8;
+            font-size: 18px;
+            margin: 0 18px 18px 0;
+            border-radius: 30px;
+
+            &.selected {
+                background: $linkColor !important;
+                color: #fff !important;
+            }
+
+        }
+    }
 }

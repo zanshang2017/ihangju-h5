@@ -72,7 +72,8 @@ import createRoutes from './routes';
 import {foo} from 'utils/upload.js';
 
 import {
-    testSupportWebp
+    testSupportWebp,
+    isLogin,
 } from 'utils/util';
 
 testSupportWebp();
@@ -80,12 +81,19 @@ testSupportWebp();
 // alert('dpr:' + window.devicePixelRatio + ' w:' + document.documentElement.clientWidth + ' h:' + document.documentElement.clientHeight);
 // alert(navigator.userAgent);
 
+
 //路由配置
 const rootRoute = {
     path: '/',
     component: App,
     indexRoute: {
-        onEnter: (nextState, replace) => replace('/found') //根路径重定向
+        onEnter: (nextState, replace) => {
+            if(isLogin()) {
+                replace('/follow');
+            } else {
+                replace('/found');
+            }
+        } //根路径重定向
         // onEnter: (nextState, replace) => replace('/guide') //根路径重定向
     },
     childRoutes: createRoutes(store),

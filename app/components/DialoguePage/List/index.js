@@ -13,6 +13,7 @@ import {
 
 import {convertDate} from '../../../utils/util.js';
 
+import LoadingBar from 'components/common/LoadingBar';
 import Result from 'antd-mobile/lib/page-result';
 
 
@@ -57,7 +58,7 @@ class List extends React.Component {
 
     render() {
         let that = this;
-        this.loading = this.props.loading;
+        this.loading = this.props.loading || false;
         this.items = this.props.items ? this.props.items : [];
         this.myUserId = this.props.myUserId || 0;
         let len = this.checkItemLength(this.items);
@@ -117,10 +118,15 @@ class List extends React.Component {
                 }
             })
         } else {
-            _html = <Result
-                imgUrl="https://o82zr1kfu.qnssl.com/@/image/58131655e4b0edf1e7b90b19.png?imageMogr2/auto-orient/"
-                title="还没有私信哦~"
-            />
+            if (this.loading) {
+                _html = <LoadingBar />;
+            } else {
+                _html = <Result
+                    imgUrl="https://o82zr1kfu.qnssl.com/@/image/58131655e4b0edf1e7b90b19.png?imageMogr2/auto-orient/"
+                    title="还没有私信哦~"
+                />
+            }
+
         }
 
         return (

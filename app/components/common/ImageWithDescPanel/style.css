@@ -1,0 +1,47 @@
+.completePersonal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999; }
+  .completePersonal .layerCon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #fff;
+    width: 17.22667rem;
+    height: 19.84rem;
+    margin-left: -8.61333rem;
+    margin-top: -9.92rem;
+    border-radius: 8px;
+    text-align: center; }
+    .completePersonal .layerCon .topImg {
+      height: 10.82667rem;
+      background-color: #f7f7f7;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px; }
+      .completePersonal .layerCon .topImg img {
+        position: relative;
+        top: 1.06667rem;
+        width: 11.04rem; }
+    .completePersonal .layerCon .centerText {
+      padding: 1.06667rem 0 1.06667rem; }
+      .completePersonal .layerCon .centerText span {
+        display: block; }
+        .completePersonal .layerCon .centerText span.text1 {
+          font-size: 1.28rem;
+          color: #333; }
+        .completePersonal .layerCon .centerText span.text2 {
+          font-size: 0.8rem;
+          color: #bcbab5; }
+    .completePersonal .layerCon .footerBtn {
+      width: 14.53333rem;
+      height: 2.4rem;
+      margin: 0 auto;
+      line-height: 2.4rem;
+      font-size: 0.96rem;
+      color: #000;
+      border: 1px solid #000;
+      border-radius: 0.53333rem; }
+
+/*# sourceMappingURL=style.css.map */

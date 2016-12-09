@@ -20,7 +20,7 @@ export default function configureStore(initialState = {}, history = null) {
   //redux config
   const middlewares = [
     sagaMiddleware, // redux-sagas
-    routerMiddleware(history), //用于路由同步state
+    routerMiddleware(history), //路由同步
   ];
 
   const enhancers = [

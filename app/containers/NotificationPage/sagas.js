@@ -51,7 +51,7 @@ export function* getCommentList() {
         if (lists) {
             if (lists.err === undefined || lists.err === null) {
                 if (lists.data.result) {
-                    if (lists.data.result && lists.data.result.length < 10) {
+                    if (lists.data.result.length < 10) {
                         yield [put(loadCommentListSuccess(lists.data, page)), put(setCommentListStatus({isLast: true}))];
                     } else {
                         yield put(loadCommentListSuccess(lists.data, page));
@@ -90,8 +90,12 @@ export function* getMessageList() {
         });
 
         if (lists.err === undefined || lists.err === null) {
-            if (lists.data.result && lists.data.result.length > 0) {
-                yield put(loadMessageListSuccess(lists.data, page));
+            if (lists.data.result) {
+                if (lists.data.result.length < 10) {
+                    yield [put(loadMessageListSuccess(lists.data, page)), put(setMessageListStatus({isLast: true}))];
+                } else {
+                    yield put(loadMessageListSuccess(lists.data, page));
+                }
             } else {
                 if (lists.data.result && lists.data.result.length < 10) {
                     yield put(setMessageListStatus({isLast: true}));

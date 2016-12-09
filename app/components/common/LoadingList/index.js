@@ -7,6 +7,8 @@ import React from 'react';
 
 import _ from 'underscore';
 
+import LoadingBar from 'components/common/LoadingBar';
+
 /* eslint-disable react/prefer-stateless-function */
 class LoadingList extends React.Component {
 
@@ -93,8 +95,7 @@ class LoadingList extends React.Component {
                 }
             }
         } else {
-            _loadingBar = <div className={styles.loadingBar}><i className={`${styles.loading} iconLoading`}></i>加载中
-            </div>;
+            _loadingBar = <LoadingBar padding="15px 0"/>;
         }
 
         return (

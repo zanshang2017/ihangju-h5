@@ -18,6 +18,9 @@ import {
     GET_LETTERGROUP_ID_SUCCESS,
     GET_LETTERGROUP_ID_ERROR,
 
+    GET_AGREEMENT_STATUS,
+    GET_AGREEMENT_STATUS_SUCCESS,
+
     SET_DIALOGUE_DATA_STATUS,
     RESET_STATE,
 } from './constants';
@@ -103,6 +106,25 @@ export function getLetterGroupIdError(error) {
         }
     };
 }
+
+export function getAgreementStatus(providerUserId) {
+    return {
+        type: GET_AGREEMENT_STATUS,
+        payload: {
+            providerUserId
+        }
+    };
+}
+
+export function getAgreementStatusSuccess(data) {
+    return {
+        type: GET_AGREEMENT_STATUS_SUCCESS,
+        payload: {
+            data
+        }
+    }
+}
+
 
 
 export function sendDialogueDataError(error) {

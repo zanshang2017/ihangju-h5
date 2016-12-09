@@ -14,6 +14,8 @@ import styles from './styles.css';
 import TopBar from 'components/DemoPage/TopBar'
 import DemoList from 'components/DemoPage/DemoList'
 
+import Button from 'antd-mobile/lib/button';
+
 import {
     delItem,
     loadList
@@ -37,8 +39,10 @@ export class DemoPage extends React.Component { // eslint-disable-line react/pre
 
         return (
             <div className={`${pageInnerClass} ${styles.demoPage}`}>
-                <TopBar items={this.props.items} delItemHandler={this.delItemHandler}/>
-                <DemoList items={this.props.listItems}></DemoList>
+                {/*<TopBar items={this.props.items} delItemHandler={this.delItemHandler}/>*/}
+                {/*<DemoList items={this.props.listItems}></DemoList>*/}
+                <Button type="primary">哈哈</Button>
+                <Button type="primary" ghost>哈哈</Button>
             </div>
         );
     }

@@ -1,0 +1,9 @@
+@import url(../../../common/common.css);
+.listWrap {
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.74667rem 0.74667rem 0; }
+
+/*# sourceMappingURL=styles.css.map */

@@ -15,7 +15,12 @@ import {
   LOAD_PROJECTCHAPTER_DATA_SUCCESS,
   LOAD_PROJECTCHAPTER_DATA_ERROR,
 
-  SET_SHARE_DATA,
+    LOAD_PROJECT_COPYRIGHT_DATA,
+    LOAD_PROJECT_COPYRIGHT_DATA_SUCCESS,
+    LOAD_PROJECT_COPYRIGHT_DATA_ERROR,
+
+    SET_SHARE_DATA,
+    RESET_COPYRIGHT,
     RESET_STATE,
 } from './constants';
 
@@ -87,6 +92,35 @@ export function loadProjectChapterDataError(error){
   }
 }
 
+export function loadProjectCopyrightData(id = null) {
+    let data = {
+        type: LOAD_PROJECT_COPYRIGHT_DATA,
+        payload: {}
+    };
+    if (id) {
+        data.payload.id = id;
+    }
+    return data;
+}
+
+export function loadProjectCopyrightDataSuccess(data) {
+    return {
+        type: LOAD_PROJECT_COPYRIGHT_DATA_SUCCESS,
+        payload: {
+            data: data
+        }
+    }
+}
+
+export function loadProjectCopyrightDataError(error) {
+    return {
+        type: LOAD_PROJECT_COPYRIGHT_DATA_ERROR,
+        payload: {
+            error: error
+        }
+    }
+}
+
 export function setShareData(shareData){
 
   return {
@@ -102,3 +136,10 @@ export function resetState() {
         type: RESET_STATE,
     };
 }
+
+export function resetCopyright() {
+    return {
+        type: RESET_COPYRIGHT,
+    };
+}
+

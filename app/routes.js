@@ -1009,6 +1009,114 @@ export default function createRoutes(store) {
                 store.dispatch(showNav());
             }
         }, {
+            path: '/agreements',
+            name: 'agreementsPage',
+            getComponent(nextState, cb) {
+
+                beforeGetComponent(false);
+
+                const importModules = Promise.all([
+                    System.import('containers/AgreementsPage/reducer'),
+                    System.import('containers/AgreementsPage/sagas'),
+                    System.import('containers/AgreementsPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.agreementsPage) {
+                        injectReducer('agreementsPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.agreementsPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/agreements'
+                    });
+                });
+            },
+            onEnter: function () {
+                store.dispatch(hideNav());
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            },
+            onLeave: function () {
+                store.dispatch(showNav());
+            }
+        }, {
+            path: '/agreement/detail/:id',
+            name: 'agreementDetailPage',
+            getComponent(nextState, cb) {
+
+                beforeGetComponent(false);
+
+                const importModules = Promise.all([
+                    System.import('containers/AgreementDetailPage/reducer'),
+                    System.import('containers/AgreementDetailPage/sagas'),
+                    System.import('containers/AgreementDetailPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.agreementDetailPage) {
+                        injectReducer('agreementDetailPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.agreementDetailPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/agreement/detail/:id'
+                    });
+                });
+            },
+            onEnter: function () {
+                store.dispatch(hideNav());
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            },
+            onLeave: function () {
+                store.dispatch(showNav());
+            }
+        }, {
+            path: '/projectDetail/:id/agreementLeavewords',
+            name: 'agreementLeavewordsPage',
+            getComponent(nextState, cb) {
+
+                beforeGetComponent(false);
+
+                const importModules = Promise.all([
+                    System.import('containers/ProjectDetailPage/reducer'), //使用详情页数据
+                    System.import('containers/ProjectDetailPage/sagas'), //使用详情页saga
+                    System.import('containers/ProjectDetailPage/AgreementLeavewordsPage/'),
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    renderRoute(component);
+                });
+
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/projectDetail/:id/agreementLeavewords'
+                    });
+                });
+            },
+            onEnter: function () {
+                store.dispatch(hideNav());
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            },
+            onLeave: function () {
+                store.dispatch(showNav());
+            }
+        }, {
             path: '/projectDetail/:id',
             name: 'projectDetail',
             getComponent(nextState, cb) {
@@ -1104,41 +1212,41 @@ export default function createRoutes(store) {
         //         routeEffector.autoSet(); //进入页面时设置路由切换效果
         //     }
         // }
-        // , {
-        //     path: '/demo',
-        //     name: 'demoPage',
-        //     getComponent(nextState, cb) {
-        //
-        //         beforeGetComponent(false);
-        //
-        //         const importModules = Promise.all([
-        //             System.import('containers/DemoPage/reducer'),
-        //             System.import('containers/DemoPage/sagas'),
-        //             System.import('containers/DemoPage')
-        //         ]);
-        //
-        //         const renderRoute = loadModule(cb);
-        //
-        //         importModules.then(([reducer, sagas, component]) => {
-        //             if (!initedStatus.demoPage) {
-        //                 injectReducer('demoPage', reducer.default);
-        //                 injectSagas(sagas.default);
-        //                 initedStatus.demoPage = true;
-        //             }
-        //
-        //             renderRoute(component);
-        //         });
-        //
-        //         importModules.catch(errorLoading);
-        //     },
-        //     onEnter: function () {
-        //         //store.dispatch(hideNav());
-        //         routeEffector.autoSet(); //进入页面时设置路由切换效果
-        //     },
-        //     onLeave: function () {
-        //         //store.dispatch(showNav());
-        //     }
-        // }
+        , {
+            path: '/demo',
+            name: 'demoPage',
+            getComponent(nextState, cb) {
+
+                beforeGetComponent(false);
+
+                const importModules = Promise.all([
+                    System.import('containers/DemoPage/reducer'),
+                    System.import('containers/DemoPage/sagas'),
+                    System.import('containers/DemoPage')
+                ]);
+
+                const renderRoute = loadModule(cb);
+
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.demoPage) {
+                        injectReducer('demoPage', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.demoPage = true;
+                    }
+
+                    renderRoute(component);
+                });
+
+                importModules.catch(errorLoading);
+            },
+            onEnter: function () {
+                //store.dispatch(hideNav());
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            },
+            onLeave: function () {
+                //store.dispatch(showNav());
+            }
+        }
         , {
             path: '*',
             name: 'notfound',

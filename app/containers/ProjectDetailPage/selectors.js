@@ -16,6 +16,12 @@ const selectDetailProjectChapter = () =>createSelector(
 	selectDetailDomain(),
   	(projectDetailState) => projectDetailState.get('projectDetailChapter')
 );
+
+const selectProjectCopyright = () =>createSelector(
+    selectDetailDomain(),
+    (projectDetailState) => projectDetailState.get('projectCopyright')
+);
+
 const selectShareData = () => createSelector(
 	selectDetailDomain(),
   	(projectDetailState) => projectDetailState.get('shareData')
@@ -26,6 +32,7 @@ export {
   selectDetailDomain,
   selectDetailResult,
   selectDetailProjectChapter,
+  selectProjectCopyright,
   selectShareData,
 };
 

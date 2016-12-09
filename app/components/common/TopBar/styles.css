@@ -10,6 +10,10 @@
   border-bottom: 1px solid #d9d9d9;
   z-index: 999; }
 
+.barTopGap {
+  height: 20px;
+  background: #fff; }
+
 .back {
   position: absolute;
   left: 0;

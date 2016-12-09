@@ -12,10 +12,16 @@ const selectDialogue = () => createSelector(
     (DialoguePageState) => DialoguePageState.get('dialogue')
 );
 
+const selectAgreementStatus = () => createSelector(
+    selectDialoguePageDomain(),
+    (DialoguePageState) => DialoguePageState.get('agreementStatus')
+);
+
 export default selectDialoguePage;
 export {
     selectDialoguePageDomain,
     selectDialogue,
+    selectAgreementStatus,
 };
 
 

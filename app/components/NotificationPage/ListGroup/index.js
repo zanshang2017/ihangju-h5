@@ -101,11 +101,17 @@ class ListGroup extends React.Component {
         /></div>;
 
         if (this.props.commentList) {
-            commentHtml = <CommentList {...this.props} items={this.props.commentList || []}/>;
+            let cl = this.props.commentList.toJS();
+            if (cl.length > 0) {
+                commentHtml = <CommentList {...this.props} items={this.props.commentList || []}/>;
+            }
         }
 
         if (this.props.messageList) {
-            messageHtml = <MessageList {...this.props} items={this.props.messageList || []}/>;
+            let ml = this.props.messageList.toJS();
+            if (ml.length > 0) {
+                messageHtml = <MessageList {...this.props} items={this.props.messageList || []}/>;
+            }
         }
 
         let status = '';

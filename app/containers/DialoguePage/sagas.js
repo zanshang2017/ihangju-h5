@@ -4,6 +4,7 @@ import {
     LOAD_DIALOGUE_DATA,
     SEND_DIALOGUE_DATA,
     GET_LETTERGROUP_ID,
+    GET_AGREEMENT_STATUS,
 } from './constants';
 
 import {
@@ -13,10 +14,12 @@ import {
     sendDialogueDataError,
     getLetterGroupIdSuccess,
     getLetterGroupIdError,
+    getAgreementStatusSuccess,
 } from './actions'
 
 import {
     DIALOGUE_API,
+    AGREEMENT_PROFILE_API,
 } from '../../apis.js';
 
 import signals from './signals';
@@ -29,6 +32,7 @@ export default [
     getDialogueData,
     putDialogueData,
     getUserGroupData,
+    getAgreementStatus,
 ];
 
 export function* getDialogueData() {
@@ -131,6 +135,33 @@ export function* getUserGroupData() {
                 console.log(lists.err); // eslint-disable-line no-console
                 yield put(getLetterGroupIdError(lists.err));
                 Toast.fail('数据获取失败');
+            }
+        }
+    }
+}
+
+export function* getAgreementStatus() {
+
+    let action = null;
+
+    while (action = yield take(GET_AGREEMENT_STATUS)) {
+        let providerUserId = action.payload.providerUserId;
+        let url = `${AGREEMENT_PROFILE_API}/${providerUserId}/status`;
+
+        const lists = yield call(request, url, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-API-Version': 'v1.1'
+            },
+            credentials: 'include'
+        });
+
+        if (lists) {
+            if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
+                yield put(getAgreementStatusSuccess(lists.data));
+            } else {
+                console.log(lists.err); // eslint-disable-line no-console
             }
         }
     }

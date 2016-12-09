@@ -58,6 +58,10 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
         }
     }
 
+    agreementsClickHandler() {
+        this.context.router.push('/agreements');
+    }
+
     collectionClickHandler() {
         if (this.id) {
             this.context.router.push('/collection/' + this.id);
@@ -120,6 +124,13 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
 
                     <List>
                         <List.Body>
+
+                            <List.Item
+                                arrow="horizontal"
+                                onClick={this.agreementsClickHandler.bind(this)}
+                            >
+                                <div className={styles.listWrap}><i className={styles.iconAgreements}></i>版权</div>
+                            </List.Item>
                             <List.Item
                                 arrow="horizontal"
                                 extra={
