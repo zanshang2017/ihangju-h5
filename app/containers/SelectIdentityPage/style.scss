@@ -1,0 +1,21 @@
+@charset "UTF-8";
+@import "../../common/__global.scss";
+@import "../../common/__util.scss";
+
+.selectIdentity {
+	width: rem(646);
+	height: rem(396);
+	margin: rem(52) auto 0;
+	background-color: #fff;
+	text-align: center;
+	img {
+		width: rem(412);
+		margin-top: rem(52);
+	}
+	span {
+		display: block;
+		font-size: rem(36);
+		color: #333;
+		margin: rem(30) 0;
+	}
+}

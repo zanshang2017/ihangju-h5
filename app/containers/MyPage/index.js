@@ -86,10 +86,44 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
         }
     }
 
+    attestClickHandler() {
+        let userCenterInfo = this.props.userCenterInfo || {};
+        // console.log(userCenterInfo);
+        // if(this.id) {
+        //     this.context.router.push('/selectIdentity/' + this.id);
+        // }
+        if(userCenterInfo.hasidentityauthentication == false) {
+            this.context.router.push('/selectIdentity/' + this.id);
+        }else {
+            this.context.router.push('/attestState/' + this.id);
+        }
+        
+    }
+    
     render() {
         let userCenterInfo = this.props.userCenterInfo || {};
         let notifications = userCenterInfo.notifications || {};
         let msg_count = (notifications.comment_notify_count || 0) + (notifications.discuss_notify_count || 0);
+        let attestMes = '';
+        if (userCenterInfo.hasidentityauthentication == false) {
+            attestMes = '认证后，一键签约作品';
+        }else {
+            if (userCenterInfo.identityauthenticationtype == 'author') {
+
+                attestMes = '已备案';
+
+            }else {
+
+                if(userCenterInfo.identityauthenticationstatus == 'passing') {
+                    attestMes = '通过认证';
+                }else if (userCenterInfo.identityauthenticationstatus == 'review'){
+                    attestMes = '审核中';  
+                }else {
+                    attestMes = <span className={styles.redColor}>未通过认证</span>;
+                }
+
+            }
+        }
 
         let tagManageHtml = '';
         if (userCenterInfo.managermentTagNumber) {
@@ -164,6 +198,21 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
                     </List>
 
                     {tagManageHtml}
+
+
+                    <List>
+                        <List.Body>
+                            <List.Item
+                                arrow="horizontal"
+                                extra={
+                                    <span className={styles.weakText}>{attestMes}</span>
+                                }
+                                onClick={this.attestClickHandler.bind(this)}
+                            >
+                                <div className={styles.listWrap}><i className={styles.iconAttest}></i>我的认证</div>
+                            </List.Item>
+                        </List.Body>
+                    </List>
 
                     <List>
                         <List.Body>

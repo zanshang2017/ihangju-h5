@@ -12,7 +12,8 @@
   /** Result **/
   /** Switch **/
   /** Modal **/
-  /** Toast **/ }
+  /** Toast **/
+  /** list-item **/ }
   :global .am-tab .am-tab-content {
     padding: 0 !important; }
   :global .am-tab .am-tab-bar {
@@ -111,5 +112,9 @@
     color: #39bcc8 !important; }
   :global .am-toast {
     z-index: 1999; }
+  :global .am-input-label-4 {
+    width: auto !important; }
+  :global .am-input-control input {
+    text-align: right; }
 
 /*# sourceMappingURL=antd_cover.css.map */

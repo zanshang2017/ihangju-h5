@@ -1,0 +1,11 @@
+@charset 'UTF-8';
+@import '../../../common/__global.scss';
+@import '../../../common/__util.scss';
+
+.personalForm {
+	.title {
+		font-size: rem(30);
+		padding-left: rem(32);
+		padding-top: rem(20);
+	}
+}

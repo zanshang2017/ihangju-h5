@@ -1,0 +1,44 @@
+@charset 'UTF-8';
+@import '../../../common/__global.scss';
+@import '../../../common/__util.scss';
+
+.personalCompetence {
+	.title {
+		font-size: rem(30);
+		padding-left: rem(32);
+		padding-bottom: rem(20);
+	}
+	.competenceList {
+		background-color: $bg;
+		overflow: hidden;
+		padding: 0 16px 16px;
+		.leftText {
+			display: block;
+			float: left;
+			font-size: 16px;
+			color: #222;
+			margin-top: 16px; 
+			height: rem(60);
+			line-height: rem(60);
+		}
+		ul {
+			li{
+				float: right;
+				padding: 0 rem(30);
+				border: 1px solid #cfcfcf;
+				border-radius: rem(8);
+				color: #878787;
+				font-size: rem(24);
+				margin-left: rem(34);
+				margin-top: 16px;
+				height: rem(60);
+				line-height: rem(60);
+				&.select {
+					color: #fff;
+					background-color: $linkColor; 
+					border: 1px solid $linkColor;
+				}
+			}
+		}
+	}
+}

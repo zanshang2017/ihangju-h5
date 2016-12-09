@@ -229,5 +229,18 @@
         z-index: 1999;
     }
 
+
+    /** list-item **/
+    .am-input-label-4 {
+        width: auto !important;
+    }
+    .am-input-control {
+        input {
+            text-align: right;
+        }
+    }
+
+
+
 }
 

@@ -1,0 +1,72 @@
+@charset "UTF-8";
+@import "../../common/__global.scss";
+@import "../../common/__util.scss";
+
+.attestState {
+	text-align: center;
+	.stateImg {
+		width: rem(616);
+		margin: rem(116) 0 rem(50);
+	}
+	span {
+		display: block;
+		&.titleText {
+			font-size: rem(48);
+			color: #333;
+		}
+		&.conText {
+			font-size: rem(30);
+			color: #666;
+			margin: rem(44) rem(60) rem(44); 
+			line-height: rem(45);
+			overflow: hidden;
+			.left {
+				width: 40%;
+				float: left;
+				text-align: right;
+			}
+			.right {
+				float: left;
+				text-align: left;
+			}
+		}
+		&.btn {
+			height: rem(90);
+			line-height: rem(90);
+			font-size: rem(36);
+			color: #000;
+			border: 1px solid;
+			border-radius: rem(10);
+		}
+		&.authorBtn {
+			width: rem(578);
+			height: rem(90);
+			line-height: rem(90);
+			font-size: rem(36);
+			color: #000;
+			border: 1px solid;
+			border-radius: rem(10);
+			margin: 0 auto;
+		}
+		&.failLeftBtn {
+			width: rem(406);
+			float: left;
+			margin-left: rem(30);
+		}
+		&.failRightBtn {
+			width: rem(256);
+			float: right;
+			margin-right: rem(30);
+		}
+		&.passingLeftBtn {
+			width: rem(406);
+			float: left;
+			margin-left: rem(30);
+		}
+		&.passingRightBtn {
+			width: rem(256);
+			float: right;
+			margin-right: rem(30);
+		}
+	}
+}

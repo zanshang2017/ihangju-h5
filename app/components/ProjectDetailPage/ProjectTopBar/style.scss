@@ -6,6 +6,7 @@
 
 .topBar{
 	height: $topBarHeight;
+	z-index: 0 !important;
 	.catalog{
 		position: relative;
 		top:rem(28);
@@ -28,4 +29,5 @@
 		float:left;
 		background-position: rem(-44) 0px;
 	}
+
 }

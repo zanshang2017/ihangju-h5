@@ -505,8 +505,6 @@ const COLLECTION_API = `${api_scheme}//${api_host}/collection/`;
 
 const FAVORITE_API = `${api_scheme}//${api_host}/favorite`;
 
-const IDENTIFY_AUTH_API = `${api_scheme}//${api_host}/identityauthentication`;
-
 /**
  * 搜索接口
  *
@@ -523,7 +521,7 @@ const AGREEMENTS_API = `${api_scheme}//${api_host}/user/project/agreements`;
 /**
  * 版权申请
  *
- * restful:
+ * @restful:
  *  [PUT]: 提交签约申请
  *  [PUT]: /${agreementId} 同意签约
  *  [DELETE]: /${agreementId} 拒绝签约
@@ -537,6 +535,19 @@ const AGREEMENT_API = `${api_scheme}//${api_host}/agreement`;
  *  [GET] 获取同指定用户的版权状态 /${userId}/status
  */
 const AGREEMENT_PROFILE_API = `${api_scheme}//${api_host}/agreement/profile`;
+
+const IDENTIFY_AUTH_API = `${api_scheme}//${api_host}/identityauthentication`;
+
+/**
+ * 作者认证接口
+ * http://192.168.1.33:8888/identityauthentication/profile/57a98caae4b0c25e9b71d8f9
+ */
+const AUTHORATTEST_API = `${api_scheme}//${api_host}/identityauthentication/profile/`;
+
+const UPDATE_SERVICEPERSONAL_API = `${api_scheme}//${api_host}/identityauthentication/individual`;
+const UPDATE_SERVICEAGENCY_API = `${api_scheme}//${api_host}/identityauthentication/agency`;
+const UPDATE_AUTHOR_API = `${api_scheme}//${api_host}/identityauthentication/author`;
+
 
 export {
     IMG_CDN_PATH,
@@ -590,11 +601,16 @@ export {
     COLLECTION_API,
     FAVORITE_API,
 
-    IDENTIFY_AUTH_API,
     SEARCH_API,
 
     AGREEMENTS_API,
     AGREEMENT_API,
     AGREEMENT_PROFILE_API,
+
+    IDENTIFY_AUTH_API,
+    AUTHORATTEST_API,
+    UPDATE_SERVICEPERSONAL_API,
+    UPDATE_SERVICEAGENCY_API,
+    UPDATE_AUTHOR_API,
 };
 

@@ -1,5 +1,6 @@
 .topBar {
-  height: 50px; }
+  height: 50px;
+  z-index: 0 !important; }
   .topBar .catalog {
     position: relative;
     top: 0.74667rem;

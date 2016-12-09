@@ -1199,6 +1199,173 @@ export default function createRoutes(store) {
                 store.dispatch(hideNav());
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
             }
+        }, {
+            path: '/selectIdentity/:id',
+            name: 'selectIdentity',
+            getComponent(nextState, cb) {
+
+                beforeGetComponent(false);
+
+                System.import('containers/SelectIdentityPage')
+                    .then(loadModule(cb))
+                    .catch(function (err) {
+                        errorLoading(err, {
+                            path: '/selectIdentity/:id'
+                        });
+                    });
+            },
+            onEnter: function () {
+                store.dispatch(hideNav());
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            }
+        }, {
+            path: '/authorAttest/:id',
+            name: 'authorAttest',
+            getComponent(nextState, cb) {
+
+                
+                beforeGetComponent(false);
+
+                const importModules = Promise.all([
+                    System.import('containers/AuthorAttestPage/reducer'),
+                    System.import('containers/AuthorAttestPage/sagas'),
+                    System.import('containers/AuthorAttestPage/'),
+                ]);
+                const renderRoute = loadModule(cb);
+                importModules.then(([reducer, sagas, component]) => {
+                    if (!initedStatus.authorAttest) {
+                        injectReducer('authorAttest', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.authorAttest = true;
+                    }
+                    renderRoute(component);
+                });
+
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/authorAttest/:id'
+                    });
+                });
+
+            },
+            onEnter: function () {
+                store.dispatch(hideNav());
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            }
+        }, {
+            path: '/attestState/:id',
+            name: 'attestState',
+            getComponent(nextState, cb) {
+                 beforeGetComponent(false);
+
+                const importModules = Promise.all([
+                    System.import('containers/AttestStatePage/reducer'),
+                    System.import('containers/AttestStatePage/sagas'),
+                    System.import('containers/AttestStatePage/'),
+                ]);
+                const renderRoute = loadModule(cb);
+                importModules.then(([reducer, sagas, component]) => {
+                    if(!initedStatus.attestState) {
+                        injectReducer('attestState', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.attestState = true;
+                    }
+                    renderRoute(component);
+                });
+
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/attestState/:id'
+                    });
+                });
+            },
+            onEnter: function() {
+                store.dispatch(hideNav());
+                routeEffector.autoSet();
+            }
+        }, {
+            path: '/selectService/:id',
+            name: 'selectService',
+            getComponent(nextState, cb) {
+
+                beforeGetComponent(false);
+
+                System.import('containers/SelectServicePage')
+                    .then(loadModule(cb))
+                    .catch(function (err) {
+                        errorLoading(err, {
+                            path: '/selectService/:id'
+                        });
+                    });
+            },
+            onEnter: function () {
+                store.dispatch(hideNav());
+                routeEffector.autoSet(); //进入页面时设置路由切换效果
+            }
+        }, {
+            path: '/servicPersonal/:id',
+            name: 'servicPersonal',
+            getComponent(nextState, cb) {
+
+                beforeGetComponent(false);
+
+                const importModules = Promise.all([
+                    System.import('containers/ServicePersonalPage/reducer'),
+                    System.import('containers/ServicePersonalPage/sagas'),
+                    System.import('containers/ServicePersonalPage/'),
+                ]);
+                const renderRoute = loadModule(cb);
+                importModules.then(([reducer, sagas, component]) => {
+                    if(!initedStatus.servicPersonal) {
+                        injectReducer('servicPersonal', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.servicPersonal = true;
+                    }
+                    renderRoute(component);
+                });
+
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/servicPersonal/:id'
+                    });
+                });
+            },
+            onEnter: function() {
+                store.dispatch(hideNav());
+                routeEffector.autoSet();
+            }
+        }, {
+            path: '/serviceAgency/:id',
+            name: 'serviceAgency',
+            getComponent(nextState, cb) {
+
+                beforeGetComponent(false);
+
+                const importModules = Promise.all([
+                    System.import('containers/ServiceAgencyPage/reducer'),
+                    System.import('containers/ServiceAgencyPage/sagas'),
+                    System.import('containers/ServiceAgencyPage/'),
+                ]);
+                const renderRoute = loadModule(cb);
+                importModules.then(([reducer, sagas, component]) => {
+                    if(!initedStatus.serviceAgency) {
+                        injectReducer('serviceAgency', reducer.default);
+                        injectSagas(sagas.default);
+                        initedStatus.serviceAgency = true;
+                    }
+                    renderRoute(component);
+                });
+
+                importModules.catch(function (err) {
+                    errorLoading(err, {
+                        path: '/serviceAgency/:id'
+                    });
+                });
+            },
+            onEnter: function() {
+                store.dispatch(hideNav());
+                routeEffector.autoSet();
+            }
         }
         // , {
         //     path: '/bridgeTest',
