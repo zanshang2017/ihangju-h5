@@ -65,14 +65,13 @@ class ChapterList extends React.Component {
         var that = this;
         var locStorageProjectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
         this._chapterMes = this.props.items.toJS();
-
         this.projectId = this._chapterMes.projectId || this._chapterMes.historyId;
         if (!this._chapterMes.chapters || this._chapterMes.chapters.length < 1) {
             this._chapterList = <li>没有章节</li>
         } else {
             var arr = [];
             for (var i in locStorageProjectInfo[this.projectId]) {
-                arr.push(i);
+                arr.push(locStorageProjectInfo[this.projectId][i]);
             }
             var newArr = unique(arr);
             this._chapterList = this._chapterMes.chapters.map(function (item) {
