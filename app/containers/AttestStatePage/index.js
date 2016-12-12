@@ -43,12 +43,26 @@ class AttestState extends React.Component {
             
         }
     }
+    passClick() {
+        let dom = this.refs.J_changeLayer;
+        dom.classList.remove('hide');
+    }
     backClick() {
-        this.context.router.goBack();
+        //this.context.router.goBack();
+        this.context.router.push('/my');
+    }
+    goIndexClick() {
+        this.context.router.push('/follow');
+    }
+    closeLayer() {
+        let dom = this.refs.J_changeLayer;
+        dom.classList.add('hide');
+    }
+    changeLayer() {
+        this.failClick();
     }
     render() {
         let attestState = this.props.attestStateData.toJS();
-        console.log(attestState);
         let conDom = '';
         if(attestState.type == 'author') {
             conDom = <div><img className={styles.stateImg} src='https://o82zr1kfu.qnssl.com/@/image/584625e7e4b05c2d3be16ce0.png?imageView2/2/w/300' />
@@ -60,8 +74,18 @@ class AttestState extends React.Component {
                 conDom = <div><img className={styles.stateImg} src='https://o82zr1kfu.qnssl.com/@/image/584942cde4b05c2d3be5d932.png?imageView2/2/w/300' />
                     <span className={styles.titleText}>认证通过</span>
                     <span className={styles.conText}>您的认证通过审核</span>
-                    <span className={`${styles.btn} ${styles.passingLeftBtn}`}>回首页</span>
-                    <span  onClick={this.failClick.bind(this)} className={`${styles.btn} ${styles.passingRightBtn}`}>修改认证信息</span></div>
+                    <span onClick={this.goIndexClick.bind(this)} className={`${styles.btn} ${styles.passingLeftBtn}`}>回首页</span>
+                    <span onClick={this.passClick.bind(this)} className={`${styles.btn} ${styles.passingRightBtn}`}>修改认证信息</span>
+                    <div ref="J_changeLayer" className={`${styles.backBg} hide`}>
+                    <div className={styles.layerCon}>
+                        <span className={styles.topText}>修改认证信息后，需要重新进行认证审核</span>
+                        <div className={styles.btnList}>
+                            <span onClick={this.closeLayer.bind(this)} className={styles.btnLeft}>算了</span>
+                            <span onClick={this.changeLayer.bind(this)} className={styles.btnRight}>去修改</span>
+                        </div>  
+                    </div>
+                </div>
+                    </div>
 
             }else if (attestState.verify_status == 'review'){
                 conDom = <div><img className={styles.stateImg} src='https://o82zr1kfu.qnssl.com/@/image/58494292e4b05c2d3be5d92e.png?imageView2/2/w/300' />
@@ -100,6 +124,7 @@ class AttestState extends React.Component {
                     </div>
                 </TopBar>
               	{conDom}
+                
             </div>
         )
     }

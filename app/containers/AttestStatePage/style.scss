@@ -33,7 +33,7 @@
 		&.btn {
 			height: rem(90);
 			line-height: rem(90);
-			font-size: rem(36);
+			font-size: rem(32);
 			color: #000;
 			border: 1px solid;
 			border-radius: rem(10);
@@ -69,4 +69,47 @@
 			margin-right: rem(30);
 		}
 	}
+
+	.backBg{
+		position: fixed;
+	    left: 0;
+	    top: 0;
+	    background-color: rgba(0, 0, 0, .5);
+	    width: 100%;
+	    height: 100%;
+	    z-index: 9999;
+	    .layerCon{
+	    	position: absolute;
+	    	width: rem(640);
+	    	top: 50%;
+	    	left: 50%;
+	    	background-color: $bg;
+	    	margin-left: rem(-320);
+	    	margin-top: rem(-140);
+	    	text-align: center;
+	    	font-size: rem(36);
+	    	border-radius: rem(10);
+	    	.topText{
+				line-height: rem(60);
+				padding: rem(20) rem(80);
+				color: #2a2b2c;
+	            font-size: rem(36);
+	    	}
+	    	.btnList{
+	    		border-top: 1px solid $borderColor;
+	    		span{
+	    			display: block;
+	    			width: 50%;
+	    			float: left;
+	                line-height: rem(100);
+	                font-size: rem(40);
+	                color: #0e76f3;
+	    			&.btnLeft{
+	    				border-right: 1px solid $borderColor;
+	    			}
+	    		}
+	    	}
+	    }
+	}
+
 }
