@@ -1,2 +1,16 @@
-.selectIdentity{width:17.22667rem;height:10.56rem;margin:1.38667rem auto 0;background-color:#fff;text-align:center}.selectIdentity img{width:10.98667rem;margin-top:1.38667rem}.selectIdentity span{display:block;font-size:.96rem;color:#333;margin:.8rem 0}
+.selectIdentity {
+  width: 17.22667rem;
+  height: 10.56rem;
+  margin: 1.38667rem auto 0;
+  background-color: #fff;
+  text-align: center; }
+  .selectIdentity img {
+    width: 10.98667rem;
+    margin-top: 1.38667rem; }
+  .selectIdentity span {
+    display: block;
+    font-size: 0.96rem;
+    color: #333;
+    margin: 0.8rem 0; }
+
 /*# sourceMappingURL=style.css.map */

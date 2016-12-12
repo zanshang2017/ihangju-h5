@@ -15,6 +15,12 @@
     margin-top: -9.92rem;
     border-radius: 8px;
     text-align: center; }
+    .completePersonal .layerCon .closeBtn {
+      color: #bcbab5;
+      position: absolute;
+      right: 10px;
+      top: 6px;
+      font-size: 18px; }
     .completePersonal .layerCon .topImg {
       height: 10.82667rem;
       background-color: #f7f7f7;

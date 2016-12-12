@@ -46,6 +46,7 @@ class ReadContent extends React.Component {
         this.chapterTitle = '';
         this.chapterList = '';
         this.shareData = {};
+        this.topBarPositionOutCls = (Env.platform.iphone || Env.platform.ipad) ? 'topBarPositionOut_ios' : 'topBarPositionOut';
     }
 
     componentWillMount() {
@@ -290,7 +291,12 @@ class ReadContent extends React.Component {
     showReadTopbar() {
         let _redTopdom = this.refs._readTopbar;
         let _redBottomdom = this.refs._readBottombar;
-        _redTopdom.classList.toggle('topBarPositionOut');
+        if(Env.platform.iphone || Env.platform.ipad) {
+            _redTopdom.classList.toggle(this.topBarPositionOutCls);
+        } else {
+            _redTopdom.classList.toggle(this.topBarPositionOutCls);
+        }
+
         _redBottomdom.classList.toggle('readPage__BottomBarPositionOut');
     }
 
@@ -383,7 +389,7 @@ class ReadContent extends React.Component {
 
         return (
             <div className={`pageInner`}>
-                <div ref="_readTopbar" className={`hasTransition ${styles.topbar} topBarPositionOut`}>
+                <div ref="_readTopbar" className={`hasTransition ${styles.topbar} ${this.topBarPositionOutCls}`}>
                     <TopBar data-has-back="true">
                         <div data-title>
                             <div onClick={this.showChapterList.bind(this)} className={styles.chapterTitle}>

@@ -19,6 +19,15 @@
 		margin-top: rem(-372);
 		border-radius: 8px;
 		text-align: center;
+
+        .closeBtn {
+            color: $weakTextColor;
+            position: absolute;
+            right: 10px;
+            top: 6px;
+            font-size: 18px;
+        }
+
 		.topImg {
 			height: rem(406);
 			background-color: #f7f7f7;

@@ -19,6 +19,7 @@ class ImageWithDescPanel extends React.Component {
         return (
             <div ref="J_Wrap" className={`${styles.completePersonal} hide`}>
                 <div className={styles.layerCon}>
+                    <div onClick={this.hide.bind(this)} className={styles.closeBtn}><i className="anticon anticon-cross"></i></div>
                     <div className={styles.topImg}>
                         {this.props.image && <img src={this.props.image} />}
                     </div>

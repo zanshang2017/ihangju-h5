@@ -67,6 +67,8 @@
     height: 0 !important; }
   :global .topBarPositionOut {
     transform: translate3d(0, -50px, 0) !important; }
+  :global .topBarPositionOut_ios {
+    transform: translate3d(0, -70px, 0) !important; }
   :global .readPage__BottomBarPositionOut {
     transform: translate3d(0, 0, 0) !important; }
   :global .rotateZ180 {

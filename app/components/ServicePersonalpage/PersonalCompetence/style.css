@@ -1,2 +1,33 @@
-.personalCompetence .title{font-size:.8rem;padding-left:.85333rem;padding-bottom:.53333rem}.personalCompetence .competenceList{background-color:#fff;overflow:hidden;padding:0 16px 16px}.personalCompetence .competenceList .leftText{display:block;float:left;font-size:16px;color:#222;margin-top:16px;height:1.6rem;line-height:1.6rem}.personalCompetence .competenceList ul li{float:right;padding:0 .8rem;border:1px solid #cfcfcf;border-radius:.21333rem;color:#878787;font-size:.64rem;margin-left:.90667rem;margin-top:16px;height:1.6rem;line-height:1.6rem}.personalCompetence .competenceList ul li.select{color:#fff;background-color:#39bcc8;border:1px solid #39bcc8}
+.personalCompetence .title {
+  font-size: 0.8rem;
+  padding-left: 0.85333rem;
+  padding-bottom: 0.53333rem; }
+.personalCompetence .competenceList {
+  background-color: #fff;
+  overflow: hidden;
+  padding: 0 16px 16px; }
+  .personalCompetence .competenceList .leftText {
+    display: block;
+    float: left;
+    font-size: 16px;
+    color: #222;
+    margin-top: 16px;
+    height: 1.6rem;
+    line-height: 1.6rem; }
+  .personalCompetence .competenceList ul li {
+    float: right;
+    padding: 0 0.8rem;
+    border: 1px solid #cfcfcf;
+    border-radius: 0.21333rem;
+    color: #878787;
+    font-size: 0.64rem;
+    margin-left: 0.90667rem;
+    margin-top: 16px;
+    height: 1.6rem;
+    line-height: 1.6rem; }
+    .personalCompetence .competenceList ul li.select {
+      color: #fff;
+      background-color: #39bcc8;
+      border: 1px solid #39bcc8; }
+
 /*# sourceMappingURL=style.css.map */

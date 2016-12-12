@@ -103,6 +103,10 @@
         transform: translate3d(0, -$topBarHeight, 0) !important;
     }
 
+    .topBarPositionOut_ios {
+        transform: translate3d(0, -($topBarHeight+$iosTopHeight), 0) !important;
+    }
+
     .readPage__BottomBarPositionOut {
         transform: translate3d(0, 0, 0) !important;
     }

@@ -1,2 +1,57 @@
-.attestState{text-align:center}.attestState .stateImg{width:16.42667rem;margin:3.09333rem 0 1.33333rem}.attestState span{display:block}.attestState span.titleText{font-size:1.28rem;color:#333}.attestState span.conText{font-size:.8rem;color:#666;margin:1.17333rem 1.6rem 1.17333rem;line-height:1.2rem;overflow:hidden}.attestState span.conText .left{width:40%;float:left;text-align:right}.attestState span.conText .right{float:left;text-align:left}.attestState span.btn{height:2.4rem;line-height:2.4rem;font-size:.96rem;color:#000;border:1px solid;border-radius:.26667rem}.attestState span.authorBtn{width:15.41333rem;height:2.4rem;line-height:2.4rem;font-size:.96rem;color:#000;border:1px solid;border-radius:.26667rem;margin:0 auto}.attestState span.failLeftBtn{width:10.82667rem;float:left;margin-left:.8rem}.attestState span.failRightBtn{width:6.82667rem;float:right;margin-right:.8rem}.attestState span.passingLeftBtn{width:10.82667rem;float:left;margin-left:.8rem}.attestState span.passingRightBtn{width:6.82667rem;float:right;margin-right:.8rem}
+.attestState {
+  text-align: center; }
+  .attestState .stateImg {
+    width: 16.42667rem;
+    margin: 3.09333rem 0 1.33333rem; }
+  .attestState span {
+    display: block; }
+    .attestState span.titleText {
+      font-size: 1.28rem;
+      color: #333; }
+    .attestState span.conText {
+      font-size: 0.8rem;
+      color: #666;
+      margin: 1.17333rem 1.6rem 1.17333rem;
+      line-height: 1.2rem;
+      overflow: hidden; }
+      .attestState span.conText .left {
+        width: 40%;
+        float: left;
+        text-align: right; }
+      .attestState span.conText .right {
+        float: left;
+        text-align: left; }
+    .attestState span.btn {
+      height: 2.4rem;
+      line-height: 2.4rem;
+      font-size: 0.96rem;
+      color: #000;
+      border: 1px solid;
+      border-radius: 0.26667rem; }
+    .attestState span.authorBtn {
+      width: 15.41333rem;
+      height: 2.4rem;
+      line-height: 2.4rem;
+      font-size: 0.96rem;
+      color: #000;
+      border: 1px solid;
+      border-radius: 0.26667rem;
+      margin: 0 auto; }
+    .attestState span.failLeftBtn {
+      width: 10.82667rem;
+      float: left;
+      margin-left: 0.8rem; }
+    .attestState span.failRightBtn {
+      width: 6.82667rem;
+      float: right;
+      margin-right: 0.8rem; }
+    .attestState span.passingLeftBtn {
+      width: 10.82667rem;
+      float: left;
+      margin-left: 0.8rem; }
+    .attestState span.passingRightBtn {
+      width: 6.82667rem;
+      float: right;
+      margin-right: 0.8rem; }
+
 /*# sourceMappingURL=style.css.map */

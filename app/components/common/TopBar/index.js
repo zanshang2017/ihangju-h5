@@ -2,6 +2,10 @@ import styles from './styles.css';
 import React from 'react';
 import {hashHistory} from 'react-router';
 
+import {
+    Env
+} from 'utils/env.js';
+
 /* eslint-disable react/prefer-stateless-function */
 class TopBar extends React.Component {
 
@@ -60,9 +64,9 @@ class TopBar extends React.Component {
         }
 
         // 增加头部空白,兼容ios
-        // if (1) {
-        //     barTopGapHtml = <div className={styles.barTopGap}></div>;
-        // }
+        if (Env.platform.iphone || Env.platform.ipad) {
+            barTopGapHtml = <div className={styles.barTopGapIos}></div>;
+        }
 
         return (
             <div>
@@ -78,11 +82,8 @@ class TopBar extends React.Component {
     }
 }
 
-TopBar
-    .propTypes = {};
+TopBar.propTypes = {};
 
-export
-default
-TopBar;
+export default TopBar;
 
 
