@@ -55,6 +55,9 @@ import ReadContent from 'components/ReadProjectChapter/ReadContent';
 import TopListBar from 'components/FollowPage/TopListBar';
 // >>>>>
 
+import {
+    DISPATCH_ORIGIN
+} from './constants';
 
 import {
     selectGlobal,
@@ -84,7 +87,6 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.hasOpenedAuthenticationPanel = false;
     }
 
     compareVersionToShowGuidePage() {
@@ -104,8 +106,18 @@ class App extends React.Component {
     }
 
     componentWillMount() {
-        // this.props.dispatch(loadLocalStorageUserInfo());
-        this.props.dispatch(loadUserInfo());
+        this.props.dispatch(loadLocalStorageUserInfo());
+
+        signals.openIdentityPanel.add((function (result) {
+            if (result.openidentityauthentication) {
+                this.refs.J_AuthenticationNoticePanel.show();
+            }
+        }).bind(this));
+
+        //确保已存在登录信息,避免不必要的登录跳转
+        if (JSON.parse(locStorage.get('userInfo'))) {
+            this.props.dispatch(loadUserInfo(DISPATCH_ORIGIN.OPEN_IDENTITY));
+        }
     }
 
     componentDidMount() {
@@ -224,11 +236,6 @@ class App extends React.Component {
 
         if (this.props.userInfo) {
             this.userInfo = this.props.userInfo.toJS();
-
-            if (this.userInfo.openidentityauthentication && !this.hasOpenedAuthenticationPanel) {
-                this.refs.J_AuthenticationNoticePanel.show();
-                this.hasOpenedAuthenticationPanel = true;
-            }
         }
 
         return (

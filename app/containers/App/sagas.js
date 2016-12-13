@@ -29,6 +29,7 @@ import {
 
 import request from 'utils/request';
 
+import signals from './signals';
 import loginSignals from 'containers/LoginPage/signals';
 
 export default [
@@ -71,6 +72,11 @@ export function* getUserInfo() {
                 if (DISPATCH_ORIGIN.LOGIN === action.dispatchOrigin) {
                     loginSignals.loginSuccess.dispatch(ret.data.result);
                     putDevicetoken();
+                }
+
+                if (DISPATCH_ORIGIN.OPEN_IDENTITY === action.dispatchOrigin
+                    || DISPATCH_ORIGIN.LOGIN === action.dispatchOrigin) {
+                    signals.openIdentityPanel.dispatch(ret.data.result);
                 }
 
             } else {
