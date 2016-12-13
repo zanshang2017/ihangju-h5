@@ -65,13 +65,13 @@ class AttestState extends React.Component {
         let attestState = this.props.attestStateData.toJS();
         let conDom = '';
         if(attestState.type == 'author') {
-            conDom = <div><img className={styles.stateImg} src='https://o82zr1kfu.qnssl.com/@/image/584625e7e4b05c2d3be16ce0.png?imageView2/2/w/300' />
+            conDom = <div><img className={styles.stateImg} src='https://o82zr1kfu.qnssl.com/@/image/584625e7e4b05c2d3be16ce0.png' />
                     <span className={styles.titleText}>已备案</span>
                     <span className={styles.conText}>您的认证材料已经提交完成，材料仅会展示给想要与您签约的服务商</span>
                     <span onClick={this.authorAttestClick.bind(this)} className={styles.authorBtn}>修改认证信息</span></div>
         }else {
             if(attestState.verify_status == 'passing') {
-                conDom = <div><img className={styles.stateImg} src='https://o82zr1kfu.qnssl.com/@/image/584942cde4b05c2d3be5d932.png?imageView2/2/w/300' />
+                conDom = <div><img className={styles.stateImg} src='https://o82zr1kfu.qnssl.com/@/image/584942cde4b05c2d3be5d932.png' />
                     <span className={styles.titleText}>认证通过</span>
                     <span className={styles.conText}>您的认证通过审核</span>
                     <span onClick={this.goIndexClick.bind(this)} className={`${styles.btn} ${styles.passingLeftBtn}`}>回首页</span>
@@ -88,7 +88,7 @@ class AttestState extends React.Component {
                     </div>
 
             }else if (attestState.verify_status == 'review'){
-                conDom = <div><img className={styles.stateImg} src='https://o82zr1kfu.qnssl.com/@/image/58494292e4b05c2d3be5d92e.png?imageView2/2/w/300' />
+                conDom = <div><img className={styles.stateImg} src='https://o82zr1kfu.qnssl.com/@/image/58494292e4b05c2d3be5d92e.png' />
                     <span className={styles.titleText}>提交成功</span>
                     <span className={styles.conText}>您的材料已经提交完成，审核时间预计为2-5天</span></div>
             }else if(attestState.verify_status == 'fail'){
@@ -104,7 +104,7 @@ class AttestState extends React.Component {
                               {key+1}.{item}                  
                         </span>   
                 })
-                conDom = <div><img className={styles.stateImg} src='https://o82zr1kfu.qnssl.com/@/image/584942a9e4b05c2d3be5d930.png?imageView2/2/w/300' />
+                conDom = <div><img className={styles.stateImg} src='https://o82zr1kfu.qnssl.com/@/image/584942a9e4b05c2d3be5d930.png' />
                     <span className={styles.titleText}>认证未通过</span>
                     <span className={styles.conText}>
                         <div className={styles.left}>原因：</div>

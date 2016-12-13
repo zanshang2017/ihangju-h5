@@ -41,7 +41,7 @@ class AgencyForm extends React.Component {
     }
     orgcodeChange(e) {
         if(e.length > 18) {
-            this.errAlert('组织机构代码不能超过18个字');
+            this.errAlert('不是有效的组织机构代码');
         }else {
             this.hideAlert();
         }
@@ -58,7 +58,7 @@ class AgencyForm extends React.Component {
         this.dispatchData();
     }
     phonenumberChange(e) {
-        if(this.phoneReg.test(e) == false) {
+        if(e.length > 11) {
             this.errAlert('不是有效的手机号码');
         }else {
             this.hideAlert();
@@ -66,14 +66,26 @@ class AgencyForm extends React.Component {
         this._resultData.phonenumber = e;
         this.dispatchData();
     }
+    phonenumberBlur(e) {
+        if(this.phoneReg.test(e) == false) {
+            this.errAlert('不是有效的手机号码');
+        }else {
+            this.hideAlert();
+        }
+    }
     emailChange(e) {
+        if(this.emailReg.test(e) == true) {
+            this.hideAlert();
+        }
+        this._resultData.email = e;
+        this.dispatchData();
+    }
+    emailBlur(e) {
         if(this.emailReg.test(e) == false) {
             this.errAlert('邮箱格式不正确');
         }else {
             this.hideAlert();
         }
-        this._resultData.email = e;
-        this.dispatchData();
     }
     dispatchData() {
         this.assignObj.agency = this._resultData;
@@ -115,11 +127,13 @@ class AgencyForm extends React.Component {
                                 placeholder="联系人手机号码"
                                 value={this._resultData.phonenumber}
                                 onChange = {this.phonenumberChange.bind(this)}
+                                onBlur = {this.phonenumberBlur.bind(this)}
                             >手机</InputItem>
                             <InputItem
                                 placeholder="对公业务联络邮箱地址"
                                 value={this._resultData.email}
                                 onChange = {this.emailChange.bind(this)}
+                                onBlur = {this.emailBlur.bind(this)}
                             >公司邮箱</InputItem>
                         </List.Body>
                     </List>
