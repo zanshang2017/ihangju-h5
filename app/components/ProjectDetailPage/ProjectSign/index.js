@@ -43,9 +43,13 @@ class ProjectSign extends React.Component {
             salecopyrightstatusList = '';
         } else {
             salecopyrightstatusList = salecopyrightstatus.map(function (item, key) {
+                let str = '';
+                if(item.soldout == true) {
+                    str = ',已售出';
+                }
                 return <div className={style.salecopyrightstatusText} key={key}>
                     <span className={style.salecopyrightstatusTitle}>{item.title}</span>
-                    <span className={style.salecopyrightstatusNumber}>{item.number}人发起签约申请，已售出</span>
+                    <span className={style.salecopyrightstatusNumber}>{item.number}人发起签约申请{str}</span>
                 </div>
             });
         }
