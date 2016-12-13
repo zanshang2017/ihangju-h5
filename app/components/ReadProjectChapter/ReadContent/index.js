@@ -46,7 +46,7 @@ class ReadContent extends React.Component {
         this.chapterTitle = '';
         this.chapterList = '';
         this.shareData = {};
-        this.topBarPositionOutCls = (Env.platform.iphone || Env.platform.ipad) ? 'topBarPositionOut_ios' : 'topBarPositionOut';
+        this.topBarPositionOutCls = (Env.isIOSShell) ? 'topBarPositionOut_ios' : 'topBarPositionOut';
     }
 
     componentWillMount() {
@@ -291,7 +291,7 @@ class ReadContent extends React.Component {
     showReadTopbar() {
         let _redTopdom = this.refs._readTopbar;
         let _redBottomdom = this.refs._readBottombar;
-        if(Env.platform.iphone || Env.platform.ipad) {
+        if(Env.isIOSShell) {
             _redTopdom.classList.toggle(this.topBarPositionOutCls);
         } else {
             _redTopdom.classList.toggle(this.topBarPositionOutCls);

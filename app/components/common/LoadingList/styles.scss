@@ -4,5 +4,18 @@
 
 .wrap {
     background: $gapBg;
+
+    .loadingBar {
+        width: 100%;
+        background: $gapBg;
+        padding: 15px 0;
+        color: #666;
+        font-size: 12px;
+        text-align: center;
+
+        .noMore {
+            color: #aaa;
+        }
+    }
 }
 

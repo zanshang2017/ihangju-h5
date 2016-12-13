@@ -8,8 +8,8 @@ import {
 
 const VERSION = window.__APP_CONFIG.ver || 'undefined';
 
-const PRODUCTION_DOMAIN = /h5app\.ihangju\.com|testh5\.app\.ihangju\.com/igm; //线上域名 或 33测试域名
-// const PRODUCTION_DOMAIN = /h5app\.ihangju\.com/igm; //todo 测试后记得恢复!
+// const PRODUCTION_DOMAIN = /h5app\.ihangju\.com|testh5\.app\.ihangju\.com/igm; //线上域名 或 33测试域名
+const PRODUCTION_DOMAIN = /h5app\.ihangju\.com/igm; //todo 测试后记得恢复!
 // const PRODUCTION_DOMAIN = /h5\.dev\.ihangju\.com/igm; //todo 测试后记得恢复!
 const PREPUB_DOMAIN = 'preh5app.ihangju.com';
 
@@ -19,11 +19,14 @@ var ua = navigator.userAgent;
 var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
     iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),
     android = ua.match(/(Android);?[\s\/]+([\d.]+)?/),
-    shell = ua.match(/HangJuAndroid\(\w*\)\/[^\s]+/),
+    shell = ua.match(/(HangJuAndroid|HangJuIOS)\(\w*\)\/[^\s]+/),
     shell = shell ? shell[0] : 'Browser',
     shellName = shell && shell.split('/')[0],
     shellVersion = shell && shell.split('/')[1],
-    deliveryChannel = shellName && rDeliveryChannel.exec(shellName);
+    deliveryChannel = shellName && rDeliveryChannel.exec(shellName),
+    isAndroidShell = shellName ? shellName.indexOf('HangJuAndroid') > -1 : false,
+    isIOSShell = shellName ? shellName.indexOf('HangJuIOS') > -1 : false;
+
     deliveryChannel = deliveryChannel && (deliveryChannel[1] || '') ;
 
 // alert(ua);
@@ -57,11 +60,13 @@ var Env = {
 
     shell: shell,
     shellVersion: shellVersion,
+    isAndroidShell: isAndroidShell,
+    isIOSShell: isIOSShell,
 
     platform: {
         android,
         ipad,
-        iphone,
+        iphone
     }
 };
 

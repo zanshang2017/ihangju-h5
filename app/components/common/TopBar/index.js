@@ -64,7 +64,7 @@ class TopBar extends React.Component {
         }
 
         // 增加头部空白,兼容ios
-        if (Env.platform.iphone || Env.platform.ipad) {
+        if (Env.isIOSShell) {
             barTopGapHtml = <div className={styles.barTopGapIos}></div>;
         }
 
