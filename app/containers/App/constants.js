@@ -40,7 +40,8 @@ export const PAGE_NAME = {
 
 // action发送的源,用于标记用途
 export const DISPATCH_ORIGIN = {
-    LOGIN: 'login'
-}
+    LOGIN: 'login',
+    OPEN_IDENTITY: 'openidentityauthentication',
+};
 
 

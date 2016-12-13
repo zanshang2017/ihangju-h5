@@ -87,7 +87,7 @@ export function logoutError() {
 export function loadUserInfo(dispatchOrigin) {
     let data = {
         type: LOAD_USER_INFO,
-        dispatchOrigin: dispatchOrigin
+        dispatchOrigin: dispatchOrigin,
     };
 
     return data;
@@ -112,7 +112,7 @@ export function loadUserInfoError(error) {
 }
 
 
-export function updateUserInfo(data={}) {
+export function updateUserInfo(data = {}) {
     // debugLog('updateUserInfo:' + Object.values(data));
     return {
         type: UPDATE_USER_INFO,
@@ -122,7 +122,7 @@ export function updateUserInfo(data={}) {
     };
 }
 
-export function updateUserInfoSuccess(data=null) {
+export function updateUserInfoSuccess(data = null) {
     return {
         type: UPDATE_USER_INFO_SUCCESS,
         payload: {
