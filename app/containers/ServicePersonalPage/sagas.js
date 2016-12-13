@@ -107,7 +107,7 @@ export function* updateServicePersonalData() {
             credentials: 'include'
         });
         if(updateData) {
-            if ((updateData.err === undefined || updateData.err === null) && (updateData.data.result && updateData.data.code === 'ok')) {
+            if (updateData.data.code === 'ok') {
                     yield put(updateServicePersonalDataSuccess(updateData.data.result));
                 } else {
                     //console.log(authorAttest.err.response); // eslint-disable-line no-console

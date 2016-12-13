@@ -11,9 +11,13 @@ const selectAuthorAttest = () => createSelector(
 	selectAuthorAttestDomin(),
 	(authorAttestState) => authorAttestState.get('authorAttestData')
 );
-
+const selectAuthorAttestSuccess = () => createSelector(
+	selectAuthorAttestDomin(),
+	(authorAttestState) => authorAttestState.get('updateSuccess')
+);
 export default selectAuthorAttestPage;
 export {
 	selectAuthorAttestDomin,
-	selectAuthorAttest
+	selectAuthorAttest,
+	selectAuthorAttestSuccess
 };

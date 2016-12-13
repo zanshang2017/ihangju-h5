@@ -15,7 +15,10 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-	'servicePersonalData' : {}, 
+	'servicePersonalData' : {},
+	'updateSuccess': fromJS({
+        data: false
+    }),
 });
 
 function ServicePersonalReducer(state = initialState, action = {}) {
@@ -24,6 +27,7 @@ function ServicePersonalReducer(state = initialState, action = {}) {
 			return state;
 
 		case LOAD_SERVICEPERSONAL_DATA:
+			state = state.setIn(['updateSuccess', 'data'], false);
 			return state;
 
 		case LOAD_SERVICEPERSONAL_DATA_SUCCESS:
@@ -37,8 +41,10 @@ function ServicePersonalReducer(state = initialState, action = {}) {
 		case UPDATE_SERVICEPERSONAL_DATA:
 			return state;
 		case UPDATE_SERVICEPERSONAL_DATA_SUCCESS:
-			return state.set('servicePersonalData', fromJS(action.payload.data));
+			state = state.setIn(['updateSuccess', 'data'], true);
+			return state;
 		case UPDATE_SERVICEPERSONAL_DATA_ERROR:
+			state = state.setIn(['updateSuccess', 'data'], false);
 			return state;
 		default: 
 			return state;

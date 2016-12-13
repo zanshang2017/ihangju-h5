@@ -14,7 +14,8 @@ import {
 } from './actions';
 
 import {
-    selectServicePersonalData
+    selectServicePersonalData,
+    selectServicePersonalDataSuccess
 } from './selectors';
 
 import PersonalForm from 'components/ServicePersonalpage/PersonalForm';
@@ -28,6 +29,7 @@ class ServicePersonal extends React.Component {
         super(props);
         this.cardReg = /(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
         this.emailReg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+
     }
     componentDidMount() {
         if (this.props.routeParams) {
@@ -37,14 +39,20 @@ class ServicePersonal extends React.Component {
 
     }
     submitClick() {
+        let _resultData = this.props.updateSuccess.toJS();
         let _result = this.props.servicePersonalData.toJS();
         let _individual = _result.individual;
         if(this.testAll(_individual) == true) {
             this.props.dispatch(updateServicePersonalData(_result));
+        }
+
+    }
+    componentDidUpdate() {
+        let _resultData = this.props.updateSuccess.toJS();
+        if(_resultData.data == true) {
             var id = this.props.routeParams.id;
             this.context.router.push('/attestState/' + id);
         }
-
     }
     backBtnHandler() {
         this.refs.J_backLayer.showBackLayer();
@@ -117,9 +125,11 @@ ServicePersonal.contextTypes = {
 
 const mapStateToProps = createSelector(
     selectServicePersonalData(),
-    (servicePersonalData) => {
+    selectServicePersonalDataSuccess(),
+    (servicePersonalData,updateSuccess) => {
         return {    
-            servicePersonalData
+            servicePersonalData,
+            updateSuccess
         }
     }
 );

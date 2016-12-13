@@ -103,7 +103,7 @@ export function* updateAuthorAttestData() {
             credentials: 'include'
         });
         if(updateData) {
-            if ((updateData.err === undefined || updateData.err === null) && (updateData.data.result && updateData.data.code === 'ok')) {
+            if (updateData.data.code === 'ok') {
                     yield put(updateAuthorAttestDataSuccess(updateData.data.result));
                 } else {
                     yield put(updateAuthorAttestDataError(updateData.err));
