@@ -104,8 +104,13 @@ class App extends React.Component {
     }
 
     componentWillMount() {
-        // this.props.dispatch(loadLocalStorageUserInfo());
-        this.props.dispatch(loadUserInfo());
+        this.props.dispatch(loadLocalStorageUserInfo());
+
+        //确保已存在登录信息,避免不必要的登录跳转
+        if (JSON.parse(locStorage.get('userInfo'))) {
+            this.props.dispatch(loadUserInfo());
+        }
+
     }
 
     componentDidMount() {

@@ -17,12 +17,12 @@
 
         h4 {
             font-size: 17px;
-            padding-bottom: 14px;
+            padding-bottom: 10px;
             font-weight: 300;
         }
 
         span {
-            font-size: 14px;
+            font-size: 16px;
             color: #50c6cf;
         }
     }
@@ -83,17 +83,20 @@
             border: none;
             font-size: 18px;
             color: $deepTextColor;
+
+            &::-webkit-input-placeholder {
+                color: #999;
+            }
         }
-
     }
-
 }
 
 .bottomLine {
     margin: -10px 0.26667rem 0;
-    height: 4px;
+    height: 3px;
     box-sizing: border-box;
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAECAYAAACzzX7wAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGBJREFUeNpiOHDg1M9///79xwZ+/fr9n4mBgWHuoUNn/gIVMSCDz5+/Mhw7dv41SEENEE+8c+cRw5cv3xiAGhnevv3A8ODBU5C6MkagFTBNaUCcA8RaQAwSbALiHQABBgBwd0DS4oslsQAAAABJRU5ErkJggg==) left bottom repeat-x #fff;
+    background-size: 6px 3px;
     border-right: 1px solid $borderColor;
 }
 
