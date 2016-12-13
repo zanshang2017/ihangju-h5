@@ -15,6 +15,12 @@ class AuthorAttestForm extends React.Component {
         this.cardReg = /(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
         this.emailReg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
     }
+    errAlert(err) {
+        this.refs.J_errAlert.showErrAlert(err);
+    }
+    hideErrAlert() {
+        this.refs.J_errAlert.hideErrAlert();
+    }
     realnameChange(e) {
         if(e.length > 15){
             this.refs.J_errAlert.showErrAlert("姓名长度不能超过15个字");
@@ -25,13 +31,20 @@ class AuthorAttestForm extends React.Component {
         this.dispatchData();
     }
     identitycardChange(e) {
-        if(this.cardReg.test(e) == false) {
-            this.refs.J_errAlert.showErrAlert("身份证号码长度不足18位");
+        if(e.length > 18) {
+            this.refs.J_errAlert.showErrAlert("身份证号码长度不能大于18位");
         }else {
              this.refs.J_errAlert.hideErrAlert();
         }
         this._resultData.identitycard = e;
         this.dispatchData();
+    }
+    identitycardBulr(e) {
+        if(this.cardReg.test(e) == false) {
+            this.refs.J_errAlert.showErrAlert("不是有效的身份证号");
+        }else {
+             this.refs.J_errAlert.hideErrAlert();
+        }
     }
     companynameChange(e) {
         if(e.length > 20){
@@ -52,13 +65,18 @@ class AuthorAttestForm extends React.Component {
         this.dispatchData();   
     }
     emailChange(e) {
+        if(this.emailReg.test(e) == true) {
+            this.refs.J_errAlert.hideErrAlert();
+        }
+        this._resultData.email = e;
+        this.dispatchData();
+    }
+    emailBlur(e) {
         if(this.emailReg.test(e) == false) {
             this.refs.J_errAlert.showErrAlert("邮箱格式不正确");
         }else {
              this.refs.J_errAlert.hideErrAlert();
         }
-        this._resultData.email = e;
-        this.dispatchData();
     }
     dispatchData() {
         this.assignObj.individual = this._resultData;
@@ -87,6 +105,7 @@ class AuthorAttestForm extends React.Component {
                                 placeholder="　请输入身份证号"
                                 value={this._resultData.identitycard || ''}
                                 onChange = {this.identitycardChange.bind(this)}
+                                onBlur = {this.identitycardBulr.bind(this)}
                             >身份证号</InputItem>
                             <InputItem
                                 placeholder="请输入任职公司名称"
@@ -102,6 +121,7 @@ class AuthorAttestForm extends React.Component {
                                 placeholder="请输入常用邮箱地址"
                                 value={this._resultData.email || ''}
                                 onChange = {this.emailChange.bind(this)}
+                                onBlur = {this.emailBlur.bind(this)}
                             >邮箱</InputItem>
                         </List.Body>
                     </List>

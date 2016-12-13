@@ -25,22 +25,34 @@ class AuthorAttestForm extends React.Component {
         this.dispatchData();
     }
     identitycardChange(e) {
-        if(this.cardReg.test(e) == false) {
-            this.errAlert("身份证号码长度不足18位");
+        if(e.length > 18) {
+            this.errAlert("身份证号码长度不能大于18位");
         }else {
              this.hideAlert();
         }
         this._resultData.identitycard = e;
         this.dispatchData();
     }
+    identitycardBlur(e) {
+        if(this.cardReg.test(e) == false) {
+            this.errAlert("不是有效的身份证号");
+        }else {
+             this.hideAlert();
+        }
+    }
     emailChange(e) {
+        if(this.emailReg.test(e) == true) {
+             this.hideAlert();
+        }
+        this._resultData.email = e;
+        this.dispatchData();
+    }
+    emailBlur(e) {
         if(this.emailReg.test(e) == false) {
             this.errAlert("邮箱格式不正确");
         }else {
              this.hideAlert();
         }
-        this._resultData.email = e;
-        this.dispatchData();
     }
     dispatchData() {
         this.assignObj.author = this._resultData;
@@ -74,11 +86,13 @@ class AuthorAttestForm extends React.Component {
                                 placeholder="身份证号码"
                                 value={this._resultData.identitycard}
                                 onChange = {this.identitycardChange.bind(this)}
+                                onBlur = {this.identitycardBlur.bind(this)}
                             >身份证号码</InputItem>
                             <InputItem
                                 placeholder="常用邮箱地址"
                                 value={this._resultData.email}
                                 onChange = {this.emailChange.bind(this)}
+                                onBlur = {this.emailBlur.bind(this)}
                             >邮箱</InputItem>
                         </List.Body>
                     </List>
