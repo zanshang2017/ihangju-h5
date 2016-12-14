@@ -60,25 +60,25 @@ export function* getUserInfo() {
         });
 
         if (ret) {
-            if ((ret.err === undefined || ret.err === null) && ret.data && ret.data.code == 'ok') {
+            if (ret.err === undefined || ret.err === null) {
+                if (ret.data && ret.data.code == 'ok') {
+                    //用户信息写入localStorage
+                    if (ret.data.result && ret.data.result.id) {
+                        locStorage.set('userInfo', JSON.stringify(ret.data.result));
+                    }
 
-                //用户信息写入localStorage
-                if (ret.data.result && ret.data.result.id) {
-                    locStorage.set('userInfo', JSON.stringify(ret.data.result));
+                    yield put(loadUserInfoSuccess(ret.data.result));
+
+                    if (DISPATCH_ORIGIN.LOGIN === action.dispatchOrigin) {
+                        loginSignals.loginSuccess.dispatch(ret.data.result);
+                        putDevicetoken();
+                    }
+
+                    if (DISPATCH_ORIGIN.OPEN_IDENTITY === action.dispatchOrigin
+                        || DISPATCH_ORIGIN.LOGIN === action.dispatchOrigin) {
+                        signals.openIdentityPanel.dispatch(ret.data.result);
+                    }
                 }
-
-                yield put(loadUserInfoSuccess(ret.data.result));
-
-                if (DISPATCH_ORIGIN.LOGIN === action.dispatchOrigin) {
-                    loginSignals.loginSuccess.dispatch(ret.data.result);
-                    putDevicetoken();
-                }
-
-                if (DISPATCH_ORIGIN.OPEN_IDENTITY === action.dispatchOrigin
-                    || DISPATCH_ORIGIN.LOGIN === action.dispatchOrigin) {
-                    signals.openIdentityPanel.dispatch(ret.data.result);
-                }
-
             } else {
                 console.log(ret.err.response); // eslint-disable-line no-console
                 yield put(loadUserInfoError(ret.err));

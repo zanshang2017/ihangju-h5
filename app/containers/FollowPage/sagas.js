@@ -59,19 +59,20 @@ export function* getMyFollowData() {
         });
 
         if (lists) {
-            if (lists.err === undefined || lists.err === null) {
+            if ((lists.err === undefined || lists.err === null)) {
+                if(lists.data && lists.data.code == 'ok') {
+                    if (lists.data && lists.data.result && lists.data.result.length > 0) {
+                        yield put(loadMyFollowDataSuccess(lists.data, page));
 
-                if (lists.data && lists.data.result && lists.data.result.length > 0) {
-                    yield put(loadMyFollowDataSuccess(lists.data, page));
-
-                    if (page == 0 && lists.data.result.length < size) {
+                        if (page == 0 && lists.data.result.length < size) {
+                            yield put(setMyFollowDataStatus({isLast: true}));
+                        }
+                    } else {
+                        if (page == 0) {
+                            yield put(loadMyFollowDataSuccess(lists.data, page));
+                        }
                         yield put(setMyFollowDataStatus({isLast: true}));
                     }
-                } else {
-                    if (page == 0) {
-                        yield put(loadMyFollowDataSuccess(lists.data, page));
-                    }
-                    yield put(setMyFollowDataStatus({isLast: true}));
                 }
             } else {
                 console.log(lists.err.response); // eslint-disable-line no-console
