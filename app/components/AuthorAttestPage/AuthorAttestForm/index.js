@@ -78,18 +78,18 @@ class AuthorAttestForm extends React.Component {
                     <List>
                         <List.Body>
                             <InputItem
-                                placeholder="姓名，最多15字"
+                                placeholder="真实姓名，最多15字"
                                 value = {this._resultData.realname}
                                 onChange = {this.realnameChange.bind(this)}
                             >姓名</InputItem>
                             <InputItem
-                                placeholder="身份证号码"
+                                placeholder="请输入身份证号"
                                 value={this._resultData.identitycard}
                                 onChange = {this.identitycardChange.bind(this)}
                                 onBlur = {this.identitycardBlur.bind(this)}
                             >身份证号码</InputItem>
                             <InputItem
-                                placeholder="常用邮箱地址"
+                                placeholder="请输入常用邮箱地址"
                                 value={this._resultData.email}
                                 onChange = {this.emailChange.bind(this)}
                                 onBlur = {this.emailBlur.bind(this)}
