@@ -72,7 +72,7 @@ class ServiceAgency extends React.Component {
             this.refs.J_agencyForm.errAlert("邮箱格式不正确");
             return false;
         }else if(data.businesslicense == undefined || data.businesslicense == '') {
-            this.refs.J_agencyForm.errAlert("请添加证件照");
+            this.refs.J_agencyForm.errAlert("请添加营业执照");
             return false;
         }else if(data.competencepurview == undefined || data.competencepurview) {
             let arr = data.competencepurview || [];

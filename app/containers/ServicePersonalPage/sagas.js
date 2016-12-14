@@ -80,7 +80,7 @@ export function* updateServicePersonalData() {
                 }
                 
             }
-            return arr.push(k + '=' + arr1.join('%'));
+            return arr.push(k + '=' + arr1.join(','));
         }
 
 

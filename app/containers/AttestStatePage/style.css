@@ -3,6 +3,11 @@
   .attestState .stateImg {
     width: 16.42667rem;
     margin: 3.09333rem 0 1.33333rem; }
+  .attestState .failTop {
+    margin-top: 1.49333rem; }
+  .attestState .failDiv {
+    margin-bottom: 1.6rem;
+    overflow: hidden; }
   .attestState span {
     display: block; }
     .attestState span.titleText {
@@ -15,12 +20,13 @@
       line-height: 1.2rem;
       overflow: hidden; }
       .attestState span.conText .left {
-        width: 40%;
+        width: 30%;
         float: left;
         text-align: right; }
       .attestState span.conText .right {
         float: left;
-        text-align: left; }
+        text-align: left;
+        margin-left: 0.53333rem; }
     .attestState span.btn {
       height: 2.4rem;
       line-height: 2.4rem;

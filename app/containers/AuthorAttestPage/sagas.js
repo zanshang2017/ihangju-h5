@@ -81,7 +81,7 @@ export function* updateAuthorAttestData() {
                 }
                 
             }
-            return arr.push(k + '=' + arr1.join('%'));
+            return arr.push(k + '=' + arr1.join(','));
         }
 
         body = arr.join('&');

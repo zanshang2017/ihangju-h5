@@ -56,7 +56,7 @@ class AgencylImg extends React.Component {
         }else {
             businessCardhtml = <div onClick={this.cardBusinessClickHandler.bind(this)} className={styles.bgImg}>
                                 <img src="https://o82zr1kfu.qnssl.com/@/image/584777b0e4b05c2d3be32388.png?imageView2/2/w/300" />
-                                <span>添加名片照</span>
+                                <span>添加营业执照</span>
                             </div>
         }
 		return (

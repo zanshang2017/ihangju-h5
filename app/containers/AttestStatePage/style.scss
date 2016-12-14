@@ -8,6 +8,13 @@
 		width: rem(616);
 		margin: rem(116) 0 rem(50);
 	}
+	.failTop {
+		margin-top: rem(56)
+	}
+	.failDiv {
+		margin-bottom: rem(60);
+		overflow: hidden;
+	}
 	span {
 		display: block;
 		&.titleText {
@@ -21,13 +28,14 @@
 			line-height: rem(45);
 			overflow: hidden;
 			.left {
-				width: 40%;
+				width: 30%;
 				float: left;
 				text-align: right;
 			}
 			.right {
 				float: left;
 				text-align: left;
+				margin-left: rem(20);
 			}
 		}
 		&.btn {
