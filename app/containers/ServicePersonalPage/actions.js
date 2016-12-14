@@ -68,7 +68,7 @@ export function updateServicePersonalDataSuccess(data) {
 	return {
 		type: UPDATE_SERVICEPERSONAL_DATA_SUCCESS,
 		payload: {
-			data: data
+			data: data,
 		}
 	}
 }
@@ -77,7 +77,7 @@ export function updateServicePersonalDataError(error) {
 	return {
 		type: UPDATE_SERVICEPERSONAL_DATA_ERROR,
 		payload: {
-			error: error
+			error: error,
 		}
 	}
 }

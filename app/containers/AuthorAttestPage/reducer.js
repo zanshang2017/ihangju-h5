@@ -15,7 +15,10 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-	'authorAttestData' : {}, 
+	'authorAttestData' : {},
+	'updateSuccess': fromJS({
+        data: false
+    }), 
 });
 
 function AuthorAttestReducer(state = initialState, action = {}) {
@@ -24,6 +27,7 @@ function AuthorAttestReducer(state = initialState, action = {}) {
 			return state;
 
 		case LOAD_AUTHORATTEST_DATA:
+			state = state.setIn(['updateSuccess', 'data'], false);
 			return state;
 
 		case LOAD_AUTHORATTEST_DATA_SUCCESS:
@@ -36,8 +40,10 @@ function AuthorAttestReducer(state = initialState, action = {}) {
 		case UPDATE_AUTHORATTEST_DATA:
 			return state;
 		case UPDATE_AUTHORATTEST_DATA_SUCCESS:
-			return state.set('authorAttestData', fromJS(action.payload.data));
+			state = state.setIn(['updateSuccess', 'data'], true);
+			return state;
 		case UPDATE_AUTHORATTEST_DATA_ERROR:
+			state = state.setIn(['updateSuccess', 'data'], false);
 			return state;
 		default: 
 			return state;

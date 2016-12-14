@@ -11,9 +11,13 @@ const selectServicePersonalData = () => createSelector(
 	selectServicePersonalDomin(),
 	(servicPersonalState) => servicPersonalState.get('servicePersonalData')
 );
-
+const selectServicePersonalDataSuccess = () => createSelector(
+	selectServicePersonalDomin(),
+	(servicPersonalState) => servicPersonalState.get('updateSuccess')
+);
 export default selectServicePersonalPage;
 export {
 	selectServicePersonalDomin,
-	selectServicePersonalData
+	selectServicePersonalData,
+	selectServicePersonalDataSuccess
 };

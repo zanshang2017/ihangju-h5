@@ -20,7 +20,8 @@ import {
 import ImageUpload from 'components/common/ImageUpload';
 
 import {
-    selectAuthorAttest
+    selectAuthorAttest,
+    selectAuthorAttestSuccess,
 } from './selectors';
 
 import {
@@ -54,6 +55,11 @@ class AuthorAtteset extends React.Component {
         let data = _result.author;
         if(this.testAll(data) == true) {
             this.props.dispatch(updateAuthorAttestData(_result));
+        }
+    }
+    componentDidUpdate() {
+        let _resultData = this.props.updateSuccess.toJS();
+        if(_resultData.data == true) {
             var id = this.props.routeParams.id;
             this.context.router.push('/attestState/' + id);
         }
@@ -106,9 +112,11 @@ AuthorAtteset.contextTypes = {
 
 const mapStateToProps = createSelector(
     selectAuthorAttest(),
-    (authorAttestData) => {
+    selectAuthorAttestSuccess(),
+    (authorAttestData,updateSuccess) => {
         return {
-            authorAttestData
+            authorAttestData,
+            updateSuccess
         }
     }
 );

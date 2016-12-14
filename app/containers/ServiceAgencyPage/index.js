@@ -14,7 +14,8 @@ import {
 } from './actions';
 
 import {
-	selectServiceAgencyData
+	selectServiceAgencyData,
+    selectServiceAgencyDataSuccess
 } from './selectors';
 
 import AuthorAttestBack from 'components/AuthorAttestPage/AuthorAttestBack';
@@ -44,6 +45,12 @@ class ServiceAgency extends React.Component {
         let data = _result.agency;
         if(this.testAll(data) == true) {
             this.props.dispatch(updateServiceAgencyData(_result));
+        }
+    }
+    componentDidUpdate() {
+        let _resultData = this.props.updateSuccess.toJS();
+        console.log(_resultData);
+        if(_resultData.data == true) {
             var id = this.props.routeParams.id;
             this.context.router.push('/attestState/' + id);
         }
@@ -110,9 +117,11 @@ ServiceAgency.contextTypes = {
 };
 const mapStateToProps = createSelector(
     selectServiceAgencyData(),
-    (serviceAgencyData) => {
+    selectServiceAgencyDataSuccess(),
+    (serviceAgencyData,updateSuccess) => {
         return {    
-            serviceAgencyData
+            serviceAgencyData,
+            updateSuccess
         }
     }
 );
