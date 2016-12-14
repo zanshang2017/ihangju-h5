@@ -45,9 +45,9 @@
       margin: 0 auto; }
     .attestState span.failLeftBtn {
       width: 10.82667rem;
-      float: left;
-      margin-left: 0.8rem; }
+      margin: 0 auto; }
     .attestState span.failRightBtn {
+      display: none;
       width: 6.82667rem;
       float: right;
       margin-right: 0.8rem; }

@@ -58,10 +58,10 @@
 		}
 		&.failLeftBtn {
 			width: rem(406);
-			float: left;
-			margin-left: rem(30);
+			margin: 0 auto;
 		}
 		&.failRightBtn {
+			display: none;
 			width: rem(256);
 			float: right;
 			margin-right: rem(30);
