@@ -38,6 +38,7 @@ export class AgreementLeavewordsPage extends React.Component { // eslint-disable
 
     constructor(props) {
         super(props);
+        this.sending = false;
     }
 
     componentWillMount() {
@@ -57,6 +58,8 @@ export class AgreementLeavewordsPage extends React.Component { // eslint-disable
     send() {
 
         let that = this;
+
+        if(that.sending) return;
 
         //表单数据
         // competencepurview:57c79bbead81f618ec4a1a4d,57c79be0ad81f618ec4a1a50
@@ -84,6 +87,8 @@ export class AgreementLeavewordsPage extends React.Component { // eslint-disable
             },
             credentials: 'include'
         }).then(function (resp) {
+            that.sending = false;
+
             if(resp && resp.data) {
                 if(resp.data.code == 'ok') {
                     Toast.info('发送成功');
@@ -97,8 +102,11 @@ export class AgreementLeavewordsPage extends React.Component { // eslint-disable
                 Toast.info('申请失败,请稍后再试');
             }
         }, function (error) {
+            that.sending = false;
             Toast.info('申请失败,请稍后再试');
         });
+
+        that.sending = true;
     }
 
     render() {
