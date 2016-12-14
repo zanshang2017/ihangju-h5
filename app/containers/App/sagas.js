@@ -60,10 +60,10 @@ export function* getUserInfo() {
         });
 
         if (ret) {
-            if (ret.err === undefined || ret.err === null) {
+            if ((ret.err === undefined || ret.err === null) && ret.data && ret.data.code == 'ok') {
 
                 //用户信息写入localStorage
-                if (ret.data.result.id) {
+                if (ret.data.result && ret.data.result.id) {
                     locStorage.set('userInfo', JSON.stringify(ret.data.result));
                 }
 
