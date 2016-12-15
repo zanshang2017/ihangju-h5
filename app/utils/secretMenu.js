@@ -37,6 +37,7 @@ export default {
             'h5.dev.ihangju.com/?debug',
             'testh5.app.ihangju.com',
             'h5app.ihangju.com?debug',
+            '刷新页面',
             '取消'];
 
         ActionSheet.showActionSheetWithOptions({
@@ -61,6 +62,10 @@ export default {
 
                     case 3:
                         location.href = 'http://h5app.ihangju.com?debug';
+                        break;
+
+                    case 4:
+                        location.reload();
                         break;
 
                     default:

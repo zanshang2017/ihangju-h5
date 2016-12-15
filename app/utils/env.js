@@ -6,6 +6,8 @@ import {
     guid
 } from 'utils/util.js';
 
+import Toast from 'antd-mobile/lib/toast';
+
 const VERSION = window.__APP_CONFIG.ver || 'undefined';
 
 const PRODUCTION_DOMAIN = /h5app\.ihangju\.com|testh5\.app\.ihangju\.com/igm; //线上域名 或 33测试域名
@@ -29,7 +31,6 @@ var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
 
     deliveryChannel = deliveryChannel && (deliveryChannel[1] || '') ;
 
-// alert(ua);
 // alert(shell);
 // alert(shellName);
 // alert(shellVersion);
