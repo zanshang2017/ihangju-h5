@@ -1,6 +1,10 @@
 import styles from './styles.css';
 import React from 'react';
 
+import {
+    Env
+} from 'utils/env.js';
+
 import FollowList from 'components/FollowPage/FollowList';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -39,6 +43,7 @@ class TopListBar extends React.Component {
     render() {
         let title = this.props.currentFollow ? this.props.currentFollow.name : '全部关注';
         let followList = '';
+        let barTopGapHtml = '';
 
         if (this.props.myFollowListData) {
             followList = <FollowList ref="J_FollowList" items={this.props.myFollowListData}
@@ -48,8 +53,14 @@ class TopListBar extends React.Component {
             //todo loading
         }
 
+        // 增加头部空白,兼容ios
+        if (Env.isIOSShell) {
+            barTopGapHtml = <div className="barTopGapIos"></div>;
+        }
+
         return (
             <div>
+                {barTopGapHtml}
                 <div id="J_followPageTopListBar" ref="nTopListBar" className={`${styles.bar}`}>
                     <div className={styles.title} onClick={this.toggleMyFollowListHandler.bind(this)}>{title}
                         <i ref="nTopListBarTitleArrow"  className="iconDown hasTransition"></i>

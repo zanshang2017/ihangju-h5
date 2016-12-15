@@ -26,7 +26,8 @@ import {
 
 import Toast from 'antd-mobile/lib/toast';
 
-//console.log('Env', Env);
+import {Env} from 'utils/env.js';
+console.log('Env', Env);
 
 const initialState = {};
 
@@ -78,6 +79,14 @@ import {
 
 testSupportWebp();
 
+if (Env.isIOSShell) {
+    document.body.classList.add('_ios_'); // 使用ios容器特定样式
+}
+
+if (Env.isAndroidShell) {
+    document.body.classList.add('_android_'); // 使用android容器特定样式
+}
+
 // alert('dpr:' + window.devicePixelRatio + ' w:' + document.documentElement.clientWidth + ' h:' + document.documentElement.clientHeight);
 // alert(navigator.userAgent);
 
@@ -88,7 +97,7 @@ const rootRoute = {
     component: App,
     indexRoute: {
         onEnter: (nextState, replace) => {
-            if(isLogin()) {
+            if (isLogin()) {
                 replace('/follow');
             } else {
                 replace('/found');

@@ -52,6 +52,9 @@
     margin: 0;
     padding: 0;
     background: #f4f5f5; }
+  :global .barTopGapIos {
+    height: 20px;
+    background: #fff; }
   :global .whiteBg {
     background: #fff !important; }
   :global .deepBg {

@@ -74,6 +74,11 @@
         background: $gapBg;
     }
 
+    .barTopGapIos {
+        height: $iosTopHeight;
+        background: $topBarBg;
+    }
+
     .whiteBg {
         background: #fff !important;
     }

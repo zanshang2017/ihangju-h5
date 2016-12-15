@@ -58,10 +58,13 @@ class FollowList extends React.Component {
     }
 
     showFollowList() {
+        let nBgColorLayer = this.refs.nBgColorLayer;
         let nFollowListWrap = this.refs.nFollowListWrap;
+        let containerHeight = document.getElementById("J_Container").getBoundingClientRect().height + 'px';
 
         if (!nFollowListWrap.style.height || parseInt(nFollowListWrap.style.height) == 0) {
-            nFollowListWrap.style.height = document.getElementById("J_Container").getBoundingClientRect().height + 'px';
+            nFollowListWrap.style.height = containerHeight;
+            nBgColorLayer.style.height = containerHeight;
         }
 
         nFollowListWrap.scrollTop = 0;
@@ -71,7 +74,9 @@ class FollowList extends React.Component {
 
     hideFollowList() {
         let nFollowListWrap = this.refs.nFollowListWrap;
+        let nBgColorLayer = this.refs.nBgColorLayer;
         nFollowListWrap.style.height = 0;
+        nBgColorLayer.style.height = 0;
     }
 
     render() {
@@ -93,32 +98,34 @@ class FollowList extends React.Component {
         }
 
         return (
-            <div ref="nFollowListWrap" className={`${styles.listWrap} hasTransition`}>
-                <div ref="nFollowList" className={`${styles.list}`}
-                     onClick={this.changeCurrentHandler.bind(this)}
-                     onScroll={this.scrollHanderBinded}>
-                    <ul>
-                        <li key="-1" id="-1">全部关注</li>
-                    </ul>
+            <div ref="nBgColorLayer" className={`${styles.bgColorLayer} hasTransition`}>
+                <div ref="nFollowListWrap" className={`${styles.listWrap} hasTransition`}>
+                    <div ref="nFollowList" className={`${styles.list}`}
+                         onClick={this.changeCurrentHandler.bind(this)}
+                         onScroll={this.scrollHanderBinded}>
+                        <ul>
+                            <li key="-1" id="-1">全部关注</li>
+                        </ul>
 
-                    {tagTitle}
-                    <ul>
-                        {
-                            followTags.map(function (item) {
-                                return <li key={item.id} id={item.id} type="tag">{item.name}</li>
-                            })
-                        }
-                    </ul>
+                        {tagTitle}
+                        <ul>
+                            {
+                                followTags.map(function (item) {
+                                    return <li key={item.id} id={item.id} type="tag">{item.name}</li>
+                                })
+                            }
+                        </ul>
 
-                    {userTitle}
-                    <ul>
-                        {
-                            followUsers.map(function (item) {
-                                return <li key={item.id} id={item.id} type="user">{item.name}</li>
-                            })
-                        }
-                    </ul>
+                        {userTitle}
+                        <ul>
+                            {
+                                followUsers.map(function (item) {
+                                    return <li key={item.id} id={item.id} type="user">{item.name}</li>
+                                })
+                            }
+                        </ul>
 
+                    </div>
                 </div>
             </div>
         );
