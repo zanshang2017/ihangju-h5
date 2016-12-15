@@ -54,22 +54,24 @@ export function loadAgreementsDataError(error) {
     };
 }
 
-export function signAgreement(agreementId, isAgree = true) {
+export function signAgreement(agreementId, isAgree = true, userId = null) {
     return {
         type: SIGN_AGREEMENTS,
         payload: {
             agreementId,
-            isAgree
+            isAgree,
+            userId
         }
     };
 }
 
-export function signAgreementSuccess(agreementId, isAgree = true) {
+export function signAgreementSuccess(agreementId, isAgree = true, userId = null) {
     return {
         type: SIGN_AGREEMENTS_SUCCESS,
         payload: {
             agreementId,
-            isAgree
+            isAgree,
+            userId
         }
     };
 }

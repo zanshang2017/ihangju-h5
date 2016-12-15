@@ -116,6 +116,10 @@
         transform: rotateZ(180deg);
     }
 
+    [data-hashover="true"]:active {
+        background: $tabBg !important;
+    }
+
     /*文字排版*/
     .f12 {
         font-size: rem(12);

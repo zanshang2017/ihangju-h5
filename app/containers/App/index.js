@@ -145,12 +145,12 @@ class App extends React.Component {
             var body = document.body;
             var hoveredElem = [];
 
-            body.addEventListener('touchstart', function (e) {
-                detectHover(e.target, e);
-            });
-
-            body.addEventListener('touchmove', touchOverHandler, true);
-            body.addEventListener('touchend', touchOverHandler, true);
+            // body.addEventListener('touchstart', function (e) {
+            //     detectHover(e.target, e);
+            // });
+            //
+            // body.addEventListener('touchmove', touchOverHandler, true);
+            // body.addEventListener('touchend', touchOverHandler, true);
 
             function touchOverHandler(e) {
                 // e.stopPropagation();

@@ -32,7 +32,6 @@ export class AgreementDetailPage extends React.Component { // eslint-disable-lin
 
     constructor(props) {
         super(props);
-        this.id = '';
     }
 
     componentWillMount() {
@@ -51,7 +50,8 @@ export class AgreementDetailPage extends React.Component { // eslint-disable-lin
         let id = e.currentTarget.dataset['id'];
         if (id) {
             console.log('同意' + id);
-            this.props.dispatch(signAgreement(id));
+            Toast.loading('提交中...');
+            this.props.dispatch(signAgreement(id, true, this.props.routeParams.id));
         } else {
             Toast.info('无协议ID,无法完成操作');
         }
@@ -61,7 +61,8 @@ export class AgreementDetailPage extends React.Component { // eslint-disable-lin
         let id = e.currentTarget.dataset['id'];
         if (id) {
             console.log('拒绝' + id);
-            this.props.dispatch(signAgreement(id, false));
+            Toast.loading('提交中...');
+            this.props.dispatch(signAgreement(id, false, this.props.routeParams.id));
         } else {
             Toast.info('无协议ID,无法完成操作');
         }
