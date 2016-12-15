@@ -12,8 +12,14 @@ const selectAttestStateData = () => createSelector(
 	(attestStateState) => attestStateState.get('attestStateData')
 )
 
+const selctFailHelpData = () => createSelector(
+	selectAttestStateDomin(),
+	(attestStateState) => attestStateState.get('helpData')
+)
+
 export default selectAttestStatePage;
 export {
 	selectAttestStateDomin,
-	selectAttestStateData
+	selectAttestStateData,
+	selctFailHelpData
 }
