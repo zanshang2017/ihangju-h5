@@ -1,22 +1,28 @@
 import {take, call, put, select} from 'redux-saga/effects';
 
 import {
-	LOAD_ATTESTSTATE_DATA
+	LOAD_ATTESTSTATE_DATA,
+    LOAD_HELP_DATA,
+
 } from './constants';
 
 import {
 	loadAttestStateDataSuccess,
 	loadAttestStateDataError,
+    loadHelpDataSuccess,
+    loadHelpDataError,
 } from './actions';
 
 import {
-	AUTHORATTEST_API
+	AUTHORATTEST_API,
+    FAIL_HELP_API,
 } from '../../apis.js';
 
 import request from 'utils/request';
 
 export default [
     getAttestStateData,
+    getloadHelpData
 ];
 
 export function* getAttestStateData() {
@@ -44,4 +50,32 @@ export function* getAttestStateData() {
 		}
 	}
 }
+
+export function* getloadHelpData() {
+    let action = null;
+    while (action = yield take(LOAD_HELP_DATA)) {
+        let url = FAIL_HELP_API;
+        const failHelp = yield call(request, url, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-API-Version': 'v1.1'
+            },
+            credentials: 'include'
+        });
+        if(failHelp) {
+            if(failHelp.data.code == 'ok') {
+                yield put(loadHelpDataSuccess(failHelp.data.result));
+            }else {
+                yield put(loadHelpDataError(failHelp.err));
+            }
+        }
+    }
+}
+
+
+
+
+
+
 
