@@ -70,7 +70,7 @@ import App from 'containers/App';
 
 import createRoutes from './routes';
 
-import {foo} from 'utils/upload.js';
+import {SHELL_CSS_ROOT} from 'constants';
 
 import {
     testSupportWebp,
@@ -80,11 +80,9 @@ import {
 testSupportWebp();
 
 if (Env.isIOSShell) {
-    document.body.classList.add('_ios_'); // 使用ios容器特定样式
-}
-
-if (Env.isAndroidShell) {
-    document.body.classList.add('_android_'); // 使用android容器特定样式
+    document.documentElement.classList.add(SHELL_CSS_ROOT.iosshell); // 使用ios容器特定样式
+} else if (Env.isAndroidShell) {
+    document.documentElement.classList.add(SHELL_CSS_ROOT.androidshell); // 使用android容器特定样式
 }
 
 // alert('dpr:' + window.devicePixelRatio + ' w:' + document.documentElement.clientWidth + ' h:' + document.documentElement.clientHeight);
