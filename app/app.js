@@ -70,7 +70,7 @@ import App from 'containers/App';
 
 import createRoutes from './routes';
 
-import {SHELL_CSS_ROOT} from 'constants';
+import {SHELL_CSS_ROOT} from './constants';
 
 import {
     testSupportWebp,
