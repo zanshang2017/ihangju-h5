@@ -64,6 +64,7 @@ module.exports = (options) => ({
         new webpack.ProvidePlugin({
             // make fetch available
             fetch: 'exports?self.fetch!whatwg-fetch',
+            Hammer: "hammerjs/hammer"
         }),
 
         // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`

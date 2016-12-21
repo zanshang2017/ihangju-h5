@@ -27,9 +27,7 @@ var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
     shellVersion = shell && shell.split('/')[1],
     deliveryChannel = shellName && rDeliveryChannel.exec(shellName),
     isAndroidShell = shellName ? shellName.indexOf('HangJuAndroid') > -1 : false,
-
-    // isIOSShell = shellName ? shellName.indexOf('HangJuIOS') > -1 : false; //todo 等容器UA替换好
-    isIOSShell = iphone || ipad;
+    isIOSShell = shellName ? shellName.indexOf('HangJuIOS') > -1 : false;
 
     deliveryChannel = deliveryChannel && (deliveryChannel[1] || '') ;
 

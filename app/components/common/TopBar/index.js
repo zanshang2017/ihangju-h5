@@ -6,6 +6,8 @@ import {
     Env
 } from 'utils/env.js';
 
+import TopGapForIOS from 'components/common/TopGapForIOS';
+
 /* eslint-disable react/prefer-stateless-function */
 class TopBar extends React.Component {
 
@@ -64,9 +66,14 @@ class TopBar extends React.Component {
         }
 
         // 增加头部空白,兼容ios
-        if (Env.isIOSShell) {
-            barTopGapHtml = <div className="barTopGapIos"></div>;
-        }
+            if (_style && _style.backgroundColor) {
+                barTopGapHtml = <TopGapForIOS style={{'backgroundColor': _style.backgroundColor}} />
+            } else {
+                barTopGapHtml = <TopGapForIOS/>
+            }
+
+
+
 
         return (
             <div>

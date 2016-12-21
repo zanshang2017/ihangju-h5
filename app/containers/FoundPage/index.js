@@ -23,6 +23,7 @@ import styles from './styles.scss';
 
 import Banner from 'components/FoundPage/Banner';
 import MainContent from 'components/FoundPage/MainContent';
+import TopGapForIOS from 'components/common/TopGapForIOS';
 
 export class FoundPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -32,15 +33,6 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
 
     componentWillMount() {
         this.loadDiscoveries();
-    }
-
-    componentDidMount() {
-        console.log('FoundPage DidMount');
-        // var j_span = this.refs.J_Span;
-        // setTimeout(function(){
-        //     alert(j_span.getBoundingClientRect().width);
-        // }, 2000);
-        // debugger;
     }
 
     loadDiscoveries() {
@@ -57,6 +49,7 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
         return (
             <div className="pageInner">
                 <div className="mainContent">
+                    <TopGapForIOS />
                     <Banner items={this.props.banners}
                             articleClickHandler={this.articleClickHandler.bind(this)}></Banner>
                     <MainContent {...this.props} />

@@ -5,6 +5,7 @@ import {
     Env
 } from 'utils/env.js';
 
+import TopGapForIOS from 'components/common/TopGapForIOS';
 import FollowList from 'components/FollowPage/FollowList';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -53,14 +54,9 @@ class TopListBar extends React.Component {
             //todo loading
         }
 
-        // 增加头部空白,兼容ios
-        if (Env.isIOSShell) {
-            barTopGapHtml = <div className="barTopGapIos"></div>;
-        }
-
         return (
             <div>
-                {barTopGapHtml}
+                <TopGapForIOS/>
                 <div id="J_followPageTopListBar" ref="nTopListBar" className={`${styles.bar}`}>
                     <div className={styles.title} onClick={this.toggleMyFollowListHandler.bind(this)}>{title}
                         <i ref="nTopListBarTitleArrow"  className="iconDown hasTransition"></i>

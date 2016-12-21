@@ -44,6 +44,11 @@ import SwitchTab from 'components/SearchPage/SwitchTab';
 import ProjectList from 'components/SearchPage/ProjectList'
 import TagList from 'components/SearchPage/TagList'
 import UserList from 'components/SearchPage/UserList'
+import TopGapForIOS from 'components/common/TopGapForIOS';
+
+import {
+    Env
+} from 'utils/env.js';
 
 import styles from './styles.scss';
 
@@ -132,6 +137,7 @@ export class SearchPage extends React.Component { // eslint-disable-line react/p
 
         return (
             <div className="pageInner">
+                <TopGapForIOS/>
                 <SearchBar ref="J_SearchBar" {...this.props} searchHandler={this.searchHandler.bind(this)}></SearchBar>
 
                 <div ref="J_History" className={`${styles.wrapBg} mainContent`}>

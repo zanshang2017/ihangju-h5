@@ -10,6 +10,10 @@ import {Link} from 'react-router';
 import {createSelector} from 'reselect';
 
 import {
+    Env
+} from 'utils/env.js';
+
+import {
     selectCreatePage,
     selectNotes,
     selectCurrentNote,
@@ -38,6 +42,7 @@ import {
 import ScanPane from 'components/CreatePage/ScanPane';
 import NotePane from 'components/CreatePage/NotePane';
 import NoteEditor from 'components/CreatePage/NoteEditor';
+import TopGapForIOS from 'components/common/TopGapForIOS';
 
 // import styles from './styles.scss';
 
@@ -129,6 +134,7 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
         return (
             <div className="pageInner">
                 <div ref="J_MainContentWrap" className="mainContent whiteBg">
+                    <TopGapForIOS/>
                     <Tabs defaultActiveKey="1">
                         <TabPane tab="扫码创作" key="1">
                             <ScanPane userId={this.userId} isAuthor={this.isAuthor}/>

@@ -34,7 +34,7 @@
   flex: 1;
   -webkit-overflow-scrolling: touch;
   overflow-y: auto; }
-:global .hover {
+:global [data-hashover]:active {
   background: #f3f5f4 !important; }
 :global .logPanel {
   position: fixed;
@@ -61,9 +61,9 @@
     width: 4rem;
     height: 1.6rem; }
   :global .logPanel.unfold {
-    height: 1.6rem;
+    height: 2.66667rem;
     overflow: hidden; }
     :global .logPanel.unfold .content {
-      height: 1.6rem; }
+      height: 2.66667rem; }
 
 /*# sourceMappingURL=style.css.map */
