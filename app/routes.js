@@ -173,12 +173,9 @@ export default function createRoutes(store) {
                 });
             },
             onEnter: function () {
-                // if (isLogin()) {
                 store.dispatch(showNav());
                 routeEffector.autoSet(); //进入页面时设置路由切换效果
                 store.dispatch(setCurPage(PAGE_NAME.FOLLOW_PAGE));
-                // }
-
             },
             onLeave: function () {
                 store.dispatch(setCurPage(''));

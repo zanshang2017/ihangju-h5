@@ -43,7 +43,7 @@ class MainContent extends React.Component {
     }
 
     render() {
-        this.outer = this.refs.J_FollowPageMainContentWrap && this.refs.J_FollowPageMainContentWrap.parentElement;
+        this.outer = this.refs.J_FollowPageMainContentWrap && this.props.parentRef;
         this.page = this.props.selectMyFollowDataStatus.get('page') || 0;
         this.isLast = this.props.selectMyFollowDataStatus.get('isLast') || false;
 

@@ -83,19 +83,33 @@ export class FollowPage extends React.Component { // eslint-disable-line react/p
         }
     }
 
+    //todo for test
+    loadingFunction() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve();
+                // reject();
+            }, 2000);
+        });
+    }
+
     render() {
+
         return (
             <div className="pageInner">
                 <TopListBar {...this.props} />
                 <div id="J_Container" ref="J_Container" className="mainContent">
                     <MainContent
                         ref="J_MainContent"
+                        parentRef={this.refs.J_Container}
                         loadMyFollow={this.loadMyFollow.bind(this)}
                         {...this.props} />
                 </div>
             </div>
         );
     }
+
+
 }
 
 const mapStateToProps = createSelector(

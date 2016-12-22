@@ -66,14 +66,11 @@ class TopBar extends React.Component {
         }
 
         // 增加头部空白,兼容ios
-            if (_style && _style.backgroundColor) {
-                barTopGapHtml = <TopGapForIOS style={{'backgroundColor': _style.backgroundColor}} />
-            } else {
-                barTopGapHtml = <TopGapForIOS/>
-            }
-
-
-
+        if (_style && _style.backgroundColor) {
+            barTopGapHtml = <TopGapForIOS style={{'backgroundColor': _style.backgroundColor}}/>
+        } else {
+            barTopGapHtml = <TopGapForIOS/>
+        }
 
         return (
             <div>

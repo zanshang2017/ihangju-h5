@@ -7,7 +7,7 @@ import styles from './style.css';
 import TopBar from 'components/common/TopBar';
 import List from 'antd-mobile/lib/list';
 import InputItem from 'antd-mobile/lib/input-item';
-import { createForm } from 'rc-form';
+// import { createForm } from 'rc-form';
 import {createSelector} from 'reselect';
 import {
     addImageParam,

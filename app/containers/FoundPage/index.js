@@ -49,7 +49,7 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
         return (
             <div className="pageInner">
                 <div className="mainContent">
-                    <TopGapForIOS />
+                    <TopGapForIOS style={{'backgroundColor': '#f5f5f5'}}/>
                     <Banner items={this.props.banners}
                             articleClickHandler={this.articleClickHandler.bind(this)}></Banner>
                     <MainContent {...this.props} />

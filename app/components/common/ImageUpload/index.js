@@ -4,6 +4,10 @@ import ActionSheet from 'antd-mobile/lib/action-sheet';
 
 import {uploadImage} from 'utils/upload';
 
+import {
+    Env
+} from 'utils/env'
+
 import bridge from 'utils/bridge';
 
 import Toast from 'antd-mobile/lib/toast';
@@ -71,7 +75,7 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
             // console.log('上传成功!' + imgUrl);
             try {
                 Toast.hide();
-            }catch(e){
+            } catch (e) {
             }
 
             Toast.success('上传成功!', 2);
@@ -81,7 +85,7 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
 
             try {
                 Toast.hide();
-            }catch(e){
+            } catch (e) {
             }
 
             Toast.fail('上传失败,请检查网络!', 3);
@@ -103,12 +107,12 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
         Toast.loading('上传中,请稍后...', 30);
 
         uploadImage(oFile).then(function (imgUrl) {
-        // uploadImage(imgData).then(function (imgUrl) {
+            // uploadImage(imgData).then(function (imgUrl) {
             console.log('上传成功!' + imgUrl);
 
             try {
                 Toast.hide();
-            }catch(e){
+            } catch (e) {
             }
 
             Toast.success('上传成功!', 2);
@@ -118,7 +122,7 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
             console.log('上传失败!');
             try {
                 Toast.hide();
-            }catch(e){
+            } catch (e) {
             }
 
             Toast.fail('上传失败,请检查网络!', 3);
@@ -135,34 +139,42 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
 
     showSheet() {
         let that = this;
-        // const BUTTONS = ['拍照', '从相册选取', '取消'];
-        const BUTTONS = ['从相册选取', '取消'];
 
-        ActionSheet.showActionSheetWithOptions({
-                options: BUTTONS,
-                cancelButtonIndex: BUTTONS.length - 1,
-                title: '上传图片',
-                message: '请从下面选择您的图片来源',
-                maskClosable: true,
-            },
-            (buttonIndex) => {
-                switch (buttonIndex) {
-                    // case 0:
-                    //     that.showCameraSelector();
-                    //     break;
-                    // case 1:
-                    //     that.showAlbumSelector();
-                    //     break;
+        //ios容器原生支持摄像头+相册选择
+        if (Env.isIOSShell) {
+            that.showAlbumSelector();
+            return;
+        } else {
+            // const BUTTONS = ['拍照', '从相册选取', '取消'];
+            const BUTTONS = ['从相册选取', '取消'];
 
-                    case 0:
-                        that.showAlbumSelector();
-                        break;
+            ActionSheet.showActionSheetWithOptions({
+                    options: BUTTONS,
+                    cancelButtonIndex: BUTTONS.length - 1,
+                    title: '上传图片',
+                    message: '请从下面选择您的图片来源',
+                    maskClosable: true,
+                },
+                (buttonIndex) => {
+                    switch (buttonIndex) {
+                        // case 0:
+                        //     that.showCameraSelector();
+                        //     break;
+                        // case 1:
+                        //     that.showAlbumSelector();
+                        //     break;
 
-                    default:
-                        break;
+                        case 0:
+                            that.showAlbumSelector();
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
-            }
-        );
+            );
+
+        }
     }
 
     hideSheet() {
@@ -178,10 +190,9 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
 
         // bridge.sys.camera(function (data) {
         //     console.log(data.code, data.resp.substr(0, 100));
-            // alert(data.resp.substr(0, 100));
-            // that.loadCameraFileHandler(data.resp);
+        // alert(data.resp.substr(0, 100));
+        // that.loadCameraFileHandler(data.resp);
         // });
-
     }
 
     render() {

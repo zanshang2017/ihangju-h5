@@ -97,6 +97,11 @@
     //    color: #fff;
     //}
 
+    *:not(input,textarea) {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none; /* Disable selection/Copy of UIWebView */
+    }
+
     //页面切换
 
     .flip-right2left .flip-enter,
