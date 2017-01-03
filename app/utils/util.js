@@ -293,6 +293,7 @@ function compareVersion(v1, v2, digit) {
     return 0;
 }
 
+
 //图片尺寸配置
 const IMAGE_SIZE_TYPE = {
     AVATAR: '?imageMogr2/thumbnail/120x120/quality/70/auto-orient',
