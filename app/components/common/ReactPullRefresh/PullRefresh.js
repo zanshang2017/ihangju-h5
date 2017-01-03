@@ -1,227 +1,213 @@
-// Pull Refresh 核心实现
+/**
+ * 借助ios原生滚动实现下拉刷新,由于使用原生惯性滚动,因此不支持android.
+ *
+ * bug: 当列表条数小于当前容器高度时,原生滚动条不工作,无法完成后续的下拉流程。
+ *
+ *
+ */
+import styles from './styles.scss';
+
 class PullRefresh {
-  //默认属性
-  static defaultOptions = {
-    lockInTime: 0, //延迟刷新或加载
-    maxAmplitude: 80, //设置上下滑动最大弹性振幅度，单位为像素，默认为 80 像素
-    loadMoreThrottle: 5, //加载更多，距离最底部临界值，
-  };
+    static defaultOptions = {
+        lockInTime: 300, //延迟刷新或加载
+        maxAmplitude: 80, //设置上下滑动最大弹性振幅度，单位为像素，默认为 80 像素
+    };
 
-  constructor(options) {
-    let _options = {...options};
-    Object.keys(_options).forEach((item) => {
-      if (_options[item] === undefined) {
-        delete _options[item];
-      }
-    });
+    constructor(options) {
+        let _options = {...options};
+        Object.keys(_options).forEach((item) => {
+            if (_options[item] === undefined) {
+                delete _options[item];
+            }
+        });
 
-    this.options = {...PullRefresh.defaultOptions, ..._options};
-    const {container, ptrEl, moreEl, scrollComponent, hasMore} = _options;
-    this.container = container;
-    this.ptrEl = ptrEl;
-    this.moreEl = moreEl;
-    if (ptrEl) {
-      this.imgEl = ptrEl.querySelector('.rc-ptr-image');
+        this.options = {...PullRefresh.defaultOptions, ..._options};
+        const {container, ptrEl} = _options;
+
+        this.container = container;
+        this.parentContainer = container.parentNode;
+        this.ptrEl = ptrEl;
+
+        if (ptrEl) {
+            this.imgEl = ptrEl.querySelector(`.${styles['rc-ptr-image']}`);
+        }
+
+        this.loading = false;
+        this.isOnstartAdded = false;
+        this.onscroll = this.onscroll.bind(this);
+        this.ontouchstart = this.ontouchstart.bind(this);
+        this.ontouchmove = this.ontouchmove.bind(this);
+        this.ontouchend = this.ontouchend.bind(this);
+
+        this.resetPtr = this.resetPtr.bind(this);
+        this.initEvents();
     }
-    this.scroll = scrollComponent.scroll;
-    this.hasMore = hasMore;
 
-    this.loading = false;
-    this.ontouchmove = this.ontouchmove.bind(this);
-    this.ontouchend = this.ontouchend.bind(this);
-
-    this.resetPtr = this.resetPtr.bind(this);
-    this.resetMore = this.resetMore.bind(this);
-    this.initEvents();
-  }
-
-  //初始化事件
-  initEvents() {
-    this.container.addEventListener('touchmove', this.ontouchmove, false);
-    this.container.addEventListener('touchend', this.ontouchend, true);
-  }
-
-  ontouchmove() {
-    if (this.loading) {
-      return;
+    //初始化事件
+    initEvents() {
+        this.parentContainer.addEventListener('scroll', this.onscroll);
+        this.parentContainer.addEventListener('touchstart', this.ontouchstart, false);
+        this.parentContainer.addEventListener('touchend', this.ontouchend, true);
+        this.addTouchmove();
     }
-    const scroll = this.scroll;
-    let top = -scroll.getScrollTop();
-    const maxAmplitude = this.options.maxAmplitude;
-    const refresh = this.options.refresh;
-    const loadMore = this.options.loadMore;
-    if (refresh) {
-      const style = this.ptrEl.style;
-      if (top < 0 && top >= -maxAmplitude) {
-        style.webkitTransform = `translate3d(0, ${-top}px, 0)`;
-        style.transform = `translate3d(0, ${-top}px, 0)`;
-      } else {
-        style.webkitTransform = 'translate3d(0, 0, 0)';
-        style.transform = 'translate3d(0, 0, 0)';
-      }
-      if (top < -maxAmplitude / 2) {//开启刷新
-        this.enableLoading = true;
-        this.imgEl.classList.add('rc-ptr-rotate');
-      } else {
+
+    onscroll(e) {
+        // console.log(this.parentContainer.scrollTop);
+        this.isTouchTop = (this.parentContainer.scrollTop == 0);
+
+        if (this.isTouchTop) {
+            this.addTouchmove();
+        }
+    }
+
+    addTouchmove() {
+        if (!this.isOnstartAdded) {
+            debugLog('binding touchmove');
+            this.parentContainer.addEventListener('touchmove', this.ontouchmove, false);
+            this.isOnstartAdded = true;
+        }
+    }
+
+    ontouchstart(e) {
+        this.touchStartY = e.touches[0].pageY || 0;
+    }
+
+    ontouchmove(e) {
+        if (this.loading) {
+            return;
+        }
+
+        this.touchMoveY = e.touches[0].pageY;
+        let dist = this.touchStartY - this.touchMoveY;
+
+        if (dist < 0) {
+            this.isMoveBottom = true; //向下拉
+        } else {
+            this.isMoveBottom = false;
+        }
+
+        if (!this.isMoveBottom && this.isOnstartAdded) {
+            debugLog('方向相反,解绑!');
+            this.parentContainer.removeEventListener('touchmove', this.ontouchmove);
+            this.isOnstartAdded = false;
+            return;
+        }
+
+        e.preventDefault();
+        let _dist = -(dist / 2);
+        this.container.style.webkitTransform = 'translate3d(0, ' + (_dist) + 'px, 0)';
+        this.container.style.transform = 'translate3d(0, ' + (_dist) + 'px, 0)';
+        // return;
+
+        let top = this.container.scrollTop;
+        const maxAmplitude = this.options.maxAmplitude;
+        const refresh = this.options.refresh;
+
+        console.log(this.container.scrollHeight, this.container.clientHeight, this.container.scrollTop);
+        debugLog(this.container.scrollHeight + ' - ' + this.container.clientHeight + ' - ' + top + '<' + (-maxAmplitude / 2));
+
+        if (refresh) {
+            const style = this.ptrEl.style;
+            if (top < 0 && top >= -maxAmplitude) {
+                // style.webkitTransform = `translate3d(0, ${-top}px, 0)`;
+                // style.transform = `translate3d(0, ${-top}px, 0)`;
+            } else {
+                style.webkitTransform = 'translate3d(0, 0, 0)';
+                style.transform = 'translate3d(0, 0, 0)';
+            }
+            if (dist < -maxAmplitude / 2) {//开启刷新
+                this.enableLoading = true;
+                this.imgEl.classList.add(`${styles['rc-ptr-rotate']}`);
+            } else {
+                this.enableLoading = false;
+                this.imgEl.classList.remove(`${styles['rc-ptr-rotate']}`)
+            }
+        }
+    }
+
+    ontouchend(e) {
+        if (!this.touchMoveY) {
+            return;
+        }
+
+        let dist = this.touchStartY - this.touchMoveY;
+        // const top = -this.parentContainer.scrollTop; // +
+        const refresh = this.options.refresh;
+
+        if (refresh) {
+            if (dist < 0) { //向上滑动，刷新
+                this.refresh(e);
+            } else {
+                this.resetPtr(false);
+            }
+        }
+
+        this.touchMoveY = 0;
+    }
+
+    refresh(e) {
+        var that = this;
+
+        if (!this.enableLoading) {
+            this.resetPtr();
+            return;
+        }
+        if (e) {
+            e.stopImmediatePropagation();
+        }
+
+        if (this.loading) {
+            return;
+        }
+        this.loading = true;
+
+        debugLog('刷新');
+
+        const maxAmplitude = this.options.maxAmplitude;
+        const cstyle = that.parentContainer.lastElementChild.style;
+        // const cstyle = that.container.style;
+        cstyle.transition = 'transform .2s ease';
+        cstyle.webkitTransition = '-webkit-transform .2s ease';
+        cstyle.webkitTransform = `translate3d(0, ${maxAmplitude / 2}px, 0)`;
+        cstyle.transform = `translate3d(0, ${maxAmplitude / 2}px, 0)`;
+
+        this.imgEl.classList.add(`${styles['rc-ptr-loading']}`, 'iconLoading');
+
+        const options = this.options;
+        const {lockInTime, refreshCallback} = options;
+        if (refreshCallback && typeof refreshCallback === 'function') {
+            if (lockInTime > 0) {
+                clearTimeout(this.refreshTimoutId);
+                this.refreshTimoutId = setTimeout(() => {
+                    refreshCallback().then(this.resetPtr, this.resetPtr);
+                }, lockInTime);
+            } else {
+                refreshCallback().then(this.resetPtr, this.resetPtr);
+            }
+        }
+    }
+
+    resetPtr() {
         this.enableLoading = false;
-        this.imgEl.classList.remove('rc-ptr-rotate')
-      }
+        this.loading = false;
+        this.imgEl.className = `${styles['rc-ptr-image']}`;
+
+        const cstyle = this.parentContainer.lastElementChild.style;
+        cstyle.transition = 'transform .3s linear';
+        cstyle.webkitTransition = '-webkit-transform .3s linear';
+        cstyle.webkitTransform = `translate3d(0, 0, 0)`;
+        cstyle.transform = `translate3d(0, 0, 0)`;
+
+        setTimeout(()=> {
+            cstyle.transition = cstyle.webkitTransition = '';
+        }, 400);
     }
 
-    //加载更多
-    if (loadMore) {
-      const height = scroll.getScrollHeight();
-      const veiwHeight = scroll.getScrollViewHeight();
-      const loadMoreThrottle = this.options.loadMoreThrottle;
-      if (veiwHeight + top - height > loadMoreThrottle) {
-        this.enableMore = true;
-      } else {
-        this.enableMore = false;
-      }
+    unmount() {
+        this.parentContainer.removeEventListener('touchstart', this.ontouchstart, false);
+        this.parentContainer.removeEventListener('touchmove', this.ontouchmove, false);
+        this.parentContainer.removeEventListener('touchend', this.ontouchend, true);
     }
-  }
-
-  ontouchend(e) {
-    const top = this.scroll.getScrollTop();
-    const refresh = this.options.refresh;
-    const loadMore = this.options.loadMore;
-    if (refresh) {
-      if (top > 0) { //向上滑动，刷新
-        this.refresh(e);
-      } else {
-        this.resetPtr(false);
-      }
-    }
-
-    //向下滑动，并且有更多数据则加载更多
-    if (loadMore && top < 0 && this.hasMore) {
-      this.loadMore(e);
-    }
-  }
-
-  refresh(e) {
-    if (!this.enableLoading) {
-      this.resetPtr();
-      return;
-    }
-    if (e) {
-      e.stopImmediatePropagation();
-    }
-
-    if (this.loading) {
-      return;
-    }
-    this.loading = true;
-
-    const maxAmplitude = this.options.maxAmplitude;
-    const style = this.ptrEl.style;
-    style.transition = 'transform .2s linear';
-    style.webkitTransition = '-webkit-transform .2s linear';
-    style.webkitTransform = `translate3d(0, ${maxAmplitude / 2}px, 0)`;
-    style.transform = `translate3d(0, ${maxAmplitude / 2}px, 0)`;
-    this.imgEl.classList.add('rc-ptr-loading');
-
-    const options = this.options;
-    const {lockInTime, refreshCallback} = options;
-    if (refreshCallback && typeof refreshCallback === 'function') {
-      if (lockInTime > 0) {
-        clearTimeout(this.refreshTimoutId);
-        this.refreshTimoutId = setTimeout(() => {
-          refreshCallback().then(this.resetPtr, this.resetPtr);
-        }, lockInTime);
-      } else {
-        refreshCallback().then(this.resetPtr, this.resetPtr);
-      }
-    }
-  }
-
-  resetPtr(refresh = true) {
-    this.enableLoading = false;
-    this.loading = false;
-    this.imgEl.className = 'rc-ptr-image';
-    const style = this.ptrEl.style;
-    style.transition = '';
-    style.webkitTransition = '';
-    style.webkitTransform = 'translate3d(0, 0, 0)';
-    style.transform = 'translate3d(0, 0, 0)';
-
-    if (refresh) {
-      this.scroll.refresh();
-    }
-  }
-
-  // 加载更多
-  loadMore(e) {
-    if (!this.enableMore) {
-      return;
-    }
-    if (this.loading) {
-      return;
-    }
-
-    if (e) {
-      e.stopImmediatePropagation();
-    }
-
-    const scroll = this.scroll;
-    const height = scroll.getScrollHeight();
-    const top = -scroll.getScrollTop();
-    const veiwHeight = scroll.getScrollViewHeight();
-    const maxAmplitude = this.options.maxAmplitude;
-    const maxTop = height - veiwHeight + maxAmplitude;
-
-    if (maxTop > top) {
-      scroll.scrollTo(-maxTop, 20, 'linear').then(() => {
-        this.doLoadMore();
-      });
-    } else {
-      this.doLoadMore();
-    }
-  }
-
-  doLoadMore() {
-    this.moreEl.style.visibility = 'visible';
-    this.loading = true;
-
-    const options = this.options;
-    const {lockInTime, loadMoreCallback} = options;
-    if (loadMoreCallback && typeof loadMoreCallback === 'function') {
-      if (lockInTime > 0) {
-        setTimeout(() => {
-          loadMoreCallback().then(this.resetMore, this.resetMore);
-        }, lockInTime);
-      } else {
-        loadMoreCallback().then(this.resetMore, this.resetMore);
-      }
-    }
-  }
-
-  resetMore() {
-    this.moreEl.style.visibility = 'hidden';
-    this.loading = false;
-    this.scroll.refresh();
-
-    //打印日志，测试用
-    /*setTimeout(() => {
-     const scroll = this.scroll;
-     const height = scroll.getScrollHeight();
-     const top = scroll.getScrollTop();
-     const veiwHeight = scroll.getScrollViewHeight();
-     console.info(height);
-     console.info(top);
-     console.info(veiwHeight);
-     }, 200);*/
-  }
-
-  //设置是否有更多
-  setMoreStatus(hasMore) {
-    this.hasMore = hasMore;
-  }
-
-  unmount() {
-    this.container.removeEventListener('touchmove', this.ontouchmove, false);
-    this.container.removeEventListener('touchend', this.ontouchend, true);
-  }
 }
 
 export default PullRefresh;

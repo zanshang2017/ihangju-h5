@@ -173,6 +173,8 @@ Bridge.prototype = {
 
         //sbridge://share.Wechat/?url=http%3A%2F%2Fwww.baidu.com&title=Title&desc=Description&callback=cb
         wechat: function (url, title, desc, thumb, fn) {
+            console.log(url, title, desc, thumb);
+
             var that = this.superthat;
             that.pushBack('sbridge:', 'share.Wechat', {
                 callback: fn || that.noop,

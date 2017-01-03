@@ -19,6 +19,7 @@ import {
 } from '../../apis.js';
 
 import request from 'utils/request';
+import signals from './signals';
 
 
 export default [
@@ -73,10 +74,13 @@ export function* getMyFollowData() {
                         }
                         yield put(setMyFollowDataStatus({isLast: true}));
                     }
+
+                    signals.onMyFollowLoadSuccess.dispatch();
                 }
             } else {
                 console.log(lists.err.response); // eslint-disable-line no-console
                 yield put(loadMyFollowDataError(lists.err));
+                signals.onMyFollowLoadFail.dispatch();
             }
         }
     }

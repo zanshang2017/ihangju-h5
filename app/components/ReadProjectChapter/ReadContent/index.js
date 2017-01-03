@@ -60,7 +60,7 @@ class ReadContent extends React.Component {
             url: `https://${Env.shareHost}/share/index.html?project=${projectId}&chapter=${chapterId}`,
             title: this.chapterTitle,
             content: '',
-            imgSrc: IMG_CDN_PATH + 'image/5743b85fe4b00243fbd23456.jpg'
+            imgSrc: IMG_CDN_PATH + '/image/5743b85fe4b00243fbd23456.jpg'
         }
         this.props.setShareStatus(this.shareData);
     }

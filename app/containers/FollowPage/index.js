@@ -9,6 +9,8 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {createSelector} from 'reselect';
 
+import {Env} from 'utils/env';
+
 import {
     selectFollowPage,
     selectMyFollowData,
@@ -24,6 +26,8 @@ import {
     selectUserInfo,
 } from '../App/selectors'
 
+import signals from './signals';
+
 import styles from './styles.scss';
 
 import {
@@ -37,12 +41,19 @@ import {
 import TopListBar from 'components/FollowPage/TopListBar';
 import MainContent from 'components/FollowPage/MainContent';
 
+import PullRefresh from 'components/common/ReactPullRefresh'
 import Toast from 'antd-mobile/lib/toast';
 
 export class FollowPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
+    constructor(props) {
+        super(props);
+        debugLog('FollowPage constructor')
+    }
+
     componentWillMount() {
-        console.warn('FollowPage DidMount');
+        debugLog('FollowPage DidMount')
+        console.log('FollowPage DidMount');
 
         var userInfo = this.props.userInfo;
 
@@ -54,9 +65,19 @@ export class FollowPage extends React.Component { // eslint-disable-line react/p
         if (!this.props.currentFollow) {
             this.loadMyFollow();
         }
+
+        setTimeout(function () {
+            this.refreshHandler();
+        }.bind(this), 2000);
+
     }
 
     componentDidMount() {
+    }
+
+    componentWillUnmount() {
+        debugLog('FollowPage WillUnmount');
+        this.removeSignals();
     }
 
     loadMyFollow(page, currentFollow) {
@@ -83,27 +104,56 @@ export class FollowPage extends React.Component { // eslint-disable-line react/p
         }
     }
 
-    //todo for test
-    loadingFunction() {
+    refreshHandler() {
         return new Promise((resolve, reject) => {
-            setTimeout(() => {
+            this.loadMyFollow(0, this.props.currentFollow);
+
+            signals.onMyFollowLoadSuccess.add(()=> {
+                this.removeSignals();
+                clearTimeout(flag);
                 resolve();
-                // reject();
-            }, 2000);
+            });
+
+            signals.onMyFollowLoadFail.add(()=> {
+                this.removeSignals();
+                clearTimeout(flag);
+                reject();
+            });
+
+            //超时
+            let flag = setTimeout(() => {
+                this.removeSignals();
+                reject();
+            }, 15 * 1e3);
+
         });
     }
 
+    removeSignals() {
+        signals.onMyFollowLoadSuccess.removeAll();
+        signals.onMyFollowLoadFail.removeAll();
+    }
+
     render() {
+        var mainContent = <MainContent
+            ref="J_MainContent"
+            parentRef={this.container}
+            loadMyFollow={this.loadMyFollow.bind(this)}
+            {...this.props} />;
+
+        // if (Env.isIOSShell) {
+            mainContent = <PullRefresh refreshCallback={this.refreshHandler.bind(this)}>
+                {mainContent}
+            </PullRefresh>;
+        // }
 
         return (
             <div className="pageInner">
                 <TopListBar {...this.props} />
-                <div id="J_Container" ref="J_Container" className="mainContent">
-                    <MainContent
-                        ref="J_MainContent"
-                        parentRef={this.refs.J_Container}
-                        loadMyFollow={this.loadMyFollow.bind(this)}
-                        {...this.props} />
+                <div id="J_Container" ref={(container) => {
+                    this.container = container;
+                }} className="mainContent">
+                    {mainContent}
                 </div>
             </div>
         );

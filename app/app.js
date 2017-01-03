@@ -51,7 +51,6 @@ const history = syncHistoryWithStore(hashHistory, store, {
 });
 
 // console.log('history', history);
-
 // setTimeout(function(){
 //     history.push('/my');
 //     history.push('/create');

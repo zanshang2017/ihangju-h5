@@ -56,10 +56,10 @@
     top: 0;
     color: #fff;
     text-align: center;
-    line-height: 1.6rem;
+    line-height: 2.66667rem;
     background: lightcoral;
     width: 4rem;
-    height: 1.6rem; }
+    height: 2.66667rem; }
   :global .logPanel.unfold {
     height: 2.66667rem;
     overflow: hidden; }

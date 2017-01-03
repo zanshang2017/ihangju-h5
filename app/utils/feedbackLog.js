@@ -148,7 +148,7 @@ var feedbackLog = {
                 }
             }
 
-            debugLog('logKeys:' + logKeys);
+            // debugLog('logKeys:' + logKeys);
 
             if (logKeys && logKeys.length > 0) {
                 this.sendLogs(logKeys);

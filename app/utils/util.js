@@ -295,9 +295,9 @@ function compareVersion(v1, v2, digit) {
 
 //图片尺寸配置
 const IMAGE_SIZE_TYPE = {
-    AVATAR: '?imageMogr2/thumbnail/120x120/quality/70',
-    AVATAR_BIG: '?imageMogr2/thumbnail/250x250/quality/70',
-    AVATAR_SMALL: '?imageMogr2/thumbnail/60x60/quality/70',
+    AVATAR: '?imageMogr2/thumbnail/120x120/quality/70/auto-orient',
+    AVATAR_BIG: '?imageMogr2/thumbnail/250x250/quality/70/auto-orient',
+    AVATAR_SMALL: '?imageMogr2/thumbnail/60x60/quality/70/auto-orient',
 
     TAG_IMAGE: '?imageMogr2/quality/70',
     BANNER_IMAGE: '?imageMogr2/quality/75',

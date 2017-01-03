@@ -32,7 +32,7 @@ class ProjectTopBar extends React.Component {
             url: `https://${Env.shareHost}/share/index.html?project=${_conMes.projectId}`,
             title: _conMes.projectName,
             content: _conMes.description,
-            imgSrc: IMG_CDN_PATH + 'image/5743b85fe4b00243fbd23456.jpg'
+            imgSrc: IMG_CDN_PATH + '/image/5743b85fe4b00243fbd23456.jpg'
         };
 
         this.props.setShareStatus(this.shareData);
