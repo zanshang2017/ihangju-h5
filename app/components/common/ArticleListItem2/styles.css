@@ -37,7 +37,7 @@
     color: #383b3d;
     margin-top: 0.88rem;
     line-height: 1.6em;
-    max-height: 4rem;
+    max-height: 77px;
     text-align: left;
     overflow: hidden; }
   .articleListItem2 div.info {
@@ -52,7 +52,6 @@
         display: inline-block;
         height: 0.85333rem;
         width: 0.85333rem;
-        margin-left: 0.32rem;
         background-repeat: no-repeat;
         background-size: cover; }
   .articleListItem2 div.itemType {

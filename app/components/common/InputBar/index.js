@@ -43,13 +43,10 @@ class InputBar extends React.Component {
     componentWillUpdate(props) {
         if (props.placeholder && this.refs.J_Input.value.length == 0) {
             this.refs.J_Input.value = '';
-            // setTimeout(()=> {
-            //     this.refs.J_Input.focus();
-            // }, 1000);
         }
     }
 
-    submitHandler(e) {
+    submitHandler() {
         // alert('clicked')
         let v = this.refs.J_Input.value || '';
 
@@ -58,6 +55,13 @@ class InputBar extends React.Component {
         } else {
             Toast.fail('请输入文字', 1.5);
         }
+    }
+
+    onFocusHandler() {
+        //bugfix: ios键盘弹出偶尔会遮挡输入栏
+        setTimeout(()=> {
+            this.refs.J_Input.scrollIntoView(true);
+        }, 100);
     }
 
     clear() {
@@ -75,7 +79,8 @@ class InputBar extends React.Component {
             <div ref="J_Wrap" className={styles.wrap}>
                 <div className={styles.outer}>
                     <div className={styles.inner}>
-                        <input ref="J_Input" type="text" placeholder={placeholder} maxLength="500"/>
+                        <input ref="J_Input" type="text" onFocus={this.onFocusHandler.bind(this)}
+                               placeholder={placeholder} maxLength="500"/>
                         <button className={styles.btn} onClick={this.submitHandler.bind(this)}></button>
                     </div>
                 </div>

@@ -31,7 +31,7 @@
         color: $textColor;
         margin-top: rem(33);
         line-height: 1.6em;
-        max-height: rem(150);
+        max-height: 77px;
         text-align: left;
         overflow: hidden;
     }
@@ -50,7 +50,6 @@
                 display: inline-block;
                 height: rem(32);
                 width: rem(32);
-                margin-left: rem(12);
                 background-repeat: no-repeat;
                 background-size: cover;
             }
