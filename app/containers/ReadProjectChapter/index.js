@@ -21,7 +21,7 @@ import {
 } from 'utils/util';
 
 import ReadContent from 'components/ReadProjectChapter/ReadContent';
-
+import TopGapForIOS from 'components/common/TopGapForIOS';
 class ReadProjectChapter extends React.Component {
     constructor(props) {
         super(props);
@@ -53,7 +53,10 @@ class ReadProjectChapter extends React.Component {
 
     render() {
         return (
-            <ReadContent {...this.props} />
+            <div>
+                <TopGapForIOS style={{'backgroundColor': '#f5f5f5'}}/>
+                <ReadContent {...this.props} />
+            </div>
         )
     }
 }

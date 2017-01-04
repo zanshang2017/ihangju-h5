@@ -10,6 +10,7 @@
 	z-index: $zIndexL1;
 	background-color: #f4f5f5;
 	top: 0;
+
 	.projectMes{
 		margin-left: rem(90);
 		padding-right: rem(48);
@@ -62,4 +63,13 @@
 			height: rem(68);
 		}
 	}
+}
+
+//for iOS
+:global ._ios_ {
+    :local {
+        .projectMes{
+            margin-top: rem(104);
+        }
+    }
 }
