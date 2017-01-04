@@ -63,3 +63,12 @@
 		}
 	}
 }
+
+//for iOS
+:global ._ios_ {
+    :local {
+        .projectMes{
+            margin-top: rem(104);
+        }
+    }
+}

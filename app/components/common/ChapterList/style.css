@@ -50,4 +50,7 @@
       width: 1.81333rem;
       height: 1.81333rem; }
 
+:global ._ios_ :local .projectMes {
+  margin-top: 2.77333rem; }
+
 /*# sourceMappingURL=style.css.map */
