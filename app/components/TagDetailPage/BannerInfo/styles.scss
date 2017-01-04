@@ -28,7 +28,7 @@
     .title {
         position:relative;
         z-index: 1;
-        font-size: rem(50);
+        font-size: 25px;
         font-weight:700;
         margin-top: rem(80);
         letter-spacing: 2px;
@@ -37,7 +37,7 @@
     .follow {
         position:relative;
         z-index: 1;
-        font-size:rem(28);
+        font-size:14px;
         margin-top: rem(30);
     }
 
@@ -48,7 +48,7 @@
         height: rem(72);
         line-height: rem(72);
         border-radius: 9999px;
-        font-size: rem(32);
+        font-size: 16px;
         color: $textColor;
         margin: rem(34) auto 0;
         background: rgba(255, 255, 255, .75);
@@ -81,7 +81,7 @@
     }
 
     .editBannerImage {
-        font-size: rem(32);
+        font-size: 16px;
         position: absolute;
         z-index: 1;
         right: rem(38);

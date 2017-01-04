@@ -30,14 +30,14 @@
       height: 2.66667rem;
       border-radius: 3px; }
     .listItem .item .info {
-      font-size: 0.74667rem;
+      font-size: 14px;
       line-height: 1.5em;
       -webkit-box-flex: 1;
       -webkit-flex: 1;
       padding-left: 0.66667rem; }
       .listItem .item .info h4 {
         color: #7b8f9d;
-        font-size: 0.90667rem; }
+        font-size: 17p; }
       .listItem .item .info p {
         color: #a09e98;
         padding-top: 0.26667rem; }

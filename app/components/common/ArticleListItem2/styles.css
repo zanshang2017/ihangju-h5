@@ -8,7 +8,7 @@
   text-align: left; }
   .articleListItem2 h3 {
     max-height: 2.98667rem;
-    font-size: 1.17333rem;
+    font-size: 22px;
     font-weight: normal;
     line-height: 1.49333rem;
     overflow: hidden;
@@ -33,7 +33,7 @@
     align-items: flex-start;
     justify-content: flex-start; }
   .articleListItem2 p {
-    font-size: 0.85333rem;
+    font-size: 16px;
     color: #383b3d;
     margin-top: 0.88rem;
     line-height: 1.6em;
@@ -43,7 +43,7 @@
   .articleListItem2 div.info {
     margin-top: 1.2rem;
     color: #bcbab5;
-    font-size: 0.74667rem; }
+    font-size: 14px; }
     .articleListItem2 div.info span {
       margin-right: 0.53333rem; }
       .articleListItem2 div.info span i {

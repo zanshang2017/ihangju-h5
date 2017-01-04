@@ -50,10 +50,10 @@ var Env = {
     devHost: '192.168.1.33:8888',
     devAPIHost: '192.168.1.33:8888',
 
-    devAPIScheme: '',
-
     // devHost: 'testapi.ihangju.com',
     // devAPIHost: 'testapi.ihangju.com',
+
+    devAPIScheme: '',
 
     productionHost: 'h5app.ihangju.com',
     productionAPIScheme: 'https:',

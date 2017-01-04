@@ -1,7 +1,7 @@
 .authorAttest {
   position: relative; }
   .authorAttest .title {
-    font-size: 0.8rem;
+    font-size: 15px;
     padding-left: 0.85333rem;
     padding-top: 0.53333rem; }
   .authorAttest .IDcard {
@@ -17,7 +17,7 @@
         padding: 1.17333rem 0; }
       .authorAttest .IDcard .cardImg .bgImg span {
         display: block;
-        font-size: 0.85333rem;
+        font-size: 16px;
         color: #666; }
       .authorAttest .IDcard .cardImg .cardFrontImg i {
         position: absolute;
@@ -50,7 +50,7 @@
   .authorAttest .footerText {
     text-align: center;
     margin: 1.44rem 0;
-    font-size: 0.64rem;
+    font-size: 12px;
     color: #a2a2a3; }
 
 /*# sourceMappingURL=style.css.map */

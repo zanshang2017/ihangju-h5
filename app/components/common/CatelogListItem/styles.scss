@@ -32,14 +32,14 @@
         .title {
             @include flexBox();
             width: rem(172);
-            font-size: rem(42);
+            font-size: 21px;
             font-weight: normal;
             color: $titleColor;
             padding: 0 rem(6) rem(66) 0;
             align-items: flex-end;
 
             &.small {
-                font-size: rem(36);
+                font-size: 18px;
             }
         }
 
@@ -67,7 +67,7 @@
             }
 
             .infoDesc {
-                font-size: rem(24);
+                font-size: 12px;
 
                 div {
                     float: left;
@@ -75,7 +75,7 @@
                     color: $weakTextColor;
 
                     strong {
-                        font-size: rem(30);
+                        font-size: 15px;
                         padding-right: rem(10);
                         color: $weakLinkColor;
                     }

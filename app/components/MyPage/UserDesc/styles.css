@@ -39,13 +39,13 @@
 
 .username {
   color: #383b3d;
-  font-size: 0.85333rem; }
+  font-size: 16px; }
 
 .intro {
   white-space: normal;
   color: #9dadb9;
   padding-top: 0.26667rem;
-  font-size: 0.64rem;
+  font-size: 12px;
   line-height: 1.4em; }
 
 /*# sourceMappingURL=styles.css.map */

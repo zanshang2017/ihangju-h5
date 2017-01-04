@@ -16,14 +16,14 @@
 		margin-top: rem(60);
 		border-bottom: 1px solid $weakerTitleColor;
 		.projectTitle{
-			font-size: rem(42);
+			font-size: 21px;
 			color: $titleColor;
 			display: block;
 			padding-right: rem(80);
 		}
 		.projectAuthor{
 			display: block;
-			font-size: rem(30);
+			font-size: 15px;
 			color: #a09e98;
 			margin: rem(20) 0 rem(60);
 		}
@@ -32,7 +32,7 @@
 		margin: rem(50) rem(48) rem(98) rem(90);
 		li{
 			margin-bottom: rem(66);
-			font-size: rem(34);
+			font-size: 17px;
 			color: $weakerTitleColor;
 			overflow: hidden;
 			.chapterLeft{

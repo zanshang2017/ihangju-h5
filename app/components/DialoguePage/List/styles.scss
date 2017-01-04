@@ -20,7 +20,7 @@
 
         .time {
             text-align: center;
-            font-size: rem(26);
+            font-size: 13px;
             color: $weakerTitleColor;
             margin: 0 rem(20) 0 0;
         }
@@ -43,7 +43,7 @@
             .info {
                 -webkit-box-flex: 1;
                 -webkit-flex: 1;
-                font-size: rem(28);
+                font-size: 14px;
                 margin: 0 rem(25) 0 rem(40);
                 box-sizing: border-box;
 
@@ -62,13 +62,13 @@
                         word-break: break-all;
 
                         h3 {
-                            font-size: rem(36);
+                            font-size: 18px;
                             padding-bottom: rem(10);
                             color: $textColor;
                         }
 
                         span {
-                            font-size: rem(24);
+                            font-size: 12px;
                             color: $weakTextColor;
                         }
                     }
@@ -83,7 +83,7 @@
                     border-radius: 3px;
 
                     .content {
-                        font-size: rem(30);
+                        font-size: 15px;
                         color: #fff;
                         line-height: 1.5em;
                         overflow: hidden;
@@ -125,7 +125,7 @@
             .info {
                 -webkit-box-flex: 1;
                 -webkit-flex: 1;
-                font-size: rem(28);
+                font-size: 14px;
                 min-height: rem(80);
                 margin: 0 rem(40) 0 rem(25);
                 box-sizing: border-box;
@@ -139,7 +139,7 @@
                     border-radius: 3px;
 
                     .content {
-                        font-size: rem(30);
+                        font-size: 15px;
                         color: $textColor;
                         line-height: 1.5em;
                         overflow: hidden;

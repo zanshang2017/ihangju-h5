@@ -18,11 +18,11 @@
 	span {
 		display: block;
 		&.titleText {
-			font-size: rem(48);
+			font-size: 24px;
 			color: #333;
 		}
 		&.conText {
-			font-size: rem(30);
+			font-size: 15px;
 			color: #666;
 			margin: rem(44) rem(60) rem(44); 
 			line-height: rem(45);
@@ -41,7 +41,7 @@
 		&.btn {
 			height: rem(90);
 			line-height: rem(90);
-			font-size: rem(32);
+			font-size: 16px;
 			color: #000;
 			border: 1px solid;
 			border-radius: rem(10);
@@ -50,7 +50,7 @@
 			width: rem(578);
 			height: rem(90);
 			line-height: rem(90);
-			font-size: rem(36);
+			font-size: 18px;
 			color: #000;
 			border: 1px solid;
 			border-radius: rem(10);
@@ -95,13 +95,13 @@
 	    	margin-left: rem(-320);
 	    	margin-top: rem(-140);
 	    	text-align: center;
-	    	font-size: rem(36);
+	    	font-size: 18px;
 	    	border-radius: rem(10);
 	    	.topText{
 				line-height: rem(60);
 				padding: rem(20) rem(80);
 				color: #2a2b2c;
-	            font-size: rem(36);
+	            font-size: 18px;
 	    	}
 	    	.btnList{
 	    		border-top: 1px solid $borderColor;
@@ -110,7 +110,7 @@
 	    			width: 50%;
 	    			float: left;
 	                line-height: rem(100);
-	                font-size: rem(40);
+	                font-size: 20px;
 	                color: #0e76f3;
 	    			&.btnLeft{
 	    				border-right: 1px solid $borderColor;

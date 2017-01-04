@@ -11,10 +11,10 @@
   .attestState span {
     display: block; }
     .attestState span.titleText {
-      font-size: 1.28rem;
+      font-size: 24px;
       color: #333; }
     .attestState span.conText {
-      font-size: 0.8rem;
+      font-size: 15px;
       color: #666;
       margin: 1.17333rem 1.6rem 1.17333rem;
       line-height: 1.2rem;
@@ -30,7 +30,7 @@
     .attestState span.btn {
       height: 2.4rem;
       line-height: 2.4rem;
-      font-size: 0.85333rem;
+      font-size: 16px;
       color: #000;
       border: 1px solid;
       border-radius: 0.26667rem; }
@@ -38,7 +38,7 @@
       width: 15.41333rem;
       height: 2.4rem;
       line-height: 2.4rem;
-      font-size: 0.96rem;
+      font-size: 18px;
       color: #000;
       border: 1px solid;
       border-radius: 0.26667rem;
@@ -76,13 +76,13 @@
       margin-left: -8.53333rem;
       margin-top: -3.73333rem;
       text-align: center;
-      font-size: 0.96rem;
+      font-size: 18px;
       border-radius: 0.26667rem; }
       .attestState .backBg .layerCon .topText {
         line-height: 1.6rem;
         padding: 0.53333rem 2.13333rem;
         color: #2a2b2c;
-        font-size: 0.96rem; }
+        font-size: 18px; }
       .attestState .backBg .layerCon .btnList {
         border-top: 1px solid #dbd7d7; }
         .attestState .backBg .layerCon .btnList span {
@@ -90,7 +90,7 @@
           width: 50%;
           float: left;
           line-height: 2.66667rem;
-          font-size: 1.06667rem;
+          font-size: 20px;
           color: #0e76f3; }
           .attestState .backBg .layerCon .btnList span.btnLeft {
             border-right: 1px solid #dbd7d7; }

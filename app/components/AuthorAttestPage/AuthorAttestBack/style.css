@@ -15,14 +15,14 @@
     margin-left: -8.53333rem;
     margin-top: -3.73333rem;
     text-align: center;
-    font-size: 0.96rem;
+    font-size: 18px;
     border-radius: 0.26667rem; }
     .backBg .layerCon .topText {
       line-height: 3.73333rem;
       padding: 0.53333rem 0.53333rem;
       height: 3.73333rem;
       color: #2a2b2c;
-      font-size: 0.96rem; }
+      font-size: 18px; }
     .backBg .layerCon .btnList {
       border-top: 1px solid #dbd7d7; }
       .backBg .layerCon .btnList span {
@@ -30,7 +30,7 @@
         width: 50%;
         float: left;
         line-height: 2.66667rem;
-        font-size: 1.06667rem;
+        font-size: rem;
         color: #0e76f3; }
         .backBg .layerCon .btnList span.btnLeft {
           border-right: 1px solid #dbd7d7;

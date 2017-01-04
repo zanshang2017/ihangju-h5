@@ -3,6 +3,9 @@
 const express = require('express');
 const logger = require('./logger');
 const ngrok = require('ngrok');
+const fs = require('fs');
+const path = require('path');
+const https = require('https');
 
 const frontend = require('./middlewares/frontendMiddleware');
 const isDev = process.env.NODE_ENV !== 'production';
@@ -43,4 +46,19 @@ app.listen(port, (err) => {
   } else {
     logger.appStarted(port);
   }
-});
+})
+
+// https
+var privateKey  = fs.readFileSync(path.join(process.cwd(), 'server/sslcert/server.key'), 'utf8');
+var certificate = fs.readFileSync(path.join(process.cwd(), 'server/sslcert/server.crt'), 'utf8');
+
+var credentials = {key: privateKey, cert: certificate};
+
+var httpsServer = https.createServer(credentials, app);
+
+httpsServer.listen(8443);
+
+
+
+
+

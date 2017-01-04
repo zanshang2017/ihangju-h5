@@ -45,11 +45,11 @@
 			span{
 				display: block;
 				&.text1 {
-					font-size: rem(48);
+					font-size: 24px;
 					color: #333;
 				}
 				&.text2 {
-					font-size: rem(30);
+					font-size: 15px;
 					color: $weakTextColor;
 				}
 			}
@@ -59,7 +59,7 @@
 			height: rem(90);
 			margin: 0 auto;
 			line-height: rem(90);
-			font-size: rem(36);
+			font-size: 18px;
 			color: $deepTextColor;
 			border: 1px solid $deepTextColor;
 			border-radius: 5px;

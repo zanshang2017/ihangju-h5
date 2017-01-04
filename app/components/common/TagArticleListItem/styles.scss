@@ -16,7 +16,7 @@
     }
 
     span.source {
-        font-size: rem(28);
+        font-size: 14px;
         color: $weakerTitleColor;
         display: inline-block;
         margin-bottom: rem(18);
@@ -29,7 +29,7 @@
     }
 
     span.recommendationBtn {
-        font-size: rem(28);
+        font-size: 14px;
         color: $linkColor;
         display: inline-block;
         float: right;
@@ -37,7 +37,7 @@
 
     h3 {
         max-height: rem(112);
-        font-size: rem(44);
+        font-size: 22px;
         font-weight: normal;
         line-height: rem(56);
         overflow:hidden;
@@ -49,7 +49,7 @@
     }
 
     p {
-        font-size: rem(32);
+        font-size: 16px;
         color: $textColor;
         margin-top: rem(33);
         line-height: 1.6em;
@@ -61,7 +61,7 @@
     div.info {
         margin-top: rem(45);
         color: $weakTextColor;
-        font-size: rem(28);
+        font-size: 14px;
 
         span {
             margin-right: rem(25);

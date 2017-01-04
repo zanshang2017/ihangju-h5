@@ -12,20 +12,20 @@
     margin-top: 1.6rem;
     border-bottom: 1px solid #a09e98; }
     .chapterListLayer .projectMes .projectTitle {
-      font-size: 1.12rem;
+      font-size: 21px;
       color: #7b8f9d;
       display: block;
       padding-right: 2.13333rem; }
     .chapterListLayer .projectMes .projectAuthor {
       display: block;
-      font-size: 0.8rem;
+      font-size: 15px;
       color: #a09e98;
       margin: 0.53333rem 0 1.6rem; }
   .chapterListLayer ul {
     margin: 1.33333rem 1.28rem 2.61333rem 2.4rem; }
     .chapterListLayer ul li {
       margin-bottom: 1.76rem;
-      font-size: 0.90667rem;
+      font-size: 17px;
       color: #a09e98;
       overflow: hidden; }
       .chapterListLayer ul li .chapterLeft {
