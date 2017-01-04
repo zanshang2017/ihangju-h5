@@ -19,11 +19,13 @@ import {
     loadDiscoveriesData,
 } from './actions';
 
+import signals from './signals';
+
 import styles from './styles.scss';
 
 import Banner from 'components/FoundPage/Banner';
 import MainContent from 'components/FoundPage/MainContent';
-import TopGapForIOS from 'components/common/TopGapForIOS';
+import PullRefresh from 'components/common/ReactPullRefresh'
 
 export class FoundPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -45,14 +47,46 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
         this.context.router.push(`/projectDetail/${projectId}`);
     }
 
+    refreshHandler() {
+        return new Promise((resolve, reject) => {
+            this.loadDiscoveries();
+
+            signals.onDiscoveriesLoadSuccess.add(()=> {
+                this.removeSignals();
+                clearTimeout(flag);
+                resolve();
+            });
+
+            signals.onDiscoveriesLoadFail.add(()=> {
+                this.removeSignals();
+                clearTimeout(flag);
+                reject();
+            });
+
+            //超时
+            let flag = setTimeout(() => {
+                this.removeSignals();
+                reject();
+            }, 15 * 1e3);
+
+        });
+    }
+
+    removeSignals() {
+        signals.onDiscoveriesLoadSuccess.removeAll();
+        signals.onDiscoveriesLoadFail.removeAll();
+    }
+
     render() {
+
         return (
             <div className="pageInner">
                 <div className="mainContent">
-                    <TopGapForIOS style={{'backgroundColor': '#f5f5f5'}}/>
-                    <Banner items={this.props.banners}
-                            articleClickHandler={this.articleClickHandler.bind(this)}></Banner>
-                    <MainContent {...this.props} />
+                    <PullRefresh refreshCallback={this.refreshHandler.bind(this)}>
+                        <Banner items={this.props.banners}
+                                articleClickHandler={this.articleClickHandler.bind(this)}></Banner>
+                        <MainContent {...this.props} />
+                    </PullRefresh>
                 </div>
             </div>
         );

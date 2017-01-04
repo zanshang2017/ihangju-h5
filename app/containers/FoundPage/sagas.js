@@ -17,6 +17,7 @@ import {
 } from '../../apis.js';
 
 import request from 'utils/request';
+import signals from './signals';
 
 
 export default [
@@ -43,9 +44,11 @@ export function* getDiscoveriesData() {
         if (lists) {
             if (lists.err === undefined || lists.err === null) {
                 yield put(loadDiscoveriesDataSuccess(lists.data));
+                signals.onDiscoveriesLoadSuccess.dispatch();
             } else {
                 console.log(lists.err.response); // eslint-disable-line no-console
                 yield put(loadDiscoveriesDataError(lists.err));
+                signals.onDiscoveriesLoadFail.dispatch();
             }
         }
     }

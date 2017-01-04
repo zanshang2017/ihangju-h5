@@ -75,6 +75,8 @@
     }
 
     .barTopGapIos {
+        position: relative;
+        z-index: 10;
         height: $iosTopHeight;
         background: $topBarBg;
         //background: red;
