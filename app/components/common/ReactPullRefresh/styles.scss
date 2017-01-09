@@ -12,6 +12,7 @@ $maxAmplitude:60px;
     :local {
         .rc-pull-refresh {
             overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
         }
     }
 }

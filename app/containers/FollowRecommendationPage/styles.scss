@@ -2,6 +2,10 @@
 @import "../../common/__global.scss";
 @import "../../common/__util.scss";
 
+.wrap {
+    background: #fff;
+}
+
 .btnBar {
     width: 100%;
     height: rem(112);

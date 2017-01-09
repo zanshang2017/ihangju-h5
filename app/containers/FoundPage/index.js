@@ -85,7 +85,6 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
                     <PullRefresh refreshCallback={this.refreshHandler.bind(this)}>
                         <Banner items={this.props.banners}
                                 articleClickHandler={this.articleClickHandler.bind(this)}></Banner>
-                        <a target="_blank" href="http://howard.com/test/assets/aaa.mp4">费为奇偶沃恩急哦我二佛费为奇偶沃恩急哦我二佛费为奇偶沃恩急哦我二佛费为奇偶沃恩急哦我二佛费为奇偶沃恩急哦我二佛费为奇偶沃恩急哦我二佛费为奇偶沃恩急哦我二佛费为奇偶沃恩急哦我二佛费为奇偶沃恩急哦我二佛费为奇偶沃恩急哦我二佛费为奇偶沃恩急哦我二佛费为奇偶沃恩急哦我二佛费为奇偶沃恩急哦我二佛</a>
                         <MainContent {...this.props} />
                     </PullRefresh>
                 </div>

@@ -13,17 +13,11 @@ export default class TopGapForIOS extends React.Component {
 
     constructor(props) {
         super(props);
-
-        if(props.style) {
-            this.style = props.style;
-        } else {
-            this.style = {};
-        }
     }
 
     render() {
         if (Env.isIOSShell) {
-            return <div className={`barTopGapIos`} style={this.style}></div>;
+            return <div className={`barTopGapIos`} style={this.props.style || {}}></div>;
         } else {
             return <div></div>;
         }
