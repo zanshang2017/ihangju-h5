@@ -16,6 +16,8 @@ import {
 } from 'utils/util';
 import TopBar from '../../common/TopBar';
 
+import LazyLoad from 'react-lazy-load';
+
 import {
     IMG_CDN_PATH,
     COLLECTION_API,
@@ -150,6 +152,9 @@ class ReadContent extends React.Component {
             that.props.setProjectInfoStatus(_projectInfo);
             locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
         }
+
+
+        that.refs.J_ChapterWrap.scrollTop = 0;
     }
 
     showReadTopbar() {
@@ -204,19 +209,45 @@ class ReadContent extends React.Component {
         this.props.loadCollection(url, method);
     }
 
+    processCont(_html) {
+        // + img param
+        const imgReg = /<img [^>]*>/gi;
+        const srcReg = /src=['"]{1}([^'"]*)['"]{1}/gi;
+        let imgs = _html.match(imgReg);
+
+        if (imgs && imgs.length > 0) {
+            let newImgs = imgs.map(function (img) {
+                return img.replace(srcReg, function (v) {
+                    return 'src=\"' + addImageParam(RegExp.$1, IMAGE_SIZE_TYPE.PORJ_CONTENT_IMG) + '\"';
+                });
+            });
+
+            let index = 0;
+            _html = _html.replace(imgReg, function () {
+                return newImgs[index++];
+            });
+        }
+
+        return _html;
+    }
+
     render() {
         var props = this.props;
         var _chapterContent = props.chapterContent.toJS();
         //var projectInfo =  props.projectInfo.toJS();
         let authorAvatar = _chapterContent.authorAvatar ? addImageParam(IMG_CDN_PATH + _chapterContent.authorAvatar, IMAGE_SIZE_TYPE.AVATAR_SMALL) : '';
-        let modifyTime = convertDate(_chapterContent.modifyTime)
+        let modifyTime = convertDate(_chapterContent.modifyTime);
+
+        let processedCont = '';
+
         var chapterIndex = null;
         try {
             if (projectId && chapterId && _chapterContent.chapters && _chapterContent.chapters.length > 0) {
+
                 _chapterContent.chapters.map(function (item, key) {
                     if (item.id == chapterId) {
                         chapterIndex = key;
-                        return chapterIndex;
+                        return chapterIndex;  // ??? ...
                     }
                 })
                 // projectInfo.map(function(item, key) {
@@ -239,9 +270,13 @@ class ReadContent extends React.Component {
                     }
                     this.chapterList = _chapterContent.chapters[chapterIndex].content || '';
                     this.chapterTitle = _chapterContent.chapters[chapterIndex].title || '无题';
+
+                    processedCont = this.processCont(this.chapterList || '');
+
                 }
             }
         } catch (e) {
+            console.log(e);
         }
 
         var collectionClass = (_chapterContent.collection ? 'iconStaro' : 'iconStar'); // 选择 : 未选择
@@ -271,45 +306,51 @@ class ReadContent extends React.Component {
                         </div>
                     </TopBar>
                 </div>
+
                 <ChapterList ref="J_ChapterList" items={this.props.chapterContent}/>
 
-
-                    <div id="J_ChapterWrap" ref="J_ChapterWrap" className={`${styles.chpWrap} mainContent whiteBg`}
-                         onClick={this.showReadTopbar.bind(this)}>
-                        <PullRefresh refreshCallback={this.prevChapterHandler.bind(this)}>
-                        <div id="J_ChapterCont" ref="J_ChapterCont" className={styles.chpCon}>
-                            <div ref="_authorMes" className={`${styles.authorMes} hide`}>
-                                <img src={authorAvatar}/>
-                                <span className={styles.left}>{_chapterContent.authorUserName}</span>
-                                <span className={styles.right}>{modifyTime}更新</span>
-                            </div>
-                            <div className={styles.contentWrap}>
-                                <div className={styles.contentTitle}>
-                                    {this.chapterTitle}
-                                </div>
-                                <div className={styles.contentMes}
-                                     dangerouslySetInnerHTML={{__html: `${this.chapterList}`}}>
-                                </div>
-                            </div>
-                            {
-                                (this.chapterList) ?
-                                    ((!isEndChapter) ?
-                                            <div className={styles.bottomBtn}>
-                                                <div ref="J_NextChapterBtn" data-hashover="true"
-                                                     onClick={this.nextChapterHandler.bind(this)}
-                                                     className={styles.nextChapterBtn}>下一章
-                                                </div>
-                                            </div>
-                                            :
-                                            <div className={styles.bottomBtn}>
-                                                <div className={styles.lastChapterNotice}>已读完</div>
-                                            </div>
-                                    ) : ''
-                            }
-
+                <div id="J_ChapterWrap" ref="J_ChapterWrap" className={`${styles.chpWrap} mainContent whiteBg`}
+                     onClick={this.showReadTopbar.bind(this)}>
+                    <PullRefresh refreshCallback={this.prevChapterHandler.bind(this)}>
+                    <div id="J_ChapterCont" ref="J_ChapterCont" className={styles.chpCon}>
+                        <div ref="_authorMes" className={`${styles.authorMes} hide`}>
+                            <img src={authorAvatar}/>
+                            <span className={styles.left}>{_chapterContent.authorUserName}</span>
+                            <span className={styles.right}>{modifyTime}更新</span>
                         </div>
-                        </PullRefresh>
+                        <div className={styles.contentWrap}>
+                            <div className={styles.contentTitle}>
+                                {this.chapterTitle}
+                            </div>
+                            <div className={styles.contentMes}
+                                 dangerouslySetInnerHTML={{__html: `${processedCont}`}}>
+                            </div>
+                            {/*<div className={styles.contentMes}*/}
+                                 {/*dangerouslySetInnerHTML={{__html: `${this.chapterList}`}}>*/}
+                            {/*</div>*/}
+                            {/*<div className={styles.contentMes}>*/}
+                                {/*{processedCont}*/}
+                            {/*</div>*/}
+                        </div>
+                        {
+                            (this.chapterList) ?
+                                ((!isEndChapter) ?
+                                        <div className={styles.bottomBtn}>
+                                            <div ref="J_NextChapterBtn" data-hashover="true"
+                                                 onClick={this.nextChapterHandler.bind(this)}
+                                                 className={styles.nextChapterBtn}>下一章
+                                            </div>
+                                        </div>
+                                        :
+                                        <div className={styles.bottomBtn}>
+                                            <div className={styles.lastChapterNotice}>已读完</div>
+                                        </div>
+                                ) : ''
+                        }
+
                     </div>
+                    </PullRefresh>
+                </div>
 
 
                 <div ref="_readBottombar" className={`${styles.bottomBar} hasTransition`}>

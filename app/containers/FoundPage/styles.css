@@ -1,3 +1,4 @@
-
+.wrap::-webkit-scrollbar {
+  display: none !important; }
 
 /*# sourceMappingURL=styles.css.map */

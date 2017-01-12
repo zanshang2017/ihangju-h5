@@ -23,6 +23,10 @@ import signals from './signals';
 
 import styles from './styles.scss';
 
+import bridge from 'utils/bridge';
+
+import Toast from 'antd-mobile/lib/toast';
+
 import Banner from 'components/FoundPage/Banner';
 import MainContent from 'components/FoundPage/MainContent';
 import PullRefresh from 'components/common/ReactPullRefresh'
@@ -43,8 +47,25 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
     }
 
     articleClickHandler(e) {
-        let projectId = e.currentTarget.dataset['id'];
-        this.context.router.push(`/projectDetail/${projectId}`);
+        let target = e.currentTarget.dataset['target'];
+        let targetType = e.currentTarget.dataset['type'];
+
+        switch(targetType) {
+            case 'link':
+                bridge.sys.openUrl(encodeURI(target));
+                break;
+
+            case 'project':
+                this.context.router.push(`/projectDetail/${target}`);
+                break;
+
+            case 'tag':
+                this.context.router.push(`/tag/${target}`);
+                break;
+
+            default:
+                break;
+        }
     }
 
     refreshHandler() {
@@ -81,7 +102,7 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
 
         return (
             <div className="pageInner">
-                <div className="mainContent">
+                <div className={`mainContent ${styles.wrap}`}>
                     <PullRefresh refreshCallback={this.refreshHandler.bind(this)}>
                         <Banner items={this.props.banners}
                                 articleClickHandler={this.articleClickHandler.bind(this)}></Banner>

@@ -117,8 +117,7 @@ ReactDOM.render(
                     useScroll(
                         (prevProps, props) => {
 
-                            {/*alert('history.length:' + window.history.length);*/
-                            }
+                            {/*alert('history.length:' + window.history.length);*/}
 
                             if (!hasRemovedAppLoading) {
                                 hasRemovedAppLoading = true;

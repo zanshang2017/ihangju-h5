@@ -294,33 +294,40 @@ function compareVersion(v1, v2, digit) {
 }
 
 
+const CLIENT_WIDTH = Math.floor(document.documentElement.clientWidth * (window.devicePixelRatio ? window.devicePixelRatio
+ : 1));
 //图片尺寸配置
 const IMAGE_SIZE_TYPE = {
-    AVATAR: '?imageMogr2/thumbnail/120x120/quality/70/auto-orient',
-    AVATAR_BIG: '?imageMogr2/thumbnail/250x250/quality/70/auto-orient',
-    AVATAR_SMALL: '?imageMogr2/thumbnail/60x60/quality/70/auto-orient',
+    AVATAR: '?imageMogr2/auto-orient/thumbnail/120x120/quality/70',
+    AVATAR_BIG: '?imageMogr2/auto-orient/thumbnail/250x250/quality/70',
+    AVATAR_SMALL: '?imageMogr2/auto-orient/thumbnail/60x60/quality/70',
 
     TAG_IMAGE: '?imageMogr2/quality/70',
     BANNER_IMAGE: '?imageMogr2/quality/75',
 
-    PROJ_COVER: '?imageMogr2/thumbnail/140x184/quality/70',
+    PROJ_COVER: '?imageMogr2/auto-orient/thumbnail/140x184/quality/70',
+    PORJ_CONTENT_IMG: `?imageMogr2/auto-orient/thumbnail/${CLIENT_WIDTH}x/quality/70`,
 
     WEBP: '/format/webp',
 };
 
-//增加千牛图片处理参数
+/**
+ *  增加千牛图片处理参数 imageMogr2
+ */
 function addImageParam(url, sizeTypeStr) {
-    if (!url.indexOf('?') > -1) {
-        if (sizeTypeStr) {
-            url += (sizeTypeStr.indexOf('?') > -1 ? sizeTypeStr : '?' + sizeTypeStr);
-        }
-
-        if (localStorage.getItem('isSupportWebp') === 'true') {
-            url += ((url.indexOf('?') > -1) ? IMAGE_SIZE_TYPE.WEBP : '?imageMogr2' + IMAGE_SIZE_TYPE.WEBP);
-        }
-
-        return url;
+    if (url.indexOf('?') > -1) {
+        url = url.substr(0, url.indexOf('?'));
     }
+
+    if (sizeTypeStr) {
+        url += (sizeTypeStr.indexOf('?') > -1 ? sizeTypeStr : '?' + sizeTypeStr);
+    }
+
+    if (localStorage.getItem('isSupportWebp') === 'true') {
+        url += ((url.indexOf('?') > -1) ? IMAGE_SIZE_TYPE.WEBP : '?imageMogr2' + IMAGE_SIZE_TYPE.WEBP);
+    }
+
+    return url;
 }
 
 function testSupportWebp(exec) {
