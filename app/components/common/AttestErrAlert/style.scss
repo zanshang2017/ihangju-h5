@@ -14,3 +14,12 @@
 	line-height: rem(84); 
 
 }
+
+//for iOS
+:global ._ios_ {
+    :local {
+        .attestErrAlert{
+            top: $topBarHeight + $iosTopHeight;
+        }
+    }
+}

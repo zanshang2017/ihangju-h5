@@ -9,4 +9,7 @@
   z-index: 999;
   line-height: 2.24rem; }
 
+:global ._ios_ :local .attestErrAlert {
+  top: 70px; }
+
 /*# sourceMappingURL=style.css.map */
