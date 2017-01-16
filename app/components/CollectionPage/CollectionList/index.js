@@ -1,8 +1,6 @@
 import styles from './styles.scss';
 import React from 'react';
 
-import _ from 'underscore';
-
 import LoadingList from 'components/common/LoadingList';
 import ArticleList3 from 'components/common/ArticleList3';
 import Result from 'antd-mobile/lib/page-result';

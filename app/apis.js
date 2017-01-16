@@ -20,7 +20,10 @@ if (Env.production) {
     api_scheme = Env.devAPIScheme;
     api_host = Env.devAPIHost;
     thirdparty_login_domain = '192.168.1.33:7777';
+    // thirdparty_login_domain = 'oauth.zan-shang.com'; //todo
 }
+
+let login_api_scheme = (api_scheme === '' ? 'http:' : api_scheme);
 
 //图片CDN
 const IMG_CDN_PATH = 'https://o82zr1kfu.qnssl.com/@';
@@ -36,12 +39,12 @@ const IMG_CDN_PATH = 'https://o82zr1kfu.qnssl.com/@';
 const IMG_UPLOAD_TOKEN_API = `${api_scheme}//${api_host}/storage/image/uptoken`;
 
 //三方登录跳转页
-const THIRDPARTY_LOGIN_REDIRECT_URL = encodeURIComponent(`http://${api_host}/zanshang/authentication`);
+const THIRDPARTY_LOGIN_REDIRECT_URL = encodeURIComponent(`${login_api_scheme}//${api_host}/zanshang/authentication`);
 // const THIRDPARTY_LOGIN_REDIRECT_URL = `http://${api_host}/zanshang/authentication`;
 //三方登录页
-const THIRDPARTY_LOGIN_URL = `http://${thirdparty_login_domain}/oauth/authorize?client_id=ihangju&redirect_uri=${THIRDPARTY_LOGIN_REDIRECT_URL}&response_type=code&scope=read&state=33251`;
+const THIRDPARTY_LOGIN_URL = `${login_api_scheme}//${thirdparty_login_domain}/oauth/authorize?client_id=ihangju&redirect_uri=${THIRDPARTY_LOGIN_REDIRECT_URL}&response_type=code&scope=read&state=33251`;
 //三方登录退出接口(除了调用行距退出接口,还必须再次调用三方退出接口,并忽略此接口由跨域导致的错误)
-const THIRDPARTY_LOGOUT_API = `http://${thirdparty_login_domain}/authentication`; //method DELETE
+const THIRDPARTY_LOGOUT_API = `${login_api_scheme}//${thirdparty_login_domain}/authentication`; //method DELETE
 
 
 //退出登录
