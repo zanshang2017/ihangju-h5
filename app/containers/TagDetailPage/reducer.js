@@ -36,6 +36,8 @@ import {
 
     RESET_ALL_STATE,
 
+    SAVE_VIEWSTATE,
+
 } from './constants';
 
 import {
@@ -58,7 +60,11 @@ const initialState = fromJS({
         page: 0,
         isLast: false,
         loading: false,
-    })
+    }),
+
+    viewState: fromJS({
+        scrollTop: 0
+    }),
 });
 
 function tagDetailPageReducer(state = initialState, action = {}) {
@@ -94,6 +100,7 @@ function tagDetailPageReducer(state = initialState, action = {}) {
 
                     let detail = {
                         tag_name: res.tag_name || '',
+                        tag_id: res.tag_id || '',
                         extistAdminstrator: res.extistAdminstrator || false,
                         isFollow: res.isFollow || false,
                         attention_number: res.attention_number || 0,
@@ -247,6 +254,9 @@ function tagDetailPageReducer(state = initialState, action = {}) {
 
         case LOGOUT_SUCCESS:
             return initialState;
+
+        case SAVE_VIEWSTATE:
+            return state.set('viewState', fromJS(action.payload.viewState));
 
         default:
             return state;

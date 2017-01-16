@@ -41,6 +41,10 @@ class ReactPullRefresh extends Component {
         this.pullRefresh.unmount(true);
     }
 
+    reset() {
+        this.pullRefresh.reset();
+    }
+
     render() {
         const {
             className, children, refresh

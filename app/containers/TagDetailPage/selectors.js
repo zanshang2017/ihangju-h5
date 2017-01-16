@@ -37,6 +37,11 @@ const selectIsEditing = () => createSelector(
     (substate) => substate.get('isEditing')
 );
 
+const selectViewState = () => createSelector(
+    selectTagDetailPageDomain(),
+    (substate) => substate.get('viewState')
+);
+
 export default selectTagDetailPage;
 export {
     selectTagDetailPageDomain,
@@ -46,6 +51,7 @@ export {
     selectRecommendationListStatus,
     selectProjectListStatus,
     selectIsEditing,
+    selectViewState,
 };
 
 

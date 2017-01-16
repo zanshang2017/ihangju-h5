@@ -57,6 +57,7 @@ class PullRefresh {
         this.parentContainer.addEventListener('touchend', this.ontouchend, true);
 
         if (this.parentContainer.scrollTop == 0) {
+            console.log('initEvent,绑定!');
             this.addTouchmove();
         }
     }
@@ -68,13 +69,14 @@ class PullRefresh {
         this.isTouchTop = (this.parentContainer.scrollTop == 0);
 
         if (this.isTouchTop && this.isNeedUnbind) {
-            // debugLog('在顶部,绑定!');
+            console.log('在顶部,绑定!');
             this.addTouchmove();
         }
     }
 
     addTouchmove() {
         if (!this.isOnstartAdded) {
+            console.log('在顶部,绑定!');
             // debugLog('binding touchmove');
             this.parentContainer.addEventListener('touchmove', this.ontouchmove, false);
             this.isOnstartAdded = true;

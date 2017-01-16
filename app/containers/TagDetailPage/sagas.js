@@ -82,6 +82,8 @@ export function* getTagList() {
         if (lists) {
             if (lists.err === undefined || lists.err === null) {
                 if (lists.data.result) {
+                    lists.data.result.tag_id = id; //返回数据中没有id
+
                     if (lists.data.result.projects && lists.data.result.projects.length < size) {
                         yield [put(loadTagListSuccess(lists.data, page)), put(setProjectListStatus({isLast: true}))];
                     } else {

@@ -20,6 +20,7 @@ import {
     selectMyFollowListLoading,
     selectMyFollowDataStatus,
     selectMyFollowListDataStatus,
+    selectViewState,
 } from './selectors';
 
 import {
@@ -36,19 +37,19 @@ import {
     changeCurrentFollow,
     setMyFollowDataStatus,
     setMyFollowListDataStatus,
+    setViewState,
 } from './actions';
 
 import TopListBar from 'components/FollowPage/TopListBar';
 import MainContent from 'components/FollowPage/MainContent';
 
 import PullRefresh from 'components/common/ReactPullRefresh'
-import Toast from 'antd-mobile/lib/toast';
 
 export class FollowPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
         super(props);
-        debugLog('FollowPage constructor')
+        debugLog('FollowPage constructor');
     }
 
     componentWillMount() {
@@ -62,21 +63,31 @@ export class FollowPage extends React.Component { // eslint-disable-line react/p
             return;
         }
 
-        if (!this.props.currentFollow) {
+        if (!this.props.currentFollow && !this.props.myFollowData) {
             this.loadMyFollow();
         }
-
-        setTimeout(function () {
-            this.refreshHandler();
-        }.bind(this), 2000);
-
     }
 
     componentDidMount() {
+        if (this.props.selectViewState && this.refs.J_Container) {
+            let vs = this.props.selectViewState.toJS();
+            this.refs.J_Container.scrollTop = vs.scrollTop;
+        }
+
+        this.refs.J_MainContent.setOuter(this.refs.J_Container);
+        this.refs.J_PullRefresh.reset();
+    }
+
+    saveViewState() {
+        if (this.refs.J_Container) {
+            this.props.dispatch(setViewState({scrollTop: this.refs.J_Container.scrollTop}));
+        }
     }
 
     componentWillUnmount() {
         debugLog('FollowPage WillUnmount');
+
+        this.saveViewState();
         this.removeSignals();
     }
 
@@ -135,30 +146,21 @@ export class FollowPage extends React.Component { // eslint-disable-line react/p
     }
 
     render() {
-        var mainContent = <MainContent
-            ref="J_MainContent"
-            parentRef={this.container}
-            loadMyFollow={this.loadMyFollow.bind(this)}
-            {...this.props} />;
-
-        // if (Env.isIOSShell) {
-            mainContent = <PullRefresh refreshCallback={this.refreshHandler.bind(this)}>
-                {mainContent}
-            </PullRefresh>;
-        // }
 
         return (
             <div className="pageInner">
                 <TopListBar {...this.props} />
-                <div id="J_Container" ref={(container) => {
-                    this.container = container;
-                }} className="mainContent">
-                    {mainContent}
+                <div id="J_Container" ref="J_Container" className="mainContent">
+                    <PullRefresh ref="J_PullRefresh" refreshCallback={this.refreshHandler.bind(this)}>
+                        <MainContent
+                            ref="J_MainContent"
+                            loadMyFollow={this.loadMyFollow.bind(this)}
+                            {...this.props} />
+                    </PullRefresh>
                 </div>
             </div>
         );
     }
-
 
 }
 
@@ -171,7 +173,8 @@ const mapStateToProps = createSelector(
     selectMyFollowListLoading(),
     selectMyFollowDataStatus(),
     selectMyFollowListDataStatus(),
-    (userInfo, myFollowData, myFollowListData, currentFollow, myFollowLoading, myFollowListLoading, selectMyFollowDataStatus, selectMyFollowListDataStatus) => {
+    selectViewState(),
+    (userInfo, myFollowData, myFollowListData, currentFollow, myFollowLoading, myFollowListLoading, selectMyFollowDataStatus, selectMyFollowListDataStatus, selectViewState) => {
         return {
             userInfo,
             myFollowData,
@@ -181,6 +184,7 @@ const mapStateToProps = createSelector(
             myFollowListLoading,
             selectMyFollowDataStatus,
             selectMyFollowListDataStatus,
+            selectViewState,
         }
     }
 );

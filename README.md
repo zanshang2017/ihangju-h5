@@ -19,3 +19,4 @@ Android版使用Hybird方式开发，前端部分为单页应用。
 - 执行 zip -9r h5-app_yourVersion.zip build -x 'DS_Store'
 - 将zip文件传给后端运维部署上线
 - 上线后同产品经理做好线上测试！
+

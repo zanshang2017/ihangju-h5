@@ -46,7 +46,6 @@ class ListGroup extends React.Component {
 
     componentDidMount() {
         this.outerElement = this.refs.J_TagDetailPageListGroupWrap.parentElement.parentElement;
-        this.innerElement = this.refs.J_TagDetailPageListGroupWrap.parentElement;
     }
 
     componentWillUpdate(nProps) {
@@ -136,7 +135,6 @@ class ListGroup extends React.Component {
     }
 
     render() {
-
         let noContent = <Result
             imgUrl="https://o82zr1kfu.qnssl.com/@/image/5813164ee4b0edf1e7b90b15.png?imageMogr2/auto-orient/"
             title="还没有内容哦~"/>;
@@ -157,7 +155,7 @@ class ListGroup extends React.Component {
         this.projectList = this.props.projectList && this.props.projectList.toJS();
 
 
-        if (this.outerElement && this.innerElement) {
+        if (this.outerElement) {
             if (this.props.hasAdmin) {
 
                 if (!this.isRecommendationLoading && this.isRecommendationLast && (this.recommendationList && this.recommendationList.length <= 0)) {
@@ -211,6 +209,7 @@ class ListGroup extends React.Component {
                 } else {
                     mainTag = <LoadingList outer={this.outerElement}
                                            isLast={this.isProjectLast} isLoading={this.isProjectLoading}
+                                           items={(this.props.projectList && this.props.projectList.toJS()) || []}
                                            offset="300"
                                            loadHandler={this.loadProject.bind(this)}>
                         <TagArticleList items={this.props.projectList || []}
@@ -219,7 +218,7 @@ class ListGroup extends React.Component {
                                         articleClickHandler={this.articleClickHandler.bind(this)}/>
                     </LoadingList>;
 
-                    document.querySelector('.mainContent').classList.remove('whiteBg');
+                    // document.querySelector('.mainContent').classList.remove('whiteBg');
                 }
 
             }

@@ -26,9 +26,17 @@ class MainContent extends React.Component {
         if (this.page == 0 && this.outer) {
             this.outer.scrollTop = 0;
         }
+
+        // this.outer = this.refs.J_FollowPageMainContentWrap && this.props.getParentRef();
+        // this.outer && this.refs.J_LoadingList.setOuter(this.outer);
     }
 
     componentWillUnmount() {
+    }
+
+    setOuter(outer) {
+        this.outer = this.refs.J_FollowPageMainContentWrap && outer;
+        this.outer && this.refs.J_LoadingList.setOuter(this.outer);
     }
 
     loadHandler() {
@@ -43,7 +51,6 @@ class MainContent extends React.Component {
     }
 
     render() {
-        this.outer = this.refs.J_FollowPageMainContentWrap && this.props.parentRef;
         this.page = this.props.selectMyFollowDataStatus.get('page') || 0;
         this.isLast = this.props.selectMyFollowDataStatus.get('isLast') || false;
 
@@ -56,7 +63,7 @@ class MainContent extends React.Component {
                 title="还没有文章哦~"
             />
         } else {
-            list = <LoadingList outer={this.outer}
+            list = <LoadingList ref="J_LoadingList"
                                 isLast={this.isLast}
                                 isLoading={this.props.myFollowLoading}
                                 loadHandler={this.loadHandler.bind(this)}

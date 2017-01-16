@@ -39,5 +39,7 @@ export const SET_DETAIL = 'app/TagDetailPage/SET_DETAIL';
 
 export const RESET_ALL_STATE = 'app/TagDetailPage/RESET_ALL_STATE'; //重置state为初始值
 
+export const SAVE_VIEWSTATE = 'app/TagDetailPage/SAVE_VIEWSTATE';
+
 
 

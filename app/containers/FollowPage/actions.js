@@ -20,6 +20,8 @@ import {
     SET_MY_FOLLOW_DATA_STATUS,
     SET_MY_FOLLOW_LIST_DATA_STATUS,
 
+    SAVE_VIEWSTATE,
+
 } from './constants';
 
 export function defaultAction() {
@@ -142,6 +144,14 @@ export function setMyFollowListDataStatus(data) {
     };
 }
 
+export function setViewState(viewState) {
+    return {
+        type: SAVE_VIEWSTATE,
+        payload: {
+            viewState
+        }
+    }
+}
 
 
 

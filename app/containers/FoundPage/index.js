@@ -47,8 +47,8 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
     }
 
     articleClickHandler(e) {
-        let target = e.currentTarget.dataset['target'];
-        let targetType = e.currentTarget.dataset['type'];
+        let target = e.currentTarget.dataset['target'] || '';
+        let targetType = e.currentTarget.dataset['type'] || '';
 
         switch(targetType) {
             case 'link':
