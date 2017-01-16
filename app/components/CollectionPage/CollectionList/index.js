@@ -19,12 +19,6 @@ class CollectionList extends React.Component {
     }
 
     componentDidMount() {
-        var that = this;
-        that.nWrap = that.refs.J_CollectionListWrap.parentElement;
-    }
-
-    componentWillUnmount() {
-        console.log('Collection List: willUnmount.');
     }
 
     loadHandler() {
@@ -46,6 +40,7 @@ class CollectionList extends React.Component {
     }
 
     render() {
+        this.nWrap = this.props.wrap;
         this.page = this.props.page;
         this.isLast = this.props.isLast;
         this.loading = this.props.loading;

@@ -60,7 +60,6 @@ class LoadingList extends React.Component {
             'this.isLast:', this.props.isLast, 'this.isHalt:', this.isHalt);
 
         if (this.outer && !this.isHalt) {
-            // debugger;
             var outerH = this.outer ? this.outer.getBoundingClientRect().height : 0;
 
             var dist = this.outer.scrollHeight - (this.outer.scrollTop + outerH);
