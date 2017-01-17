@@ -71,6 +71,7 @@ import {
 
 import '../../routes';
 import TabBar from 'components/App/TabBar';
+import FullScreenDialog from 'components/common/FullScreenDialog';
 
 import {
     locStorage
@@ -266,6 +267,8 @@ class App extends React.Component {
                         that.context.router.push(`/authorAttest/${this.userInfo.id}`);
                     }}
                 />
+
+                <FullScreenDialog />
 
                 <div id="logPanel" className="logPanel none unfold">
                     <a href="javascript:void(0);" className="btn" id="toggle">打开/关闭</a>
