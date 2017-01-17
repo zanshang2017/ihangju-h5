@@ -17,7 +17,7 @@
 
     .header {
         line-height: rem(60);
-        font-size: rem(28);
+        font-size: 14px;
         padding-bottom: rem(26);
 
         .author {
@@ -46,7 +46,7 @@
         clear:both;
         max-height: rem(134);
         padding-top:rem(26);
-        font-size: rem(40);
+        font-size: 20px;
         font-weight: normal;
         line-height: rem(54);
         overflow: hidden;
@@ -61,7 +61,7 @@
 
         margin-top: rem(45);
         color: $weakTextColor;
-        font-size: rem(28);
+        font-size: 14px;
         text-align:center;
 
         span {

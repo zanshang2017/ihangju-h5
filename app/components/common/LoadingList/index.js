@@ -40,9 +40,14 @@ class LoadingList extends React.Component {
         }
     }
 
+    setOuter(outer) {
+        this.outer = outer;
+        this.addScrollEvent();
+    }
+
     addScrollEvent() {
         let that = this;
-        that.outer = that.props.outer || null;
+        that.outer = that.props.outer || that.outer || null;
 
         if (!that.scrollHanderBinded && that.outer) {
             that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 300, {leading: false});
@@ -55,7 +60,6 @@ class LoadingList extends React.Component {
             'this.isLast:', this.props.isLast, 'this.isHalt:', this.isHalt);
 
         if (this.outer && !this.isHalt) {
-            // debugger;
             var outerH = this.outer ? this.outer.getBoundingClientRect().height : 0;
 
             var dist = this.outer.scrollHeight - (this.outer.scrollTop + outerH);
@@ -88,9 +92,9 @@ class LoadingList extends React.Component {
 
         if (this.props.isLast) {
             if (this.showLastNotice) {
-
                 //条数长度大于一页时才显示此提示,否则隐藏,样式上好看一些
-                if (this.outer && (this.outer.scrollHeight > this.outer.offsetHeight)) {
+                if ((this.outer && (this.outer.scrollHeight > this.outer.offsetHeight))
+                    || (this.props.items && this.props.items.length > 0)) {
                     _loadingBar = <div className={styles.loadingBar}><span className={styles.noMore}>没有更多了</span></div>;
                 }
             }

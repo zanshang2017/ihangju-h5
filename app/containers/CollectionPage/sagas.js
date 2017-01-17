@@ -17,6 +17,8 @@ import {
 
 import request from 'utils/request';
 
+import signals from './signals';
+
 export default [
     getCollectionData,
 ];
@@ -43,9 +45,11 @@ export function* getCollectionData() {
         if (lists) {
             if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
                 yield put(loadCollectionDataSuccess(lists.data.result, page));
+                signals.onCollectionLoadSuccess.dispatch();
             } else {
                 console.log(lists.err.response); // eslint-disable-line no-console
                 yield put(loadCollectionDataError(lists.err));
+                signals.onCollectionLoadFail.dispatch();
             }
         }
     }

@@ -160,7 +160,7 @@ export class FollowRecommendationPage extends React.Component { // eslint-disabl
         return (
             <div className="pageInner">
                 {topBar}
-                <div className="mainContent">
+                <div className={`${styles.wrap} mainContent`}>
                     {list}
                 </div>
                 <div className={styles.btnBar}>

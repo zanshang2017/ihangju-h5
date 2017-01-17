@@ -10,7 +10,7 @@ import styles from './styles.scss';
 class PullRefresh {
     static defaultOptions = {
         lockInTime: 300, //延迟刷新或加载
-        maxAmplitude: 80, //设置上下滑动最大弹性振幅度，单位为像素，默认为 80 像素
+        maxAmplitude: 120, //设置上下滑动最大弹性振幅度，单位为像素，默认为 80 像素
     };
 
     constructor(options) {
@@ -25,22 +25,29 @@ class PullRefresh {
         const {container, ptrEl} = _options;
 
         this.container = container;
-        this.parentContainer = container.parentNode;
+        this.parentContainer = container.parentElement;
         this.ptrEl = ptrEl;
 
         if (ptrEl) {
             this.imgEl = ptrEl.querySelector(`.${styles['rc-ptr-image']}`);
         }
 
-        this.loading = false;
-        this.isOnstartAdded = false;
+        this.initBool();
+
         this.onscroll = this.onscroll.bind(this);
         this.ontouchstart = this.ontouchstart.bind(this);
         this.ontouchmove = this.ontouchmove.bind(this);
         this.ontouchend = this.ontouchend.bind(this);
 
         this.resetPtr = this.resetPtr.bind(this);
+
         this.initEvents();
+    }
+
+    initBool() {
+        this.isNeedUnbind = this.parentContainer.offsetHeight < this.parentContainer.scrollHeight;
+        this.loading = false;
+        this.isOnstartAdded = false;
     }
 
     //初始化事件
@@ -48,23 +55,38 @@ class PullRefresh {
         this.parentContainer.addEventListener('scroll', this.onscroll);
         this.parentContainer.addEventListener('touchstart', this.ontouchstart, false);
         this.parentContainer.addEventListener('touchend', this.ontouchend, true);
-        this.addTouchmove();
+
+        if (this.parentContainer.scrollTop == 0) {
+            console.log('initEvent,绑定!');
+            this.addTouchmove();
+        }
     }
 
     onscroll(e) {
         // console.log(this.parentContainer.scrollTop);
+        // debugLog('this.parentContainer.scrollTop:' + this.parentContainer.scrollTop);
+
         this.isTouchTop = (this.parentContainer.scrollTop == 0);
 
-        if (this.isTouchTop) {
+        if (this.isTouchTop && this.isNeedUnbind) {
+            console.log('在顶部,绑定!');
             this.addTouchmove();
         }
     }
 
     addTouchmove() {
         if (!this.isOnstartAdded) {
-            debugLog('binding touchmove');
+            console.log('在顶部,绑定!');
+            // debugLog('binding touchmove');
             this.parentContainer.addEventListener('touchmove', this.ontouchmove, false);
             this.isOnstartAdded = true;
+        }
+    }
+
+    removeTouchmove() {
+        if (this.isOnstartAdded) {
+            this.parentContainer.removeEventListener('touchmove', this.ontouchmove);
+            this.isOnstartAdded = false;
         }
     }
 
@@ -86,10 +108,9 @@ class PullRefresh {
             this.isMoveBottom = false;
         }
 
-        if (!this.isMoveBottom && this.isOnstartAdded) {
+        if (!this.isMoveBottom && this.isOnstartAdded && this.isNeedUnbind) {
             debugLog('方向相反,解绑!');
-            this.parentContainer.removeEventListener('touchmove', this.ontouchmove);
-            this.isOnstartAdded = false;
+            this.removeTouchmove();
             return;
         }
 
@@ -103,8 +124,8 @@ class PullRefresh {
         const maxAmplitude = this.options.maxAmplitude;
         const refresh = this.options.refresh;
 
-        console.log(this.container.scrollHeight, this.container.clientHeight, this.container.scrollTop);
-        debugLog(this.container.scrollHeight + ' - ' + this.container.clientHeight + ' - ' + top + '<' + (-maxAmplitude / 2));
+        // console.log(this.container.scrollHeight, this.container.clientHeight, this.container.scrollTop);
+        // debugLog(this.container.scrollHeight + ' - ' + this.container.clientHeight + ' - ' + top + '<' + (-maxAmplitude / 2));
 
         if (refresh) {
             const style = this.ptrEl.style;
@@ -164,7 +185,9 @@ class PullRefresh {
         debugLog('刷新');
 
         const maxAmplitude = this.options.maxAmplitude;
-        const cstyle = that.parentContainer.lastElementChild.style;
+        // const cstyle = that.parentContainer.lastElementChild.style;
+        const cstyle = that.container.style;
+        // debugger;
         // const cstyle = that.container.style;
         cstyle.transition = 'transform .2s ease';
         cstyle.webkitTransition = '-webkit-transform .2s ease';
@@ -192,7 +215,9 @@ class PullRefresh {
         this.loading = false;
         this.imgEl.className = `${styles['rc-ptr-image']}`;
 
-        const cstyle = this.parentContainer.lastElementChild.style;
+        // const cstyle = this.parentContainer.lastElementChild.style;
+        const cstyle = this.container.style;
+
         cstyle.transition = 'transform .3s linear';
         cstyle.webkitTransition = '-webkit-transform .3s linear';
         cstyle.webkitTransform = `translate3d(0, 0, 0)`;
@@ -203,7 +228,17 @@ class PullRefresh {
         }, 400);
     }
 
+    /**
+     *
+     */
+    reset() {
+        this.initBool();
+        this.unmount();
+        this.initEvents();
+    }
+
     unmount() {
+        this.parentContainer.removeEventListener('scroll', this.onscroll);
         this.parentContainer.removeEventListener('touchstart', this.ontouchstart, false);
         this.parentContainer.removeEventListener('touchmove', this.ontouchmove, false);
         this.parentContainer.removeEventListener('touchend', this.ontouchend, true);

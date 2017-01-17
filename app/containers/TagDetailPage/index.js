@@ -16,6 +16,7 @@ import {
     selectRecommendationListStatus,
     selectProjectListStatus,
     selectIsEditing,
+    selectViewState,
 } from './selectors';
 
 import {
@@ -33,6 +34,7 @@ import {
     subTag,
     cancelSubTag,
     resetAllState,
+    setViewState,
 } from './actions';
 
 import TopBar from 'components/common/TopBar';
@@ -54,6 +56,116 @@ class TagDetailPage extends React.Component { // eslint-disable-line react/prefe
         this.isAdmin = false;
         this.isEditing = false;
         this.initialized = false;
+
+        this.needRefreshTagList = false; //是否需要刷新store里的数据
+    }
+
+    componentWillMount() {
+        if (this.props.userInfo) {
+            this.userInfo = this.props.userInfo.toJS();
+        }
+
+        if (this.props.routeParams) {
+            this.tagID = this.props.routeParams.id;
+        }
+
+        //不同的tagId,清空之前的存储
+        if(this.props.detail) {
+            let detail = this.props.detail.toJS();
+            if(detail.tag_id !== this.tagID) {
+                this.props.dispatch(resetAllState()); //重置state
+                this.needRefreshTagList = true;
+            }
+        }
+
+    }
+
+    componentDidMount() {
+
+        if (this.props.viewState && this.props.projectList && !this.needRefreshTagList) {
+            setTimeout(()=> {
+                let vs = this.props.viewState.toJS();
+                this.refs.J_MainContent.scrollTop = vs.scrollTop;
+            }, 0);
+        } else {
+            this.props.dispatch(loadTagList(this.tagID));
+        }
+        // console.warn('TagDetailPage DidMount', this.isAdmin, this.tagID);
+
+        this.forceUpdate(); //必须强制刷新,以便子组件能获取父组件的引用
+    }
+
+    componentWillUpdate(props) {
+
+        // console.log('will update', props.detail);
+
+        var that = this;
+
+        if (props.detail) {
+            this.detail = props.detail.toJS();
+
+            if (!this.initialized) {
+                this.initialized = true;
+                this.UserID = (this.userInfo && this.userInfo.id) || '';
+                this.hasAdmin = this.detail.extistAdminstrator || false;
+                this.isAdmin = false;
+
+                if (this.hasAdmin
+                    && this.detail.tagAdminstrators
+                    && this.detail.tagAdminstrators.length > 0) {
+
+                    this.detail.tagAdminstrators.forEach(function (v, i) {
+                        if (that.UserID === v.id) {
+                            that.isAdmin = true;
+                        }
+                    });
+                }
+
+                // console.log('this.isAdmin:', this.isAdmin);
+
+                if (this.hasAdmin) {
+                    this.loadRecommendationHandler();
+                }
+
+            }
+
+            this.isEditing = props.isEditing || false;
+
+            if (this.isAdmin) {
+                if (this.isEditing) {
+                    this.topBarBtnHTML = <div onClick={this.saveEdit.bind(this)}>保存</div>;
+                } else {
+                    this.topBarBtnHTML = <div onClick={this.doEdit.bind(this)}>编辑</div>
+                }
+            } else if (!this.isAdmin && !this.hasAdmin) {
+                if (this.detail.isFollow) {
+                    this.topBarBtnHTML = <div onClick={this.cancelSubTagHandler.bind(this)}>已关注</div>;
+                } else {
+                    this.topBarBtnHTML = <div onClick={this.subTagHandler.bind(this)}>关注</div>;
+                }
+            }
+
+        }
+    }
+
+    componentWillUnmount() {
+        // console.warn('TagDetailPage willUnmount');
+
+        this.topBarBtnHTML = '';
+        this.detail = null;
+        this.UserID = null;
+        this.hasAdmin = false;
+        this.isAdmin = false;
+        this.isEditing = false;
+        this.initialized = false;
+
+        this.saveViewState();
+    }
+
+    saveViewState() {
+        if (this.refs.J_MainContent) {
+            this.props.dispatch(setViewState({scrollTop: this.refs.J_MainContent.scrollTop}));
+        }
     }
 
     doEdit() {
@@ -129,88 +241,6 @@ class TagDetailPage extends React.Component { // eslint-disable-line react/prefe
         hashHistory.goBack();
     }
 
-    componentWillMount() {
-        this.props.dispatch(resetAllState()); //重置state
-
-        if (this.props.userInfo) {
-            this.userInfo = this.props.userInfo.toJS();
-        }
-
-        if (this.props.routeParams) {
-            this.tagID = this.props.routeParams.id;
-        }
-    }
-
-    componentDidMount() {
-        // console.warn('TagDetailPage DidMount', this.isAdmin, this.tagID);
-        this.props.dispatch(loadTagList(this.tagID));
-    }
-
-    componentWillUpdate(props) {
-
-        // console.log('will update', props.detail);
-
-        var that = this;
-
-        if (props.detail) {
-            this.detail = props.detail.toJS();
-
-            if (!this.initialized) {
-                this.initialized = true;
-                this.UserID = (this.userInfo && this.userInfo.id) || '';
-                this.hasAdmin = this.detail.extistAdminstrator || false;
-                this.isAdmin = false;
-
-                if (this.hasAdmin
-                    && this.detail.tagAdminstrators
-                    && this.detail.tagAdminstrators.length > 0) {
-
-                    this.detail.tagAdminstrators.forEach(function (v, i) {
-                        if (that.UserID === v.id) {
-                            that.isAdmin = true;
-                        }
-                    });
-                }
-
-                // console.log('this.isAdmin:', this.isAdmin);
-
-                if (this.hasAdmin) {
-                    this.loadRecommendationHandler();
-                }
-
-            }
-
-            this.isEditing = props.isEditing || false;
-
-            if (this.isAdmin) {
-                if (this.isEditing) {
-                    this.topBarBtnHTML = <div onClick={this.saveEdit.bind(this)}>保存</div>;
-                } else {
-                    this.topBarBtnHTML = <div onClick={this.doEdit.bind(this)}>编辑</div>
-                }
-            } else if (!this.isAdmin && !this.hasAdmin) {
-                if (this.detail.isFollow) {
-                    this.topBarBtnHTML = <div onClick={this.cancelSubTagHandler.bind(this)}>已关注</div>;
-                } else {
-                    this.topBarBtnHTML = <div onClick={this.subTagHandler.bind(this)}>关注</div>;
-                }
-            }
-
-        }
-    }
-
-    componentWillUnmount() {
-        // console.warn('TagDetailPage willUnmount');
-
-        this.topBarBtnHTML = '';
-        this.detail = null;
-        this.UserID = null;
-        this.hasAdmin = false;
-        this.isAdmin = false;
-        this.isEditing = false;
-        this.initialized = false;
-    }
-
     render() {
         // console.log('render', this.props.detail, this.isAdmin);
         let infoHTML = '';
@@ -264,7 +294,8 @@ const mapStateToProps = createSelector(
     selectRecommendationListStatus(),
     selectProjectListStatus(),
     selectIsEditing(),
-    (userInfo, projectList, recommendationList, detail, recommendationListStatus, projectListStatus, isEditing) => {
+    selectViewState(),
+    (userInfo, projectList, recommendationList, detail, recommendationListStatus, projectListStatus, isEditing, viewState) => {
         return {
             userInfo,
             projectList,
@@ -273,6 +304,7 @@ const mapStateToProps = createSelector(
             recommendationListStatus,
             projectListStatus,
             isEditing,
+            viewState,
         }
     }
 );

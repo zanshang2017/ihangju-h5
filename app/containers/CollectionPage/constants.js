@@ -13,3 +13,5 @@ export const LOAD_COLLECTION_DATA_ERROR = 'app/CollectionPage/LOAD_COLLECTION_DA
 export const SET_COLLECTION_DATA_STATUS = 'app/CollectionPage/SET_COLLECTION_DATA_STATUS';
 export const RESET_STATE = 'app/CollectionPage/RESET_STATE';
 
+export const SAVE_VIEWSTATE = 'app/CollectionPage/SAVE_VIEWSTATE';
+

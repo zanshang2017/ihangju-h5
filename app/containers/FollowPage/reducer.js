@@ -24,6 +24,8 @@ import {
     SET_MY_FOLLOW_DATA_STATUS,
     SET_MY_FOLLOW_LIST_DATA_STATUS,
 
+    SAVE_VIEWSTATE,
+
 } from './constants';
 
 import {
@@ -49,7 +51,11 @@ const initialState = fromJS({
     myFollowListDataStatus: fromJS({
         page: 0,
         isLast: false
-    })
+    }),
+
+    viewState: fromJS({
+        scrollTop: 0
+    }),
 
 });
 
@@ -205,6 +211,9 @@ function followPageReducer(state = initialState, action = null) {
 
         case LOGOUT_SUCCESS:
             return initialState;
+
+        case SAVE_VIEWSTATE:
+            return state.set('viewState', fromJS(action.payload.viewState));
 
         default:
             return state;

@@ -9,7 +9,7 @@
   .articleListItem:last-child {
     margin-bottom: 0; }
   .articleListItem span.source {
-    font-size: 0.74667rem;
+    font-size: 14px;
     color: #a09e98;
     display: inline-block;
     margin-bottom: 0.48rem; }
@@ -18,13 +18,13 @@
       font-weight: normal;
       color: #39bcc8; }
   .articleListItem span.recommendationBtn {
-    font-size: 0.74667rem;
+    font-size: 14px;
     color: #39bcc8;
     display: inline-block;
     float: right; }
   .articleListItem h3 {
     max-height: 2.98667rem;
-    font-size: 1.17333rem;
+    font-size: 22px;
     font-weight: normal;
     line-height: 1.49333rem;
     overflow: hidden;
@@ -48,17 +48,17 @@
     -webkit-align-items: flex-start;
     align-items: flex-start; }
   .articleListItem p {
-    font-size: 0.85333rem;
+    font-size: 16px;
     color: #383b3d;
     margin-top: 0.88rem;
     line-height: 1.6em;
-    max-height: 4rem;
+    max-height: 77px;
     text-align: left;
     overflow: hidden; }
   .articleListItem div.info {
     margin-top: 1.2rem;
     color: #bcbab5;
-    font-size: 0.74667rem; }
+    font-size: 14px; }
     .articleListItem div.info span {
       margin-right: 0.66667rem; }
       .articleListItem div.info span i {

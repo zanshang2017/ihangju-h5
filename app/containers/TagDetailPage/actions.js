@@ -38,6 +38,8 @@ import {
 
     RESET_ALL_STATE,
 
+    SAVE_VIEWSTATE,
+
 } from './constants';
 
 export function defaultAction() {
@@ -286,4 +288,12 @@ export function resetAllState() {
     }
 }
 
+export function setViewState(viewState) {
+    return {
+        type: SAVE_VIEWSTATE,
+        payload: {
+            viewState
+        }
+    }
+}
 

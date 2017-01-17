@@ -26,7 +26,7 @@ function Banner(props) {
                 {
                     props.items.map(function (item, key) {
                         imageSrc = addImageParam(IMG_CDN_PATH + item.image, IMAGE_SIZE_TYPE.BANNER_IMAGE);
-                        return <div key={key} data-id={item.target} onClick={props.articleClickHandler}>
+                        return <div key={key} data-target={item.target} data-type={item.type} onClick={props.articleClickHandler}>
                             <img src={imageSrc}/>
                         </div>
                     })

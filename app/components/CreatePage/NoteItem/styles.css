@@ -11,7 +11,7 @@
   .noteItem:first-child {
     margin-top: 0.26667rem; }
   .noteItem .content {
-    font-size: 0.85333rem;
+    font-size: 16px;
     color: #7b8f9d;
     float: left;
     width: 70%;
@@ -25,7 +25,7 @@
     text-align: right; }
     .noteItem .right .time {
       color: #bcbab5;
-      font-size: 0.64rem;
+      font-size: 12px;
       padding-right: 0.53333rem; }
     .noteItem .right i {
       display: inline-block;

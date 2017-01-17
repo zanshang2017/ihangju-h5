@@ -21,7 +21,7 @@
 
         .username {
             padding-top: rem(24);
-            font-size: rem(40);
+            font-size: 20px;
             color: $textColor;
         }
 
@@ -31,13 +31,13 @@
         }
 
         .btn {
-            font-size: rem(28);
+            font-size: 14px;
             color: $weakerTitleColor;
             background: none;
 
             strong {
                 color: $textColor;
-                font-size: rem(36);
+                font-size: 18px;
                 font-weight: normal;
                 padding-right: rem(10);
             }
@@ -50,7 +50,7 @@
 
         .description {
             color: $weakerTitleColor;
-            font-size: rem(28);
+            font-size: 14px;
         }
     }
 }
@@ -65,14 +65,14 @@
 
 .username {
     color: $textColor;
-    font-size: rem(32);
+    font-size: 16px;
 }
 
 .intro {
     white-space: normal;
     color: $weakTitleColor;
     padding-top: rem(8);
-    font-size: rem(20);
+    font-size: 10px;
     line-height: 1.4em;
     max-height: 2.8em;
     overflow: hidden;

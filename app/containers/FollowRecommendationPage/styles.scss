@@ -2,6 +2,10 @@
 @import "../../common/__global.scss";
 @import "../../common/__util.scss";
 
+.wrap {
+    background: #fff;
+}
+
 .btnBar {
     width: 100%;
     height: rem(112);
@@ -17,7 +21,7 @@
         width: rem(296);
         margin-top: rem(22);
 
-        font-size: rem(34);
+        font-size: 17px;
         color: #000;
 
         border: 1px solid #333;

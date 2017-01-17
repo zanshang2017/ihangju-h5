@@ -5,7 +5,7 @@
   padding: 0.53333rem 0rem 0.53333rem 1.12rem;
   background: #fff;
   text-align: left;
-  font-size: 0.74667rem;
+  font-size: 14px;
   -webkit-overflow-scrolling: touch;
   border-bottom: 1px solid #f5f5f5; }
   .listItem .item {
@@ -30,20 +30,20 @@
       height: 2.66667rem;
       border-radius: 3px; }
     .listItem .item .info {
-      font-size: 0.74667rem;
+      font-size: 14px;
       line-height: 1.5em;
       -webkit-box-flex: 1;
       -webkit-flex: 1;
       padding-left: 0.66667rem; }
       .listItem .item .info h4 {
         color: #7b8f9d;
-        font-size: 0.90667rem; }
+        font-size: 17px; }
       .listItem .item .info p {
         color: #a09e98;
         padding-top: 0.26667rem; }
   .listItem .comment {
     color: #a09e98;
-    font-size: 0.74667rem;
+    font-size: 14px;
     margin: 0 0.66667rem 0.26667rem 0;
     word-wrap: break-word; }
     .listItem .comment span {

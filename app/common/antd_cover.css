@@ -19,7 +19,7 @@
   :global .am-tab .am-tab-bar {
     margin-bottom: 0 !important; }
   :global .am-tab .am-tab-nav-container {
-    font-size: 0.85333rem !important; }
+    font-size: 16px !important; }
   :global .am-tab.am-tab-line .am-tab-bar:after {
     border-color: #f3f5f4 !important; }
   :global .am-tab .am-tab-tab-active .am-tab-tab-inner {
@@ -37,6 +37,8 @@
     background-color: transparent !important; }
   :global .am-tab-capsule .am-tab-nav .am-tab-tab:not(:last-child) {
     border-right: 1px solid #424447 !important; }
+  :global .am-tab-capsule .am-tab-nav .am-tab-tab-inner:active {
+    background-color: rgba(66, 68, 71, 0.1) !important; }
   :global .am-tab-capsule .am-tab-tab-active .am-tab-tab-inner {
     background-color: #424447 !important;
     color: #fff !important; }
@@ -80,7 +82,7 @@
       :global .am-list .am-list-item .am-list-line .am-list-extra {
         margin-top: 1px !important; }
       :global .am-list .am-list-item .am-list-line .am-list-content {
-        font-size: 0.85333rem !important; }
+        font-size: 16px !important; }
   :global .am-top-notice {
     background-color: #effbfa !important;
     color: #3a3a3b !important;

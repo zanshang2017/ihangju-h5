@@ -8,7 +8,7 @@
   text-align: left; }
   .articleListItem2 h3 {
     max-height: 2.98667rem;
-    font-size: 1.17333rem;
+    font-size: 22px;
     font-weight: normal;
     line-height: 1.49333rem;
     overflow: hidden;
@@ -33,17 +33,17 @@
     align-items: flex-start;
     justify-content: flex-start; }
   .articleListItem2 p {
-    font-size: 0.85333rem;
+    font-size: 16px;
     color: #383b3d;
     margin-top: 0.88rem;
     line-height: 1.6em;
-    max-height: 4rem;
+    max-height: 77px;
     text-align: left;
     overflow: hidden; }
   .articleListItem2 div.info {
     margin-top: 1.2rem;
     color: #bcbab5;
-    font-size: 0.74667rem; }
+    font-size: 14px; }
     .articleListItem2 div.info span {
       margin-right: 0.53333rem; }
       .articleListItem2 div.info span i {
@@ -52,7 +52,6 @@
         display: inline-block;
         height: 0.85333rem;
         width: 0.85333rem;
-        margin-left: 0.32rem;
         background-repeat: no-repeat;
         background-size: cover; }
   .articleListItem2 div.itemType {

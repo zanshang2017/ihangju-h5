@@ -14,6 +14,9 @@ import {
     LOAD_RECOMMENDATION_DATA,
     LOAD_RECOMMENDATION_DATA_SUCCESS,
     LOAD_RECOMMENDATION_DATA_ERROR,
+
+    SAVE_VIEWSTATE,
+
 } from './constants';
 
 export function defaultAction() {
@@ -77,6 +80,15 @@ export function loadRecommendationDataError(error) {
             error: error
         }
     };
+}
+
+export function setViewState(viewState) {
+    return {
+        type: SAVE_VIEWSTATE,
+        payload: {
+            viewState
+        }
+    }
 }
 
 

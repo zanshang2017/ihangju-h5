@@ -12,10 +12,16 @@ const selectCollectionProjs = () => createSelector(
     (CollectionPageState) => CollectionPageState.get('collectionProjs')
 );
 
+const selectViewState = () => createSelector(
+    selectCollectionPageDomain(),
+    (substate) => substate.get('viewState')
+);
+
 export default selectCollectionPage;
 export {
     selectCollectionPageDomain,
-    selectCollectionProjs
+    selectCollectionProjs,
+    selectViewState,
 };
 
 

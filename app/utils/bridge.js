@@ -159,6 +159,13 @@ Bridge.prototype = {
             });
         },
 
+        openUrl: function(url) {
+            var that = this.superthat;
+            that.pushBack('sbridge:', 'OpenUrl', {
+                url: url
+            });
+        }
+
     },
 
     share: {

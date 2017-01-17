@@ -4,7 +4,7 @@
   overflow: visible; }
 :global .tagDetailPageListGroup .ant-tabs-nav-container {
   background-color: #fff;
-  font-size: 0.85333rem;
+  font-size: 16px;
   color: #7b8f9d; }
   :global .tagDetailPageListGroup .ant-tabs-nav-container .ant-tabs-nav-wrap {
     width: 100%; }

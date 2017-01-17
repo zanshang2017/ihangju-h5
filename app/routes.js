@@ -166,6 +166,7 @@ export default function createRoutes(store) {
                     }
 
                     renderRoute(component);
+
                 });
 
                 importModules.catch(function (err) {

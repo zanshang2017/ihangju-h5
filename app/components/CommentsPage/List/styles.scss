@@ -35,7 +35,7 @@
             }
 
             .info {
-                font-size: rem(28);
+                font-size: 14px;
                 line-height: 1.5em;
                 -webkit-box-flex: 1;
                 -webkit-flex: 1;
@@ -44,11 +44,11 @@
 
                 h4 {
                     color: $titleColor;
-                    font-size: rem(32);
+                    font-size: 16px;
                 }
 
                 .time {
-                    font-size: rem(26);
+                    font-size: 13px;
                     color: $weakerTitleColor;
                     margin: rem(15) rem(20) 0 0;
                 }
@@ -58,7 +58,7 @@
         }
 
         .content {
-            font-size: rem(30);
+            font-size: 15px;
             color: $textColor;
             line-height: 1.4em;
             word-wrap: break-word;

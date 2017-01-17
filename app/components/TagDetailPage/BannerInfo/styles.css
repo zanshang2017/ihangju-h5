@@ -21,14 +21,14 @@
   .bannerInfo .title {
     position: relative;
     z-index: 1;
-    font-size: 1.33333rem;
+    font-size: 25px;
     font-weight: 700;
     margin-top: 2.13333rem;
     letter-spacing: 2px; }
   .bannerInfo .follow {
     position: relative;
     z-index: 1;
-    font-size: 0.74667rem;
+    font-size: 14px;
     margin-top: 0.8rem; }
   .bannerInfo .followBtn {
     position: relative;
@@ -37,7 +37,7 @@
     height: 1.92rem;
     line-height: 1.92rem;
     border-radius: 9999px;
-    font-size: 0.85333rem;
+    font-size: 16px;
     color: #383b3d;
     margin: 0.90667rem auto 0;
     background: rgba(255, 255, 255, 0.75); }
@@ -62,7 +62,7 @@
     height: 9.76rem;
     z-index: -1; }
   .bannerInfo .editBannerImage {
-    font-size: 0.85333rem;
+    font-size: 16px;
     position: absolute;
     z-index: 1;
     right: 1.01333rem;

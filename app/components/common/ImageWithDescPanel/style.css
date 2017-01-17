@@ -35,17 +35,17 @@
       .completePersonal .layerCon .centerText span {
         display: block; }
         .completePersonal .layerCon .centerText span.text1 {
-          font-size: 1.28rem;
+          font-size: 24px;
           color: #333; }
         .completePersonal .layerCon .centerText span.text2 {
-          font-size: 0.8rem;
+          font-size: 15px;
           color: #bcbab5; }
     .completePersonal .layerCon .footerBtn {
       width: 14.53333rem;
       height: 2.4rem;
       margin: 0 auto;
       line-height: 2.4rem;
-      font-size: 0.96rem;
+      font-size: 18px;
       color: #000;
       border: 1px solid #000;
       border-radius: 5px; }

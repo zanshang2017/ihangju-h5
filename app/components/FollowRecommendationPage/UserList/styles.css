@@ -41,7 +41,7 @@
           width: 2.50667rem;
           height: 2.50667rem; }
         .listWrap .listItemWrap .listItem .item .info {
-          font-size: 0.74667rem;
+          font-size: 14px;
           line-height: 1.5em;
           -webkit-box-flex: 1;
           -webkit-flex: 1;
@@ -50,10 +50,10 @@
           .listWrap .listItemWrap .listItem .item .info h4 {
             padding-top: 0.16rem;
             color: #333;
-            font-size: 0.85333rem;
+            font-size: 16px;
             font-weight: normal; }
           .listWrap .listItemWrap .listItem .item .info p {
-            font-size: 0.64rem;
+            font-size: 12px;
             color: #999;
             padding-top: 0.16rem;
             white-space: nowrap;
@@ -62,14 +62,14 @@
         .listWrap .listItemWrap .listItem .item .followBtn button {
           width: 3.46667rem;
           height: 1.54667rem;
-          font-size: 0.74667rem;
+          font-size: 14px;
           color: #333;
           margin: 0.53333rem 0.74667rem 0 0;
           border: 1px solid #333;
           border-radius: 4px !important;
           background: #fff; }
           .listWrap .listItemWrap .listItem .item .followBtn button i {
-            font-size: 0.53333rem;
+            font-size: 10px;
             padding-right: 0.18667rem;
             font-weight: bold; }
           .listWrap .listItemWrap .listItem .item .followBtn button:after {

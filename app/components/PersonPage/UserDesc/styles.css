@@ -26,18 +26,18 @@
       border-radius: 0.21333rem; }
     .descWrap div.row .username {
       padding-top: 0.64rem;
-      font-size: 1.06667rem;
+      font-size: 20px;
       color: #383b3d; }
     .descWrap div.row .btns {
       padding-bottom: 0.69333rem;
       border-bottom: 1px solid #fff; }
     .descWrap div.row .btn {
-      font-size: 0.74667rem;
+      font-size: 14px;
       color: #a09e98;
       background: none; }
       .descWrap div.row .btn strong {
         color: #383b3d;
-        font-size: 0.96rem;
+        font-size: 18px;
         font-weight: normal;
         padding-right: 0.26667rem; }
     .descWrap div.row .divider {
@@ -45,7 +45,7 @@
       padding: 0 0.53333rem; }
     .descWrap div.row .description {
       color: #a09e98;
-      font-size: 0.74667rem; }
+      font-size: 14px; }
 
 .info {
   display: -webkit-box;
@@ -70,13 +70,13 @@
 
 .username {
   color: #383b3d;
-  font-size: 0.85333rem; }
+  font-size: 16px; }
 
 .intro {
   white-space: normal;
   color: #9dadb9;
   padding-top: 0.21333rem;
-  font-size: 0.53333rem;
+  font-size: 10px;
   line-height: 1.4em;
   max-height: 2.8em;
   overflow: hidden; }

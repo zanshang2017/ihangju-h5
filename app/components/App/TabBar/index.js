@@ -6,6 +6,8 @@ import _ from 'underscore';
 class TabBar extends React.Component {
     constructor(props) {
         super(props);
+
+        this.routeHandler = this.routeHandler.bind(this);
     }
 
     componentWillMount() {
@@ -56,14 +58,14 @@ class TabBar extends React.Component {
         return (
             <nav id="nav" ref="J_Nav" className={`${tabCls} ${curPageCls}`}>
                 <ul>
-                    <li data-hashover="true"><a data-id="/follow" onClick={this.routeHandler.bind(this)}><span
+                    <li data-hashover="true"><a data-id="/follow" onClick={this.routeHandler}><span
                         className={`${styles.follow}`}></span><strong>关注</strong></a></li>
-                    <li data-hashover="true"><a data-id="/found" onClick={this.routeHandler.bind(this)}><span
+                    <li data-hashover="true"><a data-id="/found" onClick={this.routeHandler}><span
                         className={`${styles.found}`}></span><strong>发现</strong></a>
                     </li>
-                    <li data-hashover="true"><a data-id="/create" onClick={this.routeHandler.bind(this)}><span
+                    <li data-hashover="true"><a data-id="/create" onClick={this.routeHandler}><span
                         className={styles.write}></span><strong>创作</strong></a></li>
-                    <li data-hashover="true"><a data-id="/my" onClick={this.routeHandler.bind(this)}><span
+                    <li data-hashover="true"><a data-id="/my" onClick={this.routeHandler}><span
                         className={styles.my}></span><strong>我的</strong></a></li>
                     {/*<li><Link to={'/projectDetail/57a941f4e4b0ab2d4f0d14cd'}><span className="follow"></span><strong>Detail</strong></Link></li>*/}
                     {/*<li><Link to={'/bridgeTest'}><span className="follow"></span><strong>Bridge</strong></Link></li>*/}

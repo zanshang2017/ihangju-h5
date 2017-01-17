@@ -19,11 +19,17 @@ import {
     loadDiscoveriesData,
 } from './actions';
 
+import signals from './signals';
+
 import styles from './styles.scss';
+
+import bridge from 'utils/bridge';
+
+import Toast from 'antd-mobile/lib/toast';
 
 import Banner from 'components/FoundPage/Banner';
 import MainContent from 'components/FoundPage/MainContent';
-import TopGapForIOS from 'components/common/TopGapForIOS';
+import PullRefresh from 'components/common/ReactPullRefresh'
 
 export class FoundPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -42,21 +48,68 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
 
     articleClickHandler(e) {
         let index = e.currentTarget.dataset['index'];
-        let projectId = e.currentTarget.dataset['id'];
-        zhuge.track('banner' + index + '点击',{
-            id: projectId
-        })
-        this.context.router.push(`/projectDetail/${projectId}`);
+        zhuge.track('banner' + index + '点击');
+        let target = e.currentTarget.dataset['target'] || '';
+        let targetType = e.currentTarget.dataset['type'] || '';
+
+        switch(targetType) {
+            case 'link':
+                bridge.sys.openUrl(encodeURI(target));
+                break;
+
+            case 'project':
+                this.context.router.push(`/projectDetail/${target}`);
+                break;
+
+            case 'tag':
+                this.context.router.push(`/tag/${target}`);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    refreshHandler() {
+        return new Promise((resolve, reject) => {
+            this.loadDiscoveries();
+
+            signals.onDiscoveriesLoadSuccess.add(()=> {
+                this.removeSignals();
+                clearTimeout(flag);
+                resolve();
+            });
+
+            signals.onDiscoveriesLoadFail.add(()=> {
+                this.removeSignals();
+                clearTimeout(flag);
+                reject();
+            });
+
+            //超时
+            let flag = setTimeout(() => {
+                this.removeSignals();
+                reject();
+            }, 15 * 1e3);
+
+        });
+    }
+
+    removeSignals() {
+        signals.onDiscoveriesLoadSuccess.removeAll();
+        signals.onDiscoveriesLoadFail.removeAll();
     }
 
     render() {
+
         return (
             <div className="pageInner">
-                <div className="mainContent">
-                    <TopGapForIOS style={{'backgroundColor': '#f5f5f5'}}/>
-                    <Banner items={this.props.banners}
-                            articleClickHandler={this.articleClickHandler.bind(this)}></Banner>
-                    <MainContent {...this.props} />
+                <div className={`mainContent ${styles.wrap}`}>
+                    <PullRefresh refreshCallback={this.refreshHandler.bind(this)}>
+                        <Banner items={this.props.banners}
+                                articleClickHandler={this.articleClickHandler.bind(this)}></Banner>
+                        <MainContent {...this.props} />
+                    </PullRefresh>
                 </div>
             </div>
         );

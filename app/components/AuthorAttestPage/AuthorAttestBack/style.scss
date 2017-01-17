@@ -19,14 +19,14 @@
     	margin-left: rem(-320);
     	margin-top: rem(-140);
     	text-align: center;
-    	font-size: rem(36);
+    	font-size: 18px;
     	border-radius: rem(10);
     	.topText{
 			line-height: rem(140);
 			padding: rem(20) rem(20);
             height: rem(140);
 			color: #2a2b2c;
-            font-size: rem(36);
+            font-size: 18px;
     	}
     	.btnList{
     		border-top: 1px solid $borderColor;
@@ -35,7 +35,7 @@
     			width: 50%;
     			float: left;
                 line-height: rem(100);
-                font-size: rem(40);
+                font-size: 20px;
                 color: #0e76f3;
     			&.btnLeft{
     				border-right: 1px solid $borderColor;

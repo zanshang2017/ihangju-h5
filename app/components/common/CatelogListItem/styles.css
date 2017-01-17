@@ -48,13 +48,13 @@
       -webkit-justify-content: center;
       justify-content: center;
       width: 4.58667rem;
-      font-size: 1.12rem;
+      font-size: 21px;
       font-weight: normal;
       color: #7b8f9d;
       padding: 0 0.16rem 1.76rem 0;
       align-items: flex-end; }
       .catelogListItemWrap .catelogListItem .title.small {
-        font-size: 0.96rem; }
+        font-size: 18px; }
     .catelogListItemWrap .catelogListItem .info {
       display: -webkit-box;
       display: -moz-box;
@@ -87,13 +87,13 @@
           width: 100%;
           height: 8.10667rem; }
       .catelogListItemWrap .catelogListItem .info .infoDesc {
-        font-size: 0.64rem; }
+        font-size: 12px; }
         .catelogListItemWrap .catelogListItem .info .infoDesc div {
           float: left;
           padding: 0.8rem 1.12rem 0 0;
           color: #bcbab5; }
           .catelogListItemWrap .catelogListItem .info .infoDesc div strong {
-            font-size: 0.8rem;
+            font-size: 15px;
             padding-right: 0.26667rem;
             color: #7d786a; }
 

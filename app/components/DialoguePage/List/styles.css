@@ -13,7 +13,7 @@
     -webkit-overflow-scrolling: touch; }
     .listWrap .listItem .time {
       text-align: center;
-      font-size: 0.69333rem;
+      font-size: 13px;
       color: #a09e98;
       margin: 0 0.53333rem 0 0; }
     .listWrap .listItem .itemMe {
@@ -45,7 +45,7 @@
       .listWrap .listItem .itemMe .info {
         -webkit-box-flex: 1;
         -webkit-flex: 1;
-        font-size: 0.74667rem;
+        font-size: 14px;
         margin: 0 0.66667rem 0 1.06667rem;
         box-sizing: border-box; }
         .listWrap .listItem .itemMe .info .innerShare {
@@ -61,11 +61,11 @@
             word-wrap: break-word;
             word-break: break-all; }
             .listWrap .listItem .itemMe .info .innerShare .content h3 {
-              font-size: 0.96rem;
+              font-size: 18px;
               padding-bottom: 0.26667rem;
               color: #383b3d; }
             .listWrap .listItem .itemMe .info .innerShare .content span {
-              font-size: 0.64rem;
+              font-size: 12px;
               color: #bcbab5; }
         .listWrap .listItem .itemMe .info .inner {
           float: right;
@@ -75,7 +75,7 @@
           padding: 0.45333rem 0.4rem 0.4rem;
           border-radius: 3px; }
           .listWrap .listItem .itemMe .info .inner .content {
-            font-size: 0.8rem;
+            font-size: 15px;
             color: #fff;
             line-height: 1.5em;
             overflow: hidden;
@@ -117,7 +117,7 @@
       .listWrap .listItem .itemTa .info {
         -webkit-box-flex: 1;
         -webkit-flex: 1;
-        font-size: 0.74667rem;
+        font-size: 14px;
         min-height: 2.13333rem;
         margin: 0 1.06667rem 0 0.66667rem;
         box-sizing: border-box; }
@@ -129,7 +129,7 @@
           padding: 0.45333rem 0.4rem 0.4rem;
           border-radius: 3px; }
           .listWrap .listItem .itemTa .info .inner .content {
-            font-size: 0.8rem;
+            font-size: 15;
             color: #383b3d;
             line-height: 1.5em;
             overflow: hidden;

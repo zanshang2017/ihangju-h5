@@ -105,25 +105,28 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
         let notifications = userCenterInfo.notifications || {};
         let msg_count = (notifications.comment_notify_count || 0) + (notifications.discuss_notify_count || 0);
         let attestMes = '';
-        if (userCenterInfo.hasidentityauthentication == false) {
-            attestMes = '认证后，一键签约作品';
-        }else {
-            if (userCenterInfo.identityauthenticationtype == 'author') {
 
-                attestMes = '已备案';
+        if(userCenterInfo && userCenterInfo.hasidentityauthentication !== undefined){
 
+            if (userCenterInfo.hasidentityauthentication == false) {
+                attestMes = '认证后，一键签约作品';
             }else {
+                if (userCenterInfo.identityauthenticationtype == 'author') {
+                    attestMes = '已备案';
 
-                if(userCenterInfo.identityauthenticationstatus == 'passing') {
-                    attestMes = '通过认证';
-                }else if (userCenterInfo.identityauthenticationstatus == 'review'){
-                    attestMes = '审核中';  
                 }else {
-                    attestMes = <span className={styles.redColor}>未通过认证</span>;
-                }
+                    if(userCenterInfo.identityauthenticationstatus == 'passing') {
+                        attestMes = '通过认证';
+                    }else if (userCenterInfo.identityauthenticationstatus == 'review'){
+                        attestMes = '审核中';
+                    }else {
+                        attestMes = <span className={styles.redColor}>未通过认证</span>;
+                    }
 
+                }
             }
         }
+
 
         let tagManageHtml = '';
         if (userCenterInfo.managermentTagNumber) {

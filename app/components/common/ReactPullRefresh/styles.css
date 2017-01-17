@@ -1,14 +1,15 @@
 .rc-pull-refresh {
   position: relative;
-  margin-top: -40px;
+  margin-top: -60px;
   width: 100%; }
 
 :global ._ios_ :local .rc-pull-refresh {
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch; }
 
 .rc-ptr-box {
   display: block;
-  height: 40px;
+  height: 60px;
   left: 0;
   right: 0;
   overflow: hidden; }
@@ -18,18 +19,18 @@
   width: 40px;
   margin: auto;
   text-align: center;
-  height: 40px;
-  line-height: 40px; }
+  height: 60px;
+  line-height: 60px; }
 
 .rc-ptr-box .rc-ptr-image {
   position: absolute;
-  top: 0;
+  top: 10px;
   left: 12px;
   height: 100%;
   transform: translate3d(0, 0, 0);
   transform-origin: center center;
   transition: transform .2s linear;
-  line-height: 40px;
+  line-height: 60px;
   width: 18px;
   background-size: contain;
   background-position: center;
@@ -41,7 +42,7 @@
 
 .rc-ptr-box .rc-ptr-image.rc-ptr-loading {
   line-height: 20px;
-  top: 10px;
+  top: 20px;
   left: 10px; }
 
 @keyframes ptr-spin {

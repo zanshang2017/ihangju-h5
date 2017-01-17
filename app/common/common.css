@@ -53,6 +53,8 @@
     padding: 0;
     background: #f4f5f5; }
   :global .barTopGapIos {
+    position: relative;
+    z-index: 10;
     height: 20px;
     background: #fff; }
   :global .whiteBg {

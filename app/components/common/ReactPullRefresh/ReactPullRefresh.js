@@ -11,6 +11,7 @@ class ReactPullRefresh extends Component {
         refresh: PropTypes.bool, //是否显示刷新
 
         wrap: PropTypes.node, //外层容器,用于计算滚动距离
+        // needReset: PropTypes.bool, //是否需要内容在改变时重置
     };
 
     static defaultProps = {
@@ -33,10 +34,15 @@ class ReactPullRefresh extends Component {
     }
 
     componentDidUpdate() {
+        this.pullRefresh.reset();
     }
 
     componentWillUnmount() {
         this.pullRefresh.unmount(true);
+    }
+
+    reset() {
+        this.pullRefresh.reset();
     }
 
     render() {

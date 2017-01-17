@@ -13,6 +13,8 @@ import {
 
     SET_COLLECTION_DATA_STATUS,
     RESET_STATE,
+
+    SAVE_VIEWSTATE,
 } from './constants';
 
 import {
@@ -25,6 +27,10 @@ const initialState = fromJS({
         loading: false,
         page: 0,
         isLast: false
+    }),
+
+    viewState: fromJS({
+        scrollTop: 0
     }),
 });
 
@@ -85,6 +91,9 @@ function CollectionPageReducer(state = initialState, action = {}) {
 
         case RESET_STATE:
             return initialState;
+
+        case SAVE_VIEWSTATE:
+            return state.set('viewState', fromJS(action.payload.viewState));
 
         default:
             return state;

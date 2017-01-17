@@ -35,7 +35,7 @@
         width: 2.66667rem;
         height: 2.66667rem; }
       .listWrap .listItem .item .info {
-        font-size: 0.74667rem;
+        font-size: 14px;
         line-height: 1.5em;
         -webkit-box-flex: 1;
         -webkit-flex: 1;
@@ -43,16 +43,16 @@
         overflow: hidden; }
         .listWrap .listItem .item .info h4 {
           color: #7b8f9d;
-          font-size: 0.90667rem; }
+          font-size: 17px; }
         .listWrap .listItem .item .info p {
-          font-size: 0.8rem;
+          font-size: 15px;
           color: #a09e98;
           padding-top: 0.42667rem;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis; }
       .listWrap .listItem .item .time {
-        font-size: 0.69333rem;
+        font-size: 13px;
         color: #a09e98;
         margin: 0 0.53333rem 0 0; }
 
