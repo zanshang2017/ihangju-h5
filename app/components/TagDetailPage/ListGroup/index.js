@@ -130,6 +130,8 @@ class ListGroup extends React.Component {
     }
 
     articleClickHandler(e) {
+        //作品查看埋点
+        zhuge.track('作品查看');
         let projectId = e.currentTarget.dataset['id'];
         this.context.router.push(`/projectDetail/${projectId}`);
     }

@@ -47,6 +47,8 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
     }
 
     articleClickHandler(e) {
+        let index = e.currentTarget.dataset['index'];
+        zhuge.track('banner' + index + '点击');
         let target = e.currentTarget.dataset['target'] || '';
         let targetType = e.currentTarget.dataset['type'] || '';
 

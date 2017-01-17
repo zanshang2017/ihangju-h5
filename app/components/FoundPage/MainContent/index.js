@@ -15,6 +15,8 @@ class MainContent extends React.Component {
 
     searchBtnHandler() {
         this.context.router.push(`/search`);
+        //搜索点击 埋点
+        zhuge.track('搜索点击');
     }
 
     render() {

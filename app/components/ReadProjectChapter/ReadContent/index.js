@@ -174,6 +174,8 @@ class ReadContent extends React.Component {
     }
 
     likeHeart() {
+        //作品点赞 埋点
+        zhuge.track('作品点赞数');
         let _chapterContent = this.props.chapterContent.toJS();
         let url = FAVORITE_API + '?projectid=' + projectId;
         let method = '';
@@ -196,6 +198,8 @@ class ReadContent extends React.Component {
     }
 
     readStar() {
+        //收藏埋点
+        zhuge.track('作品收藏');
         let readStardom = this.refs._readStar;
         let method = '';
         let url = COLLECTION_API + projectId + '/project';
@@ -207,6 +211,10 @@ class ReadContent extends React.Component {
         }
 
         this.props.loadCollection(url, method);
+    }
+    commentClick() {
+        //查看评论数 埋点
+        zhuge.track('查看评论数');   
     }
 
     processCont(_html) {
@@ -285,7 +293,10 @@ class ReadContent extends React.Component {
             <img src='https://o82zr1kfu.qnssl.com/@/image/57c6400be4b073472e79312f.png'></img>));
 
         var isEndChapter = (_chapterContent && _chapterContent.chapters && _chapterContent.chapters.length - 1 === chapterIndex);
-
+        //文章被完全阅读次数 埋点
+        if(isEndChapter) {
+            zhuge.track('文章阅读');
+        }
         return (
             <div className={`pageInner`}>
                 <TopGapForIOS />
@@ -355,7 +366,7 @@ class ReadContent extends React.Component {
 
                 <div ref="_readBottombar" className={`${styles.bottomBar} hasTransition`}>
                     <ul>
-                        <li><Link to={`/comments/${projectId}#fliproute`}><i
+                        <li onClick={this.commentClick.bind(this)}><Link to={`/comments/${projectId}#fliproute`}><i
                             className={styles.i1}></i><span>{_chapterContent.commentNumber || 0}</span></Link></li>
                         <li><i ref="_readLike" onClick={this.likeHeart.bind(this)}>
                             {likeClass}

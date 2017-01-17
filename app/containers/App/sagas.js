@@ -65,6 +65,10 @@ export function* getUserInfo() {
                     //用户信息写入localStorage
                     if (ret.data.result && ret.data.result.id) {
                         locStorage.set('userInfo', JSON.stringify(ret.data.result));
+                        //用户登录埋点
+                        zhuge.identify(ret.data.result.id,{
+                            name : ret.data.result.nickName
+                        });
                     }
 
                     yield put(loadUserInfoSuccess(ret.data.result));
