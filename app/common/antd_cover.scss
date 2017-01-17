@@ -68,6 +68,10 @@
             .am-tab-tab:not(:last-child) {
                 border-right: 1px solid #424447 !important;
             }
+
+            .am-tab-tab-inner:active {
+                background-color: rgba(66, 68, 71, .1) !important;
+            }
         }
 
         .am-tab-tab-active {
