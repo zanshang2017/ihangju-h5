@@ -25,9 +25,17 @@ class FullScreenDialog extends React.Component {
     componentWillUnmount() {
     }
 
+    show() {
+        this.refs.J_Wrap.classList.remove('hide');
+    }
+
+    hide() {
+        this.refs.J_Wrap.classList.add('hide');
+    }
+
     render() {
         return (
-            <div ref="J_Wrap" className={styles.wrap}>
+            <div ref="J_Wrap" className={`${styles.wrap} hide`}>
                 {this.props.children}
             </div>
         );

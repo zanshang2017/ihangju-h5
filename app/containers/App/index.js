@@ -71,7 +71,6 @@ import {
 
 import '../../routes';
 import TabBar from 'components/App/TabBar';
-import FullScreenDialog from 'components/common/FullScreenDialog';
 
 import {
     locStorage
@@ -138,50 +137,6 @@ class App extends React.Component {
         feedbackLog.doListen(); //侦听反馈日志
 
         console.log('App DidMount');
-
-
-        //emulate hover
-        (function () {
-            var hoveredElement = [];
-            var body = document.body;
-            var hoveredElem = [];
-
-            // body.addEventListener('touchstart', function (e) {
-            //     detectHover(e.target, e);
-            // });
-            //
-            // body.addEventListener('touchmove', touchOverHandler, true);
-            // body.addEventListener('touchend', touchOverHandler, true);
-
-            function touchOverHandler(e) {
-                // e.stopPropagation();
-
-                if (hoveredElem.length > 0) {
-                    hoveredElem.forEach(function (v) {
-                        v.classList.remove('hover');
-                    });
-                    console.log('remove hover');
-                    hoveredElement.length = 0;
-                }
-            }
-
-            function detectHover(node, e) {
-                var use = node.dataset['hashover'];
-
-                if (use && node.nodeType === 1 && node !== body) {
-                    debugLog('find hover');
-                    node.classList.add('hover');
-                    hoveredElem.push(node);
-                    e.stopPropagation();
-                } else if (node.parentNode && node.parentNode !== body) {
-                    debugLog('no find hover');
-                    detectHover(node.parentNode, e);
-                } else {
-                    debugLog('No hover');
-                }
-            }
-        })();
-
 
         // window.addEventListener("offline", function (e) {
         //     Toast.fail('网络中断,请检查网络!', 3);
@@ -267,8 +222,6 @@ class App extends React.Component {
                         that.context.router.push(`/authorAttest/${this.userInfo.id}`);
                     }}
                 />
-
-                <FullScreenDialog />
 
                 <div id="logPanel" className="logPanel none unfold">
                     <a href="javascript:void(0);" className="btn" id="toggle">打开/关闭</a>
