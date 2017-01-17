@@ -12,6 +12,7 @@ function ArticleList(props) {
         <div className={styles.articleList}>
             {
                 items.map(function (item, key) {
+                    {/*console.log(key, ':', item.id);*/}
                     return <ArticleListItem {...props} item={item} key={item.id} />
                 })
             }

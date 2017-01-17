@@ -56,17 +56,16 @@ class LoadingList extends React.Component {
     }
 
     scrollHandler() {
-        console.log('this.props.loading:', this.props.isLoading,
-            'this.isLast:', this.props.isLast, 'this.isHalt:', this.isHalt);
+        // console.log('this.props.loading:', this.props.isLoading, 'this.isLast:', this.props.isLast, 'this.isHalt:', this.isHalt);
 
         if (this.outer && !this.isHalt) {
             var outerH = this.outer ? this.outer.getBoundingClientRect().height : 0;
 
             var dist = this.outer.scrollHeight - (this.outer.scrollTop + outerH);
-            console.log('dist:', dist);
+            // console.log('dist:', dist);
 
             if (dist <= this.offsetDist && !this.props.isLast && !this.props.isLoading) {
-                console.log('加载');
+                // console.log('加载');
                 this.props.loadHandler();
             }
         }
@@ -115,7 +114,17 @@ LoadingList.contextTypes = {
     router: React.PropTypes.object.isRequired
 };
 
-LoadingList.propTypes = {};
+LoadingList.defaultProps = {
+    offset: '50',
+    isHalt: false,
+    showLastNotice: true,
+};
+
+LoadingList.propTypes = {
+    offset: React.PropTypes.string,
+    isHalt: React.PropTypes.bool,
+    showLastNotice: React.PropTypes.bool
+};
 
 export default LoadingList;
 

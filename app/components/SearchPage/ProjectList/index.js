@@ -8,7 +8,6 @@ import ArticleList from 'components/common/ArticleList';
 export class ProjectList extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     componentDidMount() {
-
     }
 
     loadHandler() {
@@ -35,7 +34,7 @@ export class ProjectList extends React.Component { // eslint-disable-line react/
         if (this.page == 0 && items.length == 0 && this.outer) {
             list = <div className={styles.noContent}>没有相应的搜索结果</div>
         } else {
-            console.log(this.outer, this.isLast, this.loading)
+            // console.log(this.outer, this.isLast, this.loading)
             list = <LoadingList outer={this.outer}
                                 isLast={this.isLast}
                                 isLoading={this.loading}

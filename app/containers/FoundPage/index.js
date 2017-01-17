@@ -10,7 +10,6 @@ import {Link} from 'react-router';
 import {createSelector} from 'reselect';
 
 import {
-    selectFoundPage,
     selectBanners,
     selectTags
 } from './selectors';
@@ -25,8 +24,9 @@ import styles from './styles.scss';
 
 import bridge from 'utils/bridge';
 
-import Toast from 'antd-mobile/lib/toast';
+// import Toast from 'antd-mobile/lib/toast';
 
+import TopGapForIOS from 'components/common/TopGapForIOS';
 import Banner from 'components/FoundPage/Banner';
 import MainContent from 'components/FoundPage/MainContent';
 import PullRefresh from 'components/common/ReactPullRefresh'
@@ -102,6 +102,7 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
 
         return (
             <div className="pageInner">
+                <TopGapForIOS />
                 <div className={`mainContent ${styles.wrap}`}>
                     <PullRefresh refreshCallback={this.refreshHandler.bind(this)}>
                         <Banner items={this.props.banners}
