@@ -41,7 +41,11 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
     }
 
     articleClickHandler(e) {
+        let index = e.currentTarget.dataset['index'];
         let projectId = e.currentTarget.dataset['id'];
+        zhuge.track('banner' + index + '点击',{
+            id: projectId
+        })
         this.context.router.push(`/projectDetail/${projectId}`);
     }
 

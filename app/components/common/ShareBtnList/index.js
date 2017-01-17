@@ -23,6 +23,7 @@ class ShareBtnList extends React.Component {
             function (data) {
                 that.hideShareLayer();
                 console.log(data.code, data.resp);
+                zhuge.track('作品分享到微信');
             }
         );
 
@@ -38,6 +39,7 @@ class ShareBtnList extends React.Component {
             function (data) {
                 that.hideShareLayer();
                 console.log(data.code, data.resp);
+                zhuge.track('作品分享到朋友圈');
             }
         );
     }
@@ -49,6 +51,7 @@ class ShareBtnList extends React.Component {
         bridge.share.weibo(shareText, function (data) {
             that.hideShareLayer();
             console.log(data.code, data.resp);
+            zhuge.track('作品分享到微博');
         });
     }
 
@@ -60,6 +63,7 @@ class ShareBtnList extends React.Component {
         bridge.sys.copyToClipboard(this.shareMes.url, function () {
             Toast.info('已复制到剪切板');
             this.refs._sharelayer.classList.add('hide');
+            zhuge.track('作品复制链接');
         }.bind(this));
     }
 

@@ -26,7 +26,8 @@ import {
 import Toast from 'antd-mobile/lib/toast';
 
 import {
-    locStorage
+    locStorage,
+    secondsTotime
 } from 'utils/util.js'
 
 import {hashHistory} from 'react-router';
@@ -59,7 +60,8 @@ const errorLoading = (err, opt = null) => {
 const loadModule = (cb) => (componentModule) => {
     cb(null, componentModule.default);
 };
-
+//阅读页面的时间埋点
+var leaveDate,enterDate;
 //标记页面是否加载过,主要解决sagas、reducer重复加载问题
 var initedStatus = {};
 
@@ -1176,6 +1178,14 @@ export default function createRoutes(store) {
             onEnter: function () {
                 store.dispatch(hideNav());
                 routeEffector.autoSet();
+                enterDate = new Date().getSeconds();
+            },
+            onLeave: function () {
+                leaveDate = new Date().getSeconds();
+                let date = leaveDate - enterDate;
+                zhuge.track('阅读时长', {
+                    '阅读时间' : secondsTotime(date)
+                })
             }
         }, {
             path: '/guide',

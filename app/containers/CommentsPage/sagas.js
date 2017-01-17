@@ -94,6 +94,8 @@ export function* putCommentData() {
         if (lists) {
             if ((lists.err === undefined || lists.err === null) && (lists.data.result && lists.data.code === 'ok')) {
                 console.log('评论成功!');
+                //发起评论数 　埋点
+                zhuge.track('发起评论数');
                 yield put(sendCommentsDataSuccess(lists.data.result, replyData));
                 signals.sendCommentSuccess.dispatch();
             } else {

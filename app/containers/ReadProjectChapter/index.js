@@ -25,6 +25,7 @@ import TopGapForIOS from 'components/common/TopGapForIOS';
 class ReadProjectChapter extends React.Component {
     constructor(props) {
         super(props);
+        this.data = null;
     }
 
     componentWillMount() {
@@ -41,9 +42,11 @@ class ReadProjectChapter extends React.Component {
         if (projectInfo) {
             this.props.dispach(setProjectInfo(projectInfo));
         }
+        //获取用户进入页面的时间
     }
 
     componentDidMount() {
+        
         if (this.props.routeParams) {
             var projectId = this.props.routeParams.projectId;
             var chapterId = this.props.routeParams.chapterId;

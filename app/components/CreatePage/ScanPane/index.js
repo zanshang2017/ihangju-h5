@@ -43,6 +43,8 @@ export default class ScanPane extends React.Component {
             }).then(function (ret) {
                 if ((ret.err === undefined || ret.err === null) && ret.data.code == 'ok') {
                     Toast.success('扫码成功');
+                    //扫码入口 埋点
+                    zhuge.track('扫码入口');
                 } else {
                     Toast.fail('扫码失败');
                 }

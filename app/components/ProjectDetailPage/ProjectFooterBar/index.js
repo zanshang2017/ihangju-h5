@@ -174,7 +174,10 @@ class ProjectFooterBar extends React.Component {
         Toast.loading();
         this.props.loadProjectCopyrightData();
     }
-
+    readClick() {
+        //文章查看埋点
+        zhuge.track('文章查看');
+    }
     render() {
         let cid = null;
 
@@ -196,7 +199,7 @@ class ProjectFooterBar extends React.Component {
         var _html = '';
         if (this._result) {
             _html = <Link to={`/readProjectChapter/${this._result.projectId}/${cid}`}>
-                <div className={style.listDiv}><i className={style.read}></i>阅读</div>
+                <div onClick={this.readClick.bind(this)} className={style.listDiv}><i className={style.read}></i>阅读</div>
             </Link>
         }
 

@@ -13,7 +13,9 @@ import {
 } from '../../../apis.js';
 
 class CatelogListItem extends React.Component {
-
+    tagClick(name) {
+        zhuge.track('分类' + name + '点击');
+    }
     render() {
         var item = this.props.item;
         var imageSrc = addImageParam(IMG_CDN_PATH + item.image);
@@ -21,7 +23,7 @@ class CatelogListItem extends React.Component {
 
         return <div data-hashover="true" className={styles.catelogListItemWrap}>
             <Link to={`/tag/${item.tag_id}#fliproute`}>
-                <div className={styles.catelogListItem}>
+                <div className={styles.catelogListItem} onClick={() => this.tagClick(item.tag_name)}>
                     <div className={`${styles.title} ${smallFont}`}>{item.tag_name}</div>
                     <div className={styles.info}>
                         <div className={styles.infoImg}>

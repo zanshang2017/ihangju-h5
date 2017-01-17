@@ -373,6 +373,36 @@ function isLogin() {
     return !!JSON.parse(locStorage.get('userInfo'));
 }
 
+//阅读页面埋点 秒转时间
+function secondsTotime(seconds) {
+    var ONE_MINUTE = 60,
+        ONE_HOUR = ONE_MINUTE * 60,
+        ONE_DAY = ONE_HOUR * 24,
+        ONE_MONTH = ONE_DAY * 30,
+        ONE_YEAR = ONE_MONTH * 12;
+    var time = seconds;
+    var ret = '';
+    if (time != null && time != "") {
+        if (time < ONE_MINUTE) {
+            ret = time + '秒';
+        } else if (time >= ONE_MINUTE && time < ONE_HOUR) {
+            ret = parseInt(time / ONE_MINUTE) + "分钟";
+        } else if (time >= ONE_HOUR && time < ONE_DAY) {
+            ret = parseInt(time / ONE_HOUR) + "小时";
+        } else if (time >= ONE_DAY && time < ONE_MONTH) {
+            ret = parseInt(time / ONE_DAY) + "天";
+        } else if (time >= ONE_MONTH && time < ONE_YEAR) {
+            ret = parseInt(time / ONE_MONTH) + "个月";
+        } else if (time >= ONE_YEAR && time < ONE_YEAR * 15) {
+            ret = parseInt(time / ONE_YEAR) + "年";
+        } else {
+            ret = 'N年'
+        }
+    }
+    return ret;
+}
+
+
 export {
     getUrlParam,
     convertDate,
@@ -387,4 +417,5 @@ export {
     addImageParam,
     goBackHelper,
     isLogin,
+    secondsTotime,
 };

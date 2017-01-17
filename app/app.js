@@ -83,7 +83,14 @@ if (Env.isIOSShell) {
 } else if (Env.isAndroidShell) {
     document.documentElement.classList.add(SHELL_CSS_ROOT.androidshell); // 使用android容器特定样式
 }
-
+//设备埋点 区分用户群
+if(Env.platform.android) {
+    zhuge.track('android');
+}else if (Env.platform.iphone) {
+    zhuge.track('ios');
+}else if (Env.platform.ipad) {
+    zhuge.track('ipad');
+}
 // alert('dpr:' + window.devicePixelRatio + ' w:' + document.documentElement.clientWidth + ' h:' + document.documentElement.clientHeight);
 // alert(navigator.userAgent);
 
