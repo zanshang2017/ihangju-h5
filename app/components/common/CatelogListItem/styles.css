@@ -5,7 +5,7 @@
     padding-top: 2.13333rem; }
   .catelogListItemWrap a {
     width: 100%;
-    display: inline-block; }
+    display: block; }
   .catelogListItemWrap .catelogListItem {
     position: relative;
     width: 100%;

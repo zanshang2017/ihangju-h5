@@ -4,7 +4,7 @@
   width: 100%; }
 
 :global ._ios_ :local .rc-pull-refresh {
-  overflow-y: scroll;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch; }
 
 .rc-ptr-box {

@@ -21,27 +21,30 @@ class CatelogListItem extends React.Component {
         var imageSrc = addImageParam(IMG_CDN_PATH + item.image);
         var smallFont = item.tag_name.length > 2 ? styles.small : '';
 
+        // var h = new Array(1000).join('<p>11111</p>.').split('.');
+
         return <div data-hashover="true" className={styles.catelogListItemWrap}>
-            <Link to={`/tag/${item.tag_id}#fliproute`}>
-                <div className={styles.catelogListItem} onClick={() => this.tagClick(item.tag_name)}>
-                    <div className={`${styles.title} ${smallFont}`}>{item.tag_name}</div>
-                    <div className={styles.info}>
-                        <div className={styles.infoImg}>
-                            <LazyLoad offset={200}>
-                                <img src={imageSrc} />
-                            </LazyLoad>
-                        </div>
-                        <div className={styles.infoDesc}>
-                            <div>
-                                <strong>{item.attention_number}</strong><span>关注</span>
-                            </div>
-                            <div>
-                                <strong>{item.project_number}</strong><span>作品</span>
-                            </div>
-                        </div>
+             <Link to={`/tag/${item.tag_id}#fliproute`}>
+                 <div className={styles.catelogListItem} onClick={() => this.tagClick(item.tag_name)}>
+                     <div className={`${styles.title} ${smallFont}`}>{item.tag_name}</div>
+                     <div className={styles.info}>
+                         <div className={styles.infoImg}>
+                             <LazyLoad offset={200}>
+                                 <img src={imageSrc} />
+                             </LazyLoad>
+                         </div>
+                         <div className={styles.infoDesc}>
+                             <div>
+                                 <strong>{item.attention_number}</strong><span>关注</span>
+                             </div>
+                             <div>
+                                 <strong>{item.project_number}</strong><span>作品</span>
+                             </div>
+                         </div>
                     </div>
                 </div>
             </Link>
+
         </div>
 
     }

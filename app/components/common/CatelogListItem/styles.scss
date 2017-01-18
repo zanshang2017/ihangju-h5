@@ -12,7 +12,7 @@
 
     a {
         width: 100%;
-        display: inline-block;
+        display: block; // 外层overflow: auto时候,如果有子a标签设为inline-block,会造成无法拖拽[ios]?
     }
 
     .catelogListItem {

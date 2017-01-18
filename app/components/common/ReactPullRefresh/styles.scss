@@ -11,7 +11,7 @@ $maxAmplitude:60px;
 :global ._ios_ {
     :local {
         .rc-pull-refresh {
-            overflow-y: scroll;
+            overflow-y: auto;
             -webkit-overflow-scrolling: touch;
         }
     }

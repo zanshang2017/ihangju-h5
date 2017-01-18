@@ -31,7 +31,6 @@ class MainContent extends React.Component {
                         <div className={`iconSearch ${styles.searchIcon}`}></div>
                     </div>
                 </div>
-
                 <CatelogList items={this.props.tags || []} refreshHandler={this.props.refresh}/>
             </div>
         );
