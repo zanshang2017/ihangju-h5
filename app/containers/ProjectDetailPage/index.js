@@ -22,7 +22,7 @@ import ProjectComment from 'components/ProjectDetailPage/ProjectComment';
 import ProjectTopBar from 'components/ProjectDetailPage/ProjectTopBar';
 import ProjectSign from 'components/ProjectDetailPage/ProjectSign';
 import ProjectFooterBar from 'components/ProjectDetailPage/ProjectFooterBar';
-
+import ChapterList from 'components/common/ChapterList';
 import style from './style.css';
 
 import {
@@ -62,6 +62,11 @@ class DetailPage extends React.Component {
         this.isGotoAgreementLeavewords = true;
         this.context.router.push(`/projectDetail/${this.props.routeParams.id}/agreementLeavewords`);
     }
+    showChapterListHandler() {
+        let _conMes = this.props.projectDetail.toJS();
+        this.props.loadChapter(_conMes.projectId);
+        this.refs.J_ChapterList.showChapterList();
+    }
 
     render() {
         let _content = '';
@@ -69,7 +74,7 @@ class DetailPage extends React.Component {
 
         if (_data.projectId) { //内容下载到时展示
             _content = <div className="mainContent deepBg">
-                <ProjectDesc {...this.props} />
+                <ProjectDesc showChapterListHandler={this.showChapterListHandler.bind(this)} {...this.props} />
                 <ProjectIntro items={this.props.projectDetail}/>
                 <ProjectTag {...this.props}/>
                 <ProjectSign {...this.props}/>
@@ -85,6 +90,7 @@ class DetailPage extends React.Component {
             <div className="pageInner">
                 <ProjectTopBar {...this.props} />
                 {_content}
+                <ChapterList ref="J_ChapterList" items={this.props.projectDetailChapter}/>
             </div>
         );
     }

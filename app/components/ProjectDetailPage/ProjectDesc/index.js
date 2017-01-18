@@ -8,7 +8,6 @@ import {
     IMG_CDN_PATH
 } from '../../../apis.js';
 
-import ChapterList from '../../common/ChapterList';
 import {
     addImageParam,
     IMAGE_SIZE_TYPE,
@@ -19,11 +18,6 @@ import {
 class ProjectDesc extends React.Component {
     constructor(props) {
         super(props);
-    }
-    showChapterListHandler() {
-        let _conMes = this.props.projectDetail.toJS();
-        this.props.loadChapter(_conMes.projectId);
-        this.refs.J_ChapterList.showChapterList();
     }
     render() {
         var props = this.props;
@@ -54,9 +48,8 @@ class ProjectDesc extends React.Component {
                     </div>
                     <span className={style.date}><i></i>{modifyTime}更新</span>
                     <span className={style.readNum}><i></i>{_result.browseNumber}人阅读</span>
-                    <span  onClick={this.showChapterListHandler.bind(this)} className={style.catalog}>查看目录</span>
+                    <span  onClick={props.showChapterListHandler} className={style.catalog}>查看目录</span>
                 </div>
-                <ChapterList ref="J_ChapterList" items={this.props.projectDetailChapter}/>
             </div>
         )
     }

@@ -10,7 +10,7 @@
 	z-index: $zIndexL1;
 	background-color: #f4f5f5;
 	top: 0;
-
+	-webkit-overflow-scrolling:touch;
 	.projectMes{
 		margin-left: rem(90);
 		padding-right: rem(48);
