@@ -92,7 +92,7 @@ class PersonPage extends React.Component { // eslint-disable-line react/prefer-s
 
         try {
             Toast.loading(noticeStr);
-        } catch(e){
+        } catch (e) {
         }
 
         this.props.dispatch(setFollowUser(personInfo.userId, !personInfo.follow));
@@ -107,6 +107,7 @@ class PersonPage extends React.Component { // eslint-disable-line react/prefer-s
         let personInfo = (this.props.personInfo && this.props.personInfo.toJS()) || {};
         let followUserCls = personInfo.follow ? styles.followedUser : styles.followUser;
         let btns = '';
+        let userArticleHtml = '';
 
         //当前用户自己不展示功能按钮
         if (personInfo.userId && this.props.userInfo.toJS().id !== personInfo.userId) {
@@ -114,6 +115,12 @@ class PersonPage extends React.Component { // eslint-disable-line react/prefer-s
                               onClick={_.throttle(this.followUserHandler.bind(this), 500, {leading: false})}></span>
                 <span className={`${styles.topBarBtn} ${styles.letter}`}
                       onClick={this.letterClickHandler.bind(this)}></span></div>;
+        }
+
+        if (personInfo && personInfo.userId) {
+            console.log('personInfo:', personInfo);
+            userArticleHtml = <UserArticle personInfo={personInfo}
+                                           articleClickHandler={this.articleClickHandler.bind(this)}></UserArticle>
         }
 
         return (
@@ -128,8 +135,7 @@ class PersonPage extends React.Component { // eslint-disable-line react/prefer-s
                               followsClickHandler={this.followsClickHandler.bind(this)}
                     />
                     <div className="blockGapTag"></div>
-                    <UserArticle personInfo={personInfo}
-                                 articleClickHandler={this.articleClickHandler.bind(this)}></UserArticle>
+                    {userArticleHtml}
                 </div>
             </div>
         );

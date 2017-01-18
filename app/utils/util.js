@@ -351,7 +351,7 @@ function testSupportWebp(exec) {
     setTimeout(function () {
         if (!loaded) {
             loaded = true;
-            exec(false);
+            exec && exec(false);
             window.localStorage && window.localStorage.setItem('isSupportWebp', false);
         }
     }, 16);
