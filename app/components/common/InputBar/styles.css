@@ -40,4 +40,8 @@
     opacity: 0;
     z-index: 9; }
 
+.input {
+  -webkit-appearance: textfield;
+  appearance: textfield; }
+
 /*# sourceMappingURL=styles.css.map */

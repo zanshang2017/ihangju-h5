@@ -227,7 +227,7 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
 
                 <div ref="J_Outer" className={`mainContent whiteBg`}>
                     <div ref="J_Inner">
-                        <List items={items} myUserId={dialogue['sendUser']} loading={dialogue['loading']}></List>
+                        <List items={items} myUserId={this.dialogueData['sendUser']} loading={dialogue['loading']}></List>
                     </div>
                 </div>
 

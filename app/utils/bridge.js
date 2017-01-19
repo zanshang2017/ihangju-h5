@@ -279,7 +279,7 @@ var jsBridgeEvent = {
         registerPushMsg: function (devicetoken) {
             console.log(devicetoken);
             bridge.device.token = devicetoken;
-            locStorage.set('devicetoken', devicetoken);
+            // locStorage.set('devicetoken', devicetoken); //个推每次会修改,不再保存
         },
 
         /**

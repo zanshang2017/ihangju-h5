@@ -83,7 +83,7 @@ export class SearchBar extends React.Component { // eslint-disable-line react/pr
     render() {
         return (
             <div className={styles.wrap}>
-                <form ref="J_searchForm" className={styles.searchInputWrap} onSubmit={this.submitHandler.bind(this)}>
+                <form ref="J_searchForm" className={styles.searchInputWrap} onSubmit={this.submitHandler.bind(this)} action="">
                     <input type="search" ref="J_SearchInput"
                            placeholder="搜索标签、作品或用户"
                            onFocus={this.inputToggleHandler.bind(this)}

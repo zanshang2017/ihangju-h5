@@ -34,7 +34,6 @@ class InputBar extends React.Component {
                 }
             });
         }
-
     }
 
     componentWillUnmount() {
@@ -46,15 +45,22 @@ class InputBar extends React.Component {
         }
     }
 
-    submitHandler() {
+    submitHandler(e) {
+        e.preventDefault();
+
         // alert('clicked')
-        let v = this.refs.J_Input.value || '';
+        let input = this.refs.J_Input;
+        let v = input.value || '';
+
+        input.blur();
 
         if (v.trim()) {
             this.props.submitHandler(v);
         } else {
             Toast.fail('请输入文字', 1.5);
         }
+
+        return false;
     }
 
     onFocusHandler() {
@@ -79,9 +85,11 @@ class InputBar extends React.Component {
             <div ref="J_Wrap" className={styles.wrap}>
                 <div className={styles.outer}>
                     <div className={styles.inner}>
-                        <input ref="J_Input" type="text" onFocus={this.onFocusHandler.bind(this)}
-                               placeholder={placeholder} maxLength="500"/>
-                        <button className={styles.btn} onClick={this.submitHandler.bind(this)}></button>
+                        <form action="" onSubmit={this.submitHandler.bind(this)}>
+                            <input ref="J_Input" type="text" onFocus={this.onFocusHandler.bind(this)}
+                               placeholder={placeholder} maxLength="500" className={styles.input}/>
+                            <button className={styles.btn}></button>
+                        </form>
                     </div>
                 </div>
                 <div ref="J_Mask" className={styles.mask} style={{display: 'none'}}></div>

@@ -226,7 +226,7 @@ function putDevicetoken() {
  */
 function deleteDevicetoken() {
 
-    bridge.device.token = bridge.device.token || locStorage.get('devicetoken');
+    bridge.device.token = bridge.device.token;
     if (!bridge.device.token) {
         console.warn('无devicetoken');
         return;

@@ -1,5 +1,6 @@
 .articleList {
   position: relative;
+  display: inline-block;
   width: 100%;
   box-sizing: border-box;
   background: #f4f5f5; }

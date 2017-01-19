@@ -28,7 +28,6 @@ import TopBar from 'components/common/TopBar';
 
 import PullRefresh from 'components/common/ReactPullRefresh'
 
-
 export class CollectionPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     constructor(props) {
@@ -39,6 +38,14 @@ export class CollectionPage extends React.Component { // eslint-disable-line rea
             this.id = this.props.routeParams.id;
         }
 
+        let projs = this.props.collectionProjs.toJS();
+
+        if (this.id && !projs.data) {
+            this.props.dispatch(loadCollectionData(this.id));
+        }
+    }
+
+    componentDidMount() {
         let datas = this.props.collectionProjs.toJS().data;
 
         if (this.props.viewState && datas) {
@@ -46,15 +53,11 @@ export class CollectionPage extends React.Component { // eslint-disable-line rea
                 let vs = this.props.viewState.toJS();
                 this.refs.J_MainContent.scrollTop = vs.scrollTop;
             }, 0);
-        } else if(this.id) {
-            this.props.dispatch(loadCollectionData(this.id));
         }
-    }
 
-    componentDidMount() {
         console.warn('CollectionPage DidMount');
-
-        this.forceUpdate(); //必须强制刷新,以便子组件能获取父组件的引用
+        // this.forceUpdate(); //必须强制刷新,以便子组件能获取父组件的引用
+        this.refs.J_PullRefresh.reset();
     }
 
     componentWillUnmount() {

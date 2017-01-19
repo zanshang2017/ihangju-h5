@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { hashHistory } from 'react-router'
+import { hashHistory } from 'react-router';
 import {connect} from 'react-redux';
 
 import {createSelector} from 'reselect';
@@ -139,7 +139,7 @@ class TagDetailPage extends React.Component { // eslint-disable-line react/prefe
                 }
             } else if (!this.isAdmin && !this.hasAdmin) {
                 if (this.detail.isFollow) {
-                    this.topBarBtnHTML = <div onClick={this.cancelSubTagHandler.bind(this)}>已关注</div>;
+                    this.topBarBtnHTML = <div onClick={this.cancelSubTagHandler.bind(this)} className={styles.reduceOpacity}>已关注</div>;
                 } else {
                     this.topBarBtnHTML = <div onClick={this.subTagHandler.bind(this)}>关注</div>;
                 }
