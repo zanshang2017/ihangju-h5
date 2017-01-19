@@ -40,8 +40,8 @@
     opacity: 0;
     z-index: 9; }
 
-.input {
-  -webkit-appearance: textfield;
-  appearance: textfield; }
+.keyboardShown {
+  position: fixed;
+  bottom: 0; }
 
 /*# sourceMappingURL=styles.css.map */

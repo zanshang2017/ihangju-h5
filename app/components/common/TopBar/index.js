@@ -36,7 +36,6 @@ class TopBar extends React.Component {
     }
 
     render() {
-
         var that = this;
         var _style = {};
         var barTopGapHtml = '';
@@ -73,7 +72,7 @@ class TopBar extends React.Component {
         }
 
         return (
-            <div>
+            <div className={styles.wrap}>
                 {barTopGapHtml}
                 <div className={`${styles.bar} ${styles.bar_ios}`} style={_style}>
                     {backBtn}

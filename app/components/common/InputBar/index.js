@@ -34,9 +34,14 @@ class InputBar extends React.Component {
                 }
             });
         }
+
+        this.refs.J_Wrap.addEventListener('touchmove', function(e){
+            e.preventDefault();
+        });
     }
 
     componentWillUnmount() {
+
     }
 
     componentWillUpdate(props) {
@@ -65,9 +70,19 @@ class InputBar extends React.Component {
 
     onFocusHandler() {
         //bugfix: ios键盘弹出偶尔会遮挡输入栏
-        setTimeout(()=> {
-            this.refs.J_Input.scrollIntoView(true);
-        }, 100);
+        // setTimeout(()=> {
+            // this.refs.J_Input.scrollIntoView(true);
+            // this.refs.J_Input.classList.add('keyboardShown');
+
+            setTimeout(() => {
+                this.props.onInputFocus && this.props.onInputFocus();
+            }, 100);
+        // }, 0);
+    }
+
+    onBlurHandler() {
+        // this.refs.J_Input.classList.remove('keyboardShown');
+        this.props.onInputBlur && this.props.onInputBlur();
     }
 
     clear() {
@@ -87,6 +102,7 @@ class InputBar extends React.Component {
                     <div className={styles.inner}>
                         <form action="" onSubmit={this.submitHandler.bind(this)}>
                             <input ref="J_Input" type="text" onFocus={this.onFocusHandler.bind(this)}
+                                   onBlur={this.onBlurHandler.bind(this)}
                                placeholder={placeholder} maxLength="500" className={styles.input}/>
                             <button className={styles.btn}></button>
                         </form>

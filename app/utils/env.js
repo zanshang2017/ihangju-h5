@@ -29,7 +29,7 @@ var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
     isAndroidShell = shellName ? shellName.indexOf('HangJuAndroid') > -1 : false,
     isIOSShell = shellName ? shellName.indexOf('HangJuIOS') > -1 : false;
 
-    deliveryChannel = deliveryChannel && (deliveryChannel[1] || '') ;
+    deliveryChannel = deliveryChannel && (deliveryChannel[1] || '');
 
 // alert(shell);
 // alert(shellName);
@@ -57,7 +57,7 @@ var Env = {
     // devAPIScheme: 'https:', //todo
 
     productionHost: 'h5app.ihangju.com',
-    productionAPIScheme: 'https:',
+    productionAPIScheme: '',
     productionAPIHost: 'api.ihangju.com',
 
     shell: shell,

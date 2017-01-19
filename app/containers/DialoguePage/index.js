@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {createSelector} from 'reselect';
 import {
@@ -28,7 +29,9 @@ import _ from 'underscore';
 
 import {
     goBottom
-} from '../../utils/util';
+} from 'utils/util';
+
+import {Env} from 'utils/env.js';
 
 import {
     AGREEMENT_STATUS
@@ -194,7 +197,26 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
         Toast.loading('发送中...');
         this.dialogueData.content = content;
         this.props.dispatch(sendDialogueData(this.letterGroupId, _.clone(this.dialogueData)));
+    }
 
+    onInputFocusHandler() {
+        console.log('focus');
+
+        if (Env.platform.iphone || Env.platform.ipad) {
+            let nWrap = ReactDOM.findDOMNode(this.refs.J_Wrap);
+            nWrap.style.height = window.innerHeight - window.pageYOffset + 'px';
+            nWrap.classList.add(styles.onKeyboardShown);
+        }
+    }
+
+    onInputBlurHandler() {
+        console.log('blur');
+
+        if (Env.platform.iphone || Env.platform.ipad) {
+            let nWrap = ReactDOM.findDOMNode(this.refs.J_Wrap);
+            nWrap.style.height = '100%';
+            nWrap.classList.remove(styles.onKeyboardShown);
+        }
     }
 
     render() {
@@ -217,7 +239,7 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
 
         return (
             <div ref="J_Wrap" className='pageInner'>
-                <TopBar data-has-back="true">
+                <TopBar ref="J_TopBar" data-has-back="true">
                     <div data-title>私信</div>
                 </TopBar>
 
@@ -234,6 +256,8 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
                 <InputBar bindingMethod={{context: this.componentMethod, methodName: ['clear']}}
                           submitHandler={this.submitHandler.bind(this)}
                           placeholder="请输入私信内容"
+                          onInputFocus={this.onInputFocusHandler.bind(this)}
+                          onInputBlur={this.onInputBlurHandler.bind(this)}
                 ></InputBar>
             </div>
         );

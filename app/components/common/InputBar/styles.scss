@@ -59,7 +59,11 @@
 }
 
 .input {
-    -webkit-appearance: textfield;
-    appearance: textfield;
+    //-webkit-appearance: textfield;
+    //appearance: textfield;
 }
 
+.keyboardShown {
+    position:fixed;
+    bottom: 0;
+}

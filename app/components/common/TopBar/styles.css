@@ -1,4 +1,7 @@
 @import url(../../../common/common.css);
+.wrap {
+  width: 100%; }
+
 .bar {
   position: relative;
   box-sizing: border-box;
