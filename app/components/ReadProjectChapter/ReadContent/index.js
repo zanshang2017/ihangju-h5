@@ -144,7 +144,6 @@ class ReadContent extends React.Component {
                 break;
             }
         }
-
         if (chapterIndex) {
             console.log(chapterIndex);
             chapterId = _chapterContent.chapters[chapterIndex].id;

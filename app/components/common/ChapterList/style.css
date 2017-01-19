@@ -5,7 +5,8 @@
   overflow-y: auto;
   z-index: 999999;
   background-color: #f4f5f5;
-  top: 0; }
+  top: 0;
+  -webkit-overflow-scrolling: touch; }
   .chapterListLayer .projectMes {
     margin-left: 2.4rem;
     padding-right: 1.28rem;
