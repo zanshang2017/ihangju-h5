@@ -39,8 +39,9 @@ export class CollectionPage extends React.Component { // eslint-disable-line rea
         }
 
         let projs = this.props.collectionProjs.toJS();
+        let vs = this.props.viewState.toJS();
 
-        if (this.id && !projs.data) {
+        if (this.id && vs.scrollTop === 0) {
             this.props.dispatch(loadCollectionData(this.id));
         }
     }
@@ -52,16 +53,15 @@ export class CollectionPage extends React.Component { // eslint-disable-line rea
             setTimeout(()=> {
                 let vs = this.props.viewState.toJS();
                 this.refs.J_MainContent.scrollTop = vs.scrollTop;
+                this.forceUpdate();
+                this.clearViewState();
             }, 0);
         }
 
         console.warn('CollectionPage DidMount');
-        // this.forceUpdate(); //必须强制刷新,以便子组件能获取父组件的引用
-        this.refs.J_PullRefresh.reset();
     }
 
     componentWillUnmount() {
-        this.saveViewState();
         this.removeSignals();
     }
 
@@ -76,6 +76,10 @@ export class CollectionPage extends React.Component { // eslint-disable-line rea
         if (this.refs.J_MainContent) {
             this.props.dispatch(setViewState({scrollTop: this.refs.J_MainContent.scrollTop}));
         }
+    }
+
+    clearViewState() {
+        this.props.dispatch(setViewState({scrollTop: 0}));
     }
 
     refreshHandler() {
@@ -129,7 +133,9 @@ export class CollectionPage extends React.Component { // eslint-disable-line rea
                                         isLast={isLast}
                                         loading={loading}
                                         items={items}
-                                        nextPageHandler={this.nextPageHandler.bind(this)}></CollectionList>
+                                        nextPageHandler={this.nextPageHandler.bind(this)}
+                                        afterClickHandler={this.saveViewState.bind(this)}
+                        ></CollectionList>
                     </PullRefresh>
                 </div>
 

@@ -35,7 +35,7 @@ class PullRefresh {
 
         this.initBool();
 
-        this.onscroll = this.onscroll.bind(this);
+        // this.onscroll = this.onscroll.bind(this);
         this.ontouchstart = this.ontouchstart.bind(this);
         this.ontouchmove = this.ontouchmove.bind(this);
         this.ontouchend = this.ontouchend.bind(this);
@@ -53,32 +53,31 @@ class PullRefresh {
 
     //初始化事件
     initEvents() {
-        this.parentContainer.addEventListener('scroll', this.onscroll);
+        // this.parentContainer.addEventListener('scroll', this.onscroll); //不需要了
         this.parentContainer.addEventListener('touchstart', this.ontouchstart, false);
         this.parentContainer.addEventListener('touchend', this.ontouchend, true);
 
         setTimeout(()=> {
-            if (this.parentContainer.scrollTop === 0) {
+            if (this.parentContainer.scrollTop <= 0) {
                 console.log('initEvent,绑定!', this.parentContainer.scrollTop);
                 this.addTouchmove();
             }
         }, 0);
     }
 
-    onscroll(e) {
-        // console.log('scrollTop', this.parentContainer.scrollTop);
-        // debugLog('this.parentContainer.scrollTop:' + this.parentContainer.scrollTop);
-        this.isTouchTop = (this.parentContainer.scrollTop == 0);
-
-        if (this.isTouchTop && this.isNeedUnbind) {
-            console.log('在顶部,绑定!');
-            this.addTouchmove();
-        }
-    }
+    // onscroll(e) {
+    //     // console.log('scrollTop', this.parentContainer.scrollTop);
+    //     // debugLog('this.parentContainer.scrollTop:' + this.parentContainer.scrollTop);
+    //     this.isTouchTop = (this.parentContainer.scrollTop == 0);
+    //
+    //     if (this.isTouchTop && this.isNeedUnbind) {
+    //         console.log('在顶部,绑定!');
+    //         this.addTouchmove();
+    //     }
+    // }
 
     addTouchmove() {
         if (!this.isOnstartAdded) {
-            // debugLog('binding touchmove');
             this.parentContainer.addEventListener('touchmove', this.ontouchmove, false);
             this.isOnstartAdded = true;
         }
@@ -86,7 +85,7 @@ class PullRefresh {
 
     removeTouchmove() {
         if (this.isOnstartAdded) {
-            console.log('解绑')
+            // console.log('解绑')
             this.parentContainer.removeEventListener('touchmove', this.ontouchmove, false);
             this.isOnstartAdded = false;
         }
@@ -94,6 +93,13 @@ class PullRefresh {
 
     ontouchstart(e) {
         this.touchStartY = e.touches[0].pageY || 0;
+
+        if (this.parentContainer.scrollTop <= 0 && this.isNeedUnbind) {
+            console.log('在顶部,绑定!');
+            this.addTouchmove();
+        } else {
+            this.removeTouchmove();
+        }
     }
 
     ontouchmove(e) {

@@ -10,7 +10,6 @@ class CollectionList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.scrollHanderBinded = null;
         this.page = 0;
         this.isLast = false;
         this.loading = false;
@@ -35,6 +34,7 @@ class CollectionList extends React.Component {
     articleClickHandler(e) {
         let projectId = e.currentTarget.dataset['id'];
         this.context.router.push(`/projectDetail/${projectId}`);
+        this.props.afterClickHandler && this.props.afterClickHandler();
     }
 
     render() {

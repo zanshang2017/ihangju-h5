@@ -20,8 +20,8 @@ class LoadingList extends React.Component {
         this.scrollHanderBinded = null;
         this.offsetDist = this.props.offset || 50; //底部触发加载的距离
         this.outer = null;
-        this.isHalt = this.props.isHalt !== undefined ? this.props.isHalt : false;
-        this.showLastNotice = this.props.showLastNotice === undefined ? true : this.props.showLastNotice;
+        this.isHalt = this.props.isHalt;
+        this.showLastNotice = this.props.showLastNotice;
     }
 
     componentDidMount() {
@@ -56,8 +56,6 @@ class LoadingList extends React.Component {
     }
 
     scrollHandler() {
-        // console.log('this.props.loading:', this.props.isLoading, 'this.isLast:', this.props.isLast, 'this.isHalt:', this.isHalt);
-
         if (this.outer && !this.isHalt) {
             var outerH = this.outer ? this.outer.getBoundingClientRect().height : 0;
 
