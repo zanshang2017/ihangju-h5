@@ -45,20 +45,21 @@ var Env = {
 
     guid: guid().generate('*-*-*'),
 
-    shareHost: 'www.ihangju.com',
-
+    /***** dev */
+    devAPIScheme: '',
     devHost: '192.168.1.33:8888',
     devAPIHost: '192.168.1.33:8888',
 
     // devHost: 'testapi.ihangju.com',
     // devAPIHost: 'testapi.ihangju.com',
 
-    devAPIScheme: '',
-    // devAPIScheme: 'https:', //todo
-
+    /***** production */
+    productionAPIScheme: 'https:',
     productionHost: 'h5app.ihangju.com',
-    productionAPIScheme: '',
     productionAPIHost: 'api.ihangju.com',
+
+
+    shareHost: 'www.ihangju.com',
 
     shell: shell,
     shellVersion: shellVersion,

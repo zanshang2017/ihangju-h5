@@ -133,6 +133,7 @@ ReactDOM.render(
 
                             try {
                                 Toast.hide(); //页面加载后清除loading
+                                document.activeElement && document.activeElement.blur(); //ip5(10.1)键盘不会自动收起
                             } catch (e) {
                             }
 

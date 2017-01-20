@@ -23,7 +23,8 @@ if (Env.production) {
     // thirdparty_login_domain = 'oauth.zan-shang.com'; //todo
 }
 
-let login_api_scheme = (api_scheme === '' ? 'http:' : api_scheme);
+// let login_api_scheme = (api_scheme === '' ? 'http:' : api_scheme);
+let login_api_scheme = api_scheme;
 
 //图片CDN
 const IMG_CDN_PATH = 'https://o82zr1kfu.qnssl.com/@';
