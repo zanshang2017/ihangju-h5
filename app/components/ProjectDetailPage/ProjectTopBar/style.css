@@ -11,6 +11,7 @@
 .topBar .share {
   position: relative;
   top: 0.74667rem;
+  right: -10px;
   display: block;
   width: 1.17333rem;
   height: 1.17333rem;
