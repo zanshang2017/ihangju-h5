@@ -25,6 +25,7 @@ if (Env.production) {
 
 // let login_api_scheme = (api_scheme === '' ? 'http:' : api_scheme);
 let login_api_scheme = api_scheme;
+console.log('login_api_scheme:' + login_api_scheme);
 
 //图片CDN
 const IMG_CDN_PATH = 'https://o82zr1kfu.qnssl.com/@';

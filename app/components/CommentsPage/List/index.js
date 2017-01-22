@@ -1,8 +1,6 @@
 import styles from './styles.scss';
 import React from 'react';
 
-import _ from 'underscore';
-
 import {
     IMG_CDN_PATH
 } from '../../../apis.js';

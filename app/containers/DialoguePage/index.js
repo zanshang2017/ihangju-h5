@@ -203,9 +203,19 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
         console.log('focus');
 
         if (Env.platform.iphone || Env.platform.ipad) {
-            let nWrap = ReactDOM.findDOMNode(this.refs.J_Wrap);
-            nWrap.style.height = window.innerHeight - window.pageYOffset + 'px';
-            nWrap.classList.add(styles.onKeyboardShown);
+            let n = 0;
+            let flag = setInterval(()=> {
+                if (n >= 5) {
+                    clearInterval(flag);
+                }
+
+                n++;
+
+                let nWrap = ReactDOM.findDOMNode(this.refs.J_Wrap);
+                console.log('A:' + nWrap.style.height, 'B:' + window.innerHeight, 'C:' + document.documentElement.clientHeight, 'D:' + window.pageYOffset);
+                nWrap.style.height = window.innerHeight - window.pageYOffset + 'px';
+                nWrap.classList.add(styles.onKeyboardShown);
+            }, 150);
         }
     }
 

@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from './styles.css';
 
-import _ from 'underscore';
-
 class TabBar extends React.Component {
     constructor(props) {
         super(props);

@@ -5,10 +5,6 @@
 import styles from './styles.scss';
 import React from 'react';
 
-import _ from 'underscore';
-
-import LoadingBar from 'components/common/LoadingBar';
-
 /* eslint-disable react/prefer-stateless-function */
 class FullScreenDialog extends React.Component {
 

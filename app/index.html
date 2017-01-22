@@ -30,14 +30,12 @@
         (function () {
             var guideImages = {
                 '720': [
-                    'https://o82zr1kfu.qnssl.com/@/image/5812f68ce4b0edf1e7b8faeb.png',
-                    'https://o82zr1kfu.qnssl.com/@/image/5812f697e4b0edf1e7b8faf1.png',
-                    'https://o82zr1kfu.qnssl.com/@/image/5812f6a2e4b0edf1e7b8faf7.png'
+                    'https://o82zr1kfu.qnssl.com/@/image/5881ea9fe4b033aaf581af0f.jpg',
+                    'https://o82zr1kfu.qnssl.com/@/image/5881eadde4b033aaf581af16.jpg'
                 ],
                 '1080': [
-                    'https://o82zr1kfu.qnssl.com/@/image/5812f704e4b0edf1e7b8fb22.png',
-                    'https://o82zr1kfu.qnssl.com/@/image/5812f70de4b0edf1e7b8fb29.png',
-                    'https://o82zr1kfu.qnssl.com/@/image/5812f715e4b0edf1e7b8fb2e.png'
+                    'https://o82zr1kfu.qnssl.com/@/image/5881eaf3e4b033aaf581af1b.jpg',
+                    'https://o82zr1kfu.qnssl.com/@/image/5881eb06e4b033aaf581af27.jpg'
                 ]
             };
 
@@ -45,13 +43,13 @@
              * 全局配置
              */
             window.__APP_CONFIG = {
-                ver: '0.1.11', //todo 上线前记得改版本号
+                ver: '0.1.13', //todo 上线前记得改版本号
                 guide: {
-                    ver: '0.1.1', // 本地存储的版本号>=此版本号时不必展示guide页
+                    ver: '0.1.13', // 本地存储的版本号>=此版本号时不必展示guide页
                     images: (window.devicePixelRatio > 2 ? guideImages['1080'] : guideImages['720']),
                     ratio: 0.5625, //图片宽高比
                     style: {
-                        background: '#f3f4f6'
+                        background: '#ffffff'
                     }
                 }
             };

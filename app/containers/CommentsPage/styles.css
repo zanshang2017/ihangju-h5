@@ -11,4 +11,8 @@
 .weakText {
   color: #a09e98 !important; }
 
+.onKeyboardShown {
+  position: absolute !important;
+  bottom: 0 !important; }
+
 /*# sourceMappingURL=styles.css.map */

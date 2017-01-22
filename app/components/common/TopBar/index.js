@@ -17,9 +17,15 @@ class TopBar extends React.Component {
         this.btns = null;
     }
 
+    componentDidMount() {
+        this.refs.J_Wrap.addEventListener('touchmove', function(e){
+            e.preventDefault();
+        });
+    }
+
     handleBack() {
         if (this.props.backHandler) {
-            this.props.backHandler()
+            this.props.backHandler();
         } else {
             hashHistory.goBack();
         }
@@ -72,7 +78,7 @@ class TopBar extends React.Component {
         }
 
         return (
-            <div className={styles.wrap}>
+            <div ref="J_Wrap" className={styles.wrap}>
                 {barTopGapHtml}
                 <div className={`${styles.bar} ${styles.bar_ios}`} style={_style}>
                     {backBtn}

@@ -11,13 +11,17 @@ class List extends React.Component {
 
     constructor(props) {
         super(props);
-    }
-
-    componentDidMount() {
+        this.hasData = false;
     }
 
     componentWillUnmount() {
         console.log('Collection List: willUnmount.');
+    }
+
+    componentDidUpdate() {
+        if (this.props.setBg) {
+            this.props.setBg(!this.hasData);
+        }
     }
 
     render() {
@@ -31,11 +35,16 @@ class List extends React.Component {
                 _content = items.map(function (v) {
                     return <ListItem key={v.agreementid} item={v}></ListItem>
                 });
+
+                this.hasData = true;
+
             } else {
                 _content = <Result
                     imgUrl="https://o82zr1kfu.qnssl.com/@/image/584785a3e4b0281dbb591352.png"
                     title="还没有版权哦~"
                 />;
+
+                this.hasData = false;
             }
         }
 

@@ -69,19 +69,16 @@ class InputBar extends React.Component {
     }
 
     onFocusHandler() {
-        //bugfix: ios键盘弹出偶尔会遮挡输入栏
-        // setTimeout(()=> {
-            // this.refs.J_Input.scrollIntoView(true);
-            // this.refs.J_Input.classList.add('keyboardShown');
+        this.props.onInputFocus && this.props.onInputFocus();
 
-            setTimeout(() => {
-                this.props.onInputFocus && this.props.onInputFocus();
-            }, 100);
-        // }, 0);
+        //bugfix: ios键盘弹出偶尔会遮挡输入栏
+        setTimeout(()=> {
+            this.refs.J_Input.scrollIntoView(true);
+        }, 350);
+
     }
 
     onBlurHandler() {
-        // this.refs.J_Input.classList.remove('keyboardShown');
         this.props.onInputBlur && this.props.onInputBlur();
     }
 

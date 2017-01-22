@@ -68,6 +68,9 @@
   :global .hasTransition {
     transition: all .4s ease;
     -webkit-transition: all .4s ease; }
+  :global .hasFasterTransition {
+    transition: all .2s ease;
+    -webkit-transition: all .2s ease; }
   :global .heightZero {
     height: 0 !important; }
   :global .topBarPositionOut {

@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {createSelector} from 'reselect';
 import {
@@ -26,6 +27,8 @@ import signals from './signals';
 import {
     goTop
 } from 'utils/util';
+
+import {Env} from 'utils/env.js';
 
 import TopBar from 'components/common/TopBar';
 import List from 'components/CommentsPage/List';
@@ -173,6 +176,36 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
         this.componentMethod['clear'] && this.componentMethod['clear']();
     }
 
+    onInputFocusHandler() {
+        console.log('focus');
+
+        if (Env.platform.iphone || Env.platform.ipad) {
+            let n = 0;
+            let flag = setInterval(()=> {
+                if (n >= 5) {
+                    clearInterval(flag);
+                }
+
+                n++;
+
+                let nWrap = ReactDOM.findDOMNode(this.refs.J_Wrap);
+                console.log('A:' + nWrap.style.height, 'B:' + window.innerHeight, 'C:' + document.documentElement.clientHeight, 'D:' + window.pageYOffset);
+                nWrap.style.height = window.innerHeight - window.pageYOffset + 'px';
+                nWrap.classList.add(styles.onKeyboardShown);
+            }, 150);
+        }
+    }
+
+    onInputBlurHandler() {
+        console.log('blur');
+
+        if (Env.platform.iphone || Env.platform.ipad) {
+            let nWrap = ReactDOM.findDOMNode(this.refs.J_Wrap);
+            nWrap.style.height = '100%';
+            nWrap.classList.remove(styles.onKeyboardShown);
+        }
+    }
+
     render() {
         let comments = this.props.comments ? this.props.comments.toJS() : {};
         let items = comments.data ? comments.data : [];
@@ -181,7 +214,7 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
         let loading = comments.loading || false;
 
         return (
-            <div className={`pageInner`}>
+            <div ref="J_Wrap" className={`pageInner hasFasterTransition`}>
                 <TopBar data-has-back="true">
                     <div data-title>评论</div>
                 </TopBar>
@@ -199,7 +232,10 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
                 </div>
                 <InputBar bindingMethod={{context: this.componentMethod, methodName: ['clear']}}
                           placeholder={this.props.placeholder}
-                          submitHandler={this.submitHandler.bind(this)}></InputBar>
+                          submitHandler={this.submitHandler.bind(this)}
+                          onInputFocus={this.onInputFocusHandler.bind(this)}
+                          onInputBlur={this.onInputBlurHandler.bind(this)}
+                ></InputBar>
             </div>
         );
     }

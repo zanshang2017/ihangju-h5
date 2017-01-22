@@ -4,8 +4,6 @@ import styles from './styles.css';
 
 import Result from 'antd-mobile/lib/page-result';
 
-import _ from 'underscore';
-
 import CommentList from 'components/NotificationPage/CommentList';
 import MessageList from 'components/NotificationPage/MessageList';
 import LoadingList from 'components/common/LoadingList';

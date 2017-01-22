@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {createSelector} from 'reselect';
 import {
@@ -41,14 +42,26 @@ export class AgreementsPage extends React.Component { // eslint-disable-line rea
         this.props.dispatch(resetState());
     }
 
+    setBg(isWhiteBg=false) {
+        let node = ReactDOM.findDOMNode(this.refs.J_MainContent);
+
+        if(isWhiteBg) {
+            node.classList.add('whiteBg');
+        } else {
+            node.classList.remove('whiteBg');
+        }
+    }
+
     render() {
         return (
             <div className="pageInner hasTopBar">
                 <TopBar data-has-back="true">
                     <div data-title>版权</div>
                 </TopBar>
-                <div className="mainContent">
-                    <List {...this.props}></List>
+                <div ref="J_MainContent" className="mainContent whiteBg">
+                    <List {...this.props}
+                          setBg={this.setBg.bind(this)}
+                    ></List>
                 </div>
             </div>
         );

@@ -2,8 +2,6 @@ import React from 'react';
 
 import styles from './styles.css';
 
-import _ from 'underscore';
-
 import LoadingList from 'components/common/LoadingList';
 import TagArticleList from 'components/common/TagArticleList';
 

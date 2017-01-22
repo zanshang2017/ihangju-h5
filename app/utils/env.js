@@ -46,7 +46,7 @@ var Env = {
     guid: guid().generate('*-*-*'),
 
     /***** dev */
-    devAPIScheme: '',
+    devAPIScheme: location.protocol || 'http:',
     devHost: '192.168.1.33:8888',
     devAPIHost: '192.168.1.33:8888',
 
@@ -54,10 +54,9 @@ var Env = {
     // devAPIHost: 'testapi.ihangju.com',
 
     /***** production */
-    productionAPIScheme: 'https:',
+    productionAPIScheme: location.protocol || 'http:',
     productionHost: 'h5app.ihangju.com',
     productionAPIHost: 'api.ihangju.com',
-
 
     shareHost: 'www.ihangju.com',
 

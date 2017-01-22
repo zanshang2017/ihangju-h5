@@ -103,6 +103,11 @@
         -webkit-transition: all .4s ease;
     }
 
+    .hasFasterTransition {
+        transition: all .2s ease;
+        -webkit-transition: all .2s ease;
+    }
+
     .heightZero {
         height: 0 !important;
     }
