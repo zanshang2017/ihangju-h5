@@ -10,8 +10,8 @@ import Toast from 'antd-mobile/lib/toast';
 
 const VERSION = window.__APP_CONFIG.ver || 'undefined';
 
-//const PRODUCTION_DOMAIN = /h5app\.ihangju\.com/igm; //todo 测试后记得恢复!
-const PRODUCTION_DOMAIN = /h5app\.ihangju\.com|testh5app\.ihangju\.com/igm; //线上域名 或 33测试域名
+const PRODUCTION_DOMAIN = /h5app\.ihangju\.com/igm; //todo 测试后记得恢复!
+// const PRODUCTION_DOMAIN = /h5app\.ihangju\.com|testh5app\.ihangju\.com/igm; //线上域名 或 33测试域名
 // const PRODUCTION_DOMAIN = /h5\.dev\.ihangju\.com/igm; //todo 测试后记得恢复!
 const PREPUB_DOMAIN = 'preh5app.ihangju.com';
 
@@ -47,11 +47,10 @@ var Env = {
 
     /***** dev */
     devAPIScheme: location.protocol || 'http:',
-    devHost: '192.168.1.33:8888',
-    devAPIHost: '192.168.1.33:8888',
-
-    // devHost: 'testapi.ihangju.com',
-    // devAPIHost: 'testapi.ihangju.com',
+    // devHost: '192.168.1.33:8888',
+    // devAPIHost: '192.168.1.33:8888',
+    devHost: 'api.ihangju.com', //测试时需要绑dns
+    devAPIHost: 'api.ihangju.com',
 
     /***** production */
     productionAPIScheme: location.protocol || 'http:',

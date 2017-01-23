@@ -52,7 +52,7 @@ class AttestState extends React.Component {
         this.context.router.push('/my');
     }
     goIndexClick() {
-        this.context.router.push('/follow');
+        this.context.router.push('/');
     }
     closeLayer() {
         let dom = this.refs.J_changeLayer;

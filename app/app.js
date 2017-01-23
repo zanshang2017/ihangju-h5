@@ -101,11 +101,7 @@ const rootRoute = {
     component: App,
     indexRoute: {
         onEnter: (nextState, replace) => {
-            if (isLogin()) {
-                replace('/follow');
-            } else {
-                replace('/found');
-            }
+            replace('/found');
         } //根路径重定向
         // onEnter: (nextState, replace) => replace('/guide') //根路径重定向
     },

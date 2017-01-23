@@ -19,8 +19,8 @@ if (Env.production) {
 } else {
     api_scheme = Env.devAPIScheme;
     api_host = Env.devAPIHost;
-    thirdparty_login_domain = '192.168.1.33:7777';
-    // thirdparty_login_domain = 'oauth.zan-shang.com'; //todo
+    // thirdparty_login_domain = '192.168.1.33:7777';
+    thirdparty_login_domain = 'oauth.zan-shang.com';
 }
 
 // let login_api_scheme = (api_scheme === '' ? 'http:' : api_scheme);
