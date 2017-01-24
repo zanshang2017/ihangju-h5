@@ -79,6 +79,8 @@
   z-index: 999; }
 
 .chapterTitle {
+  display: inline-block;
+  width: 60%;
   color: #39bcc8; }
   .chapterTitle span {
     display: inline-block;

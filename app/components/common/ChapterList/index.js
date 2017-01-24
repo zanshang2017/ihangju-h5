@@ -91,7 +91,7 @@ class ChapterList extends React.Component {
             <div ref="nChapterListWrap" className={`${styles.chapterListLayer} hasTransition hide transparent`}>
                 <div className={styles.projectMes}>
                     <span className={styles.projectTitle}>{this._chapterMes ? this._chapterMes.projectName : ''}</span>
-                    <span className={styles.projectAuthor}>{this._chapterMes ? this._chapterMes.authorName : ''}</span>
+                    <span className={styles.projectAuthor}>{/*{this._chapterMes ? this._chapterMes.authorName : ''}*/}</span>
                 </div>
                 <ul>
                     {this._chapterList}

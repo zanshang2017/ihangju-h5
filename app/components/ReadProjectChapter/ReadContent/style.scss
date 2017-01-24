@@ -117,6 +117,8 @@ $loadingHeight: 100px;
 }
 
 .chapterTitle {
+    display: inline-block;
+    width: 60%;
     color: $linkColor;
     span {
         display: inline-block;

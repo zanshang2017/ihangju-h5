@@ -17,17 +17,27 @@
 		float:left;
 		margin-right:rem(44);
 	}
-	.share{
-		position: relative;
-		top:rem(28);
-		right: -10px;
-		display: block;
-		width: rem(44);
-		height: rem(44);
-		background: url("https://o82zr1kfu.qnssl.com/@/image/57b56aeee4b0f816612ea63c.png") no-repeat;
-		background-size:cover;
-		float:left;
-		background-position: rem(-44) 0px;
+	.rightBar {
+		position: absolute;
+	    right: -25px;
+	    top: -1px;
+	    width: 63px;
+	    height: 50px;
+	    color: #7b8f9d;
+	    text-align: center;
+
 	}
+	.share {
+			position: relative;
+		    right: -10px;
+		    width: 22px;
+		    height: 22px;
+		    background: url(https://o82zr1kfu.qnssl.com/@/image/57b56aeee4b0f816612ea63c.png) no-repeat;
+		    background-size: cover;
+		    background-position: -1.17333rem 0px;
+		    vertical-align: text-bottom;
+		    top: 1px;
+		    display: inline-block;
+		}
 
 }

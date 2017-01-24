@@ -13,7 +13,8 @@ import _ from 'underscore';
 import {
     IMG_CDN_PATH
 } from '../../../apis.js';
-
+import LoadingBar from 'components/common/LoadingBar';
+import Result from 'antd-mobile/lib/page-result';
 /* eslint-disable react/prefer-stateless-function */
 class List extends React.Component {
 
@@ -81,11 +82,9 @@ class List extends React.Component {
         //     "id": "571dc841e4b0d50d21e7b566",
         //     "follow": true,
         //     "tutor": true
-
-        return (
-            <div ref="J_ListWrap" className={`${styles.listWrap}`}>
-                {
-                    this.items.map(function (item) {
+        let _content = <LoadingBar />;
+        if(this.items.length > 0) {
+            _content = this.items.map(function (item) {
                         let imageSrc = addImageParam(IMG_CDN_PATH + item.avatar, IMAGE_SIZE_TYPE.AVATAR_SMALL);
 
                         return <div className={styles.item} data-id={item.id} key={item.id}
@@ -101,7 +100,15 @@ class List extends React.Component {
                             </div>
                         </div>
                     })
-                }
+        }else {
+            _content = <Result
+                    imgUrl="https://o82zr1kfu.qnssl.com/@/image/5886ecafe4b00ee0df52a06e.png"
+                />;
+        }
+
+        return (
+            <div ref="J_ListWrap" className={`${styles.listWrap}`}>
+                {_content}
             </div>
         );
     }

@@ -13,7 +13,8 @@ import {
     addImageParam,
     IMAGE_SIZE_TYPE
 } from 'utils/util.js';
-
+import LoadingBar from 'components/common/LoadingBar';
+import Result from 'antd-mobile/lib/page-result';
 /* eslint-disable react/prefer-stateless-function */
 class List extends React.Component {
 
@@ -85,11 +86,9 @@ class List extends React.Component {
         // "id": "5720c6d1e4b0d50d21e8dcda",
         // "follow": true,
         // "tutor": true
-
-        return (
-            <div className={`${styles.listWrap}`}>
-                {
-                    this.items.map(function (item) {
+        let _content = <LoadingBar />;
+        if(this.items.length > 0) {
+            _content = this.items.map(function (item) {
                         let imageSrc = addImageParam(IMG_CDN_PATH + item.avatar, IMAGE_SIZE_TYPE.AVATAR);
 
                         return <div className={styles.item} data-id={item.id} key={item.id}
@@ -106,7 +105,14 @@ class List extends React.Component {
                                  className={item.follow ? styles.followed : styles.noFollowed}></div>
                         </div>
                     })
-                }
+        }else {
+            _content = <Result
+                    imgUrl="https://o82zr1kfu.qnssl.com/@/image/5886ec6ee4b00ee0df52a06c.png"
+                />;
+        }
+        return (
+            <div className={`${styles.listWrap}`}>
+                {_content}
             </div>
         );
     }

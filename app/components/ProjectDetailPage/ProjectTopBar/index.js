@@ -45,8 +45,10 @@ class ProjectTopBar extends React.Component {
                 <TopBar data-has-back="true">
                     <div data-title>作品详情</div>
                     <div data-btns>
+                        <div className={style.rightBar}>
+                                <span onClick={this.shareProject.bind(this)} className={style.share}></span>
+                        </div>
                         {/*<span onClick={this.showChapterListHandler.bind(this)} className={style.catalog}></span>*/}
-                        <span onClick={this.shareProject.bind(this)} className={style.share}></span>
                     </div>
                 </TopBar>
                 {/*<ChapterList ref="J_ChapterList" items={this.props.projectDetailChapter}/>*/}
