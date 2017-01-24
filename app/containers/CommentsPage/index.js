@@ -64,6 +64,9 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
         };
 
         this.componentMethod = {};
+
+        this.touchStartY = 0;
+        this.preventHandlerBind = this.preventHandler.bind(this);
     }
 
     componentWillMount() {
@@ -89,6 +92,8 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
             }catch(e){}
             Toast.fail('评论发送失败,请检查网络!', 3);
         });
+
+        this.refs.J_MainContent.addEventListener('touchstart', this.touchStartHandler.bind(this));
     }
 
     componentWillUnmount() {
@@ -192,8 +197,10 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
                 console.log('A:' + nWrap.style.height, 'B:' + window.innerHeight, 'C:' + document.documentElement.clientHeight, 'D:' + window.pageYOffset);
                 nWrap.style.height = window.innerHeight - window.pageYOffset + 'px';
                 nWrap.classList.add(styles.onKeyboardShown);
-            }, 150);
+            }, 350);
         }
+
+        this.refs.J_MainContent.addEventListener('touchmove', this.preventHandlerBind);
     }
 
     onInputBlurHandler() {
@@ -203,6 +210,33 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
             let nWrap = ReactDOM.findDOMNode(this.refs.J_Wrap);
             nWrap.style.height = '100%';
             nWrap.classList.remove(styles.onKeyboardShown);
+        }
+
+        this.refs.J_MainContent.removeEventListener('touchmove', this.preventHandlerBind);
+    }
+
+    preventHandler(e) {
+        let outer = ReactDOM.findDOMNode(this.refs.J_MainContent);
+        if (e.touches) {
+            let y = e.touches[0].clientY;
+            // console.log('y', y, 'this.touchStartY', this.touchStartY);
+
+            if(y - this.touchStartY < 0) {
+                console.log('swipeTop');
+                return;
+            } else {
+                console.log('swipeBottom');
+                if(outer.scrollTop <= 0) {
+                    e.preventDefault();
+                }
+            }
+        }
+    }
+
+    touchStartHandler(e) {
+        if (e.touches) {
+            this.touchStartY = e.touches[0].clientY || 0;
+            console.log('this.touchStartY', this.touchStartY);
         }
     }
 

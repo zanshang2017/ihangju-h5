@@ -76,6 +76,9 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
             sendUserAvatar: '',
             type: 'im', //默认
         };
+
+        this.touchStartY = 0;
+        this.preventHandlerBind = this.preventHandler.bind(this);
     }
 
     componentWillMount() {
@@ -135,6 +138,7 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
             e.preventDefault();
         });
 
+        this.refs.J_Outer.addEventListener('touchstart', this.touchStartHandler.bind(this));
     }
 
     componentWillUnmount() {
@@ -207,22 +211,23 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
     onInputFocusHandler() {
         console.log('focus');
 
-        // if (Env.platform.iphone || Env.platform.ipad) {
-        //     let n = 0;
-        //     let flag = setInterval(()=> {
-        //         if (n >= 5) {
-        //             clearInterval(flag);
-        //         }
-        //
-        //         n++;
-        //
-        //         let nWrap = ReactDOM.findDOMNode(this.refs.J_Wrap);
-        //         console.log('A:' + nWrap.style.height, 'B:' + window.innerHeight, 'C:' + document.documentElement.clientHeight, 'D:' + window.pageYOffset);
-        //         nWrap.style.height = window.innerHeight - window.pageYOffset + 'px';
-        //         nWrap.classList.add(styles.onKeyboardShown);
-        //         this.scrollToBottom();
-        //     }, 350);
-        // }
+        if (Env.platform.iphone || Env.platform.ipad) {
+            let n = 0;
+            let flag = setInterval(()=> {
+                if (n >= 5) {
+                    clearInterval(flag);
+                }
+
+                n++;
+
+                let nWrap = ReactDOM.findDOMNode(this.refs.J_Wrap);
+                console.log('A:' + nWrap.style.height, 'B:' + window.innerHeight, 'C:' + document.documentElement.clientHeight, 'D:' + window.pageYOffset);
+                nWrap.style.height = window.innerHeight - window.pageYOffset + 'px';
+                nWrap.classList.add(styles.onKeyboardShown);
+            }, 350);
+        }
+
+        this.refs.J_Outer.addEventListener('touchmove', this.preventHandlerBind);
     }
 
     onInputBlurHandler() {
@@ -232,6 +237,33 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
             let nWrap = ReactDOM.findDOMNode(this.refs.J_Wrap);
             nWrap.style.height = '100%';
             nWrap.classList.remove(styles.onKeyboardShown);
+        }
+
+        this.refs.J_Outer.removeEventListener('touchmove', this.preventHandlerBind);
+    }
+
+    preventHandler(e) {
+        let outer = ReactDOM.findDOMNode(this.refs.J_Outer);
+        if (e.touches) {
+            let y = e.touches[0].clientY;
+            // console.log('y', y, 'this.touchStartY', this.touchStartY);
+
+            if(y - this.touchStartY < 0) {
+                console.log('swipeTop');
+                return;
+            } else {
+                console.log('swipeBottom');
+                if(outer.scrollTop <= 0) {
+                    e.preventDefault();
+                }
+            }
+        }
+    }
+
+    touchStartHandler(e) {
+        if (e.touches) {
+            this.touchStartY = e.touches[0].clientY || 0;
+            console.log('this.touchStartY', this.touchStartY);
         }
     }
 
