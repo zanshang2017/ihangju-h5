@@ -171,6 +171,7 @@ export function* logout() {
                 try {
                     //通知第三方清除登录信息
                     if (ret.data.code === 'ok') {
+                        console.log('logout api:' + THIRDPARTY_LOGOUT_API);
                         const thirdPartyRet = yield call(request, THIRDPARTY_LOGOUT_API, {
                             method: 'DELETE',
                             credentials: 'include'
@@ -181,6 +182,7 @@ export function* logout() {
                         }
                     }
                 } catch (e) {
+                    console.log('三方退出登录通知请求失败!');
                 }
 
             } else {
@@ -214,11 +216,8 @@ function putDevicetoken() {
             'X-API-Version': 'v1.1'
         },
         credentials: 'include'
-    }).then(function (ret) {
-
-    }, function (error) {
-
     });
+
 }
 
 /**
@@ -226,7 +225,7 @@ function putDevicetoken() {
  */
 function deleteDevicetoken() {
 
-    bridge.device.token = bridge.device.token;
+    bridge.device.token = bridge.device.token || locStorage.get('devicetoken');
     if (!bridge.device.token) {
         console.warn('无devicetoken');
         return;
@@ -241,10 +240,7 @@ function deleteDevicetoken() {
             'X-API-Version': 'v1.1'
         },
         credentials: 'include'
-    }).then(function (ret) {
-
-    }, function (error) {
-
     });
+
 }
 

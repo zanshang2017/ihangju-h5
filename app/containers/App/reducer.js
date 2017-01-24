@@ -47,6 +47,8 @@ function globalReducer(state = initialState, action = {}) {
     let _state = null;
     let _userInfo = null;
 
+    console.log('action.type:' + action.type);
+
     switch (action.type) {
         case SHOW_NAV:
             return state.set('showNav', true);

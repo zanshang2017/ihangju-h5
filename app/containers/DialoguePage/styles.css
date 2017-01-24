@@ -6,4 +6,7 @@
   position: absolute !important;
   bottom: 0 !important; }
 
+.mainInner {
+  min-height: 300px; }
+
 /*# sourceMappingURL=styles.css.map */

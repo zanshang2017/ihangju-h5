@@ -130,6 +130,11 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
             Toast.hide();
             Toast.fail('发送失败,请检查网络!');
         });
+
+        this.refs.J_NoticeBarWrap.addEventListener('touchmove', function (e) {
+            e.preventDefault();
+        });
+
     }
 
     componentWillUnmount() {
@@ -202,21 +207,22 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
     onInputFocusHandler() {
         console.log('focus');
 
-        if (Env.platform.iphone || Env.platform.ipad) {
-            let n = 0;
-            let flag = setInterval(()=> {
-                if (n >= 5) {
-                    clearInterval(flag);
-                }
-
-                n++;
-
-                let nWrap = ReactDOM.findDOMNode(this.refs.J_Wrap);
-                console.log('A:' + nWrap.style.height, 'B:' + window.innerHeight, 'C:' + document.documentElement.clientHeight, 'D:' + window.pageYOffset);
-                nWrap.style.height = window.innerHeight - window.pageYOffset + 'px';
-                nWrap.classList.add(styles.onKeyboardShown);
-            }, 150);
-        }
+        // if (Env.platform.iphone || Env.platform.ipad) {
+        //     let n = 0;
+        //     let flag = setInterval(()=> {
+        //         if (n >= 5) {
+        //             clearInterval(flag);
+        //         }
+        //
+        //         n++;
+        //
+        //         let nWrap = ReactDOM.findDOMNode(this.refs.J_Wrap);
+        //         console.log('A:' + nWrap.style.height, 'B:' + window.innerHeight, 'C:' + document.documentElement.clientHeight, 'D:' + window.pageYOffset);
+        //         nWrap.style.height = window.innerHeight - window.pageYOffset + 'px';
+        //         nWrap.classList.add(styles.onKeyboardShown);
+        //         this.scrollToBottom();
+        //     }, 350);
+        // }
     }
 
     onInputBlurHandler() {
@@ -258,7 +264,7 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
                 </div>
 
                 <div ref="J_Outer" className={`mainContent whiteBg`}>
-                    <div ref="J_Inner">
+                    <div ref="J_Inner" className={`${styles.mainInner}`}>
                         <List items={items} myUserId={this.dialogueData['sendUser']} loading={dialogue['loading']}></List>
                     </div>
                 </div>
