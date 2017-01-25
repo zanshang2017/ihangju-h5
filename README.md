@@ -10,7 +10,8 @@ Android版使用Hybird方式开发，前端部分为单页应用。
 
 ## 命令
 - 开发调试: npm start 本地开发调试
-- 测试打包: npm run prepub  用于部署到33进行测试
+- 33测试打包: npm run prepub  用于部署到33进行测试
+- 线上测试打包: npm run onlinetest  用真实的线上域名进行测试
 - 正式打包: npm run publish 用于正式发布!
 
 ## 发布流程!

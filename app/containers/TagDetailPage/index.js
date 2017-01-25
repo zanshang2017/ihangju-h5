@@ -186,12 +186,12 @@ class TagDetailPage extends React.Component { // eslint-disable-line react/prefe
     }
 
     subTagHandler() {
-        // console.log('关注');
+        console.log('关注', this.tagID);
         this.props.dispatch(subTag(this.tagID));
     }
 
     cancelSubTagHandler() {
-        // console.log('取消关注');
+        console.log('取消关注', this.tagID);
         this.props.dispatch(cancelSubTag(this.tagID));
     }
 
