@@ -12,6 +12,7 @@ class InputBar extends React.Component {
 
     constructor(props) {
         super(props);
+        this.preventHandlerBind = this.preventHandler.bind(this);
     }
 
     componentWillMount() {
@@ -35,13 +36,12 @@ class InputBar extends React.Component {
             });
         }
 
-        this.refs.J_Wrap.addEventListener('touchmove', function(e){
-            e.preventDefault();
-        });
+        this.refs.J_Wrap.addEventListener('touchmove', this.preventHandlerBind);
     }
 
     componentWillUnmount() {
-
+        this.refs.J_Wrap.removeEventListener('touchmove', this.preventHandlerBind);
+        clearInterval(this.keyboardFixTimer);
     }
 
     componentWillUpdate(props) {
@@ -71,19 +71,33 @@ class InputBar extends React.Component {
     onFocusHandler() {
         this.props.onInputFocus && this.props.onInputFocus();
 
-        //bugfix: ios键盘弹出偶尔会遮挡输入栏
-        setTimeout(()=> {
-            this.refs.J_Input.scrollIntoView(true);
-        }, 350);
+        if (this.keyboardFixTimer) {
+            clearInterval(this.keyboardFixTimer);
+        }
 
+        //bugfix: ios键盘弹出偶尔会遮挡输入栏
+        this.keyboardFixTimer = setInterval(()=> {
+            if (this.refs.J_Input) {
+                this.refs.J_Input.scrollIntoView(true);
+            } else {
+                clearInterval(this.keyboardFixTimer);
+            }
+        }, 350);
     }
 
     onBlurHandler() {
+        if (this.keyboardFixTimer) {
+            clearInterval(this.keyboardFixTimer);
+        }
         this.props.onInputBlur && this.props.onInputBlur();
     }
 
     clear() {
         this.refs.J_Input.value = '';
+    }
+
+    preventHandler (e) {
+        e.preventDefault();
     }
 
     render() {
@@ -100,7 +114,7 @@ class InputBar extends React.Component {
                         <form action="" onSubmit={this.submitHandler.bind(this)}>
                             <input ref="J_Input" type="text" onFocus={this.onFocusHandler.bind(this)}
                                    onBlur={this.onBlurHandler.bind(this)}
-                               placeholder={placeholder} maxLength="500" className={styles.input}/>
+                                   placeholder={placeholder} maxLength="500" className={styles.input}/>
                             <button className={styles.btn}></button>
                         </form>
                     </div>

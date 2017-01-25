@@ -78,6 +78,7 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
         };
 
         this.touchStartY = 0;
+        this.touchStartHandlerBind = this.touchStartHandler.bind(this);
         this.preventHandlerBind = this.preventHandler.bind(this);
     }
 
@@ -149,6 +150,10 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
         signals.loadDialogueError.removeAll();
         signals.getLetterGroupIdSuccess.removeAll();
 
+        this.refs.J_Outer.removeEventListener('touchstart', this.touchStartHandlerBind);
+        this.refs.J_Outer.removeEventListener('touchmove', this.preventHandlerBind);
+        clearInterval(this.keyboardFixTimer);
+
         for (var k in this.componentMethod) {
             if (this.componentMethod.hasOwnProperty(k)) {
                 delete this.componentMethod[k];
@@ -211,19 +216,19 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
     onInputFocusHandler() {
         console.log('focus');
 
+        clearInterval(this.keyboardFixTimer);
+
         if (Env.platform.iphone || Env.platform.ipad) {
-            let n = 0;
-            let flag = setInterval(()=> {
-                if (n >= 5) {
-                    clearInterval(flag);
-                }
-
-                n++;
-
+            this.keyboardFixTimer = setInterval(()=> {
                 let nWrap = ReactDOM.findDOMNode(this.refs.J_Wrap);
-                console.log('A:' + nWrap.style.height, 'B:' + window.innerHeight, 'C:' + document.documentElement.clientHeight, 'D:' + window.pageYOffset);
-                nWrap.style.height = window.innerHeight - window.pageYOffset + 'px';
-                nWrap.classList.add(styles.onKeyboardShown);
+                if(nWrap && nWrap.style) {
+                    console.log('A:' + nWrap.style.height, 'B:' + window.innerHeight, 'C:' + document.documentElement.clientHeight, 'D:' + window.pageYOffset);
+                    nWrap.style.height = window.innerHeight - window.pageYOffset + 'px';
+                    nWrap.classList.add(styles.onKeyboardShown);
+                } else {
+                    clearInterval(this.keyboardFixTimer);
+                    this.onInputBlurHandler();
+                }
             }, 350);
         }
 
@@ -239,7 +244,13 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
             nWrap.classList.remove(styles.onKeyboardShown);
         }
 
+        if (this.keyboardFixTimer) {
+            clearInterval(this.keyboardFixTimer);
+        }
+
         this.refs.J_Outer.removeEventListener('touchmove', this.preventHandlerBind);
+
+        console.log('blur end');
     }
 
     preventHandler(e) {
@@ -248,12 +259,12 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
             let y = e.touches[0].clientY;
             // console.log('y', y, 'this.touchStartY', this.touchStartY);
 
-            if(y - this.touchStartY < 0) {
+            if (y - this.touchStartY < 0) {
                 console.log('swipeTop');
                 return;
             } else {
                 console.log('swipeBottom');
-                if(outer.scrollTop <= 0) {
+                if (outer.scrollTop <= 0) {
                     e.preventDefault();
                 }
             }
@@ -280,7 +291,8 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
             let _status = AGREEMENT_STATUS[agreementStatus.result.laststatus] || {};
             _noticeHtml = <NoticeBar>
                 <div className="fl">{_status.desc}</div>
-                <div className="fr" onClick={this.gotoAgreementDetail.bind(this)}>详情<i className="anticon anticon-right"></i></div>
+                <div className="fr" onClick={this.gotoAgreementDetail.bind(this)}>详情<i
+                    className="anticon anticon-right"></i></div>
             </NoticeBar>;
         }
 
@@ -297,7 +309,8 @@ export class DialoguePage extends React.Component { // eslint-disable-line react
 
                 <div ref="J_Outer" className={`mainContent whiteBg`}>
                     <div ref="J_Inner" className={`${styles.mainInner}`}>
-                        <List items={items} myUserId={this.dialogueData['sendUser']} loading={dialogue['loading']}></List>
+                        <List items={items} myUserId={this.dialogueData['sendUser']}
+                              loading={dialogue['loading']}></List>
                     </div>
                 </div>
 

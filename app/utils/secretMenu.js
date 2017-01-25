@@ -33,9 +33,8 @@ export default {
     },
     showSecretMenu: function () {
         const BUTTONS = [
-            'h5.dev.ihangju.com',
-            'h5.dev.ihangju.com/?debug',
-            'testh5.app.ihangju.com',
+            'h5dev.ihangju.com',
+            'h5dev.ihangju.com/?debug',
             'h5app.ihangju.com?debug',
             '刷新页面',
             '取消'];
@@ -49,22 +48,18 @@ export default {
             (buttonIndex) => {
                 switch (buttonIndex) {
                     case 0:
-                        location.href = 'http://h5.dev.ihangju.com/';
+                        location.href = 'http://h5dev.ihangju.com/';
                         break;
 
                     case 1:
-                        location.href = 'http://h5.dev.ihangju.com/?debug';
+                        location.href = 'http://h5dev.ihangju.com/?debug';
                         break;
 
                     case 2:
-                        location.href = 'http://testh5.app.ihangju.com/';
+                        location.href = 'https://h5app.ihangju.com?debug';
                         break;
 
                     case 3:
-                        location.href = 'http://h5app.ihangju.com?debug';
-                        break;
-
-                    case 4:
                         location.reload();
                         break;
 

@@ -87,7 +87,12 @@ class SettingPage extends React.Component { // eslint-disable-line react/prefer-
                                 arrow="horizontal"
                                 onClick={function () {
                                     this.props.dispatch(logout());
-                                    this.context.router.push('/found');
+
+                                    this.context.router.go(-1); //回退一步,保持没有多余的回退页面
+
+                                    setTimeout(()=> {
+                                        this.context.router.replace('/found');
+                                    }, 10);
                                 }.bind(this)}
                             >
                                 <div className={styles.listWrap}>退出</div>

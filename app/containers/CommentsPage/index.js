@@ -66,6 +66,7 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
         this.componentMethod = {};
 
         this.touchStartY = 0;
+        this.touchStartHandlerBind = this.touchStartHandler.bind(this);
         this.preventHandlerBind = this.preventHandler.bind(this);
     }
 
@@ -93,12 +94,17 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
             Toast.fail('评论发送失败,请检查网络!', 3);
         });
 
-        this.refs.J_MainContent.addEventListener('touchstart', this.touchStartHandler.bind(this));
+        this.refs.J_MainContent.addEventListener('touchstart', this.touchStartHandlerBind);
     }
 
     componentWillUnmount() {
         signals.sendCommentSuccess.removeAll();
         signals.sendCommentError.removeAll();
+
+        this.refs.J_MainContent.removeEventListener('touchstart', this.touchStartHandlerBind);
+        this.refs.J_MainContent.removeEventListener('touchmove', this.preventHandlerBind);
+        clearInterval(this.keyboardFixTimer);
+
         this.props.dispatch(resetStates());
 
         for (var k in this.componentMethod) {
@@ -184,15 +190,10 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
     onInputFocusHandler() {
         console.log('focus');
 
+        clearInterval(this.keyboardFixTimer);
+
         if (Env.platform.iphone || Env.platform.ipad) {
-            let n = 0;
-            let flag = setInterval(()=> {
-                if (n >= 5) {
-                    clearInterval(flag);
-                }
-
-                n++;
-
+            this.keyboardFixTimer = setInterval(()=> {
                 let nWrap = ReactDOM.findDOMNode(this.refs.J_Wrap);
                 console.log('A:' + nWrap.style.height, 'B:' + window.innerHeight, 'C:' + document.documentElement.clientHeight, 'D:' + window.pageYOffset);
                 nWrap.style.height = window.innerHeight - window.pageYOffset + 'px';
@@ -210,6 +211,10 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
             let nWrap = ReactDOM.findDOMNode(this.refs.J_Wrap);
             nWrap.style.height = '100%';
             nWrap.classList.remove(styles.onKeyboardShown);
+        }
+
+        if (this.keyboardFixTimer) {
+            clearInterval(this.keyboardFixTimer);
         }
 
         this.refs.J_MainContent.removeEventListener('touchmove', this.preventHandlerBind);
@@ -252,7 +257,7 @@ export class CommentsPage extends React.Component { // eslint-disable-line react
                 <TopBar data-has-back="true">
                     <div data-title>评论</div>
                 </TopBar>
-                <div ref="J_MainContent" className={`${styles.mainWrap} mainContent`}>
+                <div ref="J_MainContent" className={`mainContent`}>
                     <List page={page}
                           isLast={isLast}
                           loading={loading}
