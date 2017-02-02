@@ -115,9 +115,9 @@ class App extends React.Component {
         }).bind(this));
 
         //确保已存在登录信息,避免不必要的登录跳转
-        if (JSON.parse(locStorage.get('userInfo'))) {
-            this.props.dispatch(loadUserInfo(DISPATCH_ORIGIN.OPEN_IDENTITY));
-        }
+        // if (JSON.parse(locStorage.get('userInfo'))) {
+        //     this.props.dispatch(loadUserInfo(DISPATCH_ORIGIN.OPEN_IDENTITY));
+        // }
     }
 
     componentDidMount() {
@@ -176,9 +176,10 @@ class App extends React.Component {
 
         signals.onUnLogin.add(()=> {
             var redirect = '?url=' + encodeURIComponent(location.href);
-            // that.context.router.replace('/login' + redirect);
+            that.context.router.replace('/login' + redirect);
+            // that.context.router.replace('/login');
 
-            window.location.replace('/#/login' + redirect);
+           // window.location.replace('/#/login' + redirect);
         });
     }
 

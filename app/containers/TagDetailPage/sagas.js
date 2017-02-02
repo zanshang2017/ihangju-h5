@@ -164,7 +164,7 @@ export function* putSubTag() {
             credentials: 'include'
         });
 
-        if (lists) {
+        if (lists && lists.data) {
             if (lists.err === undefined || lists.err === null) {
                 if (lists.data.code === 'ok') {
                     yield put(subTagSuccess());

@@ -46,15 +46,17 @@ var Env = {
     guid: guid().generate('*-*-*'),
 
     /***** dev */
-    devAPIScheme: location.protocol || 'http:',
+    // devAPIScheme: location.protocol || 'http:',
     // devHost: '192.168.1.33:8888',
     // devAPIHost: '192.168.1.33:8888',
-    devHost: 'api.ihangju.com', //测试时需要绑dns
+
+    devAPIScheme: 'http:',
+    // devAPIScheme: 'https:', //todo 线上都有https
     devAPIHost: 'api.ihangju.com',
 
     /***** production */
-    productionAPIScheme: location.protocol || 'http:',
-    productionHost: 'h5app.ihangju.com',
+    // productionAPIScheme: location.protocol || 'http:',
+    productionAPIScheme: 'https:',
     productionAPIHost: 'api.ihangju.com',
 
     shareHost: 'www.ihangju.com',

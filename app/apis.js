@@ -23,7 +23,6 @@ if (Env.production) {
     thirdparty_login_domain = 'oauth.zan-shang.com';
 }
 
-// let login_api_scheme = (api_scheme === '' ? 'http:' : api_scheme);
 let login_api_scheme = api_scheme;
 console.log('login_api_scheme:' + login_api_scheme);
 

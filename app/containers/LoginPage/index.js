@@ -59,7 +59,7 @@ class LoginPage extends React.Component {
 
                 setTimeout(() => {
                     if (that.redirectUrl && that.redirectUrl.indexOf('login') < 0) {
-                        window.location.replace(that.redirectUrl);
+                        window.location.href = that.redirectUrl;
                     } else {
                         that.routeHandler(that.redirectPageName);
                     }
