@@ -107,7 +107,7 @@ export function* changeCollection() {
             credentials: 'include'
         });
 
-        if (collectionResult) {
+        if (collectionResult && collectionResult.data) {
             if (collectionResult.err === undefined || collectionResult.err === null) {
                 yield put(loadCollectionDataSuccess(collectionResult.data));
             } else {
@@ -134,7 +134,7 @@ export function* changeLike(){
             credentials: 'include'
         })
 
-        if (likeResult) {
+        if (likeResult && likeResult.data) {
             if (likeResult.err === undefined || likeResult.err === null) {
                 yield put(loadLikeDataSuccess(likeResult.data));
             } else {

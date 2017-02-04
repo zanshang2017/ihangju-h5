@@ -88,7 +88,7 @@ class SettingPage extends React.Component { // eslint-disable-line react/prefer-
                                 onClick={function () {
                                     this.props.dispatch(logout());
 
-                                    this.context.router.go(-1); //回退一步,保持没有多余的回退页面
+                                    {/*this.context.router.go(-1); //回退一步,保持没有多余的回退页面*/}
 
                                     setTimeout(()=> {
                                         this.context.router.replace('/found');

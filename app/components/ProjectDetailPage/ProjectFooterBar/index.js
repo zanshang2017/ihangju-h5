@@ -23,7 +23,7 @@ class ProjectFooterBar extends React.Component {
     }
 
     componentWillMount() {
-        this.userInfo = this.props.userInfo.toJS();
+        this.userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
         signals.loadCopyrightSuccess.add(this.onCopyrightLoaded.bind(this));
     }
 

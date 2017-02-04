@@ -55,14 +55,22 @@ class LoginPage extends React.Component {
             if (result.openPersonalizedRecommendation == true) {
                 that.routeHandler('/follow_recommendation');
             } else {
-                that.context.router.go(-1); //回退一部,因为表单本身会增加一次历史
+                //todo 回退的方案会产生混乱,暂不启用
+                // that.context.router.go(-1); //回退一部,因为iframe中表单提交会产生一个历史
 
                 setTimeout(() => {
+                    // 如果有跳转链接,截取#和?之间的部分
                     if (that.redirectUrl && that.redirectUrl.indexOf('login') < 0) {
-                        window.location.href = that.redirectUrl;
-                    } else {
-                        that.routeHandler(that.redirectPageName);
+                        if(that.redirectUrl.indexOf('#') > -1) {
+                            // that.redirectPageName = that.redirectUrl.substr(that.redirectUrl.indexOf('#')+1);
+                            that.redirectPageName = that.redirectUrl.substring(that.redirectUrl.indexOf('#')+1, that.redirectUrl.indexOf('?'));
+                        }
+                        // window.location.href = that.redirectUrl;
+                    // } else {
+                        // that.routeHandler(that.redirectPageName);
                     }
+
+                    that.routeHandler(that.redirectPageName);
                 }, 0);
             }
         });

@@ -50,12 +50,10 @@ var Env = {
     // devHost: '192.168.1.33:8888',
     // devAPIHost: '192.168.1.33:8888',
 
-    devAPIScheme: 'http:',
-    // devAPIScheme: 'https:', //todo 线上都有https
+    devAPIScheme: 'https:',
     devAPIHost: 'api.ihangju.com',
 
     /***** production */
-    // productionAPIScheme: location.protocol || 'http:',
     productionAPIScheme: 'https:',
     productionAPIHost: 'api.ihangju.com',
 
