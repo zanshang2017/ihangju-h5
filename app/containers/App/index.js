@@ -97,6 +97,7 @@ class App extends React.Component {
         locStorage.set('version', cur);
 
         //检测版本号,展示引导页
+
         if ((!old && lastShowGuideVer) || (cur !== old && compareVersion(lastShowGuideVer, old) > 0)) {
             this.context.router.push('/guide');
             return true;

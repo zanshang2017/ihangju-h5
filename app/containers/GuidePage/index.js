@@ -17,9 +17,17 @@ class GuidePage extends React.Component {
 
     constructor() {
         super();
-        this.guideImages = __APP_CONFIG.guide.images;
+        this.images = __APP_CONFIG.guide.images;
         this.guideStyle = __APP_CONFIG.guide.style;
-        this.imgRatio = __APP_CONFIG.guide.ratio;
+
+        for (let k in this.images) {
+            if (this.images.hasOwnProperty(k)) {
+                let item = this.images[k];
+                item.width = k.split('x')[0];
+                item.height = k.split('x')[1];
+                item.ratio = item.width / item.height;
+            }
+        }
     }
 
     componentDidMount() {
@@ -54,10 +62,19 @@ class GuidePage extends React.Component {
         var _width = document.documentElement.clientWidth;
         var _height = document.documentElement.clientHeight;
 
+        var deviceWidth = _width * window.devicePixelRatio;
+        var deviceHeight = _height * window.devicePixelRatio;
+
+        if (this.images[deviceWidth + 'x' + deviceHeight]) {
+            this.guideImages = this.images[deviceWidth + 'x' + deviceHeight].imgs;
+        } else {
+            this.guideImages = (window.devicePixelRatio > 2 ? this.images['1080x1920'].imgs : this.images['720x1080'].imgs);
+        }
+
         var clientRatio = _width / _height;
         var imgStyle = null;
 
-        if (that.imgRatio > clientRatio) { // 从宽
+        if (that.images.ratio > clientRatio) { // 从宽
             imgStyle = {
                 width: _width + 'px'
             }

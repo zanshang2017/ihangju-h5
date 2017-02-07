@@ -51,7 +51,7 @@ var Env = {
     // devAPIHost: '192.168.1.33:8888',
 
     devAPIScheme: 'https:',
-    devAPIHost: 'api.ihangju.com',
+    devAPIHost: 'api.ihangju.com', //todo 测试服务器挂了!! 先使用线上接口
 
     /***** production */
     productionAPIScheme: 'https:',
