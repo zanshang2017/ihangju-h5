@@ -82,6 +82,8 @@
   :global .rotateZ180 {
     -webkit-transform: rotateZ(180deg);
     transform: rotateZ(180deg); }
+  :global [data-hashover="true"]:active {
+    background: #f3f5f4 !important; }
   :global .f12 {
     font-size: 0.32rem; }
   :global .f13 {

@@ -6,6 +6,7 @@ import {
 } from './constants';
 
 import {
+    loadAgreementsData,
     loadAgreementsDataSuccess,
     loadAgreementsDataError,
 
@@ -62,6 +63,7 @@ export function* signAgreement() {
 
         let id = action.payload.agreementId;
         let isAgree = action.payload.isAgree;
+        let userId = action.payload.userId;
         let url = AGREEMENT_API + `/${id}`;
 
         const lists = yield call(request, url, {
@@ -77,9 +79,11 @@ export function* signAgreement() {
         if (lists) {
             if ((lists.err === undefined || lists.err === null) && (lists.data && lists.data.code === 'ok')) {
                 yield put(signAgreementSuccess(id, isAgree));
+                yield put(loadAgreementsData(userId));
             } else {
                 console.log(lists.err.response); // eslint-disable-line no-console
                 yield put(signAgreementError(lists.err));
+
             }
         }
     }

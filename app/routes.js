@@ -1387,41 +1387,41 @@ export default function createRoutes(store) {
         //         routeEffector.autoSet(); //进入页面时设置路由切换效果
         //     }
         // }
-        , {
-            path: '/demo',
-            name: 'demoPage',
-            getComponent(nextState, cb) {
-
-                beforeGetComponent(false);
-
-                const importModules = Promise.all([
-                    System.import('containers/DemoPage/reducer'),
-                    System.import('containers/DemoPage/sagas'),
-                    System.import('containers/DemoPage')
-                ]);
-
-                const renderRoute = loadModule(cb);
-
-                importModules.then(([reducer, sagas, component]) => {
-                    if (!initedStatus.demoPage) {
-                        injectReducer('demoPage', reducer.default);
-                        injectSagas(sagas.default);
-                        initedStatus.demoPage = true;
-                    }
-
-                    renderRoute(component);
-                });
-
-                importModules.catch(errorLoading);
-            },
-            onEnter: function () {
-                //store.dispatch(hideNav());
-                routeEffector.autoSet(); //进入页面时设置路由切换效果
-            },
-            onLeave: function () {
-                //store.dispatch(showNav());
-            }
-        }
+        // , {
+        //     path: '/demo',
+        //     name: 'demoPage',
+        //     getComponent(nextState, cb) {
+        //
+        //         beforeGetComponent(false);
+        //
+        //         const importModules = Promise.all([
+        //             System.import('containers/DemoPage/reducer'),
+        //             System.import('containers/DemoPage/sagas'),
+        //             System.import('containers/DemoPage')
+        //         ]);
+        //
+        //         const renderRoute = loadModule(cb);
+        //
+        //         importModules.then(([reducer, sagas, component]) => {
+        //             if (!initedStatus.demoPage) {
+        //                 injectReducer('demoPage', reducer.default);
+        //                 injectSagas(sagas.default);
+        //                 initedStatus.demoPage = true;
+        //             }
+        //
+        //             renderRoute(component);
+        //         });
+        //
+        //         importModules.catch(errorLoading);
+        //     },
+        //     onEnter: function () {
+        //         //store.dispatch(hideNav());
+        //         routeEffector.autoSet(); //进入页面时设置路由切换效果
+        //     },
+        //     onLeave: function () {
+        //         //store.dispatch(showNav());
+        //     }
+        // }
         , {
             path: '*',
             name: 'notfound',

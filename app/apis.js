@@ -543,15 +543,26 @@ const AGREEMENT_PROFILE_API = `${api_scheme}//${api_host}/agreement/profile`;
 const IDENTIFY_AUTH_API = `${api_scheme}//${api_host}/identityauthentication`;
 
 /**
- * 作者认证接口
+ * 认证接口
  * http://192.168.1.33:8888/identityauthentication/profile/57a98caae4b0c25e9b71d8f9
  */
 const AUTHORATTEST_API = `${api_scheme}//${api_host}/identityauthentication/profile/`;
-
+/**
+* 服务商个人 提交
+*/
 const UPDATE_SERVICEPERSONAL_API = `${api_scheme}//${api_host}/identityauthentication/individual`;
+/**
+* 服务商机构 提交
+*/
 const UPDATE_SERVICEAGENCY_API = `${api_scheme}//${api_host}/identityauthentication/agency`;
+/**
+* 作者 提交
+*/
 const UPDATE_AUTHOR_API = `${api_scheme}//${api_host}/identityauthentication/author`;
-
+/**
+* 联系客服
+*/
+const FAIL_HELP_API = `${api_scheme}//${api_host}/help/customerservice`;
 
 export {
     IMG_CDN_PATH,
@@ -613,8 +624,11 @@ export {
 
     IDENTIFY_AUTH_API,
     AUTHORATTEST_API,
+    
     UPDATE_SERVICEPERSONAL_API,
     UPDATE_SERVICEAGENCY_API,
     UPDATE_AUTHOR_API,
+
+    FAIL_HELP_API,
 };
 

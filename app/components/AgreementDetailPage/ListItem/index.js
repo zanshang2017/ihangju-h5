@@ -56,9 +56,11 @@ class ListItem extends React.Component {
                         //是版权所有者
                         status = <div className={styles.btns}>
                             <div className={styles.agreeBtn} data-id={_item.agreementid}
+                                 data-hashover="true"
                                  onClick={this.props.agreeHandler}>同意
                             </div>
                             <div className={styles.disagreeBtn} data-id={_item.agreementid}
+                                 data-hashover="true"
                                  onClick={this.props.disagreeHandler}>拒绝
                             </div>
                         </div>

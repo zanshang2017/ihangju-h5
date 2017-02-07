@@ -5,6 +5,10 @@ import {
 	LOAD_ATTESTSTATE_DATA_SUCCESS,
 	LOAD_ATTESTSTATE_DATA_ERROR,
 
+	LOAD_HELP_DATA,
+	LOAD_HELP_DATA_SUCCESS,
+	LOAD_HELP_DATA_ERROR,
+
 } from './constants';
 
 export function defaultAction() {
@@ -34,6 +38,30 @@ export function loadAttestStateDataSuccess(data) {
 export function loadAttestStateDataError(error) {
 	return {
 		type: LOAD_ATTESTSTATE_DATA_ERROR,
+		payload: {
+			error: error
+		}
+	}
+}
+
+export function loadHelpData() {
+	return {
+		type: LOAD_HELP_DATA
+	}
+}
+
+export function loadHelpDataSuccess(data) {
+	return {
+		type: LOAD_HELP_DATA_SUCCESS,
+		payload: {
+			data: data
+		}
+	}
+}
+
+export function loadHelpDataError(error) {
+	return {
+		tyep: LOAD_HELP_DATA_ERROR,
 		payload: {
 			error: error
 		}

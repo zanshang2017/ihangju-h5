@@ -23,6 +23,8 @@ import {
     LOGOUT_SUCCESS,
 } from 'containers/App/constants';
 
+import Toast from 'antd-mobile/lib/toast';
+
 const initialState = fromJS({
     agreements: fromJS({
         data: false,
@@ -64,6 +66,10 @@ function AgreementDetailPageReducer(state = initialState, action = {}) {
             //     state = state.setIn(['agreements', 'isLast'], true);
             // }
 
+            try {
+                Toast.hide();
+            }catch(e){}
+
             return state.setIn(['agreements', 'loading'], false).setIn(['agreements', 'page'], page);
 
         case LOAD_AGREEMENTS_DATA_ERROR:
@@ -84,7 +90,6 @@ function AgreementDetailPageReducer(state = initialState, action = {}) {
             return state.set('agreements', fromJS(agreements));
 
         case SIGN_AGREEMENTS_SUCCESS:
-            // debugger;
 
             //找到对应协议信息,状态置为loading
             agreements = state.get('agreements').toJS();
@@ -104,6 +109,9 @@ function AgreementDetailPageReducer(state = initialState, action = {}) {
             return state.set('agreements', fromJS(agreements));
 
         case SIGN_AGREEMENTS_ERROR:
+            try {
+                Toast.hide();
+            }catch(e){}
 
             return state;
 

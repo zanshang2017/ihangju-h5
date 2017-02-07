@@ -5,11 +5,13 @@ import {router} from 'react-router';
 import styles from './style.css';
 import {createSelector} from 'reselect';
 import {
-	selectAttestStateData
+	selectAttestStateData,
+    selctFailHelpData,
 } from './selectors'
 
 import {
-	loadAttestStateData
+	loadAttestStateData,
+    loadHelpData
 } from './actions'
 
 import TopBar from 'components/common/TopBar';
@@ -61,6 +63,17 @@ class AttestState extends React.Component {
     changeLayer() {
         this.failClick();
     }
+    customerserviceClick() {
+        
+        this.props.dispatch(loadHelpData());
+        //this.context.router.push(`/dialogue/${letterGroupId}`);
+    }
+    componentDidUpdate() {
+        let data = this.props.helpData.toJS();
+        if(data.id){
+           this.context.router.push(`/dialogue/${data.id}`) 
+        }
+    }
     render() {
         let attestState = this.props.attestStateData.toJS();
         let conDom = '';
@@ -111,7 +124,7 @@ class AttestState extends React.Component {
                         <div className={styles.right}>{failMeshtml}</div>
                     </span>
                     <span onClick={this.failClick.bind(this)} className={`${styles.btn} ${styles.failLeftBtn}`}>修改认证信息</span>
-                    <span className={`${styles.btn} ${styles.failRightBtn}`}>联系客服</span></div>
+                    <span onClick={this.customerserviceClick.bind(this)}className={`${styles.btn} ${styles.failRightBtn}`}>联系客服</span></div>
             }
         }
 
@@ -135,9 +148,11 @@ AttestState.contextTypes = {
 };
 const mapStateToProps = createSelector(
     selectAttestStateData(),
-    (attestStateData) => {
+    selctFailHelpData(),
+    (attestStateData,helpData) => {
         return {
-            attestStateData
+            attestStateData,
+            helpData
         }
     }
 );

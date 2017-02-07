@@ -1,5 +1,6 @@
 .wrap {
-  background: #f4f5f5; }
+  background: #f4f5f5;
+  padding-bottom: 50px; }
   .wrap .redColor {
     color: #f00; }
 
