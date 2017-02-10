@@ -56,6 +56,8 @@ export function* getReadChapterData() {
             if (projectResult.err === undefined || projectResult.err === null) {
                 if (projectResult.data) {
                     let projectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
+                    let userInfo = JSON.parse(locStorage.get('userInfo')) || {};
+                    let userInfoId = userInfo.id;
                     // let readInfo = {};
                     // if(projectInfo.length < 1){
                     // 	readInfo.pid = pid;
@@ -72,12 +74,19 @@ export function* getReadChapterData() {
                     //  		}
                     // 	}
                     // }
-                    if (projectInfo[pid]) {
-                        projectInfo[pid].push(cid);
-                    } else {
-                        projectInfo[pid] = [];
-                        projectInfo[pid].push(cid);
+                    if(projectInfo[userInfoId]) {
+                        if (projectInfo[userInfoId][pid]) {
+                            projectInfo[userInfoId][pid].push(cid);
+                        } else {
+                            projectInfo[userInfoId][pid] = [];
+                            projectInfo[userInfoId][pid].push(cid);
+                        }
+                    }else {
+                        projectInfo[userInfoId] = {};
+                        projectInfo[userInfoId][pid] = [];
+                        projectInfo[userInfoId][pid].push(cid);
                     }
+                    
                     locStorage.set('projectInfo', JSON.stringify(projectInfo));
                 }
 
