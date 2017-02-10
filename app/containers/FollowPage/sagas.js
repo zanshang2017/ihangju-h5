@@ -42,7 +42,7 @@ export function* getMyFollowData() {
 
         let url = MY_FOLLOW_API + `?page=${page}&size=${size}`;
 
-        if (id) {
+        if (id && id != -1) {
             url += '&id=' + id;
         }
 
