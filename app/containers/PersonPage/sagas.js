@@ -86,7 +86,7 @@ export function* setFollowUser() {
             credentials: 'include'
         });
 
-        if(lists) {
+        if(lists && lists.data) {
             if ((lists.err === undefined || lists.err === null) && (lists.data && lists.data.code === 'ok')) {
                 yield put(setFollowUserSuccess(id, isToFollow));
 

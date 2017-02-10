@@ -1,6 +1,7 @@
 /**
  * Created by Howard on 16/7/18.
  */
+import {hashHistory} from 'react-router';
 
 function noop(){}
 
@@ -409,6 +410,16 @@ function secondsTotime(seconds) {
     return ret;
 }
 
+function goBackAndReplace(step = 0, url) {
+    setTimeout(() => {
+        hashHistory.go(step);
+        if (url) {
+            setTimeout(()=> {
+                hashHistory.replace(url);
+            }, 100);
+        }
+    }, 0);
+}
 
 export {
     getUrlParam,
@@ -425,4 +436,5 @@ export {
     goBackHelper,
     isLogin,
     secondsTotime,
+    goBackAndReplace,
 };

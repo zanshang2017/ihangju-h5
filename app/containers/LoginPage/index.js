@@ -15,6 +15,8 @@ import styles from './styles.scss';
 
 import Toast from 'antd-mobile/lib/toast';
 
+import {goBackAndReplace} from 'utils/util';
+
 import {
     loadUserInfo
 } from '../App/actions.js'
@@ -25,6 +27,8 @@ import {
 
 import signals from './signals';
 
+import _ from 'underscore';
+
 /* eslint-disable react/prefer-stateless-function */
 class LoginPage extends React.Component {
 
@@ -32,6 +36,9 @@ class LoginPage extends React.Component {
         super();
         this.loginHandler = null;
         this.redirectUrl = null;
+
+        this.historyLengthBeforeLogin = history.length;
+        console.log('historyLengthBeforeLogin', this.historyLengthBeforeLogin);
     }
 
     componentDidMount() {
@@ -49,31 +56,33 @@ class LoginPage extends React.Component {
 
         window.addEventListener('message', this.loginHandlerFactory());
 
-        signals.loginSuccess.add((result)=> {
+        signals.loginSuccess.add(_.throttle(loginSuccessHandler, 300, {leading: false}));
+
+        function loginSuccessHandler(result){
             //判断是否需要展示引导页
             // if (1) { //todo 记得关闭 测试用
             if (result.openPersonalizedRecommendation == true) {
                 that.routeHandler('/follow_recommendation');
             } else {
-                //todo 回退的方案会产生混乱,暂不启用
-                // that.context.router.go(-1); //回退一部,因为iframe中表单提交会产生一个历史
-
-                setTimeout(() => {
-                    // 如果有跳转链接,截取#和?之间的部分
-                    if (that.redirectUrl && that.redirectUrl.indexOf('login') < 0) {
-                        if(that.redirectUrl.indexOf('#') > -1) {
-                            // that.redirectPageName = that.redirectUrl.substr(that.redirectUrl.indexOf('#')+1);
-                            that.redirectPageName = that.redirectUrl.substring(that.redirectUrl.indexOf('#')+1, that.redirectUrl.indexOf('?'));
-                        }
-                        // window.location.href = that.redirectUrl;
-                    // } else {
-                        // that.routeHandler(that.redirectPageName);
+                if (that.redirectUrl && that.redirectUrl.indexOf('login') < 0) {
+                    if(that.redirectUrl.indexOf('#') > -1) {
+                        that.redirectPageName = that.redirectUrl.substring(that.redirectUrl.indexOf('#')+1, that.redirectUrl.indexOf('?'));
                     }
+                }
 
-                    that.routeHandler(that.redirectPageName);
-                }, 0);
+                console.log('afterHistoryLength', history.length);
+
+                let goForwardStep = history.length - that.historyLengthBeforeLogin;
+                let goBackStep = 0;
+
+                if (goForwardStep > 0) {
+                    goBackStep -= goForwardStep;
+                }
+
+                console.log('goBackStep', goBackStep);
+                goBackAndReplace(goBackStep, that.redirectPageName);
             }
-        });
+        }
     }
 
     componentWillUnmount() {

@@ -178,9 +178,6 @@ class App extends React.Component {
         signals.onUnLogin.add(()=> {
             var redirect = '?url=' + encodeURIComponent(location.href);
             that.context.router.replace('/login' + redirect);
-            // that.context.router.replace('/login');
-
-           // window.location.replace('/#/login' + redirect);
         });
     }
 

@@ -33,6 +33,8 @@ import TopBar from 'components/common/TopBar';
 import UserList from 'components/FollowRecommendationPage/UserList';
 import TagList from 'components/FollowRecommendationPage/TagList';
 
+import {goBackAndReplace} from 'utils/util';
+
 import Toast from 'antd-mobile/lib/toast';
 
 const TAGS_NUMBER_LIMIT = 3;
@@ -57,7 +59,7 @@ export class FollowRecommendationPage extends React.Component { // eslint-disabl
                 Toast.hide();
                 signals.putFollowSuccess.removeAll();
                 signals.putFollowError.removeAll();
-                window.location.replace('/');
+                goBackAndReplace(-2, '/');
             }, 1200);
         });
 

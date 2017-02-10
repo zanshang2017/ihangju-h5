@@ -37,7 +37,7 @@ class MyPage extends React.Component { // eslint-disable-line react/prefer-state
 
         this.id = userInfo.id;
         if (!this.id) {
-            this.context.router.replace('/login');
+            this.context.router.push('/login');
         }
 
     }

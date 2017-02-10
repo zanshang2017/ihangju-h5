@@ -105,12 +105,13 @@ class PersonPage extends React.Component { // eslint-disable-line react/prefer-s
 
     render() {
         let personInfo = (this.props.personInfo && this.props.personInfo.toJS()) || {};
+        let currentUserInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
         let followUserCls = personInfo.follow ? styles.followedUser : styles.followUser;
         let btns = '';
         let userArticleHtml = '';
 
         //当前用户自己不展示功能按钮
-        if (personInfo.userId && this.props.userInfo.toJS().id !== personInfo.userId) {
+        if (personInfo.userId && currentUserInfo.id !== personInfo.userId) {
             btns = <div><span className={`${styles.topBarBtn} ${followUserCls}`}
                               onClick={_.throttle(this.followUserHandler.bind(this), 500, {leading: false})}></span>
                 <span className={`${styles.topBarBtn} ${styles.letter}`}

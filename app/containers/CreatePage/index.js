@@ -110,7 +110,7 @@ export class CreatePage extends React.Component { // eslint-disable-line react/p
     }
 
     routeHandler(url) {
-        this.context.router.replace(url);
+        this.context.router.push(url);
     }
 
     render() {

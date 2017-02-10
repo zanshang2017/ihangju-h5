@@ -59,7 +59,7 @@ export class FollowPage extends React.Component { // eslint-disable-line react/p
         var userInfo = this.props.userInfo;
 
         if (!userInfo) {
-            this.context.router.replace('/login?redirect=' + encodeURIComponent('/') + 'follow');
+            this.context.router.push('/login?redirect=' + encodeURIComponent('/') + 'follow');
             return;
         }
 

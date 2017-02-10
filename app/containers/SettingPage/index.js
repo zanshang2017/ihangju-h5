@@ -18,6 +18,8 @@ import {
     Env
 } from 'utils/env';
 
+import {goBackAndReplace} from 'utils/util';
+
 import TopBar from 'components/common/TopBar';
 import List from 'antd-mobile/lib/list';
 
@@ -85,15 +87,10 @@ class SettingPage extends React.Component { // eslint-disable-line react/prefer-
                         <List.Body>
                             <List.Item
                                 arrow="horizontal"
-                                onClick={function () {
+                                onClick={(function () {
                                     this.props.dispatch(logout());
-
-                                    {/*this.context.router.go(-1); //回退一步,保持没有多余的回退页面*/}
-
-                                    setTimeout(()=> {
-                                        this.context.router.replace('/found');
-                                    }, 10);
-                                }.bind(this)}
+                                    goBackAndReplace(-1, '/found');
+                                }).bind(this)}
                             >
                                 <div className={styles.listWrap}>退出</div>
                             </List.Item>
