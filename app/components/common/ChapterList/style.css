@@ -38,8 +38,7 @@
         white-space: nowrap; }
       .chapterListLayer ul li .chapterRight {
         display: block;
-        float: right;
-        margin-left: 1.33333rem; }
+        float: right; }
   .chapterListLayer .layerClose {
     position: fixed;
     height: 2.61333rem;

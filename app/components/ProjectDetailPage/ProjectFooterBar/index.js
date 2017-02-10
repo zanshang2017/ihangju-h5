@@ -30,7 +30,12 @@ class ProjectFooterBar extends React.Component {
     componentDidMount() {
         this._result = this.props.projectDetail.toJS();
         this.locStorageProjectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
-        this.newArr = this.locStorageProjectInfo[this._result.projectId];
+        var locStorageUserInfo = JSON.parse(locStorage.get('userInfo')) || {};
+        this.userInfoId = locStorageUserInfo.id;
+        this.UserProjectInfo = this.locStorageProjectInfo[this.userInfoId];
+        if(this.UserProjectInfo) {
+            this.newArr = this.UserProjectInfo[this._result.projectId];
+        }
         if (this._result.projectId) {
             this.props.loadChapter(this._result.projectId);
         }

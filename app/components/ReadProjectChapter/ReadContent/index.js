@@ -79,11 +79,13 @@ class ReadContent extends React.Component {
 
         return new Promise((resolve, reject) => {
             // let flag = setTimeout(() => {
-
+                
 
                 let _chapterContent = that.props.chapterContent.toJS();
                 let _projectInfo = that.props.projectInfo.toJS();
                 let locStorageProjectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
+                let locStorageUserInfo = JSON.parse(locStorage.get('userInfo')) || {};
+                let userInfoId = locStorageUserInfo.id;
                 let chapterIndex = null;
 
 
@@ -104,7 +106,7 @@ class ReadContent extends React.Component {
 
                 if (chapterIndex || chapterIndex === 0) {
                     chapterId = _chapterContent.chapters[chapterIndex].id;
-                    locStorageProjectInfo[projectId].push(chapterId);
+                    locStorageProjectInfo[userInfoId][projectId].push(chapterId);
                     that.props.setProjectInfoStatus(_projectInfo);
                     locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
                     resolve();
@@ -129,6 +131,8 @@ class ReadContent extends React.Component {
         let _chapterContent = that.props.chapterContent.toJS();
         let _projectInfo = that.props.projectInfo.toJS();
         let locStorageProjectInfo = JSON.parse(locStorage.get('projectInfo')) || {};
+        let locStorageUserInfo = JSON.parse(locStorage.get('userInfo')) || {};
+        let userInfoId = locStorageUserInfo.id;
         let chapterIndex = null;
 
         for (let key = 0, len = _chapterContent.chapters.length; key < len; key++) {
@@ -147,7 +151,7 @@ class ReadContent extends React.Component {
         if (chapterIndex) {
             console.log(chapterIndex);
             chapterId = _chapterContent.chapters[chapterIndex].id;
-            locStorageProjectInfo[projectId].push(chapterId);
+            locStorageProjectInfo[userInfoId][projectId].push(chapterId);
             that.props.setProjectInfoStatus(_projectInfo);
             locStorage.set('projectInfo', JSON.stringify(locStorageProjectInfo));
         }
