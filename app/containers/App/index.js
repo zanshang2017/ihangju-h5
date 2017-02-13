@@ -115,10 +115,11 @@ class App extends React.Component {
             }
         }).bind(this));
 
-        //确保已存在登录信息,避免不必要的登录跳转
-        // if (JSON.parse(locStorage.get('userInfo'))) {
-        //     this.props.dispatch(loadUserInfo(DISPATCH_ORIGIN.OPEN_IDENTITY));
-        // }
+        // 确保已存在登录信息,避免不必要的登录跳转
+        // 同时抓取版权签约申请,以给予用户提示浮层
+        if (JSON.parse(locStorage.get('userInfo'))) {
+            this.props.dispatch(loadUserInfo(DISPATCH_ORIGIN.OPEN_IDENTITY));
+        }
     }
 
     componentDidMount() {
