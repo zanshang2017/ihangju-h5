@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {connect} from 'react-redux';
 import styles from './styles.css';
 
 import {
@@ -13,27 +13,44 @@ import {
 
 import Carousel from 'antd-mobile/lib/carousel';
 
-function Banner(props) {
-    if (!props.items) {
-        return <div className={styles.banner}></div>;
+export class Banner extends React.Component {
+    constructor(props) {
+        super(props);
     }
 
-    let imageSrc = '';
+    componentDidMount() {
+    }
 
-    return (
-        <div className={styles.banner}>
-            <Carousel autoplay="true" infinite="true" autoplayInterval="5000">
-                {
-                    props.items.map(function (item, key) {
-                        imageSrc = addImageParam(IMG_CDN_PATH + item.image, IMAGE_SIZE_TYPE.BANNER_IMAGE);
-                        return <div key={key} data-target={item.target} data-type={item.type} onClick={props.articleClickHandler}>
-                            <img src={imageSrc}/>
-                        </div>
-                    })
-                }
-            </Carousel>
-        </div>
-    );
+    componentDidUpdate() {
+    }
+
+    render() {
+        let that = this;
+
+        if (!this.props.items) {
+            return (
+                <div className={styles.banner}></div>
+            );
+        }
+
+        let imageSrc = '';
+
+        let bannerItems = this.props.items.map(function (item, key) {
+            imageSrc = addImageParam(IMG_CDN_PATH + item.image, IMAGE_SIZE_TYPE.BANNER_IMAGE);
+            return <div key={key} data-target={item.target} data-type={item.type} onClick={that.props.articleClickHandler}>
+                <img src={imageSrc}/>
+            </div>
+        });
+
+        return (
+            <div className={styles.banner}>
+                <Carousel ref="J_Carousel" autoplay="true" infinite="true" autoplayInterval="1000" mode="banner">
+                    {bannerItems}
+                </Carousel>
+            </div>
+        );
+
+    }
 }
 
 Banner.propTypes = {
@@ -44,6 +61,5 @@ Banner.propTypes = {
     articleClickHandler: React.PropTypes.func
 };
 
-export default Banner;
 
-
+export default connect()(Banner);

@@ -9,7 +9,7 @@ import styles from './styles.scss';
 
 class PullRefresh {
     static defaultOptions = {
-        lockInTime: 300, //延迟刷新或加载
+        lockInTime: 800, //延迟刷新或加载
         maxAmplitude: 120, //设置上下滑动最大弹性振幅度，单位为像素，默认为 80 像素
     };
 

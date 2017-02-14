@@ -35,10 +35,10 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
 
     constructor(props) {
         super(props);
+        this.loadDiscoveries();
     }
 
-    componentWillMount() {
-        this.loadDiscoveries();
+    componentDidUpdate() {
     }
 
     loadDiscoveries() {
