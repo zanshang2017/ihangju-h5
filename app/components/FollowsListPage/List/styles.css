@@ -1,6 +1,7 @@
 @import url(../../../common/common.css);
 .listWrap {
   width: 100%;
+  background: #fff;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch; }
   .listWrap .item {

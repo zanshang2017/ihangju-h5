@@ -61,6 +61,8 @@ function FollowsListPageReducer(state = initialState, action = {}) {
 
             if (data && data.length === 0) {
                 state = state.setIn(['followsList', 'isLast'], true);
+            } else {
+                state = state.setIn(['followsList', 'isLast'], false);
             }
 
             return state.setIn(['followsList', 'loading'], false).setIn(['followsList', 'page'], page);

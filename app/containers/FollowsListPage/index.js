@@ -18,6 +18,7 @@ import {
 
 import styles from './styles.css';
 
+import LoadingList from 'components/common/LoadingList';
 import List from 'components/FollowsListPage/List';
 
 import TopBar from 'components/common/TopBar';
@@ -27,9 +28,8 @@ export class FollowsListPage extends React.Component { // eslint-disable-line re
     constructor(props) {
         super(props);
         this.id = '';
-    }
+        this.page = 0;
 
-    componentWillMount() {
         if (this.props.routeParams) {
             this.id = this.props.routeParams.id;
         }
@@ -43,10 +43,10 @@ export class FollowsListPage extends React.Component { // eslint-disable-line re
         console.warn('FollowsListPage DidMount');
     }
 
-    nextPageHandler(page = 0) {
+    nextPageHandler() {
         if (this.id) {
-            console.log('link click', page);
-            this.props.dispatch(loadListData(this.id, page));
+            console.log('link click', this.page);
+            this.props.dispatch(loadListData(this.id, ++this.page));
         }
     }
 
@@ -57,6 +57,7 @@ export class FollowsListPage extends React.Component { // eslint-disable-line re
 
     render() {
         let projs = this.props.followsList ? this.props.followsList.toJS() : {};
+        console.log('projs', projs);
         let items = projs.data ? projs.data : [];
         let page = projs.page || 0;
         let isLast = projs.isLast || false;
@@ -67,14 +68,19 @@ export class FollowsListPage extends React.Component { // eslint-disable-line re
                 <TopBar data-has-back="true">
                     <div data-title>关注</div>
                 </TopBar>
-                <div className="mainContent whiteBg">
-                    <List page={page}
-                          isLast={isLast}
-                          loading={loading}
-                          items={items}
-                          nextPageHandler={this.nextPageHandler.bind(this)}
-                          followUserHandler={this.followUserHandler.bind(this)}>
-                    </List>
+                <div ref="J_MainContent" className="mainContent whiteBg">
+                    <LoadingList outer={this.refs.J_MainContent || null}
+                                 isLast={isLast}
+                                 isLoading={loading}
+                                 loadHandler={this.nextPageHandler.bind(this)}
+                                 offset="350">
+                        <List page={page}
+                              isLast={isLast}
+                              loading={loading}
+                              items={items}
+                              followUserHandler={this.followUserHandler.bind(this)}>
+                        </List>
+                    </LoadingList>
                 </div>
             </div>
         );

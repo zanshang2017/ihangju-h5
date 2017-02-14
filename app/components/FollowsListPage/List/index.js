@@ -20,42 +20,13 @@ class List extends React.Component {
 
     constructor(props) {
         super(props);
-        this.scrollHanderBinded = null;
-        this.page = 0;
-        this.isLast = false;
-        this.loading = false;
     }
 
     componentDidMount() {
-        var that = this;
-
-        //滑动底部加载下一页
-        that.scrollHanderBinded = _.throttle(that.scrollHandler.bind(that), 300, {leading: false});
-        window.addEventListener('scroll', that.scrollHanderBinded);
     }
 
     componentWillUnmount() {
         console.log('Collection List: willUnmount.');
-
-        //移除侦听
-        if (this.scrollHanderBinded) {
-            window.removeEventListener('scroll', this.scrollHanderBinded);
-            this.scrollHanderBinded = null;
-        }
-    }
-
-    scrollHandler(e) {
-        var nWrap = document.body;
-        var nWrapH = nWrap.getBoundingClientRect().height;
-
-        if (nWrap.scrollTop + nWrapH >= nWrap.scrollHeight) {
-            //加载下一页
-            if (!this.loading) {
-                if (!this.loading && !this.isLast) {
-                    this.props.nextPageHandler(this.page + 1);
-                }
-            }
-        }
     }
 
     authorClickHandler(e) {
@@ -73,9 +44,6 @@ class List extends React.Component {
     }
 
     render() {
-        this.page = this.props.page;
-        this.isLast = this.props.isLast;
-        this.loading = this.props.loading;
         this.items = this.props.items ? this.props.items : [];
 
         var that = this;
