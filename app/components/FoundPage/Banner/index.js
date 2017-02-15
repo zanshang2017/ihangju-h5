@@ -18,7 +18,7 @@ export class Banner extends React.Component {
         super(props);
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate(nextProps) {
         if(this.props.items) {
             if (this.props.items.length != nextProps.items.length) {
                 return true;
@@ -36,6 +36,9 @@ export class Banner extends React.Component {
     }
 
     componentDidUpdate() {
+    }
+
+    componentWillUnmount() {
     }
 
     isSameBanner(o1, o2) {
@@ -73,7 +76,7 @@ export class Banner extends React.Component {
 
         return (
             <div className={styles.banner}>
-                <Carousel ref="J_Carousel" autoplay="true" infinite="true" autoplayInterval="1000" mode="banner">
+                <Carousel autoplay="true" infinite="true" autoplayInterval="5000">
                     {bannerItems}
                 </Carousel>
             </div>
