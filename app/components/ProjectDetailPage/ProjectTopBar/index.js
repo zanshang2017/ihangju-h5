@@ -9,6 +9,7 @@ import ShareBtnList from '../../common/ShareBtnList';
 import {
     IMG_CDN_PATH
 } from '../../../apis.js';
+import ActionSheet from 'antd-mobile/lib/action-sheet';
 
 class ProjectTopBar extends React.Component {
     constructor(props) {
@@ -36,7 +37,10 @@ class ProjectTopBar extends React.Component {
         };
 
         this.props.setShareStatus(this.shareData);
-        this.refs.J_ShareBtnList.showShareLayer();
+        ActionSheet.showActionSheetWithCustom({
+            component: <ShareBtnList items={this.shareData}/>,
+
+        })
     }
 
     render() {
@@ -52,7 +56,6 @@ class ProjectTopBar extends React.Component {
                     </div>
                 </TopBar>
                 {/*<ChapterList ref="J_ChapterList" items={this.props.projectDetailChapter}/>*/}
-                <ShareBtnList ref="J_ShareBtnList" items={this.props.shareData}/>
             </div>
         )
     }
