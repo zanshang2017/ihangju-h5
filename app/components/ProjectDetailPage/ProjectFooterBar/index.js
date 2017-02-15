@@ -17,6 +17,8 @@ import Button from 'antd-mobile/lib/button';
 import Toast from 'antd-mobile/lib/toast';
 import ActionSheet from 'antd-mobile/lib/action-sheet';
 
+import Appsignals from 'containers/App/signals';
+
 class ProjectFooterBar extends React.Component {
     constructor(props) {
         super(props);
@@ -166,13 +168,19 @@ class ProjectFooterBar extends React.Component {
     }
 
     signClickHandler() {
-        if (this.isProvider) {
-            this.copyrightHandler();
-        } else if (this.isAccessUserIdentify) {
-            Toast.info('您已认证为作者,无法申请服务商认证', 2.5);
-        } else {
-            this.goSignPanel();
+        let userInfo = JSON.parse(locStorage.get('userInfo')) || {};
+        if(userInfo.id) {
+            if (this.isProvider) {
+                this.copyrightHandler();
+            } else if (this.isAccessUserIdentify) {
+                Toast.info('您已认证为作者,无法申请服务商认证', 2.5);
+            } else {
+                this.goSignPanel();
+            }
+        }else {
+           Appsignals.onUnLogin.dispatch(); 
         }
+        
     }
 
     copyrightHandler() {

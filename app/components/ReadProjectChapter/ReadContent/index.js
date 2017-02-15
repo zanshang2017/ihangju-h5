@@ -34,6 +34,8 @@ import {Link} from 'react-router';
 
 import PullRefresh from 'components/common/ReactPullRefresh';
 import TopGapForIOS from 'components/common/TopGapForIOS';
+import ActionSheet from 'antd-mobile/lib/action-sheet';
+
 
 var projectId = null;
 var chapterId = null;
@@ -197,7 +199,9 @@ class ReadContent extends React.Component {
         this.shareData.url = `https://${Env.shareHost}/share/index.html?project=${projectId}&chapter=${chapterId}`;
         this.shareData.title = this.chapterTitle;
         this.props.setShareStatus(this.shareData);
-        this.refs.J_ShareBtnListRead.showShareLayer();
+        ActionSheet.showActionSheetWithCustom({
+            component: <ShareBtnList items={this.shareData}/>,
+        })    
     }
 
     readStar() {
@@ -377,7 +381,6 @@ class ReadContent extends React.Component {
                         <li><i onClick={this.shareShow.bind(this)} className={styles.i3}></i></li>
                     </ul>
                 </div>
-                <ShareBtnList ref="J_ShareBtnListRead" items={this.props.shareData}/>
 
             </div>
         )

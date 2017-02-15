@@ -2,18 +2,18 @@
 @import '../../../common/__global.scss';
 
 .shareBg {
-    position: fixed;
-    left: 0;
-    top: 0;
-    background-color: rgba(0, 0, 0, .5);
-    width: 100%;
-    height: 100%;
-    z-index: $zIndexL1;
+    // position: fixed;
+    // left: 0;
+    // top: 0;
+    // background-color: rgba(0, 0, 0, .5);
+    // width: 100%;
+    // height: 100%;
+    // z-index: $zIndexL1;
 }
 
 .share {
-    position: fixed;
-    bottom: 0;
+    //position: fixed;
+    //bottom: 0;
     background: $bg;
     width: 100%;
     .signProject {

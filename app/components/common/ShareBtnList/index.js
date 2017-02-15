@@ -3,6 +3,7 @@ import styles from './style.css';
 import bridge from 'utils/bridge';
 
 import Toast from 'antd-mobile/lib/toast';
+import ActionSheet from 'antd-mobile/lib/action-sheet';
 
 class ShareBtnList extends React.Component {
     constructor(props) {
@@ -13,7 +14,6 @@ class ShareBtnList extends React.Component {
     }
 
     shareWx() {
-        // alert("微信分享");
         console.log(this.shareMes);
         var that = this;
         bridge.share.wechat(this.shareMes.url,
@@ -21,7 +21,7 @@ class ShareBtnList extends React.Component {
             this.shareMes.content,
             this.shareMes.imgSrc,
             function (data) {
-                that.hideShareLayer();
+                ActionSheet.close();
                 console.log(data.code, data.resp);
                 zhuge.track('作品分享到微信');
             }
@@ -30,14 +30,13 @@ class ShareBtnList extends React.Component {
     }
 
     shareFriend() {
-        // alert("朋友圈分享");
         var that = this;
         bridge.share.wechatTimeline(this.shareMes.url,
             this.shareMes.title,
             this.shareMes.content,
             this.shareMes.imgSrc,
             function (data) {
-                that.hideShareLayer();
+                ActionSheet.close();
                 console.log(data.code, data.resp);
                 zhuge.track('作品分享到朋友圈');
             }
@@ -45,11 +44,10 @@ class ShareBtnList extends React.Component {
     }
 
     shareWb() {
-        // alert("微博分享");
         var that = this;
         var shareText = this.shareMes.title + ' ' + this.shareMes.url;
         bridge.share.weibo(shareText, function (data) {
-            that.hideShareLayer();
+            ActionSheet.close();
             console.log(data.code, data.resp);
             zhuge.track('作品分享到微博');
         });
@@ -62,40 +60,28 @@ class ShareBtnList extends React.Component {
     copyToClipboard() {
         bridge.sys.copyToClipboard(this.shareMes.url, function () {
             Toast.info('已复制到剪切板');
-            this.refs._sharelayer.classList.add('hide');
+            ActionSheet.close();
             zhuge.track('作品复制链接');
         }.bind(this));
     }
 
     report() {
         Toast.info("举报成功");
-        this.refs._sharelayer.classList.add('hide');
+        ActionSheet.close();
     }
 
     hideShareLayer() {
-        let shareDom = this.refs._sharelayer;
-        shareDom.classList.add('hide');
+        ActionSheet.close();
     }
 
-    showShareLayer() {
-        let shareDom = this.refs._sharelayer;
-        shareDom.classList.remove('hide');
-    }
-    hideLayer(e) {
-        var that = this;
-        let dom = this.refs._sharelayer;
-        if(e.target === dom){
-            that.hideShareLayer();
-        }
-    }
     render() {
         var that = this;
         if (this.props.items) {
-            that.shareMes = this.props.items.toJS();
+            that.shareMes = this.props.items;
         }
 
         return (
-            <div onClick={this.hideLayer.bind(this)} ref="_sharelayer" className={`${styles.shareBg} hide`}>
+            <div ref="_sharelayer" className={`${styles.shareBg}`}>
                 <div className={styles.share}>
                     <div className={`${styles.signProject} hide`}>
                         <span>签作品</span>
