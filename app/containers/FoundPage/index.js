@@ -101,7 +101,6 @@ export class FoundPage extends React.Component { // eslint-disable-line react/pr
     }
 
     render() {
-
         return (
             <div className="pageInner">
                 <TopGapForIOS />

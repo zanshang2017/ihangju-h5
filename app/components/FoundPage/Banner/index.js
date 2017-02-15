@@ -18,10 +18,39 @@ export class Banner extends React.Component {
         super(props);
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if(this.props.items) {
+            if (this.props.items.length != nextProps.items.length) {
+                return true;
+            }
+
+            if(this.isSameBanner(this.props.items, nextProps.items)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     componentDidMount() {
     }
 
     componentDidUpdate() {
+    }
+
+    isSameBanner(o1, o2) {
+        if (o1 && o2) {
+            for (let i = 0; i < o1.length; i++) {
+                for (let k in o1[i]) {
+                    if (o1[i].hasOwnProperty(k)) {
+                        if (o1[i][k] != o2[i][k]) {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     render() {
