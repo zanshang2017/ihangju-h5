@@ -69,12 +69,14 @@ export class SearchPage extends React.Component { // eslint-disable-line react/p
 
     componentWillMount() {
         let _kw = locStorage.get(SEARCH_HISTORY_KEYWORDS_LOCALSTORAGE);
-        let historyKwObj = {};
+        let historyKwObj;
 
         try {
             historyKwObj = JSON.parse(_kw);
         } catch (e) {
         }
+
+        !historyKwObj && (historyKwObj = {});
 
         var userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
         this.historyUserId = (userInfo && userInfo.id) ? userInfo.id : UNLOGIN_HISTORY_ID;
