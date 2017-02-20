@@ -34,3 +34,7 @@ export const SET_SEARCH_KEYWORD = 'app/SearchPage/SET_SEARCH_KEYWORD';
 
 export const RESET_ALL_STATE = 'app/searchPage/RESET_ALL_STATE';
 
+
+export const HISTORY_ID_PREFIX = 'id_';
+export const UNLOGIN_HISTORY_ID = 'unlogin';
+

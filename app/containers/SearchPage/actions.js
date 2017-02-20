@@ -20,6 +20,8 @@ import {
     SET_SEARCH_KEYWORD,
     RESET_ALL_STATE,
 
+    UNLOGIN_HISTORY_ID,
+
 } from './constants';
 
 export function defaultAction() {
@@ -43,11 +45,12 @@ export function removeAllHistory() {
     }
 }
 
-export function addHistory(keyword = '') {
+export function addHistory(keyword = '', userId = UNLOGIN_HISTORY_ID) {
     return {
         type: ADD_HISTORY,
         payload: {
-            keyword
+            keyword,
+            userId
         }
     }
 }

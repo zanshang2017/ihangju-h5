@@ -22,6 +22,9 @@ import {
 
     RESET_ALL_STATE,
 
+    HISTORY_ID_PREFIX,
+    UNLOGIN_HISTORY_ID,
+
 } from './constants';
 
 import {
@@ -81,7 +84,8 @@ function searchPageReducer(state = initialState, action = null) {
             return state.set('historyKeywords', fromJS(action.payload.keywords));
 
         case ADD_HISTORY:
-            let historyList = state.get('historyKeywords').toJS() || [];
+            let historyListObj = JSON.parse(locStorage.get(SEARCH_HISTORY_KEYWORDS_LOCALSTORAGE)) || {};
+            let historyList = historyListObj[HISTORY_ID_PREFIX + action.payload.userId] || [];
 
             if (historyList.indexOf(action.payload.keyword) > -1) {
                 historyList.splice(historyList.indexOf(action.payload.keyword), 1);
@@ -93,11 +97,15 @@ function searchPageReducer(state = initialState, action = null) {
 
             historyList.unshift(action.payload.keyword);
 
-            locStorage.set(SEARCH_HISTORY_KEYWORDS_LOCALSTORAGE, JSON.stringify(historyList));
+            if(action.payload.userId != null) {
+                historyListObj[HISTORY_ID_PREFIX + action.payload.userId] = historyList;
+                locStorage.set(SEARCH_HISTORY_KEYWORDS_LOCALSTORAGE, JSON.stringify(historyListObj));
+            }
+
             return state.set('historyKeywords', fromJS(historyList));
 
         case REMOVE_ALL_HISTORY:
-            locStorage.set(SEARCH_HISTORY_KEYWORDS_LOCALSTORAGE, JSON.stringify([]));
+            locStorage.set(SEARCH_HISTORY_KEYWORDS_LOCALSTORAGE, null);
             return state.set('historyKeywords', fromJS([]));
 
         case RESET_ALL_STATE:

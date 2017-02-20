@@ -23,6 +23,10 @@ import {
 } from './selectors';
 
 import {
+    selectUserInfo,
+} from '../App/selectors'
+
+import {
     loadSearchResult,
     changeTag,
     removeAllHistory,
@@ -33,7 +37,9 @@ import {
 } from './actions';
 
 import {
-    SEARCH_HISTORY_KEYWORDS_LOCALSTORAGE
+    SEARCH_HISTORY_KEYWORDS_LOCALSTORAGE,
+    HISTORY_ID_PREFIX,
+    UNLOGIN_HISTORY_ID,
 } from './constants';
 
 import SearchBar from 'components/SearchPage/SearchBar';
@@ -62,9 +68,29 @@ export class SearchPage extends React.Component { // eslint-disable-line react/p
     }
 
     componentWillMount() {
-        let historyKw = JSON.parse(locStorage.get(SEARCH_HISTORY_KEYWORDS_LOCALSTORAGE));
-        if (historyKw && historyKw.length > 0) {
-            this.props.dispatch(initHistory(historyKw));
+        let _kw = locStorage.get(SEARCH_HISTORY_KEYWORDS_LOCALSTORAGE);
+        let historyKwObj = {};
+
+        try {
+            historyKwObj = JSON.parse(_kw);
+        } catch (e) {
+        }
+
+        var userInfo = this.props.userInfo ? this.props.userInfo.toJS() : {};
+        this.historyUserId = (userInfo && userInfo.id) ? userInfo.id : UNLOGIN_HISTORY_ID;
+
+        if (this.historyUserId) {
+            //清除旧数据
+            if (Array.isArray(historyKwObj)) {
+                locStorage.removeItem(SEARCH_HISTORY_KEYWORDS_LOCALSTORAGE);
+                historyKwObj = {};
+            }
+        }
+
+        let kw = historyKwObj[HISTORY_ID_PREFIX + this.historyUserId] || [];
+
+        if (kw) {
+            this.props.dispatch(initHistory(kw));
         }
     }
 
@@ -97,10 +123,9 @@ export class SearchPage extends React.Component { // eslint-disable-line react/p
         this.keyword = keyword;
         this.showResultPage();
         this.props.dispatch(loadSearchResult(keyword));
-        this.props.dispatch(addHistory(keyword));
+        this.props.dispatch(addHistory(keyword, this.historyUserId));
         this.props.dispatch(setSearchKeyword(keyword));
         this.refs.J_SearchBar.setInputValue(keyword);
-
     }
 
     showResultPage() {
@@ -151,13 +176,16 @@ export class SearchPage extends React.Component { // eslint-disable-line react/p
                 </div>
 
                 <div ref="tagOuter" className={`${tab1Cls} ${styles.wrapBg} mainContent`}>
-                    <TagList {...this.props} loadNextHandler={this.loadNextHandler.bind(this)} outer={this.refs.tagOuter} />
+                    <TagList {...this.props} loadNextHandler={this.loadNextHandler.bind(this)}
+                             outer={this.refs.tagOuter}/>
                 </div>
                 <div ref="projectOuter" className={`${tab2Cls} ${styles.wrapBg} mainContent`}>
-                    <ProjectList {...this.props} loadNextHandler={this.loadNextHandler.bind(this)} outer={this.refs.projectOuter} />
+                    <ProjectList {...this.props} loadNextHandler={this.loadNextHandler.bind(this)}
+                                 outer={this.refs.projectOuter}/>
                 </div>
                 <div ref="userOuter" className={`${tab3Cls} ${styles.wrapBg} mainContent`}>
-                    <UserList {...this.props} loadNextHandler={this.loadNextHandler.bind(this)} outer={this.refs.userOuter} />
+                    <UserList {...this.props} loadNextHandler={this.loadNextHandler.bind(this)}
+                              outer={this.refs.userOuter}/>
                 </div>
 
             </div>
@@ -166,13 +194,15 @@ export class SearchPage extends React.Component { // eslint-disable-line react/p
 }
 
 const mapStateToProps = createSelector(
+    selectUserInfo(),
     selectHistory(),
     selectCurrentTab(),
     selectSearchStatus(),
     searchData(),
     searchKeyword(),
-    (history, currentTab, searchStatus, searchData, searchKeyword) => {
+    (userInfo, history, currentTab, searchStatus, searchData, searchKeyword) => {
         return {
+            userInfo,
             history,
             currentTab,
             searchStatus,
