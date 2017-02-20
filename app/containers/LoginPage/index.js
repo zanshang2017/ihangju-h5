@@ -39,6 +39,10 @@ class LoginPage extends React.Component {
 
         this.historyLengthBeforeLogin = history.length;
         console.log('historyLengthBeforeLogin', this.historyLengthBeforeLogin);
+
+        if (Env.isAndroidShell) {
+            document.getElementById('J_Page').classList.add('overAuto');
+        }
     }
 
     componentDidMount() {
@@ -60,7 +64,6 @@ class LoginPage extends React.Component {
 
         function loginSuccessHandler(result){
             //判断是否需要展示引导页
-            // if (1) { //todo 记得关闭 测试用
             if (result.openPersonalizedRecommendation == true) {
                 that.routeHandler('/follow_recommendation');
             } else {
@@ -86,6 +89,9 @@ class LoginPage extends React.Component {
     }
 
     componentWillUnmount() {
+        if (Env.isAndroidShell) {
+            document.getElementById('J_Page').classList.remove('overAuto');
+        }
         window.removeEventListener('message', this.loginHandlerFactory());
         signals.loginSuccess.removeAll();
     }

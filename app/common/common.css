@@ -43,6 +43,8 @@
     visibility: hidden; }
   :global .none, :global .hide {
     display: none !important; }
+  :global .overAuto {
+    overflow: auto !important; }
   :global .transparent {
     opacity: 0 !important; }
   :global .blockGap {

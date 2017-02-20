@@ -198,7 +198,7 @@ class App extends React.Component {
 
         return (
             <div ref="pageTransitionWrap" className={`animWrap ${routeEffector.className}`}>
-                <div className={pageClass}>
+                <div id="J_Page" className={pageClass}>
                     <ReactCSSTransitionGroup
                         component="div"
                         transitionName="flip"
